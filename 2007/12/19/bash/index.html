@@ -1,0 +1,696 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>10条捷径掌握bash | Dong&#39;s Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dong[東木]">
+    
+
+    
+    <meta name="description" content="如果你曾在Linux shell命令提示符中输入过命令，那么你很可能也使用过bash。因为，它是大多数现代GNU/Linux发行版的默认shell。
+Bash shell是Linux操作系统的主要接口，它可接受、解释和执行你输入的命令，向用户提供shell脚本和自动任务执行后的输出结果。
+Bash保守的外表隐藏了很多十分有用的工具和快捷操作。如果你是一位经常使用命令行的用户，那么了解这些工具和捷径">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10条捷径掌握bash">
+<meta property="og:url" content="http://blog.liudongkai.com/2007/12/19/bash/index.html">
+<meta property="og:site_name" content="Dong's Note">
+<meta property="og:description" content="如果你曾在Linux shell命令提示符中输入过命令，那么你很可能也使用过bash。因为，它是大多数现代GNU/Linux发行版的默认shell。
+Bash shell是Linux操作系统的主要接口，它可接受、解释和执行你输入的命令，向用户提供shell脚本和自动任务执行后的输出结果。
+Bash保守的外表隐藏了很多十分有用的工具和快捷操作。如果你是一位经常使用命令行的用户，那么了解这些工具和捷径">
+<meta property="og:updated_time" content="2007-12-18T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="10条捷径掌握bash">
+<meta name="twitter:description" content="如果你曾在Linux shell命令提示符中输入过命令，那么你很可能也使用过bash。因为，它是大多数现代GNU/Linux发行版的默认shell。
+Bash shell是Linux操作系统的主要接口，它可接受、解释和执行你输入的命令，向用户提供shell脚本和自动任务执行后的输出结果。
+Bash保守的外表隐藏了很多十分有用的工具和快捷操作。如果你是一位经常使用命令行的用户，那么了解这些工具和捷径">
+<meta name="twitter:creator" content="@liudongkai">
+<link rel="publisher" href="100378260579772710000">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
+				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2007/12/19/bash/" title="10条捷径掌握bash" itemprop="url">10条捷径掌握bash</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2007-12-18T16:00:00.000Z" itemprop="datePublished"> 发表于 2007-12-19</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<p>如果你曾在Linux shell命令提示符中输入过命令，那么你很可能也使用过bash。因为，它是大多数现代GNU/Linux发行版的默认shell。</p>
+<p>Bash shell是Linux操作系统的主要接口，它可接受、解释和执行你输入的命令，向用户提供shell脚本和自动任务执行后的输出结果。</p>
+<p>Bash保守的外表隐藏了很多十分有用的工具和快捷操作。如果你是一位经常使用命令行的用户，那么了解这些工具和捷径可以让你节省很多输入。本文为大家介绍了10种十分有用的捷径。</p>
+<ol>
+<li><p>轻松找回以前输入的命令</p>
+<p>Bash在一个历史缓冲区中记录已经执行的命令，并允许用户利用向上和向下方向键在历史命令中循环召回以前输入的命令。</p>
+<p>键入命令的前几个字母然后按下组合键Ctrl-R，bash将会扫描历史命令来匹配输入的命令并将它们显示在控制台上。这样可以“快速搜索”以前执行的命令。重复键入组合键Ctrl-R可以循环整个匹配命令列表。</p>
+</li>
+<li><p>使用命令别名</p>
+<p>如果你经常需要运行一个拥有相同参数选项的命令，你可以用bash为该命令建立一个别名。</p>
+<p>别名可以将需要的选项组合在一起，因此不需要用户记住所有参数或每次都要手工输入它们。例如，如果你经常需要运行带有参数-l的ls命令来获得一个 详细的目录列表，你可以使用下面的命令：<code>bash&gt;alias ls=&#39;ls –l&#39;</code>来创建一个自动包含 -l 参数的别名。</p>
+<p>建立别名后，在bash的命令提示符下输入ls就会调用别名并产生 ls –l 的输出。</p>
+<p>还可以调用alias建立一个没有任何参数的可用别名列表。同时，还可以使用unalias删除一个别名。</p>
+</li>
+<li><p>使用文件名自动完成功能</p>
+<p>Bash支持命令行提示符下的文件名自动完成功能。为了使用这个特性，我们首先输入文件名的前几个字母，然后后面跟着按下Tab键。Bash将会扫 描当前目录以及搜索路径中的所有其它目录来查找匹配的文件。如果只搜索到一个匹配，bash将会自动完成文件名。如果有多个匹配，将会提示你选择其中的一 个。</p>
+</li>
+<li><p>利用快捷键高效编辑命令行</p>
+<p>Bash支持大量键盘快捷操作进行命令行导航和编辑。快捷键Ctrl-A可将光标移动到命令行行首，而Ctrl-E可将光标移动到命令行行尾。Ctrl-W快捷键可以快速删除光标前的字符，而Ctrl-K可以立即删除光标后的字符。使用Ctrl-Y取消删除操作。</p>
+</li>
+<li><p>获得新邮件自动通知</p>
+<p>我们可以配置bash当有新邮件时可以自动通知用户。通过设置$MAILPATH变量来指向你的本地邮件池。例如，下面的命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; MAILPATH=&apos;/var/spool/mail/john&apos;</span><br><span class="line">bash&gt; export MAILPATH</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>该命令在每次有新的消息添加到john的邮件池时，可以使bash在john的控制台上输出一个通知。</p>
+<ol>
+<li><p>在后台运行任务</p>
+<p>Bash运行在后台运行一个或多个任务，并可有选择地挂起或恢复任何一个当前任务（或“作业”）。为了在后台运行一个任务，需要在命令的末尾添加一 个连接符（&amp;）。下面是一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; tail -f /var/log/messages &amp;</span><br><span class="line">[1] 614</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>每个以这种方式放入后台运行的任务被分配一个作业ID号，并打印输出到控制台上。利用命令fg 作业号可以将一个后台任务调回前台运行，此处的作业号就是你想要调回前台运行的任务的作业ID号。下面是一个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash&gt;fg 1</span><br></pre></td></tr></table></figure></p>
+<p>通过在bash命令提示符下键入jobs，可以获得一个活动作业列表。</p>
+<ol>
+<li><p>快速跳至常用目录</p>
+<p>你可能已经知道$PATH变量可以列出bash的“搜索路径”——当在当前目录不能找到请求的文件时，bash会自动搜索的目录。不过，bash也 支持$CDPATH变量，当试图改变目录时该变量列出cd命令转向的目录。为了使用这个特性，我们要对$CDPATH变量赋值一个目录列表，如下面的例子 所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; CDPATH=&apos;.:~:/usr/local/apache/htdocs:/disk1/backups&apos;</span><br><span class="line">bash&gt; export CDPATH</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>现在，无论何时使用cd命令，bash将会检查$CDPATH列表中的所有目录来查找要转向的目录名。</p>
+<ol>
+<li><p>执行计算</p>
+<p>Bash可以在命令提示行下执行一些简单的算术操作。为了使用该特性，在命令提示符下输入你想要计算的算术表达式，并用双圆括号括起来，如下面的例子所示。Bash将会执行计算并返回结果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash&gt;echo$((16/2))</span><br><span class="line">8</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定制命令提示符</p>
+<p>我们可以定制要显示的bash命令提示符，包括当前用户名和主机名，当前时间，平均负载和当前工作目录。要实现该目的，修改$PS1变量，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; PS1=&apos;u@h:w @&gt; &apos;</span><br><span class="line">bash&gt; export PS1</span><br><span class="line">root@medusa:/tmp 03:01 PM&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>结果将会在命令行显示当前登录的用户名、主机名、当前工作目录和当前时间。从用户指南页可以获得bash可以理解的符号列表。</p>
+<ol>
+<li><p>获得特定上下文帮助</p>
+<p>Bash对所有内建命令都同时提供了帮助。键入help，可以查看内建命令列表。键入help命令名可以获得特定命令的帮助。Help后的命令名就是你想要查看帮助的命令。下面是一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash&gt;help alias</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>一些帮助文本</p>
+<p>很明显，任何时刻在命令行键入man bash，都可以获得关于bash命令的详细帮助。</p>
+<p>原文地址 <a href="http://www.builder.com.cn/2007/0703/415647.shtml" target="_blank" rel="external">http://www.builder.com.cn/2007/0703/415647.shtml</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Bash/">Bash</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://blog.liudongkai.com/2007/12/19/bash/" data-title="10条捷径掌握bash | Dong&#39;s Note" data-tsina="2003788463" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2007/12/20/firefox-import-favorites-from-ie/" title="将IE收藏夹和Firefox书签相互转移">
+  <strong>上一篇：</strong><br/>
+  <span>
+  将IE收藏夹和Firefox书签相互转移</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2007/12/19/firefox-short-url/"  title="实现Firefox网址缩写的功能">
+ <strong>下一篇：</strong><br/> 
+ <span>实现Firefox网址缩写的功能
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2007/12/19/bash/" data-title="10条捷径掌握bash" data-url="http://blog.liudongkai.com/2007/12/19/bash/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liudongkai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42337789-4', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'b3655049504c5e2d7c68'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

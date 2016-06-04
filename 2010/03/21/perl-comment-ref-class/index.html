@@ -1,0 +1,658 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>关于Perl的几点：多行注释，REF函数，类的初始化 | Dong&#39;s Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dong[東木]">
+    
+
+    
+    <meta name="description" content="多行注释：perl没有多行注释，可以用下面代替：1234567=pod代码行;...代码行;=cut
+关于ref函数：ref EXPRref Returns a non-empty string if EXPR is a reference, the emptystring otherwise. If EXPR is not specified, $_ will be used. Thevalue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于Perl的几点：多行注释，REF函数，类的初始化">
+<meta property="og:url" content="http://blog.liudongkai.com/2010/03/21/perl-comment-ref-class/index.html">
+<meta property="og:site_name" content="Dong's Note">
+<meta property="og:description" content="多行注释：perl没有多行注释，可以用下面代替：1234567=pod代码行;...代码行;=cut
+关于ref函数：ref EXPRref Returns a non-empty string if EXPR is a reference, the emptystring otherwise. If EXPR is not specified, $_ will be used. Thevalue">
+<meta property="og:updated_time" content="2010-03-20T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于Perl的几点：多行注释，REF函数，类的初始化">
+<meta name="twitter:description" content="多行注释：perl没有多行注释，可以用下面代替：1234567=pod代码行;...代码行;=cut
+关于ref函数：ref EXPRref Returns a non-empty string if EXPR is a reference, the emptystring otherwise. If EXPR is not specified, $_ will be used. Thevalue">
+<meta name="twitter:creator" content="@liudongkai">
+<link rel="publisher" href="100378260579772710000">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
+				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2010/03/21/perl-comment-ref-class/" title="关于Perl的几点：多行注释，REF函数，类的初始化" itemprop="url">关于Perl的几点：多行注释，REF函数，类的初始化</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2010-03-20T16:00:00.000Z" itemprop="datePublished"> 发表于 2010-03-21</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<p>多行注释：<br>perl没有多行注释，可以用下面代替：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">=pod</span><br><span class="line">代码行;</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">代码行;</span><br><span class="line">=cut</span><br></pre></td></tr></table></figure></p>
+<p>关于ref函数：<br>ref EXPR<br>ref Returns a non-empty string if EXPR is a reference, the empty<br>string otherwise. If EXPR is not specified, $_ will be used. The<br>value returned depends on the type of thing the reference is a<br>reference to. Builtin types include:</p>
+<blockquote>
+<p>SCALAR<br>ARRAY<br>HASH<br>CODE<br>REF<br>GLOB<br>LVALUE</p>
+</blockquote>
+<a id="more"></a>
+<p>If the referenced object has been blessed into a package, then<br>that package name is returned instead. You can think of “ref” as<br>a “typeof” operator.</p>
+<p>讲类的段落，比较明了：<br>Object Construction<br>All objects are references, but not all references are objects. A reference won’t work as an object unless its referent is specially marked to tell Perl what package it belongs to. The act of marking a referent with a package name–and therefore, its class, since a class is just a package–is known as blessing. You can think of the blessing as turning a reference into an object, although it’s more accurate to say that it turns the reference into an object reference.</p>
+<p>The bless function takes either one or two arguments. The first argument is a reference and the second is the package to bless the referent into. If the second argument is omitted, the current package is used.</p>
+<p>$obj = { }; # Get reference to anonymous hash.<br>bless($obj); # Bless hash into current package.<br>bless($obj, “Critter”); # Bless hash into class Critter.<br>Here we’ve used a reference to an anonymous hash, which is what people usually use as the data structure for their objects. Hashes are extremely flexible, after all. But allow us to emphasize that you can bless a reference to anything you can make a reference to in Perl, including scalars, arrays, subroutines, and typeglobs. You can even bless a reference to a package’s symbol table hash if you can think of a good reason to. (Or even if you can’t.) Object orientation in Perl is completely orthogonal to data structure.</p>
+<p>Once the referent has been blessed, calling the built-in ref function on its reference returns the name of the blessed class instead of the built-in type, such as HASH. If you want the built-in type, use the reftype function from the attributes module. See use attributes in Chapter 31, “Pragmatic Modules”.</p>
+<p>And that’s how to make an object. Just take a reference to something, give it a class by blessing it into a package, and you’re done. That’s all there is to it if you’re designing a minimal class. If you’re using a class, there’s even less to it, because the author of a class will have hidden the bless inside a method called a constructor, which creates and returns instances of the class. Because bless returns its first argument, a typical constructor can be as simple as this:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">package Critter;</span><br><span class="line">sub spawn &#123; bless &#123;&#125;; &#125;</span><br><span class="line">Or, spelled out slightly more explicitly:</span><br><span class="line">package Critter;</span><br><span class="line">sub spawn &#123;</span><br><span class="line">my $self = &#123;&#125;; # Reference to an empty anonymous hash</span><br><span class="line">bless $self, “Critter”; # Make that hash a Critter object</span><br><span class="line">return $self; # Return the freshly generated Critter</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>With that definition in hand, here’s how one might create a Critter object:<br><code>$pet = Critter-&gt;spawn;</code></p>
+<p>12.4.1. Inheritable Constructors<br>Like all methods, a constructor is just a subroutine, but we don’t call it as a subroutine. We always invoke it as a method–a class method, in this particular case, because the invocant is a package name. Method invocations differ from regular subroutine calls in two ways. First, they get the extra argument we discussed earlier. Second, they obey inheritance, allowing one class to use another’s methods.</p>
+<p>We’ll describe the underlying mechanics of inheritance more rigorously in the next section, but for now, some simple examples of its effects should help you design your constructors. For instance, suppose we have a Spider class that inherits methods from the Critter class. In particular, suppose the Spider class doesn’t have its own spawn method. The following correspondences apply:</p>
+<p>Method Call Resulting Subroutine Call<br><code>Critter-&gt;spawn() Critter::spawn(“Critter”)</code><br><code>Spider-&gt;spawn() Critter::spawn(“Spider”)</code></p>
+<p>The subroutine called is the same in both cases, but the argument differs. Note that our spawn constructor above completely ignored its argument, which means our Spider object was incorrectly blessed into class Critter. A better constructor would provide the package name (passed in as the first argument) to bless:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sub spawn &#123;</span><br><span class="line">my $class = shift; # Store the package name</span><br><span class="line">my $self = &#123; &#125;;</span><br><span class="line">bless($self, $class); # Bless the reference into that package</span><br><span class="line">return $self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Now you could use the same subroutine for both these cases:<br><code>$vermin = Critter-&gt;spawn;</code><br><code>$shelob = Spider-&gt;spawn;</code><br>And each object would be of the proper class. This even works indirectly, as in:<br><code>$type = “Spider”;</code><br><code>$shelob = $type-&gt;spawn; # same as “Spider”-&gt;spawn</code><br>That’s still a class method, not an instance method, because its invocant holds a string and not a reference.</p>
+<p>If $type were an object instead of a class name, the previous constructor definition wouldn’t have worked, because bless needs a class name. But for many classes, it makes sense to use an existing object as the template from which to create another. In these cases, you can design your constructors so that they work with either objects or class names:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sub spawn &#123;</span><br><span class="line">my $invocant = shift;</span><br><span class="line">my $class = ref($invocant) || $invocant; # Object or class name</span><br><span class="line">my $self = &#123; &#125;;</span><br><span class="line">bless($self, $class);</span><br><span class="line">return $self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>12.4.2. Initializers<br>Most objects maintain internal information that is indirectly manipulated by the object’s methods. All our constructors so far have created empty hashes, but there’s no reason to leave them empty. For instance, we could have the constructor accept extra arguments to store into the hash as key/value pairs. The OO literature often refers to such data as properties, attributes, accessors, member data, instance data, or instance variables. The section “Instance Variables” later in this chapter discusses attributes in more detail.</p>
+<p>Imagine a Horse class with instance attributes like “name” and “color”:</p>
+<p>$steed = Horse-&gt;new(name =&gt; “Shadowfax”, color =&gt; “white”);<br>If the object is implemented as a hash reference, the key/value pairs can be interpolated directly into the hash once the invocant is removed from the argument list:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sub new &#123;</span><br><span class="line">my $invocant = shift;</span><br><span class="line">my $class = ref($invocant) || $invocant;</span><br><span class="line">my $self = &#123; @_ &#125;; # Remaining args become attributes</span><br><span class="line">bless($self, $class); # Bestow objecthood</span><br><span class="line">return $self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>This time we used a method named new for the class’s constructor, which just might lull C++ programmers into thinking they know what’s going on. But Perl doesn’t consider “new” to be anything special; you may name your constructors whatever you like. Any method that happens to create and return an object is a de facto constructor. In general, we recommend that you name your constructors whatever makes sense in the context of the problem you’re solving. For example, constructors in the Tk module are named after the widgets they create. In the DBI module, a constructor named connect returns a database handle object, and another constructor named prepare is invoked as an instance method and returns a statement handle object. But if there is no suitable context-specific constructor name, new is perhaps not a terrible choice. Then again, maybe it’s not such a bad thing to pick a random name to force people to read the interface contract (meaning the class documentation) before they use its constructors.</p>
+<p>Elaborating further, you can set up your constructor with default key/value pairs, which the user could later override by supplying them as arguments:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sub new &#123;</span><br><span class="line">my $invocant = shift;</span><br><span class="line">my $class = ref($invocant) || $invocant;</span><br><span class="line">my $self = &#123;</span><br><span class="line">color =&gt; “bay”,</span><br><span class="line">legs =&gt; 4,</span><br><span class="line">owner =&gt; undef,</span><br><span class="line">@_, # Override previous attributes</span><br><span class="line">&#125;;</span><br><span class="line">return bless $self, $class;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>$ed = Horse-&gt;new; # A 4-legged bay horse</code><br><code>$stallion = Horse-&gt;new(color =&gt; “black”); # A 4-legged black horse</code></p>
+<p>This Horse constructor ignores its invocant’s existing attributes when used as an instance method. You could create a second constructor designed to be called as an instance method, and if designed properly, you could use the values from the invoking object as defaults for the new one:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$steed = Horse-&gt;new(color =&gt; “dun”);</span><br><span class="line">$foal = $steed-&gt;clone(owner =&gt; “EquuGen Guild, Ltd.”);</span><br><span class="line"></span><br><span class="line">sub clone &#123;</span><br><span class="line">my $model = shift;</span><br><span class="line">my $self = $model-&gt;new(%$model, @_);</span><br><span class="line">return $self; # Previously blessed by -&gt;new</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/perl/">perl</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://blog.liudongkai.com/2010/03/21/perl-comment-ref-class/" data-title="关于Perl的几点：多行注释，REF函数，类的初始化 | Dong&#39;s Note" data-tsina="2003788463" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2010/04/22/perl-merge-files/" title="Perl 根据相同字段并合并两个文本">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Perl 根据相同字段并合并两个文本</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2010/03/07/thinkpad-t61-squeak/"  title="为什么thinkpad T61会发现吱吧电流声[zt]">
+ <strong>下一篇：</strong><br/> 
+ <span>为什么thinkpad T61会发现吱吧电流声[zt]
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2010/03/21/perl-comment-ref-class/" data-title="关于Perl的几点：多行注释，REF函数，类的初始化" data-url="http://blog.liudongkai.com/2010/03/21/perl-comment-ref-class/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liudongkai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42337789-4', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'b3655049504c5e2d7c68'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

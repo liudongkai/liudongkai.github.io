@@ -1,0 +1,666 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Bash shell中的位置参数$#,$*,$@,$0,$1,$2…及特殊参数$?,$-等的含义 | Dong&#39;s Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dong[東木]">
+    
+
+    
+    <meta name="description" content="在Bash shell中经常会见到一些比较特殊的符号，本人现收集与此，以供查阅：
+位置参数：详见ABS(Advanced Bash Shell)中文翻译版103页第9章第一节内部变量，当然英文版ABS都一样啦
+$0, $1, $2,等等…位置参数,从命令行传递给脚本,或者是传递给函数.或者赋职给一个变量.(具体见Example 4-5 和Example 11-15)$0表示当前执行的进程名,scr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bash shell中的位置参数$#,$*,$@,$0,$1,$2…及特殊参数$?,$-等的含义">
+<meta property="og:url" content="http://blog.liudongkai.com/2012/03/07/shell-meaning-of-parameters/index.html">
+<meta property="og:site_name" content="Dong's Note">
+<meta property="og:description" content="在Bash shell中经常会见到一些比较特殊的符号，本人现收集与此，以供查阅：
+位置参数：详见ABS(Advanced Bash Shell)中文翻译版103页第9章第一节内部变量，当然英文版ABS都一样啦
+$0, $1, $2,等等…位置参数,从命令行传递给脚本,或者是传递给函数.或者赋职给一个变量.(具体见Example 4-5 和Example 11-15)$0表示当前执行的进程名,scr">
+<meta property="og:updated_time" content="2012-03-06T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bash shell中的位置参数$#,$*,$@,$0,$1,$2…及特殊参数$?,$-等的含义">
+<meta name="twitter:description" content="在Bash shell中经常会见到一些比较特殊的符号，本人现收集与此，以供查阅：
+位置参数：详见ABS(Advanced Bash Shell)中文翻译版103页第9章第一节内部变量，当然英文版ABS都一样啦
+$0, $1, $2,等等…位置参数,从命令行传递给脚本,或者是传递给函数.或者赋职给一个变量.(具体见Example 4-5 和Example 11-15)$0表示当前执行的进程名,scr">
+<meta name="twitter:creator" content="@liudongkai">
+<link rel="publisher" href="100378260579772710000">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
+				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2012/03/07/shell-meaning-of-parameters/" title="Bash shell中的位置参数$#,$*,$@,$0,$1,$2…及特殊参数$?,$-等的含义" itemprop="url">Bash shell中的位置参数$#,$*,$@,$0,$1,$2…及特殊参数$?,$-等的含义</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2012-03-06T16:00:00.000Z" itemprop="datePublished"> 发表于 2012-03-07</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#位置参数："><span class="toc-number">1.</span> <span class="toc-text">位置参数：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#0-1-2-等等…"><span class="toc-number">1.0.1.</span> <span class="toc-text">$0, $1, $2,等等…</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">1.0.2.</span> <span class="toc-text">$</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#-1"><span class="toc-number">1.0.3.</span> <span class="toc-text">$@</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他的特殊参数"><span class="toc-number">2.</span> <span class="toc-text">其他的特殊参数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#-2"><span class="toc-number">2.0.1.</span> <span class="toc-text">$-</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#-3"><span class="toc-number">2.0.2.</span> <span class="toc-text">$!</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#-4"><span class="toc-number">2.0.3.</span> <span class="toc-text">$_</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#-5"><span class="toc-number">2.0.4.</span> <span class="toc-text">$?</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#-6"><span class="toc-number">2.0.5.</span> <span class="toc-text">$$</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#退出和返回"><span class="toc-number">3.</span> <span class="toc-text">退出和返回</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#退出状态-exit-status"><span class="toc-number">3.0.1.</span> <span class="toc-text">退出状态(exit status)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#return"><span class="toc-number">3.0.2.</span> <span class="toc-text">return</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<p>在Bash shell中经常会见到一些比较特殊的符号，本人现收集与此，以供查阅：</p>
+<h3 id="位置参数："><a href="#位置参数：" class="headerlink" title="位置参数："></a>位置参数：</h3><p>详见ABS(Advanced Bash Shell)中文翻译版103页第9章第一节内部变量，当然英文版ABS都一样啦</p>
+<h5 id="0-1-2-等等…"><a href="#0-1-2-等等…" class="headerlink" title="$0, $1, $2,等等…"></a>$0, $1, $2,等等…</h5><p>位置参数,从命令行传递给脚本,或者是传递给函数.或者赋职给一个变量.<br>(具体见Example 4-5 和Example 11-15)<br>$0表示当前执行的进程名,script 本身的名字,或者在正则表达式中表示整行输出</p>
+<h5 id=""><a href="#" class="headerlink" title="$"></a>$</h5><p>命令行或者是位置参数的个数.(见Example 33-2)<br>$<em><br>所有的位置参数,被作为一个单词.<br>注意:”$</em>“必须被””引用.</p>
+<a id="more"></a>
+<h5 id="-1"><a href="#-1" class="headerlink" title="$@"></a>$@</h5><p>与$*同义,但是每个参数都是一个独立的””引用字串,这就意味着参数被完整地传递,<br>并没有被解释和扩展.这也意味着,每个参数列表中的每个参数都被当成一个独立的单词.<br>注意:”$@”必须被””引用.</p>
+<h3 id="其他的特殊参数"><a href="#其他的特殊参数" class="headerlink" title="其他的特殊参数"></a>其他的特殊参数</h3><h5 id="-2"><a href="#-2" class="headerlink" title="$-"></a>$-</h5><p>传递给脚本的falg(使用set 命令).参考Example 11-15.<br>注意:这起初是ksh 的特征,后来被引进到Bash 中,但不幸的是,在Bash 中它看上去也不<br>能可靠的工作.使用它的一个可能的方法就是让这个脚本进行自我测试(查看是否是交<br>互的).</p>
+<h5 id="-3"><a href="#-3" class="headerlink" title="$!"></a>$!</h5><p>在后台运行的最后的工作的PID(进程ID).</p>
+<h5 id="-4"><a href="#-4" class="headerlink" title="$_"></a>$_</h5><p>保存之前执行的命令的最后一个参数.</p>
+<h5 id="-5"><a href="#-5" class="headerlink" title="$?"></a>$?</h5><p>命令,函数或者脚本本身的退出状态(见Example 23-7)<br>用于检查上一个命令,函数或者脚本执行是否正确。（在Linux中，命令退出状态为0表示该命令正确执行，任何非0值表示命令出错。）</p>
+<h5 id="-6"><a href="#-6" class="headerlink" title="$$"></a>$$</h5><p>脚本自身的进程ID.这个变量经常用来构造一个”unique”的临时文件名.<br>(参考Example A-13,Example 29-6,Example 12-28 和Example 11-25).<br>这通常比调用mktemp 来得简单.<br>注意事项:<br>[1] 当前运行的脚本的PID 为$$.<br>[2] “argument”和”parameter”这两个单词经常不加区分的使用.在这整本书中,这两个<br>单词的意思完全相同.(在翻译的时候就未加区分,统统翻译成参数)</p>
+<h3 id="退出和返回"><a href="#退出和返回" class="headerlink" title="退出和返回"></a>退出和返回</h3><h5 id="退出状态-exit-status"><a href="#退出状态-exit-status" class="headerlink" title="退出状态(exit status)"></a>退出状态(exit status)</h5><p>函数返回一个被称为退出状态的值. 退出状态可以由return 来指定statement, 否则函数的<br>退出状态是函数最后一个执行命令的退出状态(0 表示成功,非0 表示出错代码). 退出状态<br>(exit status)可以在脚本中由$? 引用. 这个机制使脚本函数也可以像C 函数一样有一个”<br>返回值”.</p>
+<h5 id="return"><a href="#return" class="headerlink" title="return"></a>return</h5><p>终止一个函数.return 命令[1]可选地带一个整数参数,这个整数作为函数的”返回值”返回<br>给调用此函数的脚本,并且这个值也被赋给变量$?.</p>
+<p>while true可以写为while :</p>
+<p>Example 23-7 两个数中的最大者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">###################Start Script#################</span><br><span class="line">#!/bin/bash</span><br><span class="line"># max.sh: 两个整数中的最大者.</span><br><span class="line"></span><br><span class="line">E_PARAM_ERR=-198 # 如果传给函数的参数少于2 个时的返回值.</span><br><span class="line">EQUAL=-199 # 如果两个整数值相等的返回值.</span><br><span class="line"># 任一个传给函数的参数值溢出</span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">max2 () # 返回两个整数的较大值.</span><br><span class="line"> &#123; # 注意: 参与比较的数必须小于257.</span><br><span class="line"> if [ -z &quot;$2&quot; ]</span><br><span class="line"> then</span><br><span class="line"> return $E_PARAM_ERR</span><br><span class="line"> fi</span><br><span class="line"></span><br><span class="line"> if [ &quot;$1&quot; -eq &quot;$2&quot; ]</span><br><span class="line"> then</span><br><span class="line"> return $EQUAL</span><br><span class="line"> else</span><br><span class="line"> if [ &quot;$1&quot; -gt &quot;$2&quot; ]</span><br><span class="line"> then</span><br><span class="line"> return $1</span><br><span class="line"> else</span><br><span class="line"> return $2</span><br><span class="line"> fi</span><br><span class="line"> fi</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> max2 33 34</span><br><span class="line"> return_val=$?</span><br><span class="line"></span><br><span class="line"> if [ &quot;$return_val&quot; -eq $E_PARAM_ERR ]</span><br><span class="line"> then</span><br><span class="line"> echo “Need to pass two parameters to the function.”</span><br><span class="line"> elif [ &quot;$return_val&quot; -eq $EQUAL ]</span><br><span class="line"> then</span><br><span class="line"> echo “The two numbers are equal.”</span><br><span class="line"> else</span><br><span class="line"> echo “The larger of the two numbers is $return_val.”</span><br><span class="line"> fi</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> exit 0</span><br><span class="line"></span><br><span class="line"> # 练习 (容易):</span><br><span class="line"> # —————</span><br><span class="line"> # 把这个脚本转化成交互式的脚本,</span><br><span class="line"> #+ 也就是说,让脚本可以要求调用者输入两个整数.</span><br><span class="line">#####################End Script##################</span><br></pre></td></tr></table></figure></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/shell/">shell</a><a href="/tags/parameter/">parameter</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://blog.liudongkai.com/2012/03/07/shell-meaning-of-parameters/" data-title="Bash shell中的位置参数$#,$*,$@,$0,$1,$2…及特殊参数$?,$-等的含义 | Dong&#39;s Note" data-tsina="2003788463" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2012/03/16/mysql-timestamp-operation/" title="mysql timestamp时间运算">
+  <strong>上一篇：</strong><br/>
+  <span>
+  mysql timestamp时间运算</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2012/03/02/mysql-binlog-format/"  title="MYSQL复制参数binlog_format">
+ <strong>下一篇：</strong><br/> 
+ <span>MYSQL复制参数binlog_format
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2012/03/07/shell-meaning-of-parameters/" data-title="Bash shell中的位置参数$#,$*,$@,$0,$1,$2…及特殊参数$?,$-等的含义" data-url="http://blog.liudongkai.com/2012/03/07/shell-meaning-of-parameters/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#位置参数："><span class="toc-number">1.</span> <span class="toc-text">位置参数：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#0-1-2-等等…"><span class="toc-number">1.0.1.</span> <span class="toc-text">$0, $1, $2,等等…</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">1.0.2.</span> <span class="toc-text">$</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#-1"><span class="toc-number">1.0.3.</span> <span class="toc-text">$@</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他的特殊参数"><span class="toc-number">2.</span> <span class="toc-text">其他的特殊参数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#-2"><span class="toc-number">2.0.1.</span> <span class="toc-text">$-</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#-3"><span class="toc-number">2.0.2.</span> <span class="toc-text">$!</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#-4"><span class="toc-number">2.0.3.</span> <span class="toc-text">$_</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#-5"><span class="toc-number">2.0.4.</span> <span class="toc-text">$?</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#-6"><span class="toc-number">2.0.5.</span> <span class="toc-text">$$</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#退出和返回"><span class="toc-number">3.</span> <span class="toc-text">退出和返回</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#退出状态-exit-status"><span class="toc-number">3.0.1.</span> <span class="toc-text">退出状态(exit status)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#return"><span class="toc-number">3.0.2.</span> <span class="toc-text">return</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liudongkai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42337789-4', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'b3655049504c5e2d7c68'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

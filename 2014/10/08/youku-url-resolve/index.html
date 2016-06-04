@@ -1,0 +1,679 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>优酷真实视频地址解析——2014年10月7日[ZT] | Dong&#39;s Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dong[東木]">
+    
+
+    
+    <meta name="description" content="序：优酷之前更新了次算法(很久之前了，呵呵。。。)，故此很多博客的解析算法已经无法使用。很多大触也已经更新了新的解析方法。我也在此写篇解析过程的文章。(本文使用语言为C#)
+由于优酷视频地址时间限制，在你访问本篇文章时，下面所属链接有可能已经失效，望见谅。
+例： http://v.youku.com/v_show/id_XNzk2NTI0MzMy.html
+1:获取视频vid在视频url中标红部分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="优酷真实视频地址解析——2014年10月7日[ZT]">
+<meta property="og:url" content="http://blog.liudongkai.com/2014/10/08/youku-url-resolve/index.html">
+<meta property="og:site_name" content="Dong's Note">
+<meta property="og:description" content="序：优酷之前更新了次算法(很久之前了，呵呵。。。)，故此很多博客的解析算法已经无法使用。很多大触也已经更新了新的解析方法。我也在此写篇解析过程的文章。(本文使用语言为C#)
+由于优酷视频地址时间限制，在你访问本篇文章时，下面所属链接有可能已经失效，望见谅。
+例： http://v.youku.com/v_show/id_XNzk2NTI0MzMy.html
+1:获取视频vid在视频url中标红部分">
+<meta property="og:updated_time" content="2014-10-07T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="优酷真实视频地址解析——2014年10月7日[ZT]">
+<meta name="twitter:description" content="序：优酷之前更新了次算法(很久之前了，呵呵。。。)，故此很多博客的解析算法已经无法使用。很多大触也已经更新了新的解析方法。我也在此写篇解析过程的文章。(本文使用语言为C#)
+由于优酷视频地址时间限制，在你访问本篇文章时，下面所属链接有可能已经失效，望见谅。
+例： http://v.youku.com/v_show/id_XNzk2NTI0MzMy.html
+1:获取视频vid在视频url中标红部分">
+<meta name="twitter:creator" content="@liudongkai">
+<link rel="publisher" href="100378260579772710000">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
+				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/10/08/youku-url-resolve/" title="优酷真实视频地址解析——2014年10月7日[ZT]" itemprop="url">优酷真实视频地址解析——2014年10月7日[ZT]</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2014-10-07T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-10-08</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-获取视频vid"><span class="toc-text">1:获取视频vid</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-获取视频元信息"><span class="toc-text">2:获取视频元信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-拼接m3u8地址"><span class="toc-text">3:拼接m3u8地址</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1计算ep-sid-token"><span class="toc-text">3.1计算ep,sid,token</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2视频格式及清晰度"><span class="toc-text">3.2视频格式及清晰度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3拼接地址"><span class="toc-text">3.3拼接地址</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-获取视频地址"><span class="toc-text">4:获取视频地址</span></a></li></ol>
+		
+		</div>
+		
+		<p>序：优酷之前更新了次算法(很久之前了，呵呵。。。)，故此很多博客的解析算法已经无法使用。很多大触也已经更新了新的解析方法。我也在此写篇解析过程的文章。(本文使用语言为C#)</p>
+<p>由于优酷视频地址时间限制，在你访问本篇文章时，下面所属链接有可能已经失效，望见谅。</p>
+<p>例： <a href="http://v.youku.com/v_show/id_XNzk2NTI0MzMy.html" target="_blank" rel="external">http://v.youku.com/v_show/id_<span style="color: #ff0000;"><strong>XNzk2NTI0MzMy</strong></span>.html</a></p>
+<h2 id="1-获取视频vid"><a href="#1-获取视频vid" class="headerlink" title="1:获取视频vid"></a>1:获取视频vid</h2><p>在视频url中标红部分。一个正则表达式即可获取。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">string getVid(string url)</span><br><span class="line">&#123;</span><br><span class="line">    string strRegex = &quot;(?&lt;=id_)(\\w+)&quot;;</span><br><span class="line">    Regex reg = new Regex(strRegex);</span><br><span class="line">    Match match = reg.Match(url);</span><br><span class="line">    return match.ToString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="2-获取视频元信息"><a href="#2-获取视频元信息" class="headerlink" title="2:获取视频元信息"></a>2:获取视频元信息</h2><p><a href="http://v.youku.com/player/getPlayList/VideoIDS/XNzk2NTI0MzMy/Pf/4/ctype/12/ev/1" target="_blank" rel="external">http://v.youku.com/player/getPlayList/VideoIDS/<span style="color: #ff0000;"><strong>XNzk2NTI0MzMy</strong></span>/Pf/4/ctype/12/ev/1</a></p>
+<p>将前述vid嵌入到上面url中访问即可得到视频信息文件。由于视频信息过长不在此贴出全部内容。下面是部分重要内容的展示。(获取文件为json文件，可直接解析)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123; &quot;data&quot;: [ &#123;</span><br><span class="line">            &quot;ip&quot;: 996949050,</span><br><span class="line">            &quot;ep&quot;: &quot;NQXRTAodIbrd1vnC8+JxB4emuRs41w7DWho=&quot;,</span><br><span class="line">            &quot;segs&quot;: &#123;</span><br><span class="line">                &quot;hd2&quot;: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        &quot;no&quot;: &quot;0&quot;,</span><br><span class="line">                        &quot;size&quot;: &quot;34602810&quot;,</span><br><span class="line">                        &quot;seconds&quot;: 205,</span><br><span class="line">                        &quot;k&quot;: &quot;248fe14b4c1b37302411f67a&quot;,</span><br><span class="line">                        &quot;k2&quot;: &quot;1c8e113cecad924c5&quot;</span><br><span class="line">                    &#125;,</span><br><span class="line">                    &#123;</span><br><span class="line">                        &quot;no&quot;: &quot;1&quot;,</span><br><span class="line">                    &#125;,] &#125;, &#125; ],&#125;</span><br></pre></td></tr></table></figure>
+<p>上面显示的内容后面都会使用到。其中segs包含<strong>hd3,hd2,flv,mp4,3gp</strong>等各种格式，并且每种格式下均分为若干段。本次选用清晰度较高的hd2(视频格式为flv)</p>
+<h2 id="3-拼接m3u8地址"><a href="#3-拼接m3u8地址" class="headerlink" title="3:拼接m3u8地址"></a>3:拼接m3u8地址</h2><p><a href="http://pl.youku.com/playlist/m3u8?ctype=12&amp;ep={0}&amp;ev=1&amp;keyframe=1&amp;oip={1}&amp;sid={2}&amp;token={3}&amp;type={4}&amp;vid={5}" target="_blank" rel="external">http://pl.youku.com/playlist/m3u8?ctype=12&amp;ep={0}&amp;ev=1&amp;keyframe=1&amp;oip={1}&amp;sid={2}&amp;token={3}&amp;type={4}&amp;vid={5}</a></p>
+<p>以上共有6个参数，其中vid和oip已经得到，分别之前的vid和json文件中的ip字段，即(<span style="color: #ff0000;"><strong>XNzk2NTI0MzMy</strong></span>和<span style="color: #ff0000;"><strong>1991941296</strong></span>)，但是ep,sid,token需要重新计算(json文件中的ep值不能直接使用)。type即为之前选择的segs。</p>
+<h3 id="3-1计算ep-sid-token"><a href="#3-1计算ep-sid-token" class="headerlink" title="3.1计算ep,sid,token"></a>3.1计算ep,sid,token</h3><p>计算方法单纯的为数学计算，下面给出计算的函数。三个参数可一次性计算得到。其中涉及到Base64编码解码知识。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">private static string myEncoder(string a, byte[] c, bool isToBase64)</span><br><span class="line">        &#123;</span><br><span class="line">            string result = &quot;&quot;;</span><br><span class="line">            List&lt;Byte&gt; bytesR = new List&lt;byte&gt;();</span><br><span class="line">            int f = 0, h = 0, q = 0;</span><br><span class="line">            int[] b = new int[256];</span><br><span class="line">            for (int i = 0; i &lt; 256; i++)</span><br><span class="line">                    b[i] = i;</span><br><span class="line">            while (h &lt; 256)</span><br><span class="line">            &#123;</span><br><span class="line">                f = (f + b[h] + a[h % a.Length]) % 256;</span><br><span class="line">                int temp = b[h];</span><br><span class="line">                b[h] = b[f];</span><br><span class="line">                b[f] = temp;</span><br><span class="line">                h++;</span><br><span class="line">            &#125;</span><br><span class="line">            f = 0; h = 0; q = 0;</span><br><span class="line">            while (q &lt; c.Length)</span><br><span class="line">            &#123;</span><br><span class="line">                h = (h + 1) % 256;</span><br><span class="line">                f = (f + b[h]) % 256;</span><br><span class="line">                int temp = b[h];</span><br><span class="line">                b[h] = b[f];</span><br><span class="line">                b[f] = temp;</span><br><span class="line">                byte[] bytes = new byte[] &#123; (byte)(c[q] ^ b[(b[h] + b[f]) % 256]) &#125;;</span><br><span class="line">                bytesR.Add(bytes[0]);</span><br><span class="line">                result += System.Text.ASCIIEncoding.ASCII.GetString(bytes);</span><br><span class="line">                q++;</span><br><span class="line">            &#125;</span><br><span class="line">            if (isToBase64)</span><br><span class="line">            &#123;</span><br><span class="line">                Byte[] byteR = bytesR.ToArray();</span><br><span class="line">                result = Convert.ToBase64String(byteR);</span><br><span class="line">            &#125;</span><br><span class="line">            return result;</span><br><span class="line">        &#125;</span><br><span class="line">        public static void getEp(string vid, string ep, ref string pNew, ref string token, ref string sid)</span><br><span class="line">        &#123;</span><br><span class="line">            string template1 = &quot;becaf9be&quot;;</span><br><span class="line">            string template2 = &quot;bf7e5f01&quot;;</span><br><span class="line">            byte[] bytes = Convert.FromBase64String(ep);</span><br><span class="line">            ep = System.Text.ASCIIEncoding.ASCII.GetString(bytes);</span><br><span class="line">            string temp = myEncoder(template1, bytes, false);</span><br><span class="line">            string[] part = temp.Split(&apos;_&apos;);</span><br><span class="line">            sid = part[0];</span><br><span class="line">            token = part[1];</span><br><span class="line">            string whole = string.Format(&quot;&#123;0&#125;_&#123;1&#125;_&#123;2&#125;&quot;, sid, vid, token);</span><br><span class="line">            byte[] newbytes = System.Text.ASCIIEncoding.ASCII.GetBytes(whole);</span><br><span class="line">            epNew = myEncoder(template2, newbytes, true);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>计算得到<span style="color: #ff0000;">ep,token,sid</span>分别为cCaVGE6OUc8H4ircjj8bMiuwdH8KXJZ0vESH/7YbAMZuNaHQmjbTwg==, 3825, 241273717793612e7b085。注意，<span style="color: #ff0000;">此时ep并不能直接拼接到url中，需要对此做一下url编码ToUrlEncode(ep)</span>。最终ep为cCaVGE6OUc8H4ircjj8bMiuwdH8KXJZ0vESH%2f7YbAMZuNaHQmjbTwg%3d%3d</p>
+<h3 id="3-2视频格式及清晰度"><a href="#3-2视频格式及清晰度" class="headerlink" title="3.2视频格式及清晰度"></a>3.2视频格式及清晰度</h3><p>视频格式和选择的segs有密切关系。如本文选择的hd2，格式即为flv，下面是segs,视频格式和清晰度的对照。之前对此部分理解有些偏差，多谢<br><a href="http://home.cnblogs.com/u/xzpgzl/" title="削着苹果走路" target="_blank" rel="external">削着苹果走路</a>提醒。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">“segs”,”视频格式”,”清晰度”</span><br><span class="line">&quot;hd3&quot;, &quot;flv&quot;, &quot;1080P&quot;</span><br><span class="line">&quot;hd2&quot;, &quot;flv&quot;, &quot;超清&quot;</span><br><span class="line">&quot;mp4&quot;, &quot;mp4&quot;, &quot;高清&quot;</span><br><span class="line">&quot;flvhd&quot;, &quot;flv&quot;, &quot;高清&quot;</span><br><span class="line">&quot;flv&quot;, &quot;flv&quot;, &quot;标清&quot;</span><br><span class="line">&quot;3gphd&quot;, &quot;3gp&quot;, &quot;高清&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="3-3拼接地址"><a href="#3-3拼接地址" class="headerlink" title="3.3拼接地址"></a>3.3拼接地址</h3><p>最后的m3u8地址为</p>
+<p><a href="http://pl.youku.com/playlist/m3u8?ctype=12&amp;ep=cCaVGE6OUc8H4ircjj8bMiuwdH8KXJZ0vESH%2f7YbAMZuNaHQmjbTwg%3d%3d&amp;ev=1&amp;keyframe=1&amp;oip=996949050&amp;sid=241273717793612e7b085&amp;token=3825&amp;type=hd2&amp;vid=XNzk2NTI0MzMy" target="_blank" rel="external">http://pl.youku.com/playlist/m3u8?<br>ctype=12<br>&amp;ep=<span style="color: #ff0000;">cCaVGE6OUc8H4ircjj8bMiuwdH8KXJZ0vESH%2f7YbAMZuNaHQmjbTwg%3d%3d</span><br>&amp;ev=1<br>&amp;keyframe=1<br>&amp;oip=<span style="color: #ff0000;">996949050</span><br>&amp;sid=<span style="color: #ff0000;">241273717793612e7b085</span><br>&amp;token=<span style="color: #ff0000;">3825</span><br>&amp;type=<span style="color: #ff0000;">hd2</span><br>&amp;vid=<span style="color: #ff0000;">XNzk2NTI0MzMy</span></a></p>
+<h2 id="4-获取视频地址"><a href="#4-获取视频地址" class="headerlink" title="4:获取视频地址"></a>4:获取视频地址</h2><p>将上述m3u8文件下载后，其中内容即为真实地址，不过还需要稍微处理一下。部分内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#EXTM3U</span><br><span class="line">#EXT-X-TARGETDURATION:12</span><br><span class="line">#EXT-X-VERSION:3</span><br><span class="line">#EXTINF:6.006,</span><br><span class="line">http://59.108.137.14/65666E0ED34581E6B96293A18/0300010F005430BCBA49631468DEFEC61C5678-3A78-37BA-1971-21A0D4EEA0E7.flv?ts_start=0&amp;ts_end=5.906&amp;ts_seg_no=0&amp;ts_keyframe=1</span><br><span class="line">#EXTINF:5.464,</span><br><span class="line">http://59.108.137.14/65666E0ED34581E6B96293A18/0300010F005430BCBA49631468DEFEC61C5678-3A78-37BA-1971-21A0D4EEA0E7.flv?ts_start=5.906&amp;ts_end=11.37&amp;ts_seg_no=1&amp;ts_keyframe=1</span><br><span class="line">#EXTINF:5.505,</span><br><span class="line">http://59.108.137.14/65666E0ED34581E6B96293A18/0300010F005430BCBA49631468DEFEC61C5678-3A78-37BA-1971-21A0D4EEA0E7.flv?ts_start=11.37&amp;ts_end=16.875&amp;ts_seg_no=2&amp;ts_keyframe=1</span><br><span class="line">#EXTINF:9.26,</span><br><span class="line">http://59.108.137.14/65666E0ED34581E6B96293A18/0300010F005430BCBA49631468DEFEC61C5678-3A78-37BA-1971-21A0D4EEA0E7.flv?ts_start=16.875&amp;ts_end=26.135&amp;ts_seg_no=3&amp;ts_keyframe=1</span><br><span class="line">#EXTINF:11.136,</span><br><span class="line">http://59.108.137.14/65666E0ED34581E6B96293A18/0300010F005430BCBA49631468DEFEC61C5678-3A78-37BA-1971-21A0D4EEA0E7.flv?ts_start=26.135&amp;ts_end=37.271&amp;ts_seg_no=4&amp;ts_keyframe=1</span><br><span class="line">#EXTINF:8.258,</span><br><span class="line">http://59.108.137.14/65666E0ED34581E6B96293A18/0300010F005430BCBA49631468DEFEC61C5678-3A78-37BA-1971-21A0D4EEA0E7.flv?ts_start=37.271&amp;ts_end=45.529&amp;ts_seg_no=5&amp;ts_keyframe=1</span><br><span class="line">#EXTINF:9.843,</span><br><span class="line">http://59.108.137.14/65666E0ED34581E6B96293A18/0300010F005430BCBA49631468DEFEC61C5678-3A78-37BA-1971-21A0D4EEA0E7.flv?ts_start=45.529&amp;ts_end=55.372&amp;ts_seg_no=6&amp;ts_keyframe=1</span><br><span class="line">#EXTINF:10.26,</span><br><span class="line">http://59.108.137.14/65666E0ED34581E6B96293A18/0300010F005430BCBA49631468DEFEC61C5678-3A78-37BA-1971-21A0D4EEA0E7.flv?ts_start=55.372&amp;ts_end=65.632&amp;ts_seg_no=7&amp;ts_keyframe=1</span><br></pre></td></tr></table></figure>
+<p>其中每条url只包含6s左右视频，但是可将url中参数部分去掉即可得到实际的长度。但是每条去掉后需合并一下相同的url，如上述列表可得到url片段</p>
+<p><a href="http://59.108.137.14/65666E0ED34581E6B96293A18/0300010F005430BCBA49631468DEFEC61C5678-3A78-37BA-1971-21A0D4EEA0E7.flv" target="_blank" rel="external">http://59.108.137.14/65666E0ED34581E6B96293A18/0300010F005430BCBA49631468DEFEC61C5678-3A78-37BA-1971-21A0D4EEA0E7.flv</a></p>
+<p>将m3u8中所有的url片段全部下载即可大功告成。</p>
+<p>本文地址：<a href="http://www.cnblogs.com/zhaojunjie/p/4009192.html" target="_blank" rel="external">http://www.cnblogs.com/zhaojunjie/p/4009192.html</a> ，（@天地玄黄）转载请注明源地址。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Share/">Share</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/youku/">youku</a><a href="/tags/C/">C#</a><a href="/tags/解析/">解析</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://blog.liudongkai.com/2014/10/08/youku-url-resolve/" data-title="优酷真实视频地址解析——2014年10月7日[ZT] | Dong&#39;s Note" data-tsina="2003788463" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/10/13/the-triggerfish-and-your-mobile-app/" title="找到一个触发器，成为用户每天使用的app">
+  <strong>上一篇：</strong><br/>
+  <span>
+  找到一个触发器，成为用户每天使用的app</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/09/20/megacli/"  title="常用PC服务器阵列卡、硬盘健康监控[ZT]">
+ <strong>下一篇：</strong><br/> 
+ <span>常用PC服务器阵列卡、硬盘健康监控[ZT]
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2014/10/08/youku-url-resolve/" data-title="优酷真实视频地址解析——2014年10月7日[ZT]" data-url="http://blog.liudongkai.com/2014/10/08/youku-url-resolve/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-获取视频vid"><span class="toc-text">1:获取视频vid</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-获取视频元信息"><span class="toc-text">2:获取视频元信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-拼接m3u8地址"><span class="toc-text">3:拼接m3u8地址</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1计算ep-sid-token"><span class="toc-text">3.1计算ep,sid,token</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2视频格式及清晰度"><span class="toc-text">3.2视频格式及清晰度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3拼接地址"><span class="toc-text">3.3拼接地址</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-获取视频地址"><span class="toc-text">4:获取视频地址</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liudongkai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42337789-4', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'b3655049504c5e2d7c68'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

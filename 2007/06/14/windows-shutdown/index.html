@@ -1,0 +1,676 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Windows shutdown | Dong&#39;s Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dong[東木]">
+    
+
+    
+    <meta name="description" content="WINDOWS XP的关机中。Windows XP系统是通过一个名为Shutdown.exe的程序来完成关机操作的，关机的时候调用shutdown.exe。在Windows XP的运用中，如果我们能很好的利用这个工具，这对我们的工作是大有益处的。作为Shutdown.exe的运用，我想作以下几点来讲。
+一、自动关机其实现在我们只要在网上一搜，自动关机的小软件可以搜一大堆。也就是说大多数实现自动关机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows shutdown">
+<meta property="og:url" content="http://blog.liudongkai.com/2007/06/14/windows-shutdown/index.html">
+<meta property="og:site_name" content="Dong's Note">
+<meta property="og:description" content="WINDOWS XP的关机中。Windows XP系统是通过一个名为Shutdown.exe的程序来完成关机操作的，关机的时候调用shutdown.exe。在Windows XP的运用中，如果我们能很好的利用这个工具，这对我们的工作是大有益处的。作为Shutdown.exe的运用，我想作以下几点来讲。
+一、自动关机其实现在我们只要在网上一搜，自动关机的小软件可以搜一大堆。也就是说大多数实现自动关机">
+<meta property="og:updated_time" content="2007-06-13T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows shutdown">
+<meta name="twitter:description" content="WINDOWS XP的关机中。Windows XP系统是通过一个名为Shutdown.exe的程序来完成关机操作的，关机的时候调用shutdown.exe。在Windows XP的运用中，如果我们能很好的利用这个工具，这对我们的工作是大有益处的。作为Shutdown.exe的运用，我想作以下几点来讲。
+一、自动关机其实现在我们只要在网上一搜，自动关机的小软件可以搜一大堆。也就是说大多数实现自动关机">
+<meta name="twitter:creator" content="@liudongkai">
+<link rel="publisher" href="100378260579772710000">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
+				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2007/06/14/windows-shutdown/" title="Windows shutdown" itemprop="url">Windows shutdown</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2007-06-13T16:00:00.000Z" itemprop="datePublished"> 发表于 2007-06-14</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、自动关机"><span class="toc-text">一、自动关机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、一键关机"><span class="toc-text">二、一键关机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、远程关机"><span class="toc-text">三、远程关机</span></a></li></ol>
+		
+		</div>
+		
+		<p>WINDOWS XP的关机中。Windows XP系统是通过一个名为Shutdown.exe的程序来完成关机操作的，关机的时候调用shutdown.exe。在Windows XP的运用中，如果我们能很好的利用这个工具，这对我们的工作是大有益处的。作为Shutdown.exe的运用，我想作以下几点来讲。</p>
+<h2 id="一、自动关机"><a href="#一、自动关机" class="headerlink" title="一、自动关机"></a>一、自动关机</h2><p>其实现在我们只要在网上一搜，自动关机的小软件可以搜一大堆。也就是说大多数实现自动关机的方法都是使用一些第三方软件，这样不仅麻烦，而且为实现这个小功能而专门动用一个软件，显的小题大做了!其实Windows XP自身就具备定时关机的功能，下面我们就来看看如何实现Windows XP的自动关机。为找到答案，我们有必要先了解一下WINDOWS XP的关机。Windows XP系统通过一个名为Shutdown.exe的程序来完成关机操作(位置在WindowsSystem下)，关机的时候调用shutdown.exe。因此，要实现自动关机，就是对shutdown.exe的调用。比如你的电脑要在12:00关机，可以选择”开始→运行”，输入<code>at 12:00 Shutdown -s</code>，这样，到了12点电脑就会出现”系统关机”对话框，默认有30秒钟的倒计时并提示你保存工作。如果你想以倒计时的方式关机，可以输入<code>Shutdown.exe -s -t 3600</code>，这里表示60分钟后自动关机，”3600”代表60分钟。</p>
+<p>设置好自动关机后，如果想取消的话，可以在运行中输入<code>shutdown -a</code>。另外输入<code>shutdown -i</code>，则可以打开设置自动关机对话框，对自动关机进行设置。</p>
+<p>Shutdown.exe的参数，每个都具有特定的用途，执行每一个都会产生不同的效果，比如”-s”就表示关闭本地计算机，”-a”表示取消关机操作，下面列出了更多参数，大家可以在Shutdown.exe中按需使用。</p>
+<blockquote>
+<p>shutdown.exe -a 取消关机<br>shutdown.exe -d [p]:xx:yy 列出系统关闭的原因代码。<br>shutdown.exe -f 强行关闭应用程序。<br>shutdown.exe -m \计算机名　控制远程计算机。<br>shutdown.exe -i 显示图形用户界面，但必须是Shutdown的第一个参数。<br>shutdown.exe -l 注销当前用户。<br>shutdown.exe -r 关机并重启。<br>shutdown.exe -t 时间 设置关机倒计时。默认值是 30 秒。<br>shutdown.exe -c”消息内容”输入关机对话框中的消息内容(不能超127个字符)。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="二、一键关机"><a href="#二、一键关机" class="headerlink" title="二、一键关机"></a>二、一键关机</h2><ol>
+<li><p>首先在桌面的空白处单击鼠标右键，新建一个”快捷方式”。</p>
+</li>
+<li><p>在创建快捷方式的”命令行”中输入以下的指令:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shutdown –s –t 0</span><br><span class="line">#在windows98按此输入&quot;C:windowsRUNDLL32.EXE user,ExitWindows&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>按着鼠标选择”下一步”，在快捷方式的名称栏中输入”一键关机”或其他自己喜欢的名称。</p>
+</li>
+<li><p>之后，你就会在桌面见到一个名为”一键关机”的快捷方式图标，在该图标上单击鼠标右键，选择”属性”，再进入”快捷方式”页，然后在”快速键一栏内随便按选一个功能键(如F1-F12)。建议大家最好选一个平时不常用的功能键，最后按确定退出即可。</p>
+</li>
+</ol>
+<h2 id="三、远程关机"><a href="#三、远程关机" class="headerlink" title="三、远程关机"></a>三、远程关机</h2><p>前面已经介绍了一些关于shutdown的运用，那么对远程计算机进行操作，又该如何才能实现呢?</p>
+<p>在该命令的格式中，前面已经列了一个参数[-m [\ComputerName]，用它可以指定将要关闭或重启的计算机名称，省略的话则默认为对本机操作。 而在Windows XP默认的安全策略中，只有管理员组的用户才有权从远端关闭计算机，而一般情况下我们从局域网内的其他电脑来访问该计算机时，则只有guest用户权限，这种用户权限是无法实现对远程计算机进行关机，要实现远程关机，只要在客户计算机(能够被远程关闭的计算机)中赋予guest用户远程关机的权限即可。这可利用Windows XP的”组策略”或”管理工具”中的”本地安全策略”来实现。下面以”组策略”为例进行介绍:</p>
+<ol>
+<li><p>单击”开始”按钮，选择”运行”，在对话框中输入”gpedit.msc”，然后单击”确定”，打开”组策略编辑器”。</p>
+</li>
+<li><p>在”组策略”窗口的左窗格中打开”计算机配置”—“Windows 设置”—“安全设置”—“本地策略”—“用户权利指派”.</p>
+</li>
+<li><p>在”组策略”窗口的右窗格中选择”从远端系统强制关机”，双击。 </p>
+</li>
+<li><p>在弹出的对话框中显示目前只有”Administrators”组的成员才有权从远程关机;单击对话框下方的”添加用户或组”按钮，然后在新弹出的对话框中输入”guest”，再单击”确定”。</p>
+</li>
+<li><p>关闭”组策略”窗中。</p>
+</li>
+</ol>
+<p>通过上述操作后，我们便给计算机的guest用户授予了远程关机的权限。然后我们在开始/运行里输入:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shutdown -s –m \\ ComputerName -t 30</span><br></pre></td></tr></table></figure></p>
+<p>这时，在ComputerName 计算机的屏幕上将显示一个”系统关机”的对话框，提示”系统即将关机。请保存所有正在运行的工作，然后注销。未保存的改动将会丢失。关机是由ComputerName \guest初始的。”在对话框下方还有一个计时器，显示离关机还有多少时间。在等待关机的时间里，用户还可以执行其他的任务，如关闭程序、打开文件等，但无法关闭该对话框，除非你用shutdown -a命令来中止关机任务。</p>
+<p>能够灵活运用这些参数，可以帮助我们更好的解决计算机故障，比如，当我们遇到冲击波或震荡波病毒时，运用shutdown –a，可以终止当前的关机进程，这样就可以避免由于这些病毒侵袭时，出现强迫关机而造成的我们不必要的损失。Shutdown.exe不仅仅是在windows xp中可以用。在Win2000也可利用它，方法如下:在WinXP安装目录下的System32文件夹中找到Shutdown.exe，将它复制到Win2000安装目录下的System32文件夹中，在”运行”中输入”Shutdown.exe”，即可像在Windows XP中一样使用该程序了。其实，在windows xp中的实用命令还有很多。上面介绍的仅仅是shutdown.exe的一小部分用法，它还有许多其他的实际的用法，这儿就不在一一列出来了。在这儿，我想说的是，命令是死的，思维是活的。用思维支配命令，这才能把命令用活，把死的用成活的;才能更好地利用这些命令给我解决运用中的实际问题。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Windows/">Windows</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/shutdown/">shutdown</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://blog.liudongkai.com/2007/06/14/windows-shutdown/" data-title="Windows shutdown | Dong&#39;s Note" data-tsina="2003788463" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2007/12/13/aWstats-IIS-installtion/" title="AWstats 在 IIS 下最详细的安装说明文档">
+  <strong>上一篇：</strong><br/>
+  <span>
+  AWstats 在 IIS 下最详细的安装说明文档</span>
+</a>
+</div>
+
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2007/06/14/windows-shutdown/" data-title="Windows shutdown" data-url="http://blog.liudongkai.com/2007/06/14/windows-shutdown/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、自动关机"><span class="toc-text">一、自动关机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、一键关机"><span class="toc-text">二、一键关机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、远程关机"><span class="toc-text">三、远程关机</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liudongkai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42337789-4', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'b3655049504c5e2d7c68'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

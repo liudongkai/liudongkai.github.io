@@ -1,0 +1,872 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>CentOS+Apache+seafile+WindowsAD 安装记录 | Dong&#39;s Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dong[東木]">
+    
+
+    
+    <meta name="description" content="20140113 更新：[1]. 忽略域中被禁止的用户。
+安装环境CentOS 5.10 x64Apache 2.2.4 自编译seafile 2.0.4 with MySQLWindows AD  
+seafile安装目录 /home/seafile/
+相关账号mysql两套账号密码：
+
+
+
+账号
+密码
+作用
+
+
+
+
+root
+root
+super权限，用于数据库安装。
+
+
+seafile
+se">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS+Apache+seafile+WindowsAD 安装记录">
+<meta property="og:url" content="http://blog.liudongkai.com/2014/01/10/centos-apache-seafile-windowsad-installation/index.html">
+<meta property="og:site_name" content="Dong's Note">
+<meta property="og:description" content="20140113 更新：[1]. 忽略域中被禁止的用户。
+安装环境CentOS 5.10 x64Apache 2.2.4 自编译seafile 2.0.4 with MySQLWindows AD  
+seafile安装目录 /home/seafile/
+相关账号mysql两套账号密码：
+
+
+
+账号
+密码
+作用
+
+
+
+
+root
+root
+super权限，用于数据库安装。
+
+
+seafile
+se">
+<meta property="og:updated_time" content="2014-01-12T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentOS+Apache+seafile+WindowsAD 安装记录">
+<meta name="twitter:description" content="20140113 更新：[1]. 忽略域中被禁止的用户。
+安装环境CentOS 5.10 x64Apache 2.2.4 自编译seafile 2.0.4 with MySQLWindows AD  
+seafile安装目录 /home/seafile/
+相关账号mysql两套账号密码：
+
+
+
+账号
+密码
+作用
+
+
+
+
+root
+root
+super权限，用于数据库安装。
+
+
+seafile
+se">
+<meta name="twitter:creator" content="@liudongkai">
+<link rel="publisher" href="100378260579772710000">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
+				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/01/10/centos-apache-seafile-windowsad-installation/" title="CentOS+Apache+seafile+WindowsAD 安装记录" itemprop="url">CentOS+Apache+seafile+WindowsAD 安装记录</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2014-01-09T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-01-10</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装环境"><span class="toc-number">1.</span> <span class="toc-text">安装环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#相关账号"><span class="toc-number">1.1.</span> <span class="toc-text">相关账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#域设置"><span class="toc-number">1.2.</span> <span class="toc-text">域设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#seafile-2-0-4-MySQL"><span class="toc-number">2.</span> <span class="toc-text">seafile 2.0.4 + MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#准备"><span class="toc-number">2.1.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#步骤"><span class="toc-number">2.2.</span> <span class="toc-text">步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他设置"><span class="toc-number">2.3.</span> <span class="toc-text">其他设置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#MySQL配置"><span class="toc-number">2.3.0.1.</span> <span class="toc-text">MySQL配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#邮件服务设置"><span class="toc-number">2.3.0.2.</span> <span class="toc-text">邮件服务设置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#个性化设置"><span class="toc-number">2.3.0.3.</span> <span class="toc-text">个性化设置</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LDAP设置（整合Windows-AD账号）"><span class="toc-number">3.</span> <span class="toc-text">LDAP设置（整合Windows AD账号）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apache部分"><span class="toc-number">4.</span> <span class="toc-text">Apache部分</span></a></li></ol>
+		
+		</div>
+		
+		<p>20140113 更新：<br>[1]. <a href="#filter">忽略域中被禁止的用户。</a></p>
+<h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><p>CentOS 5.10 x64<br>Apache 2.2.4 自编译<br>seafile 2.0.4 with MySQL<br>Windows AD  </p>
+<p>seafile安装目录 /home/seafile/</p>
+<h3 id="相关账号"><a href="#相关账号" class="headerlink" title="相关账号"></a>相关账号</h3><p>mysql两套账号密码：</p>
+<table>
+<thead>
+<tr>
+<th>账号</th>
+<th>密码</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>root</td>
+<td>root</td>
+<td>super权限，用于数据库安装。</td>
+</tr>
+<tr>
+<td>seafile</td>
+<td>seafile</td>
+<td>仅对seafile的3个库有DML权限。</td>
+</tr>
+</tbody>
+</table>
+<p>Windows AD账号：</p>
+<table>
+<thead>
+<tr>
+<th>账号</th>
+<th>密码</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cloud</td>
+<td>cloud</td>
+<td>具体设定见 # 域设置   </td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<h3 id="域设置"><a href="#域设置" class="headerlink" title="域设置"></a>域设置</h3><p>确保域可用，为了安全性，在域控上增加一个账号，用户域账户登录查询用。</p>
+<p>假定域账户设定：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>域</td>
+<td>LIUDONGKAI.COM</td>
+</tr>
+<tr>
+<td>账号</td>
+<td>cloud</td>
+</tr>
+<tr>
+<td>用户组</td>
+<td>Users</td>
+</tr>
+</tbody>
+</table>
+<p>并将cloud账号<strong>加入Domain Admins用户组</strong>里，仅此用户组即可。</p>
+<h2 id="seafile-2-0-4-MySQL"><a href="#seafile-2-0-4-MySQL" class="headerlink" title="seafile 2.0.4 + MySQL"></a>seafile 2.0.4 + MySQL</h2><p>参考资料：<a href="https://github.com/haiwen/seafile/wiki/Deploy-Seafile-with-MySQL" target="_blank" rel="external">https://github.com/haiwen/seafile/wiki/Deploy-Seafile-with-MySQL</a></p>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><ol>
+<li>确保mysql已安装并可用。</li>
+<li>下载程序seafile server 2.0.4 x64至安装目录/home/seafile/下，并解压。<a href="http://seafile.googlecode.com/files/seafile-server_2.0.4_x86-64.tar.gz" target="_blank" rel="external">http://seafile.googlecode.com/files/seafile-server_2.0.4_x86-64.tar.gz</a></li>
+</ol>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>安装seafile-server</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /home/seafile/</span><br><span class="line">$ tar zxvf seafile-server_2.0.4_x86-64.tar.gz</span><br><span class="line">$ ln <span class="_">-s</span> seafile-server seafile-server-2.0.4</span><br><span class="line"><span class="comment">#创建软连方便今后的版本更新，无需再次调整apache</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$ tree -L 2</span><br><span class="line">.</span><br><span class="line">|-- seafile-server -&gt; seafile-server-2.0.4</span><br><span class="line">|-- seafile-server-2.0.4</span><br><span class="line">|   |-- reset-admin.sh</span><br><span class="line">|   |-- runtime</span><br><span class="line">|   |-- seafile</span><br><span class="line">|   |-- seafile.sh</span><br><span class="line">|   |-- seahub</span><br><span class="line">|   |-- seahub.sh</span><br><span class="line">|   |-- setup-seafile-mysql.py</span><br><span class="line">|   |-- setup-seafile-mysql.sh</span><br><span class="line">|   |-- setup-seafile.sh</span><br><span class="line">|   `-- upgrade</span><br><span class="line">`-- seafile-server_2.0.4_x86-64.tar.gz</span><br><span class="line"></span><br><span class="line">./seafile-server/setup-seafile-mysql.sh</span><br><span class="line"><span class="comment">#按照提示一步步完成即可。安装之前会检查依赖库和工具是否存在及版本，缺啥补啥，能跑起来就好</span></span><br><span class="line"></span><br><span class="line">./seafile-server/seafile.sh start</span><br><span class="line">./seafile-server/seahub.sh start</span><br></pre></td></tr></table></figure>
+<p>完成以上步骤，依赖MySQL自建账号模式的seafile就可以通过访问设定的IP+端口的形式正常使用了。</p>
+<p>添加域的部分查看 <a href="#ldap">LDAP设置（整合Windows AD账号）</a> 。<br>需要使用域名访问，请查看 <a href="#apache">Apache部分</a></p>
+<h3 id="其他设置"><a href="#其他设置" class="headerlink" title="其他设置"></a>其他设置</h3><p><em>部分配置的变量可能在配置文件中不存在，此时会取默认配置，一旦填写后，在加载时会覆盖默认配置！</em></p>
+<h5 id="MySQL配置"><a href="#MySQL配置" class="headerlink" title="MySQL配置"></a>MySQL配置</h5><p>如果需要调整MySQL配置需要修改2个config文件，分别是<code>ccnet/ccnet.conf</code>，<code>seahub_settings.py</code>，根据实际情况调整:</p>
+<p>注意：<br>官方提示，<strong>mysql连接请不要使用<code>localhost</code>，应使用<code>127.0.0.1</code></strong>，在测试的过程中，也的确有这个问题。</p>
+<p>ccnet/ccnet.conf:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[Database]</span><br><span class="line">ENGINE = mysql</span><br><span class="line">PASSWD = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><br><span class="line">DB = ccnet-db</span><br><span class="line">HOST = 127.0.0.1</span><br><span class="line">USER = seafile</span><br><span class="line">PORT = 3306</span><br></pre></td></tr></table></figure>
+<p>seahub_settings.py</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">DATABASES = &#123;</span><br><span class="line">    'default': &#123;</span><br><span class="line">        'ENGINE': 'django.db.backends.mysql',</span><br><span class="line">        'NAME': 'seahub-db',</span><br><span class="line">        'USER': 'seafile',</span><br><span class="line">        'PASSWORD': 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',</span><br><span class="line">        'HOST': '127.0.0.1',</span><br><span class="line">        'PORT': '3306',</span><br><span class="line">        'OPTIONS': &#123;</span><br><span class="line">            'init_command': 'SET storage_engine=INNODB',</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="邮件服务设置"><a href="#邮件服务设置" class="headerlink" title="邮件服务设置"></a>邮件服务设置</h5><p>修改<code>seahub_settings.py</code>,如果没有，则在末尾添加即可:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">EMAIL_USE_TLS = False</span><br><span class="line">EMAIL_HOST = 'smtp.liudongkai.com'        # smpt server</span><br><span class="line">EMAIL_HOST_USER = 'seafile@liudongkai.com'    # username</span><br><span class="line">EMAIL_HOST_PASSWORD = 'hello!liudongkai'    # password</span><br><span class="line">EMAIL_PORT = '25'</span><br><span class="line">DEFAULT_FROM_EMAIL = EMAIL_HOST_USER</span><br><span class="line">SERVER_EMAIL = EMAIL_HOST_USER</span><br></pre></td></tr></table></figure>
+<h5 id="个性化设置"><a href="#个性化设置" class="headerlink" title="个性化设置"></a>个性化设置</h5><p>如需要调整站点名称，logo URL等信息，修改<code>seahub_settings.py</code>:</p>
+<p>Seafile的web部分是采用Django这个开源框架搭的，部分设置变量可以参考Django，这家伙的资料比较好找。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"># 站点名称，url等配置</span><br><span class="line"># 特别是在搭配Apache/nginx做代理后，一定不要忘记修改这里</span><br><span class="line">SITE_TITLE = 'HiCloud'</span><br><span class="line">SITE_BASE = 'http://cloud.liudongkai.com/'</span><br><span class="line">LOGO_URL = 'http://cloud.liudongkai.com/'</span><br><span class="line">SITE_NAME = 'HiCloud'</span><br><span class="line"></span><br><span class="line"># 搭配Apache/nginx代理是必须启用，直接IP访问的话，就注释掉吧</span><br><span class="line">HTTP_SERVER_ROOT = 'http://cloud.liudongkai.com/seafhttp'</span><br><span class="line"></span><br><span class="line"># 注册功能开关，false=关闭</span><br><span class="line">ENABLE_SIGNUP = False</span><br><span class="line"></span><br><span class="line"># 两个管理员邮件通知开关</span><br><span class="line"># 添加用户</span><br><span class="line">SEND_EMAIL_ON_ADDING_SYSTEM_MEMBER = True</span><br><span class="line"># 改密码</span><br><span class="line">SEND_EMAIL_ON_RESETTING_USER_PASSWD = True</span><br><span class="line"></span><br><span class="line"># 机构显示开关，一旦改为ture，web页面里的“机构”按钮会被隐藏</span><br><span class="line">CLOUD_MODE = False</span><br><span class="line"></span><br><span class="line"># 3个Cookie相关的开关</span><br><span class="line"># Cookie的生命周期，单位：s</span><br><span class="line">SESSION_COOKIE_AGE = 60 * 60</span><br><span class="line"></span><br><span class="line"># 是否在每次请求时都保存 Session 数据</span><br><span class="line"># ture开启后，结合SESSION_COOKIE_AGE设置，那么按用户在web上最后一次操作开始计时，1小时后cookie过期，期间一旦有操作，计时器会重新计时。</span><br><span class="line">SESSION_SAVE_EVERY_REQUEST = True</span><br><span class="line"></span><br><span class="line"># session持久化开关</span><br><span class="line"># false，那么在cookie有效期内，用户重新开启浏览器将不必重新登录。                   </span><br><span class="line">SESSION_EXPIRE_AT_BROWSER_CLOSE = False</span><br></pre></td></tr></table></figure>
+<p><a name="ldap" id="ldap"></a></p>
+<h2 id="LDAP设置（整合Windows-AD账号）"><a href="#LDAP设置（整合Windows-AD账号）" class="headerlink" title="LDAP设置（整合Windows AD账号）"></a>LDAP设置（整合Windows AD账号）</h2><p>参考资料：<a href="https://github.com/haiwen/seafile/wiki/Configure-Seafile-to-use-LDAP" target="_blank" rel="external">https://github.com/haiwen/seafile/wiki/Configure-Seafile-to-use-LDAP</a></p>
+<p>LDAP部分的设定非常的简单，只要对<code>ccnet/ccnet.conf</code>做相应修改即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">[LDAP]</span><br><span class="line"># LDAP URL for the host, ldap://, ldaps:// and ldapi:// are supported</span><br><span class="line"># To use TLS, you should configure the LDAP server to listen on LDAPS</span><br><span class="line"># port and specify ldaps:// here.</span><br><span class="line">HOST = ldap://127.0.0.1</span><br><span class="line"># 也可以写alias</span><br><span class="line"></span><br><span class="line"># base DN from where all the users can be reached.</span><br><span class="line">BASE = ou=组A,dc=liudongkai,dc=com;ou=组B,dc=liudongkai,dc=com</span><br><span class="line"># 如果你在AD上设有多个组，那么都加上去吧，不然没写的组就无法登录了</span><br><span class="line"># 如果还想禁用掉其中的一部分人，还可以使用过滤器FILTER</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># user DN to bind to. If not set, will use anonymous login.</span><br><span class="line">USER_DN = cn=cloud,cn=users,dc=liudongkai,dc=com</span><br><span class="line"># 因为在 安装环境 -- 域设置 这段介绍里已经说明，cloud在用户组users里，</span><br><span class="line"># 所以填写cn=users，如果是在自建的“组A”里，那么填写ou=组A</span><br><span class="line"></span><br><span class="line"># Password for the user DN</span><br><span class="line">PASSWORD = cloud</span><br><span class="line"></span><br><span class="line"># The attribute to be used as user login id.</span><br><span class="line"># By default it&apos;s the &apos;mail&apos; attribute.</span><br><span class="line">LOGIN_ATTR = mail</span><br><span class="line"># mail 一个神奇的设置，他会校验自建DB里登记的邮箱，还会去找域里用户帐号下的电子邮箱项</span><br><span class="line"># 从v2.0.4这个版本开始，登录数据源不再单一，已可以同时从DB和LDAP中取得。</span><br><span class="line"># 除了mail外，针对Win AD 还有其他验证字段可取：</span><br><span class="line"># sAMAccountName  AD中的用户名，</span><br><span class="line">#   此方式的缺点是会让 机构 -- 成员 列表里出现设备名，以$结尾，如：LIUDONGKAI-PC$</span><br><span class="line"># userPrincipalName  AD中的用户名，再和域名结合，组成邮箱形式登录，</span><br><span class="line">#   如：liudongkai@liudongkai.com</span><br></pre></td></tr></table></figure>
+<p><a name="filter" id="filter">&nbsp;</a><br>更新：<br>增加过滤禁止用户：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FILTER = &amp;(!(UserAccountControl:1.2.840.113556.1.4.803:=2))</span><br></pre></td></tr></table></figure></p>
+<p>参考资料：<br><a href="http://msdn.microsoft.com/en-us/library/aa746475(VS.85).aspx" target="_blank" rel="external">http://msdn.microsoft.com/en-us/library/aa746475(VS.85).aspx</a><br><a href="https://support.microsoft.com/kb/269181/zh-cn" target="_blank" rel="external">https://support.microsoft.com/kb/269181/zh-cn</a></p>
+<p><a name="apache" id="apache"></a></p>
+<h2 id="Apache部分"><a href="#Apache部分" class="headerlink" title="Apache部分"></a>Apache部分</h2><p>参考资料：<a href="https://github.com/haiwen/seafile/wiki/Deploy-Seafile-with-apache" target="_blank" rel="external">https://github.com/haiwen/seafile/wiki/Deploy-Seafile-with-apache</a></p>
+<ol>
+<li>首先得确保apache已经安装并可用。</li>
+<li><p>其次得确保apache proxy模块，和fastcgi模块 已安装并可用。</p>
+<ol>
+<li><p>安装FastCGI模块（mod_fastcgi）</p>
+<ol>
+<li><p>安装编译相关的依赖包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># yum install httpd-devel apr apr-devel libtool</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载mod_fastcgi源代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># wget http://www.fastcgi.com/dist/mod_fastcgi-current.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解压并进行编译安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># tar zxvf mod_fastcgi-2.4.6.tar.gz</span><br><span class="line"># cd mod_fastcgi-2.4.6</span><br><span class="line"># cp Makefile.AP2 Makefile</span><br><span class="line"># vim Makefile</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>修改top_dir目录到你真实的apache安装目录后，进行编译安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># make</span><br><span class="line"># make install</span><br></pre></td></tr></table></figure>
+<ol>
+<li>加载模块<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vim /etc/httpd/conf/httpd.conf</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>找到LoadModule部分，添加一行加载语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">LoadModule fastcgi_module modules/mod_fastcgi.so</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<ol>
+<li>重启apache<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># /usr/local/apache/bin/apachectl restart</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>或</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># /etc/init.d/httpd restart</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装proxy模块(mod_proxy)</p>
+<ol>
+<li><p>检查现有apache的版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># /usr/local/apache/bin/httpd -v</span><br><span class="line">Server version: Apache/2.2.4 (Unix)</span><br><span class="line">Server built:   Jul 27 2009 16:04:11</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载对应的源码包并安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># cd /tmp/</span><br><span class="line"># wget http://archive.apache.org/dist/httpd/httpd-2.2.4.tar.gz</span><br><span class="line"># tar zxvf httpd-2.2.4.tar.gz</span><br><span class="line"># cd httpd-2.2.4</span><br><span class="line"># ./configure --enable-mods-shared=&quot;proxy proxy_http proxy_connect&quot;</span><br><span class="line"># cd modules/proxy/</span><br><span class="line"># /usr/local/apache/bin/apxs -i -a -o mod_proxy.so -c mod_proxy.c proxy_util.c</span><br><span class="line"># /usr/local/apache/bin/apxs -i -a -o mod_proxy_http.so -c mod_proxy_http.c proxy_util.c</span><br><span class="line"># /usr/local/apache/bin/apxs -i -a -o mod_proxy_connect.so -c mod_proxy_connect.c proxy_util.c</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启apache</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># /usr/local/apache/bin/apachectl restart</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>或</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># /etc/init.d/httpd restart</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>修改Apache的vhost配置文件，并重启Apache<br>我的路径是<code>/usr/local/apache/conf/extra/httpd-vhosts.conf</code>，请找你对应的配置文件<br>在配置末尾添加上以下配置，并重启Apache：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">  ServerName cloud.liudongkai.com</span><br><span class="line">  DocumentRoot /var/www</span><br><span class="line">  Alias /media  /home/seafile/seafile-server/seahub/media</span><br><span class="line"></span><br><span class="line">  RewriteEngine On</span><br><span class="line"></span><br><span class="line">&lt;Directory /var/www&gt;</span><br><span class="line">    Order allow,deny</span><br><span class="line">    Allow from all</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line">&lt;Directory /home/seafile/seafile-server&gt;</span><br><span class="line">    Order allow,deny</span><br><span class="line">    Allow from all</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># seafile httpserver</span><br><span class="line">#</span><br><span class="line">ProxyPass /seafhttp http://127.0.0.1:8082</span><br><span class="line">ProxyPassReverse /seafhttp http://127.0.0.1:8082</span><br><span class="line">RewriteRule ^/seafhttp - [QSA,L]</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># seahub</span><br><span class="line">#</span><br><span class="line">RewriteRule ^/(media.*)$ /$1 [QSA,L,PT]</span><br><span class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; !-f</span><br><span class="line">RewriteRule ^(.*)$ /seahub.fcgi$1 [QSA,L,E=HTTP_AUTHORIZATION:%&#123;HTTP:Authorization&#125;]</span><br><span class="line">&lt;/VirtualHost&gt;</span><br><span class="line"></span><br><span class="line">FastCGIExternalServer /var/www/seahub.fcgi -host 127.0.0.1:8000</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>注意：</p>
+<pre><code>14. `seahub.fcgi`只是一个占位符，在你的系统里并不需要存在真实的文件。
+15. Directory的Order和Allow配置也尽量添上，这样不会有错。
+   如果在你的Apache根配置文件`/usr/local/apache/conf/httpd.conf`里发现下面的设置，
+   目录禁止访问的全局配置，那么不加上这个目录权限配置会报403错误，web禁止访问。
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory /&gt;</span><br><span class="line">    Options FollowSymLinks</span><br><span class="line">    AllowOverride None</span><br><span class="line">    Order deny,allow</span><br><span class="line">    Deny from all</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><ol>
+<li><p>修改 ccnet.conf 和 seahub_setting.py</p>
+<ol>
+<li>修改 <code>/home/seafile/ccnet/ccnet.conf</code> 里的 <code>SERVICE_URL</code> 变量值<br><code>SERVICE_URL = http://cloud.liudongkai.com</code></li>
+<li>修改 <code>/home/seafile/seahub_settings.py</code> 里的 <code>HTTP_SERVER_ROOT</code> 变量值<br><code>HTTP_SERVER_ROOT = &#39;http://cloud.liudongkai.com/seafhttp&#39;</code></li>
+</ol>
+</li>
+<li><p>重启seafile和seahub</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/home/seafile/seafile-server/seafile.sh restart</span><br><span class="line">/home/seafile/seafile-server/seahub.sh restart-fastcgi</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>注意：<br>由于启用了apache代理，seahub必须以fastcgi的模式来启动，所以 <code>./seahub.sh start-fastcgi</code></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/seafile/">seafile</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Apache/">Apache</a><a href="/tags/CentOS/">CentOS</a><a href="/tags/Active-Directory/">Active Directory</a><a href="/tags/seafile/">seafile</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://blog.liudongkai.com/2014/01/10/centos-apache-seafile-windowsad-installation/" data-title="CentOS+Apache+seafile+WindowsAD 安装记录 | Dong&#39;s Note" data-tsina="2003788463" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/01/10/windows-set-come-into-force/" title="Windows下如何不重启就使环境变量修改生效">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Windows下如何不重启就使环境变量修改生效</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/01/10/SAMBA-Failed-to-set-servicePrincipalNames/"  title="AD Domain join fails with &quot;Failed to set servicePrincipalNames&quot; (SAMBA)">
+ <strong>下一篇：</strong><br/> 
+ <span>AD Domain join fails with &quot;Failed to set servicePrincipalNames&quot; (SAMBA)
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2014/01/10/centos-apache-seafile-windowsad-installation/" data-title="CentOS+Apache+seafile+WindowsAD 安装记录" data-url="http://blog.liudongkai.com/2014/01/10/centos-apache-seafile-windowsad-installation/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装环境"><span class="toc-number">1.</span> <span class="toc-text">安装环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#相关账号"><span class="toc-number">1.1.</span> <span class="toc-text">相关账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#域设置"><span class="toc-number">1.2.</span> <span class="toc-text">域设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#seafile-2-0-4-MySQL"><span class="toc-number">2.</span> <span class="toc-text">seafile 2.0.4 + MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#准备"><span class="toc-number">2.1.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#步骤"><span class="toc-number">2.2.</span> <span class="toc-text">步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他设置"><span class="toc-number">2.3.</span> <span class="toc-text">其他设置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#MySQL配置"><span class="toc-number">2.3.0.1.</span> <span class="toc-text">MySQL配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#邮件服务设置"><span class="toc-number">2.3.0.2.</span> <span class="toc-text">邮件服务设置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#个性化设置"><span class="toc-number">2.3.0.3.</span> <span class="toc-text">个性化设置</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LDAP设置（整合Windows-AD账号）"><span class="toc-number">3.</span> <span class="toc-text">LDAP设置（整合Windows AD账号）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apache部分"><span class="toc-number">4.</span> <span class="toc-text">Apache部分</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liudongkai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42337789-4', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'b3655049504c5e2d7c68'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

@@ -1,0 +1,719 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>批处理隐藏运行的10种思路[zt] | Dong&#39;s Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dong[東木]">
+    
+
+    
+    <meta name="description" content="基础
+HideRun.vbs
+1CreateObject(&amp;quot;WScript.Shell&amp;quot;).Run &amp;quot;cmd /cD:\test.bat&amp;quot;,0
+
+
+其中D:\test.bat是你的批处理路径
+ HideRun.bat123echo CreateObject(&amp;quot;WScript.Shell&amp;quot;).Run &amp;quot;cmd /cD:\test">
+<meta property="og:type" content="article">
+<meta property="og:title" content="批处理隐藏运行的10种思路[zt]">
+<meta property="og:url" content="http://blog.liudongkai.com/2009/04/19/cmd-hidden-run/index.html">
+<meta property="og:site_name" content="Dong's Note">
+<meta property="og:description" content="基础
+HideRun.vbs
+1CreateObject(&amp;quot;WScript.Shell&amp;quot;).Run &amp;quot;cmd /cD:\test.bat&amp;quot;,0
+
+
+其中D:\test.bat是你的批处理路径
+ HideRun.bat123echo CreateObject(&amp;quot;WScript.Shell&amp;quot;).Run &amp;quot;cmd /cD:\test">
+<meta property="og:updated_time" content="2009-04-18T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="批处理隐藏运行的10种思路[zt]">
+<meta name="twitter:description" content="基础
+HideRun.vbs
+1CreateObject(&amp;quot;WScript.Shell&amp;quot;).Run &amp;quot;cmd /cD:\test.bat&amp;quot;,0
+
+
+其中D:\test.bat是你的批处理路径
+ HideRun.bat123echo CreateObject(&amp;quot;WScript.Shell&amp;quot;).Run &amp;quot;cmd /cD:\test">
+<meta name="twitter:creator" content="@liudongkai">
+<link rel="publisher" href="100378260579772710000">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
+				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2009/04/19/cmd-hidden-run/" title="批处理隐藏运行的10种思路[zt]" itemprop="url">批处理隐藏运行的10种思路[zt]</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2009-04-18T16:00:00.000Z" itemprop="datePublished"> 发表于 2009-04-19</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<ol>
+<li><p>基础</p>
+<p>HideRun.vbs</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CreateObject(&quot;WScript.Shell&quot;).Run &quot;cmd /cD:\test.bat&quot;,0</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>其中D:\test.bat是你的批处理路径</p>
+<p> HideRun.bat<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo CreateObject(&quot;WScript.Shell&quot;).Run &quot;cmd /cD:\test.bat&quot;,0&gt;$tmp.vbs</span><br><span class="line">cscript.exe /e:vbscript $tmp.vbs</span><br><span class="line">del $tmp.vbs</span><br></pre></td></tr></table></figure></p>
+<p>这个批处理其实不能使其批处理本身隐藏，但是下面大部分隐藏调用批处理的原理和基础。</p>
+<p> HideRun.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new ActiveXObject(&apos;WScript.Shell&apos;).Run(&apos;cmd /cD:\Test.bat&apos;,0);</span><br></pre></td></tr></table></figure></p>
+<p>用Javascript有什么好处呢？js的字符串变量可以用单引号，从而方便命令行作为参数调用，而且js很好的支持多行语句用 ; 分隔写成一行。要注意的是：js要区分大小写，方法必须用括号，结尾必须有分号。所以就成了下面的命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mshta &quot;javascript:new ActiveXObject(&apos;WScript.Shell&apos;).Run(&apos;cmd /cD:\test.bat&apos;,0);window.close()&quot;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<ol>
+<li><p>用快捷方式</p>
+<p>如果要使一个批处理本身隐藏，可以参考附件里的一个快捷方式，修改附件中的相关路径即可隐藏启动你的批处理。可以用vbs来建立一个 .lnk，其实用批处理也行（先echo一个vbs出来）</p>
+</li>
+<li><p>利用系统服务</p>
+<p>可以用sc建立一个系统服务然后启动这个服务来启动批处理。缺点是启动服务较慢，需要管理员权限<br>查考这个帖子，<br><a href="http://www.cn-dos.net/forum/viewthread.php?tid=21426" target="_blank" rel="external">http://www.cn-dos.net/forum/viewthread.php?tid=21426</a><br>asbai 兄的大作，极大的方便了我们的使用。</p>
+<!-- more -->
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">runassrv add /cmdline:&quot;C:\Windows\System32\cmd.exe /cD:\test.bat&quot; /name:&quot;mysrv&quot;</span><br><span class="line">net start mysrv</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>利用at计划任务</p>
+<p>用at可以建立一个计划任务，在不输入 <code>/interactive</code> 参数可以后台运行。但是建使用at必须有管理员权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">at 09:10 &quot;cmd /cD:\Test.bat&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>然后在 9:10 系统就会自动后台以SYSTEM权限运行这个bat</p>
+<ol>
+<li><p>利用ftype文件关联</p>
+<p>综合上面的技术，使所有批处理都隐藏运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ftype batfile=C:\Windows\System32\mshta “javascript:new ActiveXObject(‘WScript.Shell’).Run(‘cmd /c%1′,0);window.close();”</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>大家可以讨论下下面的思路，目前没有明确的方法，但是理论上是可行的</p>
+<ol>
+<li><p>rundll32</p>
+<p>其实这个方法只是理论上估计的，这里提出来占个位置，留个记号，等待高手研究<br>rundll32可以调用 dll 里的API，如果有个dll可以隐藏run一个exe就可以实现隐藏启动批处理，呵呵。目前我也没找到方法。</p>
+</li>
+<li><p>其他用户</p>
+<p>Windows 2k/XP支持多用户，如果能在后台登陆另一个账户的桌面然后运行一个批处理，就能完全达到隐藏的目的</p>
+</li>
+<li><p>bat2vbs</p>
+<p>这个方法只是一个不是很成熟的思路。<br>查考这个帖子：<br><a href="http://www.cn-dos.net/forum/viewthread.php?tid=20769" target="_blank" rel="external">http://www.cn-dos.net/forum/viewthread.php?tid=20769</a><br>这使我们产生了一个想法：把bat转换成vbs，然后vbs生成一个临时bat文件，然后WScript.Shell.Run隐藏启动这个临时bat</p>
+</li>
+<li><p>.NET编译</p>
+<p>参考这个帖子：<br><a href="http://www.cn-dos.net/forum/viewthread.php?tid=23374" target="_blank" rel="external">http://www.cn-dos.net/forum/viewthread.php?tid=23374</a><br>里面提到了一个 .NET Warpper，我们完全可以利用系统自带的组件把bat编译到 exe 当中。如果bat不涉及交互，exe自然就安静的运行了。</p>
+</li>
+<li><p>注入汇编</p>
+<p>最后向大家推出的今天最隆重的，ASCII Assembly Code专家 Herbert Kleebauer 的又一力作：showwin.exe</p>
+<p><strong>Quote:</strong></p>
+<blockquote>
+<p>showwin.exe let you minimize/maximize/hide the command window<br>within a batch program (requires W2k or better).</p>
+<p>Usage: showwin.exe number</p>
+<p>0 SW_HIDE<br>Hides the window and activates another window.</p>
+<p>1 SW_SHOWNORMAL<br>Activates and displays a window. If the window is minimized or maximized,<br>the system restores it to its original size and position. An application<br>should specify this flag when displaying the window for the first time.</p>
+<p>2 SW_SHOWMINIMIZED<br>Activates the window and displays it as a minimized window.</p>
+<p>3 SW_MAXIMIZE<br>Maximizes the specified window.</p>
+<p>3 SW_SHOWMAXIMIZED<br>Activates the window and displays it as a maximized window.</p>
+<p>4 SW_SHOWNOACTIVATE<br>Displays a window in its most recent size and position. This value is<br>similar to SW_SHOWNORMAL, except the window is not actived.</p>
+<p>5 SW_SHOW<br>Activates the window and displays it in its current size and position.</p>
+<p>6 SW_MINIMIZE<br>Minimizes the specified window and activates the next top-level window<br>in the Z order.</p>
+<p>7 SW_SHOWMINNOACTIVE<br>Displays the window as a minimized window. This value is similar to<br>SW_SHOWMINIMIZED, except the window is not activated.</p>
+<p>8 SW_SHOWNA<br>Displays the window in its current size and position. This value is<br>similar to SW_SHOW, except the window is not activated.</p>
+<p>9 SW_RESTORE<br>Activates and displays the window. If the window is minimized or maximized,<br>the system restores it to its original size and position. An application<br>should specify this flag when restoring a minimized window.</p>
+<p>10 SW<em>SHOWDEFAULT<br>Sets the show state based on the SW</em> value specified in the STARTUPINFO<br>structure passed to the CreateProcess function by the program that<br>started the application.</p>
+<p>11 SW_FORCEMINIMIZE<br>Windows 2000/XP: Minimizes a window, even if the thread that owns the<br>window is not responding. This flag should only be used when minimizing<br>windows from a different thread.</p>
+</blockquote>
+<p>A simple example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">echo Bj@jzh`0X-`/PPPPPPa(DE(DM(DO(Dh(Ls(Lu(LX(LeZRR]EEEUYRX2Dx=&gt;showwin.com</span><br><span class="line">echo 0DxFP,0Xx.t0P,=XtGsB4o@$?PIyU WwX0GwUY Wv;ovBX2Gv0ExGIuht6&gt;&gt;showwin.com</span><br><span class="line">echo T&#125;&#123;zE~@gwkBG@OEKcUt`E&#125;@mqqBsy?seHBEaPhxr?@zAB`LrPEyoDt@Cj?&gt;&gt;showwin.com</span><br><span class="line">echo pky_jN@QEKpEt@ij?jySjN@REKpEt@jj?jyGjN@SEKkjtlGuNw?p@pjirz&gt;&gt;showwin.com</span><br><span class="line">echo FEvAUSQ?_YLTQ@@?~QCo_F~RDU@?aU?@MQ_AMy1GHs?Gw`LbLK@shM`S_d&gt;&gt;showwin.com</span><br><span class="line">echo bD_nsDddlTr_sPdlnTcnaTv_xP_ngD_rhDhsrT_kkDhrtT_fmDRNCTILk?&gt;&gt;showwin.com</span><br><span class="line">echo staThg_So_rPfnqTl`qTdq_ShtpTrdqThV_Sqrm@ILm?O?cOKFDP?@@?dx&gt;&gt;showwin.com</span><br><span class="line">echo OdFUu?N?_B@J@??KD?HUA?QOGB_QO?F?SCAQO?UDF?UCE?Q_F?DUA?CUB?&gt;&gt;showwin.com</span><br><span class="line">echo OFO?FOS?DUO?IUO?FOW?RU&#123;OWFO?mYU?wdsTeQs@OQ@?QAQ?LUA?_F_og~&gt;&gt;showwin.com</span><br><span class="line">echo UODUO?FOSAFOeAUOyAO_DCSHUOOQO?OCFGuHUOGFO?TUO?DRTTqrQ@kcmS&gt;&gt;showwin.com</span><br><span class="line">echo gFkPFUO?ngRThVvTncmTJFvPMQDTrKDDcmqOFkkDFOSAFOeAUOyAdFFSnB&gt;&gt;showwin.com</span><br><span class="line">echo sT`llTKcmTdmhTFQ@PBsdTrmnTdknTmhVTvncTwDSSOshTbnqTrrdTT~?K&gt;&gt;showwin.com</span><br><span class="line">echo ?OGOQp?o??Gds?wOw?PGAtaCHQvNntQv_w?A?it\=upkNQD??OuQsQG[i?&gt;&gt;showwin.com</span><br><span class="line">echo RwrqosHy?Mjmv\@IuBlpUrHdjNAslF~mH&#125;OKT?U??PT~OL?O?O?i?COT~B&gt;&gt;showwin.com</span><br><span class="line">echo U?OCU?YF0x&gt;&gt;showwin.com</span><br><span class="line"></span><br><span class="line"> showwin.com&gt;showwin.exe</span><br><span class="line">del showwin.com</span><br><span class="line"></span><br><span class="line"> dir</span><br><span class="line"></span><br><span class="line"> :: wait 4 seconds</span><br><span class="line">ping -n 4 localhost &gt;nul</span><br><span class="line"></span><br><span class="line"> :: hide window</span><br><span class="line">showwin.exe 0</span><br><span class="line"></span><br><span class="line"> dir /b</span><br><span class="line"></span><br><span class="line"> :: wait 4 seconds</span><br><span class="line">ping -n 4 localhost &gt;nul</span><br><span class="line"></span><br><span class="line"> :: show window</span><br><span class="line">showwin.exe 5</span><br><span class="line"></span><br><span class="line"> :: wait 4 seconds</span><br><span class="line">ping -n 4 localhost &gt;nul</span><br><span class="line"></span><br><span class="line"> del showwin.exe</span><br></pre></td></tr></table></figure></li>
+</ol>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Share/">Share</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/CMD/">CMD</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://blog.liudongkai.com/2009/04/19/cmd-hidden-run/" data-title="批处理隐藏运行的10种思路[zt] | Dong&#39;s Note" data-tsina="2003788463" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2009/04/19/mysql-delete-binlog/" title="删除MYSQl BIN-LOG 日志[zt]">
+  <strong>上一篇：</strong><br/>
+  <span>
+  删除MYSQl BIN-LOG 日志[zt]</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2009/04/04/SQL-server-replace-regular/"  title="一个用于SQL Server 正则替换的函数">
+ <strong>下一篇：</strong><br/> 
+ <span>一个用于SQL Server 正则替换的函数
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2009/04/19/cmd-hidden-run/" data-title="批处理隐藏运行的10种思路[zt]" data-url="http://blog.liudongkai.com/2009/04/19/cmd-hidden-run/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liudongkai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42337789-4', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'b3655049504c5e2d7c68'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

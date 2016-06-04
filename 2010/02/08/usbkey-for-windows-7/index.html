@@ -1,0 +1,683 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>解决K宝U盾等网上银行不能在windows 7 下登录问题 | Dong&#39;s Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dong[東木]">
+    
+
+    
+    <meta name="description" content="在远景里找到的一位网友贴的解决办法，可以解决目前部份银行使用K宝U盾无法登陆网银的问题。方法很实用，不用修改程序文件或浏览器的安全级别，只需手动在注册表里指定网银CSP的一个文件路径。我只试了农行的华大K宝，其它的如（建行、工行、交行、广发、光大、兴业等）按跟贴的朋友尝试也是可行的。方法差不多相同。下面是原贴内容。
+目前许多windows 7 IE8用户无法使用USBkey登入网银。该方法支持农行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决K宝U盾等网上银行不能在windows 7 下登录问题">
+<meta property="og:url" content="http://blog.liudongkai.com/2010/02/08/usbkey-for-windows-7/index.html">
+<meta property="og:site_name" content="Dong's Note">
+<meta property="og:description" content="在远景里找到的一位网友贴的解决办法，可以解决目前部份银行使用K宝U盾无法登陆网银的问题。方法很实用，不用修改程序文件或浏览器的安全级别，只需手动在注册表里指定网银CSP的一个文件路径。我只试了农行的华大K宝，其它的如（建行、工行、交行、广发、光大、兴业等）按跟贴的朋友尝试也是可行的。方法差不多相同。下面是原贴内容。
+目前许多windows 7 IE8用户无法使用USBkey登入网银。该方法支持农行">
+<meta property="og:updated_time" content="2010-02-07T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="解决K宝U盾等网上银行不能在windows 7 下登录问题">
+<meta name="twitter:description" content="在远景里找到的一位网友贴的解决办法，可以解决目前部份银行使用K宝U盾无法登陆网银的问题。方法很实用，不用修改程序文件或浏览器的安全级别，只需手动在注册表里指定网银CSP的一个文件路径。我只试了农行的华大K宝，其它的如（建行、工行、交行、广发、光大、兴业等）按跟贴的朋友尝试也是可行的。方法差不多相同。下面是原贴内容。
+目前许多windows 7 IE8用户无法使用USBkey登入网银。该方法支持农行">
+<meta name="twitter:creator" content="@liudongkai">
+<link rel="publisher" href="100378260579772710000">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
+				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2010/02/08/usbkey-for-windows-7/" title="解决K宝U盾等网上银行不能在windows 7 下登录问题" itemprop="url">解决K宝U盾等网上银行不能在windows 7 下登录问题</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2010-02-07T16:00:00.000Z" itemprop="datePublished"> 发表于 2010-02-08</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#快速导读-：修改注册表"><span class="toc-number">1.</span> <span class="toc-text">[快速导读]：修改注册表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、症状："><span class="toc-number">2.</span> <span class="toc-text">一、症状：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、解决方法："><span class="toc-number">3.</span> <span class="toc-text">二、解决方法：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、本方法优点："><span class="toc-number">4.</span> <span class="toc-text">三、本方法优点：</span></a></li></ol>
+		
+		</div>
+		
+		<p>在远景里找到的一位网友贴的解决办法，可以解决目前部份银行使用K宝U盾无法登陆网银的问题。方法很实用，不用修改程序文件或浏览器的安全级别，只需手动在注册表里指定网银CSP的一个文件路径。我只试了农行的华大K宝，其它的如（建行、工行、交行、广发、光大、兴业等）按跟贴的朋友尝试也是可行的。方法差不多相同。下面是原贴内容。</p>
+<p>目前许多windows 7 IE8用户无法使用USBkey登入网银。该方法支持农行，建行，工行，光大，交行，广发，各股份制商业银行，各城市商业银行，各农村商业银行等多家银行网银，权当抛砖引玉，欢迎各位网友积极测试，以便供后人参考！</p>
+<a id="more"></a>
+<h2 id="快速导读-：修改注册表"><a href="#快速导读-：修改注册表" class="headerlink" title="[快速导读]：修改注册表"></a>[快速导读]：修改注册表</h2><p>32位WIN 7下找到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Defaults\Provider\###]</span><br></pre></td></tr></table></figure></p>
+<p>修改 “<code>Image Path</code>”=“<code>%SystemRoot%\System32\***.dll</code>”</p>
+<p>64位WIN 7下找到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Cryptography\Defaults\Provider\###]</span><br></pre></td></tr></table></figure></p>
+<p>修改 “<code>Image Path</code>”=“<code>%SystemRoot%\SysWOW64\***.dll</code>”</p>
+<p>注：不同的网银，###，<em>*</em>会不同，请根据自己需要修改。</p>
+<p>敬请网友能测试下其他网银，成功的请贴出修改方法！</p>
+<p>==以“华大K宝”登入“农行网银”为例==</p>
+<h2 id="一、症状："><a href="#一、症状：" class="headerlink" title="一、症状："></a>一、症状：</h2><p>在登陆农行网银，出现“确认证书”后，点击“确定”，却出现“无法显示该网页”！</p>
+<h2 id="二、解决方法："><a href="#二、解决方法：" class="headerlink" title="二、解决方法："></a>二、解决方法：</h2><p>打开注册表编辑器</p>
+<p>（1）开始→运行→输入regedit</p>
+<p>（2）32位win7下找到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Defaults\Provider\ZGHD Cryptographic Service Provider v1.0]</span><br></pre></td></tr></table></figure></p>
+<p>将Image Path值由“<code>GP_MINCSP.dll</code>”修改为“<code>%SystemRoot%\System32\GP_MINCSP.dll</code>”<br>（即增加“<code>%SystemRoot%\System32\</code>”字段），结束。</p>
+<p>64位win7下找到（感谢腿毛飘飘，左楠风提供）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Cryptography\Defaults\Provider\ZGHD Cryptographic Service Provider v1.0]</span><br></pre></td></tr></table></figure></p>
+<p>将Image Path值修改为“<code>%SystemRoot%\SysWOW64\GP_MINCSP.dll</code>”</p>
+<p>（3）无需重启，随便打开农行网银网址，出现“正在查找凭据平铺”，出现“确认证书”，点击确定即可出现“用户口令，请输入您的K宝密码”对话框，即可正常登陆网银。</p>
+<h2 id="三、本方法优点："><a href="#三、本方法优点：" class="headerlink" title="三、本方法优点："></a>三、本方法优点：</h2><p>（1）不需要在开始菜单程序里找到CSP工具，将K宝里的证书注册<br>（2）不需要在桌面上找到“95599在线银行”的图标，这个图标进入农行的网站<br>（3）不需要修改IE8诸多配置：例如启用“内存保护帮助减少联机攻击”，“使用直接插入自动完成功能(在Internet Explorer之外)”，降低“安全级别”，取消“启用保护模式”，修改“兼容性视图设置”里添加农行网银地址<br>（4）不需要编辑<code>C:\Windows\System32\drivers\etc\hosts</code>文件，在hosts文件中加入农行网银地址</p>
+<p>==其他可用网银（方法与上雷同，请根据不同网银做个性化调整）==</p>
+<p>建行华宝E路通（感谢charlesou测试）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Defaults\Provider\CIDC CryptographicService Provider v2.0.0]</span><br><span class="line">&quot;Image Path&quot;=&quot;%SystemRoot%\System32\CIDC_CSP.dll&quot;</span><br></pre></td></tr></table></figure></p>
+<p>建行捷德（感谢cq-bbcyb测试）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Defaults\Provider\StarSec CSP CCB]</span><br><span class="line">&quot;Image Path&quot;=&quot;%SystemRoot%\System32\sscsp_ccb.dll&quot;</span><br></pre></td></tr></table></figure></p>
+<p>建行华大智宝（感谢le57907579，chino测试）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Defaults\Provider\CIDC Cryptographic Service Provider v2.0.0</span><br><span class="line">&quot;Image Path&quot;=&quot;%SystemRoot%\System32\CIDC_CSP.dll&quot;</span><br></pre></td></tr></table></figure></p>
+<p>农行飞天诚信K宝（感谢dongyang, successc测试）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Defaults\Provider\EnterSafe ePassAuto CSP For ABChina v1.0]</span><br><span class="line">&quot;Image Path&quot;=&quot;%SystemRoot%\System32\ePassAutocsp11_ABChina_s.dll&quot;</span><br></pre></td></tr></table></figure></p>
+<p>农行动态口令卡（感谢hmiloy测试）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Defaults\Provider\Microsoft Base Smart Card Crypto Provider]&quot;Image Path&quot;=&quot;%SystemRoot%\System32\basecsp.dll</span><br></pre></td></tr></table></figure></p>
+<p>工行金邦达（感谢hnxceagle测试）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Defaults\Provider\Netting Smart Card Cryptographic Provider v1.2]</span><br><span class="line">&quot;Image Path&quot;=&quot;%SystemRoot%\System32\cspnet.dll&quot;</span><br></pre></td></tr></table></figure></p>
+<p>交通银行（感谢k108cn, edwiny测试）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Defaults\Provider\Beijing GD CSP BANKCOMM v1.0 ]</span><br><span class="line">&quot;Image Path&quot;=&quot;%SystemRoot%\System32\ep2csp32_bc.dll&quot;</span><br></pre></td></tr></table></figure></p>
+<p>交行华大（感谢sevenyu测试）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Defaults\Provider\EnterSafe CSP v1.0 for BANKCOMM]</span><br><span class="line">&quot;Image Path&quot;=&quot;%SystemRoot%\System32\ngcsp_bc_2.dll&quot;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Defaults\Provider\ZGHD CSP for Bank of Communications v1.0]</span><br><span class="line">&quot;Image Path&quot;=&quot;%SystemRoot%\System32\HD_CSP_JH.dll&quot;</span><br></pre></td></tr></table></figure>
+<p>广发银行（感谢thinkbook, hbzhong测试）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Defaults\Provider\Minghua CSP for GDBC v1.0]</span><br><span class="line">&quot;Image Path&quot;=&quot;%SystemRoot%\System32\GDCSPS_V3.dll&quot;</span><br></pre></td></tr></table></figure></p>
+<p>光大银行（感谢popofish, hbzhong测试）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Defaults\Provider\StarKey220 CSP version 1.0]</span><br><span class="line">Image Path=&quot;%SystemRoot%\System32\GDsk220csp_cebb.dll&quot;</span><br></pre></td></tr></table></figure></p>
+<p>北京农村商业银行飞天诚信（感谢squid8测试）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Defaults\Provider\FEITIAN ePassNG CSP For BJRCB V1.0]</span><br><span class="line">%SystemRoot%\System32\ngcsp_bjrcb.dll</span><br></pre></td></tr></table></figure></p>
+<p>北京银行（感谢maow测试）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Defaults\Provider\EnterSafe CSP (ePass2000-FT11) v1.0 for BJCA]</span><br><span class="line">&quot;Image Path&quot;=&quot;%SystemRoot%\System32\bjcacsp11_ft11_s.dll&quot;</span><br></pre></td></tr></table></figure></p>
+<p>杭州银行（感谢zhanxinabc测试）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Defaults\Provider\NJA USBKEY CSP for HCCB V1.0]</span><br><span class="line">&quot;Image Path&quot;=&quot;%SystemRoot%\System32\HisCSP_hccb.dll&quot;</span><br></pre></td></tr></table></figure></p>
+<p>兴业银行（感谢天很蓝测试）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Defaults\Provider\StarSec CSP For CIB]</span><br><span class="line">&quot;Image Path&quot;=&quot;%SystemRoot%\SYSTEM32\sscsp_cib.dll&quot;</span><br></pre></td></tr></table></figure></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Share/">Share</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/usbkey/">usbkey</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://blog.liudongkai.com/2010/02/08/usbkey-for-windows-7/" data-title="解决K宝U盾等网上银行不能在windows 7 下登录问题 | Dong&#39;s Note" data-tsina="2003788463" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2010/02/09/VirtualBox-Network-Windows/" title="windows 下安装 VirtualBox 网络配置[zt]">
+  <strong>上一篇：</strong><br/>
+  <span>
+  windows 下安装 VirtualBox 网络配置[zt]</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2010/02/08/find-real-url-for-skydrive-by-javascript/"  title="一段脚本代码找出Skydrive的真实外链地址">
+ <strong>下一篇：</strong><br/> 
+ <span>一段脚本代码找出Skydrive的真实外链地址
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2010/02/08/usbkey-for-windows-7/" data-title="解决K宝U盾等网上银行不能在windows 7 下登录问题" data-url="http://blog.liudongkai.com/2010/02/08/usbkey-for-windows-7/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#快速导读-：修改注册表"><span class="toc-number">1.</span> <span class="toc-text">[快速导读]：修改注册表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、症状："><span class="toc-number">2.</span> <span class="toc-text">一、症状：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、解决方法："><span class="toc-number">3.</span> <span class="toc-text">二、解决方法：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、本方法优点："><span class="toc-number">4.</span> <span class="toc-text">三、本方法优点：</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liudongkai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42337789-4', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'b3655049504c5e2d7c68'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

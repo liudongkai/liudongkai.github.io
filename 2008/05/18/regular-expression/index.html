@@ -1,0 +1,927 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>揭开正则表达式的神秘面纱 | Dong&#39;s Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dong[東木]">
+    
+
+    
+    <meta name="description" content="引言正则表达式（regular expression）就是用一个“字符串”来描述一个特征，然后去验证另一个“字符串”是否符合这个特征。比如 表达式“ab+” 描述的特征是“一个 ‘a’ 和 任意个 ‘b’ ”，那么 ‘ab’, ‘abb’, ‘abbbbbbbbbb’ 都符合这个特征。
+正则表达式可以用来：
+
+验证字符串是否符合指定特征，比如验证是否是合法的邮件地址。
+用来查找字符串，从一个长的文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="揭开正则表达式的神秘面纱">
+<meta property="og:url" content="http://blog.liudongkai.com/2008/05/18/regular-expression/index.html">
+<meta property="og:site_name" content="Dong's Note">
+<meta property="og:description" content="引言正则表达式（regular expression）就是用一个“字符串”来描述一个特征，然后去验证另一个“字符串”是否符合这个特征。比如 表达式“ab+” 描述的特征是“一个 ‘a’ 和 任意个 ‘b’ ”，那么 ‘ab’, ‘abb’, ‘abbbbbbbbbb’ 都符合这个特征。
+正则表达式可以用来：
+
+验证字符串是否符合指定特征，比如验证是否是合法的邮件地址。
+用来查找字符串，从一个长的文">
+<meta property="og:updated_time" content="2008-05-17T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="揭开正则表达式的神秘面纱">
+<meta name="twitter:description" content="引言正则表达式（regular expression）就是用一个“字符串”来描述一个特征，然后去验证另一个“字符串”是否符合这个特征。比如 表达式“ab+” 描述的特征是“一个 ‘a’ 和 任意个 ‘b’ ”，那么 ‘ab’, ‘abb’, ‘abbbbbbbbbb’ 都符合这个特征。
+正则表达式可以用来：
+
+验证字符串是否符合指定特征，比如验证是否是合法的邮件地址。
+用来查找字符串，从一个长的文">
+<meta name="twitter:creator" content="@liudongkai">
+<link rel="publisher" href="100378260579772710000">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
+				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2008/05/18/regular-expression/" title="揭开正则表达式的神秘面纱" itemprop="url">揭开正则表达式的神秘面纱</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2008-05-17T16:00:00.000Z" itemprop="datePublished"> 发表于 2008-05-18</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-普通字符"><span class="toc-number">1.1.</span> <span class="toc-text">1. 普通字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-简单的转义字符"><span class="toc-number">1.2.</span> <span class="toc-text">2. 简单的转义字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-能够与-‘多种字符’-匹配的表达式"><span class="toc-number">1.3.</span> <span class="toc-text">3. 能够与 ‘多种字符’ 匹配的表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-自定义能够匹配-‘多种字符’-的表达式"><span class="toc-number">1.4.</span> <span class="toc-text">4. 自定义能够匹配 ‘多种字符’ 的表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-修饰匹配次数的特殊符号"><span class="toc-number">1.5.</span> <span class="toc-text">5. 修饰匹配次数的特殊符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-其他一些代表抽象意义的特殊符号"><span class="toc-number">1.6.</span> <span class="toc-text">6. 其他一些代表抽象意义的特殊符号</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-正则表达式中的一些高级规则"><span class="toc-number">2.</span> <span class="toc-text">2. 正则表达式中的一些高级规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-匹配次数中的贪婪与非贪婪"><span class="toc-number">2.1.</span> <span class="toc-text">1. 匹配次数中的贪婪与非贪婪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-反向引用-1-2…"><span class="toc-number">2.2.</span> <span class="toc-text">2. 反向引用 \1, \2…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-预搜索，不匹配；反向预搜索，不匹配"><span class="toc-number">2.3.</span> <span class="toc-text">3. 预搜索，不匹配；反向预搜索，不匹配</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>正则表达式（regular expression）就是用一个“字符串”来描述一个特征，然后去验证另一个“字符串”是否符合这个特征。比如 表达式“ab+” 描述的特征是“一个 ‘a’ 和 任意个 ‘b’ ”，那么 ‘ab’, ‘abb’, ‘abbbbbbbbbb’ 都符合这个特征。</p>
+<p>正则表达式可以用来：</p>
+<ol>
+<li>验证字符串是否符合指定特征，比如验证是否是合法的邮件地址。</li>
+<li>用来查找字符串，从一个长的文本中查找符合指定特征的字符串，比查找固定字符串更加灵活方便。</li>
+<li>用来替换，比普通的替换更强大。</li>
+</ol>
+<p>正则表达式学习起来其实是很简单的，不多的几个较为抽象的概念也很容易理解。之所以很多人感觉正则表达式比较复杂，一方面是因为大多数的文档没有做到由浅入深地讲解，概念上没有注意先后顺序，给读者的理解带来困难；另一方面，各种引擎自带的文档一般都要介绍它特有的功能，然而这部分特有的功能并不是我们首先要理解的。</p>
+<p>文章中的每一个举例，都可以点击进入到测试页面进行测试。闲话少说，开始。</p>
+<p>##1. 正则表达式规则</p>
+<h3 id="1-普通字符"><a href="#1-普通字符" class="headerlink" title="1. 普通字符"></a>1. 普通字符</h3><p>字母、数字、汉字、下划线、以及后边章节中没有特殊定义的标点符号，都是”普通字符”。表达式中的普通字符，在匹配一个字符串的时候，匹配与之相同的一个字符。</p>
+<p><strong>举例1：表达式 “c”，在匹配字符串 “abcde” 时</strong>，匹配结果是：成功；匹配到的内容是：”c”；匹配到的位置是：开始于2，结束于3。（注：下标从0开始还是从1开始，因当前编程语言的不同而可能不同）</p>
+<p><strong>举例2：表达式 “bcd”，在匹配字符串 “abcde” 时</strong>，匹配结果是：成功；匹配到的内容是：”bcd”；匹配到的位置是：开始于1，结束于4。</p>
+<a id="more"></a>
+<h3 id="2-简单的转义字符"><a href="#2-简单的转义字符" class="headerlink" title="2. 简单的转义字符"></a>2. 简单的转义字符</h3><p>一些不便书写的字符，采用在前面加 “” 的方法。这些字符其实我们都已经熟知了。</p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>可匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\r, \n</td>
+<td>代表回车和换行符</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>制表符</td>
+</tr>
+<tr>
+<td>\\</td>
+<td>代表 “” 本身</td>
+</tr>
+</tbody>
+</table>
+<p> 还有其他一些在后边章节中有特殊用处的标点符号，在前面加 “” 后，就代表该符号本身。比如：^, $ 都有特殊意义，如果要想匹配字符串中 “^” 和 “$” 字符，则表达式就需要写成 “\^” 和 “\$”。</p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>可匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\^</td>
+<td>匹配 ^ 符号本身</td>
+</tr>
+<tr>
+<td>\$</td>
+<td>匹配 $ 符号本身</td>
+</tr>
+<tr>
+<td>\.</td>
+<td>匹配小数点（.）本身</td>
+</tr>
+</tbody>
+</table>
+<p>这些转义字符的匹配方法与 “普通字符” 是类似的。也是匹配与之相同的一个字符。</p>
+<p><strong>举例1：表达式 “\$d”，在匹配字符串 “abc$de” 时</strong>，匹配结果是：成功；匹配到的内容是：”$d”；匹配到的位置是：开始于3，结束于5。</p>
+<h3 id="3-能够与-‘多种字符’-匹配的表达式"><a href="#3-能够与-‘多种字符’-匹配的表达式" class="headerlink" title="3. 能够与 ‘多种字符’ 匹配的表达式"></a>3. 能够与 ‘多种字符’ 匹配的表达式</h3><p>正则表达式中的一些表示方法，可以匹配 ‘多种字符’ 其中的任意一个字符。比如，表达式 “d” 可以匹配任意一个数字。虽然可以匹配其中任意字符，但是只能是一个，不是多个。这就好比玩扑克牌时候，大小王可以代替任意一张牌，但是只能代替一张牌。</p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>可匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\d</td>
+<td>任意一个数字，0~9 中的任意一个</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>任意一个字母或数字或下划线，也就是 A~Z,a~z,0~9,_ 中任意一个</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>包括空格、制表符、换页符等空白字符的其中任意一个</td>
+</tr>
+<tr>
+<td>.</td>
+<td>小数点可以匹配除了换行符（\n）以外的任意一个字符</td>
+</tr>
+</tbody>
+</table>
+<p><strong>举例1：表达式 “\d\d”，在匹配 “abc123″ 时</strong>，匹配的结果是：成功；匹配到的内容是：”12″；匹配到的位置是：开始于3，结束于5。</p>
+<p><strong>举例2：表达式 “a.\d”，在匹配 “aaa100″ 时</strong>，匹配的结果是：成功；匹配到的内容是：”aa1″；匹配到的位置是：开始于1，结束于4。</p>
+<h3 id="4-自定义能够匹配-‘多种字符’-的表达式"><a href="#4-自定义能够匹配-‘多种字符’-的表达式" class="headerlink" title="4. 自定义能够匹配 ‘多种字符’ 的表达式"></a>4. 自定义能够匹配 ‘多种字符’ 的表达式</h3><p>使用方括号 [ ] 包含一系列字符，能够匹配其中任意一个字符。用 [^ ] 包含一系列字符，则能够匹配其中字符之外的任意一个字符。同样的道理，虽然可以匹配其中任意一个，但是只能是一个，不是多个。</p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>可匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[ab5@]</td>
+<td>匹配 “a” 或 “b” 或 “5″ 或 “@”</td>
+</tr>
+<tr>
+<td>[^abc]</td>
+<td>匹配 “a”,”b”,”c” 之外的任意一个字符</td>
+</tr>
+<tr>
+<td>[f-k]</td>
+<td>匹配 “f”~”k” 之间的任意一个字母</td>
+</tr>
+<tr>
+<td>[^A-F0-3]</td>
+<td>匹配 “A”~”F”,”0″~”3″ 之外的任意一个字符</td>
+</tr>
+</tbody>
+</table>
+<p><strong>举例1：表达式 “[bcd][bcd]” 匹配 “abc123″ 时</strong>，匹配的结果是：成功；匹配到的内容是：”bc”；匹配到的位置是：开始于1，结束于3。</p>
+<p><strong>举例2：表达式 “[^abc]” 匹配 “abc123″ 时</strong>，匹配的结果是：成功；匹配到的内容是：”1″；匹配到的位置是：开始于3，结束于4。</p>
+<h3 id="5-修饰匹配次数的特殊符号"><a href="#5-修饰匹配次数的特殊符号" class="headerlink" title="5. 修饰匹配次数的特殊符号"></a>5. 修饰匹配次数的特殊符号</h3><p>前面章节中讲到的表达式，无论是只能匹配一种字符的表达式，还是可以匹配多种字符其中任意一个的表达式，都只能匹配一次。如果使用表达式再加上修饰匹配次数的特殊符号，那么不用重复书写表达式就可以重复匹配。</p>
+<p>使用方法是：”次数修饰”放在”被修饰的表达式”后边。比如：”[bcd][bcd]” 可以写成 “[bcd]{2}”。</p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>可匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{n}</td>
+<td>表达式重复n次，比如：“\w{2}” 相当于 “\w\w”；“a{5}” 相当于 “aaaaa”</td>
+</tr>
+<tr>
+<td>{m,n}</td>
+<td>表达式至少重复m次，最多重复n次，比如：“ba{1,3}”可以匹配 “ba”或”baa”或”baaa”</td>
+</tr>
+<tr>
+<td>{m,}</td>
+<td>表达式至少重复m次，比如：“\w\d{2,}”可以匹配 “a12″,”_456″,”M12344″…</td>
+</tr>
+<tr>
+<td>?</td>
+<td>匹配表达式0次或者1次，相当于 {0,1}，比如：“a[cd]?”可以匹配 “a”,”ac”,”ad”</td>
+</tr>
+<tr>
+<td>+</td>
+<td>表达式至少出现1次，相当于 {1,}，比如：“a+b”可以匹配 “ab”,”aab”,”aaab”…</td>
+</tr>
+<tr>
+<td>*</td>
+<td>表达式不出现或出现任意次，相当于 {0,}，比如：“\^*b”可以匹配 “b”,”^^^b”…</td>
+</tr>
+</tbody>
+</table>
+<p><strong>举例1：表达式 “\d+.?\d*” 在匹配 “It costs $12.5″ 时</strong>，匹配的结果是：成功；匹配到的内容是：”12.5″；匹配到的位置是：开始于10，结束于14。</p>
+<p><strong>举例2：表达式 “go{2,8}gle” 在匹配 “Ads by goooooogle” 时</strong>，匹配的结果是：成功；匹配到的内容是：”goooooogle”；匹配到的位置是：开始于7，结束于17。</p>
+<p>——————————————————————————–</p>
+<h3 id="6-其他一些代表抽象意义的特殊符号"><a href="#6-其他一些代表抽象意义的特殊符号" class="headerlink" title="6. 其他一些代表抽象意义的特殊符号"></a>6. 其他一些代表抽象意义的特殊符号</h3><p>一些符号在表达式中代表抽象的特殊意义：</p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>可匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>^</td>
+<td>与字符串开始的地方匹配，不匹配任何字符</td>
+</tr>
+<tr>
+<td>$</td>
+<td>与字符串结束的地方匹配，不匹配任何字符</td>
+</tr>
+<tr>
+<td>b</td>
+<td>匹配一个单词边界，也就是单词和空格之间的位置，不匹配任何字符</td>
+</tr>
+</tbody>
+</table>
+<p>进一步的文字说明仍然比较抽象，因此，举例帮助大家理解。</p>
+<p>举例1：表达式 “^aaa” 在匹配 “xxx aaa xxx” 时，匹配结果是：失败。因为 “^” 要求与字符串开始的地方匹配，因此，只有当 “aaa” 位于字符串的开头的时候，”^aaa” 才能匹配，比如：”aaa xxx xxx”。</p>
+<p>举例2：表达式 “aaa$” 在匹配 “xxx aaa xxx” 时，匹配结果是：失败。因为 “$” 要求与字符串结束的地方匹配，因此，只有当 “aaa” 位于字符串的结尾的时候，”aaa$” 才能匹配，比如：”xxx xxx aaa”。</p>
+<p>举例3：表达式 “.\b.” 在匹配 “@@@abc” 时，匹配结果是：成功；匹配到的内容是：”@a”；匹配到的位置是：开始于2，结束于4。<br>进一步说明：”\b” 与 “^” 和 “$” 类似，本身不匹配任何字符，但是它要求它在匹配结果中所处位置的左右两边，其中一边是 “\w” 范围，另一边是 非”\w” 的范围。</p>
+<p>举例4：表达式 “\bend\b” 在匹配 “weekend,endfor,end” 时，匹配结果是：成功；匹配到的内容是：”end”；匹配到的位置是：开始于15，结束于18。</p>
+<p>一些符号可以影响表达式内部的子表达式之间的关系：</p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>可匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\</td>
+<td></td>
+<td>左右两边表达式之间 “或” 关系，匹配左边或者右边</td>
+</tr>
+<tr>
+<td>( )</td>
+<td>(1). 在被修饰匹配次数的时候，括号中的表达式可以作为整体被修饰<br>(2). 取匹配结果的时候，括号中的表达式匹配到的内容可以被单独得到</td>
+</tr>
+</tbody>
+</table>
+<p>举例5：表达式 “Tom|Jack” 在匹配字符串 “I’m Tom, he is Jack” 时，匹配结果是：成功；匹配到的内容是：”Tom”；匹配到的位置是：开始于4，结束于7。匹配下一个时，匹配结果是：成功；匹配到的内容是：”Jack”；匹配到的位置时：开始于15，结束于19。</p>
+<p>举例6：表达式 “(go\s*)+” 在匹配 “Let’s go go go!” 时，匹配结果是：成功；匹配到内容是：”go go go”；匹配到的位置是：开始于6，结束于14。</p>
+<p>举例7：表达式 “￥(\d+.?\d*)” 在匹配 “＄10.9,￥20.5″ 时，匹配的结果是：成功；匹配到的内容是：”￥20.5″；匹配到的位置是：开始于6，结束于10。单独获取括号范围匹配到的内容是：”20.5″。</p>
+<h2 id="2-正则表达式中的一些高级规则"><a href="#2-正则表达式中的一些高级规则" class="headerlink" title="2. 正则表达式中的一些高级规则"></a>2. 正则表达式中的一些高级规则</h2><h3 id="1-匹配次数中的贪婪与非贪婪"><a href="#1-匹配次数中的贪婪与非贪婪" class="headerlink" title="1. 匹配次数中的贪婪与非贪婪"></a>1. 匹配次数中的贪婪与非贪婪</h3><p>在使用修饰匹配次数的特殊符号时，有几种表示方法可以使同一个表达式能够匹配不同的次数，比如：”{m,n}”, “{m,}”, “?”, “*”, “+”，具体匹配的次数随被匹配的字符串而定。这种重复匹配不定次数的表达式在匹配过程中，总是尽可能多的匹配。比如，针对文本 “dxxxdxxxd”，举例如下：</p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>可匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(d)(\w+)</td>
+<td>“\w+” 将匹配第一个 “d” 之后的所有字符 “xxxdxxxd”</td>
+</tr>
+<tr>
+<td>(d)(\w+)(d)</td>
+<td>“\w+” 将匹配第一个 “d” 和最后一个 “d” 之间的所有字符 “xxxdxxx”。虽然 “\w+” 也能够匹配上最后一个 “d”，但是为了使整个表达式匹配成功，”\w+” 可以 “让出” 它本来能够匹配的最后一个 “d”</td>
+</tr>
+</tbody>
+</table>
+<p>由此可见，”\w+” 在匹配的时候，总是尽可能多的匹配符合它规则的字符。虽然第二个举例中，它没有匹配最后一个 “d”，但那也是为了让整个表达式能够匹配成功。同理，带 “*” 和 “{m,n}” 的表达式都是尽可能地多匹配，带 “?” 的表达式在可匹配可不匹配的时候，也是尽可能的 “要匹配”。这 种匹配原则就叫作 “贪婪” 模式 。</p>
+<p>非贪婪模式：</p>
+<p>在修饰匹配次数的特殊符号后再加上一个 “?” 号，则可以使匹配次数不定的表达式尽可能少的匹配，使可匹配可不匹配的表达式，尽可能的 “不匹配”。这种匹配原则叫作 “非贪婪” 模式，也叫作 “勉强” 模式。如果少匹配就会导致整个表达式匹配失败的时候，与贪婪模式类似，非贪婪模式会最小限度的再匹配一些，以使整个表达式匹配成功。举例如下，针对文本 “dxxxdxxxd” 举例：</p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>可匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(d)(\w+?)</td>
+<td>“\w+?” 将尽可能少的匹配第一个 “d” 之后的字符，结果是：”\w+?” 只匹配了一个 “x”</td>
+</tr>
+<tr>
+<td>(d)(\w+?)(d)</td>
+<td>为了让整个表达式匹配成功，”\w+?” 不得不匹配 “xxx” 才可以让后边的 “d” 匹配，从而使整个表达式匹配成功。因此，结果是：”\w+?” 匹配 “xxx”</td>
+</tr>
+</tbody>
+</table>
+<p>更多的情况，举例如下：</p>
+<p>举例1：表达式 “(.*)” 与字符串 “<br>aa<br>bb<br>” 匹配时，匹配的结果是：成功；匹配到的内容是 “<br>aa<br>bb<br>” 整个字符串， 表达式中的 “<br>” 将与字符串中最后一个 “<br>” 匹配。 </p>
+<p>举例2：相比之下，表达式 “ (.*?)<br>” 匹配举例1中同样的字符串时，将只得到 “<br>aa<br>“， 再次匹配下一个时，可以得到第二个 “<br>bb<br>“。</p>
+<h3 id="2-反向引用-1-2…"><a href="#2-反向引用-1-2…" class="headerlink" title="2. 反向引用 \1, \2…"></a>2. 反向引用 \1, \2…</h3><p>表达式在匹配时，表达式引擎会将小括号 “( )” 包含的表达式所匹配到的字符串记录下来。在获取匹配结果的时候，小括号包含的表达式所匹配到的字符串可以单独获取。这一点，在前面的举例中，已经多次展示了。在实际应用场合中，当用某种边界来查找，而所要获取的内容又不包含边界时，必须使用小括号来指定所要的范围。比如前面的 “ (.*?)“。</p>
+<p>其实，”小括号包含的表达式所匹配到的字符串” 不仅是在匹配结束后才可以使用，在匹配过程中也可以使用。表达式后边的部分，可以引用前面 “括号内的子匹配已经匹配到的字符串”。引用方法是 “” 加上一个数字。”\1″ 引用第1对括号内匹配到的字符串，”\2″ 引用第2对括号内匹配到的字符串……以此类推，如果一对括号内包含另一对括号，则外层的括号先排序号。换句话说，哪一对的左括号 “(” 在前，那这一对就先排序号。</p>
+<p>举例如下：</p>
+<p>举例1：表达式 “(‘|“)(.*?)(\1)” 在匹配 ” ‘Hello’, “World” ” 时，匹配结果是：成功；匹配到的内容是：” ‘Hello’ “。再次匹配下一个时，可以匹配到 ” “World” “。</p>
+<p>举例2：表达式 “(\w)\1{4,}” 在匹配 “aa bbbb abcdefg ccccc 111121111 999999999″ 时，匹配结果是：成功；匹配到的内容是 “ccccc”。再次匹配下一个时，将得到 999999999。这个表达式要求 “\w” 范围的字符至少重复5次，注意与 “\w{5,}” 之间的区别。</p>
+<p>举例3：表达式 “&lt;(\w+)\s<em>(\w+(=(‘|“).</em>?\4)?\s<em>)</em>&gt;.*?\1&gt;” 在匹配 “” 时，匹配结果是成功。如果 “ ” 与 “” 不配对，则会匹配失败；如果改成其他配对，也可以匹配成功。</p>
+<h3 id="3-预搜索，不匹配；反向预搜索，不匹配"><a href="#3-预搜索，不匹配；反向预搜索，不匹配" class="headerlink" title="3. 预搜索，不匹配；反向预搜索，不匹配"></a>3. 预搜索，不匹配；反向预搜索，不匹配</h3><p>前面的章节中，我讲到了几个代表抽象意义的特殊符号：”^”，”$”，”\b”。它们都有一个共同点，那就是：它们本身不匹配任何字符，只是对 “字符串的两头” 或者 “字符之间的缝隙” 附加了一个条件。理解到这个概念以后，本节将继续介绍另外一种对 “两头” 或者 “缝隙” 附加条件的，更加灵活的表示方法。</p>
+<p>正向预搜索：”(?=xxxxx)”，”(?!xxxxx)”</p>
+<p>格式：”(?=xxxxx)”，在被匹配的字符串中，它对所处的 “缝隙” 或者 “两头” 附加的条件是：所在缝隙的右侧，必须能够匹配上 xxxxx 这部分的表达式。因为它只是在此作为这个缝隙上附加的条件，所以它并不影响后边的表达式去真正匹配这个缝隙之后的字符。这就类似 “\b”，本身不匹配任何字符。”\b” 只是将所在缝隙之前、之后的字符取来进行了一下判断，不会影响后边的表达式来真正的匹配。</p>
+<p>举例1：表达式 “Windows (?=NT|XP)” 在匹配 “Windows 98, Windows NT, Windows 2000″ 时，将只匹配 “Windows NT” 中的 “Windows “，其他的 “Windows ” 字样则不被匹配。</p>
+<p>举例2：表达式 “(\w)((?=\1\1\1)(\1))+” 在匹配字符串 “aaa ffffff 999999999″ 时，将可以匹配6个”f”的前4个，可以匹配9个”9″的前7个。这个表达式可以读解成：重复4次以上的字母数字，则匹配其剩下最后2位之前的部分。当然，这个表达式可以不这样写，在此的目的是作为演示之用。</p>
+<p>格式：”(?!xxxxx)”，所在缝隙的右侧，必须不能匹配 xxxxx 这部分表达式。</p>
+<p>举例3：表达式 “((?!\bstop\b).)+” 在匹配 “fdjka ljfdl stop fjdsla fdj” 时，将从头一直匹配到 “stop” 之前的位置，如果字符串中没有 “stop”，则匹配整个字符串。</p>
+<p>举例4：表达式 “do(?!\w)” 在匹配字符串 “done, do, dog” 时，只能匹配 “do”。在本条举例中，”do” 后边使用 “(?!\w)” 和使用 “\b” 效果是一样的。</p>
+<p>反向预搜索：”(?&lt;=xxxxx)”，”(?</p>
+<p>这两种格式的概念和正向预搜索是类似的，反向预搜索要求的条件是：所在缝隙的 “左侧”，两种格式分别要求必须能够匹配和必须不能够匹配指定表达式，而不是去判断右侧。与 “正向预搜索” 一样的是：它们都是对所在缝隙的一种附加条件，本身都不匹配任何字符。</p>
+<p>举例5：表达式 “(?&lt;=\d{4})\d+(?=\d{4})” 在匹配 “1234567890123456″ 时，将匹配除了前4个数字和后4个数字之外的中间8个数字。由于 JScript.RegExp 不支持反向预搜索，因此，本条举例不能够进行演示。很多其他的引擎可以支持反向预搜索，比如：Java 1.4 以上的 java.util.regex 包，.NET 中System.Text.RegularExpressions 命名空间，以及本站推荐的最简单易用的 DEELX 正则引擎。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/regex/">regex</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://blog.liudongkai.com/2008/05/18/regular-expression/" data-title="揭开正则表达式的神秘面纱 | Dong&#39;s Note" data-tsina="2003788463" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2008/05/18/sed-one-liner/" title="SED单行脚本快速参考">
+  <strong>上一篇：</strong><br/>
+  <span>
+  SED单行脚本快速参考</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2008/05/18/sed-command-r/"  title="sed命令示例：&#39;r&#39;">
+ <strong>下一篇：</strong><br/> 
+ <span>sed命令示例：&#39;r&#39;
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2008/05/18/regular-expression/" data-title="揭开正则表达式的神秘面纱" data-url="http://blog.liudongkai.com/2008/05/18/regular-expression/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-普通字符"><span class="toc-number">1.1.</span> <span class="toc-text">1. 普通字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-简单的转义字符"><span class="toc-number">1.2.</span> <span class="toc-text">2. 简单的转义字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-能够与-‘多种字符’-匹配的表达式"><span class="toc-number">1.3.</span> <span class="toc-text">3. 能够与 ‘多种字符’ 匹配的表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-自定义能够匹配-‘多种字符’-的表达式"><span class="toc-number">1.4.</span> <span class="toc-text">4. 自定义能够匹配 ‘多种字符’ 的表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-修饰匹配次数的特殊符号"><span class="toc-number">1.5.</span> <span class="toc-text">5. 修饰匹配次数的特殊符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-其他一些代表抽象意义的特殊符号"><span class="toc-number">1.6.</span> <span class="toc-text">6. 其他一些代表抽象意义的特殊符号</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-正则表达式中的一些高级规则"><span class="toc-number">2.</span> <span class="toc-text">2. 正则表达式中的一些高级规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-匹配次数中的贪婪与非贪婪"><span class="toc-number">2.1.</span> <span class="toc-text">1. 匹配次数中的贪婪与非贪婪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-反向引用-1-2…"><span class="toc-number">2.2.</span> <span class="toc-text">2. 反向引用 \1, \2…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-预搜索，不匹配；反向预搜索，不匹配"><span class="toc-number">2.3.</span> <span class="toc-text">3. 预搜索，不匹配；反向预搜索，不匹配</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liudongkai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42337789-4', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'b3655049504c5e2d7c68'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

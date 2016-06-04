@@ -1,0 +1,767 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>MYSQL复制参数binlog_format | Dong&#39;s Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dong[東木]">
+    
+
+    
+    <meta name="description" content="MySQL Replication复制可以是基于一条语句(Statement level)，也可以是基于一条记录(Row level)，可以在MySQL的配置参数中设定这个复制级别，不同复制级别的设置会影响到Master端的bin-log记录成不同的形式。
+Row Level：日志中会记录成每一行数据被修改的形式，然后在slave端再对相同的数据进行修改。
+优点：在row level模式下，bin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MYSQL复制参数binlog_format">
+<meta property="og:url" content="http://blog.liudongkai.com/2012/03/02/mysql-binlog-format/index.html">
+<meta property="og:site_name" content="Dong's Note">
+<meta property="og:description" content="MySQL Replication复制可以是基于一条语句(Statement level)，也可以是基于一条记录(Row level)，可以在MySQL的配置参数中设定这个复制级别，不同复制级别的设置会影响到Master端的bin-log记录成不同的形式。
+Row Level：日志中会记录成每一行数据被修改的形式，然后在slave端再对相同的数据进行修改。
+优点：在row level模式下，bin">
+<meta property="og:updated_time" content="2012-03-01T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MYSQL复制参数binlog_format">
+<meta name="twitter:description" content="MySQL Replication复制可以是基于一条语句(Statement level)，也可以是基于一条记录(Row level)，可以在MySQL的配置参数中设定这个复制级别，不同复制级别的设置会影响到Master端的bin-log记录成不同的形式。
+Row Level：日志中会记录成每一行数据被修改的形式，然后在slave端再对相同的数据进行修改。
+优点：在row level模式下，bin">
+<meta name="twitter:creator" content="@liudongkai">
+<link rel="publisher" href="100378260579772710000">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
+				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2012/03/02/mysql-binlog-format/" title="MYSQL复制参数binlog_format" itemprop="url">MYSQL复制参数binlog_format</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2012-03-01T16:00:00.000Z" itemprop="datePublished"> 发表于 2012-03-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Row-Level："><span class="toc-number">1.</span> <span class="toc-text">Row Level：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#优点："><span class="toc-number">1.0.1.</span> <span class="toc-text">优点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#缺点："><span class="toc-number">1.0.2.</span> <span class="toc-text">缺点：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Statement-Level"><span class="toc-number">2.</span> <span class="toc-text">Statement Level:</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#优点：-1"><span class="toc-number">2.0.1.</span> <span class="toc-text">优点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#缺点：-1"><span class="toc-number">2.0.2.</span> <span class="toc-text">缺点：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Note"><span class="toc-number">3.</span> <span class="toc-text">Note:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SBR和RBR各自的优缺点"><span class="toc-number">4.</span> <span class="toc-text">SBR和RBR各自的优缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#SBR-的优点："><span class="toc-number">4.0.1.</span> <span class="toc-text">SBR 的优点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#SBR-的缺点："><span class="toc-number">4.0.2.</span> <span class="toc-text">SBR 的缺点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#RBR-的优点："><span class="toc-number">4.0.3.</span> <span class="toc-text">RBR 的优点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#RBR-的缺点："><span class="toc-number">4.0.4.</span> <span class="toc-text">RBR 的缺点：</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<p>MySQL Replication复制可以是基于一条语句(Statement level)，也可以是基于一条记录(Row level)，可以在MySQL的配置参数中设定这个复制级别，不同复制级别的设置会影响到Master端的bin-log记录成不同的形式。</p>
+<h3 id="Row-Level："><a href="#Row-Level：" class="headerlink" title="Row Level："></a>Row Level：</h3><p>日志中会记录成每一行数据被修改的形式，然后在slave端再对相同的数据进行修改。</p>
+<h5 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h5><p>在row level模式下，bin-log中可以不记录执行的sql语句的上下文相关的信息，仅仅只需要记录那一条记录被修改了，修改成什么样了。所以row level的日志内容会非常清楚的记录下每一行数据修改的细节，非常容易理解。而且不会出现某些特定情况下的存储过程，或function，以及trigger的调用和触发无法被正确复制的问题。</p>
+<h5 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h5><p>row level下，所有的执行的语句当记录到日志中的时候，都将以每行记录的修改来记录，这样可能会产生大量的日志内容，比如有这样一条update语句：update product set owner_member_id = ‘b’ where owner_member_id = ‘a’，执行之后，日志中记录的不是这条update语句所对应额事件(MySQL以事件的形式来记录bin-log日志)，而是这条语句所更新的每一条记录的变化情况，这样就记录成很多条记录被更新的很多个事件。自然，bin-log日志的量就会很大。尤其是当执行alter table之类的语句的时候，产生的日志量是惊人的。因为MySQL对于alter table之类的表结构变更语句的处理方式是整个表的每一条记录都需要变动，实际上就是重建了整个表。那么该表的每一条记录都会被记录到日志中。</p>
+<a id="more"></a>
+<h3 id="Statement-Level"><a href="#Statement-Level" class="headerlink" title="Statement Level:"></a>Statement Level:</h3><p>每一条会修改数据的sql都会记录到 master的bin-log中。slave在复制的时候sql进程会解析成和原来master端执行过的相同的sql来再次执行。</p>
+<h5 id="优点：-1"><a href="#优点：-1" class="headerlink" title="优点："></a>优点：</h5><p>statement level下的优点首先就是解决了row level下的缺点，不需要记录每一行数据的变化，减少bin-log日志量，节约IO，提高性能。因为他只需要记录在Master上所执行的语句的细节，以及执行语句时候的上下文的信息。</p>
+<h5 id="缺点：-1"><a href="#缺点：-1" class="headerlink" title="缺点："></a>缺点：</h5><p>由于他是记录的执行语句，所以，为了让这些语句在slave端也能正确执行，那么他还必须记录每条语句在执行的时候的一些相关信息，也就是上下文信息，以保证所有语句在slave端杯执行的时候能够得到和在master端执行时候相同的结果。另外就是，由于MySQL现在发展比较快，很多的新功能不断的加入，使MySQL得复制遇到了不小的挑战，自然复制的时候涉及到越复杂的内容，bug也就越容易出现。在statement level下，目前已经发现的就有不少情况会造成MySQL的复制出现问题，主要是修改数据的时候使用了某些特定的函数或者功能的时候会出现，比如：sleep()函数在有些版本中就不能真确复制，在存储过程中使用了last_insert_id()函数，可能会使slave和master上得到不一致的id等等。由于row level是基于每一行来记录的变化，所以不会出现类似的问题。</p>
+<p>从官方文档中看到，之前的MySQL一直都只有基于statement的复制模式，直到5.1.5版本的MySQL才开始支持row level的复制。从5.0开始，MySQL的复制已经解决了大量老版本中出现的无法正确复制的问题。但是由于存储过程的出现，给MySQL Replication复制又带来了更大的新挑战。另外，看到官方文档说，从5.1.8版本开始，MySQL提供了除Statement Level和Row Level之外的第三种复制模式：Mixed，实际上就是前两种模式的结合。在Mixed模式下，MySQL会根据执行的每一条具体的sql语句来区分对待记录的日志形式，也就是在Statement和Row之间选择一种。新版本中的Statment level还是和以前一样，仅仅记录执行的语句。而新版本的MySQL中队row level模式也被做了优化，并不是所有的修改都会以row level来记录，像遇到表结构变更的时候就会以statement模式来记录，如果sql语句确实就是update或者delete等修改数据的语句，那么还是会记录所有行的变更。</p>
+<h3 id="Note"><a href="#Note" class="headerlink" title="Note:"></a>Note:</h3><p>A.基于SQL语句的复制(statement-based replication, SBR)<br>B.基于行的复制(row-based replication, RBR)<br>C.混合模式复制(mixed-based replication, MBR)</p>
+<p>相应地，binlog的格式也有三种：STATEMENT，ROW，MIXED。 MBR 模式中，SBR 模式是默认的。</p>
+<p>在运行时可以动态改变binlog的格式，除了以下几种情况：</p>
+<ol>
+<li>存储过程或者触发器中间</li>
+<li>启用了NDB</li>
+<li>当前会话使用 RBR 模式，并且已打开了临时表</li>
+</ol>
+<p>如果binlog采用了 MIXED 模式，那么在以下几种情况下会自动将binlog的模式由 SBR 模式改成 RBR 模式。</p>
+<ol>
+<li>当DML语句更新一个NDB表时</li>
+<li>当函数中包含 UUID() 时</li>
+<li>2个及以上包含 AUTO_INCREMENT 字段的表被更新时</li>
+<li>执行 INSERT DELAYED 语句时</li>
+<li>用 UDF(User-defined function) 时</li>
+<li>视图中必须要求使用 RBR 时，例如创建视图是使用了 UUID() 函数</li>
+</ol>
+<p>设定主从复制模式的方法非常简单，只要在以前设定复制配置的基础上，再加一个参数：</p>
+<blockquote>
+<p>   binlog_format=”STATEMENT”<br>    #binlog_format=”ROW”<br>    #binlog_format=”MIXED”</p>
+</blockquote>
+<p>当然了，也可以在运行时动态修改binlog的格式。例如</p>
+<blockquote>
+<p>   mysql&gt; SET SESSION binlog_format = ‘STATEMENT’;<br>    mysql&gt; SET SESSION binlog_format = ‘ROW’;<br>    mysql&gt; SET SESSION binlog_format = ‘MIXED’;</p>
+<p>   mysql&gt; SET GLOBAL binlog_format = ‘STATEMENT’;<br>    mysql&gt; SET GLOBAL binlog_format = ‘ROW’;<br>    mysql&gt; SET GLOBAL binlog_format = ‘MIXED’;</p>
+</blockquote>
+<h3 id="SBR和RBR各自的优缺点"><a href="#SBR和RBR各自的优缺点" class="headerlink" title="SBR和RBR各自的优缺点"></a>SBR和RBR各自的优缺点</h3><h5 id="SBR-的优点："><a href="#SBR-的优点：" class="headerlink" title="SBR 的优点："></a>SBR 的优点：</h5><ol>
+<li>历史悠久，技术成熟</li>
+<li>binlog文件较小</li>
+<li>binlog中包含了所有数据库更改信息，可以据此来审核数据库的安全等情况</li>
+<li>binlog可以用于实时的还原，而不仅仅用于复制</li>
+<li>主从版本可以不一样，从服务器版本可以比主服务器版本高</li>
+</ol>
+<h5 id="SBR-的缺点："><a href="#SBR-的缺点：" class="headerlink" title="SBR 的缺点："></a>SBR 的缺点：</h5><ol>
+<li>不是所有的UPDATE语句都能被复制，尤其是包含不确定操作的时候。</li>
+<li>调用具有不确定因素的 UDF 时复制也可能出问题</li>
+<li>使用以下函数的语句也无法被复制：<ul>
+<li>LOAD_FILE()</li>
+<li>UUID()</li>
+<li>USER()</li>
+<li>FOUND_ROWS()</li>
+<li>SYSDATE() (除非启动时启用了 –sysdate-is-now 选项)</li>
+</ul>
+</li>
+<li>INSERT … SELECT 会产生比 RBR 更多的行级锁</li>
+<li>复制需要进行全表扫描(WHERE 语句中没有使用到索引)的 UPDATE 时，需要比 RBR 请求更多的行级锁</li>
+<li>对于有 AUTO_INCREMENT 字段的 InnoDB表而言，INSERT 语句会阻塞其他 INSERT 语句</li>
+<li>对于一些复杂的语句，在从服务器上的耗资源情况会更严重，而 RBR 模式下，只会对那个发生变化的记录产生影响</li>
+<li>存储函数(不是存储过程)在被调用的同时也会执行一次 NOW() 函数，这个可以说是坏事也可能是好事</li>
+<li>确定了的 UDF 也需要在从服务器上执行</li>
+<li>数据表必须几乎和主服务器保持一致才行，否则可能会导致复制出错</li>
+<li>执行复杂语句如果出错的话，会消耗更多资源</li>
+</ol>
+<h5 id="RBR-的优点："><a href="#RBR-的优点：" class="headerlink" title="RBR 的优点："></a>RBR 的优点：</h5><ol>
+<li>任何情况都可以被复制，这对复制来说是最安全可靠的</li>
+<li>和其他大多数数据库系统的复制技术一样</li>
+<li>多数情况下，从服务器上的表如果有主键的话，复制就会快了很多</li>
+<li>复制以下几种语句时的行锁更少：<ul>
+<li>INSERT … SELECT</li>
+<li>包含 AUTO_INCREMENT 字段的 INSERT</li>
+<li>没有附带条件或者并没有修改很多记录的 UPDATE 或 DELETE 语句</li>
+</ul>
+</li>
+<li>执行 INSERT，UPDATE，DELETE 语句时锁更少</li>
+<li>从服务器上采用多线程来执行复制成为可能</li>
+</ol>
+<h5 id="RBR-的缺点："><a href="#RBR-的缺点：" class="headerlink" title="RBR 的缺点："></a>RBR 的缺点：</h5><ol>
+<li>binlog 大了很多</li>
+<li>复杂的回滚时 binlog 中会包含大量的数据</li>
+<li>主服务器上执行 UPDATE 语句时，所有发生变化的记录都会写到 binlog 中，而 SBR 只会写一次，这会导致频繁发生binlog 的并发写问题</li>
+<li>UDF 产生的大 BLOB 值会导致复制变慢</li>
+<li>无法从 binlog 中看到都复制了写什么语句</li>
+<li>当在非事务表上执行一段堆积的SQL语句时，最好采用 SBR 模式，否则很容易导致主从服务器的数据不一致情况发生</li>
+</ol>
+<p>另外，针对系统库 mysql 里面的表发生变化时的处理规则如下：</p>
+<ol>
+<li>如果是采用 INSERT，UPDATE，DELETE 直接操作表的情况，则日志格式根据 binlog_format 的设定而记录</li>
+<li>如果是采用 GRANT，REVOKE，SET PASSWORD 等管理语句来做的话，那么无论如何都采用 SBR 模式记录<br>注：采用 RBR 模式后，能解决很多原先出现的主键重复问题<br><strong>mysql binlog格式与事务级别read committed的关系</strong></li>
+</ol>
+<p>binlog有三种格式，分别是STATEMENT、row、mixed。每种格式的区别可以去看复制那篇文章，那它分别与read committed 有什么关系呢。下面以例子来分析</p>
+<p>1、数据库版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; status</span><br><span class="line">mysql  Ver 14.14 Distrib 5.1.45, for unknown-linux-gnu (x86_64) using  EditLine wrapper</span><br><span class="line">Connection id:          2</span><br><span class="line">Current database:       xinying</span><br><span class="line">Current user:           root@localhost</span><br><span class="line">SSL:                    Not in use</span><br><span class="line">Current pager:          stdout</span><br><span class="line">Using outfile:          &apos;&apos;</span><br><span class="line">Using delimiter:        ;</span><br><span class="line">Server version:         5.1.45-VS-log XinYing</span><br><span class="line">Protocol version:       10</span><br><span class="line">Connection:             Localhost via UNIX socket</span><br><span class="line">Insert id:              2</span><br><span class="line">Server characterset:    latin1</span><br><span class="line">Db     characterset:    latin1</span><br><span class="line">Client characterset:    latin1</span><br><span class="line">Conn.  characterset:    latin1</span><br><span class="line">UNIX socket:            /tmp/mysql.sock</span><br><span class="line">Uptime:                 1 hour 40 min 14 sec</span><br></pre></td></tr></table></figure></p>
+<p>2、改变事务级别为read committed<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;set session transaction isolation level read committed;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<p>3、改变二进制日志格式</p>
+<p>mysql&gt;set binlog_format=STATEMENT;<br>Query OK, 0 rows affected (0.00 sec)</p>
+<p>4、创建测试表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;CREATE TABLE `slevin` (</span><br><span class="line">    -&gt;`id` int(10) NOT NULL AUTO_INCREMENT,</span><br><span class="line">    -&gt;`book` char(10) DEFAULT NULL,</span><br><span class="line">    -&gt;PRIMARY KEY (`id`)</span><br><span class="line">    -&gt;) ENGINE=InnoDB;</span><br><span class="line">Query OK, 0 rows affected (0.03 sec)</span><br></pre></td></tr></table></figure></p>
+<p>5、插入数据测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;insert into slevin(book) values(&apos;wuli&apos;);</span><br><span class="line">ERROR 1598 (HY000): Binary logging not possible. Message: Transaction level &apos;READ-COMMITTED&apos; in InnoDB is not safe for binlog mode &apos;STATEMENT&apos;</span><br></pre></td></tr></table></figure></p>
+<p>看到没，提示出错，那我们尝试把事务基本改为REPEATABLE READ<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;set session transaction isolation level REPEATABLE READ;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;insert into slevin(book) values(&apos;wuli&apos;);</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<p>改个事务级别就成功了，那试试仍旧把它改为read committed，把binlog格式改了试试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;set session transaction isolation level read committed;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;set session binlog_format=row;   #改为行格式</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;insert into slevin(book) values(&apos;wuli&apos;);</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;set session binlog_format=mixed; #改为混合格式</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;insert into slevin(book) values(&apos;wuli&apos;);</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<p>把上面改为两种格式都成功，唯独STATEMENT格式不行，所以以后要注意read committed与binlog格式的关系，否则会导致插入不了数据。为何会导致这种情况呢，那是因为read committed可能会导致不可重复读，也就是说可以读取到后面进入并提交的数据，如果基于STATEMENT格式的话，会导致主从数据不一样，因为STATEMENT是基于SQL语句的复制模式。另外设置innodb_locks_unsafe_for_binlog=1 ,binlog也要设为row格式。</p>
+<p><strong>UUID做主键分析</strong></p>
+<p>大概使用MySQL的人，百分之九九以上的人会使用Autoincrement ID做主键，这是可以理解的，因为MySQL的自增ID效率很高，使用也很方便。那么剩下的百分之一的人使用什么做主键呢？</p>
+<p>可能是自己做的KeyGenerator，也可能是我们下面要说的UUID。</p>
+<p>据说在Oracle的圈子里，如果谁用自增ID做主键是要被鄙视的，主键最自然的选择就是UUID。</p>
+<p>那么我们先看看什么是UUID？</p>
+<p>简单的说，UUID是指在一台机器上生成的数字，它保证对在同一时空中的所有机器都是唯一的。在UUID的算法中，可能会用到诸如网卡MAC地址，IP，主机名，进程ID等信息以保证其独立性。</p>
+<p>如果你的MySQL版本不太老的话，键入 SELECT UUID(); 输出的就是UUID，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select uuid();</span><br><span class="line">+--------------------------------------+</span><br><span class="line">| uuid()                               |</span><br><span class="line">+--------------------------------------+</span><br><span class="line">| 54b4c01f-dce0-102a-a4e0-462c07a00c5e |</span><br><span class="line">+--------------------------------------+</span><br></pre></td></tr></table></figure></p>
+<p>现在大家应该对UUID有一个比较直观的认识了，我们来看看UUID的优缺点分别是什么。</p>
+<p><strong>优点</strong>：</p>
+<p>能够保证独立性，程序可以在不同的数据库间迁移，效果不受影响。</p>
+<p>保证生成的ID不仅是表独立的，而且是库独立的，这点在你想切分数据库的时候尤为重要。</p>
+<p><strong>缺点</strong>：</p>
+<p>比较占地方，和INT类型相比，存储一个UUID要花费更多的空间。</p>
+<p>使用UUID后，URL显得冗长，不够友好。</p>
+<p>下面针对上述UUID的缺点说说我的看法，比较占地方这个缺点我不是很在乎，现在最不值钱的就是硬盘了，略过此条缺点无妨，但需要注意的一点数据在索引的时候效率会随着体积的增加而降低。至于说使用UUID后，URL显得不友好，我觉得这多少是你的INT情结造成的惯性思维，其实，和INT类型相比，UUID才是最自然的主键选择，注意，我这里用的是自然这个形容词，仔细体会一下你能理解我的意思。另外，很多时候，URL本身就不需要友好，比如，一个电子商务网站，按照INT友好的URL说法，她的订单URL大概是下面这个形式的：/order.php/id/123，我要说明的是，这样是很友好，但是有些太友好了，友好的甚至不安全，比如说，我早晨下一个订单，发现URL是/order.php/id/1000，晚上再下一个订单发现URL是/order.php/id/2000，那么我就可以估计出此网站一天的订单数大致是1000左右，甚至能大体估计出它的销售额，而这些数据往往都是重要的商业秘密。使用UUID就没有这个顾虑。</p>
+<p>如果上面说的UUID的所谓缺点都不成立的话，那么是否使用UUID做主键，唯一的问题就是效率了。据说在PostgreSQL等数据库里，都有专门的UUID类型，在这样的数据库里，使用UUID做主键，效率没有任何问题，可惜在MySQL里没有这样的字段，如果想在MySQL里保存UUID做主键，一般是使用CHAR(36)来模拟，因为不是一个原生的UUID类型，所以主键的效率到底如何有待测试，另外，UUID做主键的效率和UUID本身的算法实现也有很大关系。</p>
+<p>另外，对于InnoDB这种聚集主键类型的引擎来说，数据会按照主键进行排序，由于UUID的无序性，InnoDB会产生巨大的IO压力，此时不适合使用UUID做物理主键，可以把它作为逻辑主键，物理主键依然使用自增ID。</p>
+<p><a href="http://hi.baidu.com/thinkinginlamp/blog/item/c609d10979710e81d0581b60.html" target="_blank" rel="external">http://hi.baidu.com/thinkinginlamp/blog/item/c609d10979710e81d0581b60.html</a><br><a href="http://xinying.blog.51cto.com/441770/314203" target="_blank" rel="external">http://xinying.blog.51cto.com/441770/314203</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Mysql/">Mysql</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/binlog/">binlog</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://blog.liudongkai.com/2012/03/02/mysql-binlog-format/" data-title="MYSQL复制参数binlog_format | Dong&#39;s Note" data-tsina="2003788463" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2012/03/07/shell-meaning-of-parameters/" title="Bash shell中的位置参数$#,$*,$@,$0,$1,$2…及特殊参数$?,$-等的含义">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Bash shell中的位置参数$#,$*,$@,$0,$1,$2…及特殊参数$?,$-等的含义</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2012/03/02/mysql-function-uuid/"  title="MySQL UUID函数的详解[zt]">
+ <strong>下一篇：</strong><br/> 
+ <span>MySQL UUID函数的详解[zt]
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2012/03/02/mysql-binlog-format/" data-title="MYSQL复制参数binlog_format" data-url="http://blog.liudongkai.com/2012/03/02/mysql-binlog-format/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Row-Level："><span class="toc-number">1.</span> <span class="toc-text">Row Level：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#优点："><span class="toc-number">1.0.1.</span> <span class="toc-text">优点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#缺点："><span class="toc-number">1.0.2.</span> <span class="toc-text">缺点：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Statement-Level"><span class="toc-number">2.</span> <span class="toc-text">Statement Level:</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#优点：-1"><span class="toc-number">2.0.1.</span> <span class="toc-text">优点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#缺点：-1"><span class="toc-number">2.0.2.</span> <span class="toc-text">缺点：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Note"><span class="toc-number">3.</span> <span class="toc-text">Note:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SBR和RBR各自的优缺点"><span class="toc-number">4.</span> <span class="toc-text">SBR和RBR各自的优缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#SBR-的优点："><span class="toc-number">4.0.1.</span> <span class="toc-text">SBR 的优点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#SBR-的缺点："><span class="toc-number">4.0.2.</span> <span class="toc-text">SBR 的缺点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#RBR-的优点："><span class="toc-number">4.0.3.</span> <span class="toc-text">RBR 的优点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#RBR-的缺点："><span class="toc-number">4.0.4.</span> <span class="toc-text">RBR 的缺点：</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liudongkai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42337789-4', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'b3655049504c5e2d7c68'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

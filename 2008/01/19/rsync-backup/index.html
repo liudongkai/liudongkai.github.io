@@ -1,0 +1,734 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>用rsync对网站进行镜像备份 | Dong&#39;s Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dong[東木]">
+    
+
+    
+    <meta name="description" content="用rsync对网站进行镜像备份
+by inburst &amp;lt;inburst@263.net&amp;gt;http://xfocus.org
+对系统管理员来说，平时的工作重心应该集中在维护系统正常运转，能够正常提供服务上，这里往往牵涉到一个数据备份的问题，在我所了解的情况中，有80%的系统管理员不是太关心自己服务器的安全性，但往往对备分镜像的技术相当感兴趣，但由于商业产品的软硬件价格都相当高昂，因此往往">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用rsync对网站进行镜像备份">
+<meta property="og:url" content="http://blog.liudongkai.com/2008/01/19/rsync-backup/index.html">
+<meta property="og:site_name" content="Dong's Note">
+<meta property="og:description" content="用rsync对网站进行镜像备份
+by inburst &amp;lt;inburst@263.net&amp;gt;http://xfocus.org
+对系统管理员来说，平时的工作重心应该集中在维护系统正常运转，能够正常提供服务上，这里往往牵涉到一个数据备份的问题，在我所了解的情况中，有80%的系统管理员不是太关心自己服务器的安全性，但往往对备分镜像的技术相当感兴趣，但由于商业产品的软硬件价格都相当高昂，因此往往">
+<meta property="og:updated_time" content="2008-01-18T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用rsync对网站进行镜像备份">
+<meta name="twitter:description" content="用rsync对网站进行镜像备份
+by inburst &amp;lt;inburst@263.net&amp;gt;http://xfocus.org
+对系统管理员来说，平时的工作重心应该集中在维护系统正常运转，能够正常提供服务上，这里往往牵涉到一个数据备份的问题，在我所了解的情况中，有80%的系统管理员不是太关心自己服务器的安全性，但往往对备分镜像的技术相当感兴趣，但由于商业产品的软硬件价格都相当高昂，因此往往">
+<meta name="twitter:creator" content="@liudongkai">
+<link rel="publisher" href="100378260579772710000">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
+				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2008/01/19/rsync-backup/" title="用rsync对网站进行镜像备份" itemprop="url">用rsync对网站进行镜像备份</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2008-01-18T16:00:00.000Z" itemprop="datePublished"> 发表于 2008-01-19</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、特性简介"><span class="toc-text">一、特性简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、使用方法"><span class="toc-text">二、使用方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、FAQ"><span class="toc-text">三、FAQ</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、一些可借鉴的脚本"><span class="toc-text">四、一些可借鉴的脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、参考资料："><span class="toc-text">五、参考资料：</span></a></li></ol>
+		
+		</div>
+		
+		<p>用rsync对网站进行镜像备份</p>
+<p>by inburst <code>&lt;inburst@263.net&gt;</code><br><a href="http://xfocus.org" target="_blank" rel="external">http://xfocus.org</a></p>
+<p>对系统管理员来说，平时的工作重心应该集中在维护系统正常运转，能够正常提供服务上，这里往往牵涉到一个数据备份的问题，在我所了解的情况中，有80%的系统管理员不是太关心自己服务器的安全性，但往往对备分镜像的技术相当感兴趣，但由于商业产品的软硬件价格都相当高昂，因此往往会选择自由软件。这里准备介绍的rsync就是这样的软件，它可以满足绝大多数要求不是特别高的备份需求。</p>
+<h2 id="一、特性简介"><a href="#一、特性简介" class="headerlink" title="一、特性简介"></a><e1>一、特性简介</e1></h2><p>rsync是类unix系统下的数据镜像备份工具，从软件的命名上就可以看出来了——remote sync。它的特性如下：</p>
+<ol>
+<li>可以镜像保存整个目录树和文件系统。</li>
+<li>可以很容易做到保持原来文件的权限、时间、软硬链接等等。</li>
+<li>无须特殊权限即可安装。</li>
+<li>优化的流程，文件传输效率高。</li>
+<li>可以使用rcp、ssh等方式来传输文件，当然也可以通过直接的socket连接。</li>
+<li>支持匿名传输。</li>
+</ol>
+<a id="more"></a>
+<h2 id="二、使用方法"><a href="#二、使用方法" class="headerlink" title="二、使用方法"></a><e2>二、使用方法</e2></h2><p>rsync的使用方法很简单，我就举自己使用的例子来说明吧。</p>
+<ol>
+<li><p>系统环境</p>
+<p>rsync支持大多数的类unix系统，无论是Linux、Solaris还是BSD上都经过了良好的测试。我的系统环境为：</p>
+<p>server: FreeBSD 4.3  ip: 192.168.168.52<br>client: Solaris 8    ip: 192.168.168.137<br>rsync 版本 2.4.6(可以从<a href="http://rsync.samba.org/rsync/获得最新版本" target="_blank" rel="external">http://rsync.samba.org/rsync/获得最新版本</a>)</p>
+</li>
+<li><p>配置server端的/etc/rsyncd.conf文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">bash-2.03# cat /etc/rsyncd.conf</span><br><span class="line"></span><br><span class="line">uid = nobody</span><br><span class="line">gid = nobody</span><br><span class="line">use chroot = no         # 不使用chroot</span><br><span class="line">max connections = 4         # 最大连接数为4</span><br><span class="line">pid file = /var/run/rsyncd.pid</span><br><span class="line">lock file = /var/run/rsync.lock</span><br><span class="line">log file = /var/log/rsyncd.log    # 日志记录文件</span><br><span class="line"></span><br><span class="line">[inburst]            # 这里是认证的模块名，在client端需要指定</span><br><span class="line">path = /home/inburst/python/    # 需要做镜像的目录</span><br><span class="line">comment = BACKUP CLIENT IS SOLARIS 8 E250</span><br><span class="line">ignore errors            # 可以忽略一些无关的IO错误</span><br><span class="line">read only = yes            # 只读</span><br><span class="line">list = no            # 不允许列文件</span><br><span class="line">auth users = inburst        # 认证的用户名，如果没有这行，则表明是匿名</span><br><span class="line">secrets file = /etc/inburst.pas    # 认证文件名</span><br><span class="line"></span><br><span class="line">[web]</span><br><span class="line">path = /usr/local/apache/htdocs/</span><br><span class="line">comment = inburst.org web server</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在server端生成一个密码文件/etc/inburst.pas</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash-2.03# cat /etc/inburst.pas</span><br><span class="line">inburst:hack</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>出于安全目的，文件的属性必需是只有属主可读。</p>
+<ol>
+<li>在server端将rsync以守护进程形式启动<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash-2.03# rsync –daemon</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>如果要在启动时把服务起来，有几种不同的方法，比如：</p>
+<p> a、加入inetd.conf</p>
+<p> 编辑/etc/services，加入rsync   873/tcp，指定rsync的服务端口是873<br>编辑/etc/inetd.conf，加入rsync  stream  tcp   nowait  root  /bin/rsync rsync –daemon</p>
+<p> b、加入rc.local</p>
+<p> 在各种操作系统中，rc文件存放位置不尽相同，可以修改使系统启动时rsync –daemon加载进去。</p>
+<ol>
+<li><p>从client端进行测试</p>
+<p>下面这个命令行中-vzrtopg里的v是verbose，z是压缩，r是recursive，topg都是保持文件原有属性如属主、时间的参数。–progress是指显示 出详细的进度情况，–delete是指如果服务器端删除了这一文件，那么客户端也相应把文件删除，保持真正的一致。后面的inburst@ip中， inburst是指定密码文件中的用户名，之后的::inburst这一inburst是模块名，也就是在/etc/rsyncd.conf中自定义的名称。最后的/tmp是备份到本地的目录名。</p>
+<p>在这里面，还可以用-e ssh的参数建立起加密的连接。可以用–password-file=/password/path/file来指定密码文件，这样就可以在脚本中使用而无需交互式地输入验证密码了，这里需要注意的是这份密码文件权限属性要设得只有属主可读。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">bash-2.03# rsync -vzrtopg –progress –delete inburst@192.168.168.52::inburst /tmp/</span><br><span class="line">Password:</span><br><span class="line">receiving file list … done</span><br><span class="line">./</span><br><span class="line">1</span><br><span class="line">785 (100%)</span><br><span class="line">1.py</span><br><span class="line">4086 (100%)</span><br><span class="line">2.py</span><br><span class="line">10680 (100%)</span><br><span class="line">a</span><br><span class="line">0 (100%)</span><br><span class="line">ip</span><br><span class="line">3956 (100%)</span><br><span class="line">./</span><br><span class="line">wrote 190 bytes  read 5499 bytes  758.53 bytes/sec</span><br><span class="line">total size is 19507  speedup is 3.43</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建更新脚本</p>
+<p>如果有比较复杂的工作，利用一些常见的脚本语言可以有帮助。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">bash-2.03# cat /usr/local/bin/rsync.sh</span><br><span class="line"></span><br><span class="line">#!/bin/sh</span><br><span class="line">DATE=`date +%w`</span><br><span class="line"></span><br><span class="line">rsync -vzrtopg –progress –delete inburst@192.168.168.52::inburst /home/quack/backup/$DATE –password-file=/etc/rsync.pass &gt;/var/log/rsync.$DATE</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改/etc/crontab做好定时</p>
+</li>
+</ol>
+<p>比如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash-2.03# echo &quot;15 4 * * 6 root rsync.sh&quot;&gt;&gt;/etc/crontab</span><br></pre></td></tr></table></figure></p>
+<h2 id="三、FAQ"><a href="#三、FAQ" class="headerlink" title="三、FAQ"></a><e3>三、FAQ</e3></h2><p>Q：如何通过ssh进行rsync，而且无须输入密码？<br>A：可以通过以下几个步骤</p>
+<ol>
+<li>通过ssh-keygen在server A上建立SSH keys，不要指定密码，你会在~/.ssh下看到identity和identity.pub文件</li>
+<li>在server B上的home目录建立子目录.ssh</li>
+<li>将A的identity.pub拷贝到server B上</li>
+<li>将identity.pub加到~[user b]/.ssh/authorized_keys</li>
+<li>于是server A上的A用户，可通过下面命令以用户B ssh到server B上了<br>e.g. ssh -l userB serverB<br>这样就使server A上的用户A就可以ssh以用户B的身份无需密码登陆到server B上了。</li>
+</ol>
+<p>Q：如何通过在不危害安全的情况下通过防火墙使用rsync?<br>A：解答如下：</p>
+<p>这通常有两种情况，一种是服务器在防火墙内，一种是服务器在防火墙外。<br>无论哪种情况，通常还是使用ssh，这时最好新建一个备份用户，并且配置sshd仅允许这个用户通过RSA认证方式进入。<br>如果服务器在防火墙内，则最好限定客户端的IP地址，拒绝其它所有连接。<br>如果客户机在防火墙内，则可以简单允许防火墙打开TCP端口22的ssh外发连接就ok了。</p>
+<p>Q：我能将更改过或者删除的文件也备份上来吗？<br>A：当然可以：</p>
+<p>你可以使用如：rsync -other -options -backupdir = ./backup-2000-2-13  …这样的命令来实现。<br>这样如果源文件:/path/to/some/file.c改变了，那么旧的文件就会被移到./backup-2000-2-13/path/to/some/file.c，这里这个目录需要自己手工建立起来</p>
+<p>Q：我需要在防火墙上开放哪些端口以适应rsync？<br>A：视情况而定</p>
+<p>rsync可以直接通过873端口的tcp连接传文件，也可以通过22端口的ssh来进行文件传递，但你也可以通过下列命令改变它的端口：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync –port 8730 otherhost::</span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -e &apos;ssh -p 2002&apos; otherhost:</span><br></pre></td></tr></table></figure></p>
+<p>Q：我如何通过rsync只复制目录结构，忽略掉文件呢？<br>A：<code>rsync -av –include &#39;*/&#39; –exclude &#39;*&#39; source-dir dest-dir</code></p>
+<p>Q：为什么我总会出现”Read-only file system”的错误呢？<br>A：看看是否忘了设”read only = no”了</p>
+<p>Q：为什么我会出现’@ERROR: invalid gid’的错误呢？<br>A：rsync使用时默认是用uid=nobody;gid=nobody来运行的，如果你的系统不存在nobody组的话，就会出现这样的错误，可以试试gid =nogroup或者其它</p>
+<p>Q：绑定端口873失败是怎么回事？<br>A：如果你不是以root权限运行这一守护进程的话，因为1024端口以下是特权端口，会出现这样的错误。你可以用–port参数来改变。</p>
+<p>Q：为什么我认证失败？<br>A：从你的命令行看来：</p>
+<p>你用的是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; bash$ rsync -a 144.16.251.213::test test</span><br><span class="line">&gt; Password:</span><br><span class="line">&gt; @ERROR: auth failed on module test</span><br><span class="line">&gt;</span><br><span class="line">&gt; I dont understand this. Can somebody explain as to how to acomplish this.</span><br><span class="line">&gt; All suggestions are welcome.</span><br></pre></td></tr></table></figure></p>
+<p>应该是没有以你的用户名登陆导致的问题，试试rsync -a max@144.16.251.213::test test</p>
+<h2 id="四、一些可借鉴的脚本"><a href="#四、一些可借鉴的脚本" class="headerlink" title="四、一些可借鉴的脚本"></a><e4>四、一些可借鉴的脚本</e4></h2><p>这里这些脚本都是rsync网站上的例子：</p>
+<p>1、每隔七天将数据往中心服务器做增量备份<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line"># This script does personal backups to a rsync backup server. You will end up</span><br><span class="line"># with a 7 day rotating incremental backup. The incrementals will go</span><br><span class="line"># into subdirectories named after the day of the week, and the current</span><br><span class="line"># full backup goes into a directory called “current”</span><br><span class="line"># tridge@linuxcare.com</span><br><span class="line"></span><br><span class="line"># directory to backup</span><br><span class="line">BDIR=/home/$USER</span><br><span class="line"></span><br><span class="line"># excludes file – this contains a wildcard pattern per line of files to exclude</span><br><span class="line">EXCLUDES=$HOME/cron/excludes</span><br><span class="line"></span><br><span class="line"># the name of the backup machine</span><br><span class="line">BSERVER=owl</span><br><span class="line"></span><br><span class="line"># your password on the backup server</span><br><span class="line">export RSYNC_PASSWORD=XXXXXX</span><br><span class="line"></span><br><span class="line">########################################################################</span><br><span class="line"></span><br><span class="line">BACKUPDIR=`date +%A`</span><br><span class="line">OPTS=&quot;–force –ignore-errors –delete-excluded –exclude-from=$EXCLUDES</span><br><span class="line">–delete –backup –backup-dir=/$BACKUPDIR -a&quot;</span><br><span class="line"></span><br><span class="line">export PATH=$PATH:/bin:/usr/bin:/usr/local/bin</span><br><span class="line"></span><br><span class="line"># the following line clears the last weeks incremental directory</span><br><span class="line">[ -d $HOME/emptydir ] || mkdir $HOME/emptydir</span><br><span class="line">rsync –delete -a $HOME/emptydir/ $BSERVER::$USER/$BACKUPDIR/</span><br><span class="line">rmdir $HOME/emptydir</span><br><span class="line"></span><br><span class="line"># now the actual transfer</span><br><span class="line">rsync $OPTS $BDIR $BSERVER::$USER/current</span><br></pre></td></tr></table></figure></p>
+<p>2、备份至一个空闲的硬盘<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line">export PATH=/usr/local/bin:/usr/bin:/bin</span><br><span class="line"></span><br><span class="line">LIST=&quot;rootfs usr data data2&quot;</span><br><span class="line"></span><br><span class="line">for d in $LIST; do</span><br><span class="line">mount /backup/$d</span><br><span class="line">rsync -ax –exclude fstab –delete /$d/ /backup/$d/</span><br><span class="line">umount /backup/$d</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">DAY=`date &quot;+%A&quot;`</span><br><span class="line"></span><br><span class="line">rsync -a –delete /usr/local/apache /data2/backups/$DAY</span><br><span class="line">rsync -a –delete /data/solid /data2/backups/$DAY</span><br></pre></td></tr></table></figure></p>
+<p>3、对vger.rutgers.edu的cvs树进行镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">cd /var/www/cvs/vger/</span><br><span class="line">PATH=/usr/local/bin:/usr/freeware/bin:/usr/bin:/bin</span><br><span class="line"></span><br><span class="line">RUN=`lps x | grep rsync | grep -v grep | wc -l`</span><br><span class="line">if [ &quot;$RUN&quot; -gt 0 ]; then</span><br><span class="line">echo already running</span><br><span class="line">exit 1</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">rsync -az vger.rutgers.edu::cvs/CVSROOT/ChangeLog $HOME/ChangeLog</span><br><span class="line"></span><br><span class="line">sum1=`sum $HOME/ChangeLog`</span><br><span class="line">sum2=`sum /var/www/cvs/vger/CVSROOT/ChangeLog`</span><br><span class="line"></span><br><span class="line">if [ &quot;$sum1&quot; = &quot;$sum2&quot; ]; then</span><br><span class="line">echo nothing to do</span><br><span class="line">exit 0</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">rsync -az –delete –force vger.rutgers.edu::cvs/ /var/www/cvs/vger/</span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure></p>
+<p>4、利用find的一种巧妙方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -avR remote:&apos;`find /home -name &quot;*.[ch]&quot;`&apos; /tmp/</span><br></pre></td></tr></table></figure></p>
+<p>可以用这种方法列出需要备份的文件列表——这种方法似乎比较少人用到。</p>
+<h2 id="五、参考资料："><a href="#五、参考资料：" class="headerlink" title="五、参考资料："></a><e5>五、参考资料：</e5></h2><ol>
+<li><a href="http://rsync.samba.org/" target="_blank" rel="external">http://rsync.samba.org/</a></li>
+<li>rsync examples</li>
+<li>rsync FAQ</li>
+</ol>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/rsync/">rsync</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://blog.liudongkai.com/2008/01/19/rsync-backup/" data-title="用rsync对网站进行镜像备份 | Dong&#39;s Note" data-tsina="2003788463" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2008/01/21/Linux-tar-introduction/" title="Linux下的压缩打包–tar命令详解">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Linux下的压缩打包–tar命令详解</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2008/01/19/rsync-parameters-details/"  title="rsync参数详解">
+ <strong>下一篇：</strong><br/> 
+ <span>rsync参数详解
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2008/01/19/rsync-backup/" data-title="用rsync对网站进行镜像备份" data-url="http://blog.liudongkai.com/2008/01/19/rsync-backup/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、特性简介"><span class="toc-text">一、特性简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、使用方法"><span class="toc-text">二、使用方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、FAQ"><span class="toc-text">三、FAQ</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、一些可借鉴的脚本"><span class="toc-text">四、一些可借鉴的脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、参考资料："><span class="toc-text">五、参考资料：</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liudongkai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42337789-4', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'b3655049504c5e2d7c68'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

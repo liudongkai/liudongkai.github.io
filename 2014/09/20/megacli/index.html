@@ -1,0 +1,938 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>常用PC服务器阵列卡、硬盘健康监控[ZT] | Dong&#39;s Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dong[東木]">
+    
+
+    
+    <meta name="description" content="通常，我们使用的DELL/HP/IBM三家的机架式PC级服务器阵列卡是从LSI的卡OEM出来的，DELL和IBM两家的阵列卡原生程度较高，没有做太多封装，可以用原厂提供的阵列卡管理工具进行监控；而HP的阵列卡一般都做过封装了，因此需要使用自身特有的管理工具来监控。
+本文以几种常用的阵列卡为例，展示其阵列卡及硬盘监控的方法。DELL SAS 6/iR卡，全称LSI Logic SAS1068E，只支">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用PC服务器阵列卡、硬盘健康监控[ZT]">
+<meta property="og:url" content="http://blog.liudongkai.com/2014/09/20/megacli/index.html">
+<meta property="og:site_name" content="Dong's Note">
+<meta property="og:description" content="通常，我们使用的DELL/HP/IBM三家的机架式PC级服务器阵列卡是从LSI的卡OEM出来的，DELL和IBM两家的阵列卡原生程度较高，没有做太多封装，可以用原厂提供的阵列卡管理工具进行监控；而HP的阵列卡一般都做过封装了，因此需要使用自身特有的管理工具来监控。
+本文以几种常用的阵列卡为例，展示其阵列卡及硬盘监控的方法。DELL SAS 6/iR卡，全称LSI Logic SAS1068E，只支">
+<meta property="og:updated_time" content="2014-09-19T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用PC服务器阵列卡、硬盘健康监控[ZT]">
+<meta name="twitter:description" content="通常，我们使用的DELL/HP/IBM三家的机架式PC级服务器阵列卡是从LSI的卡OEM出来的，DELL和IBM两家的阵列卡原生程度较高，没有做太多封装，可以用原厂提供的阵列卡管理工具进行监控；而HP的阵列卡一般都做过封装了，因此需要使用自身特有的管理工具来监控。
+本文以几种常用的阵列卡为例，展示其阵列卡及硬盘监控的方法。DELL SAS 6/iR卡，全称LSI Logic SAS1068E，只支">
+<meta name="twitter:creator" content="@liudongkai">
+<link rel="publisher" href="100378260579772710000">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
+				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/09/20/megacli/" title="常用PC服务器阵列卡、硬盘健康监控[ZT]" itemprop="url">常用PC服务器阵列卡、硬盘健康监控[ZT]</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2014-09-19T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-09-20</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、MegaCli工具"><span class="toc-text">1、MegaCli工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、lsiutil工具"><span class="toc-text">2、lsiutil工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、hpacucli工具"><span class="toc-text">3、hpacucli工具</span></a></li></ol>
+		
+		</div>
+		
+		<p>通常，我们使用的DELL/HP/IBM三家的机架式PC级服务器阵列卡是从LSI的卡OEM出来的，DELL和IBM两家的阵列卡原生程度较高，没有做太多封装，可以用原厂提供的阵列卡管理工具进行监控；而HP的阵列卡一般都做过封装了，因此需要使用自身特有的管理工具来监控。</p>
+<p>本文以几种常用的阵列卡为例，展示其阵列卡及硬盘监控的方法。<br><strong>DELL SAS 6/iR卡</strong>，全称LSI Logic SAS1068E，只支持RAID 0, RAID 1, RAID 1+0, 不支持RAID 5等高级RAID特性，不支持阵列卡电池。<br><strong>DELL PERC PERC H700卡</strong>，全称LSI Logic MegaRAID SAS 2108，支持各种RAID级别及高级特性，可选配阵列卡电池。<br><strong>DELL PERC H310 Mini卡</strong> ，全称LSI Logic / Symbios Logic MegaRAID SAS 2008，支持常见RAID级别，不支持高级RAID特性，不支持阵列卡电池。<br><strong>IBM ServeRAID M5014 SAS/SATA Controller卡</strong>，全称LSI Logic / Symbios Logic MegaRAID SAS 2108，支持各种RAID级别及高级特性，可选配阵列卡电池。<br><strong>IBM ServeRAID-MR10i SAS/SATA Controller卡</strong>，全称LSI Logic / Symbios Logic MegaRAID SAS 1078，支持常见RAID级别，不支持高级RAID特性，可选配阵列卡电池，这个卡其实和DELL的PERC 6/i卡是一样的，都是基于LSI MegaRAID SAS 1078基础上OEM出来的。</p>
+<p>上面是几种常见的阵列卡型号，更多的可以自行查看官方的技术手册。</p>
+<p>下面我们要继续的是，这些阵列卡以及硬盘如何监控，阵列卡的管理也请查看官方技术手册，不在本文讨论范畴，或者查看作者的一个分享PPT：PC服务器阵列卡管理简易手册。</p>
+<a id="more"></a>
+<p>一般地，支持RAID 5的卡，我们称其为阵列卡，都可以使用LSI官方提供的MegaCli工具来管理，而不支持RAID 5的卡，我们称其为SAS卡，使用lsiutil工具来管理。HP的服务器使用其特有的hpacucli工具来管理。</p>
+<h2 id="1、MegaCli工具"><a href="#1、MegaCli工具" class="headerlink" title="1、MegaCli工具"></a>1、MegaCli工具</h2><ul>
+<li><strong>a) MegaCli -adpallinfo -aall — 查看阵列卡信息</strong><br>-a 参数指定阵列卡的编号，一般服务器上只会配一个阵列卡，因此我们通常指定为 -a0（阵列卡适配器编号，从0开始） 即可，主要关注下面几个信息：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>状态值</th>
+<th>对应含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Product Name : PERC H710 Mini</td>
+<td>阵列卡名称</td>
+</tr>
+<tr>
+<td>FW Package Build: 21.2.0-0007</td>
+<td>阵列卡firmware版本号，版本如果太低，建议升级以提高稳定性及性能</td>
+</tr>
+<tr>
+<td>BBU : Present</td>
+<td>是否有配BBU电池</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>b) MegaCli -cfgdsply -aall — 查看阵列配置</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>状态值</th>
+<th>对应含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Memory: 512MB</td>
+<td>阵列卡cache大小，2的N次方，如果不是，说明阵列卡有异常</td>
+</tr>
+<tr>
+<td>Number of dedicated Hotspares: 0</td>
+<td>阵列是否有专用/独享热备盘（如果有多个逻辑磁盘组/disk group，则可以指定一个硬盘用于全局热备，那么该disk group上的专用热备盘数量为0也不用担心），除了RAID 1/RAID 1+0一般不指定热备盘以外，其他几个阵列级别建议都要指定热备盘</td>
+</tr>
+<tr>
+<td>State : Optimal</td>
+<td>阵列状态，如果不是 Optimal 就要关注了</td>
+</tr>
+<tr>
+<td>Current Cache Policy: WriteBack, ReadAheadNone, Direct, Write Cache OK if Bad BBU</td>
+<td>阵列读写cache策略，建议写策略设置为FORCE WB，最起码是WB，预读策略可以关掉，意义不大，几乎没影响</td>
+</tr>
+<tr>
+<td>Disk Cache Policy : Disabled</td>
+<td>硬盘cache策略，建议关闭，防止意外时数据丢失</td>
+</tr>
+<tr>
+<td>Current Power Savings Policy: None</td>
+<td>节电策略，建议关闭</td>
+</tr>
+<tr>
+<td>Media Error Count: 0</td>
+<td>三个错误计数器，任何一个值大于100就要立刻引起关注，尤其要关注起增长速度。1T以上SATA盘，计数值不够精确，可能所有盘上该值都会大于0，一般重启就会重新清0，如果重启后还是大于0的话，赶紧报修吧。SAS盘的计数值则比较准确。</td>
+</tr>
+<tr>
+<td>Other Error Count: 0</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Predictive Failure Count: 0</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Firmware state: Online, Spun Up</td>
+<td>查看硬盘状态，如果是unconfigured表示该硬盘未分配加入到阵列中；如果是 unconfigured(bad)表示该盘不但是未分配，而且还坏了，正是“出师未捷身先死”；如果是failed，表示该盘故障无法识别；如果是rebuilding，表示该盘正在重建数据</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>c) MegaCli -AdpBbuCmd -aall — 查看阵列卡电池信息</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>状态值</th>
+<th>对应含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Temperature: 39 C</td>
+<td>查看电池温度，如果相比上一次查看高出不少，就需要关注了，或者可以根据经验设置一个基线值</td>
+</tr>
+<tr>
+<td>Battery State: Optimal</td>
+<td>电池状态，如果不是为Optimal，就需要关注了</td>
+</tr>
+<tr>
+<td>Charger Status: Complete</td>
+<td>电池充放电状态</td>
+</tr>
+<tr>
+<td>isSOHGood: Yes</td>
+<td>电池状态，如果不是为Yes，需要关注</td>
+</tr>
+<tr>
+<td>Relative State of Charge: 93 %</td>
+<td>当前电量，当电量低于15%，或者电池坏掉时，默认都会将写策略从WB改成WT，除非设定为FORCE WB策略</td>
+</tr>
+<tr>
+<td>Max Error = 0 %</td>
+<td>电池是否有错误信息</td>
+</tr>
+<tr>
+<td>Next Learn time: Tue Oct 14 22:06:50 2014</td>
+<td>电池充放电时间，注意这是美国时间。另外，新的阵列卡电池很多改成电容式的了，也就不需要重复充放电了</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>d) MegaCli -fwtermlog -dsply -aALL — 查看阵列卡日志，关注里面的error/fail/warn等多个关键字</strong></li>
+</ul>
+<h2 id="2、lsiutil工具"><a href="#2、lsiutil工具" class="headerlink" title="2、lsiutil工具"></a>2、lsiutil工具</h2><p>lsiutil有交互和非交互两种方式，作为监控，我们肯定选择非交互模式。想要使用交互模式的，可以根据非交互模式自行练习。</p>
+<ul>
+<li><p><strong>a) lsiutil -p 1 -a 20,12,0,0 — 查看硬盘计数器</strong></p>
+<pre>Invalid DWord Count              2,563
+Running Disparity Error Count    2,366
+Loss of DWord Synch Count        0
+Phy Reset Problem Count          0</pre>
+
+<p>任何一个值大于0，都需要引起关注</p>
+</li>
+<li><p><strong>b) lsiutil -p 1 -a 21,1,0,0,0 — 查看逻辑卷状态</strong></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>状态值</th>
+<th>对应含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Volume State: optimal, enabled</td>
+<td>逻辑卷健康状况</td>
+</tr>
+<tr>
+<td>Volume draws from Hot Spare Pools: 0</td>
+<td>是否有热备</td>
+</tr>
+<tr>
+<td>Volume Size 139392 MB, 2 Members</td>
+<td>由几块硬盘组成</td>
+</tr>
+<tr>
+<td>Primary is PhysDisk 1 (Bus 0 Target 9)</td>
+<td>物理硬盘1</td>
+</tr>
+<tr>
+<td>Secondary is PhysDisk 0 (Bus 0 Target 3)</td>
+<td>物理硬盘0</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>c) lsiutil -p 1 -a 21,2,0,0,0 — 查看物理硬盘状态</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>状态值</th>
+<th>对应含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PhysDisk 0 is Bus 0 Target 3</td>
+<td>编号</td>
+</tr>
+<tr>
+<td>PhysDisk State: online</td>
+<td>状态</td>
+</tr>
+<tr>
+<td>Error Count 13, Last Error: Command = 28h, Key = 3, ASC/ASCQ = 11h/00h</td>
+<td>错误计数器，大于0的话，就需要引起关注</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3、hpacucli工具"><a href="#3、hpacucli工具" class="headerlink" title="3、hpacucli工具"></a>3、hpacucli工具</h2><p>hpacucli工具查看阵列、硬盘、电池信息，其实就只要一条指令：<br><strong>hpacucli ctrl all show config detail — 查看阵列详细信息、配置</strong></p>
+<table>
+<thead>
+<tr>
+<th>状态值</th>
+<th>对应含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Controller Status: OK</td>
+<td>阵列卡状态</td>
+</tr>
+<tr>
+<td>Firmware Version: 1.18</td>
+<td>firmware版本，太低了建议升级，以提高稳定性及性能</td>
+</tr>
+<tr>
+<td>Cache Board Present: True</td>
+<td>是否配备了cache模块</td>
+</tr>
+<tr>
+<td>Cache Status: OK</td>
+<td>cache模块状态</td>
+</tr>
+<tr>
+<td>Cache Ratio: 100% Read / 0% Write</td>
+<td>cache策略，此处只有读cache，不用于写cache，因为没有bbu电池，见下方结果</td>
+</tr>
+<tr>
+<td>Drive Write Cache: Disabled</td>
+<td>关闭磁盘cache</td>
+</tr>
+<tr>
+<td>Total Cache Size: 256 MB</td>
+<td>cache大小</td>
+</tr>
+<tr>
+<td>Total Cache Memory Available: 208 MB</td>
+<td>实际可用cache大小，和理论cache大小不一样，说明cache模块可能有问题</td>
+</tr>
+<tr>
+<td>No-Battery Write Cache: Disabled</td>
+<td>关闭FORCEWB策略</td>
+</tr>
+<tr>
+<td>Battery/Capacitor Count: 0</td>
+<td>阵列卡BBU电池数量为0，也就是没有BBU模块</td>
+</tr>
+<tr>
+<td>Battery/Capacitor Status: Failed (Replace Batteries)</td>
+<td>阵列卡BBU电池状态，这里显示是错误状态，需要及时更换</td>
+</tr>
+<tr>
+<td>Array: A</td>
+<td>第一个乌列阵列，编号从A开始，依次是A、B、C</td>
+</tr>
+<tr>
+<td>Status: OK</td>
+<td>物理阵列状态</td>
+</tr>
+<tr>
+<td>Logical Drive: 1</td>
+<td>第一个逻辑卷，编号从1开始</td>
+</tr>
+<tr>
+<td>Fault Tolerance: RAID 5</td>
+<td>第一个逻辑卷的阵列级别</td>
+</tr>
+<tr>
+<td>Status: OK</td>
+<td>第一个逻辑卷状态</td>
+</tr>
+<tr>
+<td>Caching: Enabled</td>
+<td>第一个逻辑卷是否启用了cache策略</td>
+</tr>
+<tr>
+<td>physicaldrive 1I:1:1</td>
+<td>第一块物理硬盘，编号从1开始</td>
+</tr>
+<tr>
+<td>Status: OK</td>
+<td>第一块物理硬盘状态</td>
+</tr>
+<tr>
+<td>Firmware Revision: HPDA</td>
+<td>第一块物理硬盘firmware，如果太低，也需要及时升级，HP的硬盘每个批次都有不同的firmware</td>
+</tr>
+</tbody>
+</table>
+<p>延伸阅读：</p>
+<p><a href="http://www.lsi.com/downloads/Public/Obsolete/Obsolete%20Common%20Files/mr_sas_stor_ug.pdf" target="_blank" rel="external">http://www.lsi.com/downloads/Public/Obsolete/Obsolete%20Common%20Files/mr_sas_stor_ug.pdf</a><br><a href="http://www.hp.com/ctg/Manual/c00709035.pdf" target="_blank" rel="external">http://www.hp.com/ctg/Manual/c00709035.pdf</a><br><a href="http://www.wafl.co.uk/tag/sasadmin/" target="_blank" rel="external">http://www.wafl.co.uk/tag/sasadmin/</a><br><a href="http://docs.oracle.com/cd/E19121-01/sf.x4200/819-1157-23/F_BIOS_RAID.html" target="_blank" rel="external">http://docs.oracle.com/cd/E19121-01/sf.x4200/819-1157-23/F_BIOS_RAID.html</a></p>
+<p>via @yejinrong <a href="http://imysql.cn/tag/megacli" target="_blank" rel="external">http://imysql.cn/tag/megacli</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/MegaCli/">MegaCli</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://blog.liudongkai.com/2014/09/20/megacli/" data-title="常用PC服务器阵列卡、硬盘健康监控[ZT] | Dong&#39;s Note" data-tsina="2003788463" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/10/08/youku-url-resolve/" title="优酷真实视频地址解析——2014年10月7日[ZT]">
+  <strong>上一篇：</strong><br/>
+  <span>
+  优酷真实视频地址解析——2014年10月7日[ZT]</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/09/07/iOS-URL-Scheme/"  title="常用iOS URL Scheme附录">
+ <strong>下一篇：</strong><br/> 
+ <span>常用iOS URL Scheme附录
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2014/09/20/megacli/" data-title="常用PC服务器阵列卡、硬盘健康监控[ZT]" data-url="http://blog.liudongkai.com/2014/09/20/megacli/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、MegaCli工具"><span class="toc-text">1、MegaCli工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、lsiutil工具"><span class="toc-text">2、lsiutil工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、hpacucli工具"><span class="toc-text">3、hpacucli工具</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liudongkai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42337789-4', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'b3655049504c5e2d7c68'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

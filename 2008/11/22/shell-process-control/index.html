@@ -1,0 +1,730 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Shell程序设计的流程控制 | Dong&#39;s Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dong[東木]">
+    
+
+    
+    <meta name="description" content="和其他高级程序设计语言一样，Shell提供了用来控制程序执行流程的命令，包括条件分支和循环结构，用户可以用这些命令创建非常复杂的程序。
+与传统语言不同的是，Shell用于指定条件值的不是布尔运算式，而是命令和字串。
+
+测试命令
+test命令用于检查某个条件是否成立，它可以进行数值、字符和文件3个方面的测试，其测试符和相应的功能分别如下。
+
+数值测试：-eq 等于则为真。-ne 不等于则为真。-gt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shell程序设计的流程控制">
+<meta property="og:url" content="http://blog.liudongkai.com/2008/11/22/shell-process-control/index.html">
+<meta property="og:site_name" content="Dong's Note">
+<meta property="og:description" content="和其他高级程序设计语言一样，Shell提供了用来控制程序执行流程的命令，包括条件分支和循环结构，用户可以用这些命令创建非常复杂的程序。
+与传统语言不同的是，Shell用于指定条件值的不是布尔运算式，而是命令和字串。
+
+测试命令
+test命令用于检查某个条件是否成立，它可以进行数值、字符和文件3个方面的测试，其测试符和相应的功能分别如下。
+
+数值测试：-eq 等于则为真。-ne 不等于则为真。-gt">
+<meta property="og:updated_time" content="2008-11-21T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shell程序设计的流程控制">
+<meta name="twitter:description" content="和其他高级程序设计语言一样，Shell提供了用来控制程序执行流程的命令，包括条件分支和循环结构，用户可以用这些命令创建非常复杂的程序。
+与传统语言不同的是，Shell用于指定条件值的不是布尔运算式，而是命令和字串。
+
+测试命令
+test命令用于检查某个条件是否成立，它可以进行数值、字符和文件3个方面的测试，其测试符和相应的功能分别如下。
+
+数值测试：-eq 等于则为真。-ne 不等于则为真。-gt">
+<meta name="twitter:creator" content="@liudongkai">
+<link rel="publisher" href="100378260579772710000">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
+				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2008/11/22/shell-process-control/" title="Shell程序设计的流程控制" itemprop="url">Shell程序设计的流程控制</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2008-11-21T16:00:00.000Z" itemprop="datePublished"> 发表于 2008-11-22</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<p>和其他高级程序设计语言一样，Shell提供了用来控制程序执行流程的命令，包括条件分支和循环结构，用户可以用这些命令创建非常复杂的程序。</p>
+<p>与传统语言不同的是，Shell用于指定条件值的不是布尔运算式，而是命令和字串。</p>
+<ol>
+<li><p>测试命令</p>
+<p>test命令用于检查某个条件是否成立，它可以进行数值、字符和文件3个方面的测试，其测试符和相应的功能分别如下。</p>
+<ul>
+<li><p>数值测试：<br>-eq 等于则为真。<br>-ne 不等于则为真。<br>-gt 大于则为真。<br>-ge 大于等于则为真。<br>-lt 小于则为真。<br>-le 小于等于则为真。</p>
+</li>
+<li><p>字串测试：<br>= 等于则为真。<br>!= 不相等则为真。<br>-z 字串 字串长度伪则为真。<br>-n 字串 字串长度不伪则为真。</p>
+</li>
+</ul>
+</li>
+</ol>
+<a id="more"></a>
+<ul>
+<li><p>文件测试：<br>-e 文件名 如果文件存在则为真。<br>-r 文件名 如果文件存在且可读则为真。<br>-w 文件名 如果文件存在且可写则为真。<br>-x 文件名 如果文件存在且可执行则为真。<br>-s 文件名 如果文件存在且至少有一个字符则为真。<br>-d 文件名 如果文件存在且为目录则为真。<br>-f 文件名 如果文件存在且为普通文件则为真。<br>-c 文件名 如果文件存在且为字符型特殊文件则为真。<br>-b 文件名 如果文件存在且为块特殊文件则为真。</p>
+<p>另外，Linux还提供了与（！）、或（-o）、非（-a）三个逻辑操作符，用于将测试条件连接起来，其优先顺序为：！最高，-a次之，-o最低。</p>
+<p>同时，bash也能完成简单的算术运算，格式：<code>$[expression]</code><br>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var1=2</span><br><span class="line">var2=$[var1*10+1]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>则var2的值为21。</p>
+<ol>
+<li><p>if条件语句</p>
+<p>Shell程序中的条件分支是通过if条件语句来实现的，其一般格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if 条件命令串</span><br><span class="line">then</span><br><span class="line">	条件为真时的命令串</span><br><span class="line">else</span><br><span class="line">	条件为假时的命令串</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>for循环</p>
+<p>for循环对一个变量的可能的值都执行一个命令序列。赋给变量的几个数值既可以在程序内以数值列表的形式提供，也可以在程序以外以位置参数的形式提供。for循环的一般格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for 变量名 [in 数值列表]</span><br><span class="line">do</span><br><span class="line">	若干个命令行</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<p>变量名可以是用户选择的任何字串，如果变量名是var，则在in之后给出的数值将顺序替换循环命令列表中的$var。如果省略了in，则变量var的取值将是位置参数。对变量的每一个可能的赋值都将执行do和done之间的命令列表。</p>
+</li>
+<li><p>while和until循环</p>
+<p>while和until命令都是用命令的返回状态值来控制循环的。<br>While循环的一般格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">while</span><br><span class="line">	若干个命令行1</span><br><span class="line">do</span><br><span class="line">	若干个命令行2</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<p>只要while的“若干个命令行1”中最后一个命令的返回状态为真，while循环就继续执行do…done之间的“若干个命令行2”。</p>
+<p>until命令是另一种循环结构，它和while命令相似，其格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">until</span><br><span class="line">	若干个命令行1</span><br><span class="line">do</span><br><span class="line">	若干个命令行2</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<p>until循环和while循环的区别在于：while循环在条件为真时继续执行循环，而until则是在条件为假时继续执行循环。</p>
+<p>Shell还提供了true和false两条命令用于创建无限循环结构，它们的返回状态分别是总为0或总为非0。</p>
+</li>
+<li><p>case条件选择</p>
+<p>if条件语句用于在两个选项中选定一项，而case条件选择为用户提供了根据字串或变量的值从多个选项中选择一项的方法，其格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">case string in</span><br><span class="line">exp-1)</span><br><span class="line">	若干个命令行1</span><br><span class="line">;;</span><br><span class="line">exp-2)</span><br><span class="line">	若干个命令行2</span><br><span class="line">;;</span><br><span class="line">……</span><br><span class="line">*)</span><br><span class="line">	其他命令行</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+<p>Shell通过计算字串string的值，将其结果依次和运算式exp-1, exp-2等进行比较，直到找到一个匹配的运算式为止。如果找到了匹配项，则执行它下面的命令直到遇到一对分号(；；)为止。</p>
+<p>在case运算式中也可以使用Shell的通配符（“*”、“？”、“[ ]”）。通常用 * 作为case命令的最后运算式以便在前面找不到任何相应的匹配项时执行“其他命令行”的命令。</p>
+</li>
+<li><p>无条件控制语句break和continue</p>
+<p>break用于立即终止当前循环的执行，而contiune用于不执行循环中后面的语句而立即开始下一个循环的执行。这两个语句只有放在do和done之间才有效。</p>
+</li>
+<li><p>函数定义</p>
+<p>在Shell中还可以定义函数。函数实际上也是由若干条Shell命令组成的，因此它与Shell程序形式上是相似的，不同的是它不是一个单独的进程，而是Shell程序的一部分。函数定义的基本格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">functionname</span><br><span class="line">&#123;</span><br><span class="line">	若干命令行</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用函数的格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">functionname param1 param2 …</span><br></pre></td></tr></table></figure>
+<p>Shell函数可以完成某些例行的工作，而且还可以有自己的退出状态，因此函数也可以作为if, while等控制结构的条件。</p>
+<p>在函数定义时不用带参数说明，但在调用函数时可以带有参数，此时Shell将把这些参数分别赋予相应的位置参数$1, $2, …及$*。</p>
+</li>
+<li><p>命令分组</p>
+<p>在Shell中有两种命令分组的方法：()和{}。前者当Shell执行()中的命令时将再创建一个新的子进程，然后这个子进程去执行圆括弧中的命令。 当用户在执行某个命令时不想让命令运行时对状态集合（如位置参数、环境变量、当前工作目录等）的改变影响到下面语句的执行时，就应该把这些命令放在圆括弧 中，这样就能保证所有的改变只对子进程产生影响，而父进程不受任何干扰。{}用于将顺序执行的命令的输出结果用于另一个命令的输入（管道方式）。当我们要 真正使用圆括弧和花括弧时（如计算运算式的优先顺序），则需要在其前面加上转义符（）以便让Shell知道它们不是用于命令执行的控制所用。</p>
+</li>
+<li><p>信号</p>
+<p>trap命令用于在Shell程序中捕捉信号，之后可以有3种反应方式：</p>
+<ol>
+<li>执行一段程序来处理这一信号。</li>
+<li>接受信号的默认操作。</li>
+<li>忽视这一信号。</li>
+</ol>
+<p>trap对上面3种方式提供了3种基本形式：</p>
+<p>第一种形式的trap命令在Shell接收到与signal list清单中数值相同的信号时，将执行双引号中的命令串。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">trap &apos;commands&apos; signal-list</span><br><span class="line">trap &quot;commands&quot; signal-list</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>为了恢复信号的默认操作，使用第二种形式的trap命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trap signal-list</span><br></pre></td></tr></table></figure></p>
+<p>第三种形式的trap命令允许忽略信号：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trap &quot; &quot; signal-list</span><br></pre></td></tr></table></figure></p>
+<p>注意：</p>
+<ol>
+<li>对信号11（段违例）不能捕捉，因为Shell本身需要捕捉该信号去进行内存的转储。</li>
+<li>在trap中可以定义对信号0的处理（实际上没有这个信号），Shell程序在其终止（如执行exit语句）时发出该信号。</li>
+<li><p>在捕捉到signal-list中指定的信号并执行完相应的命令之后，如果这些命令没有将Shell程序终止的话，Shell程序将继续执行收到信号时所执行的命令后面的命令，这样将很容易导致Shell程序无法终止。</p>
+<p>另外，在trap语句中，单引号和双引号是不同的。当Shell程序第一次碰到trap语句时，将把commands中的命令扫描一遍。此时若 commands是用单引号括起来的话，那么Shell不会对commands中的变量和命令进行替换，否则commands中的变量和命令将用当时具体 的值来替换。</p>
+</li>
+</ol>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Shell/">Shell</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://blog.liudongkai.com/2008/11/22/shell-process-control/" data-title="Shell程序设计的流程控制 | Dong&#39;s Note" data-tsina="2003788463" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2008/11/26/awk-no-wrap/" title="awk输出时不换行">
+  <strong>上一篇：</strong><br/>
+  <span>
+  awk输出时不换行</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2008/11/22/FileZilla-Server-Aliases/"  title="FileZilla Server虚拟路径设定">
+ <strong>下一篇：</strong><br/> 
+ <span>FileZilla Server虚拟路径设定
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2008/11/22/shell-process-control/" data-title="Shell程序设计的流程控制" data-url="http://blog.liudongkai.com/2008/11/22/shell-process-control/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liudongkai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42337789-4', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'b3655049504c5e2d7c68'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

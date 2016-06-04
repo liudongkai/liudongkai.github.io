@@ -1,0 +1,850 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Dong&#39;s Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dong[東木]">
+    
+
+    
+    <meta name="description" content="Dong&apos;s Note是一个基于Github和Hexo的静态Blog，希望用简单而清晰的写作方式Markdown分享自己的心得体会。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dong's Note">
+<meta property="og:url" content="http://blog.liudongkai.com/page/12/index.html">
+<meta property="og:site_name" content="Dong's Note">
+<meta property="og:description" content="Dong&apos;s Note是一个基于Github和Hexo的静态Blog，希望用简单而清晰的写作方式Markdown分享自己的心得体会。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dong's Note">
+<meta name="twitter:description" content="Dong&apos;s Note是一个基于Github和Hexo的静态Blog，希望用简单而清晰的写作方式Markdown分享自己的心得体会。">
+<meta name="twitter:creator" content="@liudongkai">
+<link rel="publisher" href="100378260579772710000">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
+				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2013/08/02/mysql-smart-patch/" title="MySQL备库复制SQL线程中断问题及解决方法" itemprop="url">MySQL备库复制SQL线程中断问题及解决方法</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2013-08-01T16:00:00.000Z" itemprop="datePublished"> 发表于 2013-08-02</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>MySQL5.6之前的备库复制有两个工作线程：IO线程和SQL线程。SQL线程异常导致复制被中断。</p>
+<p>许多DBA会遭受备库复制线程中断的报警，具体说来常见的错误有如下几类：</p>
+<ul>
+<li>1032错误 – HA_ERR_KEY_NOT_FOUND</li>
+<li>1062错误 – HA_ERR_FOUND_DUPP_KEY （HA_ERR_FOUND_DUPP_KEY 或 HA_ERR_FOUND_DUPP_UNIQUE）</li>
+</ul>
+<h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>主备数据一不致，往往是由于MySQL的Bug导致，其中MySQL复制相关的Bug从每次Release Notes都可以看到相关的身影，就我们最近两周线上遇到的列举如下：</p>
+<ul>
+<li><a href="http://bugs.mysql.com/bug.php?id=56226">Table map set to 0 after altering MyISAM table</a> （对InnoDB表也会触发）</li>
+<li><a href="http://bugs.mysql.com/bug.php?id=54453">Failing assertion: trx-&gt;active_trans when renaming a table with active trx</a></li>
+<li><a href="https://bugs.launchpad.net/bugs/951588">Querying I_S.GLOBAL_TEMPORARY_TABLES or TEMPORARY_TABLES crashes threads working with temp tables</a> （非DEBUG版本也存在）</li>
+</ul>
+<p>当然，最大的一个未知的因素是主库宕机，甚至为保证服务可用而做的主备切换，有多少数据不致，我们心里没有谱。只有依赖后续的定时扫描来做事后检测。虽然我们目前做的MHA从一定程度上回减少数据不一致的数量，但也无法做到数据严格一致。这个问题是MySQL社区的一大难题，在些不展开讨论。</p>
+<p>另外，有发生异常时，DBA的不严格操作也可能会加深这种数据不一致的影响，例如，遇到错误时，跳过若干错误，直到复制能正常工作。</p>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2013/08/02/mysql-smart-patch/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Mysql/">Mysql</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Mysql/">Mysql</a><a href="/tags/patch/">patch</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2013/08/02/mysql-smart-patch/#comments" class="ds-thread-count comments-count-link" data-thread-key="2013/08/02/mysql-smart-patch/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2013/08/01/mysql-smart-path-yinfeng/" title="自动处理备库错误 [MYSQL PATCH]" itemprop="url">自动处理备库错误 [MYSQL PATCH]</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2013-07-31T16:00:00.000Z" itemprop="datePublished"> 发表于 2013-08-01</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>备库因为某些错误停止时有发生，最常见的错误就是”HA_ERR_KEY_NOT_FOUND”和 “HA_ERR_FOUND_DUPP_KEY”.这既有可能是主备切换导致的，也可能是MySQL Bug导致的</p>
+<p>通常有两种办法来处理备库错误：</p>
+<ol>
+<li>设置 “sql_slave_skip_counter” 来忽略错误.</li>
+<li>set slave_exec_mode = ‘idempotent’ 来处理 “HA_ERR_FOUND_DUPP_KEY” (overwritten the record) 和”HA_ERR_KEY_NOT_FOUND”(简单的忽略掉错误).</li>
+</ol>
+<p>这两种方法都可能导致主备不一致</p>
+<p>如果你使用的是innodb存储引擎，并且使用的是ROW模式复制，那我们就可以fix这个Bug。</p>
+<p>很久之前我写了一个工具(<a href="http://code.google.com/p/relay-fetch/">http://code.google.com/p/relay-fetch/</a> ，下面的slave_error_handler文件夹)可以用来处理这个问题。</p>
+<p>以下的patch则通过修改代码，为slave_exec_mode增加新的选项SMART，来自动处理。</p>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2013/08/01/mysql-smart-path-yinfeng/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Mysql/">Mysql</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Mysql/">Mysql</a><a href="/tags/patch/">patch</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2013/08/01/mysql-smart-path-yinfeng/#comments" class="ds-thread-count comments-count-link" data-thread-key="2013/08/01/mysql-smart-path-yinfeng/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2013/05/16/GoAgent-for-Mac-OS-X/" title="GoAgent for Mac OS X教程" itemprop="url">GoAgent for Mac OS X教程</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2013-05-15T16:00:00.000Z" itemprop="datePublished"> 发表于 2013-05-16</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="1-用谷歌账号创建Application（最多10个，这个当然是多多益善！）"><a href="#1-用谷歌账号创建Application（最多10个，这个当然是多多益善！）" class="headerlink" title="1. 用谷歌账号创建Application（最多10个，这个当然是多多益善！）"></a>1. 用谷歌账号创建Application（最多10个，这个当然是多多益善！）</h2><p>进入<a href="https://appengine.google.com/">https://appengine.google.com/</a> （没有谷歌账号就申请一个,需用手机号验证）<br><img src="http://photo.liudongkai.com/blog/GoAgent_for_Mac_OS_X_001.jpg" alt=""><br>点击红框内的英文</p>
+<p><img src="http://photo.liudongkai.com/blog/GoAgent_for_Mac_OS_X_002.jpg" alt=""><br>注意！红框内的最重要，输入了什么一定要记住，等等填Appid要用，填完点右边的Check Availability检查有没有被使用过。</p>
+<p>蓝框内随便填，不重要，就是这个Application的名字。下面黄底的那些英文直接跳过，不用填！  </p>
+<p><img src="http://photo.liudongkai.com/blog/GoAgent_for_Mac_OS_X_003.jpg" alt=""><br>往下拉橙色框内的复选框勾上。点击绿色框内的英文。  </p>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2013/05/16/GoAgent-for-Mac-OS-X/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Mac-OS/">Mac OS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/GoAgent/">GoAgent</a><a href="/tags/Mac-OS/">Mac OS</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2013/05/16/GoAgent-for-Mac-OS-X/#comments" class="ds-thread-count comments-count-link" data-thread-key="2013/05/16/GoAgent-for-Mac-OS-X/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2013/05/12/Install-Flashcache-on-CloudLinux-and-Centos/" title="Install Flashcache on CloudLinux and Centos[ZT]" itemprop="url">Install Flashcache on CloudLinux and Centos[ZT]</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2013-05-11T16:00:00.000Z" itemprop="datePublished"> 发表于 2013-05-12</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>Major issue on a hosting server which serve hundreds of website is remain the same: I/O bottleneck. My curiosity began when I received a newsletter from a VPS provider in US, they said they have added SSD as filesystem cache to their server fleet. I asked my Russian virtualization platform support fellow and he gave me link to Flashcache page.</p>
+<p><a href="https://github.com/facebook/flashcache/" target="_blank" rel="external">Flashcache</a> is a kernel module released by Facebook engineer back in April 2010 to speed up database I/O on a standard rotational drive with the speed of SSD. Since it works by caching filesystem blocks, so it can speed anything on the slow rotational disk.<br>We’ve already use RAID10 with SAS disk on all of our hosting servers, but still I/O bottleneck often happens.</p>
+<p><strong>Server Configuration</strong><br>We have 6 of 2.5″ drive bays on our server and load it up with :</p>
+<ol>
+<li><strong>Disk 0</strong> : 150GB SAS (/dev/sdb)  </li>
+<li><strong>Disk 1</strong> : 120GB Intel 520 SSD (/dev/sdc)  </li>
+<li><strong>Disk 2 – 5</strong> : 4 x 300GB SAS on RAID10 (/dev/sda)</li>
+</ol>
+<p>OS : CloudLinux 6.4<br>Partitioning :<br>/dev/sdb3 mounted as /<br>/dev/sdb1 mounted as /boot<br>/dev/sda1 (RAID 10) mounted as /var/lib<br>/dev/sda2 (RAID 10) mounted as /home</p>
+<p><strong>Flashcache Installation Goals</strong><br>I decide to try Flashcache to speed up /dev/sda(1-2) as this partition stored user’s file and database.</p>
+<p><strong>Flashcache Installation</strong></p>
+<p><strong>Flashcache Installation Goals</strong></p>
+<ol>
+<li><p>Update the whole system to get all packages up to date :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum update</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Install required packages :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install dkms gcc make yum-utils kernel kernel-devel git make gcc-c++ device-mapper</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Reboot if you got new kernel version installed during update</p>
+</li>
+<li><p>Flashcache installation :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/src/</span><br><span class="line">git clone git://github.com/facebook/flashcache.git</span><br><span class="line">yumdownloader --source kernel-&apos;uname -r</span><br><span class="line">rpm -ivh kernel-&apos;uname -r&apos;.src.rpm</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Since I haven’t touch the SSD, I’ll need to do partitioning and format this “fast and furious disk”.<br>I spare 20GB of the disk in order to prevent SSD performance degradation and divide the 100GB disk in equal ratio with my /dev/sda1 and /dev/sda2 size :<br>/dev/sdc1 80GB (for /dev/sda2 cache)<br>/dev/sdc2 20GB (for /dev/sda1 cache)</p>
+</li>
+<li><p>I’m going to make a writethrough cache, but <a href="https://github.com/facebook/flashcache/blob/master/utils/flashcache" target="_blank" rel="external">https://github.com/facebook/flashcache/blob/master/utils/flashcache</a> is only for writeback. So I’ve made a custom script you based on <a href="http://sf-alpha.bjgang.org/files/flashcache" target="_blank" rel="external">http://sf-alpha.bjgang.org/files/flashcache</a>. You can download it here :</p>
+<ul>
+<li><a href="https://s3-ap-southeast-1.amazonaws.com/rumahweb/flashcache-home" target="_blank" rel="external">script to make cache and mount /home</a></li>
+<li><a href="https://s3-ap-southeast-1.amazonaws.com/rumahweb/flashcache-var" target="_blank" rel="external">script to make cache and mount /var/lib</a></li>
+</ul>
+</li>
+<li><p>Edit /etc/fstab and give comment to /home and /var/lib and then reboot!</p>
+</li>
+</ol>
+<p>via. <a href="https://piyecarane.wordpress.com/2013/05/12/install-flashcache-on-cloudlinux-and-centos/" target="_blank" rel="external">https://piyecarane.wordpress.com/2013/05/12/install-flashcache-on-cloudlinux-and-centos/</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/CentOS/">CentOS</a><a href="/tags/Flashcache/">Flashcache</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2013/05/12/Install-Flashcache-on-CloudLinux-and-Centos/#comments" class="ds-thread-count comments-count-link" data-thread-key="2013/05/12/Install-Flashcache-on-CloudLinux-and-Centos/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2013/05/05/windows-explorer-my-computer/" title="让win7和win8任务栏上的资源管理器直接打开我的电脑" itemprop="url">让win7和win8任务栏上的资源管理器直接打开我的电脑</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2013-05-04T16:00:00.000Z" itemprop="datePublished"> 发表于 2013-05-05</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="win7"><a href="#win7" class="headerlink" title="win7"></a>win7</h2><p>在默认情况下，任务栏上会有一个“库”按钮，单击之后会进入系统的“库”文件夹，但是我们一般很少用这个库，更多的还是直接到计算机选项，怎样更改显示为计算机，而不是跳到库里面呢？其实更改非常简单：</p>
+<p>右键点击“库”按钮，再右键点击“Windows资源管理器”，选择“属性”，如图所示。</p>
+<p><img src="http://photo.liudongkai.com/blog/071502Ada.jpg" alt="win7_windows资源管理器"></p>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2013/05/05/windows-explorer-my-computer/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Windows/">Windows</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/explorer/">explorer</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2013/05/05/windows-explorer-my-computer/#comments" class="ds-thread-count comments-count-link" data-thread-key="2013/05/05/windows-explorer-my-computer/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/page/11/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/56/">56</a><a class="extend next" rel="next" href="/page/13/">Next<span></span></a>
+  </nav>
+
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42337789-4', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'b3655049504c5e2d7c68'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+ </html>

@@ -1,0 +1,193 @@
+Index: smart/sql/log_event.cc
+===================================================================
+--- smart.orig/sql/log_event.cc
++++ smart/sql/log_event.cc
+@@ -8750,6 +8750,7 @@ Write_rows_log_event::do_before_row_oper
+      applying the event in the replace (idempotent) fashion.
+   */
+   if ((slave_exec_mode == SLAVE_EXEC_MODE_IDEMPOTENT) ||
++      (slave_exec_mode == SLAVE_EXEC_MODE_SMART) ||
+       (m_table->s->db_type()->db_type == DB_TYPE_NDBCLUSTER))
+   {
+     /*
+@@ -8829,6 +8830,7 @@ Write_rows_log_event::do_after_row_opera
+   m_table->next_number_field=0;
+   m_table->auto_increment_field_not_null= FALSE;
+   if ((slave_exec_mode == SLAVE_EXEC_MODE_IDEMPOTENT) ||
++      (slave_exec_mode == SLAVE_EXEC_MODE_SMART) ||
+       m_table->s->db_type()->db_type == DB_TYPE_NDBCLUSTER)
+   {
+     m_table->file->extra(HA_EXTRA_NO_IGNORE_DUP_KEY);
+@@ -9093,6 +9095,8 @@ Rows_log_event::write_row(const Relay_lo
+         error= 0;
+       
+       case 0:
++        if (overwrite)
++          __sync_add_and_fetch(&smart_handle_dup_pk, 1);
+         break;
+         
+       default:    
+@@ -9107,10 +9111,14 @@ Rows_log_event::write_row(const Relay_lo
+       DBUG_PRINT("info",("Deleting offending row and trying to write new one again"));
+       if ((error= table->file->ha_delete_row(table->record[1])))
+       {
++        if (overwrite)
++          __sync_add_and_fetch(&smart_handle_failed, 1);
+         DBUG_PRINT("info",("ha_delete_row() returns error %d",error));
+         table->file->print_error(error, MYF(0));
+         DBUG_RETURN(error);
+-      }
++      } else if (overwrite)
++        __sync_add_and_fetch(&smart_handle_dup_pk, 1);
++
+       /* Will retry ha_write_row() with the offending row removed. */
+     }
+   }
+@@ -9124,7 +9132,9 @@ int
+ Write_rows_log_event::do_exec_row(const Relay_log_info *const rli)
+ {
+   DBUG_ASSERT(m_table != NULL);
+-  int error= write_row(rli, slave_exec_mode == SLAVE_EXEC_MODE_IDEMPOTENT);
++  
++  int error= write_row(rli, slave_exec_mode == SLAVE_EXEC_MODE_IDEMPOTENT ||
++                               slave_exec_mode == SLAVE_EXEC_MODE_SMART);  
+ 
+   if (error && !thd->is_error())
+   {
+@@ -9662,7 +9672,25 @@ int Delete_rows_log_event::do_exec_row(c
+       Delete the record found, located in record[0]
+     */
+     error= m_table->file->ha_delete_row(m_table->record[0]);
++  } else if ( (slave_exec_mode == SLAVE_EXEC_MODE_SMART) && 
++                 (error == HA_ERR_KEY_NOT_FOUND)) {
++      tmp_disable_binlog(rli->sql_thd);
++      error = m_table->file->ha_write_row(m_table->record[0]) ||
++                        m_table->file->rnd_pos_by_record(m_table->record[0]);
++      
++      reenable_binlog(rli->sql_thd);
++      if (!error) 
++          error = m_table->file->ha_delete_row(m_table->record[0]);
++      else
++          error = HA_ERR_KEY_NOT_FOUND;
++
++      if (error)
++        __sync_add_and_fetch(&smart_handle_failed, 1);
++      else
++        __sync_add_and_fetch(&smart_handle_no_pk, 1);
++
+   }
++
+   return error;
+ }
+ 
+@@ -9782,13 +9810,30 @@ Update_rows_log_event::do_exec_row(const
+   int error= find_row(rli); 
+   if (error)
+   {
+-    /*
+-      We need to read the second image in the event of error to be
+-      able to skip to the next pair of updates
+-    */
+-    m_curr_row= m_curr_row_end;
+-    unpack_current_row(rli);
+-    return error;
++    if ((slave_exec_mode == SLAVE_EXEC_MODE_SMART) && 
++        (error == HA_ERR_KEY_NOT_FOUND)) {
++      tmp_disable_binlog(rli->sql_thd);
++      error = m_table->file->ha_write_row(m_table->record[0]) ||
++        m_table->file->rnd_pos_by_record(m_table->record[0]);
++      reenable_binlog(rli->sql_thd);                  
++      if (error)
++      {
++        error = HA_ERR_KEY_NOT_FOUND;
++        __sync_add_and_fetch(&smart_handle_failed, 1);
++      }
++      else
++        __sync_add_and_fetch(&smart_handle_no_pk, 1);
++    }
++
++    if (error) { 
++      /*
++         We need to read the second image in the event of error to be
++         able to skip to the next pair of updates
++       */
++      m_curr_row= m_curr_row_end;
++      unpack_current_row(rli);
++      return error;
++    } 
+   }
+ 
+   /*
+Index: smart/sql/mysqld.cc
+===================================================================
+--- smart.orig/sql/mysqld.cc
++++ smart/sql/mysqld.cc
+@@ -495,6 +495,10 @@ ulong binlog_stmt_cache_use= 0, binlog_s
+ ulong max_connections, max_connect_errors;
+ ulonglong denied_connections= 0;
+ 
++ulonglong smart_handle_dup_pk = 0;
++ulonglong smart_handle_no_pk  = 0;
++ulonglong smart_handle_failed = 0;
++
+ /* flashcache */
+ int cachedev_fd;
+ my_bool cachedev_enabled= FALSE;
+@@ -6811,6 +6815,9 @@ SHOW_VAR status_vars[]= {
+ #ifdef ENABLED_PROFILING
+   {"Uptime_since_flush_status",(char*) &show_flushstatustime,   SHOW_FUNC},
+ #endif
++   {"Smart_handle_dup_pk", (char*) &smart_handle_dup_pk, SHOW_LONGLONG},
++   {"Smart_handle_no_pk",  (char*) &smart_handle_no_pk, SHOW_LONGLONG},
++   {"Smart_handle_failed", (char*) &smart_handle_failed, SHOW_LONGLONG},
+   {NullS, NullS, SHOW_LONG}
+ };
+ 
+Index: smart/sql/mysqld.h
+===================================================================
+--- smart.orig/sql/mysqld.h
++++ smart/sql/mysqld.h
+@@ -238,6 +238,8 @@ extern my_decimal decimal_zero;
+ 
+ extern ulonglong opt_log_warnings_suppress;
+ 
++extern ulonglong smart_handle_dup_pk,smart_handle_no_pk,smart_handle_failed;
++
+ /*
+   THR_MALLOC is a key which will be used to set/get MEM_ROOT** for a thread,
+   using my_pthread_setspecific_ptr()/my_thread_getspecific_ptr().
+Index: smart/sql/sql_class.h
+===================================================================
+--- smart.orig/sql/sql_class.h
++++ smart/sql/sql_class.h
+@@ -90,6 +90,7 @@ enum enum_log_slow_filter {
+ enum enum_log_warnings_suppress { log_warnings_suppress_1592 };
+ enum enum_slave_exec_mode { SLAVE_EXEC_MODE_STRICT,
+                             SLAVE_EXEC_MODE_IDEMPOTENT,
++                            SLAVE_EXEC_MODE_SMART,
+                             SLAVE_EXEC_MODE_LAST_BIT};
+ enum enum_slave_type_conversions { SLAVE_TYPE_CONVERSIONS_ALL_LOSSY,
+                                    SLAVE_TYPE_CONVERSIONS_ALL_NON_LOSSY};
+Index: smart/sql/sys_vars.cc
+===================================================================
+--- smart.orig/sql/sys_vars.cc
++++ smart/sql/sys_vars.cc
+@@ -1944,14 +1944,15 @@ static Sys_var_mybool Sys_slave_compress
+        DEFAULT(FALSE));
+ 
+ #ifdef HAVE_REPLICATION
+-static const char *slave_exec_mode_names[]= {"STRICT", "IDEMPOTENT", 0};
++static const char *slave_exec_mode_names[]= {"STRICT", "IDEMPOTENT", "SMART", 0};
+ static Sys_var_enum Slave_exec_mode(
+        "slave_exec_mode",
+        "Modes for how replication events should be executed. Legal values "
+-       "are STRICT (default) and IDEMPOTENT. In IDEMPOTENT mode, "
++       "are STRICT (default), IDEMPOTENT and SMART. In IDEMPOTENT mode, "
+        "replication will not stop for operations that are idempotent. "
+        "In STRICT mode, replication will stop on any unexpected difference "
+-       "between the master and the slave",
++       "between the master and the slave. In SMART mode, replication would "
++       "handle 1032/1062 errors with smart convertion.", 
+        GLOBAL_VAR(slave_exec_mode_options), CMD_LINE(REQUIRED_ARG),
+        slave_exec_mode_names, DEFAULT(SLAVE_EXEC_MODE_STRICT));
+ const char *slave_type_conversions_name[]= {"ALL_LOSSY", "ALL_NON_LOSSY", 0};

@@ -1,0 +1,1259 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>awk常用函数以及变量参考 | Dong&#39;s Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dong[東木]">
+    
+
+    
+    <meta name="description" content="1. awk的常规表达式元字符
+
+
+换码序列
+&amp;nbsp;
+
+
+
+
+^
+在字符串的开头开始匹配
+
+
+$
+在字符串的结尾开始匹配
+
+
+.
+与任何单个字符串匹配
+
+
+[ABC]
+与[]内的任一字符匹配
+
+
+[A-Ca-c]
+与A-C及a-c范围内的字符匹配（按字母表顺序）
+
+
+[^ABC]
+与除[]内的所有字符以外的任一字符匹配
+
+
+Desk&amp;#x7C;Chair
+与Desk和Chair中的任一个匹配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="awk常用函数以及变量参考">
+<meta property="og:url" content="http://blog.liudongkai.com/2008/05/28/awk-notes-functions-variables/index.html">
+<meta property="og:site_name" content="Dong's Note">
+<meta property="og:description" content="1. awk的常规表达式元字符
+
+
+换码序列
+&amp;nbsp;
+
+
+
+
+^
+在字符串的开头开始匹配
+
+
+$
+在字符串的结尾开始匹配
+
+
+.
+与任何单个字符串匹配
+
+
+[ABC]
+与[]内的任一字符匹配
+
+
+[A-Ca-c]
+与A-C及a-c范围内的字符匹配（按字母表顺序）
+
+
+[^ABC]
+与除[]内的所有字符以外的任一字符匹配
+
+
+Desk&amp;#x7C;Chair
+与Desk和Chair中的任一个匹配">
+<meta property="og:updated_time" content="2008-05-27T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="awk常用函数以及变量参考">
+<meta name="twitter:description" content="1. awk的常规表达式元字符
+
+
+换码序列
+&amp;nbsp;
+
+
+
+
+^
+在字符串的开头开始匹配
+
+
+$
+在字符串的结尾开始匹配
+
+
+.
+与任何单个字符串匹配
+
+
+[ABC]
+与[]内的任一字符匹配
+
+
+[A-Ca-c]
+与A-C及a-c范围内的字符匹配（按字母表顺序）
+
+
+[^ABC]
+与除[]内的所有字符以外的任一字符匹配
+
+
+Desk&amp;#x7C;Chair
+与Desk和Chair中的任一个匹配">
+<meta name="twitter:creator" content="@liudongkai">
+<link rel="publisher" href="100378260579772710000">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
+				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2008/05/28/awk-notes-functions-variables/" title="awk常用函数以及变量参考" itemprop="url">awk常用函数以及变量参考</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2008-05-27T16:00:00.000Z" itemprop="datePublished"> 发表于 2008-05-28</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-awk的常规表达式元字符"><span class="toc-text">1. awk的常规表达式元字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-awk算术运算符"><span class="toc-text">2. awk算术运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-awk允许的测试："><span class="toc-text">3. awk允许的测试：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-awk的操作符-级别越高越优先"><span class="toc-text">4. awk的操作符(级别越高越优先)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-awk内置变量（预定义变量）"><span class="toc-text">5. awk内置变量（预定义变量）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-awk的内置函数"><span class="toc-text">6. awk的内置函数</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="1-awk的常规表达式元字符"><a href="#1-awk的常规表达式元字符" class="headerlink" title="1. awk的常规表达式元字符"></a>1. awk的常规表达式元字符</h2><table>
+<thead>
+<tr>
+<th>换码序列</th>
+<th>&nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>^</td>
+<td>在字符串的开头开始匹配</td>
+</tr>
+<tr>
+<td>$</td>
+<td>在字符串的结尾开始匹配</td>
+</tr>
+<tr>
+<td>.</td>
+<td>与任何单个字符串匹配</td>
+</tr>
+<tr>
+<td>[ABC]</td>
+<td>与[]内的任一字符匹配</td>
+</tr>
+<tr>
+<td>[A-Ca-c]</td>
+<td>与A-C及a-c范围内的字符匹配（按字母表顺序）</td>
+</tr>
+<tr>
+<td>[^ABC]</td>
+<td>与除[]内的所有字符以外的任一字符匹配</td>
+</tr>
+<tr>
+<td>Desk&#x7C;Chair</td>
+<td>与Desk和Chair中的任一个匹配</td>
+</tr>
+<tr>
+<td>[ABC][DEF]</td>
+<td>关联。与A、B、C中的任一字符匹配，且其后要跟D、E、F中的任一个字符。</td>
+</tr>
+<tr>
+<td>[ABC]*</td>
+<td>与A、B或C中任一个出现0次或多次的字符相匹配</td>
+</tr>
+<tr>
+<td>[ABC]+</td>
+<td>与A、B或C中任何一个出现1次或多次的字符相匹配</td>
+</tr>
+<tr>
+<td>[ABC]？</td>
+<td>与一个空串或A、B或C在任何一个字符相匹配</td>
+</tr>
+<tr>
+<td>(Blue&#x7C;Black)berry</td>
+<td>合并常规表达式，与Blueberry或Blackberry相匹配</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-awk算术运算符"><a href="#2-awk算术运算符" class="headerlink" title="2. awk算术运算符"></a>2. awk算术运算符</h2><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x^y</td>
+<td>x的y次幂</td>
+</tr>
+<tr>
+<td>x**y</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>x%y</td>
+<td>计算x/y的余数（求模）</td>
+</tr>
+<tr>
+<td>x+y</td>
+<td>x加y</td>
+</tr>
+<tr>
+<td>x-y</td>
+<td>x减y</td>
+</tr>
+<tr>
+<td>x*y</td>
+<td>x乘y</td>
+</tr>
+<tr>
+<td>x/y</td>
+<td>x除y</td>
+</tr>
+<tr>
+<td>-y</td>
+<td>负y(y的开关符号);也称一目减</td>
+</tr>
+<tr>
+<td>++y</td>
+<td>y加1后使用y(前置加）</td>
+</tr>
+<tr>
+<td>y++</td>
+<td>使用y值后加1（后缀加）</td>
+</tr>
+<tr>
+<td>-y</td>
+<td>y减1后使用y(前置减）</td>
+</tr>
+<tr>
+<td>y-</td>
+<td>使用后y减1(后缀减）</td>
+</tr>
+<tr>
+<td>x=y</td>
+<td>将y的值赋给x</td>
+</tr>
+<tr>
+<td>x+=y</td>
+<td>将x+y的值赋给x</td>
+</tr>
+<tr>
+<td>x-=y</td>
+<td>将x-y的值赋给x</td>
+</tr>
+<tr>
+<td>x*=y</td>
+<td>将x*y的值赋给x</td>
+</tr>
+<tr>
+<td>x/=y</td>
+<td>将x/y的值赋给x x%=y 将x%y的值赋给x</td>
+</tr>
+<tr>
+<td>x^=y</td>
+<td>将x^y的值赋给x</td>
+</tr>
+<tr>
+<td>x**=y</td>
+<td>将x**y的值赋给x</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-awk允许的测试："><a href="#3-awk允许的测试：" class="headerlink" title="3. awk允许的测试："></a>3. awk允许的测试：</h2><table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x==y</td>
+<td>x等于y</td>
+</tr>
+<tr>
+<td>x!=y</td>
+<td>x不等于y</td>
+</tr>
+<tr>
+<td>x&gt;y</td>
+<td>x大于y</td>
+</tr>
+<tr>
+<td>x&gt;=y</td>
+<td>x大于或等于y</td>
+</tr>
+<tr>
+<td>x&lt; =y</td>
+<td>x小于或等于y</td>
+</tr>
+<tr>
+<td>x~re</td>
+<td>x匹配正则表达式re</td>
+</tr>
+<tr>
+<td>x!~re</td>
+<td>x不匹配正则表达式re</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-awk的操作符-级别越高越优先"><a href="#4-awk的操作符-级别越高越优先" class="headerlink" title="4. awk的操作符(级别越高越优先)"></a>4. awk的操作符(级别越高越优先)</h2><table>
+<thead>
+<tr>
+<th>级别</th>
+<th>运算符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>=,+=,-=,*=,/=,%=,&amp;=,^=,&#x7C;=,&lt;&lt;=,&gt;&gt;=</td>
+<td>赋值、运算</td>
+</tr>
+<tr>
+<td>2</td>
+<td>&#x7C;&#x7C;</td>
+<td>逻辑或</td>
+</tr>
+<tr>
+<td>3</td>
+<td>&amp;&amp;</td>
+<td>逻辑与</td>
+</tr>
+<tr>
+<td>4</td>
+<td>&#x7C;</td>
+<td>按位或</td>
+</tr>
+<tr>
+<td>5</td>
+<td>^</td>
+<td>按位异或</td>
+</tr>
+<tr>
+<td>6</td>
+<td>&amp;</td>
+<td>按位与</td>
+</tr>
+<tr>
+<td>7</td>
+<td>==,!=</td>
+<td>等于，不等于</td>
+</tr>
+<tr>
+<td>8</td>
+<td>&lt;=,&gt;=,&lt;,&gt;</td>
+<td>小于等于，大于等于，小于，大于</td>
+</tr>
+<tr>
+<td>9</td>
+<td>&lt;&lt;,&gt;&gt;</td>
+<td>按位左移，按位右移</td>
+</tr>
+<tr>
+<td>10</td>
+<td>+，-</td>
+<td>加，减</td>
+</tr>
+<tr>
+<td>11</td>
+<td>*,/,%</td>
+<td>乘，除，取模</td>
+</tr>
+<tr>
+<td>12</td>
+<td>!，~</td>
+<td>逻辑非，按位取反或补码</td>
+</tr>
+<tr>
+<td>13</td>
+<td>-,+</td>
+<td>正，负</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-awk内置变量（预定义变量）"><a href="#5-awk内置变量（预定义变量）" class="headerlink" title="5. awk内置变量（预定义变量）"></a>5. awk内置变量（预定义变量）</h2><p>说明：表中v项表示第一个支持变量的工具（下同）：A=awk，N=nawk,P=POSIX awk,G=gawk</p>
+<table>
+<thead>
+<tr>
+<th>V</th>
+<th>变量</th>
+<th>含义</th>
+<th>缺省值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N</td>
+<td>ARGC</td>
+<td>命令行参数个数</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>G</td>
+<td>ARGIND</td>
+<td>当前被处理文件的ARGV标志符</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>N</td>
+<td>ARGV</td>
+<td>命令行参数数组</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>G</td>
+<td>CONVFMT</td>
+<td>数字转换格式</td>
+<td>%.6g</td>
+</tr>
+<tr>
+<td>P</td>
+<td>ENVIRON</td>
+<td>UNIX环境变量</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>N</td>
+<td>ERRNO</td>
+<td>UNIX系统错误消息</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>G</td>
+<td>FIELDWIDTHS</td>
+<td>输入字段宽度的空白分隔字符串</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>A</td>
+<td>FILENAME</td>
+<td>当前输入文件的名字</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>P</td>
+<td>FNR</td>
+<td>当前记录数</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>A</td>
+<td>FS</td>
+<td>输入字段分隔符</td>
+<td>空格</td>
+</tr>
+<tr>
+<td>G</td>
+<td>IGNORECASE</td>
+<td>控制大小写敏感0（大小写敏感）</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>A</td>
+<td>NF</td>
+<td>当前记录中的字段个数</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>A</td>
+<td>NR</td>
+<td>已经读出的记录数</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>A</td>
+<td>OFMT</td>
+<td>数字的输出格式</td>
+<td>%.6g</td>
+</tr>
+<tr>
+<td>A</td>
+<td>OFS</td>
+<td>输出字段分隔符</td>
+<td>空格</td>
+</tr>
+<tr>
+<td>A</td>
+<td>ORS</td>
+<td>输出的记录分隔符</td>
+<td>新行</td>
+</tr>
+<tr>
+<td>A</td>
+<td>RS</td>
+<td>输入的记录他隔符</td>
+<td>新行</td>
+</tr>
+<tr>
+<td>N</td>
+<td>RSTART</td>
+<td>被匹配函数匹配的字符串首</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>N</td>
+<td>RLENGTH</td>
+<td>被匹配函数匹配的字符串长度</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>N</td>
+<td>SUBSEP</td>
+<td>下标分隔符</td>
+<td>\034</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-awk的内置函数"><a href="#6-awk的内置函数" class="headerlink" title="6. awk的内置函数"></a>6. awk的内置函数</h2><table>
+<thead>
+<tr>
+<th>V</th>
+<th>函数</th>
+<th>用途或返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N</td>
+<td>gsub(reg,string,target)</td>
+<td>每次常规表达式reg匹配时替换target中的string</td>
+</tr>
+<tr>
+<td>N</td>
+<td>index(search,string)</td>
+<td>返回string中search串的位置</td>
+</tr>
+<tr>
+<td>A</td>
+<td>length(string)</td>
+<td>求串string中的字符个数</td>
+</tr>
+<tr>
+<td>N</td>
+<td>match(string,reg)</td>
+<td>返回常规表达式reg匹配的string中的位置</td>
+</tr>
+<tr>
+<td>N</td>
+<td>printf(format,variable)</td>
+<td>格式化输出，按format提供的格式输出变量variable。</td>
+</tr>
+<tr>
+<td>N</td>
+<td>split(string,store,delim)</td>
+<td>根据分界符delim,分解string为store的数组元素</td>
+</tr>
+<tr>
+<td>N</td>
+<td>sprintf(format,variable)</td>
+<td>返回一个包含基于format的格式化数据，variables是要放到串中的数据</td>
+</tr>
+<tr>
+<td>G</td>
+<td>strftime(format,timestamp)</td>
+<td>返回一个基于format的日期或者时间串，timestmp是systime()函数返回的时间</td>
+</tr>
+<tr>
+<td>N</td>
+<td>sub(reg,string,target)</td>
+<td>第一次当常规表达式reg匹配，替换target串中的字符串</td>
+</tr>
+<tr>
+<td>A</td>
+<td>substr(string,position,len)</td>
+<td>返回一个以position开始len个字符的子串</td>
+</tr>
+<tr>
+<td>P</td>
+<td>totower(string)</td>
+<td>返回string中对应的小写字符</td>
+</tr>
+<tr>
+<td>P</td>
+<td>toupper(string)</td>
+<td>返回string中对应的大写字符</td>
+</tr>
+<tr>
+<td>A</td>
+<td>atan(x,y)</td>
+<td>x的余切(弧度)</td>
+</tr>
+<tr>
+<td>N</td>
+<td>cos(x)</td>
+<td>x的余弦(弧度)</td>
+</tr>
+<tr>
+<td>A</td>
+<td>exp(x)</td>
+<td>e的x幂</td>
+</tr>
+<tr>
+<td>A</td>
+<td>int(x)</td>
+<td>x的整数部分</td>
+</tr>
+<tr>
+<td>A</td>
+<td>log(x)</td>
+<td>x的自然对数值</td>
+</tr>
+<tr>
+<td>N</td>
+<td>rand()</td>
+<td>0-1之间的随机数</td>
+</tr>
+<tr>
+<td>N</td>
+<td>sin(x)</td>
+<td>x的正弦(弧度)</td>
+</tr>
+<tr>
+<td>A</td>
+<td>sqrt(x)</td>
+<td>x的平方根</td>
+</tr>
+<tr>
+<td>A</td>
+<td>srand(x)</td>
+<td>初始化随机数发生器。如果忽略x，则使用system()</td>
+</tr>
+<tr>
+<td>G</td>
+<td>system()</td>
+<td>返回自1970年1月1日以来经过的时间（按秒计算）</td>
+</tr>
+</tbody>
+</table>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/awk/">awk</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://blog.liudongkai.com/2008/05/28/awk-notes-functions-variables/" data-title="awk常用函数以及变量参考 | Dong&#39;s Note" data-tsina="2003788463" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2008/06/04/mysql-error-can-not-connect-to-local-mysql-server-through-socket/" title="Can’t connect to local MySQL server through socket 解决办法">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Can’t connect to local MySQL server through socket 解决办法</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2008/05/23/google-20080519/"  title="中国人的团结">
+ <strong>下一篇：</strong><br/> 
+ <span>中国人的团结
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2008/05/28/awk-notes-functions-variables/" data-title="awk常用函数以及变量参考" data-url="http://blog.liudongkai.com/2008/05/28/awk-notes-functions-variables/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-awk的常规表达式元字符"><span class="toc-text">1. awk的常规表达式元字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-awk算术运算符"><span class="toc-text">2. awk算术运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-awk允许的测试："><span class="toc-text">3. awk允许的测试：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-awk的操作符-级别越高越优先"><span class="toc-text">4. awk的操作符(级别越高越优先)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-awk内置变量（预定义变量）"><span class="toc-text">5. awk内置变量（预定义变量）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-awk的内置函数"><span class="toc-text">6. awk的内置函数</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liudongkai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42337789-4', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'b3655049504c5e2d7c68'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

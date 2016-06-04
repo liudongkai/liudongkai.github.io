@@ -1,0 +1,924 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>IBM T61/R61/X61 WinXP驱动安装(二) | Dong&#39;s Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dong[東木]">
+    
+
+    
+    <meta name="description" content="十五 、安装 UltraNav driver for Windows 2000, XP注 1 ： 如果网友的 ThinkPad 是 X61/X61s ，请至 此连结 下载 TrackPoint Only 驱动程序。
+
+可以从 http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-42487 下载。
+
+所安装的版本是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IBM T61/R61/X61 WinXP驱动安装(二)">
+<meta property="og:url" content="http://blog.liudongkai.com/2008/03/15/IBM-install-drivers-2/index.html">
+<meta property="og:site_name" content="Dong's Note">
+<meta property="og:description" content="十五 、安装 UltraNav driver for Windows 2000, XP注 1 ： 如果网友的 ThinkPad 是 X61/X61s ，请至 此连结 下载 TrackPoint Only 驱动程序。
+
+可以从 http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-42487 下载。
+
+所安装的版本是">
+<meta property="og:updated_time" content="2008-03-14T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IBM T61/R61/X61 WinXP驱动安装(二)">
+<meta name="twitter:description" content="十五 、安装 UltraNav driver for Windows 2000, XP注 1 ： 如果网友的 ThinkPad 是 X61/X61s ，请至 此连结 下载 TrackPoint Only 驱动程序。
+
+可以从 http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-42487 下载。
+
+所安装的版本是">
+<meta name="twitter:creator" content="@liudongkai">
+<link rel="publisher" href="100378260579772710000">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
+				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2008/03/15/IBM-install-drivers-2/" title="IBM T61/R61/X61 WinXP驱动安装(二)" itemprop="url">IBM T61/R61/X61 WinXP驱动安装(二)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2008-03-14T16:00:00.000Z" itemprop="datePublished"> 发表于 2008-03-15</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#十五-、安装-UltraNav-driver-for-Windows-2000-XP"><span class="toc-text">十五 、安装 UltraNav driver for Windows 2000, XP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#十六-、安装-Hotkey-driver-for-Windows-Vista-XP-2000"><span class="toc-text">十六 、安装 Hotkey driver for Windows Vista, XP, 2000</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#十七-、安装-Bluetooth-with-Enhanced-Data-Rate-Software-for-Windows-XP-2000"><span class="toc-text">十七 、安装 Bluetooth with Enhanced Data Rate Software for Windows XP, 2000</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#十八-、安装-IBM-fingerprint-reader-software-for-Windows-2000-XP"><span class="toc-text">十八 、安装 IBM fingerprint reader software for Windows 2000, XP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#十九-、安装四合一读卡器驱动"><span class="toc-text">十九 、安装四合一读卡器驱动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二十-、安装-ThinkVantage-Active-Protection-System-for-Windows-Vista-32-bit-XP-2000"><span class="toc-text">二十 、安装 ThinkVantage Active Protection System for Windows Vista 32-bit, XP, 2000 　　</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二十一-、安装-Atmel-TPM-Trusted-Platform-Module-device-driver-for-Windows-Vista-32-bit-XP-2000"><span class="toc-text">二十一 、安装 Atmel TPM (Trusted Platform Module) device driver for Windows Vista 32-bit, XP, 2000</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二十二-、安装-EasyEject-Utility-for-Windows-Vista-XP-2000"><span class="toc-text">二十二 、安装 EasyEject Utility for Windows Vista, XP, 2000</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二十三-、安装-Presentation-Director-for-Windows-Vista-XP-2000"><span class="toc-text">二十三 、安装 Presentation Director for Windows Vista, XP, 2000</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二十四-、安装-Access-Help-online-User’s-Guide"><span class="toc-text">二十四 、安装 Access Help online User’s Guide</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二十五-、安装-Help-Center-for-Windows-Vista-XP-2000"><span class="toc-text">二十五 、安装 Help Center for Windows Vista, XP, 2000</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二十六-、安装-ThinkVantage-Productivity-Center"><span class="toc-text">二十六 、安装 ThinkVantage Productivity Center</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二十七-、安装-PCMCIA-Power-Policy-Registry-Patch"><span class="toc-text">二十七 、安装 PCMCIA Power Policy Registry Patch</span></a></li></ol>
+		
+		</div>
+		
+		<h3 id="十五-、安装-UltraNav-driver-for-Windows-2000-XP"><a href="#十五-、安装-UltraNav-driver-for-Windows-2000-XP" class="headerlink" title="十五 、安装 UltraNav driver for Windows 2000, XP"></a>十五 、安装 UltraNav driver for Windows 2000, XP</h3><p>注 1 ： 如果网友的 ThinkPad 是 X61/X61s ，请至 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-4kmuyl" target="_blank" rel="external">此连结</a> 下载 TrackPoint Only 驱动程序。</p>
+<ol>
+<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-42487" target="_blank" rel="external">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-42487</a> 下载。</p>
+</li>
+<li><p>所安装的版本是 7.5.17 .20 版， 2006/05/27 发布。档名为 77gu08ww.exe</p>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
+<li>License Agreement 画面，选「 I accept the terms in the license agreement 」按「 Next 」 </li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\WIN\UNAV 」，如不想变更请直接按「 Next 」 </li>
+<li>解压缩完成后按「 Finish 」</li>
+</ul>
+</li>
+<li><p>到「 C:\DRIVERS\WIN\UNAV 」里，双击「 Setup.exe 」</p>
+<ul>
+<li>首先出现「选取安装语言」，选「英语」，按「确定」 </li>
+<li>按「 Next 」 </li>
+<li>按「 Next 」 </li>
+<li>安装完毕后选「 Yes, I want to restart my computer now 」，按「 Finish 」</li>
+</ul>
+</li>
+</ol>
+<a id="more"></a>
+<h3 id="十六-、安装-Hotkey-driver-for-Windows-Vista-XP-2000"><a href="#十六-、安装-Hotkey-driver-for-Windows-Vista-XP-2000" class="headerlink" title="十六 、安装 Hotkey driver for Windows Vista, XP, 2000"></a>十六 、安装 Hotkey driver for Windows Vista, XP, 2000</h3><ol>
+<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-67047" target="_blank" rel="external">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-67047</a> 下载。</p>
+</li>
+<li><p>所安装版本是 2.03.0705 版， 2007/05/16 发布，档名为 7kvu13ww.exe</p>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
+<li>License Agreement 画面，选择「 I accept the terms in the license agreement 」，按「 Next 」 </li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\WIN\HOTKEY 」，如不想变更请直接按「 Next 」 </li>
+<li>解压缩完成，按「 Finish 」</li>
+</ul>
+</li>
+<li><p>到「 C:\DRIVERS\WIN\HOTKEY 」，双击「 Setup.exe 」</p>
+<ul>
+<li>出现欢迎画面，按「安装或升级驱动程序或软件」，按「下一步」 </li>
+<li>点选「 On Screen Display 」、「 ThinkPad FullScreen Magnifier 」，按「安装」 </li>
+<li>按「确定」 </li>
+<li>按「关闭」 </li>
+<li>按「是」，重新开机</li>
+</ul>
+</li>
+</ol>
+<h3 id="十七-、安装-Bluetooth-with-Enhanced-Data-Rate-Software-for-Windows-XP-2000"><a href="#十七-、安装-Bluetooth-with-Enhanced-Data-Rate-Software-for-Windows-XP-2000" class="headerlink" title="十七 、安装 Bluetooth with Enhanced Data Rate Software for Windows XP, 2000"></a>十七 、安装 Bluetooth with Enhanced Data Rate Software for Windows XP, 2000</h3><ol>
+<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-61425" target="_blank" rel="external">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-61425</a> 下载。</p>
+</li>
+<li><p>所安装的版本是 5.1.0 .3100 版， 2007/05/17 发布。档名为 7jba08ww.exe</p>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
+<li>License Agreement 画面，选「 I accept the terms in the license agreement 」按「 Next 」 </li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\TPBTooth 」，如不想变更请直接按「 Next 」 </li>
+<li>解压缩完成后按「 Finish 」</li>
+</ul>
+</li>
+<li><p>要开始安装驱动程序前，请「务必」遵守以下几点规则，以免安装失败 !</p>
+<ul>
+<li>在安装此版 <a href="http://mobiledigit.net/bbs/viewthread.php?tid=40188&amp;extra=page%3D1" target="_blank" rel="external">Bluetooth软件</a> 前，移除掉先前功能旧版的 Bluetooth 软件 </li>
+<li>Bluetooth 软件安装时， 「不要」 任意碰触键盘、 TrackPoint 、 TouchPad 。 </li>
+<li>将 ThinkPad 的「无线硬件开关」打开，确认 LCD 下方蓝芽标志有亮。或是按下「 Fn+F5 」热键，确定闭蓝芽无线通讯功能已开启</li>
+</ul>
+</li>
+<li><p>到「 C:\DRIVERS\TPBTooth 」里，双击 Setup.exe</p>
+<ul>
+<li>出现欢迎画面，按「下一步」 </li>
+<li>选择「我接受该授权合约中的条款 (A) 」，按「下一步」 </li>
+<li>预设安装到「 C:\Program Files\ThinkPad\Bluetooth Software 」，请直接按「下一步」 </li>
+<li>按「安装」 </li>
+<li>当「 Driver Signature Notice 」画面出现时，按「 OK 」 </li>
+<li>稍待一会之后，按「完成」</li>
+</ul>
+</li>
+<li><p>手动重新开机</p>
+</li>
+</ol>
+<h3 id="十八-、安装-IBM-fingerprint-reader-software-for-Windows-2000-XP"><a href="#十八-、安装-IBM-fingerprint-reader-software-for-Windows-2000-XP" class="headerlink" title="十八 、安装 IBM fingerprint reader software for Windows 2000, XP"></a>十八 、安装 IBM fingerprint reader software for Windows 2000, XP</h3><ol>
+<li><p>由于原厂网站上尚未提供驱动程序下载，<a href="http://www.tpuser.idv.tw/files/fps.zip" target="_blank" rel="external">请点击这里下载5.6版</a>。</p>
+<ul>
+<li><a href="http://www.tpuser.idv.tw/files/4IN1.zip" target="_blank" rel="external">下载此文件于硬盘后</a>，双击执行「 setup.exe 」后，按「 Next 」 </li>
+<li>License Agreement 画面，选「 I accept the terms in the license agreement 」按「 Next 」 </li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\WIN\FPS 」，如不想变更请直接按「 Next 」 </li>
+<li>解压缩完成后按「 Finish 」</li>
+</ul>
+</li>
+<li><p>到「 C:\DRIVERS\WIN\FPS 」，双击「 Setup.exe 」</p>
+<ul>
+<li>出现欢迎画面，按「下一步」 </li>
+<li>预设安装到「 C:\Program Files\ThinkVantage Fingerprint Software\ 」，请按「下一步」 </li>
+<li>按「下一步」 </li>
+<li>按「完成」 </li>
+<li>按「是」，重新开机。</li>
+</ul>
+</li>
+</ol>
+<h3 id="十九-、安装四合一读卡器驱动"><a href="#十九-、安装四合一读卡器驱动" class="headerlink" title="十九 、安装四合一读卡器驱动"></a>十九 、安装四合一读卡器驱动</h3><p>注：此项功能仅限有内建四合一 ( SD/MMC/MS/xD) 读卡器的机种。</p>
+<ol>
+<li>由于原厂网站上尚未提供驱动程序下载，<a href="http://www.tpuser.idv.tw/files/4IN1.zip" target="_blank" rel="external">请点击这里下载</a>。<ul>
+<li>下载此文件于硬盘后 ，双击执行「 DPInst.exe 」后，按「下一步」 </li>
+<li>按「完成」 </li>
+<li>License Agreement 画面，选「 I accept the terms in the license agreement 」按「 Next 」 </li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\WIN\FPS 」，如不想变更请直接按「 Next 」 </li>
+<li>解压缩完成后按「 Finish 」</li>
+</ul>
+</li>
+</ol>
+<h3 id="二十-、安装-ThinkVantage-Active-Protection-System-for-Windows-Vista-32-bit-XP-2000"><a href="#二十-、安装-ThinkVantage-Active-Protection-System-for-Windows-Vista-32-bit-XP-2000" class="headerlink" title="二十 、安装 ThinkVantage Active Protection System for Windows Vista 32-bit, XP, 2000 　　"></a>二十 、安装 ThinkVantage Active Protection System for Windows Vista 32-bit, XP, 2000 　　</h3><ol>
+<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-53150" target="_blank" rel="external">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-53150</a> 下载。</p>
+</li>
+<li><p>所安装的版本是 1.52 版， 2007/04/04 发布。档名为 7ksa10ww.exe</p>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
+<li>License Agreement 画面，选「 I accept the terms in the license agreement 」按「 Next 」 </li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\WIN\HPROTECT 」，如不想变更请直接按「 Next 」 </li>
+<li>解压缩完成后按「 Finish 」</li>
+</ul>
+</li>
+<li><p>到「 C:\DRIVERS\WIN\HPROTECT 」，双击「 Setup.exe 」</p>
+<ul>
+<li>出现欢迎画面，按「下一步」 </li>
+<li>按「安装」 </li>
+<li>按「完成」 </li>
+<li>按「是」，重新开机。</li>
+</ul>
+</li>
+</ol>
+<h3 id="二十一-、安装-Atmel-TPM-Trusted-Platform-Module-device-driver-for-Windows-Vista-32-bit-XP-2000"><a href="#二十一-、安装-Atmel-TPM-Trusted-Platform-Module-device-driver-for-Windows-Vista-32-bit-XP-2000" class="headerlink" title="二十一 、安装 Atmel TPM (Trusted Platform Module) device driver for Windows Vista 32-bit, XP, 2000"></a>二十一 、安装 Atmel TPM (Trusted Platform Module) device driver for Windows Vista 32-bit, XP, 2000</h3><ol>
+<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-58054" target="_blank" rel="external">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-58054</a> 下载。</p>
+</li>
+<li><p>所安装的版本是 3.0.0 .15 版， 2006/03/15 发布。档名为 79za05ww.exe</p>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
+<li>License Agreement 画面，选「 I accept the terms in the license agreement 」按「 Next 」 </li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\WIN\TPM 」，如不想变更请直接按「 Next 」 </li>
+<li>解压缩完成后按「 Finish 」</li>
+</ul>
+</li>
+<li><p>在桌面上的「我的计算机」上按右键，选「内容」，请在「硬件」里点选「装置管理员」，请双击其中的「其它装置」，展开后请双击「无法辨识的装置」，会进入内容。</p>
+<ul>
+<li>在内容进入「驱动程序」页，并点选「更新驱动程序」 </li>
+<li>此时会出现硬件更新精灵，点选「不，现在不要」，按「下一步」 </li>
+<li>选择「从清单或特定位置安装 ( 进阶 ) 」，按「下一步」 </li>
+<li>先点选「在这些位置中搜寻最好的驱动程序」，然后勾选「搜寻时包括这个位置」，按下「浏览」键，将路径指向「 C:\DRIVERS\WIN\TPM 」，按「下一步」 </li>
+<li>系统显示找到「 Atmel TPM 」，按「完成」</li>
+<li>关闭相关的画面。</li>
+</ul>
+</li>
+</ol>
+<h3 id="二十二-、安装-EasyEject-Utility-for-Windows-Vista-XP-2000"><a href="#二十二-、安装-EasyEject-Utility-for-Windows-Vista-XP-2000" class="headerlink" title="二十二 、安装 EasyEject Utility for Windows Vista, XP, 2000"></a>二十二 、安装 EasyEject Utility for Windows Vista, XP, 2000</h3><ol>
+<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-44035" target="_blank" rel="external">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-44035</a> 下载。</p>
+</li>
+<li><p>所安装的版本是 2.33 版， 2007/06/19 发布。档名为 7ku208ww.exe</p>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
+<li>License Agreement 画面，选「 I accept the terms in the license agreement 」按「 Next 」 </li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\W2K\EZEJECT 」，如不想变更请直接按「 Next 」 </li>
+<li>解压缩完成后按「 Finish 」</li>
+</ul>
+</li>
+<li><p>到「 C:\DRIVERS\W2K\EZEJECT 」，双击「 Setup.exe 」</p>
+<ul>
+<li>首先选择安装的语系，例如中文 ( 繁体 ) ，按「确定」 </li>
+<li>按「下一步」 </li>
+<li>预设安装路径为「 C:\Program Files\ThinkPad\Utilities 」，按「下一步」 </li>
+<li>选择安装类型，预设是「一般安装」，如不想变更， 按「下一步」 </li>
+<li>选择程序数据夹，预设会安装到「 ThinkVantage 」， 如不想变更， 按「下一步」 </li>
+<li>安装完成后，请选择「是，立即重新启动计算机」，并按「完成」准备重新开机。</li>
+</ul>
+</li>
+</ol>
+<h3 id="二十三-、安装-Presentation-Director-for-Windows-Vista-XP-2000"><a href="#二十三-、安装-Presentation-Director-for-Windows-Vista-XP-2000" class="headerlink" title="二十三 、安装 Presentation Director for Windows Vista, XP, 2000"></a>二十三 、安装 Presentation Director for Windows Vista, XP, 2000</h3><ol>
+<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-67364" target="_blank" rel="external">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-67364</a> 下载。</p>
+</li>
+<li><p>所安装的版本是 3.03a 版， 2007/06/06 发布。档名为 7rua05ww.exe</p>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
+<li>License Agreement 画面，选「 I accept the terms in the license agreement 」按「 Next 」 </li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\W2K\PDIRECT 」，如不想变更请直接按「 Next 」 </li>
+<li>解压缩完成后按「 Finish 」</li>
+</ul>
+</li>
+<li><p>到「 C:\DRIVERS\W2K\PDIRECT 」，双击「 Setup.exe 」</p>
+<ul>
+<li>首先选择安装的语系，例如中文 ( 繁体 ) ，按「确定」 </li>
+<li>按「下一步」 </li>
+<li>预设安装路径为「 C:\Program Files\Lenovo\NPDIRECT 」，按「下一步」 </li>
+<li>选择程序数据夹，预设会安装到「 ThinkVantage 」， 如不想变更， 按「下一步」 </li>
+<li>按「下一步」 </li>
+<li>安装完成后，请选择「是，立即重新启动计算机」，并按「完成」准备重新开机。</li>
+</ul>
+</li>
+</ol>
+<h3 id="二十四-、安装-Access-Help-online-User’s-Guide"><a href="#二十四-、安装-Access-Help-online-User’s-Guide" class="headerlink" title="二十四 、安装 Access Help online User’s Guide"></a>二十四 、安装 Access Help online User’s Guide</h3><ol>
+<li><p>目前网络上提供的 Access Help 都没有繁体中文版。但是繁体中文版的 Access Help 其实就在 ThinkPad 预载系统「 C:\SWTOOLS\apps\ 」里面。数据夹名称为「 ahlp 」。所以网友 务必自行备份！</p>
+</li>
+<li><p>如需安装英文版的 Access Help ，程序如下：</p>
+<ul>
+<li>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-67828" target="_blank" rel="external">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-67828</a> 下载 T61/R61 版本。</li>
+<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-67949" target="_blank" rel="external">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-67949</a> 下载 X61/X61s 版本。</p>
+</li>
+<li><p>所安装的英文版本是 2.01 版， 2007/05/17 发布，档名为 7kta06us.exe</p>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，出现欢迎画面，按「 Next 」 </li>
+<li>License Agreement 画面，点选「 I accept the terms in the license agreement. 」，然后按「 Next 」 </li>
+<li>预设安装到「 C:\DRIVERS\WIN\AHLP 」，请按「 Next 」 </li>
+<li>按「 Finish 」</li>
+</ul>
+</li>
+<li>首先选择安装的语系，例如中文 ( 繁体 ) ，按「确定」 </li>
+<li>按「下一步」 </li>
+<li>预设安装路径为「 C:\Program Files\ThinkVantage\AHLP 」，按「下一步」 </li>
+<li>选择程序数据夹，预设会安装到「 ThinkVantage 」， 如不想变更， 按「下一步」 </li>
+<li>按「完成」</li>
+</ul>
+</li>
+</ol>
+<h3 id="二十五-、安装-Help-Center-for-Windows-Vista-XP-2000"><a href="#二十五-、安装-Help-Center-for-Windows-Vista-XP-2000" class="headerlink" title="二十五 、安装 Help Center for Windows Vista, XP, 2000"></a>二十五 、安装 Help Center for Windows Vista, XP, 2000</h3><ol>
+<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-67244" target="_blank" rel="external">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-67244</a> 下载。</p>
+</li>
+<li><p>所安装版本是 2.00c 版， 2007/05/16 发布，档名为 7kth08ww.exe</p>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
+<li>License Agreement 画面，选择「 I accept the terms in the license agreement 」，按「 Next 」</li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\WIN\ALRN 」，如不想变更请直接按「 Next 」</li>
+<li>解压缩完成，按「 Finish 」</li>
+</ul>
+</li>
+<li><p>到「 C:\DRIVERS\WIN\ALRN 」」，双击「 Setup.exe 」</p>
+<ul>
+<li>出现欢迎画面，按「下一步」 </li>
+<li>预设安装到「 C:\Program Files\ThinkVantage\ALRN 」，请按「下一步」 </li>
+<li>选择程序数据夹，预设会安装到「 ThinkVantage 」， 如不想变更， 按「下一步」 </li>
+<li>按「完成」</li>
+</ul>
+</li>
+</ol>
+<h3 id="二十六-、安装-ThinkVantage-Productivity-Center"><a href="#二十六-、安装-ThinkVantage-Productivity-Center" class="headerlink" title="二十六 、安装 ThinkVantage Productivity Center"></a>二十六 、安装 ThinkVantage Productivity Center</h3><ol>
+<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-61378" target="_blank" rel="external">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-61378</a> 下载。</p>
+</li>
+<li><p>所安装版本是 2.02 版， 2007/05/14 发布，档名为 7kuy03cw.exe</p>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
+<li>License Agreement 画面，选择「 I accept the terms in the license agreement 」，按「 Next 」</li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\W2K\PRDCTR 」，如不想变更请直接按「 Next 」</li>
+<li>解压缩完成，按「 Finish 」</li>
+</ul>
+</li>
+<li><p>到「 C:\DRIVERS\W2K\PRDCTR 」，双击「 Setup.exe 」</p>
+<ul>
+<li>出现欢迎画面，按「安装或升级驱动程序或软件」，按「下一步」 </li>
+<li>点选「 Productivity Center Supplement for ThinkPad 」、「 ThinkVantage Productivity Center 」，按「安装」 </li>
+<li>按「确定」 </li>
+<li>按「关闭」 </li>
+<li>按「是」，重新开机</li>
+</ul>
+</li>
+</ol>
+<h3 id="二十七-、安装-PCMCIA-Power-Policy-Registry-Patch"><a href="#二十七-、安装-PCMCIA-Power-Policy-Registry-Patch" class="headerlink" title="二十七 、安装 PCMCIA Power Policy Registry Patch"></a>二十七 、安装 PCMCIA Power Policy Registry Patch</h3><ol>
+<li><p>由于原厂网站上尚未提供驱动程序下载，请点击<a href="http://www.tpuser.idv.tw/files/PCMCIAPW.zip" target="_blank" rel="external">这里下载</a>。</p>
+<ul>
+<li><a href="http://www.tpuser.idv.tw/files/PCMCIAPW.zip" target="_blank" rel="external">下载此文件于硬盘后</a> ，双击执行「 Install.bat 」即可。</li>
+</ul>
+</li>
+</ol>
+<p>【总结】：以上为 ThinkPad T61/R61/X61 系统各项驱动程序的安装流程，至于系统预载的各种应用程序皆放在「 C:\SWTOOLS\apps\ 」里面，这些程序使用者在自行安装操作系统之前「 务必自行备份 」。</p>
+<hr>
+<p>增加Vista迅盘驱动下载：</p>
+<p>Intel Turbo Memory Driver for Windows Vista – ThinkPad Reserve Edition, R61, T61, X61, X61s, X61 Tablet</p>
+<p>地址：<a href="http://www-307.ibm.com/pc/support/site.wss/license.do?filename=mobiles/7kin14ww.exe&amp;velxr-layout=popupLenovo" target="_blank" rel="external">http://www-307.ibm.com/pc/support/site.wss/license.do?filename=mobiles/7kin14ww.exe&amp;velxr-layout=popupLenovo</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Share/">Share</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/ThinkPad/">ThinkPad</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://blog.liudongkai.com/2008/03/15/IBM-install-drivers-2/" data-title="IBM T61/R61/X61 WinXP驱动安装(二) | Dong&#39;s Note" data-tsina="2003788463" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2008/03/15/apache-rewrite/" title="Apache 重写规则的常见应用 (rewrite)">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Apache 重写规则的常见应用 (rewrite)</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2008/03/05/transformers-cg/"  title="《变形金刚》高清人物CG组图">
+ <strong>下一篇：</strong><br/> 
+ <span>《变形金刚》高清人物CG组图
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2008/03/15/IBM-install-drivers-2/" data-title="IBM T61/R61/X61 WinXP驱动安装(二)" data-url="http://blog.liudongkai.com/2008/03/15/IBM-install-drivers-2/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#十五-、安装-UltraNav-driver-for-Windows-2000-XP"><span class="toc-text">十五 、安装 UltraNav driver for Windows 2000, XP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#十六-、安装-Hotkey-driver-for-Windows-Vista-XP-2000"><span class="toc-text">十六 、安装 Hotkey driver for Windows Vista, XP, 2000</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#十七-、安装-Bluetooth-with-Enhanced-Data-Rate-Software-for-Windows-XP-2000"><span class="toc-text">十七 、安装 Bluetooth with Enhanced Data Rate Software for Windows XP, 2000</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#十八-、安装-IBM-fingerprint-reader-software-for-Windows-2000-XP"><span class="toc-text">十八 、安装 IBM fingerprint reader software for Windows 2000, XP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#十九-、安装四合一读卡器驱动"><span class="toc-text">十九 、安装四合一读卡器驱动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二十-、安装-ThinkVantage-Active-Protection-System-for-Windows-Vista-32-bit-XP-2000"><span class="toc-text">二十 、安装 ThinkVantage Active Protection System for Windows Vista 32-bit, XP, 2000 　　</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二十一-、安装-Atmel-TPM-Trusted-Platform-Module-device-driver-for-Windows-Vista-32-bit-XP-2000"><span class="toc-text">二十一 、安装 Atmel TPM (Trusted Platform Module) device driver for Windows Vista 32-bit, XP, 2000</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二十二-、安装-EasyEject-Utility-for-Windows-Vista-XP-2000"><span class="toc-text">二十二 、安装 EasyEject Utility for Windows Vista, XP, 2000</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二十三-、安装-Presentation-Director-for-Windows-Vista-XP-2000"><span class="toc-text">二十三 、安装 Presentation Director for Windows Vista, XP, 2000</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二十四-、安装-Access-Help-online-User’s-Guide"><span class="toc-text">二十四 、安装 Access Help online User’s Guide</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二十五-、安装-Help-Center-for-Windows-Vista-XP-2000"><span class="toc-text">二十五 、安装 Help Center for Windows Vista, XP, 2000</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二十六-、安装-ThinkVantage-Productivity-Center"><span class="toc-text">二十六 、安装 ThinkVantage Productivity Center</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二十七-、安装-PCMCIA-Power-Policy-Registry-Patch"><span class="toc-text">二十七 、安装 PCMCIA Power Policy Registry Patch</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liudongkai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42337789-4', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'b3655049504c5e2d7c68'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

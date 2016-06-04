@@ -1,0 +1,659 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>自动处理备库错误 [MYSQL PATCH] | Dong&#39;s Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dong[東木]">
+    
+
+    
+    <meta name="description" content="备库因为某些错误停止时有发生，最常见的错误就是”HA_ERR_KEY_NOT_FOUND”和 “HA_ERR_FOUND_DUPP_KEY”.这既有可能是主备切换导致的，也可能是MySQL Bug导致的
+通常有两种办法来处理备库错误：
+
+设置 “sql_slave_skip_counter” 来忽略错误.
+set slave_exec_mode = ‘idempotent’ 来处理 “HA_ERR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自动处理备库错误 [MYSQL PATCH]">
+<meta property="og:url" content="http://blog.liudongkai.com/2013/08/01/mysql-smart-path-yinfeng/index.html">
+<meta property="og:site_name" content="Dong's Note">
+<meta property="og:description" content="备库因为某些错误停止时有发生，最常见的错误就是”HA_ERR_KEY_NOT_FOUND”和 “HA_ERR_FOUND_DUPP_KEY”.这既有可能是主备切换导致的，也可能是MySQL Bug导致的
+通常有两种办法来处理备库错误：
+
+设置 “sql_slave_skip_counter” 来忽略错误.
+set slave_exec_mode = ‘idempotent’ 来处理 “HA_ERR">
+<meta property="og:updated_time" content="2013-07-31T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自动处理备库错误 [MYSQL PATCH]">
+<meta name="twitter:description" content="备库因为某些错误停止时有发生，最常见的错误就是”HA_ERR_KEY_NOT_FOUND”和 “HA_ERR_FOUND_DUPP_KEY”.这既有可能是主备切换导致的，也可能是MySQL Bug导致的
+通常有两种办法来处理备库错误：
+
+设置 “sql_slave_skip_counter” 来忽略错误.
+set slave_exec_mode = ‘idempotent’ 来处理 “HA_ERR">
+<meta name="twitter:creator" content="@liudongkai">
+<link rel="publisher" href="100378260579772710000">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
+				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2013/08/01/mysql-smart-path-yinfeng/" title="自动处理备库错误 [MYSQL PATCH]" itemprop="url">自动处理备库错误 [MYSQL PATCH]</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2013-07-31T16:00:00.000Z" itemprop="datePublished"> 发表于 2013-08-01</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<p>备库因为某些错误停止时有发生，最常见的错误就是”HA_ERR_KEY_NOT_FOUND”和 “HA_ERR_FOUND_DUPP_KEY”.这既有可能是主备切换导致的，也可能是MySQL Bug导致的</p>
+<p>通常有两种办法来处理备库错误：</p>
+<ol>
+<li>设置 “sql_slave_skip_counter” 来忽略错误.</li>
+<li>set slave_exec_mode = ‘idempotent’ 来处理 “HA_ERR_FOUND_DUPP_KEY” (overwritten the record) 和”HA_ERR_KEY_NOT_FOUND”(简单的忽略掉错误).</li>
+</ol>
+<p>这两种方法都可能导致主备不一致</p>
+<p>如果你使用的是innodb存储引擎，并且使用的是ROW模式复制，那我们就可以fix这个Bug。</p>
+<p>很久之前我写了一个工具(<a href="http://code.google.com/p/relay-fetch/" target="_blank" rel="external">http://code.google.com/p/relay-fetch/</a> ，下面的slave_error_handler文件夹)可以用来处理这个问题。</p>
+<p>以下的patch则通过修改代码，为slave_exec_mode增加新的选项SMART，来自动处理。</p>
+<a id="more"></a>
+<p>思想很简单</p>
+<p>1) HA_ERR_KEY_NOT_FOUND<br>UPDATE_ROWS_EVENT: 先写记录的’Before Image’ ，然后再update<br>DELETE_ROWS_EVENT: 先写后删 , 或者直接忽略错误</p>
+<p>2) HA_ERR_FOUND_DUPP_KEY<br>WRITE_ROWS_EVENT: overwrite the record<br>对UPDATE_ROWS_EVENT导致的重复键错误暂不做处理。</p>
+<p>以下patch基于Percona Server 5.5.18：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line">Index: /PS5518/branches/PS-r1086-slave-auto-fix/sql/log_event.cc</span><br><span class="line">===================================================================</span><br><span class="line">— /PS5518/branches/PS-r1086-slave-auto-fix/sql/log_event.cc (revision 1136)</span><br><span class="line">+++ /PS5518/branches/PS-r1086-slave-auto-fix/sql/log_event.cc (revision 1180)</span><br><span class="line">@@ -8750,6 +8750,7 @@</span><br><span class="line">applying the event in the replace (idempotent) fashion.</span><br><span class="line">*/</span><br><span class="line">if ((slave_exec_mode == SLAVE_EXEC_MODE_IDEMPOTENT) ||</span><br><span class="line">+ (slave_exec_mode == SLAVE_EXEC_MODE_SMART) ||</span><br><span class="line">(m_table-&gt;s-&gt;db_type()-&gt;db_type == DB_TYPE_NDBCLUSTER))</span><br><span class="line">&#123;</span><br><span class="line">/*</span><br><span class="line">@@ -8829,6 +8830,7 @@</span><br><span class="line">m_table-&gt;next_number_field=0;</span><br><span class="line">m_table-&gt;auto_increment_field_not_null= FALSE;</span><br><span class="line">if ((slave_exec_mode == SLAVE_EXEC_MODE_IDEMPOTENT) ||</span><br><span class="line">+ (slave_exec_mode == SLAVE_EXEC_MODE_SMART) ||</span><br><span class="line">m_table-&gt;s-&gt;db_type()-&gt;db_type == DB_TYPE_NDBCLUSTER)</span><br><span class="line">&#123;</span><br><span class="line">m_table-&gt;file-&gt;extra(HA_EXTRA_NO_IGNORE_DUP_KEY);</span><br><span class="line">@@ -9124,7 +9126,9 @@</span><br><span class="line">Write_rows_log_event::do_exec_row(const Relay_log_info *const rli)</span><br><span class="line">&#123;</span><br><span class="line">DBUG_ASSERT(m_table != NULL);</span><br><span class="line">– int error= write_row(rli, slave_exec_mode == SLAVE_EXEC_MODE_IDEMPOTENT);</span><br><span class="line">+</span><br><span class="line">+ int error= write_row(rli, slave_exec_mode == SLAVE_EXEC_MODE_IDEMPOTENT ||</span><br><span class="line">+ slave_exec_mode == SLAVE_EXEC_MODE_SMART);</span><br><span class="line"></span><br><span class="line">if (error &amp;&amp; !thd-&gt;is_error())</span><br><span class="line">&#123;</span><br><span class="line">@@ -9662,7 +9666,19 @@</span><br><span class="line">Delete the record found, located in record[0]</span><br><span class="line">*/</span><br><span class="line">error= m_table-&gt;file-&gt;ha_delete_row(m_table-&gt;record[0]);</span><br><span class="line">+ &#125; else if ( (slave_exec_mode == SLAVE_EXEC_MODE_SMART) &amp;&amp;</span><br><span class="line">+ (error == HA_ERR_KEY_NOT_FOUND)) &#123;</span><br><span class="line">+ tmp_disable_binlog(rli-&gt;sql_thd);</span><br><span class="line">+ error = m_table-&gt;file-&gt;ha_write_row(m_table-&gt;record[0]) ||</span><br><span class="line">+ m_table-&gt;file-&gt;rnd_pos_by_record(m_table-&gt;record[0]);</span><br><span class="line">+</span><br><span class="line">+ reenable_binlog(rli-&gt;sql_thd);</span><br><span class="line">+ if (!error)</span><br><span class="line">+ error = m_table-&gt;file-&gt;ha_delete_row(m_table-&gt;record[0]);</span><br><span class="line">+ else</span><br><span class="line">+ error = HA_ERR_KEY_NOT_FOUND;</span><br><span class="line">&#125;</span><br><span class="line">+</span><br><span class="line">return error;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@@ -9782,6 +9798,17 @@</span><br><span class="line">int error= find_row(rli);</span><br><span class="line">if (error)</span><br><span class="line">&#123;</span><br><span class="line">+ if ((slave_exec_mode == SLAVE_EXEC_MODE_SMART) &amp;&amp;</span><br><span class="line">+ (error == HA_ERR_KEY_NOT_FOUND)) &#123;</span><br><span class="line">+ tmp_disable_binlog(rli-&gt;sql_thd);</span><br><span class="line">+ error = m_table-&gt;file-&gt;ha_write_row(m_table-&gt;record[0]) ||</span><br><span class="line">+ m_table-&gt;file-&gt;rnd_pos_by_record(m_table-&gt;record[0]);</span><br><span class="line">+ reenable_binlog(rli-&gt;sql_thd);</span><br><span class="line">+ if (error)</span><br><span class="line">+ error = HA_ERR_KEY_NOT_FOUND;</span><br><span class="line">+ &#125;</span><br><span class="line">+</span><br><span class="line">+ if (error) &#123;</span><br><span class="line">/*</span><br><span class="line">We need to read the second image in the event of error to be</span><br><span class="line">able to skip to the next pair of updates</span><br><span class="line">@@ -9789,6 +9816,7 @@</span><br><span class="line">m_curr_row= m_curr_row_end;</span><br><span class="line">unpack_current_row(rli);</span><br><span class="line">return error;</span><br><span class="line">+ &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">Index: /PS5518/branches/PS-r1086-slave-auto-fix/sql/sql_class.h</span><br><span class="line">===================================================================</span><br><span class="line">— /PS5518/branches/PS-r1086-slave-auto-fix/sql/sql_class.h (revision 1136)</span><br><span class="line">+++ /PS5518/branches/PS-r1086-slave-auto-fix/sql/sql_class.h (revision 1180)</span><br><span class="line">@@ -90,6 +90,7 @@</span><br><span class="line">enum enum_log_warnings_suppress &#123; log_warnings_suppress_1592 &#125;;</span><br><span class="line">enum enum_slave_exec_mode &#123; SLAVE_EXEC_MODE_STRICT,</span><br><span class="line">SLAVE_EXEC_MODE_IDEMPOTENT,</span><br><span class="line">+ SLAVE_EXEC_MODE_SMART,</span><br><span class="line">SLAVE_EXEC_MODE_LAST_BIT&#125;;</span><br><span class="line">enum enum_slave_type_conversions &#123; SLAVE_TYPE_CONVERSIONS_ALL_LOSSY,</span><br><span class="line">SLAVE_TYPE_CONVERSIONS_ALL_NON_LOSSY&#125;;</span><br><span class="line">Index: /PS5518/branches/PS-r1086-slave-auto-fix/sql/sys_vars.cc</span><br><span class="line">===================================================================</span><br><span class="line">— /PS5518/branches/PS-r1086-slave-auto-fix/sql/sys_vars.cc (revision 1136)</span><br><span class="line">+++ /PS5518/branches/PS-r1086-slave-auto-fix/sql/sys_vars.cc (revision 1180)</span><br><span class="line">@@ -1962,7 +1962,7 @@</span><br><span class="line">DEFAULT(FALSE));</span><br><span class="line"></span><br><span class="line">#ifdef HAVE_REPLICATION</span><br><span class="line">-static const char *slave_exec_mode_names[]= &#123;&quot;STRICT&quot;, &quot;IDEMPOTENT&quot;, 0&#125;;</span><br><span class="line">+static const char *slave_exec_mode_names[]= &#123;&quot;STRICT&quot;, &quot;IDEMPOTENT&quot;, &quot;SMART&quot;,0&#125;;</span><br><span class="line">static Sys_var_enum Slave_exec_mode(</span><br><span class="line">&quot;slave_exec_mode&quot;,</span><br><span class="line">&quot;Modes for how replication events should be executed. Legal values &quot;</span><br></pre></td></tr></table></figure>
+<p><em>原创文章，转载请注明： 转载自<a href="http://mysqllover.com/" target="_blank" rel="external">Simple Life</a></em></p>
+<p><em>本文链接地址: <a href="http://mysqllover.com/?p=9" target="_blank" rel="external">[MySQL Patch]自动处理备库错误</a></em></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Mysql/">Mysql</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Mysql/">Mysql</a><a href="/tags/patch/">patch</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://blog.liudongkai.com/2013/08/01/mysql-smart-path-yinfeng/" data-title="自动处理备库错误 [MYSQL PATCH] | Dong&#39;s Note" data-tsina="2003788463" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2013/08/02/mysql-smart-patch/" title="MySQL备库复制SQL线程中断问题及解决方法">
+  <strong>上一篇：</strong><br/>
+  <span>
+  MySQL备库复制SQL线程中断问题及解决方法</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2013/05/16/GoAgent-for-Mac-OS-X/"  title="GoAgent for Mac OS X教程">
+ <strong>下一篇：</strong><br/> 
+ <span>GoAgent for Mac OS X教程
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2013/08/01/mysql-smart-path-yinfeng/" data-title="自动处理备库错误 [MYSQL PATCH]" data-url="http://blog.liudongkai.com/2013/08/01/mysql-smart-path-yinfeng/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liudongkai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42337789-4', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'b3655049504c5e2d7c68'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

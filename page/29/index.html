@@ -1,0 +1,853 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Dong&#39;s Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dong[東木]">
+    
+
+    
+    <meta name="description" content="Dong&apos;s Note是一个基于Github和Hexo的静态Blog，希望用简单而清晰的写作方式Markdown分享自己的心得体会。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dong's Note">
+<meta property="og:url" content="http://blog.liudongkai.com/page/29/index.html">
+<meta property="og:site_name" content="Dong's Note">
+<meta property="og:description" content="Dong&apos;s Note是一个基于Github和Hexo的静态Blog，希望用简单而清晰的写作方式Markdown分享自己的心得体会。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dong's Note">
+<meta name="twitter:description" content="Dong&apos;s Note是一个基于Github和Hexo的静态Blog，希望用简单而清晰的写作方式Markdown分享自己的心得体会。">
+<meta name="twitter:creator" content="@liudongkai">
+<link rel="publisher" href="100378260579772710000">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
+				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2009/12/03/xmarks-network/" title="解决xmarks不能用的方法[zt]" itemprop="url">解决xmarks不能用的方法[zt]</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2009-12-02T16:00:00.000Z" itemprop="datePublished"> 发表于 2009-12-03</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>xmarks的在线书签居然不能用了，老是”problem syncing”，“网络超时错误”，下面介绍几个解决方法。</p>
+<ol>
+<li><p>修改 HOSTS</p>
+<p>将以下内容手工添加至C:WindowsSystem32etc的hosts文件里(linux在/etc)</p>
+<blockquote>
+<p>64.147.188.86 www.xmarks.com<br>64.147.188.92 api.xmarks.com<br>64.147.188.89 login.xmarks.com<br>64.147.188.87 sync.xmarks.com<br>64.147.188.86 static.xmarks.com<br>64.147.188.86 download.xmarks.com<br>64.147.188.86 my.xmarks.com</p>
+</blockquote>
+<p>如果还不行的话，左键点击 Xmarks 的图标，弹出设置菜单，选择“高级”，加密那个下拉框里面选择“全部加密”，再同步就成功了。<br>这个只是暂时性的解决，如果墙继续动一下的话可能就失效了，有FTP服务器的朋友可以考虑将XMarks的书签同步到自己的服务器去。</p>
+</li>
+<li><p>搭建自己的xmarks服务器<br>如果你有自己的虚拟主机或服务器的话，就可以使用xmarks的“使用自己的服务器”功能，方法如下：</p>
+<ul>
+<li>用FTP在网站根目录创建一个文件夹（如：xmarks），用来存放xmarks的书签数据。</li>
+<li>打开xmarks的“设置”窗口，“把Status”中的用户名和密码改成你的FTP的用户名和密码。</li>
+<li>进入“高级”，选中“使用自己的服务器”，然后<br>“地址”里填：<code>ftp://你的服务器IP/xmarks/xmarks.json</code><br>“Password URL”里填：ftp://你的服务器IP/xmarks/passwords.json</li>
+<li>点击“手动覆盖”区域里“强制覆盖服务器书签”后面的“上传”，xmarks将自动通过FTP把书签数据保存到你的服务器空间中。</li>
+</ul>
+<p><img src="http://photo.liudongkai.com/blog/152311Fk6.jpg" alt=""></p>
+<p><img src="http://photo.liudongkai.com/blog/152311btU.jpg" alt=""></p>
+<p>如果你没有自己的服务器，推荐你用下面的比较稳定的免费空间：<br><a href="http://www.v3host.be" target="_blank" rel="external">http://www.v3host.be</a><br><a href="http://www.cwahi.net" target="_blank" rel="external">http://www.cwahi.net</a><br><a href="http://www.website.org" target="_blank" rel="external">http://www.website.org</a></p>
+</li>
+<li><p>使用Weave Sync插件<a href="https://services.mozilla.com/" target="_blank" rel="external">https://services.mozilla.com/</a><br>这是由Mozilla实验室开发的一个Firefox同步插件，不仅能同步书签，还能同步Firefox中保存的密码、浏览历史、自动填表内容、Tab项和一些个人设置。</p>
+<p>登陆时会要求你输入在第一步注册时使用的邮箱、密码。另外还会要求输入一个Encryption Passphrase用于数据的加密，你可以输入一句好记、有个性、有意义的短语，如果怕麻烦就设成和密码一样的吧。这个短语不能更改（不确定），请和密 码一样牢记它，因为在以后的登录中也需要输入。</p>
+</li>
+<li><p>使用Gmarks（对中文支持不好）<br>Gmarks是一个基于Google Bookmarks的Firefox插件。</p>
+</li>
+<li><p>使用代理<br>很多地方都有相关的知识！！！</p>
+</li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Share/">Share</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Firefox/">Firefox</a><a href="/tags/Xmarks/">Xmarks</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2009/12/03/xmarks-network/#comments" class="ds-thread-count comments-count-link" data-thread-key="2009/12/03/xmarks-network/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2009/11/24/discuz-mysql-iconv-character-set/" title="discuz mysql 数据库编码转换latin1-&gt;utf8[ZT]" itemprop="url">discuz mysql 数据库编码转换latin1-&gt;utf8[ZT]</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2009-11-23T16:00:00.000Z" itemprop="datePublished"> 发表于 2009-11-24</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>帮朋友的论坛做了一次编码转换的工作。系统是windows 2003,mysql4.1 discuz 5<br>本来以为很简单，dump数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u root -p –opt –default-character-set=latin1 \</span><br><span class="line">–skip-set-charset olddb cdb_members &gt; d:\bak\cdb_members.sql</span><br></pre></td></tr></table></figure></p>
+<p>出来，用工具转一下编码，然后再导入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p –default-character-set=utf8 newdb &lt; d:\bak\cdb_members.sql</span><br></pre></td></tr></table></figure></p>
+<p>实际操作并没有想象的那么简单，最后解决的方案，也不是那么复杂。</p>
+<p>先说一下教训，建立数据库的时候，同一个应用，所有的编码一定要一致， 不然就是自寻烦恼，现在跟你说，你肯定说不好，但是有时候就是不注意。要迁移的这个论坛就有两种编码gbk和latin1，目标是迁移到utf8，里面 gbk的双字节数据全部是乱码，尝试改编码也读不出数据了，由于不是重要数据，后来就放弃转码了，据说原来就有乱码的问题。</p>
+<p>里面还遇到一个问题就是老的数据是更改过的，目标db是全新安装的，表结构不一致，好在新系统是老系统的子集，那么我就以老表为参照物，来改新db的表结构。</p>
+<p>导出用了<code>mysqldump</code>，这里要提的是<code>--default-character-set</code>，后边要跟数据表的编码，不然导出的数据可能会乱码。</p>
+<p>问题出在import，转编码后import，怎么也不成功，说什么mysql数据库gone away或者说duplicate,突然又一次成功，一看是因为建表语句的编码设置没有修改成utf8。</p>
+<p>转编码用的ultraedit的转换功能，后来怀疑ultraedit的转换出错，网上找了一个win版本的iconv装上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iconv -f ISO-8859-1 -t UTF-8 original.txt&gt; newfile.txt</span><br></pre></td></tr></table></figure></p>
+<p>问题依旧。其中有几个小表，直接用导出的sql粘贴到phpmyadmin里运行就可以了，但是会员和帖子表肯定不能用这个办法。</p>
+<p>还试用了把latin1的表修改字符，然后试图用convert转码<br><code>update cdb_members set username=CONVERT(username USING utf8)</code>，也没成功。</p>
+<p>后来当我一筹莫展准备缴械的时候，想起了另外两个功能 <code>SELECT INTO OUTFILE</code> 和 <code>LOAD DATA INFILE</code> 是另外一种导入导出的方法。</p>
+<p>贴出使用的sql：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">uid,nickname,site,alipay,</span><br><span class="line">icq,qq,yahoo,msn,taobao,</span><br><span class="line">location,customstatus,</span><br><span class="line">medals,avatar,avatarwidth,</span><br><span class="line">avatarheight,bio,signature,</span><br><span class="line">sightml,ignorepm,groupterms,</span><br><span class="line">authstr INTO OUTFILE &apos;d:/cdb_memberfields.txt&apos;</span><br><span class="line">FIELDS TERMINATED BY &quot;,&quot;</span><br><span class="line">OPTIONALLY ENCLOSED BY &quot;&quot;&quot;&quot;</span><br><span class="line">LINES TERMINATED BY &quot;\r\n&quot;</span><br><span class="line">FROM gench2.cdb_memberfields;</span><br></pre></td></tr></table></figure></p>
+<p>然后转换<code>d:/cdb_memberfields.txt</code> 的编码为utf8,可以用ultraedit或者iconv，然后load到新数据库的表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LOAD DATA INFILE &apos;d:/cdb_memberfields.txt&apos; INTO TABLE cdb_memberfields</span><br><span class="line">FIELDS TERMINATED BY &quot;,&quot;</span><br><span class="line">OPTIONALLY ENCLOSED BY &quot;&quot;&quot;&quot;</span><br><span class="line">LINES TERMINATED BY &quot;\r\n&quot;;</span><br></pre></td></tr></table></figure></p>
+<p>上面还有一个问题是TERMINATED,ENCLOSED的选取，如果选的不对，会load失败。</p>
+<p>附1：共迁移了如下表<br>cdb_attachments<br>cdb_forums<br>cdb_memberfields<br>cdb_members<br>cdb_onlinetime<br>cdb_posts<br>cdb_threads</p>
+<p>附2：google到的链接<br><a href="http://gentoo-wiki.com/TIP_Convert_latin1_to_UTF-8_in_MySQL" target="_blank" rel="external">http://gentoo-wiki.com/TIP_Convert_latin1_to_UTF-8_in_MySQL</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Mysql/">Mysql</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Mysql/">Mysql</a><a href="/tags/iconv/">iconv</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2009/11/24/discuz-mysql-iconv-character-set/#comments" class="ds-thread-count comments-count-link" data-thread-key="2009/11/24/discuz-mysql-iconv-character-set/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2009/11/24/mysql-load-data-infile/" title="mysql load data infile[zt]" itemprop="url">mysql load data infile[zt]</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2009-11-23T16:00:00.000Z" itemprop="datePublished"> 发表于 2009-11-24</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h3 id="如何提高mysql-load-data-infile的速度"><a href="#如何提高mysql-load-data-infile的速度" class="headerlink" title="如何提高mysql load data infile的速度"></a>如何提高mysql load data infile的速度</h3><p>测试数据2.5G，共有数据9427567条。用的mysql的large服务器的配置。<br>load一次需要大概10分钟左右。<br>建的表用的是MYISAM，调整了几个session的参数值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SET SESSION BULK_INSERT_BUFFER_SIZE=256217728;</span><br><span class="line">SET SESSION MYISAM_SORT_BUFFER_SIZE=256217728;</span><br></pre></td></tr></table></figure>
+<p>运行结果如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Query OK, 9427567 rows affected, 1558 warnings (3 min 55.21 sec)</span><br><span class="line">Records: 9427567 Deleted: 0 Skipped: 0 Warnings: 0</span><br></pre></td></tr></table></figure></p>
+<p>google到的,还可以:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set global KEY_BUFFER_SIZE=256217728;</span><br><span class="line">alter table tablename disable keys;</span><br></pre></td></tr></table></figure></p>
+<h3 id="如何load数据里面带反斜杠-backslash-”-’-的数据"><a href="#如何load数据里面带反斜杠-backslash-”-’-的数据" class="headerlink" title="如何load数据里面带反斜杠(backslash)”\’ 的数据"></a>如何load数据里面带反斜杠(backslash)”\’ 的数据</h3><p>由于如果你没有指定FIELDS子句，则默认值为假设您写下如下语句时的值：<br><code>FIELDS TERMINATED BY &#39;\t&#39; ENCLOSED BY &quot; ESCAPED BY &#39;\\&#39;</code><br>所以，如果你的数据里面有反斜杠(backslash)”\”的时候，数据会出现被截断的问题。出现这种问题，只要写上如下的fields子句即可<br><code>FIELDS TERMINATED BY &#39;\t&#39; ENCLOSED BY &quot; ESCAPED BY &quot;</code></p>
+<h3 id="如何load不同编码的数据"><a href="#如何load不同编码的数据" class="headerlink" title="如何load不同编码的数据"></a>如何load不同编码的数据</h3><p>原来用的4.X的mysql，我是select INTO OUTFILE ，只后用iconv,或者其他软件来做。可以<a href="http://www.micronsky.com/2009/11/discuz-mysql-database-charset-convert-latin1-utf8/" target="_blank" rel="external">参考这里</a>，但是由于这次数据大，用ultraedit等软件打开都要半天。好在新版的mysql可以增加一个新的参数<br><code>CHARACTER SET gbk</code><br>我的文本数据是GBK的编码，数据表是utf8的，用这种方法测试成功。</p>
+<h3 id="如何load的时候只insert特定的列"><a href="#如何load的时候只insert特定的列" class="headerlink" title="如何load的时候只insert特定的列"></a>如何load的时候只insert特定的列</h3><p>比如表里面有比元数据多的列。可以在load的时候指定要插入的字段名字。</p>
+<p>示例的代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">LOAD DATA INFILE &apos;~/data.txt&apos;</span><br><span class="line">INTO TABLE fb0505</span><br><span class="line">CHARACTER SET  gbk</span><br><span class="line">FIELDS TERMINATED BY &apos;\t&apos; ENCLOSED BY &quot; ESCAPED BY &quot;</span><br><span class="line">LINES TERMINATED BY &apos;\n&apos; STARTING BY &quot;</span><br><span class="line">(seller_id,fb_type,fb_date,item_url);</span><br></pre></td></tr></table></figure></p>
+<p>其中表fb0505里面还有一列是id。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Mysql/">Mysql</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Mysql/">Mysql</a><a href="/tags/load-data/">load data</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2009/11/24/mysql-load-data-infile/#comments" class="ds-thread-count comments-count-link" data-thread-key="2009/11/24/mysql-load-data-infile/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2009/11/07/Firefox-flashgot-AddRef/" title="解决Firefox3下Flashgot的&quot;AddRef&quot;问题" itemprop="url">解决Firefox3下Flashgot的&quot;AddRef&quot;问题</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2009-11-06T16:00:00.000Z" itemprop="datePublished"> 发表于 2009-11-07</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>Firefox3通过Flashgot插件调用调用迅雷（去广告的）时出现了AddRef的问题，即下载对话框如下：</p>
+<p><img src="http://photo.liudongkai.com/blog/image_3.png" alt=""></p>
+<p>捣鼓了一把，发现解决方案如下：</p>
+<ol>
+<li>使用Firefox3打开<code>about:config</code>页面（即在地址栏中输入<code>about:config</code>后回车）；</li>
+<li>找到<code>flashgot.autoReferrer</code>项，将其值改为<code>false</code>，问题就搞定了。</li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Share/">Share</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Firefox/">Firefox</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2009/11/07/Firefox-flashgot-AddRef/#comments" class="ds-thread-count comments-count-link" data-thread-key="2009/11/07/Firefox-flashgot-AddRef/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2009/11/06/DD-WRT-Release-notes/" title="DD-WRT版本说明" itemprop="url">DD-WRT版本说明</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2009-11-05T16:00:00.000Z" itemprop="datePublished"> 发表于 2009-11-06</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>Micro (最小版) 只能用于2MB FLASH</p>
+<p>Mini (迷你版) 可用于4MB FLASH</p>
+<p>Standard (STD标准版) 可用于4MB FLASH</p>
+<p>VOIP (带VOIP功能版)</p>
+<p>Mega (完整版) 只能用在8MB FLASH</p>
+<p>其他可以不用管. 还有就是NEWD(新驱动)和VINT(旧驱动)之分.</p>
+<p>cmd下输入：</p>
+<blockquote>
+<p>1） telnet 192.168.1.1<br>2） 输入用户名和密码<br>3） nvram show|grep corerev</p>
+</blockquote>
+<p>如果显示<br>wl0_corerev=4<br>则一定要使用 VINT 版</p>
+<p>如果显示<br>wl0_corerev &gt;=5 &lt;=7<br>则 VINT 版 和 NEWD 版都可用，建议使用 VINT 版</p>
+<p>如果显示<br>wl0_corerev &gt;=8<br>则 VINT 版 和 NEWD 版都可用</p>
+<p>如果显示<br>wl0_corerev &gt;9<br>则一定要使用 NEWD 版</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Share/">Share</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/DD-WRT/">DD-WRT</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2009/11/06/DD-WRT-Release-notes/#comments" class="ds-thread-count comments-count-link" data-thread-key="2009/11/06/DD-WRT-Release-notes/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/page/28/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="page-number" href="/page/28/">28</a><span class="page-number current">29</span><a class="page-number" href="/page/30/">30</a><a class="page-number" href="/page/31/">31</a><span class="space">&hellip;</span><a class="page-number" href="/page/56/">56</a><a class="extend next" rel="next" href="/page/30/">Next<span></span></a>
+  </nav>
+
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42337789-4', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'b3655049504c5e2d7c68'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+ </html>

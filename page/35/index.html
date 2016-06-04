@@ -1,0 +1,825 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Dong&#39;s Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dong[東木]">
+    
+
+    
+    <meta name="description" content="Dong&apos;s Note是一个基于Github和Hexo的静态Blog，希望用简单而清晰的写作方式Markdown分享自己的心得体会。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dong's Note">
+<meta property="og:url" content="http://blog.liudongkai.com/page/35/index.html">
+<meta property="og:site_name" content="Dong's Note">
+<meta property="og:description" content="Dong&apos;s Note是一个基于Github和Hexo的静态Blog，希望用简单而清晰的写作方式Markdown分享自己的心得体会。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dong's Note">
+<meta name="twitter:description" content="Dong&apos;s Note是一个基于Github和Hexo的静态Blog，希望用简单而清晰的写作方式Markdown分享自己的心得体会。">
+<meta name="twitter:creator" content="@liudongkai">
+<link rel="publisher" href="100378260579772710000">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
+				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2008/08/26/sed-newline/" title="sed 关于换行符 “\n” 的处理" itemprop="url">sed 关于换行符 “\n” 的处理</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2008-08-25T16:00:00.000Z" itemprop="datePublished"> 发表于 2008-08-26</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <blockquote>
+<p>我有一段文本有多行<br>如：<br>12<br>23<br>34</p>
+<p>我想把它换成一行<br>结果如下： 122334</p>
+</blockquote>
+<p>vi中 ：<code>%s/n//g</code> 可以合并成一行</p>
+<p>但是使用命令 <code>sed &#39;s/n//g&#39;</code> 对于换行符不起作用。</p>
+<p>因为sed是对行操作，所以没有换行。<br>解决方案：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tr -d &apos;n&apos;</span><br></pre></td></tr></table></figure></p>
+<p>真的需要sed<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sed -nr &apos; H;</span><br><span class="line">$ &#123;</span><br><span class="line">x;</span><br><span class="line">s/n//g;</span><br><span class="line">p</span><br><span class="line">&#125;&apos;</span><br></pre></td></tr></table></figure></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/sed/">sed</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2008/08/26/sed-newline/#comments" class="ds-thread-count comments-count-link" data-thread-key="2008/08/26/sed-newline/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2008/08/24/shell-loop-control/" title="SHELL之循环语句" itemprop="url">SHELL之循环语句</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2008-08-23T16:00:00.000Z" itemprop="datePublished"> 发表于 2008-08-24</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <ol>
+<li>if语句</li>
+<li>交互选择</li>
+<li>循环判断</li>
+<li>数值运算符</li>
+<li>…………</li>
+</ol>
+<p>if语句格式:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if [ 条件 ]</span><br><span class="line">then</span><br><span class="line"> command</span><br><span class="line">else</span><br><span class="line"> command</span><br><span class="line">fi</span><br></pre></td></tr></table></figure></p>
+<p>交互选择（N可以为*）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">echo -e &quot;提示语言，后边有光标提供输入&quot;c</span><br><span class="line">read VAR</span><br><span class="line">case $VAR in</span><br><span class="line">Y)</span><br><span class="line"> command</span><br><span class="line">;;</span><br><span class="line">N)</span><br><span class="line"> command</span><br><span class="line">;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure></p>
+<p>对条件进行循环检查，成立则处理，否则继续检查<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">a=1</span><br><span class="line">while [ &quot;$a&quot; = &quot;1&quot; ]</span><br><span class="line">do</span><br><span class="line">fileno=`ls -l /list/filename* |wc -l`</span><br><span class="line">if [ &quot;$fileno&quot; = &quot;10&quot; ]</span><br><span class="line">then</span><br><span class="line"> a=10</span><br><span class="line"> command</span><br><span class="line">else</span><br><span class="line"> a=1</span><br><span class="line"> sleep 300</span><br><span class="line">fi</span><br><span class="line">done</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">grep -v www filename 过滤不包含</span><br><span class="line">grep www filename 过滤包含</span><br><span class="line">uniq -u 过滤没有相同行</span><br><span class="line">uniq -d 过滤具有相同行</span><br><span class="line">sort 排序</span><br><span class="line">paste -d”;” filename1 filename2 把文件并列合并并且以;间隔</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">if [ &quot;a&quot; = &quot;10&quot; ] #a=10</span><br><span class="line">[ &quot;a&quot; -ne &quot;10&quot; ] 同上一行</span><br><span class="line">[ -s filename ] 文件大小大于0</span><br><span class="line">-s 文件大小大于0返回真</span><br><span class="line">-d 是一个目录是返回真</span><br><span class="line">-e 文件或目录存在返回真</span><br><span class="line">-g 存在是SGID返回真</span><br><span class="line">-h 文件是连接文件返回真</span><br><span class="line">-k 文件是粘滞位返回真</span><br><span class="line">-r 文件或目录存在并可读时返回真</span><br><span class="line">-w 文件或目录存在并可写时返回真</span><br><span class="line">-u 文件是SUID返回真</span><br><span class="line">-x 文件是可执行的返回真</span><br><span class="line"></span><br><span class="line">-eq 等于</span><br><span class="line">-ne 不等于</span><br><span class="line">-lt 小于</span><br><span class="line">-le 小于等于</span><br><span class="line">-gt 大于</span><br><span class="line">-ge 大于等于</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2*3+4|bc 计算前面的数据</span><br><span class="line">ping -w 2 www.163.com 测试2两次</span><br><span class="line">对上一次指令结果判断</span><br><span class="line">$?=0 为真</span><br><span class="line">$?=1 为假</span><br></pre></td></tr></table></figure>
+<p>给SHELL后边加参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">XXXX=`echo | wc -c`</span><br><span class="line">cat $HOME/list/file.txt 1&gt;/dev/null 2&gt;/dev/null</span><br><span class="line">OK=$?</span><br><span class="line">if [ &quot;&quot; = &quot;&quot; ] || [ &quot;$XXXX&quot; -lt &quot;4&quot; ] || [ &quot;$OK&quot; -ne &quot;0&quot; ]</span><br><span class="line">then</span><br><span class="line"> echo &quot;参数没有输入，输入位数不等于3，file.txt不存在，请重新输入&quot;</span><br><span class="line">exit</span><br><span class="line">fi</span><br></pre></td></tr></table></figure></p>
+<p>一个循环检查<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">line=1</span><br><span class="line">for i in `cat bb`</span><br><span class="line">do</span><br><span class="line">qq=`echo &quot;scale=2;$i*100&quot; | bc | awk -F. &quot;&#123;print &#125;&quot;`</span><br><span class="line">if [ &quot;$qq&quot; -ge &quot;75&quot; ]</span><br><span class="line">then</span><br><span class="line">sed -n &quot;$line&quot;p temp.1 &gt;&gt; bad.1</span><br><span class="line">fi</span><br><span class="line">line=`expr $line + 1` ###每次加1</span><br></pre></td></tr></table></figure></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Shell/">Shell</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2008/08/24/shell-loop-control/#comments" class="ds-thread-count comments-count-link" data-thread-key="2008/08/24/shell-loop-control/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2008/08/18/EditPlus-remove-blank-lines/" title="在EditPlus中删除空行" itemprop="url">在EditPlus中删除空行</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2008-08-17T16:00:00.000Z" itemprop="datePublished"> 发表于 2008-08-18</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>经常从网上粘贴或下载一篇文章，需要打印时，发现有大量多余的空行占据了许多篇幅，需要删除。这些空行要么不包含任何字符，要么包含了许多空格、制表符(Tab)。如果文章比较长，那么手工删除空行就成为一件颇费鼠标和精力的事。难道就没有别的办法？答案是：有！</p>
+<p>我们可以借助文本编辑器软件EditPlus、UltraEdit实现。EditPlus、UltraEdit是常 见的共享软件，几乎所有软件下载网站都提供下载。由于EditPlus的操作更容易上手，但UltraEdit更为常用，所以本文先介绍在EditPlus的操作，再介绍UltraEdit。</p>
+<ol>
+<li><p>在EditPlus中删除空行</p>
+<p>启动EditPlus，打开待处理的文件。需要注意，必须是纯文本文件，如果是Word文档，需要先粘贴到纯文本文件中。然后，步骤如下：搜索-替换-正则表达式-当前文件-点击查找内容后面的向下箭头-选单-行首-范围内的字符-制表符-0或多次匹配-换行-形成<code>^[t]*n</code></p>
+<p>Replace with组合框保持空，表示删除查找到的内容。单击Replace按钮逐个行删除空行，或单击Replace All按钮删除全部空行(注意：EditPlus和UltraEdit均存在Replace All不能一次性完全删除空行的问题，可能是程序BUG，需要多按几次按钮)。</p>
+<p>对于熟悉EditPlus的朋友，可以直接在Find what中输入正则表达式<code>^[ ]*</code> ，注意 前有空格符。</p>
+</li>
+<li><p>在UltraEdit中删除空行<br>使用UltraEdit的原理一样，但是UltraEdit没有提供菜单方式，所以需要手工输入正则表达式，而且UltraEdit的正则表达式符号与EditPlus不同。</p>
+<p>用UltraEdit打开文件后，选择Search菜单的Replace命令。在Replace对话框中，选中Regular Expression复选框，并在Find what中输入：<code>%[ ^t]++^p</code>，注意^t之前有空格。该表达式字符含义与EditPlus的相对应。然后，单击Start或Replace All按钮，进行替换删除空行</p>
+</li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Share/">Share</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/EditPlus/">EditPlus</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2008/08/18/EditPlus-remove-blank-lines/#comments" class="ds-thread-count comments-count-link" data-thread-key="2008/08/18/EditPlus-remove-blank-lines/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2008/08/13/chinese-football/" title="足球队的比较–绝非侮辱国足！[zt]" itemprop="url">足球队的比较–绝非侮辱国足！[zt]</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2008-08-12T16:00:00.000Z" itemprop="datePublished"> 发表于 2008-08-13</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <ol>
+<li><p>停球<br>把球停到自己脚下10毫米的后卫，是巴西球员；<br>把球停到自己脚下10厘米的后卫，是西班牙球员；<br>把球停到自己脚下10分米的后卫，是德国球员；<br>把球停到自己脚下100米，并形成射门，迫使对方门将做出扑救的后卫，是中国球员。</p>
+</li>
+<li><p>传球<br>能够做出50米外精确长传，找到场上队友的球员，是英国球员；<br>能够做出5米内精巧二过一的球员，是阿根廷球员；<br>能够做出5米内短传传丢，并且后卫前锋隔着50米就玩二过一的球员，是中国球员。</p>
+</li>
+<li><p>射门<br>能够在30米外劲射破门的球员，是德国球员；<br>能够通过精妙配合在门前3米打空门得手的球员，是葡萄牙球员；<br>能够在罚点球时把角旗打翻的球员，是中国球员</p>
+</li>
+<li><p>带球<br>能够把球从本方底线带到对方半场的球员，是荷兰球员；<br>能够把球从本方底线带到对方底线的球员，是巴西球员；<br>能够把球从本方球员脚下抢断，并带到本方球门里的，是中国球员。<br>能够把球带得像亨利一样的，是李Y大帝。</p>
+</li>
+</ol>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2008/08/13/chinese-football/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Share/">Share</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2008/08/13/chinese-football/#comments" class="ds-thread-count comments-count-link" data-thread-key="2008/08/13/chinese-football/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2008/08/12/StarCraft2-not-support-multiple-core-CPU/" title="《星际争霸2》不支持多核心处理器" itemprop="url">《星际争霸2》不支持多核心处理器</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
+		
+  <p class="article-time">
+    <time datetime="2008-08-11T16:00:00.000Z" itemprop="datePublished"> 发表于 2008-08-12</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>Starcraftwire.net近日在一篇多核心处理器研究文章中指出，看起来《星际争霸2》并不能发挥多个处理核心的优势。</p>
+<p>虽然双核心现在已经成了绝对主流选择，但在用户中单核心仍然大量存在，而且不要忘了，《星际争霸2》从2003年就投入开发了，而双核心处理器直到2005年才出现，而且刚开始的时候价格奇高，很少有人用得起，直到最近两年才走入寻常百姓家。</p>
+<p>很显然，《星际争霸2》最初是面向单核心系统开发的，而如果想对双核心乃至多核心进行优化，必然要对游戏引擎进行大刀阔斧地改动，大大延长开发周期。开发速度本来就不是暴雪的“强项”，再这样大动干戈，玩家就不知道要等到什么时候了。</p>
+<p>除了《魔兽世界》对内存要求较高，暴雪的游戏一般都不是硬件杀手，普通配置的玩家也能轻松享受，看起来《星际争霸2》也要延续这一优良传统，这也应该是玩家之福了。</p>
+<p>当然，多核心系统仍然是最佳选择。即使不能让你的游戏提速，也会给多任务操作带来很大便利。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Share/">Share</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/StarCraft/">StarCraft</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2008/08/12/StarCraft2-not-support-multiple-core-CPU/#comments" class="ds-thread-count comments-count-link" data-thread-key="2008/08/12/StarCraft2-not-support-multiple-core-CPU/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/page/34/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><a class="page-number" href="/page/34/">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/">36</a><a class="page-number" href="/page/37/">37</a><span class="space">&hellip;</span><a class="page-number" href="/page/56/">56</a><a class="extend next" rel="next" href="/page/36/">Next<span></span></a>
+  </nav>
+
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42337789-4', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'b3655049504c5e2d7c68'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+ </html>
