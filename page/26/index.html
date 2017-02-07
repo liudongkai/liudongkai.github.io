@@ -1,101 +1,573 @@
+<!doctype html>
 
- <!DOCTYPE HTML>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
+
+
   
-    <title>Dong&#39;s Note</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="Dong[東木]">
-    
 
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
     
-    <meta name="description" content="Dong&apos;s Note是一个基于Github和Hexo的静态Blog，希望用简单而清晰的写作方式Markdown分享自己的心得体会。">
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="The palest ink is better than the best memory.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Dong's Note">
 <meta property="og:url" content="http://blog.liudongkai.com/page/26/index.html">
 <meta property="og:site_name" content="Dong's Note">
-<meta property="og:description" content="Dong&apos;s Note是一个基于Github和Hexo的静态Blog，希望用简单而清晰的写作方式Markdown分享自己的心得体会。">
+<meta property="og:description" content="The palest ink is better than the best memory.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dong's Note">
-<meta name="twitter:description" content="Dong&apos;s Note是一个基于Github和Hexo的静态Blog，希望用简单而清晰的写作方式Markdown分享自己的心得体会。">
-<meta name="twitter:creator" content="@liudongkai">
-<link rel="publisher" href="100378260579772710000">
+<meta name="twitter:description" content="The palest ink is better than the best memory.">
 
-    
-    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/jacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
-    
-    <link rel="stylesheet" href="/css/style.css">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '5094676',
+      author: '東木'
+    },
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'ce7e9a1bea855698ef0fbc7d812004ed',
+      indexName: 'blog.liudongkai.com',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/page/26/"/>
+
+
+
+
+
+  <title> Dong's Note </title>
 </head>
 
-  <body>
-    <header>
-      
-<div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
-				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">Home</a></li>
-					
-						<li><a href="/archives">Archives</a></li>
-					
-						<li><a href="/about">About</a></li>
-					
-					<li>
- 					
-						<form class="search">
-							<label>Search</label>
-						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
-						</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
-    </header>
-    <div id="container">
-      <div id="main">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-   
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42337789-4', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
+  
+
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Dong's Note</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
     
-      <a href="/2010/02/21/CentOS-LAMP-installation/" title="CentOS 5.3上安装Apache+php+Mysql+phpMyAdmin" itemprop="url">CentOS 5.3上安装Apache+php+Mysql+phpMyAdmin</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
-		
-  <p class="article-time">
-    <time datetime="2010-02-20T16:00:00.000Z" itemprop="datePublished"> 发表于 2010-02-21</time>
+      <p class="site-subtitle"></p>
     
-  </p>
-</header>
-    <div class="article-content">
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
         
-        <ol>
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/02/22/mysql-error-1307/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2010/02/22/mysql-error-1307/" itemprop="url">
+                  mysql存储过程错误代码1307,”Failed to create procedure …”
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2010-02-22T00:00:00+08:00">
+                2010-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2010/02/22/mysql-error-1307/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2010/02/22/mysql-error-1307/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>将mysql数据库中的表proc删除，或者改名</p>
+<p>执行以下代码重建该表<br>————————————————————————<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE `proc` (</div><div class="line">`db` char(64) character set utf8 collate utf8_bin NOT NULL default &apos;&apos;,</div><div class="line">`name` char(64) NOT NULL default &apos;&apos;,</div><div class="line">`type` enum(&apos;FUNCTION&apos;,&apos;PROCEDURE&apos;) NOT NULL,</div><div class="line">`specific_name` char(64) NOT NULL default &apos;&apos;,</div><div class="line">`language` enum(&apos;SQL&apos;) NOT NULL default &apos;SQL&apos;,</div><div class="line">`sql_data_access` enum(&apos;CONTAINS_SQL&apos;,&apos;NO_SQL&apos;,&apos;READS_SQL_DATA&apos;,&apos;MODIFIES_SQL_DATA&apos;) NOT NULL default &apos;CONTAINS_SQL&apos;,</div><div class="line">`is_deterministic` enum(&apos;YES&apos;,&apos;NO&apos;) NOT NULL default &apos;NO&apos;,</div><div class="line">`security_type` enum(&apos;INVOKER&apos;,&apos;DEFINER&apos;) NOT NULL default &apos;DEFINER&apos;,</div><div class="line">`param_list` blob NOT NULL,</div><div class="line">`returns` char(64) NOT NULL default &apos;&apos;,</div><div class="line">`body` longblob NOT NULL,</div><div class="line">`definer` char(77) character set utf8 collate utf8_bin NOT NULL default &apos;&apos;,</div><div class="line">`created` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,</div><div class="line">`modified` timestamp NOT NULL default &apos;0000-00-00 00:00:00&apos;,</div><div class="line">`sql_mode` set(&apos;REAL_AS_FLOAT&apos;,&apos;PIPES_AS_CONCAT&apos;,&apos;ANSI_QUOTES&apos;,&apos;IGNORE_SPACE&apos;,&apos;NOT_USED&apos;,&apos;ONLY_FULL_GROUP_BY&apos;,\</div><div class="line">&apos;NO_UNSIGNED_SUBTRACTION&apos;,&apos;NO_DIR_IN_CREATE&apos;,&apos;POSTGRESQL&apos;,&apos;ORACLE&apos;,&apos;MSSQL&apos;,&apos;DB2&apos;,&apos;MAXDB&apos;,&apos;NO_KEY_OPTIONS&apos;,\</div><div class="line">&apos;NO_TABLE_OPTIONS&apos;,&apos;NO_FIELD_OPTIONS&apos;,&apos;GBASE80&apos;,&apos;GBASE81&apos;,&apos;ANSI&apos;,&apos;NO_AUTO_VALUE_ON_ZERO&apos;,\</div><div class="line">&apos;NO_BACKSLASH_ESCAPES&apos;,&apos;STRICT_TRANS_TABLES&apos;,&apos;STRICT_ALL_TABLES&apos;,&apos;NO_ZERO_IN_DATE&apos;,&apos;NO_ZERO_DATE&apos;,\</div><div class="line">&apos;INVALID_DATES&apos;,\</div><div class="line">&apos;ERROR_FOR_DIVISION_BY_ZERO&apos;,&apos;TRADITIONAL&apos;,&apos;NO_AUTO_CREATE_USER&apos;,&apos;HIGH_NOT_PRECEDENCE&apos;) NOT NULL default &apos;&apos;,</div><div class="line">`comment` char(64) character set utf8 collate utf8_bin NOT NULL default &apos;&apos;,</div><div class="line">`character_set_client` char(32) character set utf8 collate utf8_bin default NULL,</div><div class="line">`collation_connection` char(32) character set utf8 collate utf8_bin default NULL,</div><div class="line">`db_collation` char(32) character set utf8 collate utf8_bin default NULL,</div><div class="line">`body_utf8` longblob,</div><div class="line">PRIMARY KEY (`db`,`name`,`type`)</div><div class="line">) DEFAULT CHARSET=utf8 COMMENT=&apos;Stored Procedures&apos;;</div></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2010/02/22/mysql-error-1307/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/02/21/CentOS-LAMP-installation/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2010/02/21/CentOS-LAMP-installation/" itemprop="url">
+                  CentOS 5.3上安装Apache+php+Mysql+phpMyAdmin
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2010-02-21T00:00:00+08:00">
+                2010-02-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2010/02/21/CentOS-LAMP-installation/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2010/02/21/CentOS-LAMP-installation/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <ol>
 <li><p>系统下载</p>
 <p>CentOS 开发社区已发布了新的 5.3 版本。CentOS 5.3 基于 Red Hat Enterpris Linux 5.3.0，其中包括 Kernel 2.6.18、Apache 2.2、PHP 5.1.6、MySQL 5.0、PostgreSQL 8、GNOME 2.16、KDE 3.5、OpenOffice.org 2.3、Firefox 3.0、Evolution 2.12 等等。此外，CentOS 5.3 更新了美工设计，并根据用户的请求恢复了 Contrib 仓库。</p>
 <p>CentOS 5.3 支持 i386 及 x86_64 架构，其 ISO 映像可从以下地址获取。<br><a href="http://isoredirect.centos.org/centos/5/isos/">http://isoredirect.centos.org/centos/5/isos/</a></p>
@@ -106,140 +578,319 @@
 <li><p>安装Apache+php+Mysql</p>
 </li>
 </ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2010/02/21/CentOS-LAMP-installation/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
-        
-        <p class="article-more-link">
-          
-            <a href="/2010/02/21/CentOS-LAMP-installation/#more">Read More</a>
-          
-       </p>
+      
     </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>
-</div>
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
 
 
-  <div class="article-tags">
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
   
-  <span></span> <a href="/tags/CentOS/">CentOS</a><a href="/tags/LAMP/">LAMP</a>
-  </div>
 
-</div>
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/02/12/expat-error/">
 
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
 
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
 
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2010/02/21/CentOS-LAMP-installation/#comments" class="ds-thread-count comments-count-link" data-thread-key="2010/02/21/CentOS-LAMP-installation/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2010/02/12/expat-error/" title="error – expat.h: No such file or directory" itemprop="url">error – expat.h: No such file or directory</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
-		
-  <p class="article-time">
-    <time datetime="2010-02-11T16:00:00.000Z" itemprop="datePublished"> 发表于 2010-02-12</time>
-    
-  </p>
-</header>
-    <div class="article-content">
+      <header class="post-header">
+
         
-        <p>While trying to get a perl utility working, I had to install a bunch of prerequisite perl modules on my CentOS 5 VPS. One requirement was XML::Parser. However when I tried to install it like so:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost]perl -MCPAN -e shell</span><br><span class="line">cpan&gt; install XML::Parser</span><br></pre></td></tr></table></figure>
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2010/02/12/expat-error/" itemprop="url">
+                  error – expat.h: No such file or directory
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2010-02-12T00:00:00+08:00">
+                2010-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2010/02/12/expat-error/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2010/02/12/expat-error/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>While trying to get a perl utility working, I had to install a bunch of prerequisite perl modules on my CentOS 5 VPS. One requirement was XML::Parser. However when I tried to install it like so:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@localhost]perl -MCPAN -e shell</div><div class="line">cpan&gt; install XML::Parser</div></pre></td></tr></table></figure>
 <p>I received errors with the below being the most relevent bit…</p>
 <blockquote>
 <p>cp Expat.pm ../blib/lib/XML/Parser/Expat.pm<br>/usr/bin/perl /usr/lib/perl5/5.8.8/ExtUtils/xsubpp -noprototypes -typemap /usr/lib/perl5/5.8.8/ExtUtils/typemap -typemap typemap Expat.xs &gt; Expat.xsc &amp;&amp; mv Expat.xsc Expat.c<br>gcc -c -D_REENTRANT -D_GNU_SOURCE -fno-strict-aliasing -pipe -Wdeclaration-after-statement -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -I/usr/include/gdbm -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector –param=ssp-buffer-size=4 -m32 -march=i386 -mtune=generic -fasynchronous-unwind-tables -DVERSION=\”2.36\” -DXS_VERSION=\”2.36\” -fPIC “-I/usr/lib/perl5/5.8.8/i386-linux-thread-multi/CORE” Expat.c<br>Expat.xs:12:19: error: expat.h: No such file or directory<br>Expat.xs:60: error: expected specifier-qualifier-list before ‘XML_Parser’</p>
 </blockquote>
 <p>To make a long story short, the following was the quick fix…</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install expat-devel</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install expat-devel</div></pre></td></tr></table></figure>
 
-        
-        
-        <p class="article-more-link">
           
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/cpan/">cpan</a><a href="/tags/error/">error</a><a href="/tags/expat/">expat</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2010/02/12/expat-error/#comments" class="ds-thread-count comments-count-link" data-thread-key="2010/02/12/expat-error/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2010/02/09/VirtualBox-Network-Windows/" title="windows 下安装 VirtualBox 网络配置[zt]" itemprop="url">windows 下安装 VirtualBox 网络配置[zt]</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
-		
-  <p class="article-time">
-    <time datetime="2010-02-08T16:00:00.000Z" itemprop="datePublished"> 发表于 2010-02-09</time>
-    
-  </p>
-</header>
-    <div class="article-content">
         
-        <p>最近想研究下linux</p>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/02/09/VirtualBox-Network-Windows/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2010/02/09/VirtualBox-Network-Windows/" itemprop="url">
+                  windows 下安装 VirtualBox 网络配置[zt]
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2010-02-09T00:00:00+08:00">
+                2010-02-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index">
+                    <span itemprop="name">Share</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2010/02/09/VirtualBox-Network-Windows/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2010/02/09/VirtualBox-Network-Windows/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>最近想研究下linux</p>
 <p>基本思路是在现有的windows系统下，装个虚拟机，虚拟机上装 linux。</p>
 <p>虚拟机选择了 Sun xVM VirtualBox ，理由是界面友好，操作方便。下载地址 www.sun.com</p>
 <p>虚拟机安装很向导化，不多阐述。</p>
@@ -252,565 +903,472 @@
 <li>Internal</li>
 <li>Host-only Adapter</li>
 </ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2010/02/09/VirtualBox-Network-Windows/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
-        
-        <p class="article-more-link">
-          
-            <a href="/2010/02/09/VirtualBox-Network-Windows/#more">Read More</a>
-          
-       </p>
+      
     </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Share/">Share</a>
-</div>
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
 
 
-  <div class="article-tags">
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
   
-  <span></span> <a href="/tags/VirtualBox/">VirtualBox</a>
-  </div>
 
-</div>
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/02/08/usbkey-for-windows-7/">
 
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
 
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
 
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2010/02/09/VirtualBox-Network-Windows/#comments" class="ds-thread-count comments-count-link" data-thread-key="2010/02/09/VirtualBox-Network-Windows/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2010/02/08/usbkey-for-windows-7/" title="解决K宝U盾等网上银行不能在windows 7 下登录问题" itemprop="url">解决K宝U盾等网上银行不能在windows 7 下登录问题</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
-		
-  <p class="article-time">
-    <time datetime="2010-02-07T16:00:00.000Z" itemprop="datePublished"> 发表于 2010-02-08</time>
-    
-  </p>
-</header>
-    <div class="article-content">
+      <header class="post-header">
+
         
-        <p>在远景里找到的一位网友贴的解决办法，可以解决目前部份银行使用K宝U盾无法登陆网银的问题。方法很实用，不用修改程序文件或浏览器的安全级别，只需手动在注册表里指定网银CSP的一个文件路径。我只试了农行的华大K宝，其它的如（建行、工行、交行、广发、光大、兴业等）按跟贴的朋友尝试也是可行的。方法差不多相同。下面是原贴内容。</p>
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2010/02/08/usbkey-for-windows-7/" itemprop="url">
+                  解决K宝U盾等网上银行不能在windows 7 下登录问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2010-02-08T00:00:00+08:00">
+                2010-02-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index">
+                    <span itemprop="name">Share</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2010/02/08/usbkey-for-windows-7/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2010/02/08/usbkey-for-windows-7/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在远景里找到的一位网友贴的解决办法，可以解决目前部份银行使用K宝U盾无法登陆网银的问题。方法很实用，不用修改程序文件或浏览器的安全级别，只需手动在注册表里指定网银CSP的一个文件路径。我只试了农行的华大K宝，其它的如（建行、工行、交行、广发、光大、兴业等）按跟贴的朋友尝试也是可行的。方法差不多相同。下面是原贴内容。</p>
 <p>目前许多windows 7 IE8用户无法使用USBkey登入网银。该方法支持农行，建行，工行，光大，交行，广发，各股份制商业银行，各城市商业银行，各农村商业银行等多家银行网银，权当抛砖引玉，欢迎各位网友积极测试，以便供后人参考！</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2010/02/08/usbkey-for-windows-7/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
-        
-        <p class="article-more-link">
-          
-            <a href="/2010/02/08/usbkey-for-windows-7/#more">Read More</a>
-          
-       </p>
+      
     </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Share/">Share</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/usbkey/">usbkey</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2010/02/08/usbkey-for-windows-7/#comments" class="ds-thread-count comments-count-link" data-thread-key="2010/02/08/usbkey-for-windows-7/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2010/02/08/find-real-url-for-skydrive-by-javascript/" title="一段脚本代码找出Skydrive的真实外链地址" itemprop="url">一段脚本代码找出Skydrive的真实外链地址</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
-		
-  <p class="article-time">
-    <time datetime="2010-02-07T16:00:00.000Z" itemprop="datePublished"> 发表于 2010-02-08</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javascript:var%20n=document.title.replace(&apos;%20-%20Windows%20Live&apos;,&apos;&apos;);var%20id=((location.hash==&apos;&apos;)?window.selfPageData.currentItemHash:location.hash).replace(&apos;#resId/&apos;,&apos;&apos;);var%20u=&apos;http://storage.live.com/items/&apos;+id+&apos;?filename=&apos;+encodeURI(n);var%20p=&apos;http://&apos;+document.location.host+&apos;/redir.aspx?page=self&amp;resId=&apos;+id;var%20e=&apos;&lt;input%20onmouseover=%22this.select();%22%20onclick=%22this.select();%22%20value=%22&apos;;var%20f=&apos;%22%20style=%22width:580px%22%20type=%22text%22%20/&gt;&lt;br&gt;&apos;;var%20d=&apos;by%20(&lt;a%20href=%22http://rpsh.net/%22&gt;Rpsh&lt;/a&gt;)&apos;;var%20c=&apos;\u5916\u94FE\u5730\u5740:&apos;+d+e+u+f+&apos;\u5206\u4EAB\u5730\u5740:&apos;+e+p+f;var%20a=document.getElementById(&apos;content&apos;);var%20g=(a.getElementsByTagName(&apos;p&apos;)[0]);var%20b=g?g:document.createElement(&apos;P&apos;);b.innerHTML=c;a.insertBefore(b,a.firstChild);void(0)</span><br></pre></td></tr></table></figure>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
+    <div>
+      
     </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Share/">Share</a>
-</div>
+    <div>
+      
+    </div>
 
 
-  <div class="article-tags">
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
   
-  <span></span> <a href="/tags/JavaScript/">JavaScript</a><a href="/tags/SkyDrive/">SkyDrive</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2010/02/08/find-real-url-for-skydrive-by-javascript/#comments" class="ds-thread-count comments-count-link" data-thread-key="2010/02/08/find-real-url-for-skydrive-by-javascript/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
-  <nav id="page-nav" class="clearfix">
-    <a class="extend prev" rel="prev" href="/page/25/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><a class="page-number" href="/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/page/56/">56</a><a class="extend next" rel="next" href="/page/27/">Next<span></span></a>
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
-</div>
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-  
-<div class="categorieslist">
-	<p class="asidetitle">分类</p>
-		<ul>
-		
-		  
-			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
-		  
-		
-		</ul>
-</div>
+          
+          </div>
+          
 
 
-  
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
-			
-		
-		</ul>
-</div>
+          
 
-
-  <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
-    <ul>
+        </div>
         
-          <li>
-            
-            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
-            
-          </li>
-        
-    </ul>
-</div>
-
+          
   
-
-
-  <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
-    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
-</div>
-
-
-</aside>
-</div>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> Hello ,I&#39;m Larry Page in Google. <br/>
-			This is my blog,believe it or not.</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
-		
-		
-		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
-		
-		
-		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
-		
-		
-		
-		
-		
-		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
-		
-		
-		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
-		
-	</div>
-			
-		
+  </div>
 
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
-		
-		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
-		
-		
-		</p>
-</div>
-</footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="東木" />
+          <p class="site-author-name" itemprop="name">東木</p>
+          <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+        </div>
+        <nav class="site-state motion-element">
         
-    }
-  });
-});
-</script>
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">281</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">196</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
 
 
+      </section>
+
+      
+
+    </div>
+  </aside>
 
 
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2007 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+</div>
 
 
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
 
 
+        
 
+        
+      </div>
+    </footer>
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
 <script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
   }
-}); 
 </script>
 
 
 
-<!-- Analytics Begin -->
-
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-42337789-4', 'auto');  
-ga('send', 'pageview');
-</script>
 
 
 
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
 
 
 
-<!-- Analytics End -->
-
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
+  
 
 
-<!-- MathJax End -->
 
-<!-- Tiny_search Begin -->
 
-<script>
-var option = {
-  engineKey: 'b3655049504c5e2d7c68'
-};
-(function(w,d,t,u,n,s,e){
-  s = d.createElement(t);
-  s.src = u;
-  s.async = 1;
-  w[n] = function(r){
-    w[n].opts = r;
-  };
-  e = d.getElementsByTagName(t)[0];
-  e.parentNode.insertBefore(s, e);
-})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
-_ts(option);
-</script>
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
-<!-- Tiny_search End -->
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
-  </body>
- </html>
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liudongkai"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+</body>
+</html>

@@ -1,17 +1,92 @@
+<!doctype html>
 
- <!DOCTYPE HTML>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
+
+
   
-    <title>MYSQL复制参数binlog_format | Dong&#39;s Note</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="Dong[東木]">
-    
 
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
     
-    <meta name="description" content="MySQL Replication复制可以是基于一条语句(Statement level)，也可以是基于一条记录(Row level)，可以在MySQL的配置参数中设定这个复制级别，不同复制级别的设置会影响到Master端的bin-log记录成不同的形式。
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="binlog," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="MySQL Replication复制可以是基于一条语句(Statement level)，也可以是基于一条记录(Row level)，可以在MySQL的配置参数中设定这个复制级别，不同复制级别的设置会影响到Master端的bin-log记录成不同的形式。
 Row Level：日志中会记录成每一行数据被修改的形式，然后在slave端再对相同的数据进行修改。
 优点：在row level模式下，bin">
 <meta property="og:type" content="article">
@@ -27,87 +102,317 @@ Row Level：日志中会记录成每一行数据被修改的形式，然后在sl
 <meta name="twitter:description" content="MySQL Replication复制可以是基于一条语句(Statement level)，也可以是基于一条记录(Row level)，可以在MySQL的配置参数中设定这个复制级别，不同复制级别的设置会影响到Master端的bin-log记录成不同的形式。
 Row Level：日志中会记录成每一行数据被修改的形式，然后在slave端再对相同的数据进行修改。
 优点：在row level模式下，bin">
-<meta name="twitter:creator" content="@liudongkai">
-<link rel="publisher" href="100378260579772710000">
 
-    
-    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/jacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
-    
-    <link rel="stylesheet" href="/css/style.css">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '5094676',
+      author: '東木'
+    },
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'ce7e9a1bea855698ef0fbc7d812004ed',
+      indexName: 'blog.liudongkai.com',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/2012/03/02/mysql-binlog-format/"/>
+
+
+
+
+
+  <title> MYSQL复制参数binlog_format | Dong's Note </title>
 </head>
 
-  <body>
-    <header>
-      
-<div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
-				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">Home</a></li>
-					
-						<li><a href="/archives">Archives</a></li>
-					
-						<li><a href="/about">About</a></li>
-					
-					<li>
- 					
-						<form class="search">
-							<label>Search</label>
-						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
-						</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
   
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42337789-4', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
     
-      <a href="/2012/03/02/mysql-binlog-format/" title="MYSQL复制参数binlog_format" itemprop="url">MYSQL复制参数binlog_format</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
-		
-  <p class="article-time">
-    <time datetime="2012-03-01T16:00:00.000Z" itemprop="datePublished"> 发表于 2012-03-02</time>
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Dong's Note</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
     
-  </p>
-</header>
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Row-Level："><span class="toc-number">1.</span> <span class="toc-text">Row Level：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#优点："><span class="toc-number">1.0.1.</span> <span class="toc-text">优点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#缺点："><span class="toc-number">1.0.2.</span> <span class="toc-text">缺点：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Statement-Level"><span class="toc-number">2.</span> <span class="toc-text">Statement Level:</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#优点：-1"><span class="toc-number">2.0.1.</span> <span class="toc-text">优点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#缺点：-1"><span class="toc-number">2.0.2.</span> <span class="toc-text">缺点：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Note"><span class="toc-number">3.</span> <span class="toc-text">Note:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SBR和RBR各自的优缺点"><span class="toc-number">4.</span> <span class="toc-text">SBR和RBR各自的优缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#SBR-的优点："><span class="toc-number">4.0.1.</span> <span class="toc-text">SBR 的优点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#SBR-的缺点："><span class="toc-number">4.0.2.</span> <span class="toc-text">SBR 的缺点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#RBR-的优点："><span class="toc-number">4.0.3.</span> <span class="toc-text">RBR 的优点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#RBR-的缺点："><span class="toc-number">4.0.4.</span> <span class="toc-text">RBR 的缺点：</span></a></li></ol></li></ol></li></ol>
-		
-		</div>
-		
-		<p>MySQL Replication复制可以是基于一条语句(Statement level)，也可以是基于一条记录(Row level)，可以在MySQL的配置参数中设定这个复制级别，不同复制级别的设置会影响到Master端的bin-log记录成不同的形式。</p>
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/03/02/mysql-binlog-format/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                MYSQL复制参数binlog_format
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2012-03-02T00:00:00+08:00">
+                2012-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2012/03/02/mysql-binlog-format/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2012/03/02/mysql-binlog-format/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>MySQL Replication复制可以是基于一条语句(Statement level)，也可以是基于一条记录(Row level)，可以在MySQL的配置参数中设定这个复制级别，不同复制级别的设置会影响到Master端的bin-log记录成不同的形式。</p>
 <h3 id="Row-Level："><a href="#Row-Level：" class="headerlink" title="Row Level："></a>Row Level：</h3><p>日志中会记录成每一行数据被修改的形式，然后在slave端再对相同的数据进行修改。</p>
 <h5 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h5><p>在row level模式下，bin-log中可以不记录执行的sql语句的上下文相关的信息，仅仅只需要记录那一条记录被修改了，修改成什么样了。所以row level的日志内容会非常清楚的记录下每一行数据修改的细节，非常容易理解。而且不会出现某些特定情况下的存储过程，或function，以及trigger的调用和触发无法被正确复制的问题。</p>
 <h5 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h5><p>row level下，所有的执行的语句当记录到日志中的时候，都将以每行记录的修改来记录，这样可能会产生大量的日志内容，比如有这样一条update语句：update product set owner_member_id = ‘b’ where owner_member_id = ‘a’，执行之后，日志中记录的不是这条update语句所对应额事件(MySQL以事件的形式来记录bin-log日志)，而是这条语句所更新的每一条记录的变化情况，这样就记录成很多条记录被更新的很多个事件。自然，bin-log日志的量就会很大。尤其是当执行alter table之类的语句的时候，产生的日志量是惊人的。因为MySQL对于alter table之类的表结构变更语句的处理方式是整个表的每一条记录都需要变动，实际上就是重建了整个表。那么该表的每一条记录都会被记录到日志中。</p>
@@ -196,14 +501,14 @@ Row Level：日志中会记录成每一行数据被修改的形式，然后在sl
 <li>如果是采用 GRANT，REVOKE，SET PASSWORD 等管理语句来做的话，那么无论如何都采用 SBR 模式记录<br>注：采用 RBR 模式后，能解决很多原先出现的主键重复问题<br><strong>mysql binlog格式与事务级别read committed的关系</strong></li>
 </ol>
 <p>binlog有三种格式，分别是STATEMENT、row、mixed。每种格式的区别可以去看复制那篇文章，那它分别与read committed 有什么关系呢。下面以例子来分析</p>
-<p>1、数据库版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; status</span><br><span class="line">mysql  Ver 14.14 Distrib 5.1.45, for unknown-linux-gnu (x86_64) using  EditLine wrapper</span><br><span class="line">Connection id:          2</span><br><span class="line">Current database:       xinying</span><br><span class="line">Current user:           root@localhost</span><br><span class="line">SSL:                    Not in use</span><br><span class="line">Current pager:          stdout</span><br><span class="line">Using outfile:          &apos;&apos;</span><br><span class="line">Using delimiter:        ;</span><br><span class="line">Server version:         5.1.45-VS-log XinYing</span><br><span class="line">Protocol version:       10</span><br><span class="line">Connection:             Localhost via UNIX socket</span><br><span class="line">Insert id:              2</span><br><span class="line">Server characterset:    latin1</span><br><span class="line">Db     characterset:    latin1</span><br><span class="line">Client characterset:    latin1</span><br><span class="line">Conn.  characterset:    latin1</span><br><span class="line">UNIX socket:            /tmp/mysql.sock</span><br><span class="line">Uptime:                 1 hour 40 min 14 sec</span><br></pre></td></tr></table></figure></p>
-<p>2、改变事务级别为read committed<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;set session transaction isolation level read committed;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<p>1、数据库版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">mysql&gt; status</div><div class="line">mysql  Ver 14.14 Distrib 5.1.45, for unknown-linux-gnu (x86_64) using  EditLine wrapper</div><div class="line">Connection id:          2</div><div class="line">Current database:       xinying</div><div class="line">Current user:           root@localhost</div><div class="line">SSL:                    Not in use</div><div class="line">Current pager:          stdout</div><div class="line">Using outfile:          &apos;&apos;</div><div class="line">Using delimiter:        ;</div><div class="line">Server version:         5.1.45-VS-log XinYing</div><div class="line">Protocol version:       10</div><div class="line">Connection:             Localhost via UNIX socket</div><div class="line">Insert id:              2</div><div class="line">Server characterset:    latin1</div><div class="line">Db     characterset:    latin1</div><div class="line">Client characterset:    latin1</div><div class="line">Conn.  characterset:    latin1</div><div class="line">UNIX socket:            /tmp/mysql.sock</div><div class="line">Uptime:                 1 hour 40 min 14 sec</div></pre></td></tr></table></figure></p>
+<p>2、改变事务级别为read committed<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysql&gt;set session transaction isolation level read committed;</div><div class="line">Query OK, 0 rows affected (0.00 sec)</div></pre></td></tr></table></figure></p>
 <p>3、改变二进制日志格式</p>
 <p>mysql&gt;set binlog_format=STATEMENT;<br>Query OK, 0 rows affected (0.00 sec)</p>
-<p>4、创建测试表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;CREATE TABLE `slevin` (</span><br><span class="line">    -&gt;`id` int(10) NOT NULL AUTO_INCREMENT,</span><br><span class="line">    -&gt;`book` char(10) DEFAULT NULL,</span><br><span class="line">    -&gt;PRIMARY KEY (`id`)</span><br><span class="line">    -&gt;) ENGINE=InnoDB;</span><br><span class="line">Query OK, 0 rows affected (0.03 sec)</span><br></pre></td></tr></table></figure></p>
-<p>5、插入数据测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;insert into slevin(book) values(&apos;wuli&apos;);</span><br><span class="line">ERROR 1598 (HY000): Binary logging not possible. Message: Transaction level &apos;READ-COMMITTED&apos; in InnoDB is not safe for binlog mode &apos;STATEMENT&apos;</span><br></pre></td></tr></table></figure></p>
-<p>看到没，提示出错，那我们尝试把事务基本改为REPEATABLE READ<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;set session transaction isolation level REPEATABLE READ;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;insert into slevin(book) values(&apos;wuli&apos;);</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br></pre></td></tr></table></figure></p>
-<p>改个事务级别就成功了，那试试仍旧把它改为read committed，把binlog格式改了试试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;set session transaction isolation level read committed;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;set session binlog_format=row;   #改为行格式</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;insert into slevin(book) values(&apos;wuli&apos;);</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;set session binlog_format=mixed; #改为混合格式</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;insert into slevin(book) values(&apos;wuli&apos;);</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<p>4、创建测试表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysql&gt;CREATE TABLE `slevin` (</div><div class="line">    -&gt;`id` int(10) NOT NULL AUTO_INCREMENT,</div><div class="line">    -&gt;`book` char(10) DEFAULT NULL,</div><div class="line">    -&gt;PRIMARY KEY (`id`)</div><div class="line">    -&gt;) ENGINE=InnoDB;</div><div class="line">Query OK, 0 rows affected (0.03 sec)</div></pre></td></tr></table></figure></p>
+<p>5、插入数据测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysql&gt;insert into slevin(book) values(&apos;wuli&apos;);</div><div class="line">ERROR 1598 (HY000): Binary logging not possible. Message: Transaction level &apos;READ-COMMITTED&apos; in InnoDB is not safe for binlog mode &apos;STATEMENT&apos;</div></pre></td></tr></table></figure></p>
+<p>看到没，提示出错，那我们尝试把事务基本改为REPEATABLE READ<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mysql&gt;set session transaction isolation level REPEATABLE READ;</div><div class="line">Query OK, 0 rows affected (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt;insert into slevin(book) values(&apos;wuli&apos;);</div><div class="line">Query OK, 1 row affected (0.00 sec)</div></pre></td></tr></table></figure></p>
+<p>改个事务级别就成功了，那试试仍旧把它改为read committed，把binlog格式改了试试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">mysql&gt;set session transaction isolation level read committed;</div><div class="line">Query OK, 0 rows affected (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt;set session binlog_format=row;   #改为行格式</div><div class="line">Query OK, 0 rows affected (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt;insert into slevin(book) values(&apos;wuli&apos;);</div><div class="line">Query OK, 1 row affected (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt;set session binlog_format=mixed; #改为混合格式</div><div class="line">Query OK, 0 rows affected (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt;insert into slevin(book) values(&apos;wuli&apos;);</div><div class="line">Query OK, 1 row affected (0.00 sec)</div></pre></td></tr></table></figure></p>
 <p>把上面改为两种格式都成功，唯独STATEMENT格式不行，所以以后要注意read committed与binlog格式的关系，否则会导致插入不了数据。为何会导致这种情况呢，那是因为read committed可能会导致不可重复读，也就是说可以读取到后面进入并提交的数据，如果基于STATEMENT格式的话，会导致主从数据不一样，因为STATEMENT是基于SQL语句的复制模式。另外设置innodb_locks_unsafe_for_binlog=1 ,binlog也要设为row格式。</p>
 <p><strong>UUID做主键分析</strong></p>
 <p>大概使用MySQL的人，百分之九九以上的人会使用Autoincrement ID做主键，这是可以理解的，因为MySQL的自增ID效率很高，使用也很方便。那么剩下的百分之一的人使用什么做主键呢？</p>
@@ -211,7 +516,7 @@ Row Level：日志中会记录成每一行数据被修改的形式，然后在sl
 <p>据说在Oracle的圈子里，如果谁用自增ID做主键是要被鄙视的，主键最自然的选择就是UUID。</p>
 <p>那么我们先看看什么是UUID？</p>
 <p>简单的说，UUID是指在一台机器上生成的数字，它保证对在同一时空中的所有机器都是唯一的。在UUID的算法中，可能会用到诸如网卡MAC地址，IP，主机名，进程ID等信息以保证其独立性。</p>
-<p>如果你的MySQL版本不太老的话，键入 SELECT UUID(); 输出的就是UUID，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select uuid();</span><br><span class="line">+--------------------------------------+</span><br><span class="line">| uuid()                               |</span><br><span class="line">+--------------------------------------+</span><br><span class="line">| 54b4c01f-dce0-102a-a4e0-462c07a00c5e |</span><br><span class="line">+--------------------------------------+</span><br></pre></td></tr></table></figure></p>
+<p>如果你的MySQL版本不太老的话，键入 SELECT UUID(); 输出的就是UUID，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select uuid();</div><div class="line">+--------------------------------------+</div><div class="line">| uuid()                               |</div><div class="line">+--------------------------------------+</div><div class="line">| 54b4c01f-dce0-102a-a4e0-462c07a00c5e |</div><div class="line">+--------------------------------------+</div></pre></td></tr></table></figure></p>
 <p>现在大家应该对UUID有一个比较直观的认识了，我们来看看UUID的优缺点分别是什么。</p>
 <p><strong>优点</strong>：</p>
 <p>能够保证独立性，程序可以在不同的数据库间迁移，效果不受影响。</p>
@@ -223,545 +528,373 @@ Row Level：日志中会记录成每一行数据被修改的形式，然后在sl
 <p>如果上面说的UUID的所谓缺点都不成立的话，那么是否使用UUID做主键，唯一的问题就是效率了。据说在PostgreSQL等数据库里，都有专门的UUID类型，在这样的数据库里，使用UUID做主键，效率没有任何问题，可惜在MySQL里没有这样的字段，如果想在MySQL里保存UUID做主键，一般是使用CHAR(36)来模拟，因为不是一个原生的UUID类型，所以主键的效率到底如何有待测试，另外，UUID做主键的效率和UUID本身的算法实现也有很大关系。</p>
 <p>另外，对于InnoDB这种聚集主键类型的引擎来说，数据会按照主键进行排序，由于UUID的无序性，InnoDB会产生巨大的IO压力，此时不适合使用UUID做物理主键，可以把它作为逻辑主键，物理主键依然使用自增ID。</p>
 <p><a href="http://hi.baidu.com/thinkinginlamp/blog/item/c609d10979710e81d0581b60.html" target="_blank" rel="external">http://hi.baidu.com/thinkinginlamp/blog/item/c609d10979710e81d0581b60.html</a><br><a href="http://xinying.blog.51cto.com/441770/314203" target="_blank" rel="external">http://xinying.blog.51cto.com/441770/314203</a></p>
-  
-	</div>
-		<footer class="article-footer clearfix">
-<div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Mysql/">Mysql</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/binlog/">binlog</a>
-  </div>
-
-</div>
-
-
-
-	<div class="article-share" id="share">
-	
-	  <div data-url="http://blog.liudongkai.com/2012/03/02/mysql-binlog-format/" data-title="MYSQL复制参数binlog_format | Dong&#39;s Note" data-tsina="2003788463" class="share clearfix">
-	  </div>
-	
-	</div>
-
-
-</footer>
-
-   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2012/03/07/shell-meaning-of-parameters/" title="Bash shell中的位置参数$#,$*,$@,$0,$1,$2…及特殊参数$?,$-等的含义">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Bash shell中的位置参数$#,$*,$@,$0,$1,$2…及特殊参数$?,$-等的含义</span>
-</a>
-</div>
-
-
-<div class="next">
-<a href="/2012/03/02/mysql-function-uuid/"  title="MySQL UUID函数的详解[zt]">
- <strong>下一篇：</strong><br/> 
- <span>MySQL UUID函数的详解[zt]
-</span>
-</a>
-</div>
-
-</nav>
-
-	
-<section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2012/03/02/mysql-binlog-format/" data-title="MYSQL复制参数binlog_format" data-url="http://blog.liudongkai.com/2012/03/02/mysql-binlog-format/"></div>
-</section>
-
-
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
- 
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Row-Level："><span class="toc-number">1.</span> <span class="toc-text">Row Level：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#优点："><span class="toc-number">1.0.1.</span> <span class="toc-text">优点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#缺点："><span class="toc-number">1.0.2.</span> <span class="toc-text">缺点：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Statement-Level"><span class="toc-number">2.</span> <span class="toc-text">Statement Level:</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#优点：-1"><span class="toc-number">2.0.1.</span> <span class="toc-text">优点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#缺点：-1"><span class="toc-number">2.0.2.</span> <span class="toc-text">缺点：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Note"><span class="toc-number">3.</span> <span class="toc-text">Note:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SBR和RBR各自的优缺点"><span class="toc-number">4.</span> <span class="toc-text">SBR和RBR各自的优缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#SBR-的优点："><span class="toc-number">4.0.1.</span> <span class="toc-text">SBR 的优点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#SBR-的缺点："><span class="toc-number">4.0.2.</span> <span class="toc-text">SBR 的缺点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#RBR-的优点："><span class="toc-number">4.0.3.</span> <span class="toc-text">RBR 的优点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#RBR-的缺点："><span class="toc-number">4.0.4.</span> <span class="toc-text">RBR 的缺点：</span></a></li></ol></li></ol></li></ol>
- 
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-  
-<div class="categorieslist">
-	<p class="asidetitle">分类</p>
-		<ul>
-		
-		  
-			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
-		  
-		
-		</ul>
-</div>
-
-
-  
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
-			
-		
-		</ul>
-</div>
-
-
-  <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
-    <ul>
-        
-          <li>
-            
-            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
-            
-          </li>
-        
-    </ul>
-</div>
-
-  
-
-
-  <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
-    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
-</div>
-
-
-</aside>
-</div>
-    </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> Hello ,I&#39;m Larry Page in Google. <br/>
-			This is my blog,believe it or not.</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
-		
-		
-		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
-		
-		
-		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
-		
-		
-		
-		
-		
-		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
-		
-		
-		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
-		
-	</div>
-			
-		
-
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
-		
-		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
-		
-		
-		</p>
-</div>
-</footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
       
-      $('#toc.toc-aside').css('display', 'none');
+    </div>
+
+    <div>
+      
         
-    }
-  });
-});
-</script>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/binlog/" rel="tag"># binlog</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2012/03/02/mysql-function-uuid/" rel="next" title="MySQL UUID函数的详解[zt]">
+                <i class="fa fa-chevron-left"></i> MySQL UUID函数的详解[zt]
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2012/03/07/shell-meaning-of-parameters/" rel="prev" title="Bash shell中的位置参数$#,$*,$@,$0,$1,$2…及特殊参数$?,$-等的含义">
+                Bash shell中的位置参数$#,$*,$@,$0,$1,$2…及特殊参数$?,$-等的含义 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2012/03/02/mysql-binlog-format/"
+           data-title="MYSQL复制参数binlog_format" data-url="http://blog.liudongkai.com/2012/03/02/mysql-binlog-format/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="東木" />
+          <p class="site-author-name" itemprop="name">東木</p>
+          <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">281</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">196</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Row-Level："><span class="nav-number">1.</span> <span class="nav-text">Row Level：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#优点："><span class="nav-number">1.0.1.</span> <span class="nav-text">优点：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#缺点："><span class="nav-number">1.0.2.</span> <span class="nav-text">缺点：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Statement-Level"><span class="nav-number">2.</span> <span class="nav-text">Statement Level:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#优点：-1"><span class="nav-number">2.0.1.</span> <span class="nav-text">优点：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#缺点：-1"><span class="nav-number">2.0.2.</span> <span class="nav-text">缺点：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Note"><span class="nav-number">3.</span> <span class="nav-text">Note:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SBR和RBR各自的优缺点"><span class="nav-number">4.</span> <span class="nav-text">SBR和RBR各自的优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#SBR-的优点："><span class="nav-number">4.0.1.</span> <span class="nav-text">SBR 的优点：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SBR-的缺点："><span class="nav-number">4.0.2.</span> <span class="nav-text">SBR 的缺点：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RBR-的优点："><span class="nav-number">4.0.3.</span> <span class="nav-text">RBR 的优点：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RBR-的缺点："><span class="nav-number">4.0.4.</span> <span class="nav-text">RBR 的缺点：</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2007 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
 
 <script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
-</script>
-
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-
-  $('.hoverqrcode').hide();
-
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
-</script>
-
-
-
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"liudongkai"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script> 
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
   }
-}); 
 </script>
 
 
 
-<!-- Analytics Begin -->
-
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-42337789-4', 'auto');  
-ga('send', 'pageview');
-</script>
 
 
 
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
 
 
 
-<!-- Analytics End -->
-
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
+  
 
 
-<!-- MathJax End -->
 
-<!-- Tiny_search Begin -->
 
-<script>
-var option = {
-  engineKey: 'b3655049504c5e2d7c68'
-};
-(function(w,d,t,u,n,s,e){
-  s = d.createElement(t);
-  s.src = u;
-  s.async = 1;
-  w[n] = function(r){
-    w[n].opts = r;
-  };
-  e = d.getElementsByTagName(t)[0];
-  e.parentNode.insertBefore(s, e);
-})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
-_ts(option);
-</script>
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
-<!-- Tiny_search End -->
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
-  </body>
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liudongkai"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+</body>
 </html>

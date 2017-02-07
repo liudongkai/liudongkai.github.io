@@ -1,257 +1,909 @@
+<!doctype html>
 
- <!DOCTYPE HTML>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
+
+
   
-    <title>Dong&#39;s Note</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="Dong[東木]">
-    
 
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
     
-    <meta name="description" content="Dong&apos;s Note是一个基于Github和Hexo的静态Blog，希望用简单而清晰的写作方式Markdown分享自己的心得体会。">
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="The palest ink is better than the best memory.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Dong's Note">
 <meta property="og:url" content="http://blog.liudongkai.com/page/40/index.html">
 <meta property="og:site_name" content="Dong's Note">
-<meta property="og:description" content="Dong&apos;s Note是一个基于Github和Hexo的静态Blog，希望用简单而清晰的写作方式Markdown分享自己的心得体会。">
+<meta property="og:description" content="The palest ink is better than the best memory.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dong's Note">
-<meta name="twitter:description" content="Dong&apos;s Note是一个基于Github和Hexo的静态Blog，希望用简单而清晰的写作方式Markdown分享自己的心得体会。">
-<meta name="twitter:creator" content="@liudongkai">
-<link rel="publisher" href="100378260579772710000">
+<meta name="twitter:description" content="The palest ink is better than the best memory.">
 
-    
-    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/jacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
-    
-    <link rel="stylesheet" href="/css/style.css">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '5094676',
+      author: '東木'
+    },
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'ce7e9a1bea855698ef0fbc7d812004ed',
+      indexName: 'blog.liudongkai.com',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/page/40/"/>
+
+
+
+
+
+  <title> Dong's Note </title>
 </head>
 
-  <body>
-    <header>
-      
-<div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
-				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">Home</a></li>
-					
-						<li><a href="/archives">Archives</a></li>
-					
-						<li><a href="/about">About</a></li>
-					
-					<li>
- 					
-						<form class="search">
-							<label>Search</label>
-						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
-						</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
-    </header>
-    <div id="container">
-      <div id="main">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-   
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42337789-4', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
+  
+
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Dong's Note</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
     
-      <a href="/2008/05/14/The-Duke-of-Mount-Deer/" title="时代商报：《鹿鼎记》一定要艳吗？" itemprop="url">时代商报：《鹿鼎记》一定要艳吗？</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
-		
-  <p class="article-time">
-    <time datetime="2008-05-13T16:00:00.000Z" itemprop="datePublished"> 发表于 2008-05-14</time>
+      <p class="site-subtitle"></p>
     
-  </p>
-</header>
-    <div class="article-content">
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
         
-        <p>韦小宝的形象是一个经典，所以当这个经典被无数次翻拍的时候，人们每一次都会有不同的意见和建议，这次也不例外。经过梁朝伟和陈小春等人多次演绎后，黄晓明这个有史以来最帅的“小宝”终于开始接受人们的检阅了。只是这次，第一个下结论的是这部戏的导演、大胡子张纪中昨天很认真地对人们说：“这个版本是以前所有版本当中最靓丽的，用贬义的词来说是最香艳的。”但是我们想问的是：“难道《鹿鼎记》就一定要香艳吗？”</p>
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/14/The-Duke-of-Mount-Deer/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/05/14/The-Duke-of-Mount-Deer/" itemprop="url">
+                  时代商报：《鹿鼎记》一定要艳吗？
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-14T00:00:00+08:00">
+                2008-05-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index">
+                    <span itemprop="name">Share</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/05/14/The-Duke-of-Mount-Deer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/14/The-Duke-of-Mount-Deer/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>韦小宝的形象是一个经典，所以当这个经典被无数次翻拍的时候，人们每一次都会有不同的意见和建议，这次也不例外。经过梁朝伟和陈小春等人多次演绎后，黄晓明这个有史以来最帅的“小宝”终于开始接受人们的检阅了。只是这次，第一个下结论的是这部戏的导演、大胡子张纪中昨天很认真地对人们说：“这个版本是以前所有版本当中最靓丽的，用贬义的词来说是最香艳的。”但是我们想问的是：“难道《鹿鼎记》就一定要香艳吗？”</p>
 <p>是的，所有人都是这样认为，包括导演。一个男人和七个女人的故事，该怎么讲？导演最开始的定位就是不香艳，“我们不会去删减什么。”导演信誓旦旦地承诺，但是我们不禁要问：“我们没有人说你的《鹿鼎记》怎么样啊？我们只是想看一个活力四射的、机智搞笑的韦小宝。”和《色，戒》一个道理，有些东西其实不需要情色，它有时候只能做噱头，但是作为电视剧，它不能用这样的噱头，于是导演自己制造，“我们的电视剧香而不艳。”想起一句成语，“此地无银三百两”。</p>
 <p>挺悲哀，因为这句话，张纪中让《鹿鼎记》与经典擦肩而过了。</p>
 
-        
-        
-        <p class="article-more-link">
           
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Share/">Share</a>
-</div>
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2008/05/14/The-Duke-of-Mount-Deer/#comments" class="ds-thread-count comments-count-link" data-thread-key="2008/05/14/The-Duke-of-Mount-Deer/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2008/05/13/ubuntu-nvidia-drivers/" title="Ubuntu 8.04 下编译安装 Nvidia 169.07 驱动" itemprop="url">Ubuntu 8.04 下编译安装 Nvidia 169.07 驱动</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
-		
-  <p class="article-time">
-    <time datetime="2008-05-12T16:00:00.000Z" itemprop="datePublished"> 发表于 2008-05-13</time>
-    
-  </p>
-</header>
-    <div class="article-content">
         
-        <p>编译安装驱动的好处是可以用到最新的驱动。可惜网上教程无数，没有一个能简洁的介 绍如何编译安装Nvidia显卡驱动的。即便有一些教程能指导你如何安装，重启后又立刻出现问题，这时候该怎么办？以下是我研究总结的精华方法，嘿嘿 ^_^。注意：理论上本文适用于任何版本的Ubuntu和Nvidia驱动，不过未经严格测试，希望小白鼠们能够发扬雷锋精神，勇敢测试，在本文之后回复 测试结果！</p>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/14/fixed-IDE-ACDStd-apl/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/05/14/fixed-IDE-ACDStd-apl/" itemprop="url">
+                  IDE_ACDStd.apl，不可恢复的插件错误
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-14T00:00:00+08:00">
+                2008-05-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index">
+                    <span itemprop="name">Share</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/05/14/fixed-IDE-ACDStd-apl/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/14/fixed-IDE-ACDStd-apl/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="http://photo.liudongkai.com/blog/Snap1.png" alt=""></p>
+<p>ACDSee3.1 RC1 蓝色网际版，带Picaview插件，报”不可恢复的插件错误“的解决办法：</p>
+<p>在系统属性=&gt;高级=&gt;数据执行保护，选择第二项”为除下列选定程序之外的所有程序和服务启用DEP“，然后将ACDSeeX.EXE，IDE_ACDStd.apl,PicaView.dll 一并添加进去。</p>
+<p><img src="http://photo.liudongkai.com/blog/Snap2.png" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/13/ubuntu-nvidia-drivers/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/05/13/ubuntu-nvidia-drivers/" itemprop="url">
+                  Ubuntu 8.04 下编译安装 Nvidia 169.07 驱动
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">
+                2008-05-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/05/13/ubuntu-nvidia-drivers/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/13/ubuntu-nvidia-drivers/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>编译安装驱动的好处是可以用到最新的驱动。可惜网上教程无数，没有一个能简洁的介 绍如何编译安装Nvidia显卡驱动的。即便有一些教程能指导你如何安装，重启后又立刻出现问题，这时候该怎么办？以下是我研究总结的精华方法，嘿嘿 ^_^。注意：理论上本文适用于任何版本的Ubuntu和Nvidia驱动，不过未经严格测试，希望小白鼠们能够发扬雷锋精神，勇敢测试，在本文之后回复 测试结果！</p>
 <ol>
 <li><p>要先装好编译必备的软件，配制好源之后在终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install build-essential</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install build-essential</div></pre></td></tr></table></figure>
 </li>
 <li><p>根据硬件软件平台<a href="http://www.nvidia.com/object/unix.html" target="_blank" rel="external">在这里</a>下载相应驱动，这里Rainking下载的是最新的<code>NVIDIA-Linux-x86-169.07-pkg1.run，Rainking</code>将此文件保存在了主目录下</p>
 </li>
 <li><p>按下ctrl+alt+F1，在文本状态下重新登陆</p>
 </li>
 <li><p>关闭x，在终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/gdm stop</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo /etc/init.d/gdm stop</div></pre></td></tr></table></figure>
 </li>
 <li><p>在终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sh ./NVIDIA-Linux-x86-169.07-pkg1.run #（文件名和路径可能会不同）</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo sh ./NVIDIA-Linux-x86-169.07-pkg1.run #（文件名和路径可能会不同）</div></pre></td></tr></table></figure>
 </li>
 <li><p>进入安装向导以后选项分别是：选择Accept，选择No，选择OK，选择Yes，选择OK，选择OK，选择OK</p>
 </li>
 <li><p>在终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/gdm start</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo /etc/init.d/gdm start</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>重新开启x，你会发现显卡驱动已经安装成功了，一般情况下不需要再调分辨率和再配置x server，因为Nvidia已经自动配置好了。</p>
 <ol>
-<li>在终端输入：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /etc/default/linux-restricted-modules-common</span><br></pre></td></tr></table></figure>
+<li>在终端输入：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gedit /etc/default/linux-restricted-modules-common</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>将其中的<code>DISABLED_MODULES=&quot;&quot;</code>改为<code>DISABLED_MODULES=&quot;nv nvidia_new&quot;</code>。如果不这么修改，重新启动以后，驱动就会失败。</p>
 <p> 如果没有配置好，或者显卡驱动安装以后出了问题，还可以通过以下方法解决。</p>
-<p> 修改分辨率：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /etc/X11/xorg.conf</span><br></pre></td></tr></table></figure></p>
+<p> 修改分辨率：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gedit /etc/X11/xorg.conf</div></pre></td></tr></table></figure></p>
 <p> 去掉logo（最新版本的驱动没有logo）<br>在Driver “nvidia” 后面加上 Option “NoLogo”</p>
-<p> 重新配置x server：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install pkg-config xserver-xorg-dev3</span><br><span class="line">sudo dpkg-reconfigure xserver-xorg</span><br></pre></td></tr></table></figure></p>
+<p> 重新配置x server：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install pkg-config xserver-xorg-dev3</div><div class="line">sudo dpkg-reconfigure xserver-xorg</div></pre></td></tr></table></figure></p>
 
-        
-        
-        <p class="article-more-link">
           
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Ubuntu/">Ubuntu</a><a href="/tags/Nvidia/">Nvidia</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2008/05/13/ubuntu-nvidia-drivers/#comments" class="ds-thread-count comments-count-link" data-thread-key="2008/05/13/ubuntu-nvidia-drivers/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2008/05/13/shell-retain-two-decimal/" title="Shell运算，计算值保留两位小数" itemprop="url">Shell运算，计算值保留两位小数</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
-		
-  <p class="article-time">
-    <time datetime="2008-05-12T16:00:00.000Z" itemprop="datePublished"> 发表于 2008-05-13</time>
-    
-  </p>
-</header>
-    <div class="article-content">
         
-        <p>SHELL下是没有小数处理的，能进行运算的只能是-2^30到2^30-1范围的整数，否则溢出。<br>具体可以用的运算方式有：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@root ~]$ i=$[9 / 2]; echo i=$i;  </span><br><span class="line">i=4</span><br><span class="line"></span><br><span class="line">[root@root ~]$ i=$((9 / 2)); echo i=$i;  </span><br><span class="line">i=4</span><br><span class="line"></span><br><span class="line">[root@root ~]$ i=`expr 9 / 2` ; echo i=$i;</span><br><span class="line">i=4</span><br></pre></td></tr></table></figure></p>
-<p>很多最小安装的系统不会有expr，可以使用内置命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@root ~]$ i=let i=9/2 ; echo i=$i;  </span><br><span class="line">i=4</span><br></pre></td></tr></table></figure></p>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/13/shell-retain-two-decimal/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/05/13/shell-retain-two-decimal/" itemprop="url">
+                  Shell运算，计算值保留两位小数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">
+                2008-05-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/05/13/shell-retain-two-decimal/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/13/shell-retain-two-decimal/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>SHELL下是没有小数处理的，能进行运算的只能是-2^30到2^30-1范围的整数，否则溢出。<br>具体可以用的运算方式有：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@root ~]$ i=$[9 / 2]; echo i=$i;  </div><div class="line">i=4</div><div class="line"></div><div class="line">[root@root ~]$ i=$((9 / 2)); echo i=$i;  </div><div class="line">i=4</div><div class="line"></div><div class="line">[root@root ~]$ i=`expr 9 / 2` ; echo i=$i;</div><div class="line">i=4</div></pre></td></tr></table></figure></p>
+<p>很多最小安装的系统不会有expr，可以使用内置命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@root ~]$ i=let i=9/2 ; echo i=$i;  </div><div class="line">i=4</div></pre></td></tr></table></figure></p>
 <p>如果需要保留小数，比如两位小数，可以使用awk实现，awk真是强大：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@root ~]$ i=`awk  BEGIN&apos;&#123;printf  &quot;%.2fn&quot;, 9/2 &#125;&apos;` ; echo i=$i;</span><br><span class="line">i=4.50</span><br><span class="line">[root@root ~]$ i=`awk  BEGIN&apos;&#123;  x=9 ; y=4 ; printf  &quot;%.2fn&quot;, x/y &#125;&apos;` ; echo i=$i;</span><br><span class="line">i=4.50</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@root ~]$ i=`awk  BEGIN&apos;&#123;printf  &quot;%.2fn&quot;, 9/2 &#125;&apos;` ; echo i=$i;</div><div class="line">i=4.50</div><div class="line">[root@root ~]$ i=`awk  BEGIN&apos;&#123;  x=9 ; y=4 ; printf  &quot;%.2fn&quot;, x/y &#125;&apos;` ; echo i=$i;</div><div class="line">i=4.50</div></pre></td></tr></table></figure>
 <p><strong>运算符类型</strong></p>
 <p>按位运算符<br>~, &lt; &lt;, &gt;&gt;, &amp;, |, ^<br>$[]表示形式告诉 shell 对方括号中的表达式求值</p>
 <p><img src="http://photo.liudongkai.com/blog/f0e0eb11af6d42c3a7ef3fa0[1].jpg" alt=""></p>
@@ -259,68 +911,156 @@
 <p><img src="http://photo.liudongkai.com/blog/190e8b44eb722e49510ffea8[1].jpg" alt=""></p>
 <p>赋值运算符<br>=、+=、-=、*=、/=、%=、&amp;=、^=、|=、&lt; &lt;=、&gt;&gt;=</p>
 
-        
-        
-        <p class="article-more-link">
           
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/shell/">shell</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2008/05/13/shell-retain-two-decimal/#comments" class="ds-thread-count comments-count-link" data-thread-key="2008/05/13/shell-retain-two-decimal/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2008/05/13/Shell-switch-background-jobs/" title="Linux Shell下的后台运行及其前台的转换" itemprop="url">Linux Shell下的后台运行及其前台的转换</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
-		
-  <p class="article-time">
-    <time datetime="2008-05-12T16:00:00.000Z" itemprop="datePublished"> 发表于 2008-05-13</time>
-    
-  </p>
-</header>
-    <div class="article-content">
         
-        <p>当用bash启动一个程序,你可以用在程序后加&amp;,实现程序在后台运行；</p>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/13/Shell-switch-background-jobs/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/05/13/Shell-switch-background-jobs/" itemprop="url">
+                  Linux Shell下的后台运行及其前台的转换
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">
+                2008-05-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/05/13/Shell-switch-background-jobs/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/13/Shell-switch-background-jobs/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>当用bash启动一个程序,你可以用在程序后加&amp;,实现程序在后台运行；</p>
 <p>例如: <code>emacs &amp;</code></p>
 <p>但如果你忘了输入&amp;;但你又不想把程序停止后重新启动；</p>
 <p>你可以这么做:</p>
@@ -331,508 +1071,310 @@
 <p>当你有些工作比如updatedb, find等需要一定时间,这些工作可以考虑让它在后台运行,而你可以用bash做其它工作。</p>
 <p>如果需要把任务回到前台，只需要<code>fg 2</code>。</p>
 
-        
-        
-        <p class="article-more-link">
           
-       </p>
+        
+      
     </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>
-</div>
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2008/05/13/Shell-switch-background-jobs/#comments" class="ds-thread-count comments-count-link" data-thread-key="2008/05/13/Shell-switch-background-jobs/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2008/05/13/Geomview-Nvidia-drivers/" title="Geomview~编译错误及~NVIDIA~驱动~bug！" itemprop="url">Geomview~编译错误及~NVIDIA~驱动~bug！</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
-		
-  <p class="article-time">
-    <time datetime="2008-05-12T16:00:00.000Z" itemprop="datePublished"> 发表于 2008-05-13</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>昨晚看~MAXIMA，提到了画二维图最好用~GnuPlot，而画三维图的时候最好用~Geomview，于是下载其源码，接着编译安装，但在~make~的时候出现下面的错误：</p>
-<blockquote>
-<p>/usr/X11R6/include/GL/glext.h:6952: error: redefinition of typedef ‘PFNGLGETUNIFORMUIVEXTPROC’  /usr/X11R6/include/GL/glext.h:6941: error: previous declaration of ‘PFNGLGETUNIFORMUIVEXTPROC’ was here </p>
-</blockquote>
-<p>到网上搜了下，是~NVIDIA~显卡驱动的一个~bug，于是想下载最新版本，到~NVIDIA~网站下载了最新的~1.0-9755~版本，直接运行~.run~文件，先是提示我的显卡跟这个驱动不匹配，不过是个警告，没太注意，继续，接着后来提示：</p>
-<blockquote>
-<p>ERROR: Unable to load the kernel module ‘nvidia.ko’.  This is most likely        because the kernel module was built using the wrong kernel source files.        Please make sure you have installed the kernel source files for your        kernel; on Red Hat Linux systems, for example, be sure you have the        ‘kernel-source’ rpm installed.  If you know the correct kernel source        files are installed, you may specify the kernel source path with the&lt; br /&gt;        ‘–kernel-source-path’ commandline option. </p>
-</blockquote>
-<p>搜索了一下，用下面的命令就好了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#./NVIDIA-xxx.run -k $(uname -r)</span><br></pre></td></tr></table></figure></p>
-<p>安装后，重启~X，但找不到设备，查看~/var/log/Xorg.0.log，原来的确是开始的警告，这个驱动根本与我的显卡不匹配，我的显卡是：</p>
-<blockquote>
-<p>nVidia Corporation NV11 [GeForce2 MX/MX 400]</p>
-</blockquote>
-<p>提示说只能用~96xx，系列的驱动，然后找个系列的驱动安装，一切顺利！然而再重新编译~Geomview~的时候仍然是那个错误，最后只好手动的修改了那个文件<strong>~/usr/X11R6/include/GL/glext.h</strong>，把里面的~6941~和~6952~两行注释掉了，然后再编译安装，一切顺利。</p>
-<p>据说~NVIDIA~的这个~bug~在最新的~97xx~系列中已经修正，可是我的显卡却只能用~96xx~系列的，可能我的显卡太老了吧 :(。</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
+    <div>
+      
     </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>
-</div>
+    <div>
+      
+    </div>
 
 
-  <div class="article-tags">
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
   
-  <span></span> <a href="/tags/Ubuntu/">Ubuntu</a><a href="/tags/Geomview/">Geomview</a><a href="/tags/Nvidia/">Nvidia</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2008/05/13/Geomview-Nvidia-drivers/#comments" class="ds-thread-count comments-count-link" data-thread-key="2008/05/13/Geomview-Nvidia-drivers/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
-  <nav id="page-nav" class="clearfix">
-    <a class="extend prev" rel="prev" href="/page/39/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><a class="page-number" href="/page/39/">39</a><span class="page-number current">40</span><a class="page-number" href="/page/41/">41</a><a class="page-number" href="/page/42/">42</a><span class="space">&hellip;</span><a class="page-number" href="/page/56/">56</a><a class="extend next" rel="next" href="/page/41/">Next<span></span></a>
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/39/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><span class="page-number current">40</span><a class="page-number" href="/page/41/">41</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><a class="extend next" rel="next" href="/page/41/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
-</div>
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-  
-<div class="categorieslist">
-	<p class="asidetitle">分类</p>
-		<ul>
-		
-		  
-			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
-		  
-		
-		</ul>
-</div>
+          
+          </div>
+          
 
 
-  
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
-			
-		
-		</ul>
-</div>
+          
 
-
-  <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
-    <ul>
+        </div>
         
-          <li>
-            
-            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
-            
-          </li>
-        
-    </ul>
-</div>
-
+          
   
-
-
-  <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
-    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
-</div>
-
-
-</aside>
-</div>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> Hello ,I&#39;m Larry Page in Google. <br/>
-			This is my blog,believe it or not.</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
-		
-		
-		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
-		
-		
-		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
-		
-		
-		
-		
-		
-		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
-		
-		
-		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
-		
-	</div>
-			
-		
+  </div>
 
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
-		
-		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
-		
-		
-		</p>
-</div>
-</footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="東木" />
+          <p class="site-author-name" itemprop="name">東木</p>
+          <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+        </div>
+        <nav class="site-state motion-element">
         
-    }
-  });
-});
-</script>
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">281</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">196</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
 
 
+      </section>
+
+      
+
+    </div>
+  </aside>
 
 
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2007 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+</div>
 
 
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
 
 
+        
 
+        
+      </div>
+    </footer>
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
 <script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
   }
-}); 
 </script>
 
 
 
-<!-- Analytics Begin -->
-
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-42337789-4', 'auto');  
-ga('send', 'pageview');
-</script>
 
 
 
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
 
 
 
-<!-- Analytics End -->
-
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
+  
 
 
-<!-- MathJax End -->
 
-<!-- Tiny_search Begin -->
 
-<script>
-var option = {
-  engineKey: 'b3655049504c5e2d7c68'
-};
-(function(w,d,t,u,n,s,e){
-  s = d.createElement(t);
-  s.src = u;
-  s.async = 1;
-  w[n] = function(r){
-    w[n].opts = r;
-  };
-  e = d.getElementsByTagName(t)[0];
-  e.parentNode.insertBefore(s, e);
-})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
-_ts(option);
-</script>
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
-<!-- Tiny_search End -->
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
-  </body>
- </html>
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liudongkai"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+</body>
+</html>

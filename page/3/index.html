@@ -1,301 +1,1045 @@
+<!doctype html>
 
- <!DOCTYPE HTML>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
+
+
   
-    <title>Dong&#39;s Note</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="Dong[東木]">
-    
 
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
     
-    <meta name="description" content="Dong&apos;s Note是一个基于Github和Hexo的静态Blog，希望用简单而清晰的写作方式Markdown分享自己的心得体会。">
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="The palest ink is better than the best memory.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Dong's Note">
 <meta property="og:url" content="http://blog.liudongkai.com/page/3/index.html">
 <meta property="og:site_name" content="Dong's Note">
-<meta property="og:description" content="Dong&apos;s Note是一个基于Github和Hexo的静态Blog，希望用简单而清晰的写作方式Markdown分享自己的心得体会。">
+<meta property="og:description" content="The palest ink is better than the best memory.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dong's Note">
-<meta name="twitter:description" content="Dong&apos;s Note是一个基于Github和Hexo的静态Blog，希望用简单而清晰的写作方式Markdown分享自己的心得体会。">
-<meta name="twitter:creator" content="@liudongkai">
-<link rel="publisher" href="100378260579772710000">
+<meta name="twitter:description" content="The palest ink is better than the best memory.">
 
-    
-    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/jacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
-    
-    <link rel="stylesheet" href="/css/style.css">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '5094676',
+      author: '東木'
+    },
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'ce7e9a1bea855698ef0fbc7d812004ed',
+      indexName: 'blog.liudongkai.com',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/page/3/"/>
+
+
+
+
+
+  <title> Dong's Note </title>
 </head>
 
-  <body>
-    <header>
-      
-<div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
-				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">Home</a></li>
-					
-						<li><a href="/archives">Archives</a></li>
-					
-						<li><a href="/about">About</a></li>
-					
-					<li>
- 					
-						<form class="search">
-							<label>Search</label>
-						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
-						</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
-    </header>
-    <div id="container">
-      <div id="main">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-   
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42337789-4', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
+  
+
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Dong's Note</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
     
-      <a href="/2014/10/28/ios8-battery/" title="iOS8省電技巧大公開！讓iOS8更持久減少耗電" itemprop="url">iOS8省電技巧大公開！讓iOS8更持久減少耗電</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
-		
-  <p class="article-time">
-    <time datetime="2014-10-27T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-10-28</time>
+      <p class="site-subtitle"></p>
     
-  </p>
-</header>
-    <div class="article-content">
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
         
-        <p><img src="/images/20141028001.png" alt=""></p>
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/10/29/ios8-cydia-sources/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/10/29/ios8-cydia-sources/" itemprop="url">
+                  JB後支援iOS6-iOS8 Cydia軟體源推薦與教學
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-29T00:00:00+08:00">
+                2014-10-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/10/29/ios8-cydia-sources/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/29/ios8-cydia-sources/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>很多人會誤以為，當看完這篇JB教學後，都已經JB好了，那我是不是就能夠到App Store去下載任何App？如果是這樣想那就真的大錯特錯，JB的用意是在於幫助讓iPhone/iPad發揮更大功能，而非單純是再下載非法的App軟體，例如是想修改自己喜愛的字體、佈景主題、增加某些功能等。這些就必須要依靠JB來達成，況且JB會耗電？這說法並非如此，導致耗電源元兇是使用者裝了一些耗電的主題和外掛，否則JB不等於耗電，底下教學將詳細指導大家JB的運作原理與推薦加入的軟體源。</p>
+<p><img src="/images/20141029001.jpg" alt=""></p>
+<p>App Store與Cydia其實都是同樣模式再經營，「<strong>App Store</strong>」可視它為Apple的主要的賣場，開發人員必須遵守Apple規則撰寫APP，需通過Apple審核機制審核才會上架，才能提供讓使用者在App Store購買或是下載，如果是無法通過Apple審核的APP，別灰心在Cydia上一定能夠將此APP功能讓你發揚光大。</p>
+<p><img src="/images/20141029002.jpg" alt=""></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2014/10/29/ios8-cydia-sources/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/10/28/ios8-battery/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/10/28/ios8-battery/" itemprop="url">
+                  iOS8省電技巧大公開！讓iOS8更持久減少耗電
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-28T00:00:00+08:00">
+                2014-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/10/28/ios8-battery/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/28/ios8-battery/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><img src="/images/20141028001.png" alt=""></p>
 <p>每當新一代iOS一推出時候，就會有使用者反應感覺更耗電或是更省電，為了解決這問題，其實在iOS8上面也是一樣有些多餘的功能沒用到，但設定裡面還偷偷一直幫你開啟，就會造成耗電現象，為了擺脫耗電惡夢，趕緊來透過這篇教學設定一下吧！</p>
 <h2 id="找出最耗電APP方法"><a href="#找出最耗電APP方法" class="headerlink" title="找出最耗電APP方法"></a>找出最耗電APP方法</h2><p>如何得知目前iOS中哪些APP最耗電？此功能在iOS8已經內建於系統中，使用者可以輕鬆透過「一般 &gt; 用量 &gt; 電池用量」來查詢自己設備，找出到底哪些APP是最耗電的罪魁禍首。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2014/10/28/ios8-battery/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
-        
-        <p class="article-more-link">
-          
-            <a href="/2014/10/28/ios8-battery/#more">Read More</a>
-          
-       </p>
+      
     </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/iOS/">iOS</a>
-</div>
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
 
 
-  <div class="article-tags">
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
   
-  <span></span> <a href="/tags/iOS8/">iOS8</a><a href="/tags/耗电/">耗电</a><a href="/tags/省电/">省电</a>
-  </div>
 
-</div>
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/10/27/ios8-Activator/">
 
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
 
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
 
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2014/10/28/ios8-battery/#comments" class="ds-thread-count comments-count-link" data-thread-key="2014/10/28/ios8-battery/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2014/10/27/ios8-Activator/" title="讓非5s機種也有指紋辨識！Activator iOS7、iOS8上最強手勢教學（含移除Activator廣告）" itemprop="url">讓非5s機種也有指紋辨識！Activator iOS7、iOS8上最強手勢教學（含移除Activator廣告）</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
-		
-  <p class="article-time">
-    <time datetime="2014-10-26T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-10-27</time>
-    
-  </p>
-</header>
-    <div class="article-content">
+      <header class="post-header">
+
         
-        <p><img src="/images/20141027001.png" alt=""></p>
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/10/27/ios8-Activator/" itemprop="url">
+                  讓非5s機種也有指紋辨識！Activator iOS7、iOS8上最強手勢教學（含移除Activator廣告）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-27T00:00:00+08:00">
+                2014-10-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/10/27/ios8-Activator/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/27/ios8-Activator/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><img src="/images/20141027001.png" alt=""></p>
 <p>剛JB的iOS7、iOS8使用者都會面臨Activator手勢軟體無法支援問題，但這問題已經在2014/1/1更新到1.8.2版本以上解決，目前許多插件都需依靠Activator來做補助，像是魔神之塔玩家最愛的自動轉珠外掛等，且不單單只能夠讓其它插件作補助作用還能夠讓使用者自己自訂模擬HOME鍵、搖一搖、重開機、解鎖等等功能，甚至還能夠讓非iPhone、iPad機種模擬5S虛擬指紋辨識功能，這些密技技巧都在底下文章會教導大家。</p>
 <h2 id="支援設備："><a href="#支援設備：" class="headerlink" title="支援設備："></a>支援設備：</h2><p>全部iOS7、iOS8設備，目前iOS8尚未完全支援，請安裝測試版本。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2014/10/27/ios8-Activator/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
-        
-        <p class="article-more-link">
-          
-            <a href="/2014/10/27/ios8-Activator/#more">Read More</a>
-          
-       </p>
+      
     </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/iOS/">iOS</a>
-</div>
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
 
 
-  <div class="article-tags">
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
   
-  <span></span> <a href="/tags/iOS8/">iOS8</a><a href="/tags/Activator/">Activator</a><a href="/tags/Cydia/">Cydia</a>
-  </div>
 
-</div>
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/10/20/How-to-Create-an-OS-X-Yosemite-USB-Installation-Drive/">
 
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
 
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
 
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2014/10/27/ios8-Activator/#comments" class="ds-thread-count comments-count-link" data-thread-key="2014/10/27/ios8-Activator/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2014/10/20/How-to-Create-an-OS-X-Yosemite-USB-Installation-Drive/" title="如何制作OS X Yosemite 独立安装U盘" itemprop="url">如何制作OS X Yosemite 独立安装U盘</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
-		
-  <p class="article-time">
-    <time datetime="2014-10-19T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-10-20</time>
-    
-  </p>
-</header>
-    <div class="article-content">
+      <header class="post-header">
+
         
-        <p>制作方法和Mavericks一致，见前一篇<a href="/2013/10/28/How-to-Create-an-OS-X-Mavericks-USB-Installation-Drive/">《How to Create an OS X Mavericks USB Installation Drive》</a></p>
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/10/20/How-to-Create-an-OS-X-Yosemite-USB-Installation-Drive/" itemprop="url">
+                  如何制作OS X Yosemite 独立安装U盘
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-20T00:00:00+08:00">
+                2014-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mac-OS/" itemprop="url" rel="index">
+                    <span itemprop="name">Mac OS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/10/20/How-to-Create-an-OS-X-Yosemite-USB-Installation-Drive/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/20/How-to-Create-an-OS-X-Yosemite-USB-Installation-Drive/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>制作方法和Mavericks一致，见前一篇<a href="/2013/10/28/How-to-Create-an-OS-X-Mavericks-USB-Installation-Drive/">《How to Create an OS X Mavericks USB Installation Drive》</a></p>
 <p>准备独立安装盘介质： 你需要一个容量至少大于 8GB 的移动存储设备，比如 U盘、移动硬盘或 SD卡，将其插入 Mac，并启动磁盘工具对该介质执行“抹掉”操作，抹掉前请备份好该介质中的重要数据。盘符名请命名为“<em>Untitled</em>”。</p>
 <p>通过“终端”命令制作安装盘：打开“终端”，在命令行中执行下面的命令，当提示输入密码时请输入你的 OS X 管理员登陆密码。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /Applications/Install\ OS\ X\ Yosemite.app/Contents/Resources/createinstallmedia --volume /Volumes/Untitled --applicationpath /Applications/Install\ OS\ X\ Yosemite.app --nointeraction</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo /Applications/Install\ OS\ X\ Yosemite.app/Contents/Resources/createinstallmedia --volume /Volumes/Untitled --applicationpath /Applications/Install\ OS\ X\ Yosemite.app --nointeraction</div></pre></td></tr></table></figure>
 <p>完成制作： 如果一切正常的话，“终端”界面中就会显示 Erasing Disk: 0%… 10%…20%… ，并最终完成制作了。制作完成后，你可以使用该介质启动任意一台兼容 OS X Yosemite 的 Mac(需要在目标 Mac 上插入该介质，然后在开机时按住 option 键)，开始 OS X Yosemite 的安装之旅。</p>
 <p>PS: 如果你将盘符命名为其他名称，请在命令中降 /Volumes/Untitled 修改为 /Volumes/{盘符名称}。</p>
 
-        
-        
-        <p class="article-more-link">
           
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Mac-OS/">Mac OS</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Mac-OS/">Mac OS</a><a href="/tags/Yosemite/">Yosemite</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2014/10/20/How-to-Create-an-OS-X-Yosemite-USB-Installation-Drive/#comments" class="ds-thread-count comments-count-link" data-thread-key="2014/10/20/How-to-Create-an-OS-X-Yosemite-USB-Installation-Drive/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2014/10/15/10common-database-security-problems/" title="10大最常见的数据库安全问题" itemprop="url">10大最常见的数据库安全问题</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
-		
-  <p class="article-time">
-    <time datetime="2014-10-14T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-10-15</time>
-    
-  </p>
-</header>
-    <div class="article-content">
         
-        <p>数据库作为非常重要的存储工具，里面往往会存放着大量有价值或敏感信息， 这些信息包括金融财政、知识产权、企业数据等方方面面的内容。因此，数据库往往会成为黑客们的主要攻击对象。网络黑客们会利用各种途径来获取他们想要的信息，因此，保证数据库安全变得尤为重要。</p>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/10/15/10common-database-security-problems/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/10/15/10common-database-security-problems/" itemprop="url">
+                  10大最常见的数据库安全问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-15T00:00:00+08:00">
+                2014-10-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/10/15/10common-database-security-problems/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/15/10common-database-security-problems/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>数据库作为非常重要的存储工具，里面往往会存放着大量有价值或敏感信息， 这些信息包括金融财政、知识产权、企业数据等方方面面的内容。因此，数据库往往会成为黑客们的主要攻击对象。网络黑客们会利用各种途径来获取他们想要的信息，因此，保证数据库安全变得尤为重要。</p>
 <p><img src="/images/20141015-10common-database-security-problems.jpg" alt=""></p>
 <p>尽管意识到数据库安全的重要性，但开发者在集成应用程序或修补漏洞、更新数据库的时候仍然会犯一些错误，让黑客们乘虚而入。本文列出了数据库系统10个最常见的安全问题。</p>
 <ol>
@@ -305,505 +1049,316 @@
 <li><p>数据泄露</p>
 </li>
 </ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2014/10/15/10common-database-security-problems/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
-        
-        <p class="article-more-link">
-          
-            <a href="/2014/10/15/10common-database-security-problems/#more">Read More</a>
-          
-       </p>
+      
     </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Mysql/">Mysql</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/database/">database</a><a href="/tags/security/">security</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2014/10/15/10common-database-security-problems/#comments" class="ds-thread-count comments-count-link" data-thread-key="2014/10/15/10common-database-security-problems/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2014/10/13/the-triggerfish-and-your-mobile-app/" title="找到一个触发器，成为用户每天使用的app" itemprop="url">找到一个触发器，成为用户每天使用的app</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
-		
-  <p class="article-time">
-    <time datetime="2014-10-12T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-10-13</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>应用商店中有<a href="http://www.geekwire.com/2013/report-ios-app-store-hits-950k-apps/">数百万个app</a>。</p>
-<p>每部智能手机平均安装<a href="http://thenextweb.com/insider/2012/05/16/nielsen-us-smartphones-have-an-average-of-41-apps-installed-up-from-32-last-year/">41个app</a>。</p>
-<p>人们每天所使用的app平均为<a href="http://blog.flurry.com/?Tag=smartphone">8个</a>。</p>
-<p>用户的下载不再意味着一款产品的成功，而只是漫长成功路上的一个节点而已。网上已经有很多文章教你怎么从上百万个app中脱颖而出，成为用户下载的41个app之一；但是如何成为人们每天使用的8个应用，却少有人谈及。</p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2014/10/13/the-triggerfish-and-your-mobile-app/#more">Read More</a>
-          
-       </p>
+    <div>
+      
     </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Share/">Share</a>
-</div>
+    <div>
+      
+    </div>
 
 
-  <div class="article-tags">
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
   
-  <span></span> <a href="/tags/trigger/">trigger</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2014/10/13/the-triggerfish-and-your-mobile-app/#comments" class="ds-thread-count comments-count-link" data-thread-key="2014/10/13/the-triggerfish-and-your-mobile-app/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
-  <nav id="page-nav" class="clearfix">
-    <a class="extend prev" rel="prev" href="/page/2/"><span></span>Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/56/">56</a><a class="extend next" rel="next" href="/page/4/">Next<span></span></a>
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
-</div>
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-  
-<div class="categorieslist">
-	<p class="asidetitle">分类</p>
-		<ul>
-		
-		  
-			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
-		  
-		
-		</ul>
-</div>
+          
+          </div>
+          
 
 
-  
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
-			
-		
-		</ul>
-</div>
+          
 
-
-  <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
-    <ul>
+        </div>
         
-          <li>
-            
-            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
-            
-          </li>
-        
-    </ul>
-</div>
-
+          
   
-
-
-  <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
-    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
-</div>
-
-
-</aside>
-</div>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> Hello ,I&#39;m Larry Page in Google. <br/>
-			This is my blog,believe it or not.</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
-		
-		
-		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
-		
-		
-		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
-		
-		
-		
-		
-		
-		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
-		
-		
-		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
-		
-	</div>
-			
-		
+  </div>
 
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
-		
-		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
-		
-		
-		</p>
-</div>
-</footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="東木" />
+          <p class="site-author-name" itemprop="name">東木</p>
+          <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+        </div>
+        <nav class="site-state motion-element">
         
-    }
-  });
-});
-</script>
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">281</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">196</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
 
 
+      </section>
+
+      
+
+    </div>
+  </aside>
 
 
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2007 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+</div>
 
 
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
 
 
+        
 
+        
+      </div>
+    </footer>
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
 <script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
   }
-}); 
 </script>
 
 
 
-<!-- Analytics Begin -->
-
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-42337789-4', 'auto');  
-ga('send', 'pageview');
-</script>
 
 
 
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
 
 
 
-<!-- Analytics End -->
-
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
+  
 
 
-<!-- MathJax End -->
 
-<!-- Tiny_search Begin -->
 
-<script>
-var option = {
-  engineKey: 'b3655049504c5e2d7c68'
-};
-(function(w,d,t,u,n,s,e){
-  s = d.createElement(t);
-  s.src = u;
-  s.async = 1;
-  w[n] = function(r){
-    w[n].opts = r;
-  };
-  e = d.getElementsByTagName(t)[0];
-  e.parentNode.insertBefore(s, e);
-})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
-_ts(option);
-</script>
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
-<!-- Tiny_search End -->
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
-  </body>
- </html>
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liudongkai"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+</body>
+</html>

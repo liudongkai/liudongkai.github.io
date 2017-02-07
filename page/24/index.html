@@ -1,101 +1,736 @@
+<!doctype html>
 
- <!DOCTYPE HTML>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
+
+
   
-    <title>Dong&#39;s Note</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="Dong[東木]">
-    
 
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
     
-    <meta name="description" content="Dong&apos;s Note是一个基于Github和Hexo的静态Blog，希望用简单而清晰的写作方式Markdown分享自己的心得体会。">
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="The palest ink is better than the best memory.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Dong's Note">
 <meta property="og:url" content="http://blog.liudongkai.com/page/24/index.html">
 <meta property="og:site_name" content="Dong's Note">
-<meta property="og:description" content="Dong&apos;s Note是一个基于Github和Hexo的静态Blog，希望用简单而清晰的写作方式Markdown分享自己的心得体会。">
+<meta property="og:description" content="The palest ink is better than the best memory.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dong's Note">
-<meta name="twitter:description" content="Dong&apos;s Note是一个基于Github和Hexo的静态Blog，希望用简单而清晰的写作方式Markdown分享自己的心得体会。">
-<meta name="twitter:creator" content="@liudongkai">
-<link rel="publisher" href="100378260579772710000">
+<meta name="twitter:description" content="The palest ink is better than the best memory.">
 
-    
-    <link rel="alternative" href="/atom.xml" title="Dong&#39;s Note" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/jacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
-    
-    <link rel="stylesheet" href="/css/style.css">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '5094676',
+      author: '東木'
+    },
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'ce7e9a1bea855698ef0fbc7d812004ed',
+      indexName: 'blog.liudongkai.com',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/page/24/"/>
+
+
+
+
+
+  <title> Dong's Note </title>
 </head>
 
-  <body>
-    <header>
-      
-<div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.svg" alt="Dong&#39;s Note" title="Dong&#39;s Note"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="Dong&#39;s Note">Dong&#39;s Note</a></h1>
-				<h2 class="blog-motto">The palest ink is better than the best memory.</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">Home</a></li>
-					
-						<li><a href="/archives">Archives</a></li>
-					
-						<li><a href="/about">About</a></li>
-					
-					<li>
- 					
-						<form class="search">
-							<label>Search</label>
-						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
-						</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
-    </header>
-    <div id="container">
-      <div id="main">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-   
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42337789-4', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
+  
+
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Dong's Note</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
     
-      <a href="/2010/04/22/perl-merge-array-method/" title="perl 求合并一个数组的方法[zt]" itemprop="url">perl 求合并一个数组的方法[zt]</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
-		
-  <p class="article-time">
-    <time datetime="2010-04-21T16:00:00.000Z" itemprop="datePublished"> 发表于 2010-04-22</time>
+      <p class="site-subtitle"></p>
     
-  </p>
-</header>
-    <div class="article-content">
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
         
-        <blockquote>
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/07/22/MSN-disable-AD/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2010/07/22/MSN-disable-AD/" itemprop="url">
+                  MSN 8.1/8.5 去广告修改方法 [zt]
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2010-07-22T00:00:00+08:00">
+                2010-07-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index">
+                    <span itemprop="name">Share</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2010/07/22/MSN-disable-AD/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2010/07/22/MSN-disable-AD/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>首先，确认你使用的 Windows Live Messenger 版本为8.1或8.5，9.0理论上无效，可以使用后面说的修改方法尝试。<br>其次，覆盖文件或编辑文件时，要先关闭MSN</p>
+<p>###方案一：享受现成的<br>点击这里下载我修改好的文件，解压缩后将 msgsres.dll 放到 MSN 所在目录（默认安装位置 C:\Program Files\MSN Messenger ）。</p>
+<p>###方案二：自己动手阉去多余物件<br>工具：<a href="http://www.jb51.net/softs/2289.html" target="_blank" rel="external">Resource Hacker 3.4.0.79 绿色汉化版</a><br>打开MSN安装目录下 msgsres.dll 文件<br><img src="http://photo.liudongkai.com/blog/0633326Zm.gif" alt=""></p>
+<ol>
+<li>去除面板底部广告<br>打开资源 4004 -&gt; 923 -&gt; 1033，找到（按F9搜索）ID=Atom(SSConstrainer)，将其前面的 layoutpos=top 改为 layoutpos=none</li>
+<li>去除聊天框广告<br>打开资源 4004 -&gt; 920 -&gt; 1033，找到 id=atom(adbannergutter)，将其前面的 layoutpos=top 改为 layoutpos=none</li>
+<li>去除面板底部搜索<br>打开资源 4005 -&gt; 923 -&gt; 1033，找到 id=atom(idSearchContainer)，这个资源下有2个，修改第2个，第867行，将下面的 layoutpos:bottom; 改为layoutpos:none;<br>修改完后点“编译脚本”，保存文件，完成。</li>
+</ol>
+<p>启动MSN看看，整个界面没有广告，清爽速度还快</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/04/22/awk-merge-columns/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2010/04/22/awk-merge-columns/" itemprop="url">
+                  awk 列相同 合并行
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2010-04-22T00:00:00+08:00">
+                2010-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2010/04/22/awk-merge-columns/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2010/04/22/awk-merge-columns/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>如果第一列与第二列相同，就合并行</p>
+<blockquote>
+<p>cat a.txt</p>
+<p>a b c<br>a b d<br>a b e</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">awk &apos;&#123;v=$1&quot; &quot;$2;a[v]=a[v](a[v]?&quot; &quot;:&quot;&quot;)$3&#125;END&#123;for (j in a) print j,a[j]&#125;&apos; file</div></pre></td></tr></table></figure>
+<p>获得结果：</p>
+<blockquote>
+<p>a b c d e</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/04/22/perl-merge-array-method/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2010/04/22/perl-merge-array-method/" itemprop="url">
+                  perl 求合并一个数组的方法[zt]
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2010-04-22T00:00:00+08:00">
+                2010-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2010/04/22/perl-merge-array-method/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2010/04/22/perl-merge-array-method/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
 <p>@a=(<br>[‘a’,’2’,’4’],<br>[‘b’,’3’,’2’],<br>[‘c’,’4’,’4’],<br>[‘d’,’t’,’3’],<br>[‘a’,’4’,’5’],<br>[‘c’,’3’,’5’]<br>);</p>
 </blockquote>
 <p>判断第一个字段 如果出现相同的 就吧后面的两个字段加一起<br>想要的结果是这样的</p>
@@ -103,143 +738,163 @@
 <p>a，24， 45<br>b ，3， 2<br>c ，43， 45<br>d ，t， 3</p>
 </blockquote>
 <p>[ 本帖最后由 luesfeng 于 2009-10-3 13:54 编辑 ]</p>
-<p>CODE:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">my %h = ();</span><br><span class="line">for(@a)&#123;</span><br><span class="line">push @&#123;$h&#123;$_-&gt;[0]&#125;&#125;,$_-&gt;[1].$_-&gt;[2];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for(sort keys %h)&#123;</span><br><span class="line">print “$_ @&#123;$h&#123;$_&#125;&#125;\n”;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>CODE:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">my %h = ();</div><div class="line">for(@a)&#123;</div><div class="line">push @&#123;$h&#123;$_-&gt;[0]&#125;&#125;,$_-&gt;[1].$_-&gt;[2];</div><div class="line">&#125;</div><div class="line"></div><div class="line">for(sort keys %h)&#123;</div><div class="line">print “$_ @&#123;$h&#123;$_&#125;&#125;\n”;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2010/04/22/perl-merge-array-method/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
-        
-        <p class="article-more-link">
-          
-            <a href="/2010/04/22/perl-merge-array-method/#more">Read More</a>
-          
-       </p>
+      
     </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/perl/">perl</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2010/04/22/perl-merge-array-method/#comments" class="ds-thread-count comments-count-link" data-thread-key="2010/04/22/perl-merge-array-method/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2010/04/22/awk-merge-columns/" title="awk 列相同 合并行" itemprop="url">awk 列相同 合并行</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
-		
-  <p class="article-time">
-    <time datetime="2010-04-21T16:00:00.000Z" itemprop="datePublished"> 发表于 2010-04-22</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>如果第一列与第二列相同，就合并行</p>
-<blockquote>
-<p>cat a.txt</p>
-<p>a b c<br>a b d<br>a b e</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &apos;&#123;v=$1&quot; &quot;$2;a[v]=a[v](a[v]?&quot; &quot;:&quot;&quot;)$3&#125;END&#123;for (j in a) print j,a[j]&#125;&apos; file</span><br></pre></td></tr></table></figure>
-<p>获得结果：</p>
-<blockquote>
-<p>a b c d e</p>
-</blockquote>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
+    <div>
+      
     </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>
-</div>
+    <div>
+      
+    </div>
 
 
-  <div class="article-tags">
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
   
-  <span></span> <a href="/tags/awk/">awk</a>
-  </div>
 
-</div>
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/04/22/perl-merge-files/">
 
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
 
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
 
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2010/04/22/awk-merge-columns/#comments" class="ds-thread-count comments-count-link" data-thread-key="2010/04/22/awk-merge-columns/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2010/04/22/perl-merge-files/" title="Perl 根据相同字段并合并两个文本" itemprop="url">Perl 根据相同字段并合并两个文本</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
-		
-  <p class="article-time">
-    <time datetime="2010-04-21T16:00:00.000Z" itemprop="datePublished"> 发表于 2010-04-22</time>
-    
-  </p>
-</header>
-    <div class="article-content">
+      <header class="post-header">
+
         
-        <p>有两个文本:</p>
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2010/04/22/perl-merge-files/" itemprop="url">
+                  Perl 根据相同字段并合并两个文本
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2010-04-22T00:00:00+08:00">
+                2010-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2010/04/22/perl-merge-files/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2010/04/22/perl-merge-files/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>有两个文本:</p>
 <p>a.txt的内容:</p>
 <blockquote>
 <p>0001|abc|1000.00<br>0002|ddd|1200.20<br>0003|dde|100.01<br>0005|ggg|200<br>……<br>……</p>
@@ -253,571 +908,471 @@
 <blockquote>
 <p>AAAAA|0001|abc|1000.00<br>BBBBB|0002|ddd|1200.20<br>CCCCC|0003|dde|100.01<br>AAAAA|0005|ggg|200<br>……</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/perl</span><br><span class="line"></span><br><span class="line">$filea=&quot;a.txt&quot;;</span><br><span class="line">$fileb=&quot;b.txt&quot;;</span><br><span class="line"></span><br><span class="line">open(FB,&quot;&lt;$fileb&quot;) || die &quot;Can&apos;t read $fileb\n$!\n&quot;;</span><br><span class="line">while() &#123;</span><br><span class="line">@line=split(/\|/);</span><br><span class="line">$datab&#123;$line[2]&#125;=$line[3];</span><br><span class="line">&#125;</span><br><span class="line">close FB;</span><br><span class="line">open (FA,&quot;&lt;$filea&quot;) || die &quot;Can&apos;t read $filea\n$!\n&quot;;</span><br><span class="line">while()</span><br><span class="line">&#123;</span><br><span class="line">@line = split(/\|/);</span><br><span class="line">$dataa&#123;$line[0]&#125; = $_;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foreach $key (sort &#123;$b cmp $a&#125; keys %dataa)</span><br><span class="line">&#123;</span><br><span class="line">print $datab&#123;int $key&#125;.&apos;|&apos;.$dataa&#123;$key&#125; if exists $datab&#123;int $key&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/perl</div><div class="line"></div><div class="line">$filea=&quot;a.txt&quot;;</div><div class="line">$fileb=&quot;b.txt&quot;;</div><div class="line"></div><div class="line">open(FB,&quot;&lt;$fileb&quot;) || die &quot;Can&apos;t read $fileb\n$!\n&quot;;</div><div class="line">while() &#123;</div><div class="line">@line=split(/\|/);</div><div class="line">$datab&#123;$line[2]&#125;=$line[3];</div><div class="line">&#125;</div><div class="line">close FB;</div><div class="line">open (FA,&quot;&lt;$filea&quot;) || die &quot;Can&apos;t read $filea\n$!\n&quot;;</div><div class="line">while()</div><div class="line">&#123;</div><div class="line">@line = split(/\|/);</div><div class="line">$dataa&#123;$line[0]&#125; = $_;</div><div class="line">&#125;</div><div class="line"></div><div class="line">foreach $key (sort &#123;$b cmp $a&#125; keys %dataa)</div><div class="line">&#123;</div><div class="line">print $datab&#123;int $key&#125;.&apos;|&apos;.$dataa&#123;$key&#125; if exists $datab&#123;int $key&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
-        
-        
-        <p class="article-more-link">
           
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/perl/">perl</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2010/04/22/perl-merge-files/#comments" class="ds-thread-count comments-count-link" data-thread-key="2010/04/22/perl-merge-files/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2010/03/21/perl-comment-ref-class/" title="关于Perl的几点：多行注释，REF函数，类的初始化" itemprop="url">关于Perl的几点：多行注释，REF函数，类的初始化</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
-		
-  <p class="article-time">
-    <time datetime="2010-03-20T16:00:00.000Z" itemprop="datePublished"> 发表于 2010-03-21</time>
-    
-  </p>
-</header>
-    <div class="article-content">
         
-        <p>多行注释：<br>perl没有多行注释，可以用下面代替：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">=pod</span><br><span class="line">代码行;</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">代码行;</span><br><span class="line">=cut</span><br></pre></td></tr></table></figure></p>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/03/21/perl-comment-ref-class/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2010/03/21/perl-comment-ref-class/" itemprop="url">
+                  关于Perl的几点：多行注释，REF函数，类的初始化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2010-03-21T00:00:00+08:00">
+                2010-03-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2010/03/21/perl-comment-ref-class/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2010/03/21/perl-comment-ref-class/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>多行注释：<br>perl没有多行注释，可以用下面代替：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">=pod</div><div class="line">代码行;</div><div class="line">.</div><div class="line">.</div><div class="line">.</div><div class="line">代码行;</div><div class="line">=cut</div></pre></td></tr></table></figure></p>
 <p>关于ref函数：<br>ref EXPR<br>ref Returns a non-empty string if EXPR is a reference, the empty<br>string otherwise. If EXPR is not specified, $_ will be used. The<br>value returned depends on the type of thing the reference is a<br>reference to. Builtin types include:</p>
 <blockquote>
 <p>SCALAR<br>ARRAY<br>HASH<br>CODE<br>REF<br>GLOB<br>LVALUE</p>
 </blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2010/03/21/perl-comment-ref-class/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
-        
-        <p class="article-more-link">
-          
-            <a href="/2010/03/21/perl-comment-ref-class/#more">Read More</a>
-          
-       </p>
+      
     </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/perl/">perl</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2010/03/21/perl-comment-ref-class/#comments" class="ds-thread-count comments-count-link" data-thread-key="2010/03/21/perl-comment-ref-class/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2010/03/07/thinkpad-t61-squeak/" title="为什么thinkpad T61会发现吱吧电流声[zt]" itemprop="url">为什么thinkpad T61会发现吱吧电流声[zt]</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/100378260579772710000?rel=author" title="Dong[東木]" target="_blank" itemprop="author">Dong[東木]</a>
-		
-  <p class="article-time">
-    <time datetime="2010-03-06T16:00:00.000Z" itemprop="datePublished"> 发表于 2010-03-07</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>一台THINKPAD T61笔记本电脑单击用电池使用电脑时，在主板和电池接口的附近会发出吱吱电流声请问这是怎么回事呀？</p>
-<p>THINKPAD T61笔记本电脑的CPU在默认状态下是可以变频的，所以当笔记本电脑使用电池时，为了发挥省电效能,CPU会降频运行，而在CPU与WINDOWS操作系统产生大量数据交换的时候，CPU会自动升高主频来完成加速任务，在完成后CPU会自动升高主频来加速完成任务，在完成后CPU会自动降回省电的频率运行，而这一高一低的来回切换频，造成笔记本电脑发出吧吧电流声，是正常的现象，所以要解决该问题，只要在主板BIOS设置中将CPU频率调节到始终使用最高，问题就可以解决，具体方法如下：启动计算机，进入主板BIOS设置，选择CONFIG-POWER-CPU POWER MANAGEMENT –AUTOMATIC将其值改为DISABLE，保存退出主板BIOS设置，问题就可以解决了。</p>
-<p>PS：还没尝试过，还有人建议禁用USB接口的节电功能。目前有效果的是，移除底部的散热加，放平笔记本电流声就减少明显。</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
+    <div>
+      
     </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Share/">Share</a>
-</div>
+    <div>
+      
+    </div>
 
 
-  <div class="article-tags">
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
   
-  <span></span> <a href="/tags/ThinkPad/">ThinkPad</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2010/03/07/thinkpad-t61-squeak/#comments" class="ds-thread-count comments-count-link" data-thread-key="2010/03/07/thinkpad-t61-squeak/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
-  <nav id="page-nav" class="clearfix">
-    <a class="extend prev" rel="prev" href="/page/23/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="page-number" href="/page/23/">23</a><span class="page-number current">24</span><a class="page-number" href="/page/25/">25</a><a class="page-number" href="/page/26/">26</a><span class="space">&hellip;</span><a class="page-number" href="/page/56/">56</a><a class="extend next" rel="next" href="/page/25/">Next<span></span></a>
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/23/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><span class="page-number current">24</span><a class="page-number" href="/page/25/">25</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><a class="extend next" rel="next" href="/page/25/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
-</div>
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-  
-<div class="categorieslist">
-	<p class="asidetitle">分类</p>
-		<ul>
-		
-		  
-			<li><a href="/categories/Analytics/" title="Analytics">Analytics<sup>11</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Game/" title="Game">Game<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Linux/" title="Linux">Linux<sup>106</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Mac-OS/" title="Mac OS">Mac OS<sup>11</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>20</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/PHP/" title="PHP">PHP<sup>3</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Python/" title="Python">Python<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Share/" title="Share">Share<sup>104</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/VM/" title="VM">VM<sup>4</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/W3C/" title="W3C">W3C<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Windows/" title="Windows">Windows<sup>12</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/seafile/" title="seafile">seafile<sup>1</sup></a></li>
-		  
-		
-		</ul>
-</div>
+          
+          </div>
+          
 
 
-  
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/Firefox/" title="Firefox">Firefox<sup>21</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Linux/" title="Linux">Linux<sup>14</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>13</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/awk/" title="awk">awk<sup>10</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/AWstats/" title="AWstats">AWstats<sup>7</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Shell/" title="Shell">Shell<sup>7</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/ThinkPad/" title="ThinkPad">ThinkPad<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/chrome/" title="chrome">chrome<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/regex/" title="regex">regex<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Active-Directory/" title="Active Directory">Active Directory<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Perl/" title="Perl">Perl<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/shc/" title="shc">shc<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Apache/" title="Apache">Apache<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/VirtualBox/" title="VirtualBox">VirtualBox<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/mysqldump/" title="mysqldump">mysqldump<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/shell/" title="shell">shell<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/error/" title="error">error<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/perl/" title="perl">perl<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Mac-OS/" title="Mac OS">Mac OS<sup>4</sup></a></li>
-			
-		
-		</ul>
-</div>
+          
 
-
-  <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
-    <ul>
+        </div>
         
-          <li>
-            
-            	<a href="http://hexo.io" target="_blank" title="”A fast">Hexo</a>
-            
-          </li>
-        
-    </ul>
-</div>
-
+          
   
-
-
-  <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
-    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2003788463&verifier=&dpc=1"></iframe>
-</div>
-
-
-</aside>
-</div>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> Hello ,I&#39;m Larry Page in Google. <br/>
-			This is my blog,believe it or not.</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		<a href="http://weibo.com/2003788463" target="_blank" class="icon-weibo" title="微博"></a>
-		
-		
-		<a href="https://github.com/liudongkai" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		<a href="https://twitter.com/liudongkai" target="_blank" class="icon-twitter" title="twitter"></a>
-		
-		
-		<a href="https://www.facebook.com/liudongkai" target="_blank" class="icon-facebook" title="facebook"></a>
-		
-		
-		
-		
-		
-		<a href="https://plus.google.com/100378260579772710000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
-		
-		
-		<a href="mailto:liudongkai@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
-		
-	</div>
-			
-		
+  </div>
 
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
-		
-		<a href="/about" target="_blank" title="Dong[東木]">Dong[東木]</a>
-		
-		
-		</p>
-</div>
-</footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="東木" />
+          <p class="site-author-name" itemprop="name">東木</p>
+          <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+        </div>
+        <nav class="site-state motion-element">
         
-    }
-  });
-});
-</script>
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">281</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">196</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
 
 
+      </section>
+
+      
+
+    </div>
+  </aside>
 
 
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2007 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+</div>
 
 
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
 
 
+        
 
+        
+      </div>
+    </footer>
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
 <script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
   }
-}); 
 </script>
 
 
 
-<!-- Analytics Begin -->
-
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-42337789-4', 'auto');  
-ga('send', 'pageview');
-</script>
 
 
 
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?6670918735b10a367f9a37be551616a0";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
 
 
 
-<!-- Analytics End -->
-
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
+  
 
 
-<!-- MathJax End -->
 
-<!-- Tiny_search Begin -->
 
-<script>
-var option = {
-  engineKey: 'b3655049504c5e2d7c68'
-};
-(function(w,d,t,u,n,s,e){
-  s = d.createElement(t);
-  s.src = u;
-  s.async = 1;
-  w[n] = function(r){
-    w[n].opts = r;
-  };
-  e = d.getElementsByTagName(t)[0];
-  e.parentNode.insertBefore(s, e);
-})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
-_ts(option);
-</script>
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
-<!-- Tiny_search End -->
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
-  </body>
- </html>
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liudongkai"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+</body>
+</html>
