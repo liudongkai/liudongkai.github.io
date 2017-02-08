@@ -22,35 +22,6 @@
     <published>2016-02-26T16:00:00.000Z</published>
     <updated>2016-02-26T16:00:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p>浏览器默认下载器下载百度云的文件速度大多不理想，非客户端下载限速，大文件下载中途失败，让人体验非常不友好。Windows 平台独享百度云管家下载工具，大文件的上下传速度都比较理想，Mac 平台的同步盘功能少，体验差，直到配合下载工具 <code>aria2</code> 下载速度和大文件下载才有所改善。下面是几步简单的教程。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>请首先自行安装 <code>Homebrew</code>。Homebrew 安装 <code>aria2</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install aria2</div></pre></td></tr></table></figure>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>参照以下配置新建 <code>aria2.conf</code> 配置文件，自行设定配置文件路径。</p>
-<p>必须要修改的地方有两处：</p>
-<ol>
-<li>下载文件保存路径。用户名填写本机当前用户名。</li>
-<li>最后一行。如果是 SSD 则不用改，如果是传统硬盘，就改成 <code>file-allocation=prealloc</code></li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">#允许rpc</div><div class="line">enable-rpc=true</div><div class="line">#允许非外部访问</div><div class="line">rpc-listen-all=true</div><div class="line">#RPC端口, 仅当默认端口被占用时修改</div><div class="line">rpc-listen-port=6800</div><div class="line"></div><div class="line">#最大同时下载数(任务数), 路由建议值: 3</div><div class="line">max-concurrent-downloads=10</div><div class="line">#断点续传</div><div class="line">continue=true</div><div class="line">#同服务器连接数</div><div class="line">max-connection-per-server=10</div><div class="line">#最小文件分片大小, 下载线程数上限取决于能分出多少片, 对于小文件重要</div><div class="line">min-split-size=10M</div><div class="line">#单文件最大线程数, 路由建议值: 5</div><div class="line">split=10</div><div class="line">#下载速度限制</div><div class="line">max-overall-download-limit=0</div><div class="line">#单文件速度限制</div><div class="line">max-download-limit=0</div><div class="line">#上传速度限制</div><div class="line">max-overall-upload-limit=0</div><div class="line">#单文件速度限制</div><div class="line">max-upload-limit=0</div><div class="line"></div><div class="line">#文件保存路径, 默认为当前启动位置</div><div class="line">dir=/Users/用户名/Downloads</div><div class="line"></div><div class="line">#允许所有来源, web界面跨域权限需要</div><div class="line">rpc-allow-origin-all=true</div><div class="line"></div><div class="line">#文件预分配, 能有效降低文件碎片, 提高磁盘性能. 缺点是预分配时间较长</div><div class="line">#所需时间 none &lt; falloc ? trunc &lt;&lt; prealloc, falloc和trunc需要文件系统和内核支持</div><div class="line"># !!仅针对传统磁盘，SSD 降低文件碎片并不是什么好事。</div><div class="line">file-allocation=none</div></pre></td></tr></table></figure>
-<p>打开终端，执行以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo &quot;alias aria2rpc=&apos;aria2c --conf-path=/Users/用户名/.../aria2.conf -D&apos;&quot; &gt;&gt; ~/.bash_profile</div></pre></td></tr></table></figure></p>
-<p>记得替换你设置的配置文件 <code>aria2.conf</code> 的路径。</p>
-<p>最后执行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source ~/.bash_profile</div></pre></td></tr></table></figure>
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>Terminal 执行命名运行 aria2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">aria2rpc</div></pre></td></tr></table></figure></p>
-<p>每次开机均执行一次即可。</p>
-<p>使用<br>aria2 是一个命令行工具，为了方便，有几种图形界面工具可以配合使用：</p>
-<ol>
-<li><p>网页 YAAW<br>打开网页 <a href="http://binux.github.io/yaaw/demo/" target="_blank" rel="external">Yet Another Aria2 Web Frontend</a><br>点右上角的扳手按钮，修改 JSON-RPC Path 内容为 <code>http://127.0.0.1:6800/jsonrpc</code></p>
-</li>
-<li><p>GUI 客户端<br>下载 <a href="https://github.com/yangshun1029/aria2gui/releases" target="_blank" rel="external">aria2gui</a><br>默认 JSON-RPC 为 <code>http://localhost:6800/jsonrpc</code>，不需要修改。</p>
-</li>
-</ol>
-<p>使用时按 <code>+Add</code> 或 <code>+添加</code> 按钮，输入 HTTP、FTP 或 Magnet 进行下载。</p>
-<p>如果嫌每次复制粘贴链接麻烦，浏览器有 <code>百度网盘助手</code> 插件，可以在百度云网页生成 <code>导出下载</code> 按钮，点击 <code>ARIA2 RPC</code> 即可自动在打开的 YAAW 网页或 GUI 客户端上进行下载。</p>
-<p><a href="https://chrome.google.com/webstore/detail/baiduexporter/mjaenbjdjmgolhoafkohbhhbaiedbkno" target="_blank" rel="external">Chrome 插件</a><br><a href="https://raw.githubusercontent.com/acgotaku/BaiduExporter/master/firefox/baidu-exporter.xpi" target="_blank" rel="external">Firefox 插件</a></p>
-<p>原文链接：<a href="http://www.jianshu.com/p/33b0a9504a04" target="_blank" rel="external">http://www.jianshu.com/p/33b0a9504a04</a></p>
-]]></content>
-    
     <summary type="html">
     
       &lt;p&gt;浏览器默认下载器下载百度云的文件速度大多不理想，非客户端下载限速，大文件下载中途失败，让人体验非常不友好。Windows 平台独享百度云管家下载工具，大文件的上下传速度都比较理想，Mac 平台的同步盘功能少，体验差，直到配合下载工具 &lt;code&gt;aria2&lt;/code&gt; 下
@@ -73,16 +44,6 @@
     <published>2015-09-09T16:00:00.000Z</published>
     <updated>2015-09-09T16:00:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p>之前win7系统，使用完全没问题，最近升级了win10，安装后打开，显示的右侧预览页面打不开，提示如图。</p>
-<p><img src="/images/20150910001.png" alt=""></p>
-<p><img src="/images/20150910002.png" alt=""></p>
-<h2 id="官方方案"><a href="#官方方案" class="headerlink" title="官方方案"></a>官方方案</h2><p>官方的说法是从 Win 8 开始就有这个问题了，解决办法就是安装 <a href="http://markdownpad.com/download/awesomium_v1.6.6_sdk_win.exe" target="_blank" rel="external">Awesomium 1.6.6 SDK</a>.，如果还是不行就再安装 <a href="http://www.microsoft.com/en-us/download/details.aspx?id=8109" target="_blank" rel="external">Microsoft’s DirectX End-User Runtimes (June 2010)</a>，经我实际测试，只需要安装前者就可以了。下面是官方的原文：</p>
-<blockquote>
-<p>LivePreview is not working - it displays an error message stating This view has crashed!<br>This issue has been specifically observed in Windows 8. You may see an error message <a href="http://markdownpad.com/img/faq/markdownpad-livepreview-crash-directx.png" target="_blank" rel="external">as shown here</a>, and no HTML will be rendered when you type in the Markdown Editor pane.<br>To fix this issue, please try installing the <a href="http://markdownpad.com/download/awesomium_v1.6.6_sdk_win.exe" target="_blank" rel="external">Awesomium 1.6.6 SDK</a>.<br>If you continue to experience issues, please install <a href="http://www.microsoft.com/en-us/download/details.aspx?id=8109" target="_blank" rel="external">Microsoft’s DirectX End-User Runtimes (June 2010)</a>.</p>
-</blockquote>
-<p>Referer: <a href="http://markdownpad.com/faq.html#livepreview-directx" target="_blank" rel="external">MarkdownPad - Frequently Asked Questions</a></p>
-]]></content>
-    
     <summary type="html">
     
       &lt;p&gt;之前win7系统，使用完全没问题，最近升级了win10，安装后打开，显示的右侧预览页面打不开，提示如图。&lt;/p&gt;
@@ -104,124 +65,6 @@
     <id>http://blog.liudongkai.com/2015/09/09/Install-Laravel5-on-OSX/</id>
     <published>2015-09-08T16:00:00.000Z</published>
     <updated>2015-09-08T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>If you’re like me, you’ve probably spent countless hours on the web trying to figure out how to install the dev-develop version of Laravel on your machine. As of today, the latest Laravel version 4.2 but if you want to see the awesome Laravel 5 features, you need to upgrade.</p>
-<p>In this article, you will learn how to setup Laravel 5 from scratch on OS X.</p>
-<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><p>Here are some things you must have:</p>
-<ul>
-<li>A Terminal</li>
-<li>XAMPP / MAMP (I will show you how to set it up using both of them)</li>
-</ul>
-<p>That’s pretty much it. <strong>Let’s get started.</strong></p>
-<h2 id="Step-1-Installing-Composer"><a href="#Step-1-Installing-Composer" class="headerlink" title="Step 1: Installing Composer"></a>Step 1: Installing Composer</h2><p>According to their <a href="https://getcomposer.org/" target="_blank" rel="external">website</a>,</p>
-<blockquote>
-<p>Composer is a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs and it will install them in your project for you.</p>
-</blockquote>
-<p>In short, it is awesome.</p>
-<p>Composer allows you to scaffold out a Laravel project and you also have the flexibility of specifying which version of Laravel your want.</p>
-<p>To install composer, run the following commands in the terminal:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">curl -sS https://getcomposer.org/installer | php</div><div class="line">sudo mkdir -p /usr/local/bin/</div><div class="line">sudo mv composer.phar /usr/local/bin/composer</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>This will install Composer globally for you. To verify that your composer installation is successful, try running:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer</div></pre></td></tr></table></figure>
-<p>…and you’ll see a bunch of composer commands flow down your terminal screen. Hurray!</p>
-<p>You can also update composer by running:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer self-update</div></pre></td></tr></table></figure>
-<p>For more information, check out the in-depth guide on their website for <a href="https://getcomposer.org/doc/00-intro.md" target="_blank" rel="external">Getting Started with Composer</a>.</p>
-<h2 id="Step-2-Configuring-XAMPP-MAMP"><a href="#Step-2-Configuring-XAMPP-MAMP" class="headerlink" title="Step 2: Configuring XAMPP/MAMP"></a>Step 2: Configuring XAMPP/MAMP</h2><p>So you’ve installed either XAMPP or MAMP on your machine. Great.</p>
-<p>When installing Laravel for the first time, more than 90% of the people face this dreaded PHP error:</p>
-<blockquote>
-<p>MCrypt PHP extension not installed.</p>
-</blockquote>
-<p>…and then they spend countless hours on the internet trying to figure out how to solve this and most of them will tell you to install MAMP. But what if you have XAMPP installed?</p>
-<p>It’s pretty simple.</p>
-<h3 id="For-XAMPP-users"><a href="#For-XAMPP-users" class="headerlink" title="For XAMPP users"></a>For XAMPP users</h3><p>Home page : <a href="https://www.apachefriends.org/download.html" target="_blank" rel="external">https://www.apachefriends.org/download.html</a></p>
-<p>I’m using XAMPP 1.8.3–2 on my Mac and it comes with the MCrypt extension out of the box. All you need is to include it’s path in your .bash_profile</p>
-<p>Open your .bash_profile by running:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim ~/.bash_profile</div></pre></td></tr></table></figure>
-<p>…and paste the following line at the end:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export PATH=&quot;/Applications/XAMPP/xamppfiles/bin:$PATH&quot;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>Save the file by pressing : and typing wq and then press enter to quit out.</p>
-</blockquote>
-<p>Remember to reload the .bash_profile by running:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source ~/.bash_profile</div></pre></td></tr></table></figure>
-<p>And you’re done!</p>
-<h3 id="For-MAMP-users"><a href="#For-MAMP-users" class="headerlink" title="For MAMP users"></a>For MAMP users</h3><p>Home page : <a href="https://www.mamp.info/en/downloads/" target="_blank" rel="external">https://www.mamp.info/en/downloads/</a></p>
-<p>The procedure is pretty much the same. You start out by opening your .bash_profile and pasting the following line at the end:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export PATH=/Applications/MAMP/bin/php/php5.6/bin:$PATH</div></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>Important note:</strong> This assumes that you have PHP 5.6 installed on your machine.</p>
-</blockquote>
-<p>Remember to reload the .bash_profile by running:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source ~/.bash_profile</div></pre></td></tr></table></figure>
-<p>And you’re done!</p>
-<h2 id="Step-3-Installing-Laravel-5"><a href="#Step-3-Installing-Laravel-5" class="headerlink" title="Step 3: Installing Laravel 5"></a>Step 3: Installing Laravel 5</h2><p>To create a new Laravel 5 project, run the following:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer create-project laravel/laravel dev-develop</div></pre></td></tr></table></figure>
-<p>This will pull in the latest dev branch from the Github repo. If you want the latest stable version, run the following:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer create-project laravel/laravel --prefer-dist</div></pre></td></tr></table></figure>
-<p>If everything goes well, try running:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan -V</div></pre></td></tr></table></figure>
-<p>and if it says:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Laravel Framework version 5.0-dev</div></pre></td></tr></table></figure>
-<p>then you’re good to go!</p>
-<p>To see your new shiny Laravel installation in action visit the public directory in the project to see the awesome new Laravel 5 home page.</p>
-<p><img src="/images/20150909001.png" alt=""></p>
-<h2 id="Step-4-Installing-Laravel-Homestead"><a href="#Step-4-Installing-Laravel-Homestead" class="headerlink" title="Step 4: Installing Laravel Homestead"></a>Step 4: Installing Laravel Homestead</h2><p>If you have XAMPP/MAMP installed, you can actually browse to your project’s public directory to see the app in action.</p>
-<p>To be honest, I’ve moved on from software like XAMPP and MAMP. They are good if you are just getting started, but for you to get better at deploying apps via the command line and really understand how things work, you need to <a href="https://www.youtube.com/watch?v=kHue-HaXXzg" target="_blank" rel="external">let it go</a>.</p>
-<p>According to their website:</p>
-<blockquote>
-<p>Laravel Homestead is an official, pre-packaged Vagrant “box” that provides you a wonderful development environment without requiring you to install PHP, HHVM, a web server, and any other server software on your local machine.</p>
-</blockquote>
-<p>In other words, Laravel Homestead provides a complete environment for your Laravel project. It’s like having your own Rackspace or Digital Ocean server.</p>
-<p>It uses Vagrant which allows you to create lightweight, reproducible, and portable development environments locally.</p>
-<p>Before installing Laravel Homestead, you need to install 2 things:</p>
-<ul>
-<li>Vagrant (<a href="https://www.vagrantup.com/downloads.html" target="_blank" rel="external">Download</a>)</li>
-<li>Oracle VirtualBox (<a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="external">Download</a>)</li>
-</ul>
-<p>For more information on Vagrant, check out their <a href="https://www.vagrantup.com/" target="_blank" rel="external">website</a>.</p>
-<p>Once you have installed Vagrant on your machine, it is time to install Homestead.</p>
-<p>To install Laravel Homestead, run the following:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vagrant box add laravel/homestead</div></pre></td></tr></table></figure>
-<p>It might take some time to install depending on your internet connection.</p>
-<p>What it is essentially doing is installing a copy of the latest Ubuntu version with a complete LAMP stack setup so you have your own server that you can SSH into.</p>
-<p>In fact, the files on your local machine are synced with the VM so essentially, if you make any change on your local machine, it is synced back to the VM. Note that everything is happening locally.</p>
-<p>Once the installation completes, you need to create a Homestead.yaml file that will hold all the configuration for our VM.</p>
-<p>You can do that by running:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">homestead init</div></pre></td></tr></table></figure>
-<p>By default, this will create a Homestead.yaml file in your root directory.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/.homestead/Homestead.yaml</div></pre></td></tr></table></figure>
-<p>Open up the file and let’s discuss what’s relevant:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">authorize: ~/.ssh/id_rsa.pub</div></pre></td></tr></table></figure>
-<p>You need to setup an SSH key on your machine that will allow you to SSH into your VM.</p>
-<p>For more information on setting up SSH keys, Github has an <a href="https://help.github.com/articles/generating-ssh-keys/" target="_blank" rel="external">awesome article</a>.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">folders:</div><div class="line">     — map: ~/path/to/project</div><div class="line">       to: /home/vagrant/project-name</div></pre></td></tr></table></figure>
-<p>The above code maps the project on your machine to the project on the VM. For example, if your project directory is:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/Documents/LaravelProjects/laravel-test</div></pre></td></tr></table></figure>
-<p>It’s going to map to the following in the VM:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/home/vagrant/laravel-test</div></pre></td></tr></table></figure>
-<p>Let’s look at the most important part:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sites:</div><div class="line">     — map: project.app</div><div class="line">       to: /home/vagrant/project-name/public</div></pre></td></tr></table></figure>
-<p>The above code provides you with a handy alias to enter in the browser that points to your project’s public directory which is how Laravel serves your app.</p>
-<p>For example, you can enter something like:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://personal.app</div></pre></td></tr></table></figure>
-<p>…and see your Laravel project. You can also use the following:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://localhost:8000</div></pre></td></tr></table></figure>
-<p>Okay, so we are ready to start Homestead. To do that, run the following:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">homestead up</div></pre></td></tr></table></figure>
-<p>It will spit out a bunch of commands in your terminal. Once it’s done, you can SSH into your shiny new server by:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">homestead ssh</div></pre></td></tr></table></figure>
-<p>…and if everything is setup correctly, you’ll see the following prompt:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vagrant@homestead:~/project-name</div></pre></td></tr></table></figure>
-<h2 id="Step-6-Done"><a href="#Step-6-Done" class="headerlink" title="Step 6: Done"></a>Step 6: Done</h2><p>Phew. That was a lot.</p>
-<p><img src="/images/20150909002.jpeg" alt=""></p>
-<p><strong>Congratulations though!</strong> You just set up a new Laravel 5 project from scratch.</p>
-<p>Build something awesome! ☺</p>
-<p>Here is a puppy pile to make your day better. Why? Cuz.</p>
-<p><img src="/images/20150909003.jpeg" alt=""></p>
-<p>via. <a href="https://medium.com/@kunalnagar/install-laravel-5-on-os-x-23f3578386f1" target="_blank" rel="external">https://medium.com/@kunalnagar/install-laravel-5-on-os-x-23f3578386f1</a></p>
-]]></content>
     
     <summary type="html">
     
@@ -258,25 +101,6 @@
     <published>2015-04-28T16:00:00.000Z</published>
     <updated>2015-04-28T16:00:00.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="重新编译mod-rewrite-so："><a href="#重新编译mod-rewrite-so：" class="headerlink" title="重新编译mod_rewrite.so："></a>重新编译mod_rewrite.so：</h1><h2 id="查找源码"><a href="#查找源码" class="headerlink" title="查找源码"></a>查找源码</h2><p>在apache的源码安装目录中寻找mod_rewrite.c文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ find ./ -name &quot;mod_rewrite.c&quot;</div><div class="line">/usr/local/src/httpd-2.2.4/modules/mappers/mod_rewrite.c</div></pre></td></tr></table></figure></p>
-<h2 id="编译："><a href="#编译：" class="headerlink" title="编译："></a>编译：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ cd /usr/local/src/httpd-2.2.4/modules/mappers/</div><div class="line">$ /usr/local/apache/bin/apxs -c mod_rewrite.c</div><div class="line">$ /usr/local/apache/bin/apxs -i -a -n mod_rewrite mod_rewrite.la</div></pre></td></tr></table></figure>
-<p>如果没有什么错误的话，应该在你的apache的modules目录中编译出一个mod_rewrite.so文件。<br>编辑httpd.conf文件，确认httpd.conf中已经包含mod_rewrite.so的加载语句，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LoadModule rewrite_module modules/mod_rewrite.so</div></pre></td></tr></table></figure></p>
-<h2 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h2><p>完成之后，记得重启服务器apache。</p>
-<h2 id="可能碰到的问题"><a href="#可能碰到的问题" class="headerlink" title="可能碰到的问题"></a>可能碰到的问题</h2><h3 id="错误一"><a href="#错误一" class="headerlink" title="错误一"></a>错误一</h3><p>如果出现这个错误</p>
-<blockquote>
-<p>httpd: Syntax error on line 61 of /usr/local/apache/conf/httpd.conf: Can’t locate API module structure `mod_rewrite_module’ in file /usr/local/apache/modules/mod_rewrite.so: /usr/local/apache/modules/mod_rewrite.so: undefined symbol: mod_rewrite_module</p>
-</blockquote>
-<p>修改http.conf<br>原来：httpd.conf里面写的<code>mod_rewrite_module</code><br>改成：<code>rewrite_module</code></p>
-<h3 id="错误二"><a href="#错误二" class="headerlink" title="错误二"></a>错误二</h3><p>如果重启apache出现这个错误</p>
-<blockquote>
-<p>httpd: Syntax error on line 61 of /usr/local/apache/conf/httpd.conf: module rewrite_module is built-in and can’t be loaded</p>
-</blockquote>
-<p>表示模块是内建的，不用再调入,修改http.conf注释掉<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#LoadModule rewrite_module modules/mod_rewrite.so</div></pre></td></tr></table></figure></p>
-<h1 id="修改虚拟机配置"><a href="#修改虚拟机配置" class="headerlink" title="修改虚拟机配置"></a>修改虚拟机配置</h1><p>注意下一步，配置虚拟主机的时候要类似如下设置才可以生效：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;VirtualHost *:80&gt;</div><div class="line">    ServerName www.liudongkai.com</div><div class="line">    DocumentRoot /home/www.liudongkai.com</div><div class="line">    ErrorLog logs/www.liudongkai.com-error_log</div><div class="line">    CustomLog logs/www.liudongkai.com combined</div><div class="line">	&lt;Directory /home/www.liudongkai.com&gt;</div><div class="line">        AllowOverride All</div><div class="line">        Order allow,deny</div><div class="line">        allow from all</div><div class="line">    &lt;/Directory&gt;</div><div class="line">&lt;/VirtualHost&gt;</div></pre></td></tr></table></figure>
-<p>如果AllowOverride设置为none的话，apache会不读取网站的.htaccess文件！</p>
-]]></content>
-    
     <summary type="html">
     
       &lt;h1 id=&quot;重新编译mod-rewrite-so：&quot;&gt;&lt;a href=&quot;#重新编译mod-rewrite-so：&quot; class=&quot;headerlink&quot; title=&quot;重新编译mod_rewrite.so：&quot;&gt;&lt;/a&gt;重新编译mod_rewrite.so：&lt;/h1&gt;&lt;h2 i
@@ -296,13 +120,6 @@
     <id>http://blog.liudongkai.com/2015/04/17/chrome-42-alipay-wangwang/</id>
     <published>2015-04-16T16:00:00.000Z</published>
     <updated>2015-04-16T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>chrome浏览器升级到42版本后，旺旺、支付宝等插件失效是因为chrome v42默认关闭了npapi。</p>
-<p>解决办法：</p>
-<blockquote>
-<p>可以直接在chrome地址栏输入 <code>chrome://flags/#enable-npapi</code> 找到npapi选项并启用。</p>
-</blockquote>
-]]></content>
     
     <summary type="html">
     
@@ -329,30 +146,6 @@
     <published>2015-04-06T16:00:00.000Z</published>
     <updated>2015-04-06T16:00:00.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="1-数字域的填充："><a href="#1-数字域的填充：" class="headerlink" title="1. 数字域的填充："></a>1. 数字域的填充：</h1><p>默认情况下，在显示日期和时间时，date命令使用数字0填充数字域。例如，如果用两位数字显示月份，则6月显示为“06”，如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ date +%m</div><div class="line">06</div></pre></td></tr></table></figure></p>
-<p>当然，一切皆有变通，你可以用下述控制符来控制填充符号：</p>
-<blockquote>
-<p>短线(-):       表示不填充数字域<br>下划线(_):  表示用空格填充数字域</p>
-</blockquote>
-<p>Examples:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ date +%d/%m</div><div class="line">14/06</div><div class="line">$ date +%-d/%-m</div><div class="line">14/6</div><div class="line">$ date +%_d/%_m</div><div class="line">14/ 6   #注意/和6之间有个空格</div></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<h1 id="2-相对日期的获得"><a href="#2-相对日期的获得" class="headerlink" title="2. 相对日期的获得"></a>2. 相对日期的获得</h1><h2 id="2-1-获取相对当前日期的相对日期"><a href="#2-1-获取相对当前日期的相对日期" class="headerlink" title="2.1. 获取相对当前日期的相对日期"></a>2.1. 获取相对当前日期的相对日期</h2><p>d 选项可以告诉您，相对于当前日期若干天的究竟是哪一天，从现在开始的若干天或若干星期以后，或者以前（过去）。通过将这个相对偏移使用引号括起来，作为 -d 选项的参数，就可以完成这项任务。</p>
-<p>为了表述的简单明了点，我想还是直接举例说明吧：</p>
-<p>主要有三种指令：</p>
-<blockquote>
-<p>last/next指令<br>ago指令<br>负数指令</p>
-</blockquote>
-<h3 id="2-1-1-last-next指令："><a href="#2-1-1-last-next指令：" class="headerlink" title="2.1.1. last/next指令："></a>2.1.1. last/next指令：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">#今天的时间</div><div class="line">$ date +%Y-%m-%d</div><div class="line">2011-06-14</div><div class="line">$ date -d last-day +%Y-%m-%d</div><div class="line">2011-06-13</div><div class="line">$ date -d yesterday +%Y-%m-%d</div><div class="line">2011-06-13</div><div class="line"></div><div class="line">$ date -d next-day +%Y-%m-%d</div><div class="line">2011-06-15</div><div class="line">$ date -d tomorrow +%Y-%m-%d</div><div class="line">2011-06-15</div><div class="line">#除了day, month，支持的还有如week, year, hour, min, sec等</div><div class="line">#这里就不再一一举例了</div><div class="line">$ date -d last-month +%Y-%m-%d</div><div class="line">2011-05-14</div><div class="line">$ date -d next-month +%Y-%m-%d</div><div class="line">2011-07-14</div></pre></td></tr></table></figure>
-<h3 id="2-1-2-ago指令："><a href="#2-1-2-ago指令：" class="headerlink" title="2.1.2. ago指令："></a>2.1.2. ago指令：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#同理，day, month, week, year, hour, min, sec都是支持的</div><div class="line">$ date -d &apos;1 day ago&apos; +%Y-%m-%d</div><div class="line">2011-06-13</div><div class="line">$ date -d &apos;2 days ago&apos; +%Y-%m-%d</div><div class="line">2011-06-12</div><div class="line">#不加ago，那就表示相对于今天的后一天</div><div class="line">$ date -d &apos;1 day&apos; +%Y-%m-%d</div><div class="line">2011-06-15</div></pre></td></tr></table></figure>
-<h3 id="2-1-3-负数指令-负数很好理解，即得到相反的日期-，以下两两是等效的："><a href="#2-1-3-负数指令-负数很好理解，即得到相反的日期-，以下两两是等效的：" class="headerlink" title="2.1.3. 负数指令(负数很好理解，即得到相反的日期)，以下两两是等效的："></a>2.1.3. 负数指令(负数很好理解，即得到相反的日期)，以下两两是等效的：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ date -d &apos;-2 days&apos; +%Y-%m-%d</div><div class="line">2011-06-12</div><div class="line">$ date -d &apos;2 days ago&apos; +%Y-%m-%d</div><div class="line">2011-06-12</div><div class="line"></div><div class="line">$ date -d &apos;2 days&apos; +%Y-%m-%d    #这里你也可以用+2来表示</div><div class="line">2011-06-16</div><div class="line">$ date -d &apos;-2 days ago&apos; +%Y-%m-%d</div><div class="line">2011-06-16</div></pre></td></tr></table></figure>
-<h2 id="2-2-获取指定日期的相对时间"><a href="#2-2-获取指定日期的相对时间" class="headerlink" title="2.2. 获取指定日期的相对时间"></a>2.2. 获取指定日期的相对时间</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ date -d &apos;20110614 next-day&apos; +%Y-%m-%d</div><div class="line">2011-06-15</div><div class="line">$ date -d &apos;june 14 -1 day&apos; +%Y-%m-%d</div><div class="line">2011-06-13</div></pre></td></tr></table></figure>
-<p>以下还有一种用法，不过要注意的是，<strong>这种方式在较早的操作系统中（如RedHat 4U7）可能不支持，需使用next/last指令代替</strong>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ date -d &apos;20110614 +2 days&apos;</div></pre></td></tr></table></figure></p>
-<h1 id="3-时间戳和日期的互相转换"><a href="#3-时间戳和日期的互相转换" class="headerlink" title="3. 时间戳和日期的互相转换:"></a>3. 时间戳和日期的互相转换:</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ date --date=&quot;2011-06-14&quot; &quot;+%s&quot;</div><div class="line">1307980800</div><div class="line">$ date --date=&quot;1970-01-01 UTC  1307980800 seconds&quot; &quot;+%Y-%m-%d&quot;</div><div class="line">2011-06-14</div><div class="line">$ date --date=&quot;@1307980800&quot; &quot;+%Y-%m-%d&quot;</div><div class="line">2011-06-14</div></pre></td></tr></table></figure>
-<h1 id="4-补充："><a href="#4-补充：" class="headerlink" title="4. 补充："></a>4. 补充：</h1><p>时间戳的转换还能用<strong>awk</strong>的<strong>strftime</strong>来实现，感谢<a href="http://bbs2.chinaunix.net/redirect.php?goto=findpost&amp;ptid=2333246&amp;pid=15754056" target="_blank" rel="external">bbgg1983</a>……<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ echo 1307980800 | awk &apos;&#123;T=strftime(&quot;%F %T&quot;,$1);print T&#125;&apos;</div><div class="line">2011-06-14 00:00:00</div></pre></td></tr></table></figure></p>
-<p>或者用<strong>sed</strong>，哈哈，感谢<a href="http://bbs2.chinaunix.net/redirect.php?goto=findpost&amp;ptid=2333246&amp;pid=15754320" target="_blank" rel="external">SS</a>……<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ echo &apos;1307980800&apos; |sed -r -e &quot;s/(.*)/date -d @\1 &apos;+%Y-%m-%d %H:%M:%S&apos;/e&quot;</div><div class="line">2011-06-14 00:00:00</div></pre></td></tr></table></figure></p>
-<p>最后，总结一下：date命令是很灵活的，更多功能，请大家自己慢慢发掘……</p>
-]]></content>
-    
     <summary type="html">
     
       &lt;h1 id=&quot;1-数字域的填充：&quot;&gt;&lt;a href=&quot;#1-数字域的填充：&quot; class=&quot;headerlink&quot; title=&quot;1. 数字域的填充：&quot;&gt;&lt;/a&gt;1. 数字域的填充：&lt;/h1&gt;&lt;p&gt;默认情况下，在显示日期和时间时，date命令使用数字0填充数字域。例如，如果用两位数字显示月份，则6月显示为“06”，如下所示：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ date +%m&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;06&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
@@ -378,25 +171,6 @@
     <published>2015-01-31T16:00:00.000Z</published>
     <updated>2015-01-31T16:00:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p>好消息! <strong>Google今天官方宣布，Google Earth Pro以后完全免费了，任何人都可以直接获得。</strong></p>
-<p>Google Earth（谷歌地球）是大家非常喜欢的一个好东西(虽然现在基本残废了-_-)，但是你知道它还有一个高级的专业版吗?这就是Google Earth Pro，很强大，但也很奢侈，得花大钱购买，而且按年付费，一年就是399美元，约2500元人民币。</p>
-<p>与免费版相比，<strong>Google Earth Pro支持更多测量工具、更高打印分辨率、更多图层、更强导入功能、录制高清视频。</strong>无论规划办公大楼，还是进入深山探险，它都可以轻松胜任。</p>
-<p><img src="/images/20150201001.jpg" alt=""></p>
-<p>谷歌地球 Google Earth</p>
-<p>注册地址：</p>
-<blockquote>
-<p><a href="https://geoauth.google.com/gev0/free_trial.html" target="_blank" rel="external">https://geoauth.google.com/gev0/free_trial.html</a></p>
-</blockquote>
-<p>Windows版下载：</p>
-<blockquote>
-<p><a href="http://dl.google.com/earth/client/advanced/current/GoogleEarthProWin.exe" target="_blank" rel="external">http://dl.google.com/earth/client/advanced/current/GoogleEarthProWin.exe</a></p>
-</blockquote>
-<p>Mac版下载：</p>
-<blockquote>
-<p><a href="http://dl.google.com/earth/client/advanced/current/GoogleEarthProMac.dmg" target="_blank" rel="external">http://dl.google.com/earth/client/advanced/current/GoogleEarthProMac.dmg</a><br><a href="http://dl.google.com/earth/client/advanced/current/GoogleEarthProMac-Intel.dmg" target="_blank" rel="external">http://dl.google.com/earth/client/advanced/current/GoogleEarthProMac-Intel.dmg</a></p>
-</blockquote>
-]]></content>
-    
     <summary type="html">
     
       &lt;p&gt;好消息! &lt;strong&gt;Google今天官方宣布，Google Earth Pro以后完全免费了，任何人都可以直接获得。&lt;/strong&gt;&lt;/p&gt;
@@ -419,11 +193,6 @@
     <id>http://blog.liudongkai.com/2014/11/10/mac-os-x-screencapture/</id>
     <published>2014-11-09T16:00:00.000Z</published>
     <updated>2014-11-09T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>打开”终端”（应用程序 – 实用工具），输入以下命令：</p>
-<pre><code>screencapture -t png -&lt;span class=&quot;hljs-constant&quot;&gt;T &lt;/span&gt;&lt;span class=&quot;hljs-number&quot;&gt;10&lt;/span&gt; ~&lt;span class=&quot;hljs-regexp&quot;&gt;/Desktop/screenshot&lt;/span&gt;01.png
-</code></pre><p>当你按下”Enter”键后，系统将在10秒后自动截图，你在桌面上将看到图片文件（~/Desktop/screenshot01.png 是文件路径），如果你想修改截图时间，你只需修改命令中的数字”10”就可以了。</p>
-]]></content>
     
     <summary type="html">
     
@@ -448,16 +217,6 @@
     <published>2014-11-07T16:00:00.000Z</published>
     <updated>2014-11-07T16:00:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p>趁着1111活动，从企鹅入手TS-212P带3T日立企业盘，某东做的配送，0点后下的单，下午就到货了。到手后第一件事情就是把固件升级了，cloud升级的，down了一宿，第二天起来看到提示重启设备，反正正好要挪个位置，那就先正常关机，换了位置后，正常启动。</p>
-<p>接下来的问题就来了，启动后，Status灯一直红绿灯闪烁，然后重启；第二声确认蜂鸣声再也没有听到过，QFinder与NAS也从此失去了联系。</p>
-<p>发现网络上碰到这问题不少，我一个同事入的同款，也碰到过此类现象。</p>
-<p>最后按照QNAP wiki(<a href="http://wiki.qnap.com/wiki/Firmware_Recovery#Firmware_Recovery_Guide_for_ARM_based_NAS" target="_blank" rel="external">http://wiki.qnap.com/wiki/Firmware_Recovery#Firmware_Recovery_Guide_for_ARM_based_NAS</a>) 里的方法，重新刷回4.0.5，然后下载固件到本地，ssh到设备里升级的</p>
-<blockquote>
-<p>为什么要ssh上去升？因为web不牢靠，QFinder也尝试过直接4.0.5–&gt;4.1.1，最后会提示失败，失败的原因也不提示，不过最后在SSH升级过程中得到解答，是boot镜像没找到 =。=</p>
-</blockquote>
-<p>升级命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 固件img放在public下:</div><div class="line">[/] # ln -sf /mnt/HDA_ROOT/update/ /mnt/update</div><div class="line">[/] # /etc/init.d/update.sh /share/Public/4.1.1.img</div><div class="line">[/] # reboot</div></pre></td></tr></table></figure></p>
-]]></content>
-    
     <summary type="html">
     
       &lt;p&gt;趁着1111活动，从企鹅入手TS-212P带3T日立企业盘，某东做的配送，0点后下的单，下午就到货了。到手后第一件事情就是把固件升级了，cloud升级的，down了一宿，第二天起来看到提示重启设备，反正正好要挪个位置，那就先正常关机，换了位置后，正常启动。&lt;/p&gt;
@@ -480,18 +239,6 @@
     <id>http://blog.liudongkai.com/2014/11/04/VirtualBox-compact-vdi/</id>
     <published>2014-11-03T16:00:00.000Z</published>
     <updated>2014-11-03T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<ol>
-<li><p>在虚拟机里把没用的磁盘空间置零 (这一步耗时比较长, 且没提示. 另外如果有权限问题记得前面加 sudo)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dd if=/dev/zero of=/zero.tmp</div><div class="line">rm -f /zep.tmp</div></pre></td></tr></table></figure>
-</li>
-<li><p>关闭虚拟机</p>
-</li>
-<li><p>执行压缩命令 (宿主机是 Win 或 Linux 都自行找 VboxManager 的路径)</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">VboxManage modifyhd /PATH_TO_VDI/name.vdi --compact</div></pre></td></tr></table></figure>
-]]></content>
     
     <summary type="html">
     
@@ -519,141 +266,6 @@
     <published>2014-10-28T16:00:00.000Z</published>
     <updated>2014-10-28T16:00:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p>很多人會誤以為，當看完這篇JB教學後，都已經JB好了，那我是不是就能夠到App Store去下載任何App？如果是這樣想那就真的大錯特錯，JB的用意是在於幫助讓iPhone/iPad發揮更大功能，而非單純是再下載非法的App軟體，例如是想修改自己喜愛的字體、佈景主題、增加某些功能等。這些就必須要依靠JB來達成，況且JB會耗電？這說法並非如此，導致耗電源元兇是使用者裝了一些耗電的主題和外掛，否則JB不等於耗電，底下教學將詳細指導大家JB的運作原理與推薦加入的軟體源。</p>
-<p><img src="/images/20141029001.jpg" alt=""></p>
-<p>App Store與Cydia其實都是同樣模式再經營，「<strong>App Store</strong>」可視它為Apple的主要的賣場，開發人員必須遵守Apple規則撰寫APP，需通過Apple審核機制審核才會上架，才能提供讓使用者在App Store購買或是下載，如果是無法通過Apple審核的APP，別灰心在Cydia上一定能夠將此APP功能讓你發揚光大。</p>
-<p><img src="/images/20141029002.jpg" alt=""></p>
-<a id="more"></a>
-<p>「<strong>Cydia</strong>」視為地下賣場，提供讓一些無法在App Store上架的APP，裡面有些軟體源同樣都有審核規則與機制載運行中，當然有沒有收費機制？答案也是有，如果在Apple審查不過的APP，開發人員可以考慮在Cydia預設的軟體源上進行販售，其中比較著名內建的軟體源如：BigBoss、ModMyi.com等，裡面都可以依靠Cydia內建的收費機制來購買所需的工具。當然開發商都可以自己建立專屬的「<strong>軟體源</strong>」伺服器，像是iOS上最有名的輸入法iacces，就是只在Cydia上販售，並提供給使用者更新或是下載管道，收費機制開發商也可以另外制訂自己的收費機制，並非要依靠Cydia內建收費系統，至於怎麼購買Cydia上的插件可以參考<a href="http://mrmad.pixnet.net/blog/post/171561414" target="_blank" rel="external">這篇教學</a>。</p>
-<h2 id="介紹與推薦iOS6-1-X-iOS8-X軟體源："><a href="#介紹與推薦iOS6-1-X-iOS8-X軟體源：" class="headerlink" title="介紹與推薦iOS6.1.X-iOS8.X軟體源："></a>介紹與推薦iOS6.1.X-iOS8.X軟體源：</h2><p>PS.軟體源並非是加的多就代表越強，而是加入重要的軟體源即可。<br>更新時間：2014/3/15，此名單會隨時更新。</p>
-<h2 id="《Cydia內建預設軟體源》"><a href="#《Cydia內建預設軟體源》" class="headerlink" title="《Cydia內建預設軟體源》"></a>《Cydia內建預設軟體源》</h2><table>
-<thead>
-<tr>
-<th>名称</th>
-<th>地址</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>BigBoss</td>
-<td><a href="http://apt.thebigboss.org/repofiles/cydia" target="_blank" rel="external">http://apt.thebigboss.org/repofiles/cydia</a>  </td>
-</tr>
-<tr>
-<td>ModMyi</td>
-<td><a href="http://apt.modmyi.com" target="_blank" rel="external">http://apt.modmyi.com</a>  </td>
-</tr>
-<tr>
-<td>Telesphoreo</td>
-<td><a href="http://apt.saurik.com" target="_blank" rel="external">http://apt.saurik.com</a>  </td>
-</tr>
-<tr>
-<td>ZodTTD</td>
-<td><a href="http://cydia.zodttd.com/repo/cydia" target="_blank" rel="external">http://cydia.zodttd.com/repo/cydia</a></td>
-</tr>
-</tbody>
-</table>
-<h2 id="《推薦需要另外加入軟體源》"><a href="#《推薦需要另外加入軟體源》" class="headerlink" title="《推薦需要另外加入軟體源》"></a>《推薦需要另外加入軟體源》</h2><table>
-<thead>
-<tr>
-<th>名称</th>
-<th>地址</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>天天動聽Cydia源</td>
-<td><a href="http://apt.ttpod.com" target="_blank" rel="external">http://apt.ttpod.com</a></td>
-</tr>
-<tr>
-<td>瘋先生Cydia軟體源</td>
-<td><a href="http://cydia.myrepospace.com/mrmad" target="_blank" rel="external">http://cydia.myrepospace.com/mrmad</a></td>
-</tr>
-<tr>
-<td>kuaidia 官方原始源</td>
-<td><a href="http://kuaidial.googlecode.com/svn/deb" target="_blank" rel="external">http://kuaidial.googlecode.com/svn/deb</a></td>
-</tr>
-<tr>
-<td>bitesms 官方原始源</td>
-<td><a href="http://cydia.bitesms.com" target="_blank" rel="external">http://cydia.bitesms.com</a></td>
-</tr>
-</tbody>
-</table>
-<h2 id="《邪惡盜X軟體源》"><a href="#《邪惡盜X軟體源》" class="headerlink" title="《邪惡盜X軟體源》"></a>《邪惡盜X軟體源》</h2><p>正義魔人請勿加入，如發生任何被入侵或UDID被洩請自行負責，支持正版<br>PS. 如果<a href="http://mrmad.pixnet.net/blog/post/151702496" target="_blank" rel="external">遇到此情形</a>，先將以下其中一個軟體源時給移除。</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>地址</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>xSellize</td>
-<td><a href="http://cydia.xsellize.com" target="_blank" rel="external">http://cydia.xsellize.com</a></td>
-</tr>
-<tr>
-<td>第一中文源</td>
-<td><a href="http://apt.178.com" target="_blank" rel="external">http://apt.178.com</a></td>
-</tr>
-<tr>
-<td>Hackyouriphone</td>
-<td><a href="http://repo.hackyouriphone.org" target="_blank" rel="external">http://repo.hackyouriphone.org</a></td>
-</tr>
-</tbody>
-</table>
-<p>2014/10/9 被駭客入侵，導致70萬用戶UDID被洩密。</p>
-<h2 id="《不推薦與禁止加入軟體源名單》"><a href="#《不推薦與禁止加入軟體源名單》" class="headerlink" title="《不推薦與禁止加入軟體源名單》"></a>《不推薦與禁止加入軟體源名單》</h2><table>
-<thead>
-<tr>
-<th>名称</th>
-<th>地址</th>
-<th>原因</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>repo666（俗稱超雪）</td>
-<td><a href="http://repo666.ultrasn0w.com" target="_blank" rel="external">http://repo666.ultrasn0w.com</a></td>
-<td>主要是這軟體源都是提供解鎖鎖機插件，對於沒鎖的機種這內建軟體源可以直接移除。</td>
-</tr>
-<tr>
-<td>威峰源</td>
-<td><a href="http://apt.we**hone.com" target="_blank" rel="external">http://apt.we**hone.com</a></td>
-<td>垃圾軟體源，常會造成Cydia內出問題的軟體源，建議不要安裝。</td>
-</tr>
-<tr>
-<td>「大陸PP助手」（正義魔人請勿安裝）</td>
-<td><a href="http://apt.25pp.com" target="_blank" rel="external">http://apt.25pp.com</a></td>
-<td>目前會導致一些錯誤和白蘋果發生，請勿安裝上面的App Sync7.0</td>
-</tr>
-<tr>
-<td>hackulos</td>
-<td><a href="http://cydia.hackulos.us" target="_blank" rel="external">http://cydia.hackulos.us</a></td>
-<td>2013年因活躍度太低並宣布關閉，將旗下所有軟體源與Installous APP一起關閉。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="如何增加軟體源："><a href="#如何增加軟體源：" class="headerlink" title="如何增加軟體源："></a>如何增加軟體源：</h2><h3 id="（新版教學）"><a href="#（新版教學）" class="headerlink" title="（新版教學）"></a>（新版教學）</h3><p><strong>步驟 1</strong>.▼ 開啟Cydia，選擇「<strong>來源</strong>」分類→點選右上角「<strong>編輯</strong>」，（右圖）在點選「<strong>加入</strong>」。<br><img src="/images/20141029003.png" alt=""></p>
-<p><strong>步驟 2</strong>.▼ 輸入<strong>軟體源網址</strong>，在點下<strong>添加源</strong>即可，如果跳出軟體源警告不用擔心繼續點「<strong>仍然新增</strong>」，會進行更新軟體源，將軟體源清單都下載到你設備內，等全部下載完成後再點下「<strong>回到Cydia</strong>」即可完成新增軟體源步驟。<br><img src="/images/20141029004.png" alt=""></p>
-<h3 id="（舊版教學）"><a href="#（舊版教學）" class="headerlink" title="（舊版教學）"></a>（舊版教學）</h3><p><strong>步驟 1</strong>.▼ 開啟Cydia，選擇「<strong>管理</strong>」→點選「<strong>軟體源</strong>」。<br><img src="/images/20141029005.png" alt=""></p>
-<p><strong>步驟 2</strong>.▼ 並點選右上角「<strong>編輯</strong>」按鈕， 在選擇「<strong>新增</strong>」。<br><img src="/images/20141029006.png" alt=""></p>
-<p><strong>舊版步驟 3</strong>. ▼ 輸入<strong>軟體源網址</strong>，在點下<strong>添加源</strong>即可，如果跳出軟體源警告不用擔心繼續點「<strong>仍然新增</strong>」。<br><img src="/images/20141029007.png" alt=""></p>
-<p><strong>舊版步驟 4</strong>. ▼ 會進行更新軟體源，將軟體源清單都下載到你設備內，等全部下載完成後再點下「<strong>回到Cydia</strong>」即可完成新增軟體源步驟。<br><img src="/images/20141029008.png" alt=""></p>
-<h2 id="移除軟體源教學："><a href="#移除軟體源教學：" class="headerlink" title="移除軟體源教學："></a>移除軟體源教學：</h2><h3 id="（新版教學）-1"><a href="#（新版教學）-1" class="headerlink" title="（新版教學）"></a>（新版教學）</h3><p><strong>步驟 1</strong>.▼ 開啟Cydia，選擇「<strong>來源</strong>」分類→點選右上角「<strong>編輯</strong>」，（右圖）這時會出現<strong>紅色字「-」</strong>的ICON圖示，找到你要刪除的軟體源點一下。<br><img src="/images/20141029009.png" alt=""></p>
-<p><strong>步驟 2</strong>.▼ 在點一下「<strong>刪除</strong>」就能夠刪除軟體源了！嚴重警告，請不要刪除內建軟體源，底下這只是範例。<br><img src="/images/20141029010.png" alt=""></p>
-<h3 id="（舊版教學）-1"><a href="#（舊版教學）-1" class="headerlink" title="（舊版教學）"></a>（舊版教學）</h3><p><strong>步驟 1</strong>. ▼ 開啟Cydia選擇管理頁面，點選上面<strong>軟體源</strong>選項，會看到加入的軟體源清單請直接點選右上角「<strong>編輯</strong>」鈕。<br><img src="/images/20141029011.png" alt=""></p>
-<p><strong>步驟 2</strong>. ▼ 這時會出現<strong>紅色字「-」</strong>的ICON圖示，找到你要刪除的軟體源點一下，會跳出<strong>刪除</strong>鈕，在將它點一下就完成刪除軟體源了！<br><img src="/images/20141029012.png" alt=""></p>
-<h2 id="更新Cydia內軟體源資料："><a href="#更新Cydia內軟體源資料：" class="headerlink" title="更新Cydia內軟體源資料："></a>更新Cydia內軟體源資料：</h2><p>很多使用者不懂Cydia一開啟上方的黑色狀態就直接給他按下取消，導致很多軟體源提供的最新資料都無法下載，這裡就要教你怎麼在手動去更新一次。  </p>
-<h3 id="（新版方法）"><a href="#（新版方法）" class="headerlink" title="（新版方法）"></a>（新版方法）</h3><p>▼ 開啟「<strong>Cydia</strong>」選擇「<strong>來源</strong>」或「<strong>更變內容</strong>」在點選左上角的「<strong>更新</strong>」，會出現紅色轉圈圈和資料重新載入中，跑完就更新完成，如「變更內容」有跳出數字，就是代表有插件要更新，點進去選擇有打溝的插件進行更新。<br><img src="/images/20141029013.png" alt=""></p>
-<h3 id="（舊版方法）"><a href="#（舊版方法）" class="headerlink" title="（舊版方法）"></a>（舊版方法）</h3><p>▼ 開啟「<strong>Cydia</strong>」選擇「<strong>變更</strong>」在點選左上角的「<strong>更新</strong>」，（右圖）等這些資料下載完跑完就能搜尋到瘋先生教學的插件。<br><img src="/images/20141029014.png" alt=""></p>
-<h2 id="隱藏更新訊息："><a href="#隱藏更新訊息：" class="headerlink" title="隱藏更新訊息："></a>隱藏更新訊息：</h2><p><strong>步驟 1</strong>. 點選不想要再提示更新的外掛APP，這次選擇天天動聽，因為不想讓它提示要升級6.0，（右圖）點選進入軟體資訊頁面後，選擇「<strong>更改套件設定</strong>」。<br><img src="/images/20141029015.png" alt=""></p>
-<p><strong>步驟 2</strong>. 在設定頁面，將<strong>忽略更新</strong>給開啟，這樣就會將不要提示更新的APP給隱藏更新訊息，就不會提醒你要去更新，這樣是不是就清爽許多呢？<br><img src="/images/20141029016.png" alt=""></p>
-<h2 id="移除插件教學："><a href="#移除插件教學：" class="headerlink" title="移除插件教學："></a>移除插件教學：</h2><p>▼ 如遇到安裝後會導致安全模式或是白蘋果，請盡快將插件移除，移除方法直接搜尋或是點選「<strong>管理</strong>」內找到「<strong>安裝套件</strong>」將它尋找要移除的插件，選擇右上角「<strong>更改</strong>」&gt;「<strong>移除</strong>」即可。<br><img src="/images/20141029017.png" alt=""></p>
-<p>▼ 如果不清楚最近安裝或更新了什麼，新版Cydia已經加入類似AppStore安裝與更新時間紀錄，點選「<strong>已安裝</strong>」頁面後，在選擇「<strong>最近項目</strong>」即可。<br><img src="/images/20141029018.png" alt=""></p>
-<h2 id="裝回「內建軟體源」教學："><a href="#裝回「內建軟體源」教學：" class="headerlink" title="裝回「內建軟體源」教學："></a>裝回「內建軟體源」教學：</h2><p>▼ 哪天不小心去刪除了內建軟體源，要怎麼加回來呢？點選「<strong>更多套件來源</strong>」找到原始內建軟體源，將它加回來，並不是在去輸入軟體源方式來加回唷！<br><img src="/images/20141029019.png" alt=""></p>
-<p>via. <a href="http://mrmad.pixnet.net/blog/post/155455622" target="_blank" rel="external">http://mrmad.pixnet.net/blog/post/155455622</a></p>
-]]></content>
-    
     <summary type="html">
     
       &lt;p&gt;很多人會誤以為，當看完這篇JB教學後，都已經JB好了，那我是不是就能夠到App Store去下載任何App？如果是這樣想那就真的大錯特錯，JB的用意是在於幫助讓iPhone/iPad發揮更大功能，而非單純是再下載非法的App軟體，例如是想修改自己喜愛的字體、佈景主題、增加某些功能等。這些就必須要依靠JB來達成，況且JB會耗電？這說法並非如此，導致耗電源元兇是使用者裝了一些耗電的主題和外掛，否則JB不等於耗電，底下教學將詳細指導大家JB的運作原理與推薦加入的軟體源。&lt;/p&gt;
@@ -678,32 +290,6 @@
     <id>http://blog.liudongkai.com/2014/10/28/ios8-battery/</id>
     <published>2014-10-27T16:00:00.000Z</published>
     <updated>2014-10-27T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/images/20141028001.png" alt=""></p>
-<p>每當新一代iOS一推出時候，就會有使用者反應感覺更耗電或是更省電，為了解決這問題，其實在iOS8上面也是一樣有些多餘的功能沒用到，但設定裡面還偷偷一直幫你開啟，就會造成耗電現象，為了擺脫耗電惡夢，趕緊來透過這篇教學設定一下吧！</p>
-<h2 id="找出最耗電APP方法"><a href="#找出最耗電APP方法" class="headerlink" title="找出最耗電APP方法"></a>找出最耗電APP方法</h2><p>如何得知目前iOS中哪些APP最耗電？此功能在iOS8已經內建於系統中，使用者可以輕鬆透過「一般 &gt; 用量 &gt; 電池用量」來查詢自己設備，找出到底哪些APP是最耗電的罪魁禍首。</p>
-<a id="more"></a>
-<p><img src="/images/20141028002.png" alt=""></p>
-<h2 id="關閉系統定位服務"><a href="#關閉系統定位服務" class="headerlink" title="關閉系統定位服務"></a>關閉系統定位服務</h2><p>iOS8內有隱藏系統服務定位功能，但有些都是沒有任何作用，可將它們直接關閉。<br>位置：「設定 」&gt;「 隱私權」 &gt; 「定位服務」 &gt;「 系統服務」將「分享我的位置、基於位置的iAd、Spotlight建議、Wi-Fi 網路」這四個選項關閉。</p>
-<p><img src="/images/20141028003.png" alt=""></p>
-<h2 id="關閉分享我的位置"><a href="#關閉分享我的位置" class="headerlink" title="關閉分享我的位置"></a>關閉分享我的位置</h2><p>此功能不會影響尋找我的iPhone，這是運用在訊息、尋找我的朋友上面，如果不想讓朋友或家人知道你在哪裡，就將它關閉吧！<br>位置：「設定 」&gt;「 隱私權」 &gt; 「定位服務」 &gt;「 分享我的位置」，將「分享我的位置」功能給關閉。</p>
-<p><img src="/images/20141028004.png" alt=""></p>
-<h2 id="禁用Handoff與建議的App"><a href="#禁用Handoff與建議的App" class="headerlink" title="禁用Handoff與建議的App"></a>禁用Handoff與建議的App</h2><p>Handoff主要是配合其它多部iOS設備與MAC系統的功能，讓設備與設備之間可以隨意進行互通使用，此功能僅適合iOS 8 與 OS X Yosemite一起使用，如沒有運用此功能建議可關閉，建議的APP是用於到某個地方，AppStore會自動依目前所在位置來推薦可以安裝的相關App，僅都透過搜尋安裝使用者大可將這兩項功能關閉。<br>位置：「設定 」&gt;「 一般」 &gt; 「Handoff與建議的App」，將「Handoff」、「我的App」、「App Store」這三個功能給關閉。</p>
-<p><img src="/images/20141028005.png" alt=""></p>
-<h2 id="關閉減少動態效果"><a href="#關閉減少動態效果" class="headerlink" title="關閉減少動態效果"></a>關閉減少動態效果</h2><p>此功能就是解鎖後，會有縮放動畫效果，點開APP也會有縮放動畫效果，這對設備太老舊設備來說導致會Lag情況發生，如果認為此功能很給掰可以直接關閉iOS8內建的動態效果，一關閉後系統會順暢許多，相對來講也會比較省電。<br>位置：「設定 」&gt;「 一般」 &gt;「補助使用」&gt;「減少動態效果」，將此功能「開啟」。</p>
-<p><img src="/images/20141028006.png" alt=""></p>
-<h2 id="關閉背景App重新整理"><a href="#關閉背景App重新整理" class="headerlink" title="關閉背景App重新整理"></a>關閉背景App重新整理</h2><p>此功能是協助多工作業為目的，會不斷在背景中重新整理更新APP內容，想省電就將此功能給關閉吧！<br>位置：「設定 」&gt;「 一般」 &gt;「背景App重新整理」，將「背景App重新整理」項目給關閉。</p>
-<p><img src="/images/20141028007.png" alt=""></p>
-<h2 id="關閉4G"><a href="#關閉4G" class="headerlink" title="關閉4G"></a>關閉4G</h2><p>發現雖然辦了4G，但是不常用4G上網，或者是4G訊號很微弱，這時就建議將4G停止就會自動轉為3G訊號，有網友證實使用4G遠遠比3G還更耗電，如果沒用時候就將它關閉改回3G吧！<br>位置：「設定 」&gt;「 行動網路」，將「啟用4G」給關閉。</p>
-<p><img src="/images/20141028008.png" alt=""></p>
-<h2 id="關閉自動下載"><a href="#關閉自動下載" class="headerlink" title="關閉自動下載"></a>關閉自動下載</h2><p>iOS8為了讓所有AppStore內的APP只要一推出就能夠自己幫您下載更新，但對於此功能會不斷造成確認AppStore有無更新資訊，反而造成耗電現象，建議直接關閉透過手動下載即可。<br>位置：「設定 」&gt;「iTunes 與 App Store」，將「更新項目」關閉。</p>
-<p><img src="/images/20141028009.png" alt=""></p>
-<h2 id="關閉自動調整亮度"><a href="#關閉自動調整亮度" class="headerlink" title="關閉自動調整亮度"></a>關閉自動調整亮度</h2><p>在室內與室外環境不同，iOS8會自動偵測環境亮度而立即改變螢幕亮度，如發現不需要自動調整亮度想透過手動調整，來提高電池壽命，建議可將此功能關閉。<br>位置：「設定 」&gt;「螢幕顯示與亮度」，將「自動調整亮度」關閉。</p>
-<p><img src="/images/20141028010.png" alt=""></p>
-<h2 id="延長擷取新資料"><a href="#延長擷取新資料" class="headerlink" title="延長擷取新資料"></a>延長擷取新資料</h2><p>郵件、聯絡資訊、行事曆多久更新一次比較好？如果將這些都設定太短，就會造成不時要擷取最新訊息進來，建議將此功能時間設定長點節能電力。<br>位置：「設定 」&gt;「擷取新資料」</p>
-<p><img src="/images/20141028011.png" alt=""></p>
-<p>via. <a href="http://mrmad.pixnet.net/blog/post/188440185" target="_blank" rel="external">http://mrmad.pixnet.net/blog/post/188440185</a></p>
-]]></content>
     
     <summary type="html">
     
@@ -731,25 +317,6 @@
     <published>2014-10-26T16:00:00.000Z</published>
     <updated>2014-10-26T16:00:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="/images/20141027001.png" alt=""></p>
-<p>剛JB的iOS7、iOS8使用者都會面臨Activator手勢軟體無法支援問題，但這問題已經在2014/1/1更新到1.8.2版本以上解決，目前許多插件都需依靠Activator來做補助，像是魔神之塔玩家最愛的自動轉珠外掛等，且不單單只能夠讓其它插件作補助作用還能夠讓使用者自己自訂模擬HOME鍵、搖一搖、重開機、解鎖等等功能，甚至還能夠讓非iPhone、iPad機種模擬5S虛擬指紋辨識功能，這些密技技巧都在底下文章會教導大家。</p>
-<h2 id="支援設備："><a href="#支援設備：" class="headerlink" title="支援設備："></a>支援設備：</h2><p>全部iOS7、iOS8設備，目前iOS8尚未完全支援，請安裝測試版本。</p>
-<a id="more"></a>
-<h2 id="Activator是什麼？"><a href="#Activator是什麼？" class="headerlink" title="Activator是什麼？"></a>Activator是什麼？</h2><p>iOS上最強的手勢軟體，就如同現在Mac OSX上用觸控版的手勢一樣，在iOS螢幕上任何地方使用者可自定義手勢，像是自訂點幾下螢幕幾下或是手指在某地方滑動來設定模擬Home鍵和一鍵開啟相機等功能，可說是iOS不可或缺的補助插件。<br><img src="/images/20141027002.png" alt=""></p>
-<h2 id="條件與更新安裝："><a href="#條件與更新安裝：" class="headerlink" title="條件與更新安裝："></a>條件與更新安裝：</h2><p>步驟1.首先必須要先有iOS8 JB過，如沒有請參考這篇 <a href="http://mrmad.pixnet.net/blog/post/188808351" target="_blank" rel="external">iOS 8.X 完美JB教學與技巧</a><br>步驟2.新增軟體源「 <a href="http://rpetri.ch/repo" target="_blank" rel="external">http://rpetri.ch/repo</a> 」，如果不知道與不會請參考這篇 <a href="http://mrmad.pixnet.net/blog/post/155455622" target="_blank" rel="external">JB後Cydia推薦軟體源</a><br>步驟3.▼ Cydia 搜尋「<strong>Activ</strong>」，會找到「<strong>Activator</strong> 」1.9.1~beta 1以上版本，再將它給更新或安裝起來。<br><img src="/images/20141027003.png" alt=""></p>
-<p>▼ 點選「<strong>確認</strong>」安裝，安裝完畢再點下「<strong>重啟SpringBoard</strong>」。<br><img src="/images/20141027004.png" alt=""></p>
-<h2 id="舊版版提供："><a href="#舊版版提供：" class="headerlink" title="舊版版提供："></a>舊版版提供：</h2><p>(iOS7)1.8.4 rc2 尚有BUG問題，請勿更新，如已經更新請下載1.8.4 rc1安裝，其餘更新版本皆無問題。</p>
-<h2 id="空白、無法啟動問題："><a href="#空白、無法啟動問題：" class="headerlink" title="空白、無法啟動問題："></a>空白、無法啟動問題：</h2><p>有些網友反應，開啟Activator會都是白色畫面和閃退情形，請透過<a href="http://mrmad.pixnet.net/blog/post/170337657" target="_blank" rel="external">這篇教學</a>重新安裝Mobilesubstarte再試試看，如果是無法啟動，請透過Cydia搜尋「rocketbootstrap」將它重新安裝，另外這套暫時與<a href="http://mrmad.pixnet.net/blog/post/174576219" target="_blank" rel="external">icleaner pro</a>有衝突，請先移除icleaner pro。</p>
-<h2 id="iOS桌面無出現Activator？"><a href="#iOS桌面無出現Activator？" class="headerlink" title="iOS桌面無出現Activator？"></a>iOS桌面無出現Activator？</h2><p>請習慣到設定內點選插件進行設定，而Activator無法出現在桌面上是因為Cydia才剛起步測試中，所以需要手動開機一次，才能夠出現。</p>
-<h2 id="密技-「移除廣告」教學："><a href="#密技-「移除廣告」教學：" class="headerlink" title="密技 「移除廣告」教學："></a>密技 「移除廣告」教學：</h2><p>每次打開Activator 後都會一直跳出煩人廣告，可透過以下方法來移除廣告，但還是要說一下，Activator作者是免費讓大家使用，也很少會去設定Activator，廣告就讓它跳吧！就當是做公益就好。<br><strong>Step1</strong>.開啟Activator找到「捐助」選項點選進去，此時會透過Safari來開啟paypal。<br><img src="/images/20141027005.png" alt=""></p>
-<p><strong>Step2</strong>.這時請點HOME兩下切換到多工狀態畫面，將「<strong>Activator</strong>」關閉，Safari還保持<strong>不要關</strong>，再去開啟Activator，就會發現廣告已經消失，這時候就可以將Safari也關閉。<br><img src="/images/20141027006.png" alt=""></p>
-<h2 id="密技教學→拋棄小白球手勢控制模擬HOME鍵一下："><a href="#密技教學→拋棄小白球手勢控制模擬HOME鍵一下：" class="headerlink" title="密技教學→拋棄小白球手勢控制模擬HOME鍵一下："></a>密技教學→拋棄小白球手勢控制模擬HOME鍵一下：</h2><p>還在靠小白球來模擬HOME鍵按鈕嗎？老實講瘋先生很討厭小白球設計，為什麼不將Activator直接內建到iOS內呢？每次都要去移動它，如果透過以上教學有安裝到最新版本，就可以完全跟小白球說ByeBye<br><strong>設定教學</strong>：開啟Activator設定選第一個選項「<strong>任意位置</strong>」找到頂部狀態列「<strong>向右拖動</strong>」，將它設定為「<strong>“主畫面”按鈕</strong>」即可。<br><img src="/images/20141027007.png" alt=""></p>
-<h2 id="密技教學→拋棄小白球手勢控制模擬HOME鍵兩下："><a href="#密技教學→拋棄小白球手勢控制模擬HOME鍵兩下：" class="headerlink" title="密技教學→拋棄小白球手勢控制模擬HOME鍵兩下："></a>密技教學→拋棄小白球手勢控制模擬HOME鍵兩下：</h2><p>有按HOME鍵一下效果後，當然就要有叫出多工切換頁面功能。<br><strong>設定教學</strong>：開啟Activator設定選第一個選項「<strong>任意位置</strong>」找到頂部狀態列「<strong>按兩下</strong>」，將它設定為「<strong>啟動多工列</strong>」，開啟多工頁面後就能夠搭配一鍵關閉APP的補助插件如Sicarius、switchSpring、KillBackground7來搭配使用。<br><img src="/images/20141027008.png" alt=""></p>
-<h2 id="密技教學→非iPhone5s也能擁有指紋辨識："><a href="#密技教學→非iPhone5s也能擁有指紋辨識：" class="headerlink" title="密技教學→非iPhone5s也能擁有指紋辨識："></a>密技教學→非iPhone5s也能擁有指紋辨識：</h2><p>沒錢換iPhone5s嗎？想其它機種也能使用指紋辨識嗎？這教學就讓你也能擁有指紋辨識，鎖定畫面按住HOME就能直接近iOS。<br><strong>設定教學</strong>：開啟Activator設定選「<strong>在”鎖定”螢幕</strong>」找到”主畫面”按鈕底下的「<strong>長按</strong>」，將它設定為「<strong>解鎖螢幕</strong>」即可。<br><img src="/images/20141027009.png" alt=""></p>
-<h2 id="密技教學→主畫面滑動ICON就能進入鎖定狀態："><a href="#密技教學→主畫面滑動ICON就能進入鎖定狀態：" class="headerlink" title="密技教學→主畫面滑動ICON就能進入鎖定狀態："></a>密技教學→主畫面滑動ICON就能進入鎖定狀態：</h2><p>有時候沒再使用iPhone或iPad想快速進入鎖定狀態，透過以下設定就不需再按一下POWER鍵唷！<br><strong>設定教學</strong>：開啟Activator設定選第一個選項「<strong>任意位置</strong>」找到主畫面螢幕分類下的「<strong>向下拖圖示</strong>」，將它設定為「<strong>鎖定螢幕</strong>」，就能夠滑動主畫面上的ICON就會馬上進入鎖定狀態。<br><img src="/images/20141027010.png" alt=""></p>
-<p>via. <a href="http://mrmad.pixnet.net/blog/post/170644692" target="_blank" rel="external">http://mrmad.pixnet.net/blog/post/170644692</a></p>
-]]></content>
-    
     <summary type="html">
     
       &lt;p&gt;&lt;img src=&quot;/images/20141027001.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
@@ -776,14 +343,6 @@
     <published>2014-10-19T16:00:00.000Z</published>
     <updated>2014-10-19T16:00:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p>制作方法和Mavericks一致，见前一篇<a href="/2013/10/28/How-to-Create-an-OS-X-Mavericks-USB-Installation-Drive/">《How to Create an OS X Mavericks USB Installation Drive》</a></p>
-<p>准备独立安装盘介质： 你需要一个容量至少大于 8GB 的移动存储设备，比如 U盘、移动硬盘或 SD卡，将其插入 Mac，并启动磁盘工具对该介质执行“抹掉”操作，抹掉前请备份好该介质中的重要数据。盘符名请命名为“<em>Untitled</em>”。</p>
-<p>通过“终端”命令制作安装盘：打开“终端”，在命令行中执行下面的命令，当提示输入密码时请输入你的 OS X 管理员登陆密码。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo /Applications/Install\ OS\ X\ Yosemite.app/Contents/Resources/createinstallmedia --volume /Volumes/Untitled --applicationpath /Applications/Install\ OS\ X\ Yosemite.app --nointeraction</div></pre></td></tr></table></figure>
-<p>完成制作： 如果一切正常的话，“终端”界面中就会显示 Erasing Disk: 0%… 10%…20%… ，并最终完成制作了。制作完成后，你可以使用该介质启动任意一台兼容 OS X Yosemite 的 Mac(需要在目标 Mac 上插入该介质，然后在开机时按住 option 键)，开始 OS X Yosemite 的安装之旅。</p>
-<p>PS: 如果你将盘符命名为其他名称，请在命令中降 /Volumes/Untitled 修改为 /Volumes/{盘符名称}。</p>
-]]></content>
-    
     <summary type="html">
     
       &lt;p&gt;制作方法和Mavericks一致，见前一篇&lt;a href=&quot;/2013/10/28/How-to-Create-an-OS-X-Mavericks-USB-Installation-Drive/&quot;&gt;《How to Create an OS X Mavericks USB I
@@ -805,47 +364,6 @@
     <id>http://blog.liudongkai.com/2014/10/15/10common-database-security-problems/</id>
     <published>2014-10-14T16:00:00.000Z</published>
     <updated>2014-10-14T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>数据库作为非常重要的存储工具，里面往往会存放着大量有价值或敏感信息， 这些信息包括金融财政、知识产权、企业数据等方方面面的内容。因此，数据库往往会成为黑客们的主要攻击对象。网络黑客们会利用各种途径来获取他们想要的信息，因此，保证数据库安全变得尤为重要。</p>
-<p><img src="/images/20141015-10common-database-security-problems.jpg" alt=""></p>
-<p>尽管意识到数据库安全的重要性，但开发者在集成应用程序或修补漏洞、更新数据库的时候仍然会犯一些错误，让黑客们乘虚而入。本文列出了数据库系统10个最常见的安全问题。</p>
-<ol>
-<li><p>错误地部署  </p>
-<p>开发者在部署过程中的粗心大意会很容易让数据库陷入危难之中。在现实中，有些公司会意识到优化搜索引擎对于业务取得成功的重要性，但只有对数据库进行排序，SEO才可以很好地对其优化。尽管功能性测试对性能有一定的保证，但测试并不能预料数据库会发生的一切。因此，在进行完全部署之前，对数据库进行全面的检查是非常有必要的。</p>
-</li>
-<li><p>数据泄露</p>
-</li>
-</ol>
-<a id="more"></a>
-<p> 你可以把数据库当做后端设置的一部分，并将焦点转移到保护互联网安全上面，黑客很容易操纵数据库中的网络接口的，所以，为了避免这种现象发生，工程师在进行数据库开发时，使用TLS或SSL加密通信平台变的尤为重要。</p>
-<ol>
-<li><p>数据库维护</p>
-<p>你是否还记得2003年的SQL Slammer蠕虫病毒，该病毒利用SQL Server的漏洞进行传播，导致全球范围内的互联网瘫痪，中国也有80%以上网民受到影响。该蠕虫的成功充分说明了保护数据库安全是多么的重要。不幸的是，现实中很少有公司对他们的系统提供常规的补丁，因此，他们很容易遭受蠕虫攻击。</p>
-</li>
-<li><p>数据库备份信息被盗</p>
-<p>通常，数据库备份信息外泄一般会来自两种途径，一个是外部，一个是内部的。这是许多企业会经常遇到的问题，而解决这种问题的唯一方法是对档案进行加密。</p>
-</li>
-<li><p>滥用数据库特性</p>
-<p>据专家称，每一个被黑客攻击的数据库都会滥用数据库特性。例如，黑客可以在系统没有执行的情况下随意进入系统。解决这种问题的方法是移除不必要的工具。</p>
-</li>
-<li><p>基础设施薄弱</p>
-<p>黑客一般不会马上控制整个数据库，相反，他们会选择玩跳房子游戏来发现基础架构中薄弱的地方，然后再利用该地方的优势来发动字符串攻击，直到抵达后端。</p>
-</li>
-<li><p>缺乏隔离</p>
-<p>给管理员和用户进行职责划分，如果他们试图盗取数据，那么内部员工将会面临更多的困难。所以，限制用户数量，这样黑客想控制整个数据库就会有一定的挑战。</p>
-</li>
-<li><p>SQL注入</p>
-<p>一旦应用程序被注入恶意的字符串来欺骗服务器执行命令，那么管理员不得不收拾残局，在保护数据库上，这是一个主要问题。目前最佳的解决方案就是使用防火墙来保护数据库网络。</p>
-</li>
-<li><p>密钥管理不当</p>
-<p>保证密钥安全是非常重要的，但是加密密钥通常存储在公司的磁盘驱动器上，如果无人防守，那么您的系统会很容易遭受黑客攻击。</p>
-</li>
-<li><p>违法操作</p>
-<p>开发人员可以利用追踪信息/日志文本来查询和解决此类问题。</p>
-</li>
-</ol>
-<p>来自： <a href="http://blog.qarea.com/development/10common-database-security-problems/" target="_blank" rel="external">QArea Blog</a></p>
-]]></content>
     
     <summary type="html">
     
@@ -878,70 +396,6 @@
     <published>2014-10-12T16:00:00.000Z</published>
     <updated>2014-10-12T16:00:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p>应用商店中有<a href="http://www.geekwire.com/2013/report-ios-app-store-hits-950k-apps/" target="_blank" rel="external">数百万个app</a>。</p>
-<p>每部智能手机平均安装<a href="http://thenextweb.com/insider/2012/05/16/nielsen-us-smartphones-have-an-average-of-41-apps-installed-up-from-32-last-year/" target="_blank" rel="external">41个app</a>。</p>
-<p>人们每天所使用的app平均为<a href="http://blog.flurry.com/?Tag=smartphone" target="_blank" rel="external">8个</a>。</p>
-<p>用户的下载不再意味着一款产品的成功，而只是漫长成功路上的一个节点而已。网上已经有很多文章教你怎么从上百万个app中脱颖而出，成为用户下载的41个app之一；但是如何成为人们每天使用的8个应用，却少有人谈及。</p>
-<a id="more"></a>
-<p>那么，怎样才能让用户天天使用你的产品呢？答案非常简单：找到一个 <strong>触发器(Trigger)</strong> 。</p>
-<h3 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h3><p>假设你所在的社区周三统一清理垃圾，有一次你忘记了，但是周二晚上回家时你看到邻居们都把垃圾桶整齐的放在外面，你会立马想起来。你看到了一个触发器（其他人的垃圾桶），接下来你就会采取行动（倒垃圾）。</p>
-<p>Charles Duhigg在他的著作《The Power Of Habit》（《习惯的力量》）中，解释了触发器的原理，以及它是如何塑造人类日常习惯的。</p>
-<p>Duhigg认为，几乎所有的触发器都可以归结为以下5类：</p>
-<ol>
-<li><p>地理位置(Location)</p>
-</li>
-<li><p>时间(Time)</p>
-</li>
-<li><p>情绪状态(Emotional State)</p>
-</li>
-<li><p>其他人(Other People)</p>
-</li>
-<li><p>前一步行为(Immediately Preceding Action)</p>
-</li>
-</ol>
-<p>一个触发器实际上就是一种提醒，最终会导致某种行动。</p>
-<h3 id="移动互联网的触发器"><a href="#移动互联网的触发器" class="headerlink" title="移动互联网的触发器"></a>移动互联网的触发器</h3><p>我们来看看这5类触发器会在移动互联网中会导致什么样的行动：</p>
-<ol>
-<li><p>地理位置——“我到了一个新地点，我会打开foursquare找附近最好的咖啡馆。”</p>
-</li>
-<li><p>时间——“我要迟到了，我会用Lyft或Uber打车，而不坐公交地铁了。”</p>
-</li>
-<li><p>情绪状态——“我是个怀旧的人，所以我会用时光机应用Timehop看看往年的今天发生了什么。”</p>
-</li>
-<li><p>其他人——“别人都没在这，我得把这场景拍下来发到Snapchat上给他们看看。”</p>
-</li>
-<li><p>前一步行为——“我感觉很不舒服，我得上ZocDoc联系一下我的医生。”</p>
-</li>
-</ol>
-<h3 id="触发器必须表达出明确的信息"><a href="#触发器必须表达出明确的信息" class="headerlink" title="触发器必须表达出明确的信息"></a>触发器必须表达出明确的信息</h3><p>你需要向你的用户解释清楚“你的服务解决什么样问题”，然后告诉人们在什么情况下使用你的产品。</p>
-<p>很多公司会用一句简单的宣传语表达使用场景，比如帮助用户征集好友意见的工具Seesaw在“当你需要观点时”使用（他人触发）；Pocket的宣传语是“当你看到一些内容想要稍后阅读时，把它放在Pocket中”（前一步行为触发）；价格追踪网站Nifti的应用场景是“当你在网上看到喜欢的东西时。”（情绪状态触发）。</p>
-<p><img src="/images/20141013-the-triggerfish-and-your-mobile-app-01.png" alt=""></p>
-<h3 id="启动你的触发器"><a href="#启动你的触发器" class="headerlink" title="启动你的触发器"></a>启动你的触发器</h3><p>理想的情况是触发器能够自动启动。但是，很多初创公司的产品在试图改变人们的行为，这时，触发器就很难自己产生作用。</p>
-<p>该怎么办呢？答案就是，你来触发这个点。最常见的方法是推送通知。200个字符不长，但是分量很重（因为会推送到千千万万人的口袋里）。</p>
-<p>Foursquare之前的一个版本中添加了地理位置触发器，当你距离某人或某地不远时，会收到通知。</p>
-<p>当你的一位朋友要去附近看演出时，WillCall就会使用“他人”触发器来通知你。</p>
-<p><img src="/images/20141013-the-triggerfish-and-your-mobile-app-02.png" alt=""></p>
-<p>Fab的目标并不是做日用品交易，但是他们以此起步，引入“时间触发器”，通过促销邮件，做成“精美设计”的在线交易平台。</p>
-<p><a href="https://ifttt.com/" target="_blank" rel="external">If This Then That(IFTTT)</a> 让你自己建立触发器，差不多属于“前一步行动”类型的。成千上万的用户在平台上制作触发器供人们使用，他们管这个叫做制作“菜谱”（recipe）。</p>
-<p><img src="/images/20141013-the-triggerfish-and-your-mobile-app-03.png" alt=""></p>
-<p>当然，力量越大责任也就越大。推送消息需要内容专注并保持与产品的相关性。用户收到信息时是高度警觉状态的，然而，很多公司却越来越朝相反的方向发展，不断地打扰用户。</p>
-<h3 id="用触发器培养习惯"><a href="#用触发器培养习惯" class="headerlink" title="用触发器培养习惯"></a>用触发器培养习惯</h3><p>清晰的触发机制有什么好处呢？答案是形成习惯。让用户养成使用习惯是极具价值的，是培养终生用户的关键所在。</p>
-<p>Duhigg在他的书中详细的阐释了习惯循环，很值得一读。接下来就举几个例子，来说明Uber和ZocDoc是如何改变数百万人的习惯的。这里用“触发器”(Trigger)来代替Duhigg原书中所用的“暗示”(cue)这个词，以保持本文的连贯性。</p>
-<p><img src="/images/20141013-the-triggerfish-and-your-mobile-app-04.png" alt=""></p>
-<p>用户感觉不舒服（前一步行为触发器），他们习惯性地打开ZocDoc，身体好些后他们感到满足，下一次不舒服还会用ZocDoc。</p>
-<p><img src="/images/20141013-the-triggerfish-and-your-mobile-app-05.png" alt=""></p>
-<p>用户要迟到了（时间触发器），他习惯性地打开Uber应用，最终准时到达，下一次快迟到时还会用Uber。</p>
-<h3 id="利用触发器盈利"><a href="#利用触发器盈利" class="headerlink" title="利用触发器盈利"></a>利用触发器盈利</h3><p>越来越多的人发现了触发器的力量，作为习惯循环第一步的触发器变得越来越重要。</p>
-<p>第三方Push服务商Urban Airship能够帮助开发者获得更多的收益。去年，Facebook也开始拓展app安装广告，推出更有效的互动式app安装广告。Estimote Beacons则着力于“地理位置触发”，它可以通过蓝牙推送基于地理位置的通知，精确到一个特定的房间，这样推送的内容与用户的需求相关度极高。</p>
-<p><img src="/images/20141013-the-triggerfish-and-your-mobile-app-06.jpg" alt=""></p>
-<p><em>当用户接近某个商场时会收到推送的通知，用户进入商场后收到最新促销信息，并通过室内定位相关的商品，最终用手机支付。</em></p>
-<h3 id="在移动互联网的混战中取得成功"><a href="#在移动互联网的混战中取得成功" class="headerlink" title="在移动互联网的混战中取得成功"></a>在移动互联网的混战中取得成功</h3><p>在印度洋和太平洋的热带海域，有一种鱼叫引金鱼（Trigger fish），颜色非常艳丽，它的背部长了两根脊椎来抵御掠食者，保护自己。如果要启用第二根脊椎，另一个必须受到了压迫，这种压迫就是一种触发器。两根脊椎相辅相成。</p>
-<p><img src="/images/20141013-the-triggerfish-and-your-mobile-app-07.png" alt=""></p>
-<p>当然，在移动互联网的混战中，你首先需要用户下载你的产品，并利用触发器的原理使产品的作用最大化。</p>
-<p>不管是在大海中，还是在应用商店里，触发机制是防范天敌和竞争对手的利器， <strong>你默默无闻还是成为弄潮儿，完全取决于自己</strong>。</p>
-<p>[本文编译自： <a href="https://medium.com/@dannysauter/the-triggerfish-and-your-mobile-app-880f2b2519fb" target="_blank" rel="external">medium.com</a> ]</p>
-]]></content>
-    
     <summary type="html">
     
       &lt;p&gt;应用商店中有&lt;a href=&quot;http://www.geekwire.com/2013/report-ios-app-store-hits-950k-apps/&quot;&gt;数百万个app&lt;/a&gt;。&lt;/p&gt;
@@ -964,33 +418,6 @@
     <id>http://blog.liudongkai.com/2014/10/08/youku-url-resolve/</id>
     <published>2014-10-07T16:00:00.000Z</published>
     <updated>2014-10-07T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>序：优酷之前更新了次算法(很久之前了，呵呵。。。)，故此很多博客的解析算法已经无法使用。很多大触也已经更新了新的解析方法。我也在此写篇解析过程的文章。(本文使用语言为C#)</p>
-<p>由于优酷视频地址时间限制，在你访问本篇文章时，下面所属链接有可能已经失效，望见谅。</p>
-<p>例： <a href="http://v.youku.com/v_show/id_XNzk2NTI0MzMy.html" target="_blank" rel="external">http://v.youku.com/v_show/id_<span style="color: #ff0000;"><strong>XNzk2NTI0MzMy</strong></span>.html</a></p>
-<h2 id="1-获取视频vid"><a href="#1-获取视频vid" class="headerlink" title="1:获取视频vid"></a>1:获取视频vid</h2><p>在视频url中标红部分。一个正则表达式即可获取。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">string getVid(string url)</div><div class="line">&#123;</div><div class="line">    string strRegex = &quot;(?&lt;=id_)(\\w+)&quot;;</div><div class="line">    Regex reg = new Regex(strRegex);</div><div class="line">    Match match = reg.Match(url);</div><div class="line">    return match.ToString();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<h2 id="2-获取视频元信息"><a href="#2-获取视频元信息" class="headerlink" title="2:获取视频元信息"></a>2:获取视频元信息</h2><p><a href="http://v.youku.com/player/getPlayList/VideoIDS/XNzk2NTI0MzMy/Pf/4/ctype/12/ev/1" target="_blank" rel="external">http://v.youku.com/player/getPlayList/VideoIDS/<span style="color: #ff0000;"><strong>XNzk2NTI0MzMy</strong></span>/Pf/4/ctype/12/ev/1</a></p>
-<p>将前述vid嵌入到上面url中访问即可得到视频信息文件。由于视频信息过长不在此贴出全部内容。下面是部分重要内容的展示。(获取文件为json文件，可直接解析)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123; &quot;data&quot;: [ &#123;</div><div class="line">            &quot;ip&quot;: 996949050,</div><div class="line">            &quot;ep&quot;: &quot;NQXRTAodIbrd1vnC8+JxB4emuRs41w7DWho=&quot;,</div><div class="line">            &quot;segs&quot;: &#123;</div><div class="line">                &quot;hd2&quot;: [</div><div class="line">                    &#123;</div><div class="line">                        &quot;no&quot;: &quot;0&quot;,</div><div class="line">                        &quot;size&quot;: &quot;34602810&quot;,</div><div class="line">                        &quot;seconds&quot;: 205,</div><div class="line">                        &quot;k&quot;: &quot;248fe14b4c1b37302411f67a&quot;,</div><div class="line">                        &quot;k2&quot;: &quot;1c8e113cecad924c5&quot;</div><div class="line">                    &#125;,</div><div class="line">                    &#123;</div><div class="line">                        &quot;no&quot;: &quot;1&quot;,</div><div class="line">                    &#125;,] &#125;, &#125; ],&#125;</div></pre></td></tr></table></figure>
-<p>上面显示的内容后面都会使用到。其中segs包含<strong>hd3,hd2,flv,mp4,3gp</strong>等各种格式，并且每种格式下均分为若干段。本次选用清晰度较高的hd2(视频格式为flv)</p>
-<h2 id="3-拼接m3u8地址"><a href="#3-拼接m3u8地址" class="headerlink" title="3:拼接m3u8地址"></a>3:拼接m3u8地址</h2><p><a href="http://pl.youku.com/playlist/m3u8?ctype=12&amp;ep={0}&amp;ev=1&amp;keyframe=1&amp;oip={1}&amp;sid={2}&amp;token={3}&amp;type={4}&amp;vid={5}" target="_blank" rel="external">http://pl.youku.com/playlist/m3u8?ctype=12&amp;ep={0}&amp;ev=1&amp;keyframe=1&amp;oip={1}&amp;sid={2}&amp;token={3}&amp;type={4}&amp;vid={5}</a></p>
-<p>以上共有6个参数，其中vid和oip已经得到，分别之前的vid和json文件中的ip字段，即(<span style="color: #ff0000;"><strong>XNzk2NTI0MzMy</strong></span>和<span style="color: #ff0000;"><strong>1991941296</strong></span>)，但是ep,sid,token需要重新计算(json文件中的ep值不能直接使用)。type即为之前选择的segs。</p>
-<h3 id="3-1计算ep-sid-token"><a href="#3-1计算ep-sid-token" class="headerlink" title="3.1计算ep,sid,token"></a>3.1计算ep,sid,token</h3><p>计算方法单纯的为数学计算，下面给出计算的函数。三个参数可一次性计算得到。其中涉及到Base64编码解码知识。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">private static string myEncoder(string a, byte[] c, bool isToBase64)</div><div class="line">        &#123;</div><div class="line">            string result = &quot;&quot;;</div><div class="line">            List&lt;Byte&gt; bytesR = new List&lt;byte&gt;();</div><div class="line">            int f = 0, h = 0, q = 0;</div><div class="line">            int[] b = new int[256];</div><div class="line">            for (int i = 0; i &lt; 256; i++)</div><div class="line">                    b[i] = i;</div><div class="line">            while (h &lt; 256)</div><div class="line">            &#123;</div><div class="line">                f = (f + b[h] + a[h % a.Length]) % 256;</div><div class="line">                int temp = b[h];</div><div class="line">                b[h] = b[f];</div><div class="line">                b[f] = temp;</div><div class="line">                h++;</div><div class="line">            &#125;</div><div class="line">            f = 0; h = 0; q = 0;</div><div class="line">            while (q &lt; c.Length)</div><div class="line">            &#123;</div><div class="line">                h = (h + 1) % 256;</div><div class="line">                f = (f + b[h]) % 256;</div><div class="line">                int temp = b[h];</div><div class="line">                b[h] = b[f];</div><div class="line">                b[f] = temp;</div><div class="line">                byte[] bytes = new byte[] &#123; (byte)(c[q] ^ b[(b[h] + b[f]) % 256]) &#125;;</div><div class="line">                bytesR.Add(bytes[0]);</div><div class="line">                result += System.Text.ASCIIEncoding.ASCII.GetString(bytes);</div><div class="line">                q++;</div><div class="line">            &#125;</div><div class="line">            if (isToBase64)</div><div class="line">            &#123;</div><div class="line">                Byte[] byteR = bytesR.ToArray();</div><div class="line">                result = Convert.ToBase64String(byteR);</div><div class="line">            &#125;</div><div class="line">            return result;</div><div class="line">        &#125;</div><div class="line">        public static void getEp(string vid, string ep, ref string pNew, ref string token, ref string sid)</div><div class="line">        &#123;</div><div class="line">            string template1 = &quot;becaf9be&quot;;</div><div class="line">            string template2 = &quot;bf7e5f01&quot;;</div><div class="line">            byte[] bytes = Convert.FromBase64String(ep);</div><div class="line">            ep = System.Text.ASCIIEncoding.ASCII.GetString(bytes);</div><div class="line">            string temp = myEncoder(template1, bytes, false);</div><div class="line">            string[] part = temp.Split(&apos;_&apos;);</div><div class="line">            sid = part[0];</div><div class="line">            token = part[1];</div><div class="line">            string whole = string.Format(&quot;&#123;0&#125;_&#123;1&#125;_&#123;2&#125;&quot;, sid, vid, token);</div><div class="line">            byte[] newbytes = System.Text.ASCIIEncoding.ASCII.GetBytes(whole);</div><div class="line">            epNew = myEncoder(template2, newbytes, true);</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
-<p>计算得到<span style="color: #ff0000;">ep,token,sid</span>分别为cCaVGE6OUc8H4ircjj8bMiuwdH8KXJZ0vESH/7YbAMZuNaHQmjbTwg==, 3825, 241273717793612e7b085。注意，<span style="color: #ff0000;">此时ep并不能直接拼接到url中，需要对此做一下url编码ToUrlEncode(ep)</span>。最终ep为cCaVGE6OUc8H4ircjj8bMiuwdH8KXJZ0vESH%2f7YbAMZuNaHQmjbTwg%3d%3d</p>
-<h3 id="3-2视频格式及清晰度"><a href="#3-2视频格式及清晰度" class="headerlink" title="3.2视频格式及清晰度"></a>3.2视频格式及清晰度</h3><p>视频格式和选择的segs有密切关系。如本文选择的hd2，格式即为flv，下面是segs,视频格式和清晰度的对照。之前对此部分理解有些偏差，多谢<br><a href="http://home.cnblogs.com/u/xzpgzl/" title="削着苹果走路" target="_blank" rel="external">削着苹果走路</a>提醒。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">“segs”,”视频格式”,”清晰度”</div><div class="line">&quot;hd3&quot;, &quot;flv&quot;, &quot;1080P&quot;</div><div class="line">&quot;hd2&quot;, &quot;flv&quot;, &quot;超清&quot;</div><div class="line">&quot;mp4&quot;, &quot;mp4&quot;, &quot;高清&quot;</div><div class="line">&quot;flvhd&quot;, &quot;flv&quot;, &quot;高清&quot;</div><div class="line">&quot;flv&quot;, &quot;flv&quot;, &quot;标清&quot;</div><div class="line">&quot;3gphd&quot;, &quot;3gp&quot;, &quot;高清&quot;</div></pre></td></tr></table></figure>
-<h3 id="3-3拼接地址"><a href="#3-3拼接地址" class="headerlink" title="3.3拼接地址"></a>3.3拼接地址</h3><p>最后的m3u8地址为</p>
-<p><a href="http://pl.youku.com/playlist/m3u8?ctype=12&amp;ep=cCaVGE6OUc8H4ircjj8bMiuwdH8KXJZ0vESH%2f7YbAMZuNaHQmjbTwg%3d%3d&amp;ev=1&amp;keyframe=1&amp;oip=996949050&amp;sid=241273717793612e7b085&amp;token=3825&amp;type=hd2&amp;vid=XNzk2NTI0MzMy" target="_blank" rel="external">http://pl.youku.com/playlist/m3u8?<br>ctype=12<br>&amp;ep=<span style="color: #ff0000;">cCaVGE6OUc8H4ircjj8bMiuwdH8KXJZ0vESH%2f7YbAMZuNaHQmjbTwg%3d%3d</span><br>&amp;ev=1<br>&amp;keyframe=1<br>&amp;oip=<span style="color: #ff0000;">996949050</span><br>&amp;sid=<span style="color: #ff0000;">241273717793612e7b085</span><br>&amp;token=<span style="color: #ff0000;">3825</span><br>&amp;type=<span style="color: #ff0000;">hd2</span><br>&amp;vid=<span style="color: #ff0000;">XNzk2NTI0MzMy</span></a></p>
-<h2 id="4-获取视频地址"><a href="#4-获取视频地址" class="headerlink" title="4:获取视频地址"></a>4:获取视频地址</h2><p>将上述m3u8文件下载后，其中内容即为真实地址，不过还需要稍微处理一下。部分内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">#EXTM3U</div><div class="line">#EXT-X-TARGETDURATION:12</div><div class="line">#EXT-X-VERSION:3</div><div class="line">#EXTINF:6.006,</div><div class="line">http://59.108.137.14/65666E0ED34581E6B96293A18/0300010F005430BCBA49631468DEFEC61C5678-3A78-37BA-1971-21A0D4EEA0E7.flv?ts_start=0&amp;ts_end=5.906&amp;ts_seg_no=0&amp;ts_keyframe=1</div><div class="line">#EXTINF:5.464,</div><div class="line">http://59.108.137.14/65666E0ED34581E6B96293A18/0300010F005430BCBA49631468DEFEC61C5678-3A78-37BA-1971-21A0D4EEA0E7.flv?ts_start=5.906&amp;ts_end=11.37&amp;ts_seg_no=1&amp;ts_keyframe=1</div><div class="line">#EXTINF:5.505,</div><div class="line">http://59.108.137.14/65666E0ED34581E6B96293A18/0300010F005430BCBA49631468DEFEC61C5678-3A78-37BA-1971-21A0D4EEA0E7.flv?ts_start=11.37&amp;ts_end=16.875&amp;ts_seg_no=2&amp;ts_keyframe=1</div><div class="line">#EXTINF:9.26,</div><div class="line">http://59.108.137.14/65666E0ED34581E6B96293A18/0300010F005430BCBA49631468DEFEC61C5678-3A78-37BA-1971-21A0D4EEA0E7.flv?ts_start=16.875&amp;ts_end=26.135&amp;ts_seg_no=3&amp;ts_keyframe=1</div><div class="line">#EXTINF:11.136,</div><div class="line">http://59.108.137.14/65666E0ED34581E6B96293A18/0300010F005430BCBA49631468DEFEC61C5678-3A78-37BA-1971-21A0D4EEA0E7.flv?ts_start=26.135&amp;ts_end=37.271&amp;ts_seg_no=4&amp;ts_keyframe=1</div><div class="line">#EXTINF:8.258,</div><div class="line">http://59.108.137.14/65666E0ED34581E6B96293A18/0300010F005430BCBA49631468DEFEC61C5678-3A78-37BA-1971-21A0D4EEA0E7.flv?ts_start=37.271&amp;ts_end=45.529&amp;ts_seg_no=5&amp;ts_keyframe=1</div><div class="line">#EXTINF:9.843,</div><div class="line">http://59.108.137.14/65666E0ED34581E6B96293A18/0300010F005430BCBA49631468DEFEC61C5678-3A78-37BA-1971-21A0D4EEA0E7.flv?ts_start=45.529&amp;ts_end=55.372&amp;ts_seg_no=6&amp;ts_keyframe=1</div><div class="line">#EXTINF:10.26,</div><div class="line">http://59.108.137.14/65666E0ED34581E6B96293A18/0300010F005430BCBA49631468DEFEC61C5678-3A78-37BA-1971-21A0D4EEA0E7.flv?ts_start=55.372&amp;ts_end=65.632&amp;ts_seg_no=7&amp;ts_keyframe=1</div></pre></td></tr></table></figure>
-<p>其中每条url只包含6s左右视频，但是可将url中参数部分去掉即可得到实际的长度。但是每条去掉后需合并一下相同的url，如上述列表可得到url片段</p>
-<p><a href="http://59.108.137.14/65666E0ED34581E6B96293A18/0300010F005430BCBA49631468DEFEC61C5678-3A78-37BA-1971-21A0D4EEA0E7.flv" target="_blank" rel="external">http://59.108.137.14/65666E0ED34581E6B96293A18/0300010F005430BCBA49631468DEFEC61C5678-3A78-37BA-1971-21A0D4EEA0E7.flv</a></p>
-<p>将m3u8中所有的url片段全部下载即可大功告成。</p>
-<p>本文地址：<a href="http://www.cnblogs.com/zhaojunjie/p/4009192.html" target="_blank" rel="external">http://www.cnblogs.com/zhaojunjie/p/4009192.html</a> ，（@天地玄黄）转载请注明源地址。</p>
-]]></content>
     
     <summary type="html">
     
@@ -1020,298 +447,6 @@
     <published>2014-09-19T16:00:00.000Z</published>
     <updated>2014-09-19T16:00:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p>通常，我们使用的DELL/HP/IBM三家的机架式PC级服务器阵列卡是从LSI的卡OEM出来的，DELL和IBM两家的阵列卡原生程度较高，没有做太多封装，可以用原厂提供的阵列卡管理工具进行监控；而HP的阵列卡一般都做过封装了，因此需要使用自身特有的管理工具来监控。</p>
-<p>本文以几种常用的阵列卡为例，展示其阵列卡及硬盘监控的方法。<br><strong>DELL SAS 6/iR卡</strong>，全称LSI Logic SAS1068E，只支持RAID 0, RAID 1, RAID 1+0, 不支持RAID 5等高级RAID特性，不支持阵列卡电池。<br><strong>DELL PERC PERC H700卡</strong>，全称LSI Logic MegaRAID SAS 2108，支持各种RAID级别及高级特性，可选配阵列卡电池。<br><strong>DELL PERC H310 Mini卡</strong> ，全称LSI Logic / Symbios Logic MegaRAID SAS 2008，支持常见RAID级别，不支持高级RAID特性，不支持阵列卡电池。<br><strong>IBM ServeRAID M5014 SAS/SATA Controller卡</strong>，全称LSI Logic / Symbios Logic MegaRAID SAS 2108，支持各种RAID级别及高级特性，可选配阵列卡电池。<br><strong>IBM ServeRAID-MR10i SAS/SATA Controller卡</strong>，全称LSI Logic / Symbios Logic MegaRAID SAS 1078，支持常见RAID级别，不支持高级RAID特性，可选配阵列卡电池，这个卡其实和DELL的PERC 6/i卡是一样的，都是基于LSI MegaRAID SAS 1078基础上OEM出来的。</p>
-<p>上面是几种常见的阵列卡型号，更多的可以自行查看官方的技术手册。</p>
-<p>下面我们要继续的是，这些阵列卡以及硬盘如何监控，阵列卡的管理也请查看官方技术手册，不在本文讨论范畴，或者查看作者的一个分享PPT：PC服务器阵列卡管理简易手册。</p>
-<a id="more"></a>
-<p>一般地，支持RAID 5的卡，我们称其为阵列卡，都可以使用LSI官方提供的MegaCli工具来管理，而不支持RAID 5的卡，我们称其为SAS卡，使用lsiutil工具来管理。HP的服务器使用其特有的hpacucli工具来管理。</p>
-<h2 id="1、MegaCli工具"><a href="#1、MegaCli工具" class="headerlink" title="1、MegaCli工具"></a>1、MegaCli工具</h2><ul>
-<li><strong>a) MegaCli -adpallinfo -aall — 查看阵列卡信息</strong><br>-a 参数指定阵列卡的编号，一般服务器上只会配一个阵列卡，因此我们通常指定为 -a0（阵列卡适配器编号，从0开始） 即可，主要关注下面几个信息：</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>状态值</th>
-<th>对应含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Product Name : PERC H710 Mini</td>
-<td>阵列卡名称</td>
-</tr>
-<tr>
-<td>FW Package Build: 21.2.0-0007</td>
-<td>阵列卡firmware版本号，版本如果太低，建议升级以提高稳定性及性能</td>
-</tr>
-<tr>
-<td>BBU : Present</td>
-<td>是否有配BBU电池</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><strong>b) MegaCli -cfgdsply -aall — 查看阵列配置</strong></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>状态值</th>
-<th>对应含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Memory: 512MB</td>
-<td>阵列卡cache大小，2的N次方，如果不是，说明阵列卡有异常</td>
-</tr>
-<tr>
-<td>Number of dedicated Hotspares: 0</td>
-<td>阵列是否有专用/独享热备盘（如果有多个逻辑磁盘组/disk group，则可以指定一个硬盘用于全局热备，那么该disk group上的专用热备盘数量为0也不用担心），除了RAID 1/RAID 1+0一般不指定热备盘以外，其他几个阵列级别建议都要指定热备盘</td>
-</tr>
-<tr>
-<td>State : Optimal</td>
-<td>阵列状态，如果不是 Optimal 就要关注了</td>
-</tr>
-<tr>
-<td>Current Cache Policy: WriteBack, ReadAheadNone, Direct, Write Cache OK if Bad BBU</td>
-<td>阵列读写cache策略，建议写策略设置为FORCE WB，最起码是WB，预读策略可以关掉，意义不大，几乎没影响</td>
-</tr>
-<tr>
-<td>Disk Cache Policy : Disabled</td>
-<td>硬盘cache策略，建议关闭，防止意外时数据丢失</td>
-</tr>
-<tr>
-<td>Current Power Savings Policy: None</td>
-<td>节电策略，建议关闭</td>
-</tr>
-<tr>
-<td>Media Error Count: 0</td>
-<td>三个错误计数器，任何一个值大于100就要立刻引起关注，尤其要关注起增长速度。1T以上SATA盘，计数值不够精确，可能所有盘上该值都会大于0，一般重启就会重新清0，如果重启后还是大于0的话，赶紧报修吧。SAS盘的计数值则比较准确。</td>
-</tr>
-<tr>
-<td>Other Error Count: 0</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>Predictive Failure Count: 0</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>Firmware state: Online, Spun Up</td>
-<td>查看硬盘状态，如果是unconfigured表示该硬盘未分配加入到阵列中；如果是 unconfigured(bad)表示该盘不但是未分配，而且还坏了，正是“出师未捷身先死”；如果是failed，表示该盘故障无法识别；如果是rebuilding，表示该盘正在重建数据</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><strong>c) MegaCli -AdpBbuCmd -aall — 查看阵列卡电池信息</strong></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>状态值</th>
-<th>对应含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Temperature: 39 C</td>
-<td>查看电池温度，如果相比上一次查看高出不少，就需要关注了，或者可以根据经验设置一个基线值</td>
-</tr>
-<tr>
-<td>Battery State: Optimal</td>
-<td>电池状态，如果不是为Optimal，就需要关注了</td>
-</tr>
-<tr>
-<td>Charger Status: Complete</td>
-<td>电池充放电状态</td>
-</tr>
-<tr>
-<td>isSOHGood: Yes</td>
-<td>电池状态，如果不是为Yes，需要关注</td>
-</tr>
-<tr>
-<td>Relative State of Charge: 93 %</td>
-<td>当前电量，当电量低于15%，或者电池坏掉时，默认都会将写策略从WB改成WT，除非设定为FORCE WB策略</td>
-</tr>
-<tr>
-<td>Max Error = 0 %</td>
-<td>电池是否有错误信息</td>
-</tr>
-<tr>
-<td>Next Learn time: Tue Oct 14 22:06:50 2014</td>
-<td>电池充放电时间，注意这是美国时间。另外，新的阵列卡电池很多改成电容式的了，也就不需要重复充放电了</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><strong>d) MegaCli -fwtermlog -dsply -aALL — 查看阵列卡日志，关注里面的error/fail/warn等多个关键字</strong></li>
-</ul>
-<h2 id="2、lsiutil工具"><a href="#2、lsiutil工具" class="headerlink" title="2、lsiutil工具"></a>2、lsiutil工具</h2><p>lsiutil有交互和非交互两种方式，作为监控，我们肯定选择非交互模式。想要使用交互模式的，可以根据非交互模式自行练习。</p>
-<ul>
-<li><p><strong>a) lsiutil -p 1 -a 20,12,0,0 — 查看硬盘计数器</strong></p>
-<pre>Invalid DWord Count              2,563
-Running Disparity Error Count    2,366
-Loss of DWord Synch Count        0
-Phy Reset Problem Count          0</pre>
-
-<p>任何一个值大于0，都需要引起关注</p>
-</li>
-<li><p><strong>b) lsiutil -p 1 -a 21,1,0,0,0 — 查看逻辑卷状态</strong></p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>状态值</th>
-<th>对应含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Volume State: optimal, enabled</td>
-<td>逻辑卷健康状况</td>
-</tr>
-<tr>
-<td>Volume draws from Hot Spare Pools: 0</td>
-<td>是否有热备</td>
-</tr>
-<tr>
-<td>Volume Size 139392 MB, 2 Members</td>
-<td>由几块硬盘组成</td>
-</tr>
-<tr>
-<td>Primary is PhysDisk 1 (Bus 0 Target 9)</td>
-<td>物理硬盘1</td>
-</tr>
-<tr>
-<td>Secondary is PhysDisk 0 (Bus 0 Target 3)</td>
-<td>物理硬盘0</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><strong>c) lsiutil -p 1 -a 21,2,0,0,0 — 查看物理硬盘状态</strong></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>状态值</th>
-<th>对应含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PhysDisk 0 is Bus 0 Target 3</td>
-<td>编号</td>
-</tr>
-<tr>
-<td>PhysDisk State: online</td>
-<td>状态</td>
-</tr>
-<tr>
-<td>Error Count 13, Last Error: Command = 28h, Key = 3, ASC/ASCQ = 11h/00h</td>
-<td>错误计数器，大于0的话，就需要引起关注</td>
-</tr>
-</tbody>
-</table>
-<h2 id="3、hpacucli工具"><a href="#3、hpacucli工具" class="headerlink" title="3、hpacucli工具"></a>3、hpacucli工具</h2><p>hpacucli工具查看阵列、硬盘、电池信息，其实就只要一条指令：<br><strong>hpacucli ctrl all show config detail — 查看阵列详细信息、配置</strong></p>
-<table>
-<thead>
-<tr>
-<th>状态值</th>
-<th>对应含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Controller Status: OK</td>
-<td>阵列卡状态</td>
-</tr>
-<tr>
-<td>Firmware Version: 1.18</td>
-<td>firmware版本，太低了建议升级，以提高稳定性及性能</td>
-</tr>
-<tr>
-<td>Cache Board Present: True</td>
-<td>是否配备了cache模块</td>
-</tr>
-<tr>
-<td>Cache Status: OK</td>
-<td>cache模块状态</td>
-</tr>
-<tr>
-<td>Cache Ratio: 100% Read / 0% Write</td>
-<td>cache策略，此处只有读cache，不用于写cache，因为没有bbu电池，见下方结果</td>
-</tr>
-<tr>
-<td>Drive Write Cache: Disabled</td>
-<td>关闭磁盘cache</td>
-</tr>
-<tr>
-<td>Total Cache Size: 256 MB</td>
-<td>cache大小</td>
-</tr>
-<tr>
-<td>Total Cache Memory Available: 208 MB</td>
-<td>实际可用cache大小，和理论cache大小不一样，说明cache模块可能有问题</td>
-</tr>
-<tr>
-<td>No-Battery Write Cache: Disabled</td>
-<td>关闭FORCEWB策略</td>
-</tr>
-<tr>
-<td>Battery/Capacitor Count: 0</td>
-<td>阵列卡BBU电池数量为0，也就是没有BBU模块</td>
-</tr>
-<tr>
-<td>Battery/Capacitor Status: Failed (Replace Batteries)</td>
-<td>阵列卡BBU电池状态，这里显示是错误状态，需要及时更换</td>
-</tr>
-<tr>
-<td>Array: A</td>
-<td>第一个乌列阵列，编号从A开始，依次是A、B、C</td>
-</tr>
-<tr>
-<td>Status: OK</td>
-<td>物理阵列状态</td>
-</tr>
-<tr>
-<td>Logical Drive: 1</td>
-<td>第一个逻辑卷，编号从1开始</td>
-</tr>
-<tr>
-<td>Fault Tolerance: RAID 5</td>
-<td>第一个逻辑卷的阵列级别</td>
-</tr>
-<tr>
-<td>Status: OK</td>
-<td>第一个逻辑卷状态</td>
-</tr>
-<tr>
-<td>Caching: Enabled</td>
-<td>第一个逻辑卷是否启用了cache策略</td>
-</tr>
-<tr>
-<td>physicaldrive 1I:1:1</td>
-<td>第一块物理硬盘，编号从1开始</td>
-</tr>
-<tr>
-<td>Status: OK</td>
-<td>第一块物理硬盘状态</td>
-</tr>
-<tr>
-<td>Firmware Revision: HPDA</td>
-<td>第一块物理硬盘firmware，如果太低，也需要及时升级，HP的硬盘每个批次都有不同的firmware</td>
-</tr>
-</tbody>
-</table>
-<p>延伸阅读：</p>
-<p><a href="http://www.lsi.com/downloads/Public/Obsolete/Obsolete%20Common%20Files/mr_sas_stor_ug.pdf" target="_blank" rel="external">http://www.lsi.com/downloads/Public/Obsolete/Obsolete%20Common%20Files/mr_sas_stor_ug.pdf</a><br><a href="http://www.hp.com/ctg/Manual/c00709035.pdf" target="_blank" rel="external">http://www.hp.com/ctg/Manual/c00709035.pdf</a><br><a href="http://www.wafl.co.uk/tag/sasadmin/" target="_blank" rel="external">http://www.wafl.co.uk/tag/sasadmin/</a><br><a href="http://docs.oracle.com/cd/E19121-01/sf.x4200/819-1157-23/F_BIOS_RAID.html" target="_blank" rel="external">http://docs.oracle.com/cd/E19121-01/sf.x4200/819-1157-23/F_BIOS_RAID.html</a></p>
-<p>via @yejinrong <a href="http://imysql.cn/tag/megacli" target="_blank" rel="external">http://imysql.cn/tag/megacli</a></p>
-]]></content>
-    
     <summary type="html">
     
       &lt;p&gt;通常，我们使用的DELL/HP/IBM三家的机架式PC级服务器阵列卡是从LSI的卡OEM出来的，DELL和IBM两家的阵列卡原生程度较高，没有做太多封装，可以用原厂提供的阵列卡管理工具进行监控；而HP的阵列卡一般都做过封装了，因此需要使用自身特有的管理工具来监控。&lt;/p&gt;
@@ -1334,233 +469,6 @@ Phy Reset Problem Count          0</pre>
     <id>http://blog.liudongkai.com/2014/09/07/iOS-URL-Scheme/</id>
     <published>2014-09-06T16:00:00.000Z</published>
     <updated>2014-09-06T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>ios默认：</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>URL Scheme</th>
-<th>Bundle identifier</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Safari：</td>
-<td>http://</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>maps：</td>
-<td><a href="http://maps.google.com" target="_blank" rel="external">http://maps.google.com</a></td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>Phone：</td>
-<td>tel:</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>SMS：</td>
-<td>sms:</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>Mail：</td>
-<td>mailto:</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>iBooks：</td>
-<td>ibooks://</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>App Store：</td>
-<td><a href="http://itunes.apple.com" target="_blank" rel="external">http://itunes.apple.com</a></td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>iTunes：</td>
-<td>http:<a href="http://phobos.apple.com" target="_blank" rel="external">http://phobos.apple.com</a></td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>Music / iPod：</td>
-<td>music:</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>Videos：</td>
-<td>videos:</td>
-<td>&nbsp; </td>
-</tr>
-</tbody>
-</table>
-<a id="more"></a>
-<p>常用第三方软件：</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>URL Scheme</th>
-<th>Bundle identifier</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>QQ：</td>
-<td>mqq://</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>微信：</td>
-<td>weixin://</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>腾讯微博：</td>
-<td>TencentWeibo://</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>淘宝：</td>
-<td>taobao://</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>支付宝：</td>
-<td>alipay://</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>微博：</td>
-<td>sinaweibo://</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>weico微博：</td>
-<td>weico://</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>QQ浏览器：</td>
-<td>mqqbrowser://</td>
-<td>com.tencent.mttlite</td>
-</tr>
-<tr>
-<td>uc浏览器：</td>
-<td>ucbrowser://</td>
-<td>com.ucweb.iphone.uc <br> com.ucweb.iphone.lowversion</td>
-</tr>
-<tr>
-<td>海豚浏览器：</td>
-<td>dolphin://</td>
-<td>com.dolphin.browser.iphone.chinese</td>
-</tr>
-<tr>
-<td>欧朋浏览器：</td>
-<td>o<a href="http://（后要接地址，不然出错）" target="_blank" rel="external">http://（后要接地址，不然出错）</a></td>
-<td>com.oupeng.mini</td>
-</tr>
-<tr>
-<td>搜狗浏览器：</td>
-<td>SogouMSE://</td>
-<td>com.sogou.SogouExplorerMobile</td>
-</tr>
-<tr>
-<td>百度地图：</td>
-<td>baidumap:// <br> bdmap://</td>
-<td>com.baidu.map</td>
-</tr>
-<tr>
-<td>百度地图：</td>
-<td>bdmap://</td>
-<td>com.baidu.map</td>
-</tr>
-<tr>
-<td>Chrome：</td>
-<td>googlechrome://</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>优酷：</td>
-<td>youku://</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>京东：</td>
-<td>openapp.jdmoble://</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>人人：</td>
-<td>renren://</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>美团：</td>
-<td>imeituan://</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>1号店：</td>
-<td>wccbyihaodian://</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>我查查：</td>
-<td>wcc://</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>有道词典：</td>
-<td>yddictproapp://</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>知乎：</td>
-<td>zhihu://</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>点评：</td>
-<td>dianping:// <br> dianping://search</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>微盘：</td>
-<td>sinavdisk://</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>豆瓣fm：</td>
-<td>doubanradio://</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>网易公开课：</td>
-<td>ntesopen://</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>名片全能王：</td>
-<td>camcard://</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>淘宝宝贝搜索</td>
-<td>taobao://<a href="http://s.taobao.com/?q=[prompt" target="_blank" rel="external">http://s.taobao.com/?q=[prompt</a>]</td>
-<td>&nbsp; </td>
-</tr>
-<tr>
-<td>淘宝店铺搜索</td>
-<td>taobao://<a href="http://shopsearch.taobao.com/browse/shop_search.htm?q=[prompt" target="_blank" rel="external">http://shopsearch.taobao.com/browse/shop_search.htm?q=[prompt</a>]</td>
-<td>&nbsp; </td>
-</tr>
-</tbody>
-</table>
-]]></content>
     
     <summary type="html">
     
@@ -1644,18 +552,6 @@ Phy Reset Problem Count          0</pre>
     <id>http://blog.liudongkai.com/2014/08/17/compile-bash-shell-with-shc/</id>
     <published>2014-08-16T16:00:00.000Z</published>
     <updated>2014-08-16T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>这是针对上一篇<a href="/2014/08/16/How_to_Encrypt_Your_Bash_Shell_Script_on_Linux_Using_SHC/">How to Encrypt Your Bash Shell Script on Linux Using SHC [ZT]</a>的延伸资料整理。</p>
-<h2 id="1-动态链接"><a href="#1-动态链接" class="headerlink" title="1. 动态链接"></a>1. 动态链接</h2><p>文中介绍的两种编译方式，无论是<code>shc -r -f random.sh</code>还是<code>shc -v -r -T -f random.sh</code>生成的二进制文件都是<strong>动态链接</strong>形式的，所以，在其他平台上不能运行。</p>
-<h2 id="2-静态链接"><a href="#2-静态链接" class="headerlink" title="2. 静态链接"></a>2. 静态链接</h2><p>不过，我们可以通过下面的方式生成一个<strong>静态链接</strong>的二进制可执行文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># CFLAGS=-static shc -r -f random.sh</div></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<h2 id="SHC的可选参数："><a href="#SHC的可选参数：" class="headerlink" title="SHC的可选参数："></a>SHC的可选参数：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">[root@liudongkai /]# shc --help</div><div class="line">shc: invalid option -- &apos;-&apos;</div><div class="line">shc parse: Unknown option</div><div class="line">shc Version 3.8.9, Generic Script Compiler</div><div class="line">shc Copyright (c) 1994-2012 Francisco Rosales &lt;frosal@fi.upm.es&gt;</div><div class="line">shc Usage: shc [-e date] [-m addr] [-i iopt] [-x cmnd] [-l lopt] [-rvDTCAh] -f script</div><div class="line"></div><div class="line">#设置过期时间</div><div class="line">    -e %s  Expiration date in dd/mm/yyyy format [none]</div><div class="line">#过期信息提示</div><div class="line">    -m %s  Message to display upon expiration [&quot;Please contact your provider&quot;]</div><div class="line">#加密脚本名称</div><div class="line">    -f %s  File name of the script to compile</div><div class="line"></div><div class="line">    -i %s  Inline option for the shell interpreter i.e: -e</div><div class="line">    -x %s  eXec command, as a printf format i.e: exec(&apos;%s&apos;,@ARGV);</div><div class="line">    -l %s  Last shell option i.e: --</div><div class="line">#宽松的安全性，可以相同操作系统的不同机器中运行</div><div class="line">    -r     Relax security. Make a redistributable binary</div><div class="line">    -v     Verbose compilation</div><div class="line">    -D     Switch ON debug exec calls [OFF]</div><div class="line">    -T     Allow binary to be traceable [no]</div><div class="line">#显示许可证并退出</div><div class="line">    -C     Display license and exit</div><div class="line">#显示摘要和退出</div><div class="line">    -A     Display abstract and exit</div><div class="line">#显示帮助和退出</div><div class="line">    -h     Display help and exit</div><div class="line"></div><div class="line">    Environment variables used:</div><div class="line">    Name    Default  Usage</div><div class="line">    CC      cc       C compiler command</div><div class="line">    CFLAGS  &lt;none&gt;   C compiler flags</div><div class="line"></div><div class="line">    Please consult the shc(1) man page.</div></pre></td></tr></table></figure>
-<h2 id="通过sch加密后的脚本文件很安全吗"><a href="#通过sch加密后的脚本文件很安全吗" class="headerlink" title="通过sch加密后的脚本文件很安全吗?"></a>通过sch加密后的脚本文件很安全吗?</h2><p>一般来说是安全的, 不过可以使用gdb和其它的调试工具获得最初的源代码. 如果你需要更加安全的方法, 可以考虑使用<a href="http://wzce.tripod.com/wzsh.html" target="_blank" rel="external">wzshSDK</a>, 这是个shell 2 shell的加密方式，只是变型后的脚本，如果使用了证书或者LIC限制，需要部署wzshSDK的运行环境。</p>
-<p>还有<a href="http://www.comeaucomputing.com/faqs/ccshdoc.html" target="_blank" rel="external">ccsh</a> ，好像也可以，是shell 2 c的，但没验证。</p>
-<p>另外还有一个名叫deshc的shc加强版，不过没地方下载</p>
-<p>参考:<br><a href="http://blog.csdn.net/richardsa/article/details/5507572" target="_blank" rel="external">http://blog.csdn.net/richardsa/article/details/5507572</a><br><a href="http://www.cnyunwei.com/thread-1052-1-1.html" target="_blank" rel="external">http://www.cnyunwei.com/thread-1052-1-1.html</a><br><a href="https://baoz.net/shell%E5%8A%A0%E5%AF%86%E4%BF%9D%E6%8A%A4%E7%A8%8B%E5%BA%8Fshell-2-c-shc-sh2c/" target="_blank" rel="external">https://baoz.net/shell%E5%8A%A0%E5%AF%86%E4%BF%9D%E6%8A%A4%E7%A8%8B%E5%BA%8Fshell-2-c-shc-sh2c/</a></p>
-<p><strong>二进制文件的剖析</strong><br>有兴趣的朋友可以参阅下面的文章:<br><a href="/2014/08/16/Paranoid_Penguin_Limitations_of_shc_a_Shell_Encryption_Utility/">Paranoid Penguin - Limitations of shc, a Shell Encryption Utility</a></p>
-]]></content>
     
     <summary type="html">
     

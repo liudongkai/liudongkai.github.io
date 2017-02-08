@@ -45,17 +45,35 @@
   
 
   
+    
+      
+    
 
-  
-
+    
   
 
   
 
   
     
+      
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -112,8 +130,8 @@
     },
     algolia: {
       applicationID: 'PFZ0Y857EY',
-      apiKey: 'ce7e9a1bea855698ef0fbc7d812004ed',
-      indexName: 'blog.liudongkai.com',
+      apiKey: 'da65f2d4ea1c6d4dccfa6d7f197d2aaf',
+      indexName: 'blog',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
@@ -214,6 +232,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
@@ -290,6 +318,164 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/18/sed-one-liner/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/05/18/sed-one-liner/" itemprop="url">
+                  SED单行脚本快速参考
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-18T00:00:00+08:00">
+                2008-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/05/18/sed-one-liner/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/18/sed-one-liner/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近版本的SED ONE-LINER现在可以在sed.sourceforge.net上找到了。有多个语言版本也包括了简体中文版本。意大利语和西班牙语的翻译也正在进行中。</p>
+<blockquote>
+<p>SED单行脚本快速参考（Unix 流编辑器） 2005年12月29日</p>
+<p>英文标题：USEFUL ONE-LINE SCRIPTS FOR SED (Unix stream editor)<br>原标题：HANDY ONE-LINERS FOR SED (Unix stream editor)</p>
+<p>整理：Eric Pement – 电邮：pemente[at]northpark[dot]edu 版本5.5<br>译者：Joe Hong – 电邮：hq00e[at]126[dot]com</p>
+<p>在以下地址可找到本文档的最新（英文）版本：<br><a href="http://sed.sourceforge.net/sed1line.txt" target="_blank" rel="external">http://sed.sourceforge.net/sed1line.txt</a><br><a href="http://www.pement.org/sed/sed1line.txt" target="_blank" rel="external">http://www.pement.org/sed/sed1line.txt</a></p>
+<p>其他语言版本：<br>中文 – <a href="http://sed.sourceforge.net/sed1line_zh-CN.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_zh-CN.html</a><br>捷克语 – <a href="http://sed.sourceforge.net/sed1line_cz.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_cz.html</a><br>荷语 – <a href="http://sed.sourceforge.net/sed1line_nl.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_nl.html</a><br>法语 – <a href="http://sed.sourceforge.net/sed1line_fr.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_fr.html</a><br>德语 – <a href="http://sed.sourceforge.net/sed1line_de.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_de.html</a><br>葡语 – <a href="http://sed.sourceforge.net/sed1line_pt-BR.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_pt-BR.html</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -606,164 +792,6 @@
             </a>
           </div>
           <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/18/sed-one-liner/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/05/18/sed-one-liner/" itemprop="url">
-                  SED单行脚本快速参考
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-18T00:00:00+08:00">
-                2008-05-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/05/18/sed-one-liner/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/18/sed-one-liner/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近版本的SED ONE-LINER现在可以在sed.sourceforge.net上找到了。有多个语言版本也包括了简体中文版本。意大利语和西班牙语的翻译也正在进行中。</p>
-<blockquote>
-<p>SED单行脚本快速参考（Unix 流编辑器） 2005年12月29日</p>
-<p>英文标题：USEFUL ONE-LINE SCRIPTS FOR SED (Unix stream editor)<br>原标题：HANDY ONE-LINERS FOR SED (Unix stream editor)</p>
-<p>整理：Eric Pement – 电邮：pemente[at]northpark[dot]edu 版本5.5<br>译者：Joe Hong – 电邮：hq00e[at]126[dot]com</p>
-<p>在以下地址可找到本文档的最新（英文）版本：<br><a href="http://sed.sourceforge.net/sed1line.txt" target="_blank" rel="external">http://sed.sourceforge.net/sed1line.txt</a><br><a href="http://www.pement.org/sed/sed1line.txt" target="_blank" rel="external">http://www.pement.org/sed/sed1line.txt</a></p>
-<p>其他语言版本：<br>中文 – <a href="http://sed.sourceforge.net/sed1line_zh-CN.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_zh-CN.html</a><br>捷克语 – <a href="http://sed.sourceforge.net/sed1line_cz.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_cz.html</a><br>荷语 – <a href="http://sed.sourceforge.net/sed1line_nl.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_nl.html</a><br>法语 – <a href="http://sed.sourceforge.net/sed1line_fr.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_fr.html</a><br>德语 – <a href="http://sed.sourceforge.net/sed1line_de.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_de.html</a><br>葡语 – <a href="http://sed.sourceforge.net/sed1line_pt-BR.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_pt-BR.html</a></p>
-</blockquote>
-
-          
         
       
     </div>
@@ -1155,10 +1183,10 @@
 
           
             <div class="site-state-item site-state-categories">
-              
+              <a href="/categories">
                 <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">分类</span>
-              
+              </a>
             </div>
           
 
