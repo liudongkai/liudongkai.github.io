@@ -328,7 +328,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/27/ssh-remote-host-identification-has-changed/">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/30/linux-date/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="東木">
@@ -353,8 +353,8 @@
             
               
                 
-                <a class="post-title-link" href="/2008/03/27/ssh-remote-host-identification-has-changed/" itemprop="url">
-                  WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
+                <a class="post-title-link" href="/2008/03/30/linux-date/" itemprop="url">
+                  SHELL下date命令的用法
                 </a>
               
             
@@ -370,8 +370,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-03-27T00:00:00+08:00">
-                2008-03-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-03-30T00:00:00+08:00">
+                2008-03-30
               </time>
             
 
@@ -411,8 +411,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2008/03/27/ssh-remote-host-identification-has-changed/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/03/27/ssh-remote-host-identification-has-changed/" itemprop="commentCount"></span>
+                <a href="/2008/03/30/linux-date/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/03/30/linux-date/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -440,10 +440,356 @@
       
         
           
-            <p>使用SSH登录另外一台机器，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh 192.168.1.105</div></pre></td></tr></table></figure></p>
-<p>得到如下输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</div><div class="line">@ WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED! @</div><div class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</div><div class="line">IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!</div><div class="line">Someone could be eavesdropping on you right now (man-in-the-middle attack)!</div><div class="line">It is also possible that the RSA host key has just been changed.</div><div class="line">The fingerprint for the RSA key sent by the remote host is</div><div class="line">a5:1c:99:1f:fa:d7:1e:76:8b:0a:67:eb:4f:90:24:7a.</div><div class="line">Please contact your system administrator.</div><div class="line">Add correct host key in /root/.ssh/known_hosts to get rid of this message.</div><div class="line">Offending key in /root/.ssh/known_hosts:1</div><div class="line">RSA host key for 192.168.1.105 has changed and you have requested strict checking.</div><div class="line">Host key verification failed.</div></pre></td></tr></table></figure></p>
-<p>搜索得到如下解决：</p>
-<p>因为在本地机器上曾经用SSH登录过这台远程计算机，因而留下了known_hosts的记录，在远程计算机重新安装系统后不能够通过鉴权。删除<code>~/.ssh/known_hosts</code>中对应的项目，问题获得解决。</p>
+            <p>date命令如何获得上星期的日期?<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">date -d &quot;-1 week&quot; &quot;+%Y%m%d %A&quot;</div></pre></td></tr></table></figure></p>
+<p>举一反三:date命令获得前天，昨天，明天，后天，上个月，下个月的日期<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">date -d &quot;-2 day&quot; &quot;+%Y%m%d %A&quot; 或 date –date=&quot;2 days ago&quot; &quot;+%Y%m%d %A&quot;</div><div class="line"></div><div class="line">date -d &quot;-1 day&quot; &quot;+%Y%m%d %A&quot; 或 date –date=&quot;1 day ago&quot; &quot;+%Y%m%d %A&quot;</div><div class="line"></div><div class="line">date -d &quot;1 day&quot; &quot;+%Y%m%d %A&quot;</div><div class="line"></div><div class="line">date -d &quot;2 day&quot; &quot;+%Y%m%d %A&quot;</div><div class="line"></div><div class="line">date -d &quot;-1 month&quot; &quot;+%Y%m%d %A&quot;</div><div class="line"></div><div class="line">date -d &quot;1 month&quot; &quot;+%Y%m%d %A&quot;</div></pre></td></tr></table></figure></p>
+<p>还有其他用法:</p>
+<p><code>date +%s</code> 可以得到UNIX的时间戳;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ cat utc.sh</div><div class="line">#!/bin/sh</div><div class="line">date -d &apos;1970-01-01 UTC &apos;$1&apos; seconds&apos; +&quot;%Y-%m-%d %T&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ utc 1176736543</div><div class="line">2007-04-16 23:15:43</div></pre></td></tr></table></figure>
+<p>可以把UNIX时间戳转换成当前系统时间</p>
+<p><strong>另外要注意下日期字串中的相对项问题：<br>比如今天是08年3月30日，<code>date -d &quot;last month&quot; +%Y%m%d</code> 得到的结果会显示为20080301，因为一个月前，即2月30日是无效的。</strong></p>
+<p>Relative items 向前或向后调整指定日期(如不指出日期为当前日期)。相对项的效果是累积的。这里有一些例子: examples:</p>
+<blockquote>
+<p>1 year<br>1 year ago<br>3 years<br>2 days</p>
+</blockquote>
+<p>时间的单位可以用字串 ‘year’ 或 ‘month’ 替换，表示移动整年或整月。有一些模糊的单位，像 years 和 months 时间段并不一致。精确的单位有 ‘fortnight’ 表示 14 天，’week’ 是 7 天，’day’ 是 24 小时，’hour’ 是 60 分钟， ‘minute’ 或 ‘min’ 是 60 秒，’second’ 或 ‘sec’ 是一秒。单位后面可以有后缀 ‘s’，但被忽略。</p>
+<p>时间单位前面可以跟乘数，它是一个符号数。没有符号的数字认为是正数。没有给出乘数隐含为 1。相对时间后面的 ‘ago’ 字串等于乘数值为-1。</p>
+<p>字串 ‘tomorrow’ 值为将来的一天(等于 ‘day’)，字串 ‘yesterday’ 值为过去的一天(等于 ‘day ago’)。</p>
+<p>字串 ‘now’ 或 ‘today’ 相对项等同于用零值替代，如果没有被前面项目修改，这些字串代表当前时间。它们也可以用来强调其他项，如 ‘12:00 today’。字串 ‘this’ 也代表零值，但常用于 ‘this thursday’ 这样的日期字串里面。</p>
+<p>当相对项让日期跨越时钟调整边界时，典型的例子是夏时制，日期和时间的结果也要相应地调节。</p>
+<p>模糊的单位会另相对项出现问题。例如，’2003-07-31 -1 month’ 可以等于 2003-07-01，这是因为 2003-06-31 是一个无效的日期。为了更可靠地确定上一个月，你可以询问当前月十五号的上一个月，例如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ date -R</div><div class="line">Thu, 31 Jul 2003 13:02:39 -0700</div><div class="line">$ date –date=&apos;-1 month&apos; +&apos;Last month was %B?&apos;</div><div class="line">Last month was July?</div><div class="line">$ date –date=&quot;$(date +%Y-%m-15) -1 month&quot; +&apos;Last month was %B!&apos;</div><div class="line">Last month was June!</div></pre></td></tr></table></figure>
+<p>还有，要小心处理夏令时闰年日期和时间的改变。一些情形下它们增加或减少 24 小时，所以开始日历计算前，最好先将 TZ 环境变量设成 ‘UTC0’。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/29/firefox-thunderbird-portable/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/03/29/firefox-thunderbird-portable/" itemprop="url">
+                  关于Firefox与Thunderbird便携版、绿色版制作完全攻略
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-03-29T00:00:00+08:00">
+                2008-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index">
+                    <span itemprop="name">Share</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/03/29/firefox-thunderbird-portable/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/03/29/firefox-thunderbird-portable/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>经常看到大家在论坛中讨论如何制作或使用绿色或便携的Firefox和Thunderbird问题，我也是非常喜欢使用绿色软件，同时，我也很高兴在这里与大家分享一些我的心得与体会：<br>制作绿色、移动的Mozilla软件</p>
+<p>以下是Firefox、Thunderbird为例，其他的NVU等等类似软件，可以参考。</p>
+<ol>
+<li><p>绿色安装版制作：<br>目的：让Firefox或Thunderbird作为本机的缺省浏览器或邮件客户端。<br>对策：这种目的免不了要修改注册表，因此，如果配置文件不想放到系统缺省个人文件夹中的话，有两种办法：</p>
+<ol>
+<li>将系统个人文件夹指向改到新的盘符路径下（因影响较大，现不推荐，因此不详说）</li>
+<li>获得安装时对注册表的修改，将Firefox或Thunderbird的启动路径中都增加上 <code>-profile X:…YYY</code> 的配置路径指向</li>
+</ol>
+<p>评估：这种方法耗时费力，还要准备专门的恢复脚本，比较麻烦，因此不推荐一般用户使用。<br>备注：我曾经有段时用过此方法，主要是研究软件对注册表与系统的写入信息，所以，本方法纯属个人研究玩玩。</p>
+</li>
+<li><p>便携版Portable使用：<br>目的：实现不在注册表和系统中保留任何信息，便于移动使用。<br>对策：从Portable主站下载各软件的Portable版，解包直接运行，非常方便。<br>评估：各种Portable版均需要有一个加载软件在之前运行，因此一定会影响到程序加载的速度和性能，而且在程序未结束前，加载器不会结束，一般加载器会占用5MB左右的内存（对不太熟悉系统配置或设置的用户推荐此方法）。<br>备注：在第1种方法使用一阵子后，我就用的是这种办法，而且使用了相当长的时间，相对来说，如果不想费时费力而且资源充足的话，推荐用此方法。</p>
+</li>
+<li><p>配置文件替换修改法：<br>目的：不要修改注册表，也不需要加载器，只需要干干净净地启动程序。<br>对策：修改 <code>%userprofile%MozillaFirfox或%userprofile%Thunderbird</code> 配置目录下的profile.ini文件，将其缺省启动指向定制的目录，或者更简单的办法是备份这个文件，在重装系统时恢复到上述目录即可。<br>评估：可以考虑做一个很小的恢复脚本，自动将备份的profile.ini恢复到程序的配置目录即可，用不到加载器或修改注册表，因此，对于较了解的系统配置或有兴趣系统设置的用户来说，此方法有一定的可用性。<br>备注：此方法我只使用过很短的时间，原因是我找到下一个方法。</p>
+</li>
+<li><p>PStart启动或快捷启动方式：<br>目的：对系统不用也不考虑作任何的修改，完全干干净净地启动程序。<br>对策：采用PStart绿色加载程序建立程序菜单或创建程序快捷方式，只在程序启动项中加上参数： <code>-profile X:…XXX</code> 指向用户目录即可，调用程序只需要通过此快捷方式或PStart程序加载运行即可。<br>评估：考虑到快捷方式会在目录移动后需要重新创建的问题，个人倾向于推荐用PStart加载方式，由于此小软件可用相对路径来调用程序和配置参数，因此，我的参数更简单：-profile .XXX。因为，我的目录分配如下：</p>
+<blockquote>
+<p>D:\Portable\Firefox\Profile<br>PStart在D:\Portable<br>Firefox在D:\Portable\Firefox<br>配置文件在D:\Portable\Profile  </p>
+</blockquote>
+<p>所以，大家看是否非常简单，这样，Portable目录可以随意移动或变更都没有关系了，重装系统（只动C盘）更不会影响了，只有随时启动PStart就行。<br>备注：这就是我目前使用的方法，感觉还不错，希望大家也多将自己的心得体会多分享一下，这也是对这些好软件的一种支持啊！</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/29/Thunderbird-mail-import-export/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/03/29/Thunderbird-mail-import-export/" itemprop="url">
+                  Thunderbird 邮件导入导出的方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-03-29T00:00:00+08:00">
+                2008-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index">
+                    <span itemprop="name">Share</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/03/29/Thunderbird-mail-import-export/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/03/29/Thunderbird-mail-import-export/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Thunderbird 邮件的导入导出是困惑已久的问题，尝试用这样的方法操作：</p>
+<ol>
+<li>安装 <a href="http://www.supportware.net/mozilla/AutoSave.xpi" target="_blank" rel="external">Thunderbird AutoSave</a> 扩展。</li>
+<li>重启 Thunderbird 后，选中你要导出的邮件，可以用“Ctrl + 左键”多选，也可以“Ctrl + A” 全选，然后点右键或从“文件”菜单中选择 Export Selected Msgs—&gt;Individually ，导出到你指定的文件夹，格式为 .eml 文件。</li>
+<li>选中这些 .eml 文件，拖入到 OE 中。</li>
+</ol>
+<p>对于将邮件从 OE 导入到 Thunderbird，可以用“工具—&gt;导入”<br>对于将邮件从 foxmail 导入到 Thunderbird ，在安装 <a href="http://www.supportware.net/mozilla/#ext13" target="_blank" rel="external">Thunderbird AutoSave</a> 扩展后，可以先在 foxmail 中将邮件保存为 .eml 文件，然后打开 Thunderbird，选择“文件—&gt;Import Messages“，选中要导入的邮件，打开即可。</p>
+<p>Tb AutoSave Extension 扩展中文版下载: <a href="http://addons.mozine.cn/firefox/465/" target="_blank" rel="external">http://addons.mozine.cn/firefox/465/</a></p>
+<p>另外一个办法是安装 ImportExportTools 扩展，该扩展能够将 eml/mbox 格式的邮件文件导入 Thunderbird，也可以将 Thunderbird 中的邮件导出为 eml/mbox/html 或者纯文本格式。支持批量操作：<br><a href="http://addons.mozine.cn/thunderbird/98" target="_blank" rel="external">http://addons.mozine.cn/thunderbird/98</a></p>
 
           
         
@@ -650,160 +996,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/27/scp-without-password/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/03/27/scp-without-password/" itemprop="url">
-                  如何使执行scp命令时不需要输入用户密码
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-03-27T00:00:00+08:00">
-                2008-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/03/27/scp-without-password/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/03/27/scp-without-password/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>首先制作密码匙∶<br><code>ssh-keygen -t rsa</code> 按三次 Return 键<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp ~/.ssh/ida_dsa.pub username@somewhere.com:~/.ssh/authorized_keys2</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ssh-keygen -t rsa</div><div class="line">$Generating public/private rsa key pair.</div><div class="line">$Enter file in which to save the key (/root/.ssh/id_rsa):     &lt;-- 直接输入回车</div><div class="line">$Enter passphrase (empty for no passphrase):            &lt;-- 直接输入回车</div><div class="line">$Enter same passphrase again:                           &lt;-- 直接输入回车</div><div class="line">$Your identification has been saved in /root/.ssh/id_rsa.</div><div class="line">$Your public key has been saved in /root/.ssh/id_rsa.pub.</div><div class="line">$The key fingerprint is:</div><div class="line">$49:9c:8a:8f:bc:19:5e:8c:c0:10:d3:15:60:a3:32:1c root@Client</div></pre></td></tr></table></figure>
-<p>假如 ~/.ssh/ida_dsa.pub 已经存在，可以直接 scp 到 remote 主机，放于 ~/.ssh/ 下并改名做 authorized_keys2。而 Remote 主机已有 ~/.ssh/authorized_keys2 的话，则可先上存 ida_dsa.pub，然后用:<br><code>cat ida_dsa.pub &gt;&gt; authorized_keys2</code></p>
-<p>这样，以后使用 ssh 或 scp 也不需要再键入密码。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/27/zlib-installation/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -953,162 +1145,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/26/nero8-crack/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/03/26/nero8-crack/" itemprop="url">
-                  nero8 第三方专利
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-03-26T00:00:00+08:00">
-                2008-03-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/03/26/nero8-crack/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/03/26/nero8-crack/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>安装完nero8,并用相应的序列号激活成功相应的插件之后，用showtime播放hddvd时，报检测到盗版序列号，第三方专利激活失败时，请用如下办法解决：<br>将 <code>C:\Program Files\Common Files\Nero\Shared\NL3\NeroPatentActivation.exe</code> 改名或转移就ok了。</p>
-<p>附nero8的激活验证办法：<br><code>cd Program Files\Common Files\Nero\Lib</code> 回车，输入 <code>nerocmd.exe –listdrives</code> 回车，看到OK字样即可</p>
-<p>nero8的相关序列号：</p>
-<blockquote>
-<p>1K22-0867-0795-66M4-5018-7612-X7KA<br>DVD-Video Multichannel Plug-in 4C01-K0A2-98M1-25M9-KC67-E276-63K5<br>Blu-ray/HD DVD Video Plug-in EC06-206A-99K5-2527-940M-3227-K7XK<br>mp3PRO Plug-in 9C00-E0A2-98K1-294K-06XC-MX2C-X988<br>Lame MP3 Encoder 4C04-5032-9953-2A16-09E3-KC8M-5C80<br>LLS Plugin EC05-E087-9964-2703-05E2-88XA-51EE<br>Multichannel Plug-in：1A47-0609-9030-2261-0221-1250</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1156,7 +1192,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">281</span>
+                <span class="site-state-item-count">284</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1165,7 +1201,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1174,7 +1210,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">196</span>
+                <span class="site-state-item-count">198</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

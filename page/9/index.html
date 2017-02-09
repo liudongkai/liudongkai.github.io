@@ -328,6 +328,477 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/04/10/ImportError-No-module-named-mime-text/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/04/10/ImportError-No-module-named-mime-text/" itemprop="url">
+                  ImportError: No module named mime.text
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-04-10T00:00:00+08:00">
+                2014-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/04/10/ImportError-No-module-named-mime-text/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/04/10/ImportError-No-module-named-mime-text/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一个python脚本执行报错，老版本python中MIMEText 写法不对</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@localhost:~]# /usr/bin/python check_linux_resource.py</div><div class="line">Traceback (most recent call last):</div><div class="line">  File &quot;/usr/local/mysqlmtop/global_functions.py&quot;, line 11, in ?</div><div class="line">    from email.mime.text import MIMEText</div><div class="line">ImportError: No module named mime.text</div><div class="line"> </div><div class="line">[root@localhost:~]# /usr/bin/python -V</div><div class="line">Python 2.4.3</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">from email.mime.text import MIMEText</div><div class="line">from email.header import Header</div></pre></td></tr></table></figure>
+<p>将以上写法修改为下面这样就ok<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">from email.MIMEText import MIMEText</div><div class="line">from email.Header import Header</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/03/16/php-hash-to-decimal/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/03/16/php-hash-to-decimal/" itemprop="url">
+                  PHP如何把字符串hash成10进制数字
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-03-16T00:00:00+08:00">
+                2014-03-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/03/16/php-hash-to-decimal/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/16/php-hash-to-decimal/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>一般情况而言需要做字符串到十进制数字的转换可以用 <a href="http://php.net/crc32">crc32()</a> 函数 …</p>
+<p>这个函数的优点是快 … 在我的知识范围内这应该是 php 内置最快的哈希函数 …</p>
+<p>缺点是操作系统依赖 … 不同操作系统的 <code>crc32()</code> 函数会产生不一样的值 …</p>
+<p>至于把 <code>md5()</code> 的结果转化成十进制 … 用 <a href="http://php.net/hexdec">hexdec()</a> 显然是不靠谱的 … 因为hexdec最大只能转0x7fffffff，再大就变成float了。</p>
+<p>这里我们用到另外一个更加灵活的进制转换函数 <a href="http://php.net/base_convert">base_convert()</a> …</p>
+<p>这个函数的好处是返回 string … 也就不存在溢出的问题了 …</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2014/03/16/php-hash-to-decimal/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/03/13/php-chinese-character-get-first-pinyin/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/03/13/php-chinese-character-get-first-pinyin/" itemprop="url">
+                  PHP获取汉字拼音首字母函数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-03-13T00:00:00+08:00">
+                2014-03-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/03/13/php-chinese-character-get-first-pinyin/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/13/php-chinese-character-get-first-pinyin/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>先来看看怎样取得单个汉字的拼音首字母，请看下面这个函数，它支持GBK和UTF8编码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">function getfirstchar($s0)&#123;   </div><div class="line">	$fchar = ord($s0&#123;0&#125;);</div><div class="line">	if($fchar &gt;= ord(&quot;A&quot;) and $fchar &lt;= ord(&quot;z&quot;) )return strtoupper($s0&#123;0&#125;);</div><div class="line">	$s1 = iconv(&quot;UTF-8&quot;,&quot;gb2312&quot;, $s0);</div><div class="line">	$s2 = iconv(&quot;gb2312&quot;,&quot;UTF-8&quot;, $s1);</div><div class="line">	if($s2 == $s0)&#123;$s = $s1;&#125;else&#123;$s = $s0;&#125;</div><div class="line">	$asc = ord($s&#123;0&#125;) * 256 + ord($s&#123;1&#125;) - 65536;</div><div class="line">	if($asc &gt;= -20319 and $asc &lt;= -20284) return &quot;A&quot;;</div><div class="line">	if($asc &gt;= -20283 and $asc &lt;= -19776) return &quot;B&quot;;</div><div class="line">	if($asc &gt;= -19775 and $asc &lt;= -19219) return &quot;C&quot;;</div><div class="line">	if($asc &gt;= -19218 and $asc &lt;= -18711) return &quot;D&quot;;</div><div class="line">	if($asc &gt;= -18710 and $asc &lt;= -18527) return &quot;E&quot;;</div><div class="line">	if($asc &gt;= -18526 and $asc &lt;= -18240) return &quot;F&quot;;</div><div class="line">	if($asc &gt;= -18239 and $asc &lt;= -17923) return &quot;G&quot;;</div><div class="line">	if($asc &gt;= -17922 and $asc &lt;= -17418) return &quot;H&quot;;</div><div class="line">	if($asc &gt;= -17417 and $asc &lt;= -16475) return &quot;J&quot;;</div><div class="line">	if($asc &gt;= -16474 and $asc &lt;= -16213) return &quot;K&quot;;</div><div class="line">	if($asc &gt;= -16212 and $asc &lt;= -15641) return &quot;L&quot;;</div><div class="line">	if($asc &gt;= -15640 and $asc &lt;= -15166) return &quot;M&quot;;</div><div class="line">	if($asc &gt;= -15165 and $asc &lt;= -14923) return &quot;N&quot;;</div><div class="line">	if($asc &gt;= -14922 and $asc &lt;= -14915) return &quot;O&quot;;</div><div class="line">	if($asc &gt;= -14914 and $asc &lt;= -14631) return &quot;P&quot;;</div><div class="line">	if($asc &gt;= -14630 and $asc &lt;= -14150) return &quot;Q&quot;;</div><div class="line">	if($asc &gt;= -14149 and $asc &lt;= -14091) return &quot;R&quot;;</div><div class="line">	if($asc &gt;= -14090 and $asc &lt;= -13319) return &quot;S&quot;;</div><div class="line">	if($asc &gt;= -13318 and $asc &lt;= -12839) return &quot;T&quot;;</div><div class="line">	if($asc &gt;= -12838 and $asc &lt;= -12557) return &quot;W&quot;;</div><div class="line">	if($asc &gt;= -12556 and $asc &lt;= -11848) return &quot;X&quot;;</div><div class="line">	if($asc &gt;= -11847 and $asc &lt;= -11056) return &quot;Y&quot;;</div><div class="line">	if($asc &gt;= -11055 and $asc &lt;= -10247) return &quot;Z&quot;;</div><div class="line">	return null;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上函数返回单个汉字的拼音首字母。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2014/03/13/php-chinese-character-get-first-pinyin/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/03/12/php-chinese-character-to-pinyin/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -641,485 +1112,6 @@ http://apt.iphone4.tw/>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/02/17/Flash-P2P-Disable/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/02/17/Flash-P2P-Disable/" itemprop="url">
-                  屏蔽Flash P2P看在线视频偷偷上传，详尽手工教程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-02-17T00:00:00+08:00">
-                2014-02-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/02/17/Flash-P2P-Disable/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/02/17/Flash-P2P-Disable/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>第一步：打开下面的网站：<br><a href="http://www.macromedia.com/support/documentation/cn/flashplayer/help/settings_manager09.html">http://www.macromedia.com/support/documentation/cn/flashplayer/help/settings_manager09.html</a><br>先把这个设置一下。怎么设置估计菜到家你看了页面的选项也知道勾哪个了吧  但千万注意！光做这一步还远远不够！！请继续做好下面的步骤。</p>
-<p>第二步：电脑里找到adobe flash player的配置文件，<br>一、对于32位系统，配置文件mms.cfg 文件存储在以下位置：<code>C:\WINDOWS\system32\Macromed\Flash</code><br>二、对于64位系统，配置文件mms.cfg 文件存储在以下位置：<code>C:\Windows\SysWOW64\Macromed\Flash</code></p>
-<p>mms.cfg 默认内容如下：</p>
-<blockquote>
-<p>AutoUpdateDisable=0<br>SilentAutoUpdateEnable=1或者0</p>
-</blockquote>
-<p>找到MMS.CFG后，用记事本打开 mms.cfg 文件，添加一行：<code>RTMFPP2PDisable=1</code> 保存即可。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2014/02/17/Flash-P2P-Disable/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/01/25/LF-will-be-replaced-by-CRLF/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/01/25/LF-will-be-replaced-by-CRLF/" itemprop="url">
-                  Git(windows) warning: LF will be replaced by CRLF
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-01-25T00:00:00+08:00">
-                2014-01-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/01/25/LF-will-be-replaced-by-CRLF/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/01/25/LF-will-be-replaced-by-CRLF/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h3><p>windows下git时的错误提示：</p>
-<p><strong>warning: LF will be replaced by CRLF…..</strong></p>
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法:"></a>解决办法:</h3><p>在git bash 输入下面的命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --global core.autocrlf false</div></pre></td></tr></table></figure>
-<p><img src="http://photo.liudongkai.com/blog/20140125_warning_LF_will_be_replaced_by_CRLF.jpg" alt="warning_LF_will_be_replaced_by_CRLF"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/01/22/ignore-prompt-NPAPI-chrome-v32/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/01/22/ignore-prompt-NPAPI-chrome-v32/" itemprop="url">
-                  避免chrome总是提示需要你许可才能运行
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-01-22T00:00:00+08:00">
-                2014-01-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/01/22/ignore-prompt-NPAPI-chrome-v32/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/01/22/ignore-prompt-NPAPI-chrome-v32/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>自从chrome浏览器升级到chrome32版本之后，打开qq、支付宝、迅雷等网站总是提示需要你许可才能运行，有点烦躁。谷歌用户数据安全不断在调整策略，严格控制store商店的扩展质量和禁止本地插件请求。</p>
-<p>症状：chrome总是提示需要你许可才能运行，选择运行一次、始终在该网站上运行。</p>
-<p>解决方法：</p>
-<ol>
-<li><p>打开chrome的插件管理器， <strong>chrome://plugins</strong><br>在插件管理页面找到对应的插件，在插件下面选择始终运行或者停用该插件，问题就可以解决了。停用之后插件将不再起作用。</p>
-</li>
-<li><p>windows用户可在启动命令中增加 <strong>–remote-debugging-port=9222</strong> </p>
-</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2014/01/22/ignore-prompt-NPAPI-chrome-v32/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1167,7 +1159,7 @@ http://apt.iphone4.tw/>
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">281</span>
+                <span class="site-state-item-count">284</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1176,7 +1168,7 @@ http://apt.iphone4.tw/>
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1185,7 +1177,7 @@ http://apt.iphone4.tw/>
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">196</span>
+                <span class="site-state-item-count">198</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

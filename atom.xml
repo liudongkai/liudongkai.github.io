@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.liudongkai.com/"/>
-  <updated>2016-02-26T16:00:00.000Z</updated>
+  <updated>2016-03-27T16:00:00.000Z</updated>
   <id>http://blog.liudongkai.com/</id>
   
   <author>
@@ -14,6 +14,71 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一句SQL实现MYSQL的递归查询[zt]</title>
+    <link href="http://blog.liudongkai.com/2016/03/28/mysql_recursive_query/"/>
+    <id>http://blog.liudongkai.com/2016/03/28/mysql_recursive_query/</id>
+    <published>2016-03-27T16:00:00.000Z</published>
+    <updated>2016-03-27T16:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;众所周知，目前的mysql版本中并不支持直接的递归查询，但是通过递归到迭代转化的思路，还是可以在一句SQL内实现树的递归查询的。这个得益于Mysql允许在SQL语句内使用@变量。以下是示例代码。&lt;/p&gt;
+&lt;p&gt;创建表格&lt;br&gt;&lt;figure class=&quot;highlight
+    
+    </summary>
+    
+      <category term="Mysql" scheme="http://blog.liudongkai.com/categories/Mysql/"/>
+    
+    
+      <category term="Mysql" scheme="http://blog.liudongkai.com/tags/Mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL 数据库 varchar 到底可以存多少个汉字，多少个英文呢?我们来搞搞清楚[zt]</title>
+    <link href="http://blog.liudongkai.com/2016/03/27/mysql_varchar_how_many_chinese_can_be_saved/"/>
+    <id>http://blog.liudongkai.com/2016/03/27/mysql_varchar_how_many_chinese_can_be_saved/</id>
+    <published>2016-03-26T16:00:00.000Z</published>
+    <updated>2016-03-26T16:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;关于UTF-8&quot;&gt;&lt;a href=&quot;#关于UTF-8&quot; class=&quot;headerlink&quot; title=&quot;关于UTF-8&quot;&gt;&lt;/a&gt;关于UTF-8&lt;/h2&gt;&lt;p&gt;UTF-8 Unicode Transformation Format-8bit。是用以解决国际上字
+    
+    </summary>
+    
+      <category term="Mysql" scheme="http://blog.liudongkai.com/categories/Mysql/"/>
+    
+    
+      <category term="Mysql" scheme="http://blog.liudongkai.com/tags/Mysql/"/>
+    
+      <category term="varchar" scheme="http://blog.liudongkai.com/tags/varchar/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SQL Server附加数据库时报1813错误的解决方案[zt]</title>
+    <link href="http://blog.liudongkai.com/2016/03/27/sql_server_error_1813/"/>
+    <id>http://blog.liudongkai.com/2016/03/27/sql_server_error_1813/</id>
+    <published>2016-03-26T16:00:00.000Z</published>
+    <updated>2016-03-26T16:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;无法打开新数据库 ‘Dong’。CREATE DATABASE 中止。&lt;br&gt;文件激活失败。物理文件名称’E:\SqlServer\MSSQL\Data\Dong_log.LDF’可能不正确。&lt;/p&gt;
+&lt;p&gt;无法重新生成日志，原因是数据库关闭时存在
+    
+    </summary>
+    
+      <category term="MSSQL" scheme="http://blog.liudongkai.com/categories/MSSQL/"/>
+    
+    
+      <category term="SQL Server" scheme="http://blog.liudongkai.com/tags/SQL-Server/"/>
+    
+  </entry>
   
   <entry>
     <title>百度云加速下载：使用 aria2</title>
@@ -83,7 +148,7 @@
 &lt;p&gt;In short, it is awesome.&lt;/p&gt;
 &lt;p&gt;Composer allows you to scaffold out a Laravel project and you also have the flexibility of specifying which version of Laravel your want.&lt;/p&gt;
 &lt;p&gt;To install composer, run the following commands in the terminal:&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;curl -sS https://getcomposer.org/installer | php&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo mkdir -p /usr/local/bin/&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo mv composer.phar /usr/local/bin/composer&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;curl &lt;span class=&quot;_&quot;&gt;-s&lt;/span&gt;S https://getcomposer.org/installer | php&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo mkdir -p /usr/&lt;span class=&quot;built_in&quot;&gt;local&lt;/span&gt;/bin/&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo mv composer.phar /usr/&lt;span class=&quot;built_in&quot;&gt;local&lt;/span&gt;/bin/composer&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
@@ -330,9 +395,9 @@
     
       <category term="iOS8" scheme="http://blog.liudongkai.com/tags/iOS8/"/>
     
-      <category term="Activator" scheme="http://blog.liudongkai.com/tags/Activator/"/>
-    
       <category term="Cydia" scheme="http://blog.liudongkai.com/tags/Cydia/"/>
+    
+      <category term="Activator" scheme="http://blog.liudongkai.com/tags/Activator/"/>
     
   </entry>
   
@@ -437,136 +502,6 @@
       <category term="C#" scheme="http://blog.liudongkai.com/tags/C/"/>
     
       <category term="解析" scheme="http://blog.liudongkai.com/tags/%E8%A7%A3%E6%9E%90/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>常用PC服务器阵列卡、硬盘健康监控[ZT]</title>
-    <link href="http://blog.liudongkai.com/2014/09/20/megacli/"/>
-    <id>http://blog.liudongkai.com/2014/09/20/megacli/</id>
-    <published>2014-09-19T16:00:00.000Z</published>
-    <updated>2014-09-19T16:00:00.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;通常，我们使用的DELL/HP/IBM三家的机架式PC级服务器阵列卡是从LSI的卡OEM出来的，DELL和IBM两家的阵列卡原生程度较高，没有做太多封装，可以用原厂提供的阵列卡管理工具进行监控；而HP的阵列卡一般都做过封装了，因此需要使用自身特有的管理工具来监控。&lt;/p&gt;
-&lt;p&gt;本文以几种常用的阵列卡为例，展示其阵列卡及硬盘监控的方法。&lt;br&gt;&lt;strong&gt;DELL SAS 6/iR卡&lt;/strong&gt;，全称LSI Logic SAS1068E，只支持RAID 0, RAID 1, RAID 1+0, 不支持RAID 5等高级RAID特性，不支持阵列卡电池。&lt;br&gt;&lt;strong&gt;DELL PERC PERC H700卡&lt;/strong&gt;，全称LSI Logic MegaRAID SAS 2108，支持各种RAID级别及高级特性，可选配阵列卡电池。&lt;br&gt;&lt;strong&gt;DELL PERC H310 Mini卡&lt;/strong&gt; ，全称LSI Logic / Symbios Logic MegaRAID SAS 2008，支持常见RAID级别，不支持高级RAID特性，不支持阵列卡电池。&lt;br&gt;&lt;strong&gt;IBM ServeRAID M5014 SAS/SATA Controller卡&lt;/strong&gt;，全称LSI Logic / Symbios Logic MegaRAID SAS 2108，支持各种RAID级别及高级特性，可选配阵列卡电池。&lt;br&gt;&lt;strong&gt;IBM ServeRAID-MR10i SAS/SATA Controller卡&lt;/strong&gt;，全称LSI Logic / Symbios Logic MegaRAID SAS 1078，支持常见RAID级别，不支持高级RAID特性，可选配阵列卡电池，这个卡其实和DELL的PERC 6/i卡是一样的，都是基于LSI MegaRAID SAS 1078基础上OEM出来的。&lt;/p&gt;
-&lt;p&gt;上面是几种常见的阵列卡型号，更多的可以自行查看官方的技术手册。&lt;/p&gt;
-&lt;p&gt;下面我们要继续的是，这些阵列卡以及硬盘如何监控，阵列卡的管理也请查看官方技术手册，不在本文讨论范畴，或者查看作者的一个分享PPT：PC服务器阵列卡管理简易手册。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://blog.liudongkai.com/categories/Linux/"/>
-    
-    
-      <category term="MegaCli" scheme="http://blog.liudongkai.com/tags/MegaCli/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>常用iOS URL Scheme附录</title>
-    <link href="http://blog.liudongkai.com/2014/09/07/iOS-URL-Scheme/"/>
-    <id>http://blog.liudongkai.com/2014/09/07/iOS-URL-Scheme/</id>
-    <published>2014-09-06T16:00:00.000Z</published>
-    <updated>2014-09-06T16:00:00.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;ios默认：&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;名称&lt;/th&gt;
-&lt;th&gt;URL Scheme&lt;/th&gt;
-&lt;th&gt;Bundle identifier&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Safari：&lt;/td&gt;
-&lt;td&gt;http://&lt;/td&gt;
-&lt;td&gt;&amp;nbsp; &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;maps：&lt;/td&gt;
-&lt;td&gt;&lt;a href=&quot;http://maps.google.com&quot;&gt;http://maps.google.com&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&amp;nbsp; &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Phone：&lt;/td&gt;
-&lt;td&gt;tel:&lt;/td&gt;
-&lt;td&gt;&amp;nbsp; &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;SMS：&lt;/td&gt;
-&lt;td&gt;sms:&lt;/td&gt;
-&lt;td&gt;&amp;nbsp; &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Mail：&lt;/td&gt;
-&lt;td&gt;mailto:&lt;/td&gt;
-&lt;td&gt;&amp;nbsp; &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;iBooks：&lt;/td&gt;
-&lt;td&gt;ibooks://&lt;/td&gt;
-&lt;td&gt;&amp;nbsp; &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;App Store：&lt;/td&gt;
-&lt;td&gt;&lt;a href=&quot;http://itunes.apple.com&quot;&gt;http://itunes.apple.com&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&amp;nbsp; &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;iTunes：&lt;/td&gt;
-&lt;td&gt;http:&lt;a href=&quot;http://phobos.apple.com&quot;&gt;http://phobos.apple.com&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&amp;nbsp; &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Music / iPod：&lt;/td&gt;
-&lt;td&gt;music:&lt;/td&gt;
-&lt;td&gt;&amp;nbsp; &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Videos：&lt;/td&gt;
-&lt;td&gt;videos:&lt;/td&gt;
-&lt;td&gt;&amp;nbsp; &lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://blog.liudongkai.com/categories/Linux/"/>
-    
-    
-      <category term="Linux" scheme="http://blog.liudongkai.com/tags/Linux/"/>
-    
-      <category term="shc" scheme="http://blog.liudongkai.com/tags/shc/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>用shc加密或者编译shell脚本</title>
-    <link href="http://blog.liudongkai.com/2014/08/17/compile-bash-shell-with-shc/"/>
-    <id>http://blog.liudongkai.com/2014/08/17/compile-bash-shell-with-shc/</id>
-    <published>2014-08-16T16:00:00.000Z</published>
-    <updated>2014-08-16T16:00:00.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这是针对上一篇&lt;a href=&quot;/2014/08/16/How_to_Encrypt_Your_Bash_Shell_Script_on_Linux_Using_SHC/&quot;&gt;How to Encrypt Your Bash Shell Script on Linux Using SHC [ZT]&lt;/a&gt;的延伸资料整理。&lt;/p&gt;
-&lt;h2 id=&quot;1-动态链接&quot;&gt;&lt;a href=&quot;#1-动态链接&quot; class=&quot;headerlink&quot; title=&quot;1. 动态链接&quot;&gt;&lt;/a&gt;1. 动态链接&lt;/h2&gt;&lt;p&gt;文中介绍的两种编译方式，无论是&lt;code&gt;shc -r -f random.sh&lt;/code&gt;还是&lt;code&gt;shc -v -r -T -f random.sh&lt;/code&gt;生成的二进制文件都是&lt;strong&gt;动态链接&lt;/strong&gt;形式的，所以，在其他平台上不能运行。&lt;/p&gt;
-&lt;h2 id=&quot;2-静态链接&quot;&gt;&lt;a href=&quot;#2-静态链接&quot; class=&quot;headerlink&quot; title=&quot;2. 静态链接&quot;&gt;&lt;/a&gt;2. 静态链接&lt;/h2&gt;&lt;p&gt;不过，我们可以通过下面的方式生成一个&lt;strong&gt;静态链接&lt;/strong&gt;的二进制可执行文件。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;# CFLAGS=-static shc -r -f random.sh&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://blog.liudongkai.com/categories/Linux/"/>
-    
-    
-      <category term="Linux" scheme="http://blog.liudongkai.com/tags/Linux/"/>
-    
-      <category term="shc" scheme="http://blog.liudongkai.com/tags/shc/"/>
     
   </entry>
   

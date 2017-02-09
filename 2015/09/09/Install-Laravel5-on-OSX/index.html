@@ -453,13 +453,13 @@
 <p>In short, it is awesome.</p>
 <p>Composer allows you to scaffold out a Laravel project and you also have the flexibility of specifying which version of Laravel your want.</p>
 <p>To install composer, run the following commands in the terminal:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">curl -sS https://getcomposer.org/installer | php</div><div class="line">sudo mkdir -p /usr/local/bin/</div><div class="line">sudo mv composer.phar /usr/local/bin/composer</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">curl <span class="_">-s</span>S https://getcomposer.org/installer | php</div><div class="line">sudo mkdir -p /usr/<span class="built_in">local</span>/bin/</div><div class="line">sudo mv composer.phar /usr/<span class="built_in">local</span>/bin/composer</div></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>This will install Composer globally for you. To verify that your composer installation is successful, try running:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer</div></pre></td></tr></table></figure>
 <p>…and you’ll see a bunch of composer commands flow down your terminal screen. Hurray!</p>
 <p>You can also update composer by running:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer self-update</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer self-update</div></pre></td></tr></table></figure>
 <p>For more information, check out the in-depth guide on their website for <a href="https://getcomposer.org/doc/00-intro.md" target="_blank" rel="external">Getting Started with Composer</a>.</p>
 <h2 id="Step-2-Configuring-XAMPP-MAMP"><a href="#Step-2-Configuring-XAMPP-MAMP" class="headerlink" title="Step 2: Configuring XAMPP/MAMP"></a>Step 2: Configuring XAMPP/MAMP</h2><p>So you’ve installed either XAMPP or MAMP on your machine. Great.</p>
 <p>When installing Laravel for the first time, more than 90% of the people face this dreaded PHP error:</p>
@@ -471,30 +471,30 @@
 <h3 id="For-XAMPP-users"><a href="#For-XAMPP-users" class="headerlink" title="For XAMPP users"></a>For XAMPP users</h3><p>Home page : <a href="https://www.apachefriends.org/download.html" target="_blank" rel="external">https://www.apachefriends.org/download.html</a></p>
 <p>I’m using XAMPP 1.8.3–2 on my Mac and it comes with the MCrypt extension out of the box. All you need is to include it’s path in your .bash_profile</p>
 <p>Open your .bash_profile by running:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim ~/.bash_profile</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim ~/.bash_profile</div></pre></td></tr></table></figure>
 <p>…and paste the following line at the end:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export PATH=&quot;/Applications/XAMPP/xamppfiles/bin:$PATH&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> PATH=<span class="string">"/Applications/XAMPP/xamppfiles/bin:<span class="variable">$PATH</span>"</span></div></pre></td></tr></table></figure>
 <blockquote>
 <p>Save the file by pressing : and typing wq and then press enter to quit out.</p>
 </blockquote>
 <p>Remember to reload the .bash_profile by running:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source ~/.bash_profile</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> ~/.bash_profile</div></pre></td></tr></table></figure>
 <p>And you’re done!</p>
 <h3 id="For-MAMP-users"><a href="#For-MAMP-users" class="headerlink" title="For MAMP users"></a>For MAMP users</h3><p>Home page : <a href="https://www.mamp.info/en/downloads/" target="_blank" rel="external">https://www.mamp.info/en/downloads/</a></p>
 <p>The procedure is pretty much the same. You start out by opening your .bash_profile and pasting the following line at the end:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export PATH=/Applications/MAMP/bin/php/php5.6/bin:$PATH</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> PATH=/Applications/MAMP/bin/php/php5.6/bin:<span class="variable">$PATH</span></div></pre></td></tr></table></figure>
 <blockquote>
 <p><strong>Important note:</strong> This assumes that you have PHP 5.6 installed on your machine.</p>
 </blockquote>
 <p>Remember to reload the .bash_profile by running:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source ~/.bash_profile</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> ~/.bash_profile</div></pre></td></tr></table></figure>
 <p>And you’re done!</p>
 <h2 id="Step-3-Installing-Laravel-5"><a href="#Step-3-Installing-Laravel-5" class="headerlink" title="Step 3: Installing Laravel 5"></a>Step 3: Installing Laravel 5</h2><p>To create a new Laravel 5 project, run the following:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer create-project laravel/laravel dev-develop</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer create-project laravel/laravel dev-develop</div></pre></td></tr></table></figure>
 <p>This will pull in the latest dev branch from the Github repo. If you want the latest stable version, run the following:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer create-project laravel/laravel --prefer-dist</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer create-project laravel/laravel --prefer-dist</div></pre></td></tr></table></figure>
 <p>If everything goes well, try running:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan -V</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan -V</div></pre></td></tr></table></figure>
 <p>and if it says:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Laravel Framework version 5.0-dev</div></pre></td></tr></table></figure>
 <p>then you’re good to go!</p>
@@ -516,7 +516,7 @@
 <p>For more information on Vagrant, check out their <a href="https://www.vagrantup.com/" target="_blank" rel="external">website</a>.</p>
 <p>Once you have installed Vagrant on your machine, it is time to install Homestead.</p>
 <p>To install Laravel Homestead, run the following:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vagrant box add laravel/homestead</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vagrant box add laravel/homestead</div></pre></td></tr></table></figure>
 <p>It might take some time to install depending on your internet connection.</p>
 <p>What it is essentially doing is installing a copy of the latest Ubuntu version with a complete LAMP stack setup so you have your own server that you can SSH into.</p>
 <p>In fact, the files on your local machine are synced with the VM so essentially, if you make any change on your local machine, it is synced back to the VM. Note that everything is happening locally.</p>
@@ -529,13 +529,13 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">authorize: ~/.ssh/id_rsa.pub</div></pre></td></tr></table></figure>
 <p>You need to setup an SSH key on your machine that will allow you to SSH into your VM.</p>
 <p>For more information on setting up SSH keys, Github has an <a href="https://help.github.com/articles/generating-ssh-keys/" target="_blank" rel="external">awesome article</a>.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">folders:</div><div class="line">     — map: ~/path/to/project</div><div class="line">       to: /home/vagrant/project-name</div></pre></td></tr></table></figure>
+<figure class="highlight roboconf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">folders:</div><div class="line">     — map: ~/path/to/project</div><div class="line">       to: /home/vagrant/project-name</div></pre></td></tr></table></figure>
 <p>The above code maps the project on your machine to the project on the VM. For example, if your project directory is:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/Documents/LaravelProjects/laravel-test</div></pre></td></tr></table></figure>
 <p>It’s going to map to the following in the VM:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/home/vagrant/laravel-test</div></pre></td></tr></table></figure>
 <p>Let’s look at the most important part:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sites:</div><div class="line">     — map: project.app</div><div class="line">       to: /home/vagrant/project-name/public</div></pre></td></tr></table></figure>
+<figure class="highlight roboconf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sites:</div><div class="line">     — map: project.app</div><div class="line">       to: /home/vagrant/project-name/public</div></pre></td></tr></table></figure>
 <p>The above code provides you with a handy alias to enter in the browser that points to your project’s public directory which is how Laravel serves your app.</p>
 <p>For example, you can enter something like:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://personal.app</div></pre></td></tr></table></figure>
@@ -672,7 +672,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">281</span>
+                <span class="site-state-item-count">284</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -681,7 +681,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -690,7 +690,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">196</span>
+                <span class="site-state-item-count">198</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

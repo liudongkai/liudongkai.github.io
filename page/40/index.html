@@ -328,7 +328,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/14/The-Duke-of-Mount-Deer/">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/18/regular-expression/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="東木">
@@ -353,8 +353,8 @@
             
               
                 
-                <a class="post-title-link" href="/2008/05/14/The-Duke-of-Mount-Deer/" itemprop="url">
-                  时代商报：《鹿鼎记》一定要艳吗？
+                <a class="post-title-link" href="/2008/05/18/regular-expression/" itemprop="url">
+                  揭开正则表达式的神秘面纱
                 </a>
               
             
@@ -370,8 +370,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-14T00:00:00+08:00">
-                2008-05-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-18T00:00:00+08:00">
+                2008-05-18
               </time>
             
 
@@ -393,8 +393,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -411,8 +411,175 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2008/05/14/The-Duke-of-Mount-Deer/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/14/The-Duke-of-Mount-Deer/" itemprop="commentCount"></span>
+                <a href="/2008/05/18/regular-expression/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/18/regular-expression/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>正则表达式（regular expression）就是用一个“字符串”来描述一个特征，然后去验证另一个“字符串”是否符合这个特征。比如 表达式“ab+” 描述的特征是“一个 ‘a’ 和 任意个 ‘b’ ”，那么 ‘ab’, ‘abb’, ‘abbbbbbbbbb’ 都符合这个特征。</p>
+<p>正则表达式可以用来：</p>
+<ol>
+<li>验证字符串是否符合指定特征，比如验证是否是合法的邮件地址。</li>
+<li>用来查找字符串，从一个长的文本中查找符合指定特征的字符串，比查找固定字符串更加灵活方便。</li>
+<li>用来替换，比普通的替换更强大。</li>
+</ol>
+<p>正则表达式学习起来其实是很简单的，不多的几个较为抽象的概念也很容易理解。之所以很多人感觉正则表达式比较复杂，一方面是因为大多数的文档没有做到由浅入深地讲解，概念上没有注意先后顺序，给读者的理解带来困难；另一方面，各种引擎自带的文档一般都要介绍它特有的功能，然而这部分特有的功能并不是我们首先要理解的。</p>
+<p>文章中的每一个举例，都可以点击进入到测试页面进行测试。闲话少说，开始。</p>
+<p>##1. 正则表达式规则</p>
+<h3 id="1-普通字符"><a href="#1-普通字符" class="headerlink" title="1. 普通字符"></a>1. 普通字符</h3><p>字母、数字、汉字、下划线、以及后边章节中没有特殊定义的标点符号，都是”普通字符”。表达式中的普通字符，在匹配一个字符串的时候，匹配与之相同的一个字符。</p>
+<p><strong>举例1：表达式 “c”，在匹配字符串 “abcde” 时</strong>，匹配结果是：成功；匹配到的内容是：”c”；匹配到的位置是：开始于2，结束于3。（注：下标从0开始还是从1开始，因当前编程语言的不同而可能不同）</p>
+<p><strong>举例2：表达式 “bcd”，在匹配字符串 “abcde” 时</strong>，匹配结果是：成功；匹配到的内容是：”bcd”；匹配到的位置是：开始于1，结束于4。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2008/05/18/regular-expression/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/17/regex-notes/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/05/17/regex-notes/" itemprop="url">
+                  正则笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-17T00:00:00+08:00">
+                2008-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/05/17/regex-notes/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/17/regex-notes/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -440,9 +607,165 @@
       
         
           
-            <p>韦小宝的形象是一个经典，所以当这个经典被无数次翻拍的时候，人们每一次都会有不同的意见和建议，这次也不例外。经过梁朝伟和陈小春等人多次演绎后，黄晓明这个有史以来最帅的“小宝”终于开始接受人们的检阅了。只是这次，第一个下结论的是这部戏的导演、大胡子张纪中昨天很认真地对人们说：“这个版本是以前所有版本当中最靓丽的，用贬义的词来说是最香艳的。”但是我们想问的是：“难道《鹿鼎记》就一定要香艳吗？”</p>
-<p>是的，所有人都是这样认为，包括导演。一个男人和七个女人的故事，该怎么讲？导演最开始的定位就是不香艳，“我们不会去删减什么。”导演信誓旦旦地承诺，但是我们不禁要问：“我们没有人说你的《鹿鼎记》怎么样啊？我们只是想看一个活力四射的、机智搞笑的韦小宝。”和《色，戒》一个道理，有些东西其实不需要情色，它有时候只能做噱头，但是作为电视剧，它不能用这样的噱头，于是导演自己制造，“我们的电视剧香而不艳。”想起一句成语，“此地无银三百两”。</p>
-<p>挺悲哀，因为这句话，张纪中让《鹿鼎记》与经典擦肩而过了。</p>
+            <p>列出UA字符串：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">zcat log.gz |awk -F &apos;&quot;&quot;&apos; &apos;&#123;print $2&#125;&apos;|sed -e &apos;s/&quot; .&#123;1,&#125;//g&apos;|head</div></pre></td></tr></table></figure></p>
+<p>正则回逆引用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sed &apos;/pattern/&amp;/g&apos; file</div><div class="line">sed &apos;/(pattern)/1/g&apos; file</div></pre></td></tr></table></figure></p>
+<p>向前匹配：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">perl -ne &apos;print if s/.*(?=pattern)/pattern2/&apos; file</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/17/awk-notes/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/05/17/awk-notes/" itemprop="url">
+                  awk 笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-17T00:00:00+08:00">
+                2008-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/05/17/awk-notes/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/17/awk-notes/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>实例一：<br>test.txt文件内容如下：</p>
+<blockquote>
+<p>上海 291760<br>上海 5976<br>上海 75233<br>云南 4017<br>云南 63196<br>云南 8189<br>内蒙古 11227<br>内蒙古 54657<br>内蒙古 7289<br>北京 34902<br>北京 370128<br>北京 99264<br>吉林 11486<br>吉林 4826<br>吉林 88162<br>四川 16441<br>四川 179978<br>四川 18618<br>天津 10028<br>天津 130041<br>天津 17501<br>宁夏 13474<br>宁夏 16181<br>宁夏 376<br>安徽 123710<br>安徽 17193<br>安徽 7956<br>山东 35178<br>山东 485465<br>山东 55371<br>山西 116435<br>山西 15161<br>山西 19815</p>
+</blockquote>
+<p>第一列是地区,第二列是出现的次数,将第一列相同的第二列数值相加，并显示？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">awk &apos;&#123;a[$1]+=$2&#125;END&#123;for(i in a)print i,a[i]&#125;&apos; test.txt</div></pre></td></tr></table></figure></p>
+<p>实例二：<br>如何取消科学计数显示？<br>使用<code>OFMT＝&quot;%f&quot;</code>输出，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@root /]$echo &apos;123456789123456&apos; |awk &apos;&#123;print $0+0&#125;&apos;</div><div class="line">1.23457e+14</div><div class="line">[root@root /]$echo &apos;123456789123456&apos; |awk &apos;BEGIN&#123;OFMT=&quot;%.0f&quot;&#125;&#123;print $0+0&#125;&apos;</div><div class="line">123456789123456</div></pre></td></tr></table></figure></p>
 
           
         
@@ -635,7 +958,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/13/Geomview-Nvidia-drivers/">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/14/The-Duke-of-Mount-Deer/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="東木">
@@ -660,8 +983,8 @@
             
               
                 
-                <a class="post-title-link" href="/2008/05/13/Geomview-Nvidia-drivers/" itemprop="url">
-                  Geomview~编译错误及~NVIDIA~驱动~bug！
+                <a class="post-title-link" href="/2008/05/14/The-Duke-of-Mount-Deer/" itemprop="url">
+                  时代商报：《鹿鼎记》一定要艳吗？
                 </a>
               
             
@@ -677,8 +1000,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">
-                2008-05-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-14T00:00:00+08:00">
+                2008-05-14
               </time>
             
 
@@ -700,8 +1023,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/Share/" itemprop="url" rel="index">
+                    <span itemprop="name">Share</span>
                   </a>
                 </span>
 
@@ -718,8 +1041,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2008/05/13/Geomview-Nvidia-drivers/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/13/Geomview-Nvidia-drivers/" itemprop="commentCount"></span>
+                <a href="/2008/05/14/The-Duke-of-Mount-Deer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/14/The-Duke-of-Mount-Deer/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -747,341 +1070,9 @@
       
         
           
-            <p>昨晚看~MAXIMA，提到了画二维图最好用~GnuPlot，而画三维图的时候最好用~Geomview，于是下载其源码，接着编译安装，但在~make~的时候出现下面的错误：</p>
-<blockquote>
-<p>/usr/X11R6/include/GL/glext.h:6952: error: redefinition of typedef ‘PFNGLGETUNIFORMUIVEXTPROC’  /usr/X11R6/include/GL/glext.h:6941: error: previous declaration of ‘PFNGLGETUNIFORMUIVEXTPROC’ was here </p>
-</blockquote>
-<p>到网上搜了下，是~NVIDIA~显卡驱动的一个~bug，于是想下载最新版本，到~NVIDIA~网站下载了最新的~1.0-9755~版本，直接运行~.run~文件，先是提示我的显卡跟这个驱动不匹配，不过是个警告，没太注意，继续，接着后来提示：</p>
-<blockquote>
-<p>ERROR: Unable to load the kernel module ‘nvidia.ko’.  This is most likely        because the kernel module was built using the wrong kernel source files.        Please make sure you have installed the kernel source files for your        kernel; on Red Hat Linux systems, for example, be sure you have the        ‘kernel-source’ rpm installed.  If you know the correct kernel source        files are installed, you may specify the kernel source path with the&lt; br /&gt;        ‘–kernel-source-path’ commandline option. </p>
-</blockquote>
-<p>搜索了一下，用下面的命令就好了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#./NVIDIA-xxx.run -k $(uname -r)</div></pre></td></tr></table></figure></p>
-<p>安装后，重启~X，但找不到设备，查看~/var/log/Xorg.0.log，原来的确是开始的警告，这个驱动根本与我的显卡不匹配，我的显卡是：</p>
-<blockquote>
-<p>nVidia Corporation NV11 [GeForce2 MX/MX 400]</p>
-</blockquote>
-<p>提示说只能用~96xx，系列的驱动，然后找个系列的驱动安装，一切顺利！然而再重新编译~Geomview~的时候仍然是那个错误，最后只好手动的修改了那个文件<strong>~/usr/X11R6/include/GL/glext.h</strong>，把里面的~6941~和~6952~两行注释掉了，然后再编译安装，一切顺利。</p>
-<p>据说~NVIDIA~的这个~bug~在最新的~97xx~系列中已经修正，可是我的显卡却只能用~96xx~系列的，可能我的显卡太老了吧 :(。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/13/Shell-switch-background-jobs/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/05/13/Shell-switch-background-jobs/" itemprop="url">
-                  Linux Shell下的后台运行及其前台的转换
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">
-                2008-05-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/05/13/Shell-switch-background-jobs/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/13/Shell-switch-background-jobs/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>当用bash启动一个程序,你可以用在程序后加&amp;,实现程序在后台运行；</p>
-<p>例如: <code>emacs &amp;</code></p>
-<p>但如果你忘了输入&amp;;但你又不想把程序停止后重新启动；</p>
-<p>你可以这么做:</p>
-<p>按Ctrl + Z暂停前台工作,比如前面提到的Emacs；</p>
-<p>然后用jobs命令查看当前bash一共启动了多少程序,你可以看到你的emacs在其中，它的状态是Stoped的; 并且它的jobID也可以看,比如是2</p>
-<p>然后用命令<code>bg 2</code></p>
-<p>这样你就可以达到和<code>emacs &amp;</code>一样的效果了。</p>
-<p>当你有些工作比如updatedb, find等需要一定时间,这些工作可以考虑让它在后台运行,而你可以用bash做其它工作。</p>
-<p>如果需要把任务回到前台，只需要<code>fg 2</code>。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/13/shell-retain-two-decimal/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/05/13/shell-retain-two-decimal/" itemprop="url">
-                  Shell运算，计算值保留两位小数
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">
-                2008-05-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/05/13/shell-retain-two-decimal/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/13/shell-retain-two-decimal/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>SHELL下是没有小数处理的，能进行运算的只能是-2^30到2^30-1范围的整数，否则溢出。<br>具体可以用的运算方式有：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@root ~]$ i=$[9 / 2]; echo i=$i;  </div><div class="line">i=4</div><div class="line"></div><div class="line">[root@root ~]$ i=$((9 / 2)); echo i=$i;  </div><div class="line">i=4</div><div class="line"></div><div class="line">[root@root ~]$ i=`expr 9 / 2` ; echo i=$i;</div><div class="line">i=4</div></pre></td></tr></table></figure></p>
-<p>很多最小安装的系统不会有expr，可以使用内置命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@root ~]$ i=let i=9/2 ; echo i=$i;  </div><div class="line">i=4</div></pre></td></tr></table></figure></p>
-<p>如果需要保留小数，比如两位小数，可以使用awk实现，awk真是强大：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@root ~]$ i=`awk  BEGIN&apos;&#123;printf  &quot;%.2fn&quot;, 9/2 &#125;&apos;` ; echo i=$i;</div><div class="line">i=4.50</div><div class="line">[root@root ~]$ i=`awk  BEGIN&apos;&#123;  x=9 ; y=4 ; printf  &quot;%.2fn&quot;, x/y &#125;&apos;` ; echo i=$i;</div><div class="line">i=4.50</div></pre></td></tr></table></figure>
-<p><strong>运算符类型</strong></p>
-<p>按位运算符<br>~, &lt; &lt;, &gt;&gt;, &amp;, |, ^<br>$[]表示形式告诉 shell 对方括号中的表达式求值</p>
-<p><img src="http://photo.liudongkai.com/blog/f0e0eb11af6d42c3a7ef3fa0[1].jpg" alt=""></p>
-<p>表达式替换<br>$[ ] 和 $(())<br>两种格式功能一样，所有的 shell 的求值都是用整数完成<br>$[ ] 可以接受不同基数的数字</p>
-<p><img src="http://photo.liudongkai.com/blog/190e8b44eb722e49510ffea8[1].jpg" alt=""></p>
-<p>赋值运算符<br>=、+=、-=、*=、/=、%=、&amp;=、^=、|=、&lt; &lt;=、&gt;&gt;=</p>
+            <p>韦小宝的形象是一个经典，所以当这个经典被无数次翻拍的时候，人们每一次都会有不同的意见和建议，这次也不例外。经过梁朝伟和陈小春等人多次演绎后，黄晓明这个有史以来最帅的“小宝”终于开始接受人们的检阅了。只是这次，第一个下结论的是这部戏的导演、大胡子张纪中昨天很认真地对人们说：“这个版本是以前所有版本当中最靓丽的，用贬义的词来说是最香艳的。”但是我们想问的是：“难道《鹿鼎记》就一定要香艳吗？”</p>
+<p>是的，所有人都是这样认为，包括导演。一个男人和七个女人的故事，该怎么讲？导演最开始的定位就是不香艳，“我们不会去删减什么。”导演信誓旦旦地承诺，但是我们不禁要问：“我们没有人说你的《鹿鼎记》怎么样啊？我们只是想看一个活力四射的、机智搞笑的韦小宝。”和《色，戒》一个道理，有些东西其实不需要情色，它有时候只能做噱头，但是作为电视剧，它不能用这样的噱头，于是导演自己制造，“我们的电视剧香而不艳。”想起一句成语，“此地无银三百两”。</p>
+<p>挺悲哀，因为这句话，张纪中让《鹿鼎记》与经典擦肩而过了。</p>
 
           
         
@@ -1158,7 +1149,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">281</span>
+                <span class="site-state-item-count">284</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1167,7 +1158,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1176,7 +1167,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">196</span>
+                <span class="site-state-item-count">198</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

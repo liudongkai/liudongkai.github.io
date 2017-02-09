@@ -328,6 +328,497 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/08/24/shell-loop-control/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/08/24/shell-loop-control/" itemprop="url">
+                  SHELL之循环语句
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-08-24T00:00:00+08:00">
+                2008-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/08/24/shell-loop-control/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/08/24/shell-loop-control/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>if语句</li>
+<li>交互选择</li>
+<li>循环判断</li>
+<li>数值运算符</li>
+<li>…………</li>
+</ol>
+<p>if语句格式:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">if [ 条件 ]</div><div class="line">then</div><div class="line"> command</div><div class="line">else</div><div class="line"> command</div><div class="line">fi</div></pre></td></tr></table></figure></p>
+<p>交互选择（N可以为*）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">echo -e &quot;提示语言，后边有光标提供输入&quot;c</div><div class="line">read VAR</div><div class="line">case $VAR in</div><div class="line">Y)</div><div class="line"> command</div><div class="line">;;</div><div class="line">N)</div><div class="line"> command</div><div class="line">;;</div><div class="line">esac</div></pre></td></tr></table></figure></p>
+<p>对条件进行循环检查，成立则处理，否则继续检查<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">a=1</div><div class="line">while [ &quot;$a&quot; = &quot;1&quot; ]</div><div class="line">do</div><div class="line">fileno=`ls -l /list/filename* |wc -l`</div><div class="line">if [ &quot;$fileno&quot; = &quot;10&quot; ]</div><div class="line">then</div><div class="line"> a=10</div><div class="line"> command</div><div class="line">else</div><div class="line"> a=1</div><div class="line"> sleep 300</div><div class="line">fi</div><div class="line">done</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">grep -v www filename 过滤不包含</div><div class="line">grep www filename 过滤包含</div><div class="line">uniq -u 过滤没有相同行</div><div class="line">uniq -d 过滤具有相同行</div><div class="line">sort 排序</div><div class="line">paste -d”;” filename1 filename2 把文件并列合并并且以;间隔</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">if [ &quot;a&quot; = &quot;10&quot; ] #a=10</div><div class="line">[ &quot;a&quot; -ne &quot;10&quot; ] 同上一行</div><div class="line">[ -s filename ] 文件大小大于0</div><div class="line">-s 文件大小大于0返回真</div><div class="line">-d 是一个目录是返回真</div><div class="line">-e 文件或目录存在返回真</div><div class="line">-g 存在是SGID返回真</div><div class="line">-h 文件是连接文件返回真</div><div class="line">-k 文件是粘滞位返回真</div><div class="line">-r 文件或目录存在并可读时返回真</div><div class="line">-w 文件或目录存在并可写时返回真</div><div class="line">-u 文件是SUID返回真</div><div class="line">-x 文件是可执行的返回真</div><div class="line"></div><div class="line">-eq 等于</div><div class="line">-ne 不等于</div><div class="line">-lt 小于</div><div class="line">-le 小于等于</div><div class="line">-gt 大于</div><div class="line">-ge 大于等于</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">2*3+4|bc 计算前面的数据</div><div class="line">ping -w 2 www.163.com 测试2两次</div><div class="line">对上一次指令结果判断</div><div class="line">$?=0 为真</div><div class="line">$?=1 为假</div></pre></td></tr></table></figure>
+<p>给SHELL后边加参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">XXXX=`echo | wc -c`</div><div class="line">cat $HOME/list/file.txt 1&gt;/dev/null 2&gt;/dev/null</div><div class="line">OK=$?</div><div class="line">if [ &quot;&quot; = &quot;&quot; ] || [ &quot;$XXXX&quot; -lt &quot;4&quot; ] || [ &quot;$OK&quot; -ne &quot;0&quot; ]</div><div class="line">then</div><div class="line"> echo &quot;参数没有输入，输入位数不等于3，file.txt不存在，请重新输入&quot;</div><div class="line">exit</div><div class="line">fi</div></pre></td></tr></table></figure></p>
+<p>一个循环检查<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">line=1</div><div class="line">for i in `cat bb`</div><div class="line">do</div><div class="line">qq=`echo &quot;scale=2;$i*100&quot; | bc | awk -F. &quot;&#123;print &#125;&quot;`</div><div class="line">if [ &quot;$qq&quot; -ge &quot;75&quot; ]</div><div class="line">then</div><div class="line">sed -n &quot;$line&quot;p temp.1 &gt;&gt; bad.1</div><div class="line">fi</div><div class="line">line=`expr $line + 1` ###每次加1</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/08/18/EditPlus-remove-blank-lines/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/08/18/EditPlus-remove-blank-lines/" itemprop="url">
+                  在EditPlus中删除空行
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-08-18T00:00:00+08:00">
+                2008-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index">
+                    <span itemprop="name">Share</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/08/18/EditPlus-remove-blank-lines/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/08/18/EditPlus-remove-blank-lines/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>经常从网上粘贴或下载一篇文章，需要打印时，发现有大量多余的空行占据了许多篇幅，需要删除。这些空行要么不包含任何字符，要么包含了许多空格、制表符(Tab)。如果文章比较长，那么手工删除空行就成为一件颇费鼠标和精力的事。难道就没有别的办法？答案是：有！</p>
+<p>我们可以借助文本编辑器软件EditPlus、UltraEdit实现。EditPlus、UltraEdit是常 见的共享软件，几乎所有软件下载网站都提供下载。由于EditPlus的操作更容易上手，但UltraEdit更为常用，所以本文先介绍在EditPlus的操作，再介绍UltraEdit。</p>
+<ol>
+<li><p>在EditPlus中删除空行</p>
+<p>启动EditPlus，打开待处理的文件。需要注意，必须是纯文本文件，如果是Word文档，需要先粘贴到纯文本文件中。然后，步骤如下：搜索-替换-正则表达式-当前文件-点击查找内容后面的向下箭头-选单-行首-范围内的字符-制表符-0或多次匹配-换行-形成<code>^[t]*n</code></p>
+<p>Replace with组合框保持空，表示删除查找到的内容。单击Replace按钮逐个行删除空行，或单击Replace All按钮删除全部空行(注意：EditPlus和UltraEdit均存在Replace All不能一次性完全删除空行的问题，可能是程序BUG，需要多按几次按钮)。</p>
+<p>对于熟悉EditPlus的朋友，可以直接在Find what中输入正则表达式<code>^[ ]*</code> ，注意 前有空格符。</p>
+</li>
+<li><p>在UltraEdit中删除空行<br>使用UltraEdit的原理一样，但是UltraEdit没有提供菜单方式，所以需要手工输入正则表达式，而且UltraEdit的正则表达式符号与EditPlus不同。</p>
+<p>用UltraEdit打开文件后，选择Search菜单的Replace命令。在Replace对话框中，选中Regular Expression复选框，并在Find what中输入：<code>%[ ^t]++^p</code>，注意^t之前有空格。该表达式字符含义与EditPlus的相对应。然后，单击Start或Replace All按钮，进行替换删除空行</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/08/13/chinese-football/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/08/13/chinese-football/" itemprop="url">
+                  足球队的比较–绝非侮辱国足！[zt]
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-08-13T00:00:00+08:00">
+                2008-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index">
+                    <span itemprop="name">Share</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/08/13/chinese-football/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/08/13/chinese-football/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <ol>
+<li><p>停球<br>把球停到自己脚下10毫米的后卫，是巴西球员；<br>把球停到自己脚下10厘米的后卫，是西班牙球员；<br>把球停到自己脚下10分米的后卫，是德国球员；<br>把球停到自己脚下100米，并形成射门，迫使对方门将做出扑救的后卫，是中国球员。</p>
+</li>
+<li><p>传球<br>能够做出50米外精确长传，找到场上队友的球员，是英国球员；<br>能够做出5米内精巧二过一的球员，是阿根廷球员；<br>能够做出5米内短传传丢，并且后卫前锋隔着50米就玩二过一的球员，是中国球员。</p>
+</li>
+<li><p>射门<br>能够在30米外劲射破门的球员，是德国球员；<br>能够通过精妙配合在门前3米打空门得手的球员，是葡萄牙球员；<br>能够在罚点球时把角旗打翻的球员，是中国球员</p>
+</li>
+<li><p>带球<br>能够把球从本方底线带到对方半场的球员，是荷兰球员；<br>能够把球从本方底线带到对方底线的球员，是巴西球员；<br>能够把球从本方球员脚下抢断，并带到本方球门里的，是中国球员。<br>能够把球带得像亨利一样的，是李Y大帝。</p>
+</li>
+</ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2008/08/13/chinese-football/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/08/12/StarCraft2-not-support-multiple-core-CPU/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -636,495 +1127,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/08/03/showip-for-QQWry/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/08/03/showip-for-QQWry/" itemprop="url">
-                  读取纯真IP数据库 showip [zt]
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-08-03T00:00:00+08:00">
-                2008-08-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/08/03/showip-for-QQWry/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/08/03/showip-for-QQWry/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>关于 纯真IP数据库格式，详细见下面帖子：</p>
-<p><a href="/2008/08/03/QQWry_format/">纯真IP数据库格式详解 zt</a></p>
-<p>程序说明：能够根据输入的IP，在 纯真IP数据库 中，搜索并且读取对应的 物理地址，还可以导出所有的IP段地址信息</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2008/08/03/showip-for-QQWry/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/07/31/network-neighborhood/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/07/31/network-neighborhood/" itemprop="url">
-                  网上邻居可见，无法访问，您可能没有权限使用网络资源
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-07-31T00:00:00+08:00">
-                2008-07-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/07/31/network-neighborhood/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/07/31/network-neighborhood/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>XP网络不能访问的解决方案</p>
-<ol>
-<li><p>就是像2000一样“开启guset用户”</p>
-</li>
-<li><p>允许Guest用户访问本机 :开始–运行–输入gpedit.msc，依次选择“计算机配置→Windows设置→安全设置→本地策略→用户权利指派”，删除“拒绝从网络访问这台计算机”策略中的“GUEST”账号。</p>
-</li>
-<li><p>更改网络访问模式:开始–运行–输入gpedit.msc，依次选择“计算机配置→Windows设置→安全设置→本地策略→安全选项”，双击“ 网络访问:本地账号的共享和安全模式”策略，将“仅来宾—本地用户以来宾身份验证”改为“经典:本地用户以自己的身份验证”。</p>
-</li>
-<li><p>解除空口令限制:在系统“安全选项”中停用“账户:使用空白密码的本地账户只允许进行控制台登录”策略。</p>
-</li>
-<li><p>网络邻居看不到计算机:打开“控制面板→性能和维护→管理工具→服务”，启动里面的“Computer Browser”服务。</p>
-</li>
-<li><p>增加共享文件权限选项:依次打开“我的电脑→工具→文件夹属性→查看→高级设置”，将“简单文件共享(推荐)”前面的选择取消，若还有“Mickey Mouse”项也将其取消。</p>
-</li>
-<li><p>网络邻居不响应或者反应慢:关掉WinXP的计划任务服务(Task Scheduler) 到“控制面板/管理工具/服务”中打开“Task Scheduler”的属性对话框，停止该服务，再将启动类型设为“手动”。</p>
-</li>
-<li><p>到“工具/文件夹选项”中，关闭自动搜索的网络文件夹和打印机。</p>
-</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2008/07/31/network-neighborhood/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/07/18/shell-encode-url/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/07/18/shell-encode-url/" itemprop="url">
-                  在Linux Shell下将汉字转换为Url编码
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-07-18T00:00:00+08:00">
-                2008-07-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/07/18/shell-encode-url/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/07/18/shell-encode-url/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在linux 的shell环境下有一个od命令可以将文件按不同的进制的ascii码输出，该功能可以完成在linux shell下将汉字转换为url编码的任务。</p>
-<p>url编码是十六进制的形如<code>%E6%9C%8D%E5%8A%A1%E5</code>的字符串，test是包含“数据库网络,”这几个字符的文件，以下命令输出：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#od -t x /test</div><div class="line">0000000 ddbefdca f8cde2bf 0a2ce7c2</div><div class="line">0000014</div></pre></td></tr></table></figure>
-<p>该字符串对应的url编码为 <code>%CA%FD%BE%DD%BF%E2%CD%F8%C2%E7%2C</code>。</p>
-<p>可以看出编码的对应关系以下是转换的脚本：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line">#make url code</div><div class="line">od -t x /test |awk &apos;&#123;</div><div class="line">w=split($0,linedata,&quot; &quot;);</div><div class="line">for (j=2;j&lt;w+1;j++)</div><div class="line">&#123;</div><div class="line">for (i=7;i&gt;0;i=i-2)</div><div class="line">&#123;</div><div class="line">if (substr(linedata[j],i,2) != &quot;00&quot;) &#123;printf &quot;%&quot; ;printf toupper(substr(linedata[j],i,2));&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;&apos; &gt;/testurl</div></pre></td></tr></table></figure>
-<p>testurl文件的内容就是转换结果。</p>
-<p>还原编码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">#数据库网络</div><div class="line">echo &apos;%CA%FD%BE%DD%BF%E2%CD%F8%C2%E7%2C&apos;|</div><div class="line">awk &apos;BEGIN &#123;</div><div class="line">for (i=0;i&lt;=16;i++) hex[sprintf(&quot;%X&quot;,i)]=i;&#125;</div><div class="line">&#123; for (i=1;i&lt;=length($0);i++)</div><div class="line">  &#123; c=substr($0,i,1)</div><div class="line">    if (c==&quot;+&quot;) printf (&quot; &quot;);</div><div class="line">    else if (c==&quot;%&quot;) &#123;</div><div class="line">     printf (&quot;%c&quot;,hex[substr($0,++i,1)]*16+hex[substr($0,++i,1)])</div><div class="line">                     </div><div class="line">                      &#125;</div><div class="line">    else  printf (c);</div><div class="line"></div><div class="line">   &#125;</div><div class="line">&#125; &apos;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1172,7 +1174,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">281</span>
+                <span class="site-state-item-count">284</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1181,7 +1183,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1190,7 +1192,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">196</span>
+                <span class="site-state-item-count">198</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

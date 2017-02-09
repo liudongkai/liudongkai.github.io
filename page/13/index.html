@@ -328,6 +328,514 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2013/08/01/mysql-smart-path-yinfeng/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/08/01/mysql-smart-path-yinfeng/" itemprop="url">
+                  自动处理备库错误 [MYSQL PATCH]
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-08-01T00:00:00+08:00">
+                2013-08-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2013/08/01/mysql-smart-path-yinfeng/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/08/01/mysql-smart-path-yinfeng/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>备库因为某些错误停止时有发生，最常见的错误就是”HA_ERR_KEY_NOT_FOUND”和 “HA_ERR_FOUND_DUPP_KEY”.这既有可能是主备切换导致的，也可能是MySQL Bug导致的</p>
+<p>通常有两种办法来处理备库错误：</p>
+<ol>
+<li>设置 “sql_slave_skip_counter” 来忽略错误.</li>
+<li>set slave_exec_mode = ‘idempotent’ 来处理 “HA_ERR_FOUND_DUPP_KEY” (overwritten the record) 和”HA_ERR_KEY_NOT_FOUND”(简单的忽略掉错误).</li>
+</ol>
+<p>这两种方法都可能导致主备不一致</p>
+<p>如果你使用的是innodb存储引擎，并且使用的是ROW模式复制，那我们就可以fix这个Bug。</p>
+<p>很久之前我写了一个工具(<a href="http://code.google.com/p/relay-fetch/">http://code.google.com/p/relay-fetch/</a> ，下面的slave_error_handler文件夹)可以用来处理这个问题。</p>
+<p>以下的patch则通过修改代码，为slave_exec_mode增加新的选项SMART，来自动处理。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2013/08/01/mysql-smart-path-yinfeng/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2013/05/16/GoAgent-for-Mac-OS-X/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/05/16/GoAgent-for-Mac-OS-X/" itemprop="url">
+                  GoAgent for Mac OS X教程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-05-16T00:00:00+08:00">
+                2013-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mac-OS/" itemprop="url" rel="index">
+                    <span itemprop="name">Mac OS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2013/05/16/GoAgent-for-Mac-OS-X/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/05/16/GoAgent-for-Mac-OS-X/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="1-用谷歌账号创建Application（最多10个，这个当然是多多益善！）"><a href="#1-用谷歌账号创建Application（最多10个，这个当然是多多益善！）" class="headerlink" title="1. 用谷歌账号创建Application（最多10个，这个当然是多多益善！）"></a>1. 用谷歌账号创建Application（最多10个，这个当然是多多益善！）</h2><p>进入<a href="https://appengine.google.com/">https://appengine.google.com/</a> （没有谷歌账号就申请一个,需用手机号验证）<br><img src="http://photo.liudongkai.com/blog/GoAgent_for_Mac_OS_X_001.jpg" alt=""><br>点击红框内的英文</p>
+<p><img src="http://photo.liudongkai.com/blog/GoAgent_for_Mac_OS_X_002.jpg" alt=""><br>注意！红框内的最重要，输入了什么一定要记住，等等填Appid要用，填完点右边的Check Availability检查有没有被使用过。</p>
+<p>蓝框内随便填，不重要，就是这个Application的名字。下面黄底的那些英文直接跳过，不用填！  </p>
+<p><img src="http://photo.liudongkai.com/blog/GoAgent_for_Mac_OS_X_003.jpg" alt=""><br>往下拉橙色框内的复选框勾上。点击绿色框内的英文。  </p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2013/05/16/GoAgent-for-Mac-OS-X/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2013/05/12/Install-Flashcache-on-CloudLinux-and-Centos/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/05/12/Install-Flashcache-on-CloudLinux-and-Centos/" itemprop="url">
+                  Install Flashcache on CloudLinux and Centos[ZT]
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-05-12T00:00:00+08:00">
+                2013-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2013/05/12/Install-Flashcache-on-CloudLinux-and-Centos/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/05/12/Install-Flashcache-on-CloudLinux-and-Centos/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Major issue on a hosting server which serve hundreds of website is remain the same: I/O bottleneck. My curiosity began when I received a newsletter from a VPS provider in US, they said they have added SSD as filesystem cache to their server fleet. I asked my Russian virtualization platform support fellow and he gave me link to Flashcache page.</p>
+<p><a href="https://github.com/facebook/flashcache/" target="_blank" rel="external">Flashcache</a> is a kernel module released by Facebook engineer back in April 2010 to speed up database I/O on a standard rotational drive with the speed of SSD. Since it works by caching filesystem blocks, so it can speed anything on the slow rotational disk.<br>We’ve already use RAID10 with SAS disk on all of our hosting servers, but still I/O bottleneck often happens.</p>
+<p><strong>Server Configuration</strong><br>We have 6 of 2.5″ drive bays on our server and load it up with :</p>
+<ol>
+<li><strong>Disk 0</strong> : 150GB SAS (/dev/sdb)  </li>
+<li><strong>Disk 1</strong> : 120GB Intel 520 SSD (/dev/sdc)  </li>
+<li><strong>Disk 2 – 5</strong> : 4 x 300GB SAS on RAID10 (/dev/sda)</li>
+</ol>
+<p>OS : CloudLinux 6.4<br>Partitioning :<br>/dev/sdb3 mounted as /<br>/dev/sdb1 mounted as /boot<br>/dev/sda1 (RAID 10) mounted as /var/lib<br>/dev/sda2 (RAID 10) mounted as /home</p>
+<p><strong>Flashcache Installation Goals</strong><br>I decide to try Flashcache to speed up /dev/sda(1-2) as this partition stored user’s file and database.</p>
+<p><strong>Flashcache Installation</strong></p>
+<p><strong>Flashcache Installation Goals</strong></p>
+<ol>
+<li><p>Update the whole system to get all packages up to date :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum update</div></pre></td></tr></table></figure>
+</li>
+<li><p>Install required packages :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install dkms gcc make yum-utils kernel kernel-devel git make gcc-c++ device-mapper</div></pre></td></tr></table></figure>
+</li>
+<li><p>Reboot if you got new kernel version installed during update</p>
+</li>
+<li><p>Flashcache installation :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cd /usr/local/src/</div><div class="line">git clone git://github.com/facebook/flashcache.git</div><div class="line">yumdownloader --source kernel-&apos;uname -r</div><div class="line">rpm -ivh kernel-&apos;uname -r&apos;.src.rpm</div><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure>
+</li>
+<li><p>Since I haven’t touch the SSD, I’ll need to do partitioning and format this “fast and furious disk”.<br>I spare 20GB of the disk in order to prevent SSD performance degradation and divide the 100GB disk in equal ratio with my /dev/sda1 and /dev/sda2 size :<br>/dev/sdc1 80GB (for /dev/sda2 cache)<br>/dev/sdc2 20GB (for /dev/sda1 cache)</p>
+</li>
+<li><p>I’m going to make a writethrough cache, but <a href="https://github.com/facebook/flashcache/blob/master/utils/flashcache" target="_blank" rel="external">https://github.com/facebook/flashcache/blob/master/utils/flashcache</a> is only for writeback. So I’ve made a custom script you based on <a href="http://sf-alpha.bjgang.org/files/flashcache" target="_blank" rel="external">http://sf-alpha.bjgang.org/files/flashcache</a>. You can download it here :</p>
+<ul>
+<li><a href="https://s3-ap-southeast-1.amazonaws.com/rumahweb/flashcache-home" target="_blank" rel="external">script to make cache and mount /home</a></li>
+<li><a href="https://s3-ap-southeast-1.amazonaws.com/rumahweb/flashcache-var" target="_blank" rel="external">script to make cache and mount /var/lib</a></li>
+</ul>
+</li>
+<li><p>Edit /etc/fstab and give comment to /home and /var/lib and then reboot!</p>
+</li>
+</ol>
+<p>via. <a href="https://piyecarane.wordpress.com/2013/05/12/install-flashcache-on-cloudlinux-and-centos/" target="_blank" rel="external">https://piyecarane.wordpress.com/2013/05/12/install-flashcache-on-cloudlinux-and-centos/</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2013/05/05/windows-explorer-my-computer/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -658,474 +1166,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2013/04/09/tcp-sysctl-close-wait/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/04/09/tcp-sysctl-close-wait/" itemprop="url">
-                  CLOSE_WAIT状态 生产过程分析 linux系统sysctl.conf配置优化 [ZT]
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-04-09T00:00:00+08:00">
-                2013-04-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/04/09/tcp-sysctl-close-wait/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/04/09/tcp-sysctl-close-wait/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>CLOSE_WAIT状态</p>
-<p>首先我们知道，如果我们的服务器程序APACHE,nginx,resin处于CLOSE_WAIT状态的话，说明套接字是被动关闭的！</p>
-<p>因为如果是CLIENT端主动断掉当前连接的话，那么双方关闭这个TCP连接共需要四个packet：</p>
-<p>Client —&gt; FIN —&gt; ServerClient &lt;— ACK &lt;— Server</p>
-<p>这时候Client端处于FIN_WAIT_2状态；而Server 程序处于CLOSE_WAIT状态。</p>
-<p>Client &lt;— FIN &lt;— Server</p>
-<p>这时Server 发送FIN给Client，Server 就置为LAST_ACK状态。</p>
-<p>Client —&gt; ACK —&gt; Server</p>
-<p>Client回应了ACK，那么Server 的套接字才会真正置为CLOSED状态。</p>
-<p>Server 程序处于CLOSE_WAIT状态，而不是LAST_ACK状态，说明还没有发FIN给Client，那么可能是在关闭连接之前还有许多数据要发送或者其他事要做，导致没有发这个FIN packet。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2013/04/09/tcp-sysctl-close-wait/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2013/03/16/VBoxGuestAdditions-iso/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/03/16/VBoxGuestAdditions-iso/" itemprop="url">
-                  VBoxGuestAdditions.iso下载地址
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-03-16T00:00:00+08:00">
-                2013-03-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/VM/" itemprop="url" rel="index">
-                    <span itemprop="name">VM</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/03/16/VBoxGuestAdditions-iso/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/03/16/VBoxGuestAdditions-iso/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>VirtualBox 安装增强工具是提示已损坏，可到官网下载对应版本的ISO文件。</p>
-<p><a href="http://download.virtualbox.org/virtualbox/4.2.10/VBoxGuestAdditions_4.2.10.iso" target="_blank" rel="external">http://download.virtualbox.org/virtualbox/4.2.10/VBoxGuestAdditions_4.2.10.iso</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2013/03/10/IE10-taobao/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/03/10/IE10-taobao/" itemprop="url">
-                  IE10打不开淘宝网的解决方法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-03-10T00:00:00+08:00">
-                2013-03-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Windows/" itemprop="url" rel="index">
-                    <span itemprop="name">Windows</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/03/10/IE10-taobao/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/03/10/IE10-taobao/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>我的电脑装的是Windows7 64位版,安装的IE版本是IE10 pre-release版,在浏览器的地址栏窗格中输入淘宝网的域名后，浏览器无任何反应，点击窗格右侧的向右箭头也无反应。登录其它网站都很正常，重置IE后也不能解决问题。一直不知道是IE10的设置哪里出了问题，登陆淘宝要先在打开天猫，登陆天猫后再进入淘宝，使用很不方便。今天google搜索，终于找到了解决问题的方法。</p>
-<p>从INTERNET选项的“安全”选项卡中，最下方有个<strong>“启用保护模式”</strong>。把这个勾去掉，再重启浏览器就可以打开淘宝网了。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1173,7 +1213,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">281</span>
+                <span class="site-state-item-count">284</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1182,7 +1222,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1191,7 +1231,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">196</span>
+                <span class="site-state-item-count">198</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
