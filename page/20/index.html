@@ -328,7 +328,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2011/11/14/chrome-sync-internals/">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2011/11/18/mysqlbinlog-format-row/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="東木">
@@ -353,8 +353,8 @@
             
               
                 
-                <a class="post-title-link" href="/2011/11/14/chrome-sync-internals/" itemprop="url">
-                  通过 chrome://sync-internals/ 了解 Chrome 同步细节 zt
+                <a class="post-title-link" href="/2011/11/18/mysqlbinlog-format-row/" itemprop="url">
+                  用 mysqlbinlog 查看row格式的事件 zt
                 </a>
               
             
@@ -370,8 +370,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2011-11-14T00:00:00+08:00">
-                2011-11-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2011-11-18T00:00:00+08:00">
+                2011-11-18
               </time>
             
 
@@ -393,8 +393,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
                   </a>
                 </span>
 
@@ -411,8 +411,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2011/11/14/chrome-sync-internals/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2011/11/14/chrome-sync-internals/" itemprop="commentCount"></span>
+                <a href="/2011/11/18/mysqlbinlog-format-row/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2011/11/18/mysqlbinlog-format-row/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -439,12 +439,16 @@
 
       
         
-          
-            <p><img src="http://photo.liudongkai.com/blog/0149087fx.jpg" alt="chrome_sync_internals"></p>
-<p>Chrome的同步功能可能是最让大家兴奋的功能，依托于Google强大的云端技术支持，你可以在各个电脑安装的Chrome浏览器之间同步网页应用、扩展、主题、自动填充、设置、密码、书签等等数据。但有时候你可能发现同步很慢，或是出错，此时你可以在地址栏输入 chrome://sync-internals/ 来查看同步细节（如上图）。</p>
-<p>如果Summary是READY，就是同步正常。如果是OFFLINE_UNUSABLE你就得找找问题了，可能是没登录，也可能是网络出了问题。话说每次Chrome自动升级之后，都要重新登录帐号来进行同步这一点太不方便了，有时候同步不成功就是因为Chrome自己默默又升级了，你需要重新登录帐号。</p>
-
-          
+          <p>MySQL 5.1开始，binlog支持row-based的格式，默认情况下只能看到一些经过base-64编码的信息，如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">DELIMITER /*!*/;</div><div class="line"># at 7493962</div><div class="line">#090827 5:25:03 server id 1 end_log_pos 0 Start: binlog v 4, server v 5.1.26-rc-community-log created 090827 5:25:03</div><div class="line">BINLOG &apos;</div><div class="line">L6iVSg8BAAAAZgAAAAAAAAAAAAQANS4xLjI2LXJjLWNvbW11bml0eS1sb2cAAAAAAAAAAAAAAAAA</div><div class="line">AAAAAAAAAAAAAAAAAAAAAAAAEzgNAAgAEgAEBAQEEgAAUwAEGggAAAAICAgC</div><div class="line">&apos;/*!*/;</div><div class="line"># at 7493962</div><div class="line"># at 7494009</div><div class="line">#090827 13:20:40 server id 1 end_log_pos 7494009 Table_map: `test`.`test1` mapped to number 96991</div><div class="line">#090827 13:20:40 server id 1 end_log_pos 7494045 Write_rows: table id 96991 flags: STMT_END_F</div><div class="line"></div><div class="line">BINLOG &apos;</div><div class="line">qBeWShMBAAAALwAAAHlZcgAAAN96AQAAAAAABHRlc3QABXRlc3QxAAIDDwI8AAM=</div><div class="line">qBeWShcBAAAAJAAAAJ1ZcgAQAN96AQAAAAEAAv/8AwAAAAEz</div><div class="line">&apos;/*!*/;</div><div class="line"># at 7494045</div><div class="line">#090827 13:20:40 server id 1 end_log_pos 7494072 Xid = 2525562</div><div class="line">COMMIT/*!*/;</div><div class="line">DELIMITER ;</div><div class="line"># End of log file</div></pre></td></tr></table></figure>
+<p>这里只能看到<code>test</code>.<code>test1</code>表做了改动，但具体改了什么，就不知道了，那么怎样才能看到到底改了什么呢？从MySQL 5.1.28开始，mysqlbinlog多了个参数–verbose(或-v)，将改动生成带注释的语句，如果使用两次这个参数(如-v -v)，会生成字段的类型、长度、是否为null等属性信息。如下：</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2011/11/18/mysqlbinlog-format-row/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -637,6 +641,395 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2011/11/14/chrome-sync-internals/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2011/11/14/chrome-sync-internals/" itemprop="url">
+                  通过 chrome://sync-internals/ 了解 Chrome 同步细节 zt
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2011-11-14T00:00:00+08:00">
+                2011-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index">
+                    <span itemprop="name">Share</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2011/11/14/chrome-sync-internals/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2011/11/14/chrome-sync-internals/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="http://photo.liudongkai.com/blog/0149087fx.jpg" alt="chrome_sync_internals"></p>
+<p>Chrome的同步功能可能是最让大家兴奋的功能，依托于Google强大的云端技术支持，你可以在各个电脑安装的Chrome浏览器之间同步网页应用、扩展、主题、自动填充、设置、密码、书签等等数据。但有时候你可能发现同步很慢，或是出错，此时你可以在地址栏输入 chrome://sync-internals/ 来查看同步细节（如上图）。</p>
+<p>如果Summary是READY，就是同步正常。如果是OFFLINE_UNUSABLE你就得找找问题了，可能是没登录，也可能是网络出了问题。话说每次Chrome自动升级之后，都要重新登录帐号来进行同步这一点太不方便了，有时候同步不成功就是因为Chrome自己默默又升级了，你需要重新登录帐号。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2011/11/14/mysql-datatype-introduction/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2011/11/14/mysql-datatype-introduction/" itemprop="url">
+                  MYSQL数值类型INT，SMALLINT,BIGINT,MEDIUMINT,FLOAT的相关说明，存储大小等！ zt
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2011-11-14T00:00:00+08:00">
+                2011-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2011/11/14/mysql-datatype-introduction/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2011/11/14/mysql-datatype-introduction/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>MySQL支持所有标准SQL数值数据类型。这些类型包括严格数值数据类型(INTEGER、SMALLINT、DECIMAL和NUMERIC)，以及近似数值数据类型(FLOAT、REAL和DOUBLE PRECISION)。关键字INT是INTEGER的同义词，关键字DEC是DECIMAL的同义词。</p>
+<p>BIT数据类型保存位字段值，并且支持MyISAM、MEMORY、InnoDB和BDB表。</p>
+<p>作为SQL标准的扩展，MySQL也支持整数类型TINYINT、MEDIUMINT和BIGINT。下面的表显示了需要的每个整数类型的存储和范围。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>字节</th>
+<th>最小值</th>
+<th>最大值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#32;</td>
+<td>&#32;</td>
+<td>(带符号的/无符号的)</td>
+<td>(带符号的/无符号的)</td>
+</tr>
+<tr>
+<td>TINYINT</td>
+<td>1</td>
+<td>-128</td>
+<td>127</td>
+</tr>
+<tr>
+<td>&#32;</td>
+<td>&#32;</td>
+<td>0</td>
+<td>255</td>
+</tr>
+<tr>
+<td>SMALLINT</td>
+<td>2</td>
+<td>-32768</td>
+<td>32767</td>
+</tr>
+<tr>
+<td>&#32;</td>
+<td>&#32;</td>
+<td>0</td>
+<td>65535</td>
+</tr>
+<tr>
+<td>MEDIUMINT</td>
+<td>3</td>
+<td>-8388608</td>
+<td>8388607</td>
+</tr>
+<tr>
+<td>&#32;</td>
+<td>&#32;</td>
+<td>0</td>
+<td>16777215</td>
+</tr>
+<tr>
+<td>INT</td>
+<td>4</td>
+<td>-2147483648</td>
+<td>2147483647</td>
+</tr>
+<tr>
+<td>&#32;</td>
+<td>&#32;</td>
+<td>0</td>
+<td>4294967295</td>
+</tr>
+<tr>
+<td>BIGINT</td>
+<td>8</td>
+<td>-9223372036854775808</td>
+<td>9223372036854775807</td>
+</tr>
+<tr>
+<td>&#32;</td>
+<td>&#32;</td>
+<td>0</td>
+<td>18446744073709551615</td>
+</tr>
+</tbody>
+</table>
+<p>MySQL还支持选择在该类型关键字后面的括号内指定整数值的显示宽度(例如，INT(4))。该可选显示宽度规定用于显示宽度小于指定的列宽度的值时从左侧填满宽度。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2011/11/14/mysql-datatype-introduction/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2011/11/10/mysql-load-data-infile/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -786,324 +1179,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2011/10/20/batch-rename-files/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2011/10/20/batch-rename-files/" itemprop="url">
-                  按格式批量修改文件名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2011-10-20T00:00:00+08:00">
-                2011-10-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2011/10/20/batch-rename-files/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2011/10/20/batch-rename-files/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>按固定格式批量修改文件名，如：</p>
-<blockquote>
-<p>XXX-001.txt<br>XXX-002.txt<br>XXX-003.txt</p>
-</blockquote>
-<p>首先进入文件目录，然后利用语句；如果不是在文件目录下，就得改下命令，在mv时，新旧文件都能有对应的绝对路径。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for $file (`ls x*`)&#123;chomp $file;$new=sprintf &quot;XXX-%03d.txt&quot;,++$i;system &quot;mv&quot;,&quot;$file&quot;,&quot;$new&quot;&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2011/04/18/faster-way-to-dump-mysql/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2011/04/18/faster-way-to-dump-mysql/" itemprop="url">
-                  加速 MySQL 导入导出的方法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2011-04-18T00:00:00+08:00">
-                2011-04-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2011/04/18/faster-way-to-dump-mysql/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2011/04/18/faster-way-to-dump-mysql/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>MySQL导出的SQL语句在导入时有可能会非常非常慢，在处理百万级数据的时候，可能导入要花几小时。在导出时合理使用几个参数，可以大大加快导 入的速度。</p>
-<p>-e 使用包括几个VALUES列表的多行INSERT语法;<br>–max_allowed_packet=XXX 客户端/服务器之间通信的缓存区的最大大小;<br>–net_buffer_length=XXX TCP/IP和套接字通信缓冲区大小,创建长度达net_buffer_length的行。</p>
-<p>注意：max_allowed_packet 和 net_buffer_length 不能比目标数据库的设定数值 大，否则可能出错。</p>
-<p>首先确定目标数据库的参数值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show variables like &apos;max_allowed_packet&apos;;</div><div class="line">mysql&gt; show variables like &apos;net_buffer_length&apos;;</div></pre></td></tr></table></figure></p>
-<p>根据参数值书写 mysqldump 命令，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># mysqldump -uroot -p123 21andy -e –max_allowed_packet=16777216 –net_buffer_length=16384 &gt; 21andy.sql</div></pre></td></tr></table></figure></p>
-<p>OK，现在速度就很快了，主要注意的是导入和导出端的 max_allowed_packet 和 net_buffer_length 这2个参数值设定，弄大点就OK了</p>
-<p>其实，最快的方法，是直接COPY数据库目录，不过记得先停止 MySQL 服务。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/19/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><a class="extend next" rel="next" href="/page/21/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/19/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><a class="extend next" rel="next" href="/page/21/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1146,7 +1226,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">284</span>
+                <span class="site-state-item-count">286</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1164,7 +1244,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">198</span>
+                <span class="site-state-item-count">199</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

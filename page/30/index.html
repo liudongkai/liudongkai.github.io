@@ -328,7 +328,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/11/24/discuz-mysql-iconv-character-set/">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/12/18/G-Alarm-crack/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="東木">
@@ -353,8 +353,8 @@
             
               
                 
-                <a class="post-title-link" href="/2009/11/24/discuz-mysql-iconv-character-set/" itemprop="url">
-                  discuz mysql 数据库编码转换latin1->utf8[ZT]
+                <a class="post-title-link" href="/2009/12/18/G-Alarm-crack/" itemprop="url">
+                  迷宫闹钟G-Alarm 注册方法
                 </a>
               
             
@@ -370,8 +370,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-11-24T00:00:00+08:00">
-                2009-11-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-12-18T00:00:00+08:00">
+                2009-12-18
               </time>
             
 
@@ -393,8 +393,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
+                  <a href="/categories/Share/" itemprop="url" rel="index">
+                    <span itemprop="name">Share</span>
                   </a>
                 </span>
 
@@ -411,8 +411,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2009/11/24/discuz-mysql-iconv-character-set/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2009/11/24/discuz-mysql-iconv-character-set/" itemprop="commentCount"></span>
+                <a href="/2009/12/18/G-Alarm-crack/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2009/12/18/G-Alarm-crack/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -440,22 +440,188 @@
       
         
           
-            <p>帮朋友的论坛做了一次编码转换的工作。系统是windows 2003,mysql4.1 discuz 5<br>本来以为很简单，dump数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysqldump -u root -p –opt –default-character-set=latin1 \</div><div class="line">–skip-set-charset olddb cdb_members &gt; d:\bak\cdb_members.sql</div></pre></td></tr></table></figure></p>
-<p>出来，用工具转一下编码，然后再导入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -u root -p –default-character-set=utf8 newdb &lt; d:\bak\cdb_members.sql</div></pre></td></tr></table></figure></p>
-<p>实际操作并没有想象的那么简单，最后解决的方案，也不是那么复杂。</p>
-<p>先说一下教训，建立数据库的时候，同一个应用，所有的编码一定要一致， 不然就是自寻烦恼，现在跟你说，你肯定说不好，但是有时候就是不注意。要迁移的这个论坛就有两种编码gbk和latin1，目标是迁移到utf8，里面 gbk的双字节数据全部是乱码，尝试改编码也读不出数据了，由于不是重要数据，后来就放弃转码了，据说原来就有乱码的问题。</p>
-<p>里面还遇到一个问题就是老的数据是更改过的，目标db是全新安装的，表结构不一致，好在新系统是老系统的子集，那么我就以老表为参照物，来改新db的表结构。</p>
-<p>导出用了<code>mysqldump</code>，这里要提的是<code>--default-character-set</code>，后边要跟数据表的编码，不然导出的数据可能会乱码。</p>
-<p>问题出在import，转编码后import，怎么也不成功，说什么mysql数据库gone away或者说duplicate,突然又一次成功，一看是因为建表语句的编码设置没有修改成utf8。</p>
-<p>转编码用的ultraedit的转换功能，后来怀疑ultraedit的转换出错，网上找了一个win版本的iconv装上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iconv -f ISO-8859-1 -t UTF-8 original.txt&gt; newfile.txt</div></pre></td></tr></table></figure></p>
-<p>问题依旧。其中有几个小表，直接用导出的sql粘贴到phpmyadmin里运行就可以了，但是会员和帖子表肯定不能用这个办法。</p>
-<p>还试用了把latin1的表修改字符，然后试图用convert转码<br><code>update cdb_members set username=CONVERT(username USING utf8)</code>，也没成功。</p>
-<p>后来当我一筹莫展准备缴械的时候，想起了另外两个功能 <code>SELECT INTO OUTFILE</code> 和 <code>LOAD DATA INFILE</code> 是另外一种导入导出的方法。</p>
-<p>贴出使用的sql：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">SELECT</div><div class="line">uid,nickname,site,alipay,</div><div class="line">icq,qq,yahoo,msn,taobao,</div><div class="line">location,customstatus,</div><div class="line">medals,avatar,avatarwidth,</div><div class="line">avatarheight,bio,signature,</div><div class="line">sightml,ignorepm,groupterms,</div><div class="line">authstr INTO OUTFILE &apos;d:/cdb_memberfields.txt&apos;</div><div class="line">FIELDS TERMINATED BY &quot;,&quot;</div><div class="line">OPTIONALLY ENCLOSED BY &quot;&quot;&quot;&quot;</div><div class="line">LINES TERMINATED BY &quot;\r\n&quot;</div><div class="line">FROM gench2.cdb_memberfields;</div></pre></td></tr></table></figure></p>
-<p>然后转换<code>d:/cdb_memberfields.txt</code> 的编码为utf8,可以用ultraedit或者iconv，然后load到新数据库的表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">LOAD DATA INFILE &apos;d:/cdb_memberfields.txt&apos; INTO TABLE cdb_memberfields</div><div class="line">FIELDS TERMINATED BY &quot;,&quot;</div><div class="line">OPTIONALLY ENCLOSED BY &quot;&quot;&quot;&quot;</div><div class="line">LINES TERMINATED BY &quot;\r\n&quot;;</div></pre></td></tr></table></figure></p>
-<p>上面还有一个问题是TERMINATED,ENCLOSED的选取，如果选的不对，会load失败。</p>
-<p>附1：共迁移了如下表<br>cdb_attachments<br>cdb_forums<br>cdb_memberfields<br>cdb_members<br>cdb_onlinetime<br>cdb_posts<br>cdb_threads</p>
-<p>附2：google到的链接<br><a href="http://gentoo-wiki.com/TIP_Convert_latin1_to_UTF-8_in_MySQL" target="_blank" rel="external">http://gentoo-wiki.com/TIP_Convert_latin1_to_UTF-8_in_MySQL</a></p>
+            <p>Windows Mobile 6.x 上的手机迷宫闹钟G-Alarm</p>
+<p>注册过程:<br>源文件：<br>G-Alarm2.3V.cab 安装包一个<br>galarm_KeyGen.exe注册机一个</p>
+<p>注册方法：<br>在手机上，开始－－设置－－个人－－主人信息－－姓名－－Jxxx<br>开始－－设置－－系统－－－个人－－设备ID－－设备标识－－Jxxx</p>
+<p>注意：名字的第一个字母是否大写，我发现设备ID那会自动为大写。。<br>然后在电脑上打开注册机，在OwnerID中输入Jxxx，得到值0B4SF6285xxx。<br>到程序中打开G_Alarm，然后将注册值输入注册即可。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/12/03/xmarks-network/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2009/12/03/xmarks-network/" itemprop="url">
+                  解决xmarks不能用的方法[zt]
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-12-03T00:00:00+08:00">
+                2009-12-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index">
+                    <span itemprop="name">Share</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2009/12/03/xmarks-network/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2009/12/03/xmarks-network/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>xmarks的在线书签居然不能用了，老是”problem syncing”，“网络超时错误”，下面介绍几个解决方法。</p>
+<ol>
+<li><p>修改 HOSTS</p>
+<p>将以下内容手工添加至C:WindowsSystem32etc的hosts文件里(linux在/etc)</p>
+<blockquote>
+<p>64.147.188.86 www.xmarks.com<br>64.147.188.92 api.xmarks.com<br>64.147.188.89 login.xmarks.com<br>64.147.188.87 sync.xmarks.com<br>64.147.188.86 static.xmarks.com<br>64.147.188.86 download.xmarks.com<br>64.147.188.86 my.xmarks.com</p>
+</blockquote>
+<p>如果还不行的话，左键点击 Xmarks 的图标，弹出设置菜单，选择“高级”，加密那个下拉框里面选择“全部加密”，再同步就成功了。<br>这个只是暂时性的解决，如果墙继续动一下的话可能就失效了，有FTP服务器的朋友可以考虑将XMarks的书签同步到自己的服务器去。</p>
+</li>
+<li><p>搭建自己的xmarks服务器<br>如果你有自己的虚拟主机或服务器的话，就可以使用xmarks的“使用自己的服务器”功能，方法如下：</p>
+<ul>
+<li>用FTP在网站根目录创建一个文件夹（如：xmarks），用来存放xmarks的书签数据。</li>
+<li>打开xmarks的“设置”窗口，“把Status”中的用户名和密码改成你的FTP的用户名和密码。</li>
+<li>进入“高级”，选中“使用自己的服务器”，然后<br>“地址”里填：<code>ftp://你的服务器IP/xmarks/xmarks.json</code><br>“Password URL”里填：ftp://你的服务器IP/xmarks/passwords.json</li>
+<li>点击“手动覆盖”区域里“强制覆盖服务器书签”后面的“上传”，xmarks将自动通过FTP把书签数据保存到你的服务器空间中。</li>
+</ul>
+<p><img src="http://photo.liudongkai.com/blog/152311Fk6.jpg" alt=""></p>
+<p><img src="http://photo.liudongkai.com/blog/152311btU.jpg" alt=""></p>
+<p>如果你没有自己的服务器，推荐你用下面的比较稳定的免费空间：<br><a href="http://www.v3host.be" target="_blank" rel="external">http://www.v3host.be</a><br><a href="http://www.cwahi.net" target="_blank" rel="external">http://www.cwahi.net</a><br><a href="http://www.website.org" target="_blank" rel="external">http://www.website.org</a></p>
+</li>
+<li><p>使用Weave Sync插件<a href="https://services.mozilla.com/" target="_blank" rel="external">https://services.mozilla.com/</a><br>这是由Mozilla实验室开发的一个Firefox同步插件，不仅能同步书签，还能同步Firefox中保存的密码、浏览历史、自动填表内容、Tab项和一些个人设置。</p>
+<p>登陆时会要求你输入在第一步注册时使用的邮箱、密码。另外还会要求输入一个Encryption Passphrase用于数据的加密，你可以输入一句好记、有个性、有意义的短语，如果怕麻烦就设成和密码一样的吧。这个短语不能更改（不确定），请和密 码一样牢记它，因为在以后的登录中也需要输入。</p>
+</li>
+<li><p>使用Gmarks（对中文支持不好）<br>Gmarks是一个基于Google Bookmarks的Firefox插件。</p>
+</li>
+<li><p>使用代理<br>很多地方都有相关的知识！！！</p>
+</li>
+</ol>
 
           
         
@@ -653,6 +819,172 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/11/24/discuz-mysql-iconv-character-set/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2009/11/24/discuz-mysql-iconv-character-set/" itemprop="url">
+                  discuz mysql 数据库编码转换latin1->utf8[ZT]
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-11-24T00:00:00+08:00">
+                2009-11-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2009/11/24/discuz-mysql-iconv-character-set/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2009/11/24/discuz-mysql-iconv-character-set/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>帮朋友的论坛做了一次编码转换的工作。系统是windows 2003,mysql4.1 discuz 5<br>本来以为很简单，dump数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysqldump -u root -p –opt –default-character-set=latin1 \</div><div class="line">–skip-set-charset olddb cdb_members &gt; d:\bak\cdb_members.sql</div></pre></td></tr></table></figure></p>
+<p>出来，用工具转一下编码，然后再导入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -u root -p –default-character-set=utf8 newdb &lt; d:\bak\cdb_members.sql</div></pre></td></tr></table></figure></p>
+<p>实际操作并没有想象的那么简单，最后解决的方案，也不是那么复杂。</p>
+<p>先说一下教训，建立数据库的时候，同一个应用，所有的编码一定要一致， 不然就是自寻烦恼，现在跟你说，你肯定说不好，但是有时候就是不注意。要迁移的这个论坛就有两种编码gbk和latin1，目标是迁移到utf8，里面 gbk的双字节数据全部是乱码，尝试改编码也读不出数据了，由于不是重要数据，后来就放弃转码了，据说原来就有乱码的问题。</p>
+<p>里面还遇到一个问题就是老的数据是更改过的，目标db是全新安装的，表结构不一致，好在新系统是老系统的子集，那么我就以老表为参照物，来改新db的表结构。</p>
+<p>导出用了<code>mysqldump</code>，这里要提的是<code>--default-character-set</code>，后边要跟数据表的编码，不然导出的数据可能会乱码。</p>
+<p>问题出在import，转编码后import，怎么也不成功，说什么mysql数据库gone away或者说duplicate,突然又一次成功，一看是因为建表语句的编码设置没有修改成utf8。</p>
+<p>转编码用的ultraedit的转换功能，后来怀疑ultraedit的转换出错，网上找了一个win版本的iconv装上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iconv -f ISO-8859-1 -t UTF-8 original.txt&gt; newfile.txt</div></pre></td></tr></table></figure></p>
+<p>问题依旧。其中有几个小表，直接用导出的sql粘贴到phpmyadmin里运行就可以了，但是会员和帖子表肯定不能用这个办法。</p>
+<p>还试用了把latin1的表修改字符，然后试图用convert转码<br><code>update cdb_members set username=CONVERT(username USING utf8)</code>，也没成功。</p>
+<p>后来当我一筹莫展准备缴械的时候，想起了另外两个功能 <code>SELECT INTO OUTFILE</code> 和 <code>LOAD DATA INFILE</code> 是另外一种导入导出的方法。</p>
+<p>贴出使用的sql：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">SELECT</div><div class="line">uid,nickname,site,alipay,</div><div class="line">icq,qq,yahoo,msn,taobao,</div><div class="line">location,customstatus,</div><div class="line">medals,avatar,avatarwidth,</div><div class="line">avatarheight,bio,signature,</div><div class="line">sightml,ignorepm,groupterms,</div><div class="line">authstr INTO OUTFILE &apos;d:/cdb_memberfields.txt&apos;</div><div class="line">FIELDS TERMINATED BY &quot;,&quot;</div><div class="line">OPTIONALLY ENCLOSED BY &quot;&quot;&quot;&quot;</div><div class="line">LINES TERMINATED BY &quot;\r\n&quot;</div><div class="line">FROM gench2.cdb_memberfields;</div></pre></td></tr></table></figure></p>
+<p>然后转换<code>d:/cdb_memberfields.txt</code> 的编码为utf8,可以用ultraedit或者iconv，然后load到新数据库的表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">LOAD DATA INFILE &apos;d:/cdb_memberfields.txt&apos; INTO TABLE cdb_memberfields</div><div class="line">FIELDS TERMINATED BY &quot;,&quot;</div><div class="line">OPTIONALLY ENCLOSED BY &quot;&quot;&quot;&quot;</div><div class="line">LINES TERMINATED BY &quot;\r\n&quot;;</div></pre></td></tr></table></figure></p>
+<p>上面还有一个问题是TERMINATED,ENCLOSED的选取，如果选的不对，会load失败。</p>
+<p>附1：共迁移了如下表<br>cdb_attachments<br>cdb_forums<br>cdb_memberfields<br>cdb_members<br>cdb_onlinetime<br>cdb_posts<br>cdb_threads</p>
+<p>附2：google到的链接<br><a href="http://gentoo-wiki.com/TIP_Convert_latin1_to_UTF-8_in_MySQL" target="_blank" rel="external">http://gentoo-wiki.com/TIP_Convert_latin1_to_UTF-8_in_MySQL</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/11/07/Firefox-flashgot-AddRef/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -801,328 +1133,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/11/06/DD-WRT-Release-notes/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2009/11/06/DD-WRT-Release-notes/" itemprop="url">
-                  DD-WRT版本说明
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-11-06T00:00:00+08:00">
-                2009-11-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2009/11/06/DD-WRT-Release-notes/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2009/11/06/DD-WRT-Release-notes/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Micro (最小版) 只能用于2MB FLASH</p>
-<p>Mini (迷你版) 可用于4MB FLASH</p>
-<p>Standard (STD标准版) 可用于4MB FLASH</p>
-<p>VOIP (带VOIP功能版)</p>
-<p>Mega (完整版) 只能用在8MB FLASH</p>
-<p>其他可以不用管. 还有就是NEWD(新驱动)和VINT(旧驱动)之分.</p>
-<p>cmd下输入：</p>
-<blockquote>
-<p>1） telnet 192.168.1.1<br>2） 输入用户名和密码<br>3） nvram show|grep corerev</p>
-</blockquote>
-<p>如果显示<br>wl0_corerev=4<br>则一定要使用 VINT 版</p>
-<p>如果显示<br>wl0_corerev &gt;=5 &lt;=7<br>则 VINT 版 和 NEWD 版都可用，建议使用 VINT 版</p>
-<p>如果显示<br>wl0_corerev &gt;=8<br>则 VINT 版 和 NEWD 版都可用</p>
-<p>如果显示<br>wl0_corerev &gt;9<br>则一定要使用 NEWD 版</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/10/22/outlook-not-found-pst/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2009/10/22/outlook-not-found-pst/" itemprop="url">
-                  outlook 找不到 Outlook.pst
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-10-22T00:00:00+08:00">
-                2009-10-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2009/10/22/outlook-not-found-pst/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2009/10/22/outlook-not-found-pst/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在DOS下，用CD 切换到 Outlook.exe 可执行文件目录下（安装目录如：<code>C:\Program Files\Microsoft Office\OFFICE11</code>）</p>
-<p>使用命令 <code>outlook /importprf .\.prf</code> 进行初始化 Outlook 数据文件。</p>
-<p>取其一界面（很熟悉的）（初安装 Outlook 启动时，需要新建一电子邮件帐户界面）</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/29/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><span class="page-number current">30</span><a class="page-number" href="/page/31/">31</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><a class="extend next" rel="next" href="/page/31/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/29/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><span class="page-number current">30</span><a class="page-number" href="/page/31/">31</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><a class="extend next" rel="next" href="/page/31/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1165,7 +1180,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">284</span>
+                <span class="site-state-item-count">286</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1183,7 +1198,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">198</span>
+                <span class="site-state-item-count">199</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

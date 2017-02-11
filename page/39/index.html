@@ -328,6 +328,820 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/28/awk-notes-functions-variables/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/05/28/awk-notes-functions-variables/" itemprop="url">
+                  awk常用函数以及变量参考
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-28T00:00:00+08:00">
+                2008-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/05/28/awk-notes-functions-variables/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/28/awk-notes-functions-variables/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-awk的常规表达式元字符"><a href="#1-awk的常规表达式元字符" class="headerlink" title="1. awk的常规表达式元字符"></a>1. awk的常规表达式元字符</h2><table>
+<thead>
+<tr>
+<th>换码序列</th>
+<th>&nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>^</td>
+<td>在字符串的开头开始匹配</td>
+</tr>
+<tr>
+<td>$</td>
+<td>在字符串的结尾开始匹配</td>
+</tr>
+<tr>
+<td>.</td>
+<td>与任何单个字符串匹配</td>
+</tr>
+<tr>
+<td>[ABC]</td>
+<td>与[]内的任一字符匹配</td>
+</tr>
+<tr>
+<td>[A-Ca-c]</td>
+<td>与A-C及a-c范围内的字符匹配（按字母表顺序）</td>
+</tr>
+<tr>
+<td>[^ABC]</td>
+<td>与除[]内的所有字符以外的任一字符匹配</td>
+</tr>
+<tr>
+<td>Desk&#x7C;Chair</td>
+<td>与Desk和Chair中的任一个匹配</td>
+</tr>
+<tr>
+<td>[ABC][DEF]</td>
+<td>关联。与A、B、C中的任一字符匹配，且其后要跟D、E、F中的任一个字符。</td>
+</tr>
+<tr>
+<td>[ABC]*</td>
+<td>与A、B或C中任一个出现0次或多次的字符相匹配</td>
+</tr>
+<tr>
+<td>[ABC]+</td>
+<td>与A、B或C中任何一个出现1次或多次的字符相匹配</td>
+</tr>
+<tr>
+<td>[ABC]？</td>
+<td>与一个空串或A、B或C在任何一个字符相匹配</td>
+</tr>
+<tr>
+<td>(Blue&#x7C;Black)berry</td>
+<td>合并常规表达式，与Blueberry或Blackberry相匹配</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-awk算术运算符"><a href="#2-awk算术运算符" class="headerlink" title="2. awk算术运算符"></a>2. awk算术运算符</h2><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x^y</td>
+<td>x的y次幂</td>
+</tr>
+<tr>
+<td>x**y</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>x%y</td>
+<td>计算x/y的余数（求模）</td>
+</tr>
+<tr>
+<td>x+y</td>
+<td>x加y</td>
+</tr>
+<tr>
+<td>x-y</td>
+<td>x减y</td>
+</tr>
+<tr>
+<td>x*y</td>
+<td>x乘y</td>
+</tr>
+<tr>
+<td>x/y</td>
+<td>x除y</td>
+</tr>
+<tr>
+<td>-y</td>
+<td>负y(y的开关符号);也称一目减</td>
+</tr>
+<tr>
+<td>++y</td>
+<td>y加1后使用y(前置加）</td>
+</tr>
+<tr>
+<td>y++</td>
+<td>使用y值后加1（后缀加）</td>
+</tr>
+<tr>
+<td>-y</td>
+<td>y减1后使用y(前置减）</td>
+</tr>
+<tr>
+<td>y-</td>
+<td>使用后y减1(后缀减）</td>
+</tr>
+<tr>
+<td>x=y</td>
+<td>将y的值赋给x</td>
+</tr>
+<tr>
+<td>x+=y</td>
+<td>将x+y的值赋给x</td>
+</tr>
+<tr>
+<td>x-=y</td>
+<td>将x-y的值赋给x</td>
+</tr>
+<tr>
+<td>x*=y</td>
+<td>将x*y的值赋给x</td>
+</tr>
+<tr>
+<td>x/=y</td>
+<td>将x/y的值赋给x x%=y 将x%y的值赋给x</td>
+</tr>
+<tr>
+<td>x^=y</td>
+<td>将x^y的值赋给x</td>
+</tr>
+<tr>
+<td>x**=y</td>
+<td>将x**y的值赋给x</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-awk允许的测试："><a href="#3-awk允许的测试：" class="headerlink" title="3. awk允许的测试："></a>3. awk允许的测试：</h2><table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x==y</td>
+<td>x等于y</td>
+</tr>
+<tr>
+<td>x!=y</td>
+<td>x不等于y</td>
+</tr>
+<tr>
+<td>x&gt;y</td>
+<td>x大于y</td>
+</tr>
+<tr>
+<td>x&gt;=y</td>
+<td>x大于或等于y</td>
+</tr>
+<tr>
+<td>x&lt; =y</td>
+<td>x小于或等于y</td>
+</tr>
+<tr>
+<td>x~re</td>
+<td>x匹配正则表达式re</td>
+</tr>
+<tr>
+<td>x!~re</td>
+<td>x不匹配正则表达式re</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-awk的操作符-级别越高越优先"><a href="#4-awk的操作符-级别越高越优先" class="headerlink" title="4. awk的操作符(级别越高越优先)"></a>4. awk的操作符(级别越高越优先)</h2><table>
+<thead>
+<tr>
+<th>级别</th>
+<th>运算符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>=,+=,-=,*=,/=,%=,&amp;=,^=,&#x7C;=,&lt;&lt;=,&gt;&gt;=</td>
+<td>赋值、运算</td>
+</tr>
+<tr>
+<td>2</td>
+<td>&#x7C;&#x7C;</td>
+<td>逻辑或</td>
+</tr>
+<tr>
+<td>3</td>
+<td>&amp;&amp;</td>
+<td>逻辑与</td>
+</tr>
+<tr>
+<td>4</td>
+<td>&#x7C;</td>
+<td>按位或</td>
+</tr>
+<tr>
+<td>5</td>
+<td>^</td>
+<td>按位异或</td>
+</tr>
+<tr>
+<td>6</td>
+<td>&amp;</td>
+<td>按位与</td>
+</tr>
+<tr>
+<td>7</td>
+<td>==,!=</td>
+<td>等于，不等于</td>
+</tr>
+<tr>
+<td>8</td>
+<td>&lt;=,&gt;=,&lt;,&gt;</td>
+<td>小于等于，大于等于，小于，大于</td>
+</tr>
+<tr>
+<td>9</td>
+<td>&lt;&lt;,&gt;&gt;</td>
+<td>按位左移，按位右移</td>
+</tr>
+<tr>
+<td>10</td>
+<td>+，-</td>
+<td>加，减</td>
+</tr>
+<tr>
+<td>11</td>
+<td>*,/,%</td>
+<td>乘，除，取模</td>
+</tr>
+<tr>
+<td>12</td>
+<td>!，~</td>
+<td>逻辑非，按位取反或补码</td>
+</tr>
+<tr>
+<td>13</td>
+<td>-,+</td>
+<td>正，负</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-awk内置变量（预定义变量）"><a href="#5-awk内置变量（预定义变量）" class="headerlink" title="5. awk内置变量（预定义变量）"></a>5. awk内置变量（预定义变量）</h2><p>说明：表中v项表示第一个支持变量的工具（下同）：A=awk，N=nawk,P=POSIX awk,G=gawk</p>
+<table>
+<thead>
+<tr>
+<th>V</th>
+<th>变量</th>
+<th>含义</th>
+<th>缺省值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N</td>
+<td>ARGC</td>
+<td>命令行参数个数</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>G</td>
+<td>ARGIND</td>
+<td>当前被处理文件的ARGV标志符</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>N</td>
+<td>ARGV</td>
+<td>命令行参数数组</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>G</td>
+<td>CONVFMT</td>
+<td>数字转换格式</td>
+<td>%.6g</td>
+</tr>
+<tr>
+<td>P</td>
+<td>ENVIRON</td>
+<td>UNIX环境变量</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>N</td>
+<td>ERRNO</td>
+<td>UNIX系统错误消息</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>G</td>
+<td>FIELDWIDTHS</td>
+<td>输入字段宽度的空白分隔字符串</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>A</td>
+<td>FILENAME</td>
+<td>当前输入文件的名字</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>P</td>
+<td>FNR</td>
+<td>当前记录数</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>A</td>
+<td>FS</td>
+<td>输入字段分隔符</td>
+<td>空格</td>
+</tr>
+<tr>
+<td>G</td>
+<td>IGNORECASE</td>
+<td>控制大小写敏感0（大小写敏感）</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>A</td>
+<td>NF</td>
+<td>当前记录中的字段个数</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>A</td>
+<td>NR</td>
+<td>已经读出的记录数</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>A</td>
+<td>OFMT</td>
+<td>数字的输出格式</td>
+<td>%.6g</td>
+</tr>
+<tr>
+<td>A</td>
+<td>OFS</td>
+<td>输出字段分隔符</td>
+<td>空格</td>
+</tr>
+<tr>
+<td>A</td>
+<td>ORS</td>
+<td>输出的记录分隔符</td>
+<td>新行</td>
+</tr>
+<tr>
+<td>A</td>
+<td>RS</td>
+<td>输入的记录他隔符</td>
+<td>新行</td>
+</tr>
+<tr>
+<td>N</td>
+<td>RSTART</td>
+<td>被匹配函数匹配的字符串首</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>N</td>
+<td>RLENGTH</td>
+<td>被匹配函数匹配的字符串长度</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>N</td>
+<td>SUBSEP</td>
+<td>下标分隔符</td>
+<td>\034</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-awk的内置函数"><a href="#6-awk的内置函数" class="headerlink" title="6. awk的内置函数"></a>6. awk的内置函数</h2><table>
+<thead>
+<tr>
+<th>V</th>
+<th>函数</th>
+<th>用途或返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N</td>
+<td>gsub(reg,string,target)</td>
+<td>每次常规表达式reg匹配时替换target中的string</td>
+</tr>
+<tr>
+<td>N</td>
+<td>index(search,string)</td>
+<td>返回string中search串的位置</td>
+</tr>
+<tr>
+<td>A</td>
+<td>length(string)</td>
+<td>求串string中的字符个数</td>
+</tr>
+<tr>
+<td>N</td>
+<td>match(string,reg)</td>
+<td>返回常规表达式reg匹配的string中的位置</td>
+</tr>
+<tr>
+<td>N</td>
+<td>printf(format,variable)</td>
+<td>格式化输出，按format提供的格式输出变量variable。</td>
+</tr>
+<tr>
+<td>N</td>
+<td>split(string,store,delim)</td>
+<td>根据分界符delim,分解string为store的数组元素</td>
+</tr>
+<tr>
+<td>N</td>
+<td>sprintf(format,variable)</td>
+<td>返回一个包含基于format的格式化数据，variables是要放到串中的数据</td>
+</tr>
+<tr>
+<td>G</td>
+<td>strftime(format,timestamp)</td>
+<td>返回一个基于format的日期或者时间串，timestmp是systime()函数返回的时间</td>
+</tr>
+<tr>
+<td>N</td>
+<td>sub(reg,string,target)</td>
+<td>第一次当常规表达式reg匹配，替换target串中的字符串</td>
+</tr>
+<tr>
+<td>A</td>
+<td>substr(string,position,len)</td>
+<td>返回一个以position开始len个字符的子串</td>
+</tr>
+<tr>
+<td>P</td>
+<td>totower(string)</td>
+<td>返回string中对应的小写字符</td>
+</tr>
+<tr>
+<td>P</td>
+<td>toupper(string)</td>
+<td>返回string中对应的大写字符</td>
+</tr>
+<tr>
+<td>A</td>
+<td>atan(x,y)</td>
+<td>x的余切(弧度)</td>
+</tr>
+<tr>
+<td>N</td>
+<td>cos(x)</td>
+<td>x的余弦(弧度)</td>
+</tr>
+<tr>
+<td>A</td>
+<td>exp(x)</td>
+<td>e的x幂</td>
+</tr>
+<tr>
+<td>A</td>
+<td>int(x)</td>
+<td>x的整数部分</td>
+</tr>
+<tr>
+<td>A</td>
+<td>log(x)</td>
+<td>x的自然对数值</td>
+</tr>
+<tr>
+<td>N</td>
+<td>rand()</td>
+<td>0-1之间的随机数</td>
+</tr>
+<tr>
+<td>N</td>
+<td>sin(x)</td>
+<td>x的正弦(弧度)</td>
+</tr>
+<tr>
+<td>A</td>
+<td>sqrt(x)</td>
+<td>x的平方根</td>
+</tr>
+<tr>
+<td>A</td>
+<td>srand(x)</td>
+<td>初始化随机数发生器。如果忽略x，则使用system()</td>
+</tr>
+<tr>
+<td>G</td>
+<td>system()</td>
+<td>返回自1970年1月1日以来经过的时间（按秒计算）</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/23/google-20080519/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/05/23/google-20080519/" itemprop="url">
+                  中国人的团结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-23T00:00:00+08:00">
+                2008-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index">
+                    <span itemprop="name">Share</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/05/23/google-20080519/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/23/google-20080519/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>google(谷歌)搜索引擎的流量数据在这一刻画下了这样的曲线.</p>
+<p><img src="http://photo.liudongkai.com/blog/0searchdm1.jpg" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/23/thunder5-disable-upload/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -839,344 +1653,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/18/sed-command-r/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/05/18/sed-command-r/" itemprop="url">
-                  sed命令示例：'r'
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-18T00:00:00+08:00">
-                2008-05-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/05/18/sed-command-r/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/18/sed-command-r/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>‘r’命令用来读入文本。与’a’的作用相似，但文本是放在独立的文件而不是放在脚本中。用’r’的好处在于将数据与脚本独立，使脚本更易读并且修改数据文件更方便。</p>
-<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>这是GNU sed自带文档中对’r’命令的说明：</p>
-<blockquote>
-<p><code>r filename</code><br>Queue the contents of filename to be read and inserted into the output stream at the end of the current cycle, or when the next input line is read. Note that if filename cannot be read, it is treated as if it were an empty file, without any error indication.</p>
-</blockquote>
-<p>GNU对这个命令进行了扩展：</p>
-<ul>
-<li>接受两个地址。可以对一定的地址区间进行操作</li>
-<li>允许使用/dev/stdin作为文件名</li>
-<li>新增了一个<code>R</code>命令。这个命令用法与<code>r</code>一样但一次只读入一行。</li>
-</ul>
-<p>另外一些需要注意的地方：</p>
-<ul>
-<li>文件不能读取时，则当成空文件处理不会有出错信息。</li>
-<li>r 命令之后不能再使用其他命令，因而如果后面的命令要另起一行或以’-e’选项隔开。</li>
-<li>r是在当前的cycle结束后才在最后加入内容的，所以在无法在cycle中对读入的内容进行操作的。</li>
-</ul>
-<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>我一向认为一个例子比得上千言万语。看个例子先：现有一个网页要进行如下修改，在中增加标签。在标签前增加版权声明的标签。我们将要在标签后的内容放在meta.tag中。将放在文件未尾的内容放在copyleft.tag中。里面的内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ cat meta.tag</div><div class="line"></div><div class="line">$ cat copyleft.tag</div><div class="line">版权所有……</div></pre></td></tr></table></figure></p>
-<p>我们需要的命令是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sed &apos;/&lt; /title&gt;/r meta.tag</div><div class="line">/&lt; /body&gt;/&#123;</div><div class="line">x</div><div class="line">r copyleft.tag</div><div class="line">G&#125;&apos; samp.html</div></pre></td></tr></table></figure></p>
-<p>写成单行的形式就是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed -e &apos;/&lt; /title&gt;/r meta.tag&apos; -e &apos;/&lt; /body&gt;/&#123;x;r copyleft.tag&apos; -e &apos;G&#125;&apos; samp.html</div></pre></td></tr></table></figure></p>
-<p>如果你在Windows的命令行上使用的话，那就根据你所用的版本将单引号相应的改为双引号。不过请务必注意上面脚本是一个简化的情形，因为标签也可能有大写字母(更复杂的情形是title后的方括号也许在下面一行)（虽然W3C的XHTML中要求标签必须是小写，但这种可能性是存在的视你自已的情况而定。）如果你用的是GNU sed的话那恭喜，你可以在式样后使用’I’修改符（modifier）：/&lt; /title&gt;/I。否则：/&lt; /[tT][iI] [tT][lL][eE]&gt;/当然偶尔可以偷懒：/&lt; /[tT].[tT].[eE]&gt;/。</p>
-<p>实例：批量修改</p>
-<p>当然我们想修改的通常不会只是一个文件，于是我们需要用到shell（注意文件的读写权限）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ for a in &apos;find . -name &quot;*.html&quot;&apos;</div><div class="line">do</div><div class="line">mv $a $a.bak</div><div class="line">sed -e &apos;/&lt; /title&gt;/r meta.tag&apos; -e &apos;/&lt; /body&gt;/&#123;x;r copyleft.tag&apos; -e &apos;G&#125;&apos; $a.bak &gt;$a</div><div class="line">done</div></pre></td></tr></table></figure></p>
-<p>find有一个-exec，但是如果参数太多会出错因而这里使用了for命令。<br>如果是Windows平台：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">for /R %a in (*.html) do @copy %a %a.bak &amp; @sed -e &quot;…&quot; %a.bak&gt;%a</div><div class="line">``</div><div class="line">在批处理中使用时记得要用&apos;%%&apos;代替&apos;%&apos;。</div><div class="line">如果你用的是GNU sed 4.0或以上版本，那你可以使用-i选项代替&apos;mv&apos;命令：</div></pre></td></tr></table></figure></p>
-<p>$ for a in ‘find . -name “*.html”‘<br>do<br>gsed -i.bak -e ‘<br>/&lt; /title&gt;/r meta.tag<br>/&lt; /body&gt;/{<br>x<br>r copyleft.tag<br>G}’ $a<br>done<br>```</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/18/sed-one-liner/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/05/18/sed-one-liner/" itemprop="url">
-                  SED单行脚本快速参考
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-18T00:00:00+08:00">
-                2008-05-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/05/18/sed-one-liner/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/18/sed-one-liner/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近版本的SED ONE-LINER现在可以在sed.sourceforge.net上找到了。有多个语言版本也包括了简体中文版本。意大利语和西班牙语的翻译也正在进行中。</p>
-<blockquote>
-<p>SED单行脚本快速参考（Unix 流编辑器） 2005年12月29日</p>
-<p>英文标题：USEFUL ONE-LINE SCRIPTS FOR SED (Unix stream editor)<br>原标题：HANDY ONE-LINERS FOR SED (Unix stream editor)</p>
-<p>整理：Eric Pement – 电邮：pemente[at]northpark[dot]edu 版本5.5<br>译者：Joe Hong – 电邮：hq00e[at]126[dot]com</p>
-<p>在以下地址可找到本文档的最新（英文）版本：<br><a href="http://sed.sourceforge.net/sed1line.txt" target="_blank" rel="external">http://sed.sourceforge.net/sed1line.txt</a><br><a href="http://www.pement.org/sed/sed1line.txt" target="_blank" rel="external">http://www.pement.org/sed/sed1line.txt</a></p>
-<p>其他语言版本：<br>中文 – <a href="http://sed.sourceforge.net/sed1line_zh-CN.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_zh-CN.html</a><br>捷克语 – <a href="http://sed.sourceforge.net/sed1line_cz.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_cz.html</a><br>荷语 – <a href="http://sed.sourceforge.net/sed1line_nl.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_nl.html</a><br>法语 – <a href="http://sed.sourceforge.net/sed1line_fr.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_fr.html</a><br>德语 – <a href="http://sed.sourceforge.net/sed1line_de.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_de.html</a><br>葡语 – <a href="http://sed.sourceforge.net/sed1line_pt-BR.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_pt-BR.html</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/38/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><span class="page-number current">39</span><a class="page-number" href="/page/40/">40</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><a class="extend next" rel="next" href="/page/40/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/38/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><span class="page-number current">39</span><a class="page-number" href="/page/40/">40</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><a class="extend next" rel="next" href="/page/40/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1219,7 +1700,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">284</span>
+                <span class="site-state-item-count">286</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1237,7 +1718,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">198</span>
+                <span class="site-state-item-count">199</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

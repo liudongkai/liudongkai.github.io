@@ -328,6 +328,360 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/13/Geomview-Nvidia-drivers/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/05/13/Geomview-Nvidia-drivers/" itemprop="url">
+                  Geomview~编译错误及~NVIDIA~驱动~bug！
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">
+                2008-05-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/05/13/Geomview-Nvidia-drivers/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/13/Geomview-Nvidia-drivers/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>昨晚看~MAXIMA，提到了画二维图最好用~GnuPlot，而画三维图的时候最好用~Geomview，于是下载其源码，接着编译安装，但在~make~的时候出现下面的错误：</p>
+<blockquote>
+<p>/usr/X11R6/include/GL/glext.h:6952: error: redefinition of typedef ‘PFNGLGETUNIFORMUIVEXTPROC’  /usr/X11R6/include/GL/glext.h:6941: error: previous declaration of ‘PFNGLGETUNIFORMUIVEXTPROC’ was here </p>
+</blockquote>
+<p>到网上搜了下，是~NVIDIA~显卡驱动的一个~bug，于是想下载最新版本，到~NVIDIA~网站下载了最新的~1.0-9755~版本，直接运行~.run~文件，先是提示我的显卡跟这个驱动不匹配，不过是个警告，没太注意，继续，接着后来提示：</p>
+<blockquote>
+<p>ERROR: Unable to load the kernel module ‘nvidia.ko’.  This is most likely        because the kernel module was built using the wrong kernel source files.        Please make sure you have installed the kernel source files for your        kernel; on Red Hat Linux systems, for example, be sure you have the        ‘kernel-source’ rpm installed.  If you know the correct kernel source        files are installed, you may specify the kernel source path with the&lt; br /&gt;        ‘–kernel-source-path’ commandline option. </p>
+</blockquote>
+<p>搜索了一下，用下面的命令就好了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#./NVIDIA-xxx.run -k $(uname -r)</div></pre></td></tr></table></figure></p>
+<p>安装后，重启~X，但找不到设备，查看~/var/log/Xorg.0.log，原来的确是开始的警告，这个驱动根本与我的显卡不匹配，我的显卡是：</p>
+<blockquote>
+<p>nVidia Corporation NV11 [GeForce2 MX/MX 400]</p>
+</blockquote>
+<p>提示说只能用~96xx，系列的驱动，然后找个系列的驱动安装，一切顺利！然而再重新编译~Geomview~的时候仍然是那个错误，最后只好手动的修改了那个文件<strong>~/usr/X11R6/include/GL/glext.h</strong>，把里面的~6941~和~6952~两行注释掉了，然后再编译安装，一切顺利。</p>
+<p>据说~NVIDIA~的这个~bug~在最新的~97xx~系列中已经修正，可是我的显卡却只能用~96xx~系列的，可能我的显卡太老了吧 :(。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/10/hamsters-common-diseases/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/05/10/hamsters-common-diseases/" itemprop="url">
+                  仓鼠常见疾病的护理及预防措施
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-10T00:00:00+08:00">
+                2008-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index">
+                    <span itemprop="name">Share</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/05/10/hamsters-common-diseases/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/10/hamsters-common-diseases/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>保证合理的饮食结构、保持环境的干燥与清洁、保护小宠生活的安全性，做好这“三保”，才是维持小宠健康的根本之道。</p>
+<ol>
+<li><p>腹泻、软便产生原因：不恰当饮食、压力、天气突变等。</p>
+<p>护理用品：新鲜苹果，MR牌整肠液（便性改善液）。</p>
+<p>方法：苹果多多益善，只要鼠鼠肯吃；整肠液加入水瓶中，记得每天都要换水。</p>
+<p>环境：造成腹泻、软便的原因除了不恰当的饮食之外，压力也是因素之一。所以休养阶段，尽可能不要打扰鼠鼠，给它一个安宁的环境。</p>
+</li>
+<li><p>眼睛肿胀、发炎产生原因：打斗、环境潮湿引起霉菌大量滋生。</p>
+<p>预防措施：分笼独养；勤换木屑、清洗笼子，保持环境干燥、通风。</p>
+<p>护理用品：塞司眼部护理清洁液（小动物专用）（也可使用生理食盐水清洗）金霉素眼药膏棉签。</p>
+<p>居住环境：合笼的请立即分笼，单独隔离；垫材不用木屑，而改铺柔软的碎纸巾；安心静养。</p>
+<p>方法：每天使用棉签蘸护理液帮助鼠鼠清洗眼睛，然后涂抹金霉素眼药膏。</p>
+<p>注意事项：慎用金霉素，若鼠鼠误食过量的残留药膏，会导致鼠鼠肾衰竭，所以尽量不要残留药膏。</p>
+</li>
+<li><p>脚趾肿胀产生原因： 1）脚趾被缠绕过 2）脚趾甲过长的情况下疯狂跑滚轮 3）脚趾被勾到或折到 4）高处跌落 等 建议：首先，检查一下脚趾表面是否有伤口或出血现象，如有，则需先进行外伤治疗。</p>
+<p>方法：以生理食盐水+优碘以2：1比例稀释（若此稀释比例对鼠鼠造成很大刺激时，稀释比例可再提高），消毒伤口。</p>
+<p>注意： </p>
+<ol>
+<li><p>鼠鼠容易舔伤口或手碰伤口然后抓东西吃，而食用碘对鼠鼠健康有害，因此，可让稀释液在伤口上停留2-3分钟，待其杀菌效用充分发挥后，再用食盐水清洗干净。</p>
+</li>
+<li><p>千万不要使用双氧水、碘酒对伤口进行消毒，它们的刺激性连人都难以忍受，何况如此弱小的鼠鼠；尽量不要用酒精，酒精的刺激性也太强，如使用，请一定稀释！</p>
+</li>
+<li><p>优碘与红药水不可同时使用！因为两者混合会生成有毒的碘化汞，不仅使药物失去杀菌效能，而且对皮肤粘膜及其他组织有强烈刺激作用，引起皮肤红肿起泡，伤口溃烂。<br>其次，确定表面无伤口或进行消毒之后，给予柔软的垫材（如碎纸巾、棉花等）,以代替木屑。移除滚轮，安宁静养，待骨头愈合再行走。</p>
+</li>
+</ol>
+</li>
+<li><p>皮肤病产生原因：外寄生虫、过敏症、外伤、细菌或霉菌的感染等。预防措施：</p>
+<ol>
+<li><p>木屑的选择给鼠鼠使用的木屑多以进口为主，在选购时，一定要辨明木屑所属的木材种类：千万不要选用“Cedar”（雪松）木屑，因为仓鼠对 “Cedar Oil”（雪松油）容易过敏，结果会造成身体大面积脱毛，皮肤开裂，由此带来的脱水和感染是致命的。 “aspen”（白杨木）木屑也有一定几率会造成皮肤病。“Pine”（松木）木屑比较适合仓鼠，大多数压缩包装的木屑都是这种。</p>
+</li>
+<li><p>保持环境清洁、干燥、通风勤换木屑、清洗笼子；偶尔傍晚时可以晒几分钟太阳；若饮水器有漏水状况，应立即更换；避免使用带铁丝笼底的笼子以及网状滚轮，以减少霉菌大量滋生的几率。</p>
+</li>
+<li><p>饮食方面多多补充富含矿物质的食品、综合维他命，增加抵抗力。</p>
+</li>
+<li><p>如发生打斗，或同笼中有鼠儿发生皮肤搔痒等症状时，应立即分笼隔离。</p>
+</li>
+</ol>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/10/Google-market-share/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -826,164 +1180,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/04/03/firefox-smooth-scroll/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/04/03/firefox-smooth-scroll/" itemprop="url">
-                  Firefox 页面滚动设置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-04-03T00:00:00+08:00">
-                2008-04-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/04/03/firefox-smooth-scroll/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/04/03/firefox-smooth-scroll/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>打开firefox，在地址栏输入 <code>about:config</code></p>
-<ol>
-<li><p>开启页面平滑滚动<br>general.smoothScroll<br>布尔值<br>当值为Ture时，打开页面平滑滚动</p>
-</li>
-<li><p>增加鼠标页面卷动行数<br>mousewheel.withnokey.sysnumlines<br>布尔值<br>先设置值为False时，禁用页面滚动行数为操作系统设置值</p>
-<p>mousewheel.withnokey.numlines 设定了滚动的行数，推荐设置为７。<br>整数型<br>设置适当的整数值为滚动行数，推荐值7，</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/04/03/Keyconfig-for-Firefox3/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1135,163 +1331,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/04/01/my-computer-ordering/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/04/01/my-computer-ordering/" itemprop="url">
-                  把“我的电脑”捧上去放在桌面第一
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-04-01T00:00:00+08:00">
-                2008-04-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/04/01/my-computer-ordering/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/04/01/my-computer-ordering/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>是否希望把桌面上“我的电脑”捧回到第一个位置呢？</p>
-<p>打开“注册表编辑器”，找到 <code>[HKEY_CLASSES_ROOTCLSID{450D8FBA- AD25-11D0-98A8-0800361B1103]</code> ，在右侧窗格找到名为 <code>SortOrderIndex</code> 的DWORD键值，设置这个键值，就可以轻 松控制“我的电脑”与“我的文档”的上下关系。在十六进制下更改为<strong>48</strong>，则是“我的电脑”图标位于“我的文档”之下，原先的<strong>54</strong>值则反之。另外，此操作也 影响到地址栏下拉列表、打开窗口的“查找范围”下拉列表的排列。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/41/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><span class="page-number current">42</span><a class="page-number" href="/page/43/">43</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><a class="extend next" rel="next" href="/page/43/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/41/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><span class="page-number current">42</span><a class="page-number" href="/page/43/">43</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><a class="extend next" rel="next" href="/page/43/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1334,7 +1378,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">284</span>
+                <span class="site-state-item-count">286</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1352,7 +1396,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">198</span>
+                <span class="site-state-item-count">199</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

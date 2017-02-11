@@ -328,6 +328,425 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/02/05/router-mtu/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/02/05/router-mtu/" itemprop="url">
+                  路由器mtu设置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-02-05T00:00:00+08:00">
+                2008-02-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index">
+                    <span itemprop="name">Share</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/02/05/router-mtu/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/02/05/router-mtu/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这是宽带路由器的一个小小弊端。通过对网速的实测证明，在ADSL接入电脑之间安装宽带路由器后，在多台电脑同时在线的情况下，由于路由器在地址解析、路由分发等方面的耽误，实际到达电脑的速度比单机直接连入ADSL线路要稍慢一些。当然我们也可以采用以下办法将这种损耗降至最低，即更改路由器的MTU值。</p>
+<p>MTU是Maximum Transmission Unit的缩写，意思是网络上传送的最大数据包，单位是字节。不同的接入方式，MTU值是不一样的，如果值太大就会产生很多数据包碎片，增加丢包率，降低网络速度。我们平常使用的宽带PPPoE连接方式，其MTU值最大为1492，解决的办法就是对其逐步调低，直到网络最正常为止。</p>
+<p>那么又如何判定某个MTU值是最适合的呢？ 进入DOS环境(开始-＞所有程序-＞附件-＞命令提示符)，输入以下命令行：<code>ping -f -l 1492 192.168.1.1</code>。<br>注：其中“192.168.1.1”是网关IP地址(路由器的IP)，1492为数据包的长度，参数“-l”是小写的L。如果出现信息：<code>Packet needs to be fragmented but DF set</code>，那就表示MTU值太大了！而如果出现：</p>
+<blockquote>
+<p>Reply from 192.168.1.1: bytes=1492 time&lt;10ms TTL=128</p>
+</blockquote>
+<p>则表示此MTU值是可行的，不过还是建议多试几个找到最佳值。</p>
+<p>我从1492试到1472终于找到了最佳的值:1472(这个是我的路由器的最佳的值,可以做参考)! 大家还有什么好的方法可以研究研究!</p>
+<p><strong>其他：</strong></p>
+<p>MTU设置</p>
+<p>MTU，即Maximum Transmission Unit(最大传输单元)，此值设定TCP/IP协议传输数据报时的最大传输单元。设置合适的MTU值可以解决“部分网站打不开”、“上网速度慢”等问题，并且可以适当提升上网速度。</p>
+<p>设置多大的MTU值取决于你的上网方式，不同的上网方式支持不同的MTU，下面列出了一些上网方式的MTU值：</p>
+<blockquote>
+<p>EtherNet(一般上网方式，默认值):1500<br>PPPoE/ADSL:1492<br>Dial Up/Modem:576</p>
+</blockquote>
+<p>问题一：知道了我的上网方式，如何设置MTU值？</p>
+<ol>
+<li>在 『开始』&gt;『运行』中，键入regedit，点确定；</li>
+<li>选择『HKEY_Local_Machine』&gt;『SYSTEM』&gt;『CurrentControlSet』&gt;『Services』&gt;『Tcpip』&gt;『Parameters』&gt;『interface』；</li>
+<li>在 interface 底下可能有很多的选项，你一个一个的去看，会有一个选项与你的网卡的 IP相同，那个就是你要挑选的选项啦！然后同样的在该选项上选择『编辑』&gt;『新建』&gt;『DWORD值』之后，建立一个名为『MTU』的DWORD，然后双击修改，选择十进制，填入合适 MTU 值，确定！大功告成！</li>
+</ol>
+<p>问题二：我不知道自己的上网方式，如何确定MTU值呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ping -f -l 1500 127.0.0.1</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">C:\WINDOWS&gt;ping -f -l 1500 127.0.0.1</div><div class="line">Pinging 127.0.0.1 with 1500 bytes of data:</div><div class="line">Packet needs to be fragmented but DF set.</div><div class="line">Packet needs to be fragmented but DF set.</div><div class="line">Packet needs to be fragmented but DF set.</div><div class="line">Packet needs to be fragmented but DF set.</div><div class="line">Ping statistics for 127.0.0.1:</div><div class="line">Packets: Sent = 4, Received = 0, Lost = 4 (100% loss), Approximate round trip times in milli-seconds:</div><div class="line">Minimum = 0ms, Maximum = 0ms, Average = 0ms</div></pre></td></tr></table></figure>
+<p>上面的式子中，-l 是 L 的小写（不是 1 喔），1500 是我们要测的 MTU 值，结果出现了 Packet needs to be fragmented but DF set. 这个东西，那表示MTU值太大了，你需要更小的 MTU 值才行！好啦！那假设我们使用 1464 来测试时：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">C:\WINDOWS&gt;ping -f -l 1464 127.0.0.1</div><div class="line">Pinging 127.0.0.1 with 1464 bytes of data:</div><div class="line">Reply from 127.0.0.1: bytes=1464 time=10ms TTL=128</div><div class="line">Reply from 127.0.0.1: bytes=1464 time&lt;10ms TTL=128</div><div class="line">Reply from 127.0.0.1: bytes=1464 time&lt;10ms TTL=128</div><div class="line">Reply from 127.0.0.1: bytes=1464 time&lt;10ms TTL=128</div><div class="line">Ping statistics for 127.0.0.1:</div><div class="line">Packets: Sent = 4, Received = 4, Lost = 0 (0% loss), Approximate round trip times in milli-seconds:</div><div class="line">Minimum = 0ms, Maximum = 10ms, Average = 2ms</div></pre></td></tr></table></figure></p>
+<p>结果出现了回应了！这表示这一个 MTU 值是可行的！不过，强烈建议找出可行的最大 MTU 值！这样一来，在设定的时候，才可以达到最佳的网速！</p>
+<p>找出 MTU 值：利用上面这个方法找到的数值还不是 MTU 喔！由于一些封包上面的问题，上面这个值再加上 28 才是我们所需要的 MTU 值！所以，在上面的例子中，我们所需要的 MTU 值是 1464+28=1492！</p>
+<p>一般来讲，设计好本机的MTU值，可以解决部分网站打不开的情况，但是如果你的共享主机或路由器的MTU设置有问题，有时问题仍然存或，或者出现网速过慢的情况。合理的设置路由器与本机的MTU值，就可以完全解决上述问题，使上网速度达到最大化。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/02/03/robots-list/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/02/03/robots-list/" itemprop="url">
+                  搜索引擎爬虫程序一览表
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-02-03T00:00:00+08:00">
+                2008-02-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Analytics/" itemprop="url" rel="index">
+                    <span itemprop="name">Analytics</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/02/03/robots-list/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/02/03/robots-list/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="高强度爬虫程序"><a href="#高强度爬虫程序" class="headerlink" title="高强度爬虫程序"></a><e1>高强度爬虫程序</e1></h2><h3 id="百度爬虫"><a href="#百度爬虫" class="headerlink" title="百度爬虫"></a>百度爬虫</h3><p><strong>Baiduspider+(+<a href="http://www.baidu.com/search/spider.htm" target="_blank" rel="external">http://www.baidu.com/search/spider.htm</a>)</strong>  </p>
+<blockquote>
+<p>高强度爬虫，有时会从多个IP地址启动多个爬虫程序！<br>由于算法问题，百度爬虫对相同页面会多次发出请求（尤其是首页），令人烦恼。<br>推广效果好。</p>
+</blockquote>
+<h3 id="雅虎爬虫，分别是雅虎中国和美国总部的爬虫"><a href="#雅虎爬虫，分别是雅虎中国和美国总部的爬虫" class="headerlink" title="雅虎爬虫，分别是雅虎中国和美国总部的爬虫"></a>雅虎爬虫，分别是雅虎中国和美国总部的爬虫</h3><p><strong>Mozilla/5.0 (compatible; Yahoo! Slurp China; <a href="http://misc.yahoo.com.cn/help.html" target="_blank" rel="external">http://misc.yahoo.com.cn/help.html</a>)<br>Mozilla/5.0 (compatible; Yahoo! Slurp; <a href="http://help.yahoo.com/help/us/ysearch/slurp" target="_blank" rel="external">http://help.yahoo.com/help/us/ysearch/slurp</a>)</strong></p>
+<blockquote>
+<p>高强度爬虫，有时会从多个IP地址启动多个爬虫程序！<br>比较规范的爬虫，看参考其网址，设定爬虫访问间隔。（但需要考虑同时出现多个yahoo爬虫）<br>推广效果尚可。</p>
+</blockquote>
+<h3 id="新浪爱问爬虫"><a href="#新浪爱问爬虫" class="headerlink" title="新浪爱问爬虫"></a>新浪爱问爬虫</h3><p><strong>iaskspider/2.0(+<a href="http://iask.com/help/help_index.html" target="_blank" rel="external">http://iask.com/help/help_index.html</a>)<br>Mozilla/5.0 (compatible; iaskspider/1.0; MSIE 6.0)</strong></p>
+<blockquote>
+<p>算法差，大量扫描无实际意义的页面，对动态链接网站负担很大<br>推广效果差。  </p>
+</blockquote>
+<h3 id="搜狗爬虫"><a href="#搜狗爬虫" class="headerlink" title="搜狗爬虫"></a>搜狗爬虫</h3><p><strong>Sogou web spider/3.0(+<a href="http://www.sogou.com/docs/help/webmasters.htm#07" target="_blank" rel="external">http://www.sogou.com/docs/help/webmasters.htm#07</a>)<br>Sogou Push Spider/3.0(+<a href="http://www.sogou.com/docs/help/webmasters.htm#07" target="_blank" rel="external">http://www.sogou.com/docs/help/webmasters.htm#07</a>)</strong><br><em>【早期用法：“sogou spider”】</em></p>
+<blockquote>
+<p>算法差，大量扫描无实际意义的页面，对动态链接网站负担很大<br>推广效果差。</p>
+</blockquote>
+<h2 id="中等强度爬虫程序"><a href="#中等强度爬虫程序" class="headerlink" title="中等强度爬虫程序"></a><e2>中等强度爬虫程序</e2></h2><h3 id="Google爬虫"><a href="#Google爬虫" class="headerlink" title="Google爬虫"></a>Google爬虫</h3><p><strong>Mozilla/5.0 (compatible; Googlebot/2.1; +<a href="http://www.google.com/bot.html" target="_blank" rel="external">http://www.google.com/bot.html</a>)</strong></p>
+<blockquote>
+<p>算法优秀，多为访问有实际内容的页面<br>推广效果好。</p>
+</blockquote>
+<h3 id="Google-AdSense广告内容匹配爬虫"><a href="#Google-AdSense广告内容匹配爬虫" class="headerlink" title="Google AdSense广告内容匹配爬虫"></a>Google AdSense广告内容匹配爬虫</h3><p><strong>Mediapartners-Google/2.1</strong></p>
+<blockquote>
+<p>对网页收录有一定辅助作用。</p>
+</blockquote>
+<h3 id="网易爬虫"><a href="#网易爬虫" class="headerlink" title="网易爬虫"></a>网易爬虫</h3><p><strong>Mozilla/5.0 (compatible; YodaoBot/1.0; <a href="http://www.yodao.com/help/webmaster/spider/" target="_blank" rel="external">http://www.yodao.com/help/webmaster/spider/</a> )</strong><br><em>【早期采用“ OutfoxBot/0.5 (for internet experiments; http://”; outfoxbot@gmail.com)】</em></p>
+<blockquote>
+<p>其搜索算法需要改进<br>推广效果差。</p>
+</blockquote>
+<h3 id="Alexa排名爬虫"><a href="#Alexa排名爬虫" class="headerlink" title="Alexa排名爬虫"></a>Alexa排名爬虫</h3><p><strong>ia_archiver</strong></p>
+<blockquote>
+<p>用于检测网站是否做了alexa排名的作弊。</p>
+</blockquote>
+<h3 id="Twiceler"><a href="#Twiceler" class="headerlink" title="Twiceler"></a>Twiceler</h3><p><strong>Mozilla/5.0 (Twiceler-0.9 <a href="http://www.cuill.com/twiceler/robot.html" target="_blank" rel="external">http://www.cuill.com/twiceler/robot.html</a>)</strong></p>
+<blockquote>
+<p>美国斯坦福大学的一个学生研究项目。</p>
+</blockquote>
+<h2 id="其他搜索引擎的爬虫"><a href="#其他搜索引擎的爬虫" class="headerlink" title="其他搜索引擎的爬虫"></a><e3>其他搜索引擎的爬虫</e3></h2><p><strong>msnbot/1.0 (+<a href="http://search.msn.com/msnbot.htm" target="_blank" rel="external">http://search.msn.com/msnbot.htm</a>)</strong></p>
+<blockquote>
+<p>MSN爬虫<br>特点未知</p>
+</blockquote>
+<p><strong>msnbot-media/1.0 (+<a href="http://search.msn.com/msnbot.htm" target="_blank" rel="external">http://search.msn.com/msnbot.htm</a>)</strong></p>
+<blockquote>
+<p>（欢迎补充资料）<br>特点未知</p>
+</blockquote>
+<p><strong>Mozilla/4.0(compatible; MSIE 5.0; Windows 98; DigExt)</strong></p>
+<blockquote>
+<p>DigExt并非一个独立的爬虫程序，而是IE5的“允许脱机阅读”模式标记。</p>
+</blockquote>
+<p><strong>Mozilla/3.0 (compatible; Indy Library)</strong></p>
+<blockquote>
+<p>Indy Library本来是个开源程序库，但后来被spam bots冒用。<br>抓取强度：各服务器上不一定<br>推广效果：无</p>
+</blockquote>
+<p><strong>P.Arthur 1.1</strong></p>
+<blockquote>
+<p>据称为北大天网的搜索引擎爬虫程序</p>
+</blockquote>
+<p><strong>Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; QihooBot 1.0)</strong></p>
+<blockquote>
+<p>名字上看来是Qihoo的<br>特点未知</p>
+</blockquote>
+<p><strong>Gigabot</strong><br><strong>Gigabot/2.0 (<a href="http://www.gigablast.com/spider.html" target="_blank" rel="external">http://www.gigablast.com/spider.html</a>)</strong></p>
+<blockquote>
+<p>Gigabot搜索引擎爬虫。已被google收购？（欢迎补充资料）</p>
+</blockquote>
+<p><strong>eApolloBot/1.0 (eApollo search engine robot; <a href="http://www.eapollo.com“" target="_blank" rel="external">http://www.eapollo.com“</a>; eapollo at global-opto dot com)</strong></p>
+<p><strong>lanshanbot/1.0</strong></p>
+<blockquote>
+<p>据说是中搜爬虫。（欢迎补充资料）</p>
+</blockquote>
+<p>iearthworm/1.0, iearthworm@yahoo.com.cn</p>
+<blockquote>
+<p>专抓图片的爬虫，据说来源IP是3721或阿里巴巴。</p>
+</blockquote>
+<p><strong>TMCrawler</strong></p>
+<p><strong>Mozilla/5.0 (compatible; heritrix/1.10.2 +<a href="http://i.stanford.edu/" target="_blank" rel="external">http://i.stanford.edu/</a>)</strong></p>
+<blockquote>
+<p>开源的网络爬虫，一个数字图书馆项目。</p>
+</blockquote>
+<p><strong>WebNews http.pl</strong></p>
+<h2 id="RSS扫描器"><a href="#RSS扫描器" class="headerlink" title="RSS扫描器"></a><e4>RSS扫描器</e4></h2><h3 id="foxmail6"><a href="#foxmail6" class="headerlink" title="foxmail6"></a>foxmail6</h3><p><strong>rss.asp Mozilla/6.0 (MSIE 6.0; Windows NT 5.1;Foxmail/MILOWU)</strong></p>
+<blockquote>
+<p>这是用foxmail6.0订阅了你的rss</p>
+</blockquote>
+<h3 id="google的rss搜索扫描器"><a href="#google的rss搜索扫描器" class="headerlink" title="google的rss搜索扫描器"></a>google的rss搜索扫描器</h3><p><strong>rss.asp Feedfetcher-Google; (+<a href="http://www.google.com/feedfetcher.html" target="_blank" rel="external">http://www.google.com/feedfetcher.html</a>)</strong></p>
+<blockquote>
+<p>google的rss搜索扫描器</p>
+</blockquote>
+<h3 id="feedsky"><a href="#feedsky" class="headerlink" title="feedsky"></a>feedsky</h3><p><strong>rss.asp feedsky_spider <a href="http://www.feedsky.com" target="_blank" rel="external">http://www.feedsky.com</a></strong></p>
+<blockquote>
+<p>一款rss扫描器，有兴趣者进入此网站添加您的rss</p>
+</blockquote>
+<p>Powered by <a href="http://scribefire.com/" target="_blank" rel="external">ScribeFire</a>.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/02/02/MSN-use-firefox-open-url/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -794,333 +1213,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/01/23/linux-chmod-chown/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/01/23/linux-chmod-chown/" itemprop="url">
-                  Linux改变文件或目录的访问权限命令
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-01-23T00:00:00+08:00">
-                2008-01-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/01/23/linux-chmod-chown/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/01/23/linux-chmod-chown/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Linux改变文件或目录的访问权限命令</p>
-<p>Linux系统中的每个文件和目录都有访问许可权限，用它来确定谁可以通过何种方式对文件和目录进行访问和操作。</p>
-<p>文件或目录的访问权限分为只读，只写和可执行三种。以文件为例，只读权限表示只允许读其内容，而禁止对其做任何的更改操作。可执行权限表示允许将该文件 作为一个程序执行。文件被创建时，文件所有者自动拥有对该文件的读、写和可执行权限，以便于对文件的阅读和修改。用户也可根据需要把访问权限设置为需要的 任何组合。</p>
-<p>有三种不同类型的用户可对文件或目录进行访问：文件所有者，同组用户、其他用户。所有者一般是文件的创建者。所有者可以允许同组用户有权访问文件，还可以将文件的访问权限赋予系统中的其他用户。在这种情况下，系统中每一位用户都能访问该用户拥有的文件或目录。</p>
-<p>每一文件或目录的访问权限都有三组，每组用三位表示，分别为文件属主的读、写和执行权限；与属主同组的用户的读、写和执行权限；系统中其他用户的读、写和执行权限。当用ls -l命令显示文件或目录的详细信息时，最左边的一列为文件的访问权限。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ls -l sobsrc. tgz</div><div class="line">-rw-r–r– 1 root root 483997 Ju1 l5 17:3l sobsrc. tgz</div></pre></td></tr></table></figure>
-<p>横线代表空许可。r代表只读，w代表写，x代表可执行。注意这里共有10个位置。第一个字符指定了文件类型。在通常意义上，一个目录也是一个文件。如果第一个字符是横线，表示是一个非目录的文件。如果是d，表示是一个目录。<br>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- 　　　 rw- 　 r– 　 r–</div><div class="line">普通文件 文件主 组用户 其他用户</div></pre></td></tr></table></figure></p>
-<p>是文件sobsrc.tgz 的访问权限，表示sobsrc.tgz是一个普通文件；sobsrc.tgz的属主有读写权限；与sobsrc.tgz属主同组的用户只有读权限；其他用户也只有读权限。<br>确定了一个文件的访问权限后，用户可以利用Linux系统提供的chmod命令来重新设定不同的访问权限。也可以利用chown命令来更改某个文件或目录的所有者。利用chgrp命令来更改某个文件或目录的用户组。<br>下面分别对这些命令加以介绍。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2008/01/23/linux-chmod-chown/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/01/22/mysql-imput-output/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/01/22/mysql-imput-output/" itemprop="url">
-                  MySQL导出导入命令的用例
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-01-22T00:00:00+08:00">
-                2008-01-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/01/22/mysql-imput-output/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/01/22/mysql-imput-output/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>随着数据的增多，数据的备份显得日益重要，下面是mysql常用的数据导入导出命令。</p>
-<ol>
-<li><p>导出整个数据库</p>
-<p>格式：mysqldump -u 用户名 -p 数据库名 &gt; 导出的文件名  </p>
-</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2008/01/22/mysql-imput-output/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/49/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><span class="page-number current">50</span><a class="page-number" href="/page/51/">51</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><a class="extend next" rel="next" href="/page/51/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/49/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><span class="page-number current">50</span><a class="page-number" href="/page/51/">51</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><a class="extend next" rel="next" href="/page/51/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1163,7 +1260,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">284</span>
+                <span class="site-state-item-count">286</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1181,7 +1278,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">198</span>
+                <span class="site-state-item-count">199</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

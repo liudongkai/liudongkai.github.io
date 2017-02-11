@@ -328,7 +328,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/11/26/awk-no-wrap/">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/12/14/iconv-gbk-utf8/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="東木">
@@ -353,8 +353,8 @@
             
               
                 
-                <a class="post-title-link" href="/2008/11/26/awk-no-wrap/" itemprop="url">
-                  awk输出时不换行
+                <a class="post-title-link" href="/2008/12/14/iconv-gbk-utf8/" itemprop="url">
+                  Linux系统下处理从GB2312到UTF-8的转换
                 </a>
               
             
@@ -370,8 +370,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-11-26T00:00:00+08:00">
-                2008-11-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-12-14T00:00:00+08:00">
+                2008-12-14
               </time>
             
 
@@ -411,8 +411,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2008/11/26/awk-no-wrap/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/11/26/awk-no-wrap/" itemprop="commentCount"></span>
+                <a href="/2008/12/14/iconv-gbk-utf8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/12/14/iconv-gbk-utf8/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -440,12 +440,168 @@
       
         
           
-            <ol>
-<li>输出时使用printf</li>
-<li>输出后，利用 <code>tr -d &#39;n&#39;</code> 实现替换换行</li>
-<li><code>awk &#39;BEGIN{ORS=&quot;&quot;}{print $0;}&#39;</code> <strong>//推荐</strong></li>
-<li><code>awk &#39;{printf(&quot;%s&quot;,$0);}&#39;</code></li>
-</ol>
+            <p>UTF-8 这种编码已经是大势所趋，但是还有不少中文的文档保留着老式的 GB2312编码，而且只要你要和 Windows 打交道，就免不了要处理 GB2312 的问题，比如处理从 Windows 下拷过来的程序源代码、文本文件、字母文件之类。</p>
+<p>编码转换的方法估计大多数同学都知道了，不过还是有必要再强调一下，我就是老忘。</p>
+<p>Linux 下的 iconv 命令可以来处理字符编码的转换，基本命令格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iconv -f 原始编码 -t 目标编码 文件名 &gt; 新文件名</div></pre></td></tr></table></figure>
+<p>-f 代表 from，-t 代表 to。</p>
+<p>假设我要把 text.txt 从 GB2312 编码转换成 UTF-8，并且保存为 text-utf-8.txt 的话，那么命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iconv -f GB2312 -t utf-8 text.txt &gt; text-utf-8.txt</div></pre></td></tr></table></figure>
+<p>不过有的时候，转换会报错，很可能的原因是原文件中有些字符超过了 GB2312 的范围，那么，这个时候，我们可以把 GB2312 改成它的超集 GB18030，一般就解决问题了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iconv -f gb18030 -t utf-8 text.txt &gt; text-utf-8.txt</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/11/27/mysqldump-extended-insert/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/11/27/mysqldump-extended-insert/" itemprop="url">
+                  mysqldump导出sql中insert语句的问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-11-27T00:00:00+08:00">
+                2008-11-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/11/27/mysqldump-extended-insert/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/11/27/mysqldump-extended-insert/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>mysqldump怎么样才能够将导出的sql中，每条记录对应一个insert语句，默认总是导出一个长的insert语句，如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[zzx@localhost ~]$ mysqldump –compact -uroot test t1&gt; a</div><div class="line">[zzx@localhost ~]$ more a</div><div class="line">CREATE TABLE `t1` (</div><div class="line">`id` int(10) default NULL,</div><div class="line">UNIQUE KEY `idx_1` (`id`)</div><div class="line">) ENGINE=MyISAM DEFAULT CHARSET=gbk;</div><div class="line">INSERT INTO `t1` VALUES (1),(2),(3);</div></pre></td></tr></table></figure></p>
+<p>我们希望把导出语句中的insert改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">INSERT INTO `t1` VALUES (1);</div><div class="line">INSERT INTO `t1` VALUES (2);</div><div class="line">INSERT INTO `t1` VALUES (3);</div></pre></td></tr></table></figure></p>
+<p>这样在不支持insert多值的数据库中，可以很方便的进行迁移，其实方法很简单，只需要加 <code>–extented-insert=false</code>即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[zzx@localhost ~]$ mysqldump –compact –extended-insert=false -uroot test t1&gt; a</div><div class="line">[zzx@localhost ~]$ more a</div><div class="line">CREATE TABLE `t1` (</div><div class="line">`id` int(10) default NULL,</div><div class="line">UNIQUE KEY `idx_1` (`id`)</div><div class="line">) ENGINE=MyISAM DEFAULT CHARSET=gbk;</div><div class="line">INSERT INTO `t1` VALUES (1);</div><div class="line">INSERT INTO `t1` VALUES (2);</div><div class="line">INSERT INTO `t1` VALUES (3);</div></pre></td></tr></table></figure></p>
+<p>我们从mysqldump中可以看到此参数的默认值为true：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[zzx@localhost ~]$ mysqldump –help|grep extended-insert</div><div class="line">......</div><div class="line">extended-insert TRUE</div><div class="line">......</div></pre></td></tr></table></figure></p>
 
           
         
@@ -640,7 +796,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/11/22/shell-process-control/">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/11/26/awk-no-wrap/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="東木">
@@ -665,8 +821,8 @@
             
               
                 
-                <a class="post-title-link" href="/2008/11/22/shell-process-control/" itemprop="url">
-                  Shell程序设计的流程控制
+                <a class="post-title-link" href="/2008/11/26/awk-no-wrap/" itemprop="url">
+                  awk输出时不换行
                 </a>
               
             
@@ -682,8 +838,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-11-22T00:00:00+08:00">
-                2008-11-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-11-26T00:00:00+08:00">
+                2008-11-26
               </time>
             
 
@@ -723,8 +879,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2008/11/22/shell-process-control/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/11/22/shell-process-control/" itemprop="commentCount"></span>
+                <a href="/2008/11/26/awk-no-wrap/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/11/26/awk-no-wrap/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -751,26 +907,15 @@
 
       
         
-          <p>和其他高级程序设计语言一样，Shell提供了用来控制程序执行流程的命令，包括条件分支和循环结构，用户可以用这些命令创建非常复杂的程序。</p>
-<p>与传统语言不同的是，Shell用于指定条件值的不是布尔运算式，而是命令和字串。</p>
-<ol>
-<li><p>测试命令</p>
-<p>test命令用于检查某个条件是否成立，它可以进行数值、字符和文件3个方面的测试，其测试符和相应的功能分别如下。</p>
-<ul>
-<li><p>数值测试：<br>-eq 等于则为真。<br>-ne 不等于则为真。<br>-gt 大于则为真。<br>-ge 大于等于则为真。<br>-lt 小于则为真。<br>-le 小于等于则为真。</p>
-</li>
-<li><p>字串测试：<br>= 等于则为真。<br>!= 不相等则为真。<br>-z 字串 字串长度伪则为真。<br>-n 字串 字串长度不伪则为真。</p>
-</li>
-</ul>
-</li>
+          
+            <ol>
+<li>输出时使用printf</li>
+<li>输出后，利用 <code>tr -d &#39;n&#39;</code> 实现替换换行</li>
+<li><code>awk &#39;BEGIN{ORS=&quot;&quot;}{print $0;}&#39;</code> <strong>//推荐</strong></li>
+<li><code>awk &#39;{printf(&quot;%s&quot;,$0);}&#39;</code></li>
 </ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2008/11/22/shell-process-control/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+
+          
         
       
     </div>
@@ -954,164 +1099,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/11/04/Windows7-font-Gabriola/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/11/04/Windows7-font-Gabriola/" itemprop="url">
-                  Windows7 中的新字体: Gabriola
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-11-04T00:00:00+08:00">
-                2008-11-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/11/04/Windows7-font-Gabriola/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/11/04/Windows7-font-Gabriola/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="http://photo.liudongkai.com/blog/200811041621461562.png" alt=""></p>
-<p>Windows 7 测试版中添加了好几种新字体, 其中大部分是为了解决某一种语言的显示问题而制作, 不过这一款 Gabriola 则是额外献给大家的礼物. Gabriola 由 <a href="http://www.tiro.com/" target="_blank" rel="external">Tiro Typeworks</a> 的 John Hudson 所设计, 属于 TT-OT 字体, 其中包含了相当多的花体字母, 花饰, 连字, 以及配套的扩展拉丁字母, 体积达到了 3MB 之巨… 微软在 PDC 大会上还特地<a href="http://www.istartedsomething.com/20081030/improvements-to-fonts-in-windows-7/" target="_blank" rel="external">介绍到它</a>. 刚装了 Windows 7, 找出来分享给大家.</p>
-<p><a href="/files/Font_Gabriola.7z">点击下载</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/33/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><span class="page-number current">34</span><a class="page-number" href="/page/35/">35</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><a class="extend next" rel="next" href="/page/35/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/33/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><span class="page-number current">34</span><a class="page-number" href="/page/35/">35</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><a class="extend next" rel="next" href="/page/35/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1154,7 +1146,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">284</span>
+                <span class="site-state-item-count">286</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1172,7 +1164,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">198</span>
+                <span class="site-state-item-count">199</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

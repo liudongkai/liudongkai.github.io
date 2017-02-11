@@ -328,6 +328,164 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/05/02/Linux-count-apache-connections/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2009/05/02/Linux-count-apache-connections/" itemprop="url">
+                  Linux下查看apache连接数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-05-02T00:00:00+08:00">
+                2009-05-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2009/05/02/Linux-count-apache-connections/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2009/05/02/Linux-count-apache-connections/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Linux命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps -ef | grep httpd | wc -l</div></pre></td></tr></table></figure></p>
+<p>查看Apache的并发请求数及其TCP连接状态：</p>
+<p>Linux命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -n | awk ‘/^tcp/ &#123;++S[$NF]&#125; END &#123;for(a in S) print a, S[a]&#125;’</div></pre></td></tr></table></figure></p>
+<p>返回结果示例：</p>
+<blockquote>
+<p>　　LAST_ACK 5<br>　　SYN_RECV 30<br>　　ESTABLISHED 1597<br>　　FIN_WAIT1 51<br>　　FIN_WAIT2 504<br>　　TIME_WAIT 1057  </p>
+</blockquote>
+<p>说明:　　<br>SYN_RECV表示正在等待处理的请求数；<br>ESTABLISHED表示正常数据传输状态；<br>TIME_WAIT表示处理完毕，等待超时结束的请求数。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/04/19/cmd-hidden-run/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -493,6 +651,182 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/04/19/mysql-delete-binlog/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2009/04/19/mysql-delete-binlog/" itemprop="url">
+                  删除MYSQl BIN-LOG 日志[zt]
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-04-19T00:00:00+08:00">
+                2009-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2009/04/19/mysql-delete-binlog/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2009/04/19/mysql-delete-binlog/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>想要恢愎数据库以前的资料,执行:show binlog events;屏幕就开始闪,闪的人眼花,心里烦(那有这么多没有用的破LOG^0^),还是删除一些去吧!</p>
+<ol>
+<li><p>列出当前的binlog文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show binary logs;</div><div class="line">+------------------+-----------+</div><div class="line">| Log_name         | File_size |</div><div class="line">+------------------+-----------+</div><div class="line">| mysql-bin.000001 | 150462942 |</div><div class="line">| mysql-bin.000002 |       125 |</div><div class="line">| mysql-bin.000003 |       106 |</div><div class="line">+------------------+-----------+</div><div class="line">3 rows in set (0.00 sec)</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除bin-log(删除mysql-bin.000003之前的而没有包含mysql-bin.000003)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysql&gt; purge binary logs to &apos;mysql-bin.000003&apos;;</div><div class="line">Query OK, 0 rows affected (0.16 sec)</div></pre></td></tr></table></figure>
+</li>
+<li><p>查询结果(现在只有一条记录了.)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show binlog events\G</div><div class="line">*************************** 1. row ***************************</div><div class="line">Log_name: mysql-bin.000003</div><div class="line">Pos: 4</div><div class="line">Event_type: Format_desc</div><div class="line">Server_id: 1</div><div class="line">End_log_pos: 106</div><div class="line">Info: Server ver: 5.1.26-rc-log, Binlog ver: 4</div><div class="line">1 row in set (0.01 sec)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>(mysql-bin.000001和mysql-bin.000002已被删除)</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show binary logs;</div><div class="line">+------------------+-----------+</div><div class="line">| Log_name         | File_size |</div><div class="line">+------------------+-----------+</div><div class="line">| mysql-bin.000003 |       106 |</div><div class="line">+------------------+-----------+</div><div class="line">1 row in set (0.00 sec)</div></pre></td></tr></table></figure>
+<p> (删除的其它格式运用!)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">PURGE &#123;MASTER | BINARY&#125; LOGS TO &apos;log_name&apos;</div><div class="line">PURGE &#123;MASTER | BINARY&#125; LOGS BEFORE &apos;date&apos;</div></pre></td></tr></table></figure></p>
+<p> 用于删除列于在指定的日志或日期之前的日志索引中的所有二进制日志。这些日志也会从记录在日志索引文件中的清单中被删除，这样被给定的日志成为第一个。<br> 例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">PURGE MASTER LOGS TO &apos;mysql-bin.010&apos;;</div><div class="line">PURGE MASTER LOGS BEFORE &apos;2008-06-22 13:00:00&apos;;</div></pre></td></tr></table></figure></p>
+<p> 清除3天前的 binlog<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">PURGE MASTER LOGS BEFORE DATE_SUB( NOW( ), INTERVAL 3 DAY);</div></pre></td></tr></table></figure></p>
+<p> BEFORE变量的date自变量可以为’YYYY-MM-DD hh:mm:ss’格式。MASTER和BINARY是同义词。<br> 如果您有一个活性的从属服务器，该服务器当前正在读取您正在试图删除的日志之一，则本语句不会起作用，而是会失败，并伴随一个错误。不过，如果从属服务器是休止的，并且您碰巧清理了其想要读取的日志之一，则从属服务器启动后不能复制。当从属服务器正在复制时，本语句可以安全运行。您不需要停止它们。</p>
+<p> 要清理日志，需按照以下步骤：</p>
+<ol>
+<li>在每个从属服务器上，使用<code>SHOW SLAVE STATUS</code>来检查它正在读取哪个日志。</li>
+<li>使用<code>SHOW MASTER LOGS</code>获得主服务器上的一系列日志。</li>
+<li>在所有的从属服务器中判定最早的日志。这个是目标日志。如果所有的从属服务器是更新的，这是清单上的最后一个日志。</li>
+<li>制作您将要删除的所有日志的备份。（这个步骤是自选的，但是建议采用。）</li>
+<li>清理所有的日志，但是不包括目标日志我。</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/04/04/SQL-server-replace-regular/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -606,164 +940,6 @@
         
           
             <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">create function dbo.regexReplace</div><div class="line">(</div><div class="line">@source varchar(5000), –原字符串</div><div class="line">@regexp varchar(1000), –正則表換式</div><div class="line">@replace varchar(1000), –替換值</div><div class="line">@globalReplace bit = 0, –是否是全局替換</div><div class="line">@ignoreCase bit = 0 –是否忽略大小寫</div><div class="line">)</div><div class="line">returnS varchar(1000) AS</div><div class="line">begin</div><div class="line">declare @hr integer</div><div class="line">declare @objRegExp integer</div><div class="line">declare @result varchar(5000)</div><div class="line"></div><div class="line">exec @hr = sp_OACreate &apos;VBScript.RegExp&apos;, @objRegExp OUTPUT</div><div class="line">IF @hr &lt;&gt; 0 begin</div><div class="line">exec @hr = sp_OADestroy @objRegExp</div><div class="line">return null</div><div class="line">end</div><div class="line">exec @hr = sp_OASetProperty @objRegExp, &apos;Pattern&apos;, @regexp</div><div class="line">IF @hr &lt;&gt; 0 begin</div><div class="line">exec @hr = sp_OADestroy @objRegExp</div><div class="line">return null</div><div class="line">end</div><div class="line">exec @hr = sp_OASetProperty @objRegExp, &apos;Global&apos;, @globalReplace</div><div class="line">IF @hr &lt;&gt; 0 begin</div><div class="line">exec @hr = sp_OADestroy @objRegExp</div><div class="line">return null</div><div class="line">end</div><div class="line">exec @hr = sp_OASetProperty @objRegExp, &apos;IgnoreCase&apos;, @ignoreCase</div><div class="line">IF @hr &lt;&gt; 0 begin</div><div class="line">exec @hr = sp_OADestroy @objRegExp</div><div class="line">return null</div><div class="line">end</div><div class="line">exec @hr = sp_OAMethod @objRegExp, &apos;Replace&apos;, @result OUTPUT, @source, @replace</div><div class="line">IF @hr &lt;&gt; 0 begin</div><div class="line">exec @hr = sp_OADestroy @objRegExp</div><div class="line">return null</div><div class="line">end</div><div class="line">exec @hr = sp_OADestroy @objRegExp</div><div class="line">IF @hr &lt;&gt; 0 begin</div><div class="line">return null</div><div class="line">end</div><div class="line"></div><div class="line">return @result</div><div class="line">end</div><div class="line">GO</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/12/14/iconv-gbk-utf8/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/12/14/iconv-gbk-utf8/" itemprop="url">
-                  Linux系统下处理从GB2312到UTF-8的转换
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-12-14T00:00:00+08:00">
-                2008-12-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/12/14/iconv-gbk-utf8/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/12/14/iconv-gbk-utf8/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>UTF-8 这种编码已经是大势所趋，但是还有不少中文的文档保留着老式的 GB2312编码，而且只要你要和 Windows 打交道，就免不了要处理 GB2312 的问题，比如处理从 Windows 下拷过来的程序源代码、文本文件、字母文件之类。</p>
-<p>编码转换的方法估计大多数同学都知道了，不过还是有必要再强调一下，我就是老忘。</p>
-<p>Linux 下的 iconv 命令可以来处理字符编码的转换，基本命令格式如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iconv -f 原始编码 -t 目标编码 文件名 &gt; 新文件名</div></pre></td></tr></table></figure>
-<p>-f 代表 from，-t 代表 to。</p>
-<p>假设我要把 text.txt 从 GB2312 编码转换成 UTF-8，并且保存为 text-utf-8.txt 的话，那么命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iconv -f GB2312 -t utf-8 text.txt &gt; text-utf-8.txt</div></pre></td></tr></table></figure>
-<p>不过有的时候，转换会报错，很可能的原因是原文件中有些字符超过了 GB2312 的范围，那么，这个时候，我们可以把 GB2312 改成它的超集 GB18030，一般就解决问题了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iconv -f gb18030 -t utf-8 text.txt &gt; text-utf-8.txt</div></pre></td></tr></table></figure>
           
         
       
@@ -969,165 +1145,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/11/27/mysqldump-extended-insert/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/11/27/mysqldump-extended-insert/" itemprop="url">
-                  mysqldump导出sql中insert语句的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-11-27T00:00:00+08:00">
-                2008-11-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/11/27/mysqldump-extended-insert/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/11/27/mysqldump-extended-insert/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>mysqldump怎么样才能够将导出的sql中，每条记录对应一个insert语句，默认总是导出一个长的insert语句，如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[zzx@localhost ~]$ mysqldump –compact -uroot test t1&gt; a</div><div class="line">[zzx@localhost ~]$ more a</div><div class="line">CREATE TABLE `t1` (</div><div class="line">`id` int(10) default NULL,</div><div class="line">UNIQUE KEY `idx_1` (`id`)</div><div class="line">) ENGINE=MyISAM DEFAULT CHARSET=gbk;</div><div class="line">INSERT INTO `t1` VALUES (1),(2),(3);</div></pre></td></tr></table></figure></p>
-<p>我们希望把导出语句中的insert改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">INSERT INTO `t1` VALUES (1);</div><div class="line">INSERT INTO `t1` VALUES (2);</div><div class="line">INSERT INTO `t1` VALUES (3);</div></pre></td></tr></table></figure></p>
-<p>这样在不支持insert多值的数据库中，可以很方便的进行迁移，其实方法很简单，只需要加 <code>–extented-insert=false</code>即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[zzx@localhost ~]$ mysqldump –compact –extended-insert=false -uroot test t1&gt; a</div><div class="line">[zzx@localhost ~]$ more a</div><div class="line">CREATE TABLE `t1` (</div><div class="line">`id` int(10) default NULL,</div><div class="line">UNIQUE KEY `idx_1` (`id`)</div><div class="line">) ENGINE=MyISAM DEFAULT CHARSET=gbk;</div><div class="line">INSERT INTO `t1` VALUES (1);</div><div class="line">INSERT INTO `t1` VALUES (2);</div><div class="line">INSERT INTO `t1` VALUES (3);</div></pre></td></tr></table></figure></p>
-<p>我们从mysqldump中可以看到此参数的默认值为true：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[zzx@localhost ~]$ mysqldump –help|grep extended-insert</div><div class="line">......</div><div class="line">extended-insert TRUE</div><div class="line">......</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/32/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><span class="page-number current">33</span><a class="page-number" href="/page/34/">34</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><a class="extend next" rel="next" href="/page/34/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/32/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><span class="page-number current">33</span><a class="page-number" href="/page/34/">34</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><a class="extend next" rel="next" href="/page/34/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1170,7 +1192,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">284</span>
+                <span class="site-state-item-count">286</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1188,7 +1210,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">198</span>
+                <span class="site-state-item-count">199</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

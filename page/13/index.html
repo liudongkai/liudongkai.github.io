@@ -328,6 +328,335 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2013/09/22/VirtualBox-uuid-is-exists/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/09/22/VirtualBox-uuid-is-exists/" itemprop="url">
+                  解决导入.vdi文件时报“uuid is exists”错误
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-09-22T00:00:00+08:00">
+                2013-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/VM/" itemprop="url" rel="index">
+                    <span itemprop="name">VM</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2013/09/22/VirtualBox-uuid-is-exists/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/09/22/VirtualBox-uuid-is-exists/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>打开 虚拟硬盘 G:\CentOS2.vdi 失败</p>
+<p>Cannot register the hard disk ‘G:\CentOS2.vdi’<br>{3b2f08eb-b810-4715-bee0-bb06b9880ad2}<br>because a hard disk’G:\CentOS.vdi’ with UUID<br>{3b2f08eb-b810-4715-bee0-bb06b9880ad2}<br>already exists.</p>
+</blockquote>
+<p>解决方法：</p>
+<p>用命令行进入VirtualBox的安装目录，使用下面的命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">C:\Program Files\Oracle\VirtualBox&gt;VBoxManage.exe internalcommands setvdiuuid &quot;G:\CentOS2.vdi&quot;</div></pre></td></tr></table></figure>
+<p>注意，在virtualbox4.0.4以上该命令改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">C:\Program Files\Oracle\VirtualBox&gt;VBoxManage.exe internalcommands sethduuid &quot;G:\CentOS2.vdi&quot;</div></pre></td></tr></table></figure>
+<p>然后重新导入即可。</p>
+<p>这是一个重新设置UUID号的命令，VirtualBox没有集成到GUI环境中，只能在命令行中使用。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2013/08/02/mysql-smart-patch/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/08/02/mysql-smart-patch/" itemprop="url">
+                  MySQL备库复制SQL线程中断问题及解决方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-08-02T00:00:00+08:00">
+                2013-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2013/08/02/mysql-smart-patch/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/08/02/mysql-smart-patch/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>MySQL5.6之前的备库复制有两个工作线程：IO线程和SQL线程。SQL线程异常导致复制被中断。</p>
+<p>许多DBA会遭受备库复制线程中断的报警，具体说来常见的错误有如下几类：</p>
+<ul>
+<li>1032错误 – HA_ERR_KEY_NOT_FOUND</li>
+<li>1062错误 – HA_ERR_FOUND_DUPP_KEY （HA_ERR_FOUND_DUPP_KEY 或 HA_ERR_FOUND_DUPP_UNIQUE）</li>
+</ul>
+<h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>主备数据一不致，往往是由于MySQL的Bug导致，其中MySQL复制相关的Bug从每次Release Notes都可以看到相关的身影，就我们最近两周线上遇到的列举如下：</p>
+<ul>
+<li><a href="http://bugs.mysql.com/bug.php?id=56226">Table map set to 0 after altering MyISAM table</a> （对InnoDB表也会触发）</li>
+<li><a href="http://bugs.mysql.com/bug.php?id=54453">Failing assertion: trx-&gt;active_trans when renaming a table with active trx</a></li>
+<li><a href="https://bugs.launchpad.net/bugs/951588">Querying I_S.GLOBAL_TEMPORARY_TABLES or TEMPORARY_TABLES crashes threads working with temp tables</a> （非DEBUG版本也存在）</li>
+</ul>
+<p>当然，最大的一个未知的因素是主库宕机，甚至为保证服务可用而做的主备切换，有多少数据不致，我们心里没有谱。只有依赖后续的定时扫描来做事后检测。虽然我们目前做的MHA从一定程度上回减少数据不一致的数量，但也无法做到数据严格一致。这个问题是MySQL社区的一大难题，在些不展开讨论。</p>
+<p>另外，有发生异常时，DBA的不严格操作也可能会加深这种数据不一致的影响，例如，遇到错误时，跳过若干错误，直到复制能正常工作。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2013/08/02/mysql-smart-patch/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2013/08/01/mysql-smart-path-yinfeng/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -827,350 +1156,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2013/05/05/windows-explorer-my-computer/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/05/05/windows-explorer-my-computer/" itemprop="url">
-                  让win7和win8任务栏上的资源管理器直接打开我的电脑
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-05-05T00:00:00+08:00">
-                2013-05-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Windows/" itemprop="url" rel="index">
-                    <span itemprop="name">Windows</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/05/05/windows-explorer-my-computer/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/05/05/windows-explorer-my-computer/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="win7"><a href="#win7" class="headerlink" title="win7"></a>win7</h2><p>在默认情况下，任务栏上会有一个“库”按钮，单击之后会进入系统的“库”文件夹，但是我们一般很少用这个库，更多的还是直接到计算机选项，怎样更改显示为计算机，而不是跳到库里面呢？其实更改非常简单：</p>
-<p>右键点击“库”按钮，再右键点击“Windows资源管理器”，选择“属性”，如图所示。</p>
-<p><img src="http://photo.liudongkai.com/blog/071502Ada.jpg" alt="win7_windows资源管理器"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2013/05/05/windows-explorer-my-computer/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2013/04/17/xml-sql-symbol-convert/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/04/17/xml-sql-symbol-convert/" itemprop="url">
-                  通过xml处理sql语句时对小于号与大于号的处理转换
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-04-17T00:00:00+08:00">
-                2013-04-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2013/04/17/xml-sql-symbol-convert/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/04/17/xml-sql-symbol-convert/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>当我们需要通过xml格式处理sql语句时，经常会用到&lt; ，&lt;=，&gt;，&gt;=等符号，但是很容易引起xml格式的错误，这样会导致后台将xml字符串转换为xml文档时报错，从而导致程序错误。</p>
-<p>这样的问题在iBatiS中或者自定义的xml处理sql的程序中经常需要我们来处理。其实很简单，我们只需作如下替换即可避免上述的错误：</p>
-<table>
-<thead>
-<tr>
-<th>原符号</th>
-<th>&lt;</th>
-<th>&lt;=</th>
-<th>&gt;</th>
-<th>&gt;=</th>
-<th>&amp;</th>
-<th>‘</th>
-<th>“</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>替换符号</td>
-<td><code>&amp;lt;</code></td>
-<td><code>&amp;lt;=</code></td>
-<td><code>&amp;gt;</code></td>
-<td><code>&amp;gt;=</code></td>
-<td><code>&amp;amp;</code></td>
-<td><code>&amp;apos;</code></td>
-<td><code>&amp;quot;</code></td>
-</tr>
-</tbody>
-</table>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2013/04/17/xml-sql-symbol-convert/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1213,7 +1203,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">284</span>
+                <span class="site-state-item-count">286</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1231,7 +1221,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">198</span>
+                <span class="site-state-item-count">199</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

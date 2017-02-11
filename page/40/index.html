@@ -328,6 +328,181 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/18/sed-command-r/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/05/18/sed-command-r/" itemprop="url">
+                  sed命令示例：'r'
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-18T00:00:00+08:00">
+                2008-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/05/18/sed-command-r/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/18/sed-command-r/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>‘r’命令用来读入文本。与’a’的作用相似，但文本是放在独立的文件而不是放在脚本中。用’r’的好处在于将数据与脚本独立，使脚本更易读并且修改数据文件更方便。</p>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>这是GNU sed自带文档中对’r’命令的说明：</p>
+<blockquote>
+<p><code>r filename</code><br>Queue the contents of filename to be read and inserted into the output stream at the end of the current cycle, or when the next input line is read. Note that if filename cannot be read, it is treated as if it were an empty file, without any error indication.</p>
+</blockquote>
+<p>GNU对这个命令进行了扩展：</p>
+<ul>
+<li>接受两个地址。可以对一定的地址区间进行操作</li>
+<li>允许使用/dev/stdin作为文件名</li>
+<li>新增了一个<code>R</code>命令。这个命令用法与<code>r</code>一样但一次只读入一行。</li>
+</ul>
+<p>另外一些需要注意的地方：</p>
+<ul>
+<li>文件不能读取时，则当成空文件处理不会有出错信息。</li>
+<li>r 命令之后不能再使用其他命令，因而如果后面的命令要另起一行或以’-e’选项隔开。</li>
+<li>r是在当前的cycle结束后才在最后加入内容的，所以在无法在cycle中对读入的内容进行操作的。</li>
+</ul>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>我一向认为一个例子比得上千言万语。看个例子先：现有一个网页要进行如下修改，在中增加标签。在标签前增加版权声明的标签。我们将要在标签后的内容放在meta.tag中。将放在文件未尾的内容放在copyleft.tag中。里面的内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ cat meta.tag</div><div class="line"></div><div class="line">$ cat copyleft.tag</div><div class="line">版权所有……</div></pre></td></tr></table></figure></p>
+<p>我们需要的命令是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sed &apos;/&lt; /title&gt;/r meta.tag</div><div class="line">/&lt; /body&gt;/&#123;</div><div class="line">x</div><div class="line">r copyleft.tag</div><div class="line">G&#125;&apos; samp.html</div></pre></td></tr></table></figure></p>
+<p>写成单行的形式就是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed -e &apos;/&lt; /title&gt;/r meta.tag&apos; -e &apos;/&lt; /body&gt;/&#123;x;r copyleft.tag&apos; -e &apos;G&#125;&apos; samp.html</div></pre></td></tr></table></figure></p>
+<p>如果你在Windows的命令行上使用的话，那就根据你所用的版本将单引号相应的改为双引号。不过请务必注意上面脚本是一个简化的情形，因为标签也可能有大写字母(更复杂的情形是title后的方括号也许在下面一行)（虽然W3C的XHTML中要求标签必须是小写，但这种可能性是存在的视你自已的情况而定。）如果你用的是GNU sed的话那恭喜，你可以在式样后使用’I’修改符（modifier）：/&lt; /title&gt;/I。否则：/&lt; /[tT][iI] [tT][lL][eE]&gt;/当然偶尔可以偷懒：/&lt; /[tT].[tT].[eE]&gt;/。</p>
+<p>实例：批量修改</p>
+<p>当然我们想修改的通常不会只是一个文件，于是我们需要用到shell（注意文件的读写权限）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ for a in &apos;find . -name &quot;*.html&quot;&apos;</div><div class="line">do</div><div class="line">mv $a $a.bak</div><div class="line">sed -e &apos;/&lt; /title&gt;/r meta.tag&apos; -e &apos;/&lt; /body&gt;/&#123;x;r copyleft.tag&apos; -e &apos;G&#125;&apos; $a.bak &gt;$a</div><div class="line">done</div></pre></td></tr></table></figure></p>
+<p>find有一个-exec，但是如果参数太多会出错因而这里使用了for命令。<br>如果是Windows平台：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">for /R %a in (*.html) do @copy %a %a.bak &amp; @sed -e &quot;…&quot; %a.bak&gt;%a</div><div class="line">``</div><div class="line">在批处理中使用时记得要用&apos;%%&apos;代替&apos;%&apos;。</div><div class="line">如果你用的是GNU sed 4.0或以上版本，那你可以使用-i选项代替&apos;mv&apos;命令：</div></pre></td></tr></table></figure></p>
+<p>$ for a in ‘find . -name “*.html”‘<br>do<br>gsed -i.bak -e ‘<br>/&lt; /title&gt;/r meta.tag<br>/&lt; /body&gt;/{<br>x<br>r copyleft.tag<br>G}’ $a<br>done<br>```</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/18/regular-expression/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -459,6 +634,164 @@
             </a>
           </div>
           <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/18/sed-one-liner/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="東木">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Dong's Note">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/05/18/sed-one-liner/" itemprop="url">
+                  SED单行脚本快速参考
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-18T00:00:00+08:00">
+                2008-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/05/18/sed-one-liner/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/18/sed-one-liner/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近版本的SED ONE-LINER现在可以在sed.sourceforge.net上找到了。有多个语言版本也包括了简体中文版本。意大利语和西班牙语的翻译也正在进行中。</p>
+<blockquote>
+<p>SED单行脚本快速参考（Unix 流编辑器） 2005年12月29日</p>
+<p>英文标题：USEFUL ONE-LINE SCRIPTS FOR SED (Unix stream editor)<br>原标题：HANDY ONE-LINERS FOR SED (Unix stream editor)</p>
+<p>整理：Eric Pement – 电邮：pemente[at]northpark[dot]edu 版本5.5<br>译者：Joe Hong – 电邮：hq00e[at]126[dot]com</p>
+<p>在以下地址可找到本文档的最新（英文）版本：<br><a href="http://sed.sourceforge.net/sed1line.txt" target="_blank" rel="external">http://sed.sourceforge.net/sed1line.txt</a><br><a href="http://www.pement.org/sed/sed1line.txt" target="_blank" rel="external">http://www.pement.org/sed/sed1line.txt</a></p>
+<p>其他语言版本：<br>中文 – <a href="http://sed.sourceforge.net/sed1line_zh-CN.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_zh-CN.html</a><br>捷克语 – <a href="http://sed.sourceforge.net/sed1line_cz.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_cz.html</a><br>荷语 – <a href="http://sed.sourceforge.net/sed1line_nl.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_nl.html</a><br>法语 – <a href="http://sed.sourceforge.net/sed1line_fr.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_fr.html</a><br>德语 – <a href="http://sed.sourceforge.net/sed1line_de.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_de.html</a><br>葡语 – <a href="http://sed.sourceforge.net/sed1line_pt-BR.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_pt-BR.html</a></p>
+</blockquote>
+
+          
         
       
     </div>
@@ -795,318 +1128,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/14/fixed-IDE-ACDStd-apl/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/05/14/fixed-IDE-ACDStd-apl/" itemprop="url">
-                  IDE_ACDStd.apl，不可恢复的插件错误
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-14T00:00:00+08:00">
-                2008-05-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/05/14/fixed-IDE-ACDStd-apl/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/14/fixed-IDE-ACDStd-apl/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="http://photo.liudongkai.com/blog/Snap1.png" alt=""></p>
-<p>ACDSee3.1 RC1 蓝色网际版，带Picaview插件，报”不可恢复的插件错误“的解决办法：</p>
-<p>在系统属性=&gt;高级=&gt;数据执行保护，选择第二项”为除下列选定程序之外的所有程序和服务启用DEP“，然后将ACDSeeX.EXE，IDE_ACDStd.apl,PicaView.dll 一并添加进去。</p>
-<p><img src="http://photo.liudongkai.com/blog/Snap2.png" alt=""></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/14/The-Duke-of-Mount-Deer/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/05/14/The-Duke-of-Mount-Deer/" itemprop="url">
-                  时代商报：《鹿鼎记》一定要艳吗？
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-14T00:00:00+08:00">
-                2008-05-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/05/14/The-Duke-of-Mount-Deer/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/14/The-Duke-of-Mount-Deer/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>韦小宝的形象是一个经典，所以当这个经典被无数次翻拍的时候，人们每一次都会有不同的意见和建议，这次也不例外。经过梁朝伟和陈小春等人多次演绎后，黄晓明这个有史以来最帅的“小宝”终于开始接受人们的检阅了。只是这次，第一个下结论的是这部戏的导演、大胡子张纪中昨天很认真地对人们说：“这个版本是以前所有版本当中最靓丽的，用贬义的词来说是最香艳的。”但是我们想问的是：“难道《鹿鼎记》就一定要香艳吗？”</p>
-<p>是的，所有人都是这样认为，包括导演。一个男人和七个女人的故事，该怎么讲？导演最开始的定位就是不香艳，“我们不会去删减什么。”导演信誓旦旦地承诺，但是我们不禁要问：“我们没有人说你的《鹿鼎记》怎么样啊？我们只是想看一个活力四射的、机智搞笑的韦小宝。”和《色，戒》一个道理，有些东西其实不需要情色，它有时候只能做噱头，但是作为电视剧，它不能用这样的噱头，于是导演自己制造，“我们的电视剧香而不艳。”想起一句成语，“此地无银三百两”。</p>
-<p>挺悲哀，因为这句话，张纪中让《鹿鼎记》与经典擦肩而过了。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/39/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><span class="page-number current">40</span><a class="page-number" href="/page/41/">41</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><a class="extend next" rel="next" href="/page/41/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/39/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><span class="page-number current">40</span><a class="page-number" href="/page/41/">41</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><a class="extend next" rel="next" href="/page/41/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1149,7 +1175,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">284</span>
+                <span class="site-state-item-count">286</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1167,7 +1193,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">198</span>
+                <span class="site-state-item-count">199</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
