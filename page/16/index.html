@@ -345,6 +345,317 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/12/25/xargs-unmatched-single-quote/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2012/12/25/xargs-unmatched-single-quote/" itemprop="url">find和xargs配合使用出现“xargs: unmatched single quote”错误[zt]</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2012-12-25T00:00:00+08:00">
+                2012-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2012/12/25/xargs-unmatched-single-quote/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2012/12/25/xargs-unmatched-single-quote/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h2><p>在脚本中有一句find和xargs配合使用的命令如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if [ $&#123;BACKUP_EXCLUDE&#125; -eq 0 ]; then</div><div class="line">  find $xdir -xdev -exec dirname &quot;&#123;&#125;&quot; \; |uniq &gt;&gt; $&#123;HIS_DIR&#125;/directories.curr</div><div class="line">else</div><div class="line">  find $xdir -xdev|grep -v -E &quot;$BACKUP_EXCLUDE&quot;|xargs -i dirname &quot;&#123;&#125;&quot;|uniq &gt;&gt; $&#123;HIS_DIR&#125;/directories.curr</div><div class="line">fi</div></pre></td></tr></table></figure></p>
+<p>老是会出现“xargs: unmatched single quote”错误，检查发现是因为某些文件名有空格或其他特殊字符导致。想问一下是否有解？曾尝试过在find中使用参数”-print0″配合xargs -0，但是没法分行。高手帮忙！谢谢先！</p>
+<p>抱歉， 我的说明不是很详细导致把各位的思路弄乱了。<br>首先，出现问题的语句是代码里第二个find语句<br>其次，该语句作用是找出所有的文件并通过管道过滤排出部分结果，然后产生找出文件的目录名，最后合并同类项输出</p>
+<p>我曾尝试过在在find指令中加入-print0，但是无法通过grep；如果写成find … -print0 -exec grep -v -E … ”{}” \; |xargs -0 -i dirname “{}”|uniq，会出现奇怪的结果！</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>对grep后的输出转换成NULL字符结尾的字符流，结合xargs -0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if [ $&#123;BACKUP_EXCLUDE&#125; -eq 0 ]; then</div><div class="line">  find $xdir -xdev -print0 |xargs -0 -i dirname &quot;&#123;&#125;&quot; |uniq &gt;&gt; $&#123;HIS_DIR&#125;/directories.curr</div><div class="line">else</div><div class="line">  find $xdir -xdev|grep -v -E &quot;$BACKUP_EXCLUDE&quot;|tr &apos;\n&apos; &apos;\0&apos;|xargs -0 -i dirname &quot;&#123;&#125;&quot;|uniq &gt;&gt; $&#123;HIS_DIR&#125;/directories.curr</div><div class="line">fi</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/12/19/awk-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2012/12/19/awk-1/" itemprop="url">awk末尾1的含义</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2012-12-19T00:00:00+08:00">
+                2012-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2012/12/19/awk-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2012/12/19/awk-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><code>awk ‘pattern{action}’ file</code> , 一般awk的格式是这样的。</p>
+<p>如果写成awk ‘pattern’ file，那么action默认为{print $0}；<br>pattern如果是个定值，则判断该值是否为0（0为false，非0为true）；<br>pattern如果是个计算表达式，则判断计算结果是否为0；<br>pattern如果是个awk 命令，则判断其返回值是否为0。</p>
+<p>这样就能理解awk ’1′ file的意义了：</p>
+<p><strong>在这里action为空，因此默认为{print $0}；1为定值，非0，因此执行action，即print $0。</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/11/11/no-low-disk-space-check/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -805,330 +1116,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/09/17/mysql-memory-calculation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2012/09/17/mysql-memory-calculation/" itemprop="url">mysql内存计算公式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2012-09-17T00:00:00+08:00">
-                2012-09-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2012/09/17/mysql-memory-calculation/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2012/09/17/mysql-memory-calculation/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <pre><code>mysql used mem = 
-key_buffer_size 
-+ query_cache_size 
-+ tmp_table_size 
-+ innodb_buffer_pool_size 
-+ innodb_additional_mem_pool_size 
-+ innodb_log_buffer_size 
-+ max_connections * ( read_buffer_size + read_rnd_buffer_size + sort_buffer_size+ join_buffer_size + binlog_cache_size + thread_stack )
-</code></pre><p>在mysql 中输入如下命令，可自动计算自己的<strong>当前配置最大的内存消耗</strong>：</p>
-<pre><code>SHOW VARIABLES LIKE ‘innodb_buffer_pool_size’;
-SHOW VARIABLES LIKE ‘innodb_additional_mem_pool_size’;
-SHOW VARIABLES LIKE ‘innodb_log_buffer_size’;
-SHOW VARIABLES LIKE ‘thread_stack’;
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT ( @@key_buffer_size + @@query_cache_size + @@tmp_table_size + @@innodb_buffer_pool_size + @@innodb_additional_mem_pool_size + @@innodb_log_buffer_size + @@max_connections * ( @@read_buffer_size + @@read_rnd_buffer_size + @@sort_buffer_size + @@join_buffer_size + @@binlog_cache_size + @@thread_stack ) ) / 1073741824 AS MAX_MEMORY_GB;</div></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2012/09/17/mysql-memory-calculation/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/08/25/argument-list-too-long-solution‎/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2012/08/25/argument-list-too-long-solution‎/" itemprop="url">Argument list too long问题的解决方法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2012-08-25T00:00:00+08:00">
-                2012-08-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2012/08/25/argument-list-too-long-solution‎/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2012/08/25/argument-list-too-long-solution‎/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>rm、cp、mv是unix下面常用到的档案处理指令，譬如我们需要移除不必要的档案通常会使用rm xxx来删除，如果档案数目眾多且命名具有规则，eg. file1.log、file2.log、file3.log等，為求方便则会利用万用字元来处理，eg. rm -f *.log，但是当这些指令后面所处理档案数量多到某种程度时，就会出现/bin/rm: Argument list too long这个错误讯息。</p>
-<p>往往在我们执行一些程式时，系统会產生大量的log或者是不必要的暂存档(有时候是程式出错的悲剧@@)，但是如果在删除时遇到这种错误，往往会很呕，这表示又要写一些code来处理这些garbage，所以在网路上面查了一下，目前最常看到的解决方法是用xargs来处理，方式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -name &apos;*.log&apos; | xargs rm</div></pre></td></tr></table></figure></p>
-<p>另外，在对岸的同胞上的网誌上面也看到不用xargs的解法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find /var/spool/mqueue -type f -exec rm &#123;&#125; \;</div></pre></td></tr></table></figure></p>
-<p>/var/spool/mqueue是要删除档案的存放资料夹，type -f指的是一般档案，{}的后方可以接其他参数，所以如果指令后方要加入多个参数的话，例如copy 档案 到B资料夹的时候，就可以透过以下指令来做：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find /var/spool/mqueue -type f -exec cp &#123;&#125; ../backup \;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1178,7 +1165,7 @@ SHOW VARIABLES LIKE ‘thread_stack’;
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">286</span>
+                <span class="site-state-item-count">288</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1189,7 +1176,7 @@ SHOW VARIABLES LIKE ‘thread_stack’;
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1200,7 +1187,7 @@ SHOW VARIABLES LIKE ‘thread_stack’;
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">199</span>
+                <span class="site-state-item-count">202</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

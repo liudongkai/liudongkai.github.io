@@ -345,6 +345,329 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2007/12/14/optimize-awstats/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2007/12/14/optimize-awstats/" itemprop="url">优化AWSTATS性能的7个建议</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2007-12-14T00:00:00+08:00">
+                2007-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Analytics/" itemprop="url" rel="index">
+                    <span itemprop="name">Analytics</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2007/12/14/optimize-awstats/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2007/12/14/optimize-awstats/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>对于一个访问量巨大的网站来说，使用awstats来分析其日志是一件很痛苦的事情，这往往需要耗费很多时间才能得到一个结果，偶尔还会让机器内存耗尽。在awstats的文档中，找到几个关于性能优化的建议，如下：</p>
+<ul>
+<li>关掉DNSLookup(DNSLookup不能设置为1). 虽然这样你会丢失一些关于访问者的国家信息，但是我觉得这无关紧要，大部分网站的访问者集中在国内。这样能给awstats性能带来小小提升。</li>
+<li>小心使用这三个参数： URLWithQuery, URLReferrerWithQuery ,URLWithAnchor (如果你不知道它们有什么作用最好设置为0)</li>
+<li>使用最新版本的perl (例如Perl 5.8比5.6要快上5%) 。另外比较重要的一点，用标准版本的perl代替ActiveState版本的perl，因为ActiveState 5.006有内存泄漏方面的问题，它在解析日志的时候会越来越慢最终一行日志也跑不动。</li>
+<li>回卷日志。尽可能的把日志分成更小的一份，这样awstats能处理的快一些，可以适当提高awstats解析频率.</li>
+<li>确认HostAliases参数是完整的</li>
+<li>使用最新版本的AWStats (例如AWStats 6.0比5.9快15%).</li>
+<li>某些geeks,你可以考虑采用不同的参数来重新编译perl，例如使用”use64bitint=define usemymalloc=y”编译perl,这样perl的速度能提升10%.</li>
+</ul>
+<p>原文见<a href="http://awstats.sourceforge.net/docs/awstats_benchmark.html#ADVICES" target="_blank" rel="external">awstats benchmark</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2007/12/13/aWstats-IIS-installtion/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2007/12/13/aWstats-IIS-installtion/" itemprop="url">AWstats 在 IIS 下最详细的安装说明文档</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2007-12-13T00:00:00+08:00">
+                2007-12-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Analytics/" itemprop="url" rel="index">
+                    <span itemprop="name">Analytics</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2007/12/13/aWstats-IIS-installtion/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2007/12/13/aWstats-IIS-installtion/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Awstats的用途好处我就不多多说了，在<a href="http://www.baidu.com/s?wd=Awstats" target="_blank" rel="external">baidu</a>和<a href="http://www.google.com/search?hl=zh-CN&amp;q=awstats&amp;lr=" target="_blank" rel="external">google</a>里面搜一下一箩筐，但大部分都是说在linux下的安装，有介绍在windows下的安装说明，但是都是非常的潦草的介绍下，本人就花了n多的时间在这些文档中搜索，</p>
+<p>现在按照我的说明步骤安装，基本上是不会有任何错误，本人在windows2003上和windows2000上安装测试都没有问题。</p>
+<p>参考文件</p>
+<p><a href="http://www.chedong.com/tech/awstats.html" target="_blank" rel="external">http://www.chedong.com/tech/awstats.html</a><br><a href="http://awstats.sourceforge.net/docs/awstats_setup.html" target="_blank" rel="external">http://awstats.sourceforge.net/docs/awstats_setup.html</a><br><a href="http://awstats.sourceforge.net/docs/awstats_tools.html#awstats_buildstaticpages" target="_blank" rel="external">http://awstats.sourceforge.net/docs/awstats_tools.html#awstats_buildstaticpages</a><br><a href="http://awstats.sourceforge.net/docs/awstats_config.html#HTMLHeadSection" target="_blank" rel="external">http://awstats.sourceforge.net/docs/awstats_config.html#HTMLHeadSection</a></p>
+<h2 id="一、首先将IIS安装好-然后安装-ActivePerl-，"><a href="#一、首先将IIS安装好-然后安装-ActivePerl-，" class="headerlink" title="一、首先将IIS安装好,然后安装 ActivePerl ，"></a><e1>一、首先将IIS安装好,然后安装 <a href="http://www.activestate.com/Products/ActivePerl/?mp=1" target="_blank" rel="external">ActivePerl</a> ，</e1></h2><p>直接安装,这个比较简单,但是本人这里还是要提醒一下各位朋友，我做网管经验总结的，呵呵 ，记得不要吧<a href="http://www.activestate.com/Products/ActivePerl/?mp=1" target="_blank" rel="external">ActivePerl</a>安装在系统盘上，同时最好把路径也改改，比如我是这么安装的d:\tools\perl，其实这是从安全策略角度考虑的.废话不多说,继续我们的专题：我们现在到d:\tools\perl 目录去看一看，下面有一个很重要的目录叫做bin的，宝贝都放在这里了。嗯，最好用这种方法过去。首先单击开 始菜单，在选择运行,输入cmd然后回车。这时我们可以看到一个控制台窗口。从这个窗口输入d:回车，然后输入<code>cd tools/perl</code>回车，dir回车，然后再cd bin这时我们可以看到一个叫做Perl.exe的文件。嗯这就没有问题了。然后我们编一个小程序试一试。</p>
+<p>用一个文本编辑器输入以下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print &quot;hello perl world, this is my first!\n&quot;;</div></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2007/12/13/aWstats-IIS-installtion/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2007/06/14/windows-shutdown/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -543,7 +866,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">286</span>
+                <span class="site-state-item-count">288</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -554,7 +877,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -565,7 +888,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">199</span>
+                <span class="site-state-item-count">202</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

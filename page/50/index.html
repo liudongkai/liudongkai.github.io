@@ -345,6 +345,358 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/02/07/awstats-install-geoip-by-perl/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/02/07/awstats-install-geoip-by-perl/" itemprop="url">awstats 纯perl的方式 安装geoip插件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-02-07T00:00:00+08:00">
+                2008-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Analytics/" itemprop="url" rel="index">
+                    <span itemprop="name">Analytics</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/02/07/awstats-install-geoip-by-perl/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/02/07/awstats-install-geoip-by-perl/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>There is a rumor that GeoIP is not supported by Powweb. This is<br>completely false. It must first be configured prior to use. Now stay<br>with me so I don’t lose you…</p>
+<ol>
+<li><p>Install your own copy of</p>
+<p>awstats in the cgi-bin directory. Once this is working properly, you<br>may move on to the next step. There is a tutorial for this on the<br>Powweb site under “Site Statistics” I believe.</p>
+</li>
+<li><p>Download GeoIP::PurePerl module from Maxmind.com</p>
+<p><a href="http://www.maxmind.com/download/geoip/api/pureperl/" target="_blank" rel="external">http://www.maxmind.com/download/geoip/api/pureperl/</a></p>
+<p>1.17 is the latest version as of Sept 1, 2005. This is a tar.gz file so make sure you have WinRAR or another compatible decompressor.</p>
+</li>
+<li><p>Once</p>
+<p>decompressed, create a directory in your cgi-bin called GeoIP (You can<br>name it anything you like, but for this tutorial it shall be GeoIP).<br>Move the contents from the decompressed folder to “/cgi-bin/GeoIP/”.<br>The decompressed folder should be called “Geo-IP-PurePerl-1.xx”. Now<br>before we configure we need to get the latest database.</p>
+</li>
+<li><p>Download GeoIP.dat from this address</p>
+<p><a href="http://www.maxmind.com/download/geoip/database/GeoIP.dat.gz" target="_blank" rel="external">http://www.maxmind.com/download/geoip/database/GeoIP.dat.gz</a></p>
+<p>Again this is a .gz file and must be decompressed. Once decompressed, move “GeoIP.dat” to “/cgi-bin/GeoIP/”.</p>
+</li>
+<li><p>OK.. now to configure. </p>
+<p>First if you have turned on DNSLookup… turn it<br>off. In Awstats.conf —&gt; DNSLookup=0 (this may also be a good time<br>to change your logfile if you desire current stats over stats from<br>yesterday. Remove the “.0″ after “access”.</p>
+<p>LogFile=”/logs/access.0/1/xxxxxx_access_log” -&gt;<br>LogFile=”/logs/access/1/xxxxxx_access_log”)</p>
+</li>
+<li><p>Next enable the</p>
+<p>GeoIP plugin by removing the # from before the command and add the path<br>to the GeoIP.dat file. In Awstats.conf —&gt; LoadPlugin=”geoip<br>GEOIP_STANDARD /www/u/username/cgi-bin/GeoIP/GeoIP.dat” When that’s<br>complete, save awstats.conf</p>
+</li>
+<li><p>Now open up the geoip.pm file</p>
+<p>(located in awstats/plugins…. thanx Aza) so we may edit it. At the<br>very top you’ll see two directory entries. They’ll say “Geo/IP.pm” and<br>Geo/IP/PurePerl.pm”. WE need to modify these to reflect the<br>installation path. Change them to<br>“/www/u/username/cgi-bin/GeoIP/lib/Geo/IP.pm” and<br>“/www/u/username/cgi-bin/GeoIP/lib/Geo/IP/PurePerl.pm” respectively.<br>Save and close.</p>
+</li>
+<li><p>Last but not least, open up “PurePerl.pm”</p>
+<p>located in “/cgi-bin/GeoIP/lib/Geo/IP”. On lines 79 and 83 you’ll fine<br>directory listings for “GeoIP.dat”. Change these to<br>“/www/u/username/cgi-bin/GeoIP/GeoIP.dat”. Save and close.</p>
+</li>
+<li><p>Everything should be set now. </p>
+<p>If it’s working, you’ll see a new column<br>added to “Hosts” in Awstats named “GeoIP Country”. This will list<br>countries for all IP addresses, even ones collected before<br>modification. The “Countries” area will show flags only for IP<br>addresses collected after the modification. If you have trouble, set<br>your crontab to execute awstats every minute. This is accomplished be<br>setting time to <em> </em> <em> </em> *. Then check your cronlog located in your logs<br>folder to view errors.</p>
+</li>
+</ol>
+<p>Erik Reedstrom<br>IT Department<br>www.BrokeHouse.com</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/02/06/awstats-use-geoip/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/02/06/awstats-use-geoip/" itemprop="url">AWStats上的IP(城市信息解析包安装 GeoIP City Lite)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-02-06T00:00:00+08:00">
+                2008-02-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Analytics/" itemprop="url" rel="index">
+                    <span itemprop="name">Analytics</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/02/06/awstats-use-geoip/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/02/06/awstats-use-geoip/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h3><p>MaxMind的GeoIP非常流行的地理信息Web应用包。原先提供的免费版只提供了一个IP=&gt;国家的，但是对于网站的统计来说：精确到城市级</p>
+<p>别的才有比较好的分析价值。最近MaxMind提供了一个IP=&gt;城市的简化版本。可以用于AWStats的分析统计。</p>
+<p>但是对于中国城市还不是很全，不过还能出来beijing henan这样的东东，大体还能看，呵呵…</p>
+<h3 id="二、安装"><a href="#二、安装" class="headerlink" title="二、安装"></a>二、安装</h3><ol>
+<li>安装GeoIP的C API和Perl API<br><a href="http://www.maxmind.com/download/geoip/api/c/" target="_blank" rel="external">http://www.maxmind.com/download/geoip/api/c/</a><br><a href="http://www.maxmind.com/download/geoip/api/perl/" target="_blank" rel="external">http://www.maxmind.com/download/geoip/api/perl/</a>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">wget http://www.maxmind.com/download/geoip/api/c/GeoIP-1.3.14.tar.gz</div><div class="line">tar zxf GeoIP-1.3.14.tar.gz</div><div class="line">cd GeoIP-1.3.14</div><div class="line">./configure</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">wget http://www.maxmind.com/download/geoip/api/perl/Geo-IP-1.27.tar.gz</div><div class="line">tar zxf Geo-IP-1.27.tar.gz</div><div class="line">cd Geo-IP-1.27</div><div class="line">perl Makefile.PL</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure>
+<ol>
+<li><p>下载MaxMind’s GeoLiteCity database<br><a href="http://www.maxmind.com/app/geolitecity" target="_blank" rel="external">http://www.maxmind.com/app/geolitecity</a><br><a href="http://www.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz" target="_blank" rel="external">http://www.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz</a><br><code>gzip -d GeoLiteCity.dat.gz</code><br>大约25M</p>
+</li>
+<li><p>配置awstates<br>复制GeoLiteCity.dat到/usr/local/share/GeoIP/下<br>然后修改awstats.panzhiqi.conf中的  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LoadPlugin=&quot;geoip_city_maxmind GEOIP_STANDARD /usr/local/share/GeoIP/GeoLiteCity.dat&quot;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>等待crontab中的update下次执行的时候就可以看到城市信息了，性能很好。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/02/05/router-mtu/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -915,322 +1267,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/01/29/KAV7-free/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/01/29/KAV7-free/" itemprop="url">《暴雪无情,卡巴有情》卡巴斯基反病毒软件KAV7.0免费送一年</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-01-29T00:00:00+08:00">
-                2008-01-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/01/29/KAV7-free/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/01/29/KAV7-free/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>全球领先的安全厂商卡巴斯基今天宣布发起“暴雪无情，卡巴有情”——卡巴斯基赈灾总动员，反病毒免费送一年的大规模赈灾活动。自2008年1月29日起，通过互联网向广大用户免费赠送卡巴斯基反病毒软件KAV7.0一年版激活码。现在，消费者只需注册成为卡巴斯基官方技术支持论坛——卡巴一族会员，即可免费获取卡巴斯基反病毒软件KAV 7.0一年版激活码卡巴斯基亚太区董事总经理张立申先生表示，这一活动旨在响应全社会的赈灾行动，满足受近期灾害性雨雪天气影响的用户的急切需求，保证所有消费者都能度过一个安全无毒的祥和春节。</p>
-<p>1月中旬以来，我国中东部地区出现了持续的大范围灾害性雨雪天气，给交通运输、能源通信和人民生活生产带来了极其严重的影响，这一大范围的灾害性天气也严重影响了卡巴斯基产品的运输，大量产品滞留在运输途中，使得许多受灾地区的用户无法及时获取卡巴斯基产品。春节期间往往是病毒高发期，没有受到反病毒软件保护的电脑存在极大的安全隐患。为满足广大用户的急切需求，卡巴斯基决定利用互联网迅速将卡巴斯基产品送到消费者手中，让广大消费者能够过一个安全无毒的祥和春节。据卡巴斯基相关人士表示，卡巴斯基将根据灾情发展的具体情况决定此次大规模赈灾活动的持续时间，以保证所有消费者能够迅速和便捷地获取卡巴斯基产品。</p>
-<p>此次赈灾活动是卡巴斯基继2007年地震造成海底光缆断裂推出应急服务并为广大网友提供免费KEY之后的又一次大规模动员，其及时响应的效率和大规模投入的决心都体现了卡巴斯基“一切为了用户安全”的核心理念。正如卡巴斯基亚太区董事总经理张立申先生所说，“想消费者所想，为所有消费者提供安全是卡巴斯基矢志追求的目标，灾情就是命令，在消费者需要的时候，我们愿意分享我们的技术和资源，为用户营造一个安全祥和年。”</p>
-<p>注: 此次活动赠送的卡巴斯基激活码请在14天内激活！</p>
-<p>此活动开始之后卡巴一族&lt;&lt;赠送KAV和反黑客激活码活动火热进行中……&gt;&gt;活动将会停止!</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/01/24/php-regex-exclude/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/01/24/php-regex-exclude/" itemprop="url">php 正则 不包含某字符串的正则表达式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-01-24T00:00:00+08:00">
-                2008-01-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/01/24/php-regex-exclude/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/01/24/php-regex-exclude/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>判断一个字符串中是否含有另一字符串，php有很多方法</p>
-<p>常见函数 <code>strstr($str, &quot;abc&quot;);</code></p>
-<p>正则匹配 <code>preg_match(&quot;/(abc)?/is&quot;, $str);</code></p>
-<p>但是要匹配一个字符串中，不包含某字符串，用正则就比较麻烦了</p>
-<p>如果不用正则 <code>!strstr($str, &quot;abc&quot;);</code> 就可以解决问题了</p>
-<p>但是用正则呢，就只有这样了， <code>&quot;/^((?!abc).)*$/is&quot;</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line">    $str = &quot;dfadfadf765577abc55fd&quot;;</div><div class="line">    $pattern_url = &quot;/^((?!abc).)*$/is&quot;;</div><div class="line">    if (preg_match($pattern_url, $str))&#123;  </div><div class="line">        echo &quot;不含有abc！&quot;;</div><div class="line">    &#125;else&#123;  </div><div class="line">        echo &quot;含有abc！&quot;;</div><div class="line">    &#125;  </div><div class="line">?&gt;</div></pre></td></tr></table></figure>
-<p>结果为：false，含有abc！<br><code>$str = &quot;2b3c4d5c&quot;;</code><br>注意：[^(abc)] 这个语法是逐个检查$str中的字符是否不在 a b c中，<br><code>preg_match(&quot;/[^(abc)]/s&quot;, $str, $arr);</code><br>其中字符 2 就不在 a b c 中，所以$arr返回值为2;</p>
-<p>同时匹配，包含字符串 “abc”，而且不包含字符串 “xyz”<br>“/(abc)[^((?!xyz).)*$]/s”</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1280,7 +1316,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">286</span>
+                <span class="site-state-item-count">288</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1291,7 +1327,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1302,7 +1338,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">199</span>
+                <span class="site-state-item-count">202</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

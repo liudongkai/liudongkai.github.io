@@ -345,6 +345,349 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/10/07/fixed-thinkpad-t60-pxe-e05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/10/07/fixed-thinkpad-t60-pxe-e05/" itemprop="url">解决T60的网卡的pxe-e05的错误</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-10-07T00:00:00+08:00">
+                2008-10-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index">
+                    <span itemprop="name">Share</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/10/07/fixed-thinkpad-t60-pxe-e05/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/10/07/fixed-thinkpad-t60-pxe-e05/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>问题现象（抄别人的）：<br><a href="http://www.nbbbs.com.cn/bbs/thread-7973-1-1.html" target="_blank" rel="external">http://www.nbbbs.com.cn/bbs/thread-7973-1-1.html</a></p>
+<p>开机之后显示：</p>
+<blockquote>
+<p>Intializing Intel(r) boot agent GE V1.2.31<br>PXE-E05: The LAN adapter’s configuation is corrupted or has not been initialized. The Boot Agent cannot continue.</p>
+</blockquote>
+<p>等几秒后显示</p>
+<blockquote>
+<p>ERROR<br>Expansion ROM not initialized – PCI on Motherboard<br>Bus:00, Device:00, Function:00<br>Press &lt; ESC &gt; to continue</p>
+</blockquote>
+<p>按了&lt; ESC &gt; 键以后能够正常开机, 感觉上什么都是正常的.</p>
+<ul>
+<li><p>解决方法1：<br>开机按F1进BIOS<br><code>config-Network-Internal Network Option ROM (Enter)</code>-设置下面那个<code>Current setting</code>为<code>Disabied</code>就可以了.</p>
+</li>
+<li><p>解决方法2（继续抄）：<br>无果后在网上进行大范围的搜索，经过一番搜索，终于找到了解决办法，在老外的一个 Blog 上说，可以下载 Intel® Boot Agent PROBOOT.exe ，在纯 Dos 下执行 “IBAUtil.exe -DEFCFG” 把 EEPROM 重新刷新为出厂设置即可解决此问题。<br>老外也提供一个 ISO 文件提供下载，地址为：</p>
+<ul>
+<li>CDProBOOT-0.2.iso – FreeDOS boot cd-rom, customized with PROBoot Intel tools and a DOS menu selector.</li>
+<li>md5sum: c12babeec8e1a0e9072e95575f32a69a</li>
+</ul>
+<p>但是 Intel 提供的 bootcd 在仅有 NTFS 时有 Dos 路径 bug ，如果上面的 ISO 有问题，还可以下载国内网友修改后的版本，地址为：</p>
+<ul>
+<li>CDProBOOT.iso – FreeDOS boot cd-rom, customized with PROBoot Intel tools and a DOS menu selector.</li>
+<li>md5sum: 63624e964a31802772d3a8fadecb1f3f</li>
+</ul>
+<p>网友提供了一个0.3的版本：<a href="http://snipurl.com/cdproboot3" target="_blank" rel="external">http://snipurl.com/cdproboot3</a></p>
+<p>下载后将该 ISO 镜像刻录为光盘（比较浪费啊，iso 才3.1M大小），光盘启动后选择 2 ，回车，还没等你反应过来，一切就已经恢复正常了。重新开机后把 BIOS 恢复为 Default ，启动不再出错， Ubuntu 也重归正常。</p>
+</li>
+<li><p>方法3：<br>有线网卡不能使用的问题（Mac地址不对）：<br>下载一个软件修正它。Mac地址在机器的后面条上：<br><a href="http://www.wirelessdefence.org/Contents/MAC%20Address%20Changer.htm" target="_blank" rel="external">http://www.wirelessdefence.org/Contents/MAC%20Address%20Changer.htm</a></p>
+</li>
+<li><p>方法4：<br>BIOS的问题，或许可以通过刷BIOS解决（经我证明不行）</p>
+</li>
+<li><p><strong>最终</strong>：<br>pxe-05的问题没能解决，用方法1忽略它了。<br>用方法3,能用有线了。<br>估计得换主板。<br>凑合着用吧，又不是买的行货，就不去想保修的方法了。</p>
+</li>
+</ul>
+<p>参考资料：  </p>
+<ul>
+<li><a href="http://www.oceanboo.cn/read.php?210" target="_blank" rel="external">http://www.oceanboo.cn/read.php?210</a>  </li>
+<li><a href="http://www.thinkpad.cn/forum/viewthread.php?tid=420871" target="_blank" rel="external">http://www.thinkpad.cn/forum/viewthread.php?tid=420871</a>  </li>
+<li><a href="http://www.matinfo.ch/blog/archive/2007/01/26/intel-nic-pxe-e05-error.html#post_content_extended" target="_blank" rel="external">http://www.matinfo.ch/blog/archive/2007/01/26/intel-nic-pxe-e05-error.html#post_content_extended</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/09/04/mysqldump-import/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/09/04/mysqldump-import/" itemprop="url">mysqldump导入办法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-09-04T00:00:00+08:00">
+                2008-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/09/04/mysqldump-import/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/09/04/mysqldump-import/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>mysqldump导入解决办法很简单，导出的时候指定字符集就行了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysqldump -u root -p -c –default-character-set=utf-8 wapad site &gt; dd.sql</div></pre></td></tr></table></figure></p>
+<p>用户 数据库 表名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql -uroot -p –default-character-set=utf8 wapad &lt; dd.sql</div><div class="line">mysqldump -u root -p -c –default-character-set=latin1 wap_resdb downlog_bak &gt; downlog_bak.sql</div><div class="line">mysqldump -u root -p -c –default-character-set=latin1 wap_resdb downlog_month &gt; downlog_month.sql</div><div class="line">mysqldump -u root -p -c –default-character-set=latin1 wap_resdb haoduan &gt; haoduan.sql</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/09/03/canon-family-tree/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -821,334 +1164,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/08/18/EditPlus-remove-blank-lines/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/08/18/EditPlus-remove-blank-lines/" itemprop="url">在EditPlus中删除空行</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-08-18T00:00:00+08:00">
-                2008-08-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/08/18/EditPlus-remove-blank-lines/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/08/18/EditPlus-remove-blank-lines/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>经常从网上粘贴或下载一篇文章，需要打印时，发现有大量多余的空行占据了许多篇幅，需要删除。这些空行要么不包含任何字符，要么包含了许多空格、制表符(Tab)。如果文章比较长，那么手工删除空行就成为一件颇费鼠标和精力的事。难道就没有别的办法？答案是：有！</p>
-<p>我们可以借助文本编辑器软件EditPlus、UltraEdit实现。EditPlus、UltraEdit是常 见的共享软件，几乎所有软件下载网站都提供下载。由于EditPlus的操作更容易上手，但UltraEdit更为常用，所以本文先介绍在EditPlus的操作，再介绍UltraEdit。</p>
-<ol>
-<li><p>在EditPlus中删除空行</p>
-<p>启动EditPlus，打开待处理的文件。需要注意，必须是纯文本文件，如果是Word文档，需要先粘贴到纯文本文件中。然后，步骤如下：搜索-替换-正则表达式-当前文件-点击查找内容后面的向下箭头-选单-行首-范围内的字符-制表符-0或多次匹配-换行-形成<code>^[t]*n</code></p>
-<p>Replace with组合框保持空，表示删除查找到的内容。单击Replace按钮逐个行删除空行，或单击Replace All按钮删除全部空行(注意：EditPlus和UltraEdit均存在Replace All不能一次性完全删除空行的问题，可能是程序BUG，需要多按几次按钮)。</p>
-<p>对于熟悉EditPlus的朋友，可以直接在Find what中输入正则表达式<code>^[ ]*</code> ，注意 前有空格符。</p>
-</li>
-<li><p>在UltraEdit中删除空行<br>使用UltraEdit的原理一样，但是UltraEdit没有提供菜单方式，所以需要手工输入正则表达式，而且UltraEdit的正则表达式符号与EditPlus不同。</p>
-<p>用UltraEdit打开文件后，选择Search菜单的Replace命令。在Replace对话框中，选中Regular Expression复选框，并在Find what中输入：<code>%[ ^t]++^p</code>，注意^t之前有空格。该表达式字符含义与EditPlus的相对应。然后，单击Start或Replace All按钮，进行替换删除空行</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/08/13/chinese-football/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/08/13/chinese-football/" itemprop="url">足球队的比较–绝非侮辱国足！[zt]</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-08-13T00:00:00+08:00">
-                2008-08-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/08/13/chinese-football/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/08/13/chinese-football/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <ol>
-<li><p>停球<br>把球停到自己脚下10毫米的后卫，是巴西球员；<br>把球停到自己脚下10厘米的后卫，是西班牙球员；<br>把球停到自己脚下10分米的后卫，是德国球员；<br>把球停到自己脚下100米，并形成射门，迫使对方门将做出扑救的后卫，是中国球员。</p>
-</li>
-<li><p>传球<br>能够做出50米外精确长传，找到场上队友的球员，是英国球员；<br>能够做出5米内精巧二过一的球员，是阿根廷球员；<br>能够做出5米内短传传丢，并且后卫前锋隔着50米就玩二过一的球员，是中国球员。</p>
-</li>
-<li><p>射门<br>能够在30米外劲射破门的球员，是德国球员；<br>能够通过精妙配合在门前3米打空门得手的球员，是葡萄牙球员；<br>能够在罚点球时把角旗打翻的球员，是中国球员</p>
-</li>
-<li><p>带球<br>能够把球从本方底线带到对方半场的球员，是荷兰球员；<br>能够把球从本方底线带到对方底线的球员，是巴西球员；<br>能够把球从本方球员脚下抢断，并带到本方球门里的，是中国球员。<br>能够把球带得像亨利一样的，是李Y大帝。</p>
-</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2008/08/13/chinese-football/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1198,7 +1213,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">286</span>
+                <span class="site-state-item-count">288</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1209,7 +1224,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1220,7 +1235,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">199</span>
+                <span class="site-state-item-count">202</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

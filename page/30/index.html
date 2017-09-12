@@ -345,6 +345,381 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/12/29/perl-get-html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2009/12/29/perl-get-html/" itemprop="url">使用perl脚本抓取网页总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-12-29T00:00:00+08:00">
+                2009-12-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2009/12/29/perl-get-html/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2009/12/29/perl-get-html/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>使用perl实现网页抓取，对网络蜘蛛的初步尝试。</p>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>windows xp，IIS，perl 5.88，CMD</p>
+<h2 id="使用到的模块"><a href="#使用到的模块" class="headerlink" title="使用到的模块"></a>使用到的模块</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">use LWP::Simple; #用来得到网页</div><div class="line">use HTML::HeadParser; #对部分进行解析，得到标题、编码、关键词等</div><div class="line">use HTML::FormatText::WithLinks; #将html变成文本可读样式</div><div class="line">use Encode qw/encode decode/; #解决不同网页的编码问题</div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2009/12/29/perl-get-html/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/12/28/perl-list-dir/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2009/12/28/perl-list-dir/" itemprop="url">perl中使用递归遍历目录[zt]</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-12-28T00:00:00+08:00">
+                2009-12-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2009/12/28/perl-list-dir/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2009/12/28/perl-list-dir/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>perl自带的函数远不及php多，但功能确实很强大，实现起来也只有几行代码。</p>
+<p>perl中的目录操作函数有：</p>
+<h2 id="1-mkdir-函数"><a href="#1-mkdir-函数" class="headerlink" title="1. mkdir 函数"></a>1. mkdir 函数</h2><p>调用语法：mkdir (dirname, permisions)<br>dirname：将要创建的目录名，可以为字符串或表达式。<br>permisions：八进制数，指定目录的访问权限。其值和意义如下：</p>
+<table>
+<thead>
+<tr>
+<th>权限值</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4000</td>
+<td>运行时设置用户 ID</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>运行时设置组 ID</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>粘贴位</td>
+</tr>
+<tr>
+<td>0400</td>
+<td>拥有者读权限</td>
+</tr>
+<tr>
+<td>0200</td>
+<td>拥有者写权限</td>
+</tr>
+<tr>
+<td>0100</td>
+<td>拥有者执行权限</td>
+</tr>
+<tr>
+<td>0040</td>
+<td>组读权限</td>
+</tr>
+<tr>
+<td>0020</td>
+<td>组写权限</td>
+</tr>
+<tr>
+<td>0010</td>
+<td>组执行权限</td>
+</tr>
+<tr>
+<td>0004</td>
+<td>所有人读权限</td>
+</tr>
+<tr>
+<td>0002</td>
+<td>所有人写权限</td>
+</tr>
+<tr>
+<td>0001</td>
+<td>所有人执行权限</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-chdir-函数"><a href="#2-chdir-函数" class="headerlink" title="2. chdir 函数"></a>2. chdir 函数</h2><p>调用语法：chdir (dirname)</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2009/12/28/perl-list-dir/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/12/18/G-Alarm-crack/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -679,173 +1054,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/11/24/discuz-mysql-iconv-character-set/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2009/11/24/discuz-mysql-iconv-character-set/" itemprop="url">discuz mysql 数据库编码转换latin1->utf8[ZT]</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-11-24T00:00:00+08:00">
-                2009-11-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2009/11/24/discuz-mysql-iconv-character-set/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2009/11/24/discuz-mysql-iconv-character-set/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>帮朋友的论坛做了一次编码转换的工作。系统是windows 2003,mysql4.1 discuz 5<br>本来以为很简单，dump数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysqldump -u root -p –opt –default-character-set=latin1 \</div><div class="line">–skip-set-charset olddb cdb_members &gt; d:\bak\cdb_members.sql</div></pre></td></tr></table></figure></p>
-<p>出来，用工具转一下编码，然后再导入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -u root -p –default-character-set=utf8 newdb &lt; d:\bak\cdb_members.sql</div></pre></td></tr></table></figure></p>
-<p>实际操作并没有想象的那么简单，最后解决的方案，也不是那么复杂。</p>
-<p>先说一下教训，建立数据库的时候，同一个应用，所有的编码一定要一致， 不然就是自寻烦恼，现在跟你说，你肯定说不好，但是有时候就是不注意。要迁移的这个论坛就有两种编码gbk和latin1，目标是迁移到utf8，里面 gbk的双字节数据全部是乱码，尝试改编码也读不出数据了，由于不是重要数据，后来就放弃转码了，据说原来就有乱码的问题。</p>
-<p>里面还遇到一个问题就是老的数据是更改过的，目标db是全新安装的，表结构不一致，好在新系统是老系统的子集，那么我就以老表为参照物，来改新db的表结构。</p>
-<p>导出用了<code>mysqldump</code>，这里要提的是<code>--default-character-set</code>，后边要跟数据表的编码，不然导出的数据可能会乱码。</p>
-<p>问题出在import，转编码后import，怎么也不成功，说什么mysql数据库gone away或者说duplicate,突然又一次成功，一看是因为建表语句的编码设置没有修改成utf8。</p>
-<p>转编码用的ultraedit的转换功能，后来怀疑ultraedit的转换出错，网上找了一个win版本的iconv装上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iconv -f ISO-8859-1 -t UTF-8 original.txt&gt; newfile.txt</div></pre></td></tr></table></figure></p>
-<p>问题依旧。其中有几个小表，直接用导出的sql粘贴到phpmyadmin里运行就可以了，但是会员和帖子表肯定不能用这个办法。</p>
-<p>还试用了把latin1的表修改字符，然后试图用convert转码<br><code>update cdb_members set username=CONVERT(username USING utf8)</code>，也没成功。</p>
-<p>后来当我一筹莫展准备缴械的时候，想起了另外两个功能 <code>SELECT INTO OUTFILE</code> 和 <code>LOAD DATA INFILE</code> 是另外一种导入导出的方法。</p>
-<p>贴出使用的sql：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">SELECT</div><div class="line">uid,nickname,site,alipay,</div><div class="line">icq,qq,yahoo,msn,taobao,</div><div class="line">location,customstatus,</div><div class="line">medals,avatar,avatarwidth,</div><div class="line">avatarheight,bio,signature,</div><div class="line">sightml,ignorepm,groupterms,</div><div class="line">authstr INTO OUTFILE &apos;d:/cdb_memberfields.txt&apos;</div><div class="line">FIELDS TERMINATED BY &quot;,&quot;</div><div class="line">OPTIONALLY ENCLOSED BY &quot;&quot;&quot;&quot;</div><div class="line">LINES TERMINATED BY &quot;\r\n&quot;</div><div class="line">FROM gench2.cdb_memberfields;</div></pre></td></tr></table></figure></p>
-<p>然后转换<code>d:/cdb_memberfields.txt</code> 的编码为utf8,可以用ultraedit或者iconv，然后load到新数据库的表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">LOAD DATA INFILE &apos;d:/cdb_memberfields.txt&apos; INTO TABLE cdb_memberfields</div><div class="line">FIELDS TERMINATED BY &quot;,&quot;</div><div class="line">OPTIONALLY ENCLOSED BY &quot;&quot;&quot;&quot;</div><div class="line">LINES TERMINATED BY &quot;\r\n&quot;;</div></pre></td></tr></table></figure></p>
-<p>上面还有一个问题是TERMINATED,ENCLOSED的选取，如果选的不对，会load失败。</p>
-<p>附1：共迁移了如下表<br>cdb_attachments<br>cdb_forums<br>cdb_memberfields<br>cdb_members<br>cdb_onlinetime<br>cdb_posts<br>cdb_threads</p>
-<p>附2：google到的链接<br><a href="http://gentoo-wiki.com/TIP_Convert_latin1_to_UTF-8_in_MySQL" target="_blank" rel="external">http://gentoo-wiki.com/TIP_Convert_latin1_to_UTF-8_in_MySQL</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/11/24/mysql-load-data-infile/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -993,164 +1201,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/11/07/Firefox-flashgot-AddRef/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2009/11/07/Firefox-flashgot-AddRef/" itemprop="url">解决Firefox3下Flashgot的"AddRef"问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-11-07T00:00:00+08:00">
-                2009-11-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2009/11/07/Firefox-flashgot-AddRef/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2009/11/07/Firefox-flashgot-AddRef/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Firefox3通过Flashgot插件调用调用迅雷（去广告的）时出现了AddRef的问题，即下载对话框如下：</p>
-<p><img src="http://photo.liudongkai.com/blog/image_3.png" alt=""></p>
-<p>捣鼓了一把，发现解决方案如下：</p>
-<ol>
-<li>使用Firefox3打开<code>about:config</code>页面（即在地址栏中输入<code>about:config</code>后回车）；</li>
-<li>找到<code>flashgot.autoReferrer</code>项，将其值改为<code>false</code>，问题就搞定了。</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1200,7 +1250,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">286</span>
+                <span class="site-state-item-count">288</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1211,7 +1261,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1222,7 +1272,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">199</span>
+                <span class="site-state-item-count">202</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

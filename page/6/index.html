@@ -345,7 +345,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/08/16/Use-CSS3-or-Javascript-to-add-raquo-to-a-link-on-hover/">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/09/07/iOS-URL-Scheme/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="東木">
@@ -364,7 +364,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2014/08/16/Use-CSS3-or-Javascript-to-add-raquo-to-a-link-on-hover/" itemprop="url">Use CSS3 or Javascript to add &raquo; to a link on hover</a></h1>
+                <a class="post-title-link" href="/2014/09/07/iOS-URL-Scheme/" itemprop="url">常用iOS URL Scheme附录</a></h1>
         
 
         <div class="post-meta">
@@ -376,8 +376,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-08-16T00:00:00+08:00">
-                2014-08-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-09-07T00:00:00+08:00">
+                2014-09-07
               </time>
             
 
@@ -399,8 +399,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/W3C/" itemprop="url" rel="index">
-                    <span itemprop="name">W3C</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -417,8 +417,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2014/08/16/Use-CSS3-or-Javascript-to-add-raquo-to-a-link-on-hover/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/08/16/Use-CSS3-or-Javascript-to-add-raquo-to-a-link-on-hover/" itemprop="commentCount"></span>
+                <a href="/2014/09/07/iOS-URL-Scheme/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/09/07/iOS-URL-Scheme/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -447,16 +447,233 @@
 
       
         
-          
-            <p>For my menu of a website I want to add text-decoaration on a:hover to be the » sign/symbol.</p>
-<p>I tried it like this:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.navbar .nav &gt; li &gt; a:hover:before &#123;</div><div class="line">    content: &quot;&amp;raquo;&quot;;</div><div class="line">    color: #fff;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Any thoughts?</p>
-<h4 id="It-needs-to-be-in-Unicode"><a href="#It-needs-to-be-in-Unicode" class="headerlink" title="It needs to be in Unicode."></a>It needs to be in Unicode.</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.navbar .nav &gt; li &gt; a:hover:before &#123;</div><div class="line">    content: &quot;\00BB&quot;;</div><div class="line">    color: #fff;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>via:<br><a href="http://stackoverflow.com/questions/13213826/use-css3-or-javascript-to-add-raquo-to-a-link-on-hover" target="_blank" rel="external">http://stackoverflow.com/questions/13213826/use-css3-or-javascript-to-add-raquo-to-a-link-on-hover</a></p>
-<p>reference:<br><a href="http://stackoverflow.com/questions/8621481/removing-raquo-from-a-string-using-jquery" target="_blank" rel="external">http://stackoverflow.com/questions/8621481/removing-raquo-from-a-string-using-jquery</a><br>javascript：<code>slicedCrumb = $(this).html().replace(&#39;/[&amp;]raquo[;]/ &#39;, &#39;&#39;);</code><br><a href="http://stackoverflow.com/questions/6202470/set-raquo-html-entity-in-javascripts-document-title" target="_blank" rel="external">http://stackoverflow.com/questions/6202470/set-raquo-html-entity-in-javascripts-document-title</a><br>javascript：<code>innerHTML = &#39;&amp;raquo;&#39;</code></p>
+          <p>ios默认：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>URL Scheme</th>
+<th>Bundle identifier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Safari：</td>
+<td>http://</td>
+<td>&nbsp; </td>
+</tr>
+<tr>
+<td>maps：</td>
+<td><a href="http://maps.google.com" target="_blank" rel="external">http://maps.google.com</a></td>
+<td>&nbsp; </td>
+</tr>
+<tr>
+<td>Phone：</td>
+<td>tel:</td>
+<td>&nbsp; </td>
+</tr>
+<tr>
+<td>SMS：</td>
+<td>sms:</td>
+<td>&nbsp; </td>
+</tr>
+<tr>
+<td>Mail：</td>
+<td>mailto:</td>
+<td>&nbsp; </td>
+</tr>
+<tr>
+<td>iBooks：</td>
+<td>ibooks://</td>
+<td>&nbsp; </td>
+</tr>
+<tr>
+<td>App Store：</td>
+<td><a href="http://itunes.apple.com" target="_blank" rel="external">http://itunes.apple.com</a></td>
+<td>&nbsp; </td>
+</tr>
+<tr>
+<td>iTunes：</td>
+<td>http:<a href="http://phobos.apple.com" target="_blank" rel="external">http://phobos.apple.com</a></td>
+<td>&nbsp; </td>
+</tr>
+<tr>
+<td>Music / iPod：</td>
+<td>music:</td>
+<td>&nbsp; </td>
+</tr>
+<tr>
+<td>Videos：</td>
+<td>videos:</td>
+<td>&nbsp; </td>
+</tr>
+</tbody>
+</table>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2014/09/07/iOS-URL-Scheme/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/08/17/compile-bash-shell-with-shc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/08/17/compile-bash-shell-with-shc/" itemprop="url">用shc加密或者编译shell脚本</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-08-17T00:00:00+08:00">
+                2014-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/08/17/compile-bash-shell-with-shc/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/08/17/compile-bash-shell-with-shc/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>这是针对上一篇<a href="/2014/08/16/How_to_Encrypt_Your_Bash_Shell_Script_on_Linux_Using_SHC/">How to Encrypt Your Bash Shell Script on Linux Using SHC [ZT]</a>的延伸资料整理。</p>
+<h2 id="1-动态链接"><a href="#1-动态链接" class="headerlink" title="1. 动态链接"></a>1. 动态链接</h2><p>文中介绍的两种编译方式，无论是<code>shc -r -f random.sh</code>还是<code>shc -v -r -T -f random.sh</code>生成的二进制文件都是<strong>动态链接</strong>形式的，所以，在其他平台上不能运行。</p>
+<h2 id="2-静态链接"><a href="#2-静态链接" class="headerlink" title="2. 静态链接"></a>2. 静态链接</h2><p>不过，我们可以通过下面的方式生成一个<strong>静态链接</strong>的二进制可执行文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># CFLAGS=-static shc -r -f random.sh</div></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2014/08/17/compile-bash-shell-with-shc/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -820,7 +1037,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/08/12/dropbox-hosts/">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/08/16/Use-CSS3-or-Javascript-to-add-raquo-to-a-link-on-hover/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="東木">
@@ -839,7 +1056,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2014/08/12/dropbox-hosts/" itemprop="url">Dropbox 可用 hosts</a></h1>
+                <a class="post-title-link" href="/2014/08/16/Use-CSS3-or-Javascript-to-add-raquo-to-a-link-on-hover/" itemprop="url">Use CSS3 or Javascript to add &raquo; to a link on hover</a></h1>
         
 
         <div class="post-meta">
@@ -851,8 +1068,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-08-12T00:00:00+08:00">
-                2014-08-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-08-16T00:00:00+08:00">
+                2014-08-16
               </time>
             
 
@@ -874,8 +1091,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
+                  <a href="/categories/W3C/" itemprop="url" rel="index">
+                    <span itemprop="name">W3C</span>
                   </a>
                 </span>
 
@@ -892,164 +1109,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2014/08/12/dropbox-hosts/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/08/12/dropbox-hosts/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Dropbox 可用 hosts 清单</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2014/08/12/dropbox-hosts/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/08/11/mac-os-Charles-license-key/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/08/11/mac-os-Charles-license-key/" itemprop="url">Charles 3.8.1 License Key (全系列无需破解)[ZT]</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-08-11T00:00:00+08:00">
-                2014-08-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mac-OS/" itemprop="url" rel="index">
-                    <span itemprop="name">Mac OS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/08/11/mac-os-Charles-license-key/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/08/11/mac-os-Charles-license-key/" itemprop="commentCount"></span>
+                <a href="/2014/08/16/Use-CSS3-or-Javascript-to-add-raquo-to-a-link-on-hover/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/08/16/Use-CSS3-or-Javascript-to-add-raquo-to-a-link-on-hover/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1079,12 +1140,13 @@
       
         
           
-            <p>Charles 是一款http代理工具<br>同时也可以作为抓包工具</p>
-<p>Download: <a href="http://www.charlesproxy.com/" target="_blank" rel="external">http://www.charlesproxy.com/</a> (官网)</p>
-<p>Registered name:    anthony ortolani</p>
-<p>License key:    <span style="color:#000000;background-color:#000000;">a4036b2761c9583fda</span>（好孩子看不到）</p>
-<p>数据来源 Youtube </p>
-<p>via: <a href="http://blog.woodbunny.com/post-128.html" target="_blank" rel="external">http://blog.woodbunny.com/post-128.html</a></p>
+            <p>For my menu of a website I want to add text-decoaration on a:hover to be the » sign/symbol.</p>
+<p>I tried it like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.navbar .nav &gt; li &gt; a:hover:before &#123;</div><div class="line">    content: &quot;&amp;raquo;&quot;;</div><div class="line">    color: #fff;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Any thoughts?</p>
+<h4 id="It-needs-to-be-in-Unicode"><a href="#It-needs-to-be-in-Unicode" class="headerlink" title="It needs to be in Unicode."></a>It needs to be in Unicode.</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.navbar .nav &gt; li &gt; a:hover:before &#123;</div><div class="line">    content: &quot;\00BB&quot;;</div><div class="line">    color: #fff;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>via:<br><a href="http://stackoverflow.com/questions/13213826/use-css3-or-javascript-to-add-raquo-to-a-link-on-hover" target="_blank" rel="external">http://stackoverflow.com/questions/13213826/use-css3-or-javascript-to-add-raquo-to-a-link-on-hover</a></p>
+<p>reference:<br><a href="http://stackoverflow.com/questions/8621481/removing-raquo-from-a-string-using-jquery" target="_blank" rel="external">http://stackoverflow.com/questions/8621481/removing-raquo-from-a-string-using-jquery</a><br>javascript：<code>slicedCrumb = $(this).html().replace(&#39;/[&amp;]raquo[;]/ &#39;, &#39;&#39;);</code><br><a href="http://stackoverflow.com/questions/6202470/set-raquo-html-entity-in-javascripts-document-title" target="_blank" rel="external">http://stackoverflow.com/questions/6202470/set-raquo-html-entity-in-javascripts-document-title</a><br>javascript：<code>innerHTML = &#39;&amp;raquo;&#39;</code></p>
 
           
         
@@ -1169,7 +1231,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">286</span>
+                <span class="site-state-item-count">288</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1180,7 +1242,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1191,7 +1253,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">199</span>
+                <span class="site-state-item-count">202</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

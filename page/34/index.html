@@ -345,6 +345,157 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/04/04/SQL-server-replace-regular/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2009/04/04/SQL-server-replace-regular/" itemprop="url">一个用于SQL Server 正则替换的函数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-04-04T00:00:00+08:00">
+                2009-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index">
+                    <span itemprop="name">Share</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2009/04/04/SQL-server-replace-regular/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2009/04/04/SQL-server-replace-regular/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">create function dbo.regexReplace</div><div class="line">(</div><div class="line">@source varchar(5000), –原字符串</div><div class="line">@regexp varchar(1000), –正則表換式</div><div class="line">@replace varchar(1000), –替換值</div><div class="line">@globalReplace bit = 0, –是否是全局替換</div><div class="line">@ignoreCase bit = 0 –是否忽略大小寫</div><div class="line">)</div><div class="line">returnS varchar(1000) AS</div><div class="line">begin</div><div class="line">declare @hr integer</div><div class="line">declare @objRegExp integer</div><div class="line">declare @result varchar(5000)</div><div class="line"></div><div class="line">exec @hr = sp_OACreate &apos;VBScript.RegExp&apos;, @objRegExp OUTPUT</div><div class="line">IF @hr &lt;&gt; 0 begin</div><div class="line">exec @hr = sp_OADestroy @objRegExp</div><div class="line">return null</div><div class="line">end</div><div class="line">exec @hr = sp_OASetProperty @objRegExp, &apos;Pattern&apos;, @regexp</div><div class="line">IF @hr &lt;&gt; 0 begin</div><div class="line">exec @hr = sp_OADestroy @objRegExp</div><div class="line">return null</div><div class="line">end</div><div class="line">exec @hr = sp_OASetProperty @objRegExp, &apos;Global&apos;, @globalReplace</div><div class="line">IF @hr &lt;&gt; 0 begin</div><div class="line">exec @hr = sp_OADestroy @objRegExp</div><div class="line">return null</div><div class="line">end</div><div class="line">exec @hr = sp_OASetProperty @objRegExp, &apos;IgnoreCase&apos;, @ignoreCase</div><div class="line">IF @hr &lt;&gt; 0 begin</div><div class="line">exec @hr = sp_OADestroy @objRegExp</div><div class="line">return null</div><div class="line">end</div><div class="line">exec @hr = sp_OAMethod @objRegExp, &apos;Replace&apos;, @result OUTPUT, @source, @replace</div><div class="line">IF @hr &lt;&gt; 0 begin</div><div class="line">exec @hr = sp_OADestroy @objRegExp</div><div class="line">return null</div><div class="line">end</div><div class="line">exec @hr = sp_OADestroy @objRegExp</div><div class="line">IF @hr &lt;&gt; 0 begin</div><div class="line">return null</div><div class="line">end</div><div class="line"></div><div class="line">return @result</div><div class="line">end</div><div class="line">GO</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/12/14/perl-encode-url/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -476,6 +627,165 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">use URI::Escape;</div><div class="line">my $str=&apos;北极神话&apos;;</div><div class="line">print uri_escape($str);</div><div class="line"></div><div class="line"> #result:%B1%B1%BC%AB%C9%F1%BB%B0</div></pre></td></tr></table></figure></li>
 </ul>
 
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/12/14/iconv-gbk-utf8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/12/14/iconv-gbk-utf8/" itemprop="url">Linux系统下处理从GB2312到UTF-8的转换</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-12-14T00:00:00+08:00">
+                2008-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/12/14/iconv-gbk-utf8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/12/14/iconv-gbk-utf8/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>UTF-8 这种编码已经是大势所趋，但是还有不少中文的文档保留着老式的 GB2312编码，而且只要你要和 Windows 打交道，就免不了要处理 GB2312 的问题，比如处理从 Windows 下拷过来的程序源代码、文本文件、字母文件之类。</p>
+<p>编码转换的方法估计大多数同学都知道了，不过还是有必要再强调一下，我就是老忘。</p>
+<p>Linux 下的 iconv 命令可以来处理字符编码的转换，基本命令格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iconv -f 原始编码 -t 目标编码 文件名 &gt; 新文件名</div></pre></td></tr></table></figure>
+<p>-f 代表 from，-t 代表 to。</p>
+<p>假设我要把 text.txt 从 GB2312 编码转换成 UTF-8，并且保存为 text-utf-8.txt 的话，那么命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iconv -f GB2312 -t utf-8 text.txt &gt; text-utf-8.txt</div></pre></td></tr></table></figure>
+<p>不过有的时候，转换会报错，很可能的原因是原文件中有些字符超过了 GB2312 的范围，那么，这个时候，我们可以把 GB2312 改成它的超集 GB18030，一般就解决问题了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iconv -f gb18030 -t utf-8 text.txt &gt; text-utf-8.txt</div></pre></td></tr></table></figure>
           
         
       
@@ -678,163 +988,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/11/26/linux-process-priority/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/11/26/linux-process-priority/" itemprop="url">Linux下调节进程优先级</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-11-26T00:00:00+08:00">
-                2008-11-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/11/26/linux-process-priority/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/11/26/linux-process-priority/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>命令</strong>：<br>nice(1): 以指定优先级运行程序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nice [OPTION] [COMMAND [ARG]…]</div><div class="line">nice –n 1 ls</div></pre></td></tr></table></figure></p>
-<p>renice(8): 调整运行进程的优先级<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">renice priority [[-p] pid …] [[-g] pgrp …] [[-u] user …]</div><div class="line">renice +1 987 -u daemon root -p 32</div></pre></td></tr></table></figure></p>
-<p><strong>API</strong>：<br>nice(2): 改变进程优先级<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int nice(int inc);</div></pre></td></tr></table></figure></p>
-<p>getpriority(2): 获取优先级<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int getpriority(int which, int who);</div></pre></td></tr></table></figure></p>
-<p>setpriority(2): 设置优先级<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int setpriority(int which, int who, int prio);</div></pre></td></tr></table></figure></p>
-<p>Reference:<br><a href="http://unix-cd.com/unixcd12/article_4602.html" target="_blank" rel="external">http://unix-cd.com/unixcd12/article_4602.html</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/11/26/awk-no-wrap/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -979,174 +1132,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/11/22/shell-process-control/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/11/22/shell-process-control/" itemprop="url">Shell程序设计的流程控制</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-11-22T00:00:00+08:00">
-                2008-11-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/11/22/shell-process-control/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/11/22/shell-process-control/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>和其他高级程序设计语言一样，Shell提供了用来控制程序执行流程的命令，包括条件分支和循环结构，用户可以用这些命令创建非常复杂的程序。</p>
-<p>与传统语言不同的是，Shell用于指定条件值的不是布尔运算式，而是命令和字串。</p>
-<ol>
-<li><p>测试命令</p>
-<p>test命令用于检查某个条件是否成立，它可以进行数值、字符和文件3个方面的测试，其测试符和相应的功能分别如下。</p>
-<ul>
-<li><p>数值测试：<br>-eq 等于则为真。<br>-ne 不等于则为真。<br>-gt 大于则为真。<br>-ge 大于等于则为真。<br>-lt 小于则为真。<br>-le 小于等于则为真。</p>
-</li>
-<li><p>字串测试：<br>= 等于则为真。<br>!= 不相等则为真。<br>-z 字串 字串长度伪则为真。<br>-n 字串 字串长度不伪则为真。</p>
-</li>
-</ul>
-</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2008/11/22/shell-process-control/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1196,7 +1181,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">286</span>
+                <span class="site-state-item-count">288</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1207,7 +1192,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1218,7 +1203,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">199</span>
+                <span class="site-state-item-count">202</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

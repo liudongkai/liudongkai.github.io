@@ -345,6 +345,326 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/11/08/qnap-ts-212p-fireware-recovery/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/11/08/qnap-ts-212p-fireware-recovery/" itemprop="url">QNAP TS-212P 重刷固件后起死回生</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-11-08T00:00:00+08:00">
+                2014-11-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index">
+                    <span itemprop="name">Share</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/11/08/qnap-ts-212p-fireware-recovery/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/08/qnap-ts-212p-fireware-recovery/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>趁着1111活动，从企鹅入手TS-212P带3T日立企业盘，某东做的配送，0点后下的单，下午就到货了。到手后第一件事情就是把固件升级了，cloud升级的，down了一宿，第二天起来看到提示重启设备，反正正好要挪个位置，那就先正常关机，换了位置后，正常启动。</p>
+<p>接下来的问题就来了，启动后，Status灯一直红绿灯闪烁，然后重启；第二声确认蜂鸣声再也没有听到过，QFinder与NAS也从此失去了联系。</p>
+<p>发现网络上碰到这问题不少，我一个同事入的同款，也碰到过此类现象。</p>
+<p>最后按照QNAP wiki(<a href="http://wiki.qnap.com/wiki/Firmware_Recovery#Firmware_Recovery_Guide_for_ARM_based_NAS" target="_blank" rel="external">http://wiki.qnap.com/wiki/Firmware_Recovery#Firmware_Recovery_Guide_for_ARM_based_NAS</a>) 里的方法，重新刷回4.0.5，然后下载固件到本地，ssh到设备里升级的</p>
+<blockquote>
+<p>为什么要ssh上去升？因为web不牢靠，QFinder也尝试过直接4.0.5–&gt;4.1.1，最后会提示失败，失败的原因也不提示，不过最后在SSH升级过程中得到解答，是boot镜像没找到 =。=</p>
+</blockquote>
+<p>升级命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 固件img放在public下:</div><div class="line">[/] # ln -sf /mnt/HDA_ROOT/update/ /mnt/update</div><div class="line">[/] # /etc/init.d/update.sh /share/Public/4.1.1.img</div><div class="line">[/] # reboot</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/11/04/VirtualBox-compact-vdi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/11/04/VirtualBox-compact-vdi/" itemprop="url">压缩 VirtualBox 下安装 Linux 的 .vdi 虚拟硬盘文件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-11-04T00:00:00+08:00">
+                2014-11-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/VM/" itemprop="url" rel="index">
+                    <span itemprop="name">VM</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/11/04/VirtualBox-compact-vdi/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/04/VirtualBox-compact-vdi/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>在虚拟机里把没用的磁盘空间置零 (这一步耗时比较长, 且没提示. 另外如果有权限问题记得前面加 sudo)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dd if=/dev/zero of=/zero.tmp</div><div class="line">rm -f /zep.tmp</div></pre></td></tr></table></figure>
+</li>
+<li><p>关闭虚拟机</p>
+</li>
+<li><p>执行压缩命令 (宿主机是 Win 或 Linux 都自行找 VboxManager 的路径)</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">VboxManage modifyhd /PATH_TO_VDI/name.vdi --compact</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/10/29/ios8-cydia-sources/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -807,328 +1127,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/10/20/How-to-Create-an-OS-X-Yosemite-USB-Installation-Drive/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/10/20/How-to-Create-an-OS-X-Yosemite-USB-Installation-Drive/" itemprop="url">如何制作OS X Yosemite 独立安装U盘</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-10-20T00:00:00+08:00">
-                2014-10-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mac-OS/" itemprop="url" rel="index">
-                    <span itemprop="name">Mac OS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/10/20/How-to-Create-an-OS-X-Yosemite-USB-Installation-Drive/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/20/How-to-Create-an-OS-X-Yosemite-USB-Installation-Drive/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>制作方法和Mavericks一致，见前一篇<a href="/2013/10/28/How-to-Create-an-OS-X-Mavericks-USB-Installation-Drive/">《How to Create an OS X Mavericks USB Installation Drive》</a></p>
-<p>准备独立安装盘介质： 你需要一个容量至少大于 8GB 的移动存储设备，比如 U盘、移动硬盘或 SD卡，将其插入 Mac，并启动磁盘工具对该介质执行“抹掉”操作，抹掉前请备份好该介质中的重要数据。盘符名请命名为“<em>Untitled</em>”。</p>
-<p>通过“终端”命令制作安装盘：打开“终端”，在命令行中执行下面的命令，当提示输入密码时请输入你的 OS X 管理员登陆密码。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo /Applications/Install\ OS\ X\ Yosemite.app/Contents/Resources/createinstallmedia --volume /Volumes/Untitled --applicationpath /Applications/Install\ OS\ X\ Yosemite.app --nointeraction</div></pre></td></tr></table></figure>
-<p>完成制作： 如果一切正常的话，“终端”界面中就会显示 Erasing Disk: 0%… 10%…20%… ，并最终完成制作了。制作完成后，你可以使用该介质启动任意一台兼容 OS X Yosemite 的 Mac(需要在目标 Mac 上插入该介质，然后在开机时按住 option 键)，开始 OS X Yosemite 的安装之旅。</p>
-<p>PS: 如果你将盘符命名为其他名称，请在命令中降 /Volumes/Untitled 修改为 /Volumes/{盘符名称}。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/10/15/10common-database-security-problems/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/10/15/10common-database-security-problems/" itemprop="url">10大最常见的数据库安全问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-10-15T00:00:00+08:00">
-                2014-10-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/10/15/10common-database-security-problems/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/15/10common-database-security-problems/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>数据库作为非常重要的存储工具，里面往往会存放着大量有价值或敏感信息， 这些信息包括金融财政、知识产权、企业数据等方方面面的内容。因此，数据库往往会成为黑客们的主要攻击对象。网络黑客们会利用各种途径来获取他们想要的信息，因此，保证数据库安全变得尤为重要。</p>
-<p><img src="/images/20141015-10common-database-security-problems.jpg" alt=""></p>
-<p>尽管意识到数据库安全的重要性，但开发者在集成应用程序或修补漏洞、更新数据库的时候仍然会犯一些错误，让黑客们乘虚而入。本文列出了数据库系统10个最常见的安全问题。</p>
-<ol>
-<li><p>错误地部署  </p>
-<p>开发者在部署过程中的粗心大意会很容易让数据库陷入危难之中。在现实中，有些公司会意识到优化搜索引擎对于业务取得成功的重要性，但只有对数据库进行排序，SEO才可以很好地对其优化。尽管功能性测试对性能有一定的保证，但测试并不能预料数据库会发生的一切。因此，在进行完全部署之前，对数据库进行全面的检查是非常有必要的。</p>
-</li>
-<li><p>数据泄露</p>
-</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2014/10/15/10common-database-security-problems/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1178,7 +1176,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">286</span>
+                <span class="site-state-item-count">288</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1189,7 +1187,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1200,7 +1198,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">199</span>
+                <span class="site-state-item-count">202</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

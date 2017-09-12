@@ -517,6 +517,334 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/01/19/rsync-backup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/01/19/rsync-backup/" itemprop="url">用rsync对网站进行镜像备份</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-01-19T00:00:00+08:00">
+                2008-01-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/01/19/rsync-backup/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/01/19/rsync-backup/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>用rsync对网站进行镜像备份</p>
+<p>by inburst <code>&lt;inburst@263.net&gt;</code><br><a href="http://xfocus.org" target="_blank" rel="external">http://xfocus.org</a></p>
+<p>对系统管理员来说，平时的工作重心应该集中在维护系统正常运转，能够正常提供服务上，这里往往牵涉到一个数据备份的问题，在我所了解的情况中，有80%的系统管理员不是太关心自己服务器的安全性，但往往对备分镜像的技术相当感兴趣，但由于商业产品的软硬件价格都相当高昂，因此往往会选择自由软件。这里准备介绍的rsync就是这样的软件，它可以满足绝大多数要求不是特别高的备份需求。</p>
+<h2 id="一、特性简介"><a href="#一、特性简介" class="headerlink" title="一、特性简介"></a><e1>一、特性简介</e1></h2><p>rsync是类unix系统下的数据镜像备份工具，从软件的命名上就可以看出来了——remote sync。它的特性如下：</p>
+<ol>
+<li>可以镜像保存整个目录树和文件系统。</li>
+<li>可以很容易做到保持原来文件的权限、时间、软硬链接等等。</li>
+<li>无须特殊权限即可安装。</li>
+<li>优化的流程，文件传输效率高。</li>
+<li>可以使用rcp、ssh等方式来传输文件，当然也可以通过直接的socket连接。</li>
+<li>支持匿名传输。</li>
+</ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2008/01/19/rsync-backup/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/01/19/rsync-parameters-details/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/01/19/rsync-parameters-details/" itemprop="url">rsync参数详解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-01-19T00:00:00+08:00">
+                2008-01-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/01/19/rsync-parameters-details/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/01/19/rsync-parameters-details/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>选项说明</p>
+<blockquote>
+<p>-v, –verbose 详细模式输出<br>-q, –quiet 精简输出模式<br>-c, –checksum 打开校验开关，强制对文件传输进行校验<br>-a, –archive 归档模式，表示以递归方式传输文件，并保持所有文件属性，等于-rlptgoD<br>-r, –recursive 对子目录以递归模式处理<br>-R, –relative 使用相对路径信息</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rsync foo/bar/foo.c remote:/tmp/</div></pre></td></tr></table></figure>
+<p>则在/tmp目录下创建foo.c文件，而如果使用-R参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rsync -R foo/bar/foo.c remote:/tmp/</div></pre></td></tr></table></figure></p>
+<p>则会创建文件/tmp/foo/bar/foo.c，也就是会保持完全路径信息。</p>
+<blockquote>
+<p>-b, –backup 创建备份，也就是对于目的已经存在有同样的文件名时，将老的文件重新命名为~filename。可以使用–suffix选项来指定不同的备份文件前缀。<br>–backup-dir 将备份文件(如~filename)存放在在目录下。<br>-suffix=SUFFIX 定义备份文件前缀<br>-u, –update 仅仅进行更新，也就是跳过所有已经存在于DST，并且文件时间晚于要备份的文件。(不覆盖更新的文件)<br>-l, –links 保留软链结<br>-L, –copy-links 想对待常规文件一样处理软链结<br>–copy-unsafe-links 仅仅拷贝指向SRC路径目录树以外的链结<br>–safe-links 忽略指向SRC路径目录树以外的链结<br>-H, –hard-links 保留硬链结<br>-p, –perms 保持文件权限<br>-o, –owner 保持文件属主信息<br>-g, –group 保持文件属组信息<br>-D, –devices 保持设备文件信息<br>-t, –times 保持文件时间信息<br>-S, –sparse 对稀疏文件进行特殊处理以节省DST的空间<br>-n, –dry-run现实哪些文件将被传输<br>-W, –whole-file 拷贝文件，不进行增量检测<br>-x, –one-file-system 不要跨越文件系统边界<br>-B, –block-size=SIZE 检验算法使用的块尺寸，默认是700字节<br>-e, –rsh=COMMAND 指定替代rsh的shell程序<br>–rsync-path=PATH 指定远程服务器上的rsync命令所在路径信息<br>-C, –cvs-exclude 使用和CVS一样的方法自动忽略文件，用来排除那些不希望传输的文件<br>–existing 仅仅更新那些已经存在于DST的文件，而不备份那些新创建的文件<br>–delete 删除那些DST中SRC没有的文件<br>–delete-excluded 同样删除接收端那些被该选项指定排除的文件<br>–delete-after 传输结束以后再删除<br>–ignore-errors 及时出现IO错误也进行删除<br>–max-delete=NUM 最多删除NUM个文件<br>–partial 保留那些因故没有完全传输的文件，以是加快随后的再次传输<br>–force 强制删除目录，即使不为空<br>–numeric-ids 不将数字的用户和组ID匹配为用户名和组名<br>–timeout=TIME IP超时时间，单位为秒<br>-I, –ignore-times 不跳过那些有同样的时间和长度的文件<br>–size-only 当决定是否要备份文件时，仅仅察看文件大小而不考虑文件时间<br>–modify-window=NUM 决定文件是否时间相同时使用的时间戳窗口，默认为0<br>-T –temp-dir=DIR 在DIR中创建临时文件<br>–compare-dest=DIR 同样比较DIR中的文件来决定是否需要备份<br>-P 等同于 –partial<br>–progress 显示备份过程<br>-z, –compress 对备份的文件在传输时进行压缩处理<br>–exclude=PATTERN 指定排除不需要传输的文件模式<br>–include=PATTERN 指定不排除而需要传输的文件模式<br>–exclude-from=FILE 排除FILE中指定模式的文件<br>–include-from=FILE 不排除FILE指定模式匹配的文件<br>–version 打印版本信息<br>–address 绑定到特定的地址<br>–config=FILE 指定其他的配置文件，不使用默认的rsyncd.conf文件<br>–port=PORT 指定其他的rsync服务端口<br>–blocking-io 对远程shell使用阻塞IO<br>-stats 给出某些文件的传输状态<br>–progress 在传输时现实传输过程<br>–log-format=FORMAT 指定日志文件格式<br>–password-file=FILE 从FILE中得到密码<br>–bwlimit=KBPS 限制I/O带宽，KBytes per second<br>-h, –help 显示帮助信息</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/01/16/Patapon-personage-introduction/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -817,318 +1145,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/01/10/fixed-firefox-alt-s/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/01/10/fixed-firefox-alt-s/" itemprop="url">Firefox升级到2.0后alt+s回复出现历史问题解决</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-01-10T00:00:00+08:00">
-                2008-01-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/01/10/fixed-firefox-alt-s/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/01/10/fixed-firefox-alt-s/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近刚刚把自己的firefox1.5升级到了2.0，界面美观了不少，速度也变的比较快了，很多地方都优化的很细致。但有一些习惯性的东西却被改变 了，比如经常上discuz系统的论坛的朋友使用alt+s快捷回复的时候会出现历史标签，虽然回复也post出去了，但每次都出现那个历史的确是非常的 碍眼啊。经过多方搜索和实践，终于让我找到了解决方法，现在就给广大的firefox2.0用户分享一下心得。</p>
-<p>第一种方法是修改config设置，这个方法我试验过但没有成功，不过还是拿出来，如果有人成功的话请留言回复下好么？<br>首先打开一个空白页面，然后在地址栏输入<code>about:config</code>，回车就会出现firefox的系统设置页面，跟windows的注册表类似一样，修改缓存什么的都在这里进行修改。<br>然后我们在筛选器里面输入<code>Ui.key.contentAccess</code>，就会筛选出我们要修改的值了，双击这个值把内含值5修改成4确定后就可以重启firefox了。重启后就alt+s快捷回复的时候就不会出现历史项了，不过我没有成功。</p>
-<p>第二种方法是修改基础文件的，这个方法我实验通过了，目前我就是使用这种方法可以快捷回复的。<br>首先找到firefox2.0的安装目录，找到chromezh-CN.jar文件。<br>用winrar直接打开，不要全部解压缩，如果全部解压缩修改的话会出现问题的。<br>在里面找到<code>localebrowserbrowser.dtd</code>这个文件，对着它点右键解压出来。<br>使用记事本打开browser.dtd文件，然后ctrl+f找到<code>historyMenu.accesskey</code>，将”s”修改成任何一个字母。关闭保 存，然后直接用鼠标把修改后的文件拖回winrar直接打开的zh-CH.jar文件localebrowser目录下面，会问你要不要覆盖，直接 确定就可以了。<br>然后使用alt+s快捷回复的时候就不会再出现历史了，如果觉得这个方法比较不安全，可以在修改之前备份一下zh-CN.jar文件。不过目前我一直使用着没有发现任何问题，推荐大家使用这个方法修改。</p>
-<p>虽然我们可以修改firefox2.0的设置达到这个目的，但还是希望在下个版本中能够软件自己修改好这个算是bug的小瑕疵吧。但瑕不掩玉，虽然有些小瑕疵，但firefox浏览器还是目前世界上最好用最迅速的浏览器。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/01/08/discuz5.5-dd/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/01/08/discuz5.5-dd/" itemprop="url">DISCUZ5.5数据库数据字典</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-01-08T00:00:00+08:00">
-                2008-01-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/01/08/discuz5.5-dd/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/01/08/discuz5.5-dd/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>DISCUZ5.0数据库数据字典<br>默认库共68个数据表，（以下表数据量注释均为默认）</p>
-<p>cdb_access （用户权限表）<br>uid 用户id<br>fid 论坛id<br>allowview 允许浏览<br>allowpost 允许发新帖<br>allowreply 允许回复<br>allowgetattach 允许下载附件<br>allowpostattach 允许上传附件<br>———————————————————<br>cdb_activities<br>tid 帖子ID<br>uid 发布人ID<br>cost 每人花销<br>starttimefrom 时间范围始<br>starttimeto 时间范围止<br>place 活动地点<br>class 活动类别<br>gender 性别<br>number 需要人数<br>expiration 截止日期 </p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2008/01/08/discuz5.5-dd/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1178,7 +1194,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">286</span>
+                <span class="site-state-item-count">288</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1189,7 +1205,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1200,7 +1216,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">199</span>
+                <span class="site-state-item-count">202</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

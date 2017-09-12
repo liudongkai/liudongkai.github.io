@@ -521,6 +521,179 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/15/IBM-install-drivers-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/03/15/IBM-install-drivers-1/" itemprop="url">IBM T61/R61/X61 WinXP驱动安装(一)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-03-15T00:00:00+08:00">
+                2008-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index">
+                    <span itemprop="name">Share</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/03/15/IBM-install-drivers-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/03/15/IBM-install-drivers-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>==== 20140221更新 ====<br>重新整理，终于找到原帖：<a href="http://www.tpuser.idv.tw/articles/santarosa-test-wxp.html" target="_blank" rel="external">http://www.tpuser.idv.tw/articles/santarosa-test-wxp.html</a></p>
+<hr>
+<p>ThinkPad T61/R61/X61系列硬件架构相当接近，原厂维修手册都可共享，此篇安装流程理论上可以适用在 ThinkPad T61/R61/X61系列上面，记得再根据个别机种的硬件安装对应驱动程序。</p>
+<ul>
+<li><a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=TPAD-MATRIX" target="_blank" rel="external">ThinkPad 全系列机型驱动程序 矩阵列表</a></li>
+</ul>
+<p>由 于微软的许多组件都需在线下载，无法直接下载完整版本，因此才会视需要，将网络卡的驱动程序安装程序放在前面。此外 ThinkPad 的相关驱动程序也有安装顺序上的考虑，以下的安装流程其实已经把各环节都尽量考虑进去，如网友没有把握，不妨按照以下的顺序安装，感谢。</p>
+<h3 id="准备动作：设定-SATA-硬盘"><a href="#准备动作：设定-SATA-硬盘" class="headerlink" title="准备动作：设定 SATA 硬盘"></a>准备动作：设定 SATA 硬盘</h3><p>自从 T60/R60/X60 开始改用 SATA 界面硬盘，手动安装 WinXP 便遇到一个问题：「要选择 Compatibility 还是 AHCI 模式？」，这问题的主因源自于设定为 AHCI 模式时，必须在安装时按下「 F6 」，然后预先加载芯片组驱动程序。但现在拥有 USB 界面软驱的使用者实在太少了。</p>
+<p>在没有 USB 软驱的状况下，有的使用者便设定成 「 Compatibility 模式」，却发现硬盘效能不彰，接着去 BIOS 调回 AHCI 模式之后，就会发生蓝底白字的系统当机惨剧。因此很多人想到要重装 WinXP 就头大。</p>
+<p>但根据 Lenovo 原厂提供的资料，以及亲身体验，其实手动安装 WinXP 并不困难！不需要准备 USB 软驱﹔不用忍受「 Compatibility 模式」效能不彰问题，更不会发生蓝底白字惨剧，关键只在于「安装流程的顺序！」</p>
+<p>请跟着本文的流程依序安装，相信大家都能顺利重返 WinXP 环境！</p>
+<ol>
+<li>按下电源开关，开机时请按「 F1 」键，之后会进入 BIOS 画面。</li>
+<li>进入 BIOS 之后，进入「 Config 」页面</li>
+<li>再进入「 Serial ATA(SATA) 」页面</li>
+<li>将原先的「 AHCI 」改成「 Compatibility 」</li>
+</ol>
+<p>换言之，手动安装 WinXP 时，先采用「 Compatibility 模式」，规避掉需要透过 USB 软驱安装驱动程序的困扰，然后在后面的「步骤三」请网友务必按照说明安装 Intel Matrix Storage Manager Driver ，同时将硬盘更改为 AHCI 模式。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2008/03/15/IBM-install-drivers-1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/15/wp-plugin-tiger-administration/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -633,6 +806,169 @@
 <p>更多的可以查看：<a href="http://orderedlist.com/wordpress-plugins/wp-tiger-administration/" target="_blank" rel="external">插件作者页面</a></p>
 
           
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/15/apache-rewrite/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/03/15/apache-rewrite/" itemprop="url">Apache 重写规则的常见应用 (rewrite)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-03-15T00:00:00+08:00">
+                2008-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/03/15/apache-rewrite/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/03/15/apache-rewrite/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="一-目的"><a href="#一-目的" class="headerlink" title="一: 目的"></a>一: 目的</h3><p>本文旨在提供如何用Apache重写规则来解决一些常见的URL重写方法的问题，通过常见的实例给用户一些使用重写规则的基本方法和线索。</p>
+<h3 id="二-为什么需要用重写规则？"><a href="#二-为什么需要用重写规则？" class="headerlink" title="二:为什么需要用重写规则？"></a>二:为什么需要用重写规则？</h3><p>一个网站，如果是长期需要放在internet上提供服务，必定会有不断地更新和维护，如临时转移到其它服务器进行维护，重新组织目录结构，变换URL甚至改变到新的域名等等，而为了让客户不会因此受到任何影响，最好的方法就是使用Apache Rewrite Rule(重写规则)。</p>
+<h3 id="三-重写规则的作用范围"><a href="#三-重写规则的作用范围" class="headerlink" title="三: 重写规则的作用范围"></a>三: 重写规则的作用范围</h3><ol>
+<li>可以使用在Apache主配置文件httpd.conf中</li>
+<li>可以使用在httpd.conf里定义的虚拟主机配置中</li>
+<li>可以使用在基本目录的跨越配置文件.htaccess中</li>
+</ol>
+<h3 id="四-重写规则的应用条件"><a href="#四-重写规则的应用条件" class="headerlink" title="四:重写规则的应用条件"></a>四:重写规则的应用条件</h3><p>只有当用户的WEB请求最终被导向到某台WEB服务器的Apache后台，则这台WEB服务器接受进来的请求，根据配置文件该请求是主配置还是虚拟主机，再根据用户在浏览器中请求的URI来配对重写规则并且根据实际的请求路径配对.htaccess中的重写规则。最后把请求的内容传回给用户，该响应可能有两种：</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2008/03/15/apache-rewrite/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -826,344 +1162,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/04/EditPlus-regex-example/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/03/04/EditPlus-regex-example/" itemprop="url">Editplus 正则替换实例 By Stabx</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-03-04T00:00:00+08:00">
-                2008-03-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/03/04/EditPlus-regex-example/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/03/04/EditPlus-regex-example/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>abandon[2’b9nd2n]v.抛弃，放弃<br>abandonment[2’b9nd2nm2nt]n.放弃<br>abbreviation[2bri:vi’ei62n]n.缩写<br>abeyance[2’bei2ns]n.缓办，中止<br>abide[2’baid]v.遵守<br>ability[2’biliti]n.能力<br>able[’eibl]adj.有能力的，能干的<br>abnormal[9b’n0:m2l]adj.反常的，变态的<br>aboard[2’b0:d]adv.船(车)上</p>
-</blockquote>
-<ol>
-<li><p>查找: <code>(^[a-zA-Z0-0\-]+)(\[*.*\]+)(.*)</code><br>替换: <code>@@@@@&quot;\1″,&quot;\2″,&quot;\3″,</code><br>效果:   </p>
-<blockquote>
-<p>@@@@@”abandon”,”[2’’b9nd2n]”,”v.抛弃，放弃”,<br>@@@@@”abandonment”,”[2’’b9nd2nm2nt]”,”n.放弃”,<br>@@@@@”abbreviation”,”[2bri:vi’’ei62n]”,”n.缩写”,<br>@@@@@”abeyance”,”[2’’bei2ns]”,”n.缓办，中止”,<br>@@@@@”abide”,”[2’’baid]”,”v.遵守”,<br>@@@@@”ability”,”[2’’biliti]”,”n.能力”,<br>@@@@@”able”,”[‘’eibl]”,”adj.有能力的，能干的”,<br>@@@@@”abnormal”,”[9b’’n0:m2l]”,”adj.反常的，变态的”,<br>@@@@@”aboard”,”[2’’b0:d]”,”adv.船(车)上”, </p>
-</blockquote>
-</li>
-<li><p>查找: <code>\n</code><br>替换:<br>注: 要次替换内容为空<br>效果:   </p>
-<blockquote>
-<p>@@@@@”abandon”,”[2’’b9nd2n]”,”v.抛弃，放弃 “,@@@@@”abandonment”,”[2’’b9nd2nm2nt]”,”n.放弃 “,@@@@@”abbreviation”,”[2bri:vi’’ei62n]”,”n.缩写 “,@@@@@”abeyance”,”[2’’bei2ns]”,”n.缓办，中止”,@@@@@”abide”,”[2’’baid]”,”v.遵守 “,@@@@@”ability”,”[2’’biliti]”,”n.能力”,@@@@@”able”,”[‘’eibl]”,”adj.有能力的，能 干的 “,@@@@@”abnormal”,”[9b’’n0:m2l]”,”adj.反常的，变态的 “,@@@@@”aboard”,”[2’’b0:d]”,”adv.船(车)上”,@@@@@”abolish”,”[2’’b0li6]”,”v.废 除，取消”,@@@@@”abolition”,”[9b2’’li62n]”,”n.废除，取消” </p>
-</blockquote>
-</li>
-<li><p>查找: <code>@@@@@</code><br>替换: <code>\n</code><br>效果:   </p>
-<blockquote>
-<p>“abandon”,”[2’’b9nd2n]”,”v.抛弃，放弃”,<br>“abandonment”,”[2’’b9nd2nm2nt]”,”n.放弃”,<br>“abbreviation”,”[2bri:vi’’ei62n]”,”n.缩写”,<br>“abeyance”,”[2’’bei2ns]”,”n.缓办，中止”,<br>“abide”,”[2’’baid]”,”v.遵守”,<br>“ability”,”[2’’biliti]”,”n.能力”,<br>“able”,”[‘’eibl]”,”adj.有能力的，能干的”,<br>“abnormal”,”[9b’’n0:m2l]”,”adj.反常的，变态的”,<br>“aboard”,”[2’’b0:d]”,”adv.船(车)上”,<br>“abolish”,”[2’’b0li6]”,”v.废除，取消”, </p>
-</blockquote>
-</li>
-<li><p>任务完成  </p>
-</li>
-<li><p>作用说明<br>本次操作主要是为了将数据导入 MS Access</p>
-</li>
-</ol>
-<p>注: 本次操作导入数据 7988 行</p>
-<p>shawl.qiu<br>15:39 2006-5-16</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/04/EditPlus-regex/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/03/04/EditPlus-regex/" itemprop="url">EditPlus正则表达式替换字符串详解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-03-04T00:00:00+08:00">
-                2008-03-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/03/04/EditPlus-regex/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/03/04/EditPlus-regex/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>网上搜集了些实例</p>
-<p>正则表达式是一个查询的字符串，它包含一般的字符和一些特殊的字符，特殊字符可以扩展查找字符串的能力，正则表达式在查找和替换字符串的作用不可忽视，它能很好提高工作效率。</p>
-<p>EditPlus的查找，替换，文件中查找支持以下的正则表达式：</p>
-<blockquote>
-<p>Expression Description<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">\t Tab character.  </div><div class="line">\n New line.  </div><div class="line">. Matches any character.  </div><div class="line">| Either expression on its left and right side matches the target string.  </div><div class="line">For example, &quot;a|b&quot; matches &quot;a&quot; and &quot;b&quot;.  </div><div class="line">[] Any of the enclosed characters may match the target character.  </div><div class="line">  For example, &quot;[ab]&quot; matches &quot;a&quot; and &quot;b&quot;. &quot;[0-9]&quot; matches any digit.  </div><div class="line">[^] None of the enclosed characters may match the target character.  </div><div class="line">  For example, &quot;[^ab]&quot; matches all character EXCEPT &quot;a&quot; and &quot;b&quot;.  </div><div class="line">&quot;[^0-9]&quot; matches any non-digit character.  </div><div class="line">* Character to the left of asterisk in the expression should match 0 or more times.  </div><div class="line">For example &quot;be*&quot; matches &quot;b&quot;, &quot;be&quot; and &quot;bee&quot;.    </div><div class="line">+ Character to the left of plus sign in the expression should match 1 or more times.  </div><div class="line">For example &quot;be+&quot; matches &quot;be&quot; and &quot;bee&quot; but not &quot;b&quot;.  </div><div class="line">? Character to the left of question mark in the expression should match 0 or 1 time.  </div><div class="line">For example &quot;be?&quot; matches &quot;b&quot; and &quot;be&quot; but not &quot;bee&quot;.  </div><div class="line">^ Expression to the right of ^ matches only when it is at the beginning of line.  </div><div class="line">For example &quot;^A&quot; matches an &quot;A&quot; that is only at the beginning of line.  </div><div class="line">$ Expression to the left of $ matches only when it is at the end of line.  </div><div class="line">For example &quot;e$&quot; matches an &quot;e&quot; that is only at the end of line.  </div><div class="line">() Affects evaluation order of expression and also used for tagged expression.  </div><div class="line">\ scape character. If you want to use character &quot;\&quot; itself, you should use &quot;\\&quot;.</div></pre></td></tr></table></figure></p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2008/03/04/EditPlus-regex/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1213,7 +1211,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">286</span>
+                <span class="site-state-item-count">288</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1224,7 +1222,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1235,7 +1233,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">199</span>
+                <span class="site-state-item-count">202</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
