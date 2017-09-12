@@ -1,20 +1,31 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
 
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
 
 
 
@@ -83,7 +94,7 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Outlook," />
@@ -97,7 +108,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
@@ -105,11 +116,13 @@
 
 
 <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta name="keywords" content="Outlook">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OUTLOOK菜单类">
 <meta property="og:url" content="http://blog.liudongkai.com/2007/12/23/outllook-menu-class/index.html">
-<meta property="og:site_name" content="Dong's Note">
+<meta property="og:site_name" content="Dong&#39;s Note">
 <meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2007-12-22T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OUTLOOK菜单类">
@@ -121,10 +134,12 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
     duoshuo: {
       userId: '5094676',
       author: '東木'
@@ -147,19 +162,17 @@
 
 
 
-  <title> OUTLOOK菜单类 | Dong's Note </title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
+  <title>OUTLOOK菜单类 | Dong's Note</title>
   
+
+
 
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-42337789-4', 'auto');
   ga('send', 'pageview');
 </script>
@@ -178,40 +191,42 @@
 
 
 
+</head>
 
-
-
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Dong's Note</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
   </div>
-    
-      <p class="site-subtitle"></p>
-    
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -232,7 +247,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
+          <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -242,7 +257,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -252,7 +267,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -280,7 +295,7 @@
     <div class="site-search">
       
   
-  <div class="algolia-popup popup">
+  <div class="algolia-popup popup search-popup">
     <div class="algolia-search">
       <div class="algolia-search-input-icon">
         <i class="fa fa-search"></i>
@@ -326,35 +341,29 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2007/12/23/outllook-menu-class/">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2007/12/23/outllook-menu-class/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                OUTLOOK菜单类
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">OUTLOOK菜单类</h1>
         
 
         <div class="post-meta">
@@ -366,7 +375,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2007-12-23T00:00:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2007-12-23T00:00:00+08:00">
                 2007-12-23
               </time>
             
@@ -415,8 +424,8 @@
           
 
           
-
           
+
           
 
           
@@ -427,7 +436,9 @@
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -437,21 +448,15 @@
         <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div></pre></td><td class="code"><pre><div class="line">&lt;HTML&gt;</div><div class="line">&lt;HEAD&gt;</div><div class="line">&lt;TITLE&gt;outlook菜单&lt;/TITLE&gt;</div><div class="line">&lt;META http-equiv=content-type content=text/html;charset=gb2312&gt;</div><div class="line">&lt;style&gt;</div><div class="line">.outlook-title</div><div class="line">&#123;</div><div class="line">border:1px outset;</div><div class="line">background-color:buttonface;</div><div class="line">color:black;</div><div class="line">text-align:center;</div><div class="line">cursor:hand;</div><div class="line">font-size:9pt;</div><div class="line">&#125;</div><div class="line">.outlook-item</div><div class="line">&#123;</div><div class="line">padding:2px;</div><div class="line">font-size:9pt;</div><div class="line">&#125;</div><div class="line"></div><div class="line">a.outlook-item:hover</div><div class="line">&#123;</div><div class="line">color:blue;</div><div class="line">&#125;</div><div class="line">&lt;/style&gt;</div><div class="line">&lt;/HEAD&gt;</div><div class="line">&lt;BODY style=&quot;MARGIN: 0px&quot; text=black vLink=white aLink=white link=white scroll=no&gt;</div><div class="line">&lt;table height=&quot;100%&quot; width=&quot;100%&quot; border=0 cellpadding=0 cellspacing=0&gt;</div><div class="line">&lt;tr&gt;&lt;td width=&quot;140″&gt;</div><div class="line">&lt;TABLE style=&quot;WIDTH: 140px; HEIGHT: 100%&quot; cellSpacing=0 cellPadding=0 bgColor=#aca899 border=1 hspace=&quot;0″ vspace=&quot;0″&gt;</div><div class="line">&lt;TR&gt;</div><div class="line">&lt;TD id=outLookBarShow style=&quot;HEIGHT: 100%&quot; align=middle name=&quot;outLookBarShow&quot;&gt;</div><div class="line">&lt;div id=&quot;o1″ style=&quot;height:100%;&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/td&gt;</div><div class="line">&lt;/tr&gt;</div><div class="line">&lt;/table&gt;</div><div class="line">&lt;/td&gt;&lt;td&gt;&lt;iframe id=&quot;frm&quot; name=&quot;frm&quot; width=&quot;100%&quot; height=&quot;100%&quot; frameborder=0&gt;&lt;/iframe&gt;&lt;/td&gt;&lt;/tr&gt;</div><div class="line">&lt;/table&gt;</div><div class="line"></div><div class="line">&lt;SCRIPT LANGUAGE=&quot;JavaScript&quot;&gt;</div><div class="line">&lt;!–</div><div class="line">/**//*</div><div class="line">** ==================================================================================================</div><div class="line">** 类名：CLASS_OUTLOOKBAR</div><div class="line">** 功能：OUTLOOK菜单</div><div class="line">** 示例：</div><div class="line">—————————————————————————————————</div><div class="line"></div><div class="line">var o = new CLASS_OUTLOOKBAR();</div><div class="line">o.addTitle(&quot;工作安排&quot;);</div><div class="line">o.addTitle(&quot;通告信息&quot;);</div><div class="line">o.addTitle(&quot;管理制度&quot;);</div><div class="line">o.addTitle(&quot;系统管理&quot;);</div><div class="line"></div><div class="line">o.addItem(0,&quot;今日安排&quot;,&quot;frm&quot;,&quot;http://www.google.com&quot;);</div><div class="line">o.addItem(0,&quot;工作任务&quot;,&quot;frm&quot;,&quot;http://baidu.com&quot;);</div><div class="line"></div><div class="line">o.addItem(1,&quot;报社通知&quot;,&quot;frm&quot;,&quot;http://www.itpub.net/forum6.html&quot;,null);</div><div class="line"></div><div class="line">o.setupById(&quot;o1″);</div><div class="line"></div><div class="line">//定义需要安装的DIV</div><div class="line">&lt;div id=&quot;o1″ style=&quot;height:100%;&quot;&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">—————————————————————————————————</div><div class="line">** 作者：ttyp</div><div class="line">** 邮件：ttyp@21cn.com</div><div class="line">** 日期：2005-12-1</div><div class="line">** 版本：0.2</div><div class="line">** ==================================================================================================</div><div class="line">*/ </div><div class="line">function CLASS_OUTLOOKBAR(id,name)</div><div class="line">&#123;</div><div class="line">var THIS1 = this;</div><div class="line"></div><div class="line">this.id = getUnique(id);</div><div class="line">this.name = getUnique(name);</div><div class="line">this.width = &quot;140&quot;;</div><div class="line">this.height = &quot;100%&quot;;</div><div class="line">this.titles = new Array();</div><div class="line"></div><div class="line">function getUnique(p)&#123;</div><div class="line">if(p!=null)&#123;</div><div class="line">return p;</div><div class="line">&#125; else &#123;</div><div class="line">return &quot;outlook_&quot; + new Date().getTime() + &quot;_&quot;;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">this.addTitle = function(name)&#123;</div><div class="line"></div><div class="line">function title(name)&#123;</div><div class="line">var THIS2 = this;</div><div class="line">this.name = name;</div><div class="line">this.items = new Array();</div><div class="line"></div><div class="line">this.addItem = function(name,target,url,image,align)&#123;</div><div class="line"></div><div class="line">function item(name,target,url,image,align)&#123;</div><div class="line">this.name = name;</div><div class="line">this.image = image;</div><div class="line">this.target = target;</div><div class="line">this.url = url;</div><div class="line">this.align = align;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var _item = new item(name,target,url,image,align);</div><div class="line">THIS2.items[THIS2.items.length] = _item;</div><div class="line">return _item;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var _title = new title(name);</div><div class="line">this.titles[this.titles.length] = _title;</div><div class="line">return _title;</div><div class="line">&#125;</div><div class="line"></div><div class="line">this.step = 4;</div><div class="line">this.speed = 10;</div><div class="line">this.selectedIndex = 0;</div><div class="line">this.timer = 0;</div><div class="line">this.rate = 100;</div><div class="line">this.run = false;</div><div class="line">this.wait = new Array();</div><div class="line"></div><div class="line">this.select = function(index)&#123;</div><div class="line">if(this.selectedIndex!=index)&#123;</div><div class="line">if(this.run==false)&#123;</div><div class="line">this.rate = 100;</div><div class="line">this.run = true;</div><div class="line">this.timer = window.setInterval(function()&#123;</div><div class="line"></div><div class="line">THIS1.rate-= THIS1.step;</div><div class="line">var oldI = document.getElementById(THIS1.id + THIS1.selectedIndex).nextSibling;</div><div class="line">var newI = document.getElementById(THIS1.id + index).nextSibling;</div><div class="line"></div><div class="line">var ooI = oldI.childNodes[0].childNodes[0];</div><div class="line">var nnI = newI.childNodes[0].childNodes[0];</div><div class="line"></div><div class="line">oldI.style.display = &quot;&quot;;</div><div class="line">newI.style.display = &quot;&quot;;</div><div class="line"></div><div class="line">if(THIS1.rate&lt;0)&#123;</div><div class="line">window.clearInterval(THIS1.timer);</div><div class="line">THIS1.timer = 0;</div><div class="line">ooI.style.overflow=&quot;auto&quot;;</div><div class="line">nnI.style.overflow = &quot;auto&quot;;</div><div class="line">oldI.style.display = &quot;none&quot;;</div><div class="line">THIS1.run = false;</div><div class="line">THIS1.selectedIndex = index;</div><div class="line">if(THIS1.wait.length&gt;0)&#123;</div><div class="line">THIS1.select(THIS1.wait[0]);</div><div class="line">THIS1.wait = THIS1.wait.slice(1,-1);</div><div class="line">&#125;</div><div class="line">&#125; else &#123;</div><div class="line">ooI.style.overflow = &quot;hidden&quot;;</div><div class="line">nnI.style.overflow = &quot;hidden&quot;;</div><div class="line">oldI.style.height = THIS1.rate +&quot;%&quot;;</div><div class="line">newI.style.height = (100 - THIS1.rate) + &quot;%&quot;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;,this.speed);</div><div class="line">&#125;else&#123;</div><div class="line">this.wait[this.wait.length] = index;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">this.setup = function(contain)&#123;</div><div class="line">if(contain!=null)&#123;</div><div class="line">var table = document.createElement(&quot;table&quot;);</div><div class="line">table.style.width = &quot;100%&quot;;</div><div class="line">table.style.height = &quot;100%&quot;;</div><div class="line">table.cellPadding = &quot;0px&quot;;</div><div class="line">table.cellSpacing = &quot;0px&quot;;</div><div class="line">table.style.border = &quot;0px solid red&quot;;</div><div class="line">table.bgColor = &quot;#aca899&quot;;</div><div class="line"></div><div class="line">function getItem(width,height,display,title)&#123;</div><div class="line">var tris = document.createElement(&quot;tr&quot;);</div><div class="line">var tdis = document.createElement(&quot;td&quot;);</div><div class="line">tdis.style.width = width;</div><div class="line">tris.style.height = height;</div><div class="line">tris.style.display = display;</div><div class="line">tdis.className = &quot;outlook-item&quot;;</div><div class="line">tdis.style.verticalAlign = &quot;top&quot;;</div><div class="line"></div><div class="line">if(title!=null&amp;&amp;typeof(title.items)!=&quot;undefined&quot;)&#123;</div><div class="line"></div><div class="line">var vv = document.createElement(&quot;div&quot;);</div><div class="line">vv.style.overflow = &quot;auto&quot;;</div><div class="line">vv.style.height = &quot;100%&quot;;</div><div class="line">vv.style.width = &quot;100%&quot;;</div><div class="line"></div><div class="line">for(var i=0;i&lt;title.items.length;i++)&#123;</div><div class="line">var div = document.createElement(&quot;div&quot;);</div><div class="line">div.style.textAlign = &quot;center&quot;;</div><div class="line">div.style.height = &quot;24px&quot;;</div><div class="line">div.style.paddingTop = &quot;4px&quot;;</div><div class="line"></div><div class="line">if(title.items[i].image!=null)&#123;</div><div class="line">var img = document.createElement(&quot;img&quot;);</div><div class="line">img.src = title.items[i].image;</div><div class="line">div.appendChild(img);</div><div class="line">if(typeof(title.items[i].align)!=&quot;undefined&quot;&amp;&amp;title.items[i].align==1)&#123;</div><div class="line">var lbl = document.createElement(&quot;label&quot;);</div><div class="line">lbl.innerHTML = &quot;&lt;br&gt;&quot;;</div><div class="line">div.appendChild(lbl);</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var a = document.createElement(&quot;a&quot;);</div><div class="line">a.target = title.items[i].target;</div><div class="line">a.innerHTML = title.items[i].name;</div><div class="line">a.href = title.items[i].url;</div><div class="line">div.appendChild(a);</div><div class="line">vv.appendChild(div);</div><div class="line">&#125;</div><div class="line"></div><div class="line">tdis.appendChild(vv);</div><div class="line">&#125;</div><div class="line"></div><div class="line">tris.appendChild(tdis);</div><div class="line">return tris;</div><div class="line">&#125;</div><div class="line"></div><div class="line">for(var i=0;i&lt;this.titles.length;i++)&#123;</div><div class="line">var tr = document.createElement(&quot;tr&quot;);</div><div class="line">var td = document.createElement(&quot;td&quot;);</div><div class="line"></div><div class="line">tr.style.height = &quot;25px&quot;;</div><div class="line">td.style.width = &quot;100%&quot;;</div><div class="line">td.className = &quot;outlook-title&quot;;</div><div class="line"></div><div class="line">td.innerHTML = this.titles[i].name;</div><div class="line">tr.id = this.id + i;</div><div class="line"></div><div class="line">tr.appendChild(td);</div><div class="line">table.appendChild(tr);</div><div class="line"></div><div class="line">if (i==this.selectedIndex)&#123;</div><div class="line">var tris = getItem(&quot;100%&quot;,&quot;100%&quot;,&quot;&quot;,this.titles[i]);</div><div class="line">table.appendChild(tris);</div><div class="line">&#125; else &#123;</div><div class="line">var tri = getItem(&quot;100%&quot;,&quot;0%&quot;,&quot;none&quot;,this.titles[i]);</div><div class="line">table.appendChild(tri);</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">if(typeof(contain.outerHTML)==&quot;undefined&quot;)&#123;</div><div class="line">contain.appendChild(table);</div><div class="line">&#125; else &#123;</div><div class="line">contain.innerHTML = table.outerHTML;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//bind event</div><div class="line">for(var i=0;i&lt;this.titles.length;i++)&#123;</div><div class="line">var title = document.getElementById(this.id + i);</div><div class="line">if(title)&#123;</div><div class="line">function mapping(index)&#123;</div><div class="line">try &#123;</div><div class="line">title.onclick = function()&#123;THIS1.select(index);&#125;</div><div class="line">title.oncontextmenu = function()&#123; return false;&#125;</div><div class="line">title.nextSibling.oncontextmenu = function()&#123;return false;&#125;</div><div class="line">&#125; catch (e)&#123;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">mapping(i);</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">this.addItem = function(index,name,target,url,image,align)&#123;</div><div class="line">if(index&gt;=0&amp;&amp;index&lt;this.titles.length)&#123;</div><div class="line">return this.titles[index].addItem(name,target,url,image,align);</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">this.setupById = function(id)&#123;</div><div class="line">var d = document.getElementById(id);</div><div class="line">if(d)&#123;</div><div class="line">this.setup(d);</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var o = new CLASS_OUTLOOKBAR();</div><div class="line">o.addTitle(&quot;工作安排&quot;);</div><div class="line">o.addTitle(&quot;通告信息&quot;);</div><div class="line">o.addTitle(&quot;管理制度&quot;);</div><div class="line">o.addTitle(&quot;系统管理&quot;);</div><div class="line"></div><div class="line">o.addItem(0,&quot;今日安排&quot;,&quot;frm&quot;,&quot;http://www.google.com&quot;);</div><div class="line">o.addItem(0,&quot;工作任务&quot;,&quot;frm&quot;,&quot;http://baidu.com&quot;);</div><div class="line"></div><div class="line">o.addItem(1,&quot;报社通知&quot;,&quot;frm&quot;,&quot;http://www.itpub.net/forum6.html&quot;,null);</div><div class="line"></div><div class="line">o.setupById(&quot;o1&quot;);</div><div class="line"></div><div class="line">//–&gt;</div><div class="line">&lt;/SCRIPT&gt;</div><div class="line"></div><div class="line">&lt;/BODY&gt;</div><div class="line">&lt;/HTML&gt;</div></pre></td></tr></table></figure>
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
+    
 
-      
-    </div>
+    
 
-    <div>
-      
-        
-
-      
-    </div>
-
+    
 
     <footer class="post-footer">
       
@@ -460,6 +465,10 @@
             <a href="/tags/Outlook/" rel="tag"># Outlook</a>
           
         </div>
+      
+
+      
+      
       
 
       
@@ -476,8 +485,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2007/12/24/VBScript-error-code/" rel="prev" title="VBScript错误代码">
-                VBScript错误代码 <i class="fa fa-chevron-right"></i>
+              <a href="/2007/12/24/robots-Indy-Library/" rel="prev" title="Indy Library-一个什么性质的爬虫？">
+                Indy Library-一个什么性质的爬虫？ <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -487,6 +496,10 @@
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -496,7 +509,7 @@
     </div>
   </div>
 
-          
+
           </div>
           
 
@@ -524,6 +537,7 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
@@ -532,17 +546,18 @@
 
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.jpg"
-               alt="東木" />
-          <p class="site-author-name" itemprop="name">東木</p>
-          <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          
+            <p class="site-author-name" itemprop="name">東木</p>
+            <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
         </div>
+
         <nav class="site-state motion-element">
-        
+
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives">
+            
+              <a href="/archives/">
+            
                 <span class="site-state-item-count">286</span>
                 <span class="site-state-item-name">日志</span>
               </a>
@@ -550,8 +565,10 @@
           
 
           
+            
+            
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -559,8 +576,10 @@
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">199</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -595,6 +614,8 @@
 
       
 
+      
+
     </div>
   </aside>
 
@@ -607,36 +628,43 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy;  2007 - 
+  &copy;  2007 &mdash; 
   <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
 </div>
 
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
 
 
         
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
@@ -656,6 +684,14 @@
 
 
   
+
+
+
+
+
+
+
+
 
 
 
@@ -682,32 +718,36 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
 
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
 
 
 
@@ -734,7 +774,7 @@
     
       
       <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.2"></script>
     
     
     <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
@@ -752,16 +792,14 @@
 
 
 
-  
-  
+
+
+
 
   
 
-  
 
-  
 
-  
 
   
   
@@ -773,9 +811,21 @@
   <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
   
 
-  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+  <script src="/js/src/algolia-search.js?v=5.1.2"></script>
 
 
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 </body>
 </html>

@@ -1,20 +1,31 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
 
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
 
 
 
@@ -83,7 +94,7 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Hexo, NexT" />
@@ -97,7 +108,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
@@ -106,12 +117,13 @@
 
 <meta name="description" content="The palest ink is better than the best memory.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Dong's Note">
+<meta property="og:title" content="Dong&#39;s Note">
 <meta property="og:url" content="http://blog.liudongkai.com/page/41/index.html">
-<meta property="og:site_name" content="Dong's Note">
+<meta property="og:site_name" content="Dong&#39;s Note">
 <meta property="og:description" content="The palest ink is better than the best memory.">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Dong's Note">
+<meta name="twitter:title" content="Dong&#39;s Note">
 <meta name="twitter:description" content="The palest ink is better than the best memory.">
 
 
@@ -120,10 +132,12 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
     duoshuo: {
       userId: '5094676',
       author: '東木'
@@ -146,19 +160,17 @@
 
 
 
-  <title> Dong's Note </title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
+  <title>Dong's Note</title>
   
+
+
 
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-42337789-4', 'auto');
   ga('send', 'pageview');
 </script>
@@ -177,42 +189,43 @@
 
 
 
+</head>
 
-
-
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Dong's Note</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
   </div>
-    
-      <p class="site-subtitle"></p>
-    
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -233,7 +246,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
+          <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -243,7 +256,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -253,7 +266,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -281,7 +294,7 @@
     <div class="site-search">
       
   
-  <div class="algolia-popup popup">
+  <div class="algolia-popup popup search-popup">
     <div class="algolia-search">
       <div class="algolia-search-input-icon">
         <i class="fa fa-search"></i>
@@ -327,21 +340,22 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/14/The-Duke-of-Mount-Deer/">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/14/The-Duke-of-Mount-Deer/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
 
     
       <header class="post-header">
@@ -349,16 +363,8 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2008/05/14/The-Duke-of-Mount-Deer/" itemprop="url">
-                  时代商报：《鹿鼎记》一定要艳吗？
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2008/05/14/The-Duke-of-Mount-Deer/" itemprop="url">时代商报：《鹿鼎记》一定要艳吗？</a></h1>
         
 
         <div class="post-meta">
@@ -370,7 +376,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-14T00:00:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-05-14T00:00:00+08:00">
                 2008-05-14
               </time>
             
@@ -419,8 +425,8 @@
           
 
           
-
           
+
           
 
           
@@ -431,7 +437,9 @@
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -448,17 +456,19 @@
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
 
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -468,6 +478,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -480,21 +494,22 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/14/fixed-IDE-ACDStd-apl/">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/14/fixed-IDE-ACDStd-apl/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
 
     
       <header class="post-header">
@@ -502,16 +517,8 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2008/05/14/fixed-IDE-ACDStd-apl/" itemprop="url">
-                  IDE_ACDStd.apl，不可恢复的插件错误
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2008/05/14/fixed-IDE-ACDStd-apl/" itemprop="url">IDE_ACDStd.apl，不可恢复的插件错误</a></h1>
         
 
         <div class="post-meta">
@@ -523,7 +530,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-14T00:00:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-05-14T00:00:00+08:00">
                 2008-05-14
               </time>
             
@@ -572,8 +579,8 @@
           
 
           
-
           
+
           
 
           
@@ -584,7 +591,9 @@
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -602,17 +611,19 @@
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
 
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -622,6 +633,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -634,21 +649,22 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/13/ubuntu-nvidia-drivers/">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/13/Geomview-Nvidia-drivers/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
 
     
       <header class="post-header">
@@ -656,16 +672,8 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2008/05/13/ubuntu-nvidia-drivers/" itemprop="url">
-                  Ubuntu 8.04 下编译安装 Nvidia 169.07 驱动
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2008/05/13/Geomview-Nvidia-drivers/" itemprop="url">Geomview~编译错误及~NVIDIA~驱动~bug！</a></h1>
         
 
         <div class="post-meta">
@@ -677,7 +685,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">
                 2008-05-13
               </time>
             
@@ -718,16 +726,16 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2008/05/13/ubuntu-nvidia-drivers/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/13/ubuntu-nvidia-drivers/" itemprop="commentCount"></span>
+                <a href="/2008/05/13/Geomview-Nvidia-drivers/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/13/Geomview-Nvidia-drivers/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
           
+
           
 
           
@@ -738,7 +746,9 @@
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -747,53 +757,39 @@
       
         
           
-            <p>编译安装驱动的好处是可以用到最新的驱动。可惜网上教程无数，没有一个能简洁的介 绍如何编译安装Nvidia显卡驱动的。即便有一些教程能指导你如何安装，重启后又立刻出现问题，这时候该怎么办？以下是我研究总结的精华方法，嘿嘿 ^_^。注意：理论上本文适用于任何版本的Ubuntu和Nvidia驱动，不过未经严格测试，希望小白鼠们能够发扬雷锋精神，勇敢测试，在本文之后回复 测试结果！</p>
-<ol>
-<li><p>要先装好编译必备的软件，配制好源之后在终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install build-essential</div></pre></td></tr></table></figure>
-</li>
-<li><p>根据硬件软件平台<a href="http://www.nvidia.com/object/unix.html" target="_blank" rel="external">在这里</a>下载相应驱动，这里Rainking下载的是最新的<code>NVIDIA-Linux-x86-169.07-pkg1.run，Rainking</code>将此文件保存在了主目录下</p>
-</li>
-<li><p>按下ctrl+alt+F1，在文本状态下重新登陆</p>
-</li>
-<li><p>关闭x，在终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo /etc/init.d/gdm stop</div></pre></td></tr></table></figure>
-</li>
-<li><p>在终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo sh ./NVIDIA-Linux-x86-169.07-pkg1.run #（文件名和路径可能会不同）</div></pre></td></tr></table></figure>
-</li>
-<li><p>进入安装向导以后选项分别是：选择Accept，选择No，选择OK，选择Yes，选择OK，选择OK，选择OK</p>
-</li>
-<li><p>在终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo /etc/init.d/gdm start</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>重新开启x，你会发现显卡驱动已经安装成功了，一般情况下不需要再调分辨率和再配置x server，因为Nvidia已经自动配置好了。</p>
-<ol>
-<li>在终端输入：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gedit /etc/default/linux-restricted-modules-common</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>将其中的<code>DISABLED_MODULES=&quot;&quot;</code>改为<code>DISABLED_MODULES=&quot;nv nvidia_new&quot;</code>。如果不这么修改，重新启动以后，驱动就会失败。</p>
-<p> 如果没有配置好，或者显卡驱动安装以后出了问题，还可以通过以下方法解决。</p>
-<p> 修改分辨率：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gedit /etc/X11/xorg.conf</div></pre></td></tr></table></figure></p>
-<p> 去掉logo（最新版本的驱动没有logo）<br>在Driver “nvidia” 后面加上 Option “NoLogo”</p>
-<p> 重新配置x server：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install pkg-config xserver-xorg-dev3</div><div class="line">sudo dpkg-reconfigure xserver-xorg</div></pre></td></tr></table></figure></p>
+            <p>昨晚看~MAXIMA，提到了画二维图最好用~GnuPlot，而画三维图的时候最好用~Geomview，于是下载其源码，接着编译安装，但在~make~的时候出现下面的错误：</p>
+<blockquote>
+<p>/usr/X11R6/include/GL/glext.h:6952: error: redefinition of typedef ‘PFNGLGETUNIFORMUIVEXTPROC’  /usr/X11R6/include/GL/glext.h:6941: error: previous declaration of ‘PFNGLGETUNIFORMUIVEXTPROC’ was here </p>
+</blockquote>
+<p>到网上搜了下，是~NVIDIA~显卡驱动的一个~bug，于是想下载最新版本，到~NVIDIA~网站下载了最新的~1.0-9755~版本，直接运行~.run~文件，先是提示我的显卡跟这个驱动不匹配，不过是个警告，没太注意，继续，接着后来提示：</p>
+<blockquote>
+<p>ERROR: Unable to load the kernel module ‘nvidia.ko’.  This is most likely        because the kernel module was built using the wrong kernel source files.        Please make sure you have installed the kernel source files for your        kernel; on Red Hat Linux systems, for example, be sure you have the        ‘kernel-source’ rpm installed.  If you know the correct kernel source        files are installed, you may specify the kernel source path with the&lt; br /&gt;        ‘–kernel-source-path’ commandline option. </p>
+</blockquote>
+<p>搜索了一下，用下面的命令就好了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#./NVIDIA-xxx.run -k $(uname -r)</div></pre></td></tr></table></figure></p>
+<p>安装后，重启~X，但找不到设备，查看~/var/log/Xorg.0.log，原来的确是开始的警告，这个驱动根本与我的显卡不匹配，我的显卡是：</p>
+<blockquote>
+<p>nVidia Corporation NV11 [GeForce2 MX/MX 400]</p>
+</blockquote>
+<p>提示说只能用~96xx，系列的驱动，然后找个系列的驱动安装，一切顺利！然而再重新编译~Geomview~的时候仍然是那个错误，最后只好手动的修改了那个文件<strong>~/usr/X11R6/include/GL/glext.h</strong>，把里面的~6941~和~6952~两行注释掉了，然后再编译安装，一切顺利。</p>
+<p>据说~NVIDIA~的这个~bug~在最新的~97xx~系列中已经修正，可是我的显卡却只能用~96xx~系列的，可能我的显卡太老了吧 :(。</p>
 
           
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
 
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -803,6 +799,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -815,21 +815,22 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/13/shell-retain-two-decimal/">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/13/Shell-switch-background-jobs/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
 
     
       <header class="post-header">
@@ -837,16 +838,8 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2008/05/13/shell-retain-two-decimal/" itemprop="url">
-                  Shell运算，计算值保留两位小数
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2008/05/13/Shell-switch-background-jobs/" itemprop="url">Linux Shell下的后台运行及其前台的转换</a></h1>
         
 
         <div class="post-meta">
@@ -858,167 +851,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">
-                2008-05-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/05/13/shell-retain-two-decimal/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/13/shell-retain-two-decimal/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>SHELL下是没有小数处理的，能进行运算的只能是-2^30到2^30-1范围的整数，否则溢出。<br>具体可以用的运算方式有：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@root ~]$ i=$[9 / 2]; echo i=$i;  </div><div class="line">i=4</div><div class="line"></div><div class="line">[root@root ~]$ i=$((9 / 2)); echo i=$i;  </div><div class="line">i=4</div><div class="line"></div><div class="line">[root@root ~]$ i=`expr 9 / 2` ; echo i=$i;</div><div class="line">i=4</div></pre></td></tr></table></figure></p>
-<p>很多最小安装的系统不会有expr，可以使用内置命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@root ~]$ i=let i=9/2 ; echo i=$i;  </div><div class="line">i=4</div></pre></td></tr></table></figure></p>
-<p>如果需要保留小数，比如两位小数，可以使用awk实现，awk真是强大：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@root ~]$ i=`awk  BEGIN&apos;&#123;printf  &quot;%.2fn&quot;, 9/2 &#125;&apos;` ; echo i=$i;</div><div class="line">i=4.50</div><div class="line">[root@root ~]$ i=`awk  BEGIN&apos;&#123;  x=9 ; y=4 ; printf  &quot;%.2fn&quot;, x/y &#125;&apos;` ; echo i=$i;</div><div class="line">i=4.50</div></pre></td></tr></table></figure>
-<p><strong>运算符类型</strong></p>
-<p>按位运算符<br>~, &lt; &lt;, &gt;&gt;, &amp;, |, ^<br>$[]表示形式告诉 shell 对方括号中的表达式求值</p>
-<p><img src="http://photo.liudongkai.com/blog/f0e0eb11af6d42c3a7ef3fa0[1].jpg" alt=""></p>
-<p>表达式替换<br>$[ ] 和 $(())<br>两种格式功能一样，所有的 shell 的求值都是用整数完成<br>$[ ] 可以接受不同基数的数字</p>
-<p><img src="http://photo.liudongkai.com/blog/190e8b44eb722e49510ffea8[1].jpg" alt=""></p>
-<p>赋值运算符<br>=、+=、-=、*=、/=、%=、&amp;=、^=、|=、&lt; &lt;=、&gt;&gt;=</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/13/Shell-switch-background-jobs/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/05/13/Shell-switch-background-jobs/" itemprop="url">
-                  Linux Shell下的后台运行及其前台的转换
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">
                 2008-05-13
               </time>
             
@@ -1067,8 +900,8 @@
           
 
           
-
           
+
           
 
           
@@ -1079,7 +912,9 @@
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1103,17 +938,19 @@
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
 
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -1123,6 +960,192 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/13/ubuntu-nvidia-drivers/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/05/13/ubuntu-nvidia-drivers/" itemprop="url">Ubuntu 8.04 下编译安装 Nvidia 169.07 驱动</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">
+                2008-05-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/05/13/ubuntu-nvidia-drivers/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/13/ubuntu-nvidia-drivers/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>编译安装驱动的好处是可以用到最新的驱动。可惜网上教程无数，没有一个能简洁的介 绍如何编译安装Nvidia显卡驱动的。即便有一些教程能指导你如何安装，重启后又立刻出现问题，这时候该怎么办？以下是我研究总结的精华方法，嘿嘿 ^_^。注意：理论上本文适用于任何版本的Ubuntu和Nvidia驱动，不过未经严格测试，希望小白鼠们能够发扬雷锋精神，勇敢测试，在本文之后回复 测试结果！</p>
+<ol>
+<li><p>要先装好编译必备的软件，配制好源之后在终端输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install build-essential</div></pre></td></tr></table></figure>
+</li>
+<li><p>根据硬件软件平台<a href="http://www.nvidia.com/object/unix.html" target="_blank" rel="external">在这里</a>下载相应驱动，这里Rainking下载的是最新的<code>NVIDIA-Linux-x86-169.07-pkg1.run，Rainking</code>将此文件保存在了主目录下</p>
+</li>
+<li><p>按下ctrl+alt+F1，在文本状态下重新登陆</p>
+</li>
+<li><p>关闭x，在终端输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo /etc/init.d/gdm stop</div></pre></td></tr></table></figure>
+</li>
+<li><p>在终端输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo sh ./NVIDIA-Linux-x86-169.07-pkg1.run #（文件名和路径可能会不同）</div></pre></td></tr></table></figure>
+</li>
+<li><p>进入安装向导以后选项分别是：选择Accept，选择No，选择OK，选择Yes，选择OK，选择OK，选择OK</p>
+</li>
+<li><p>在终端输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo /etc/init.d/gdm start</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>重新开启x，你会发现显卡驱动已经安装成功了，一般情况下不需要再调分辨率和再配置x server，因为Nvidia已经自动配置好了。</p>
+<ol>
+<li>在终端输入：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gedit /etc/default/linux-restricted-modules-common</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>将其中的<code>DISABLED_MODULES=&quot;&quot;</code>改为<code>DISABLED_MODULES=&quot;nv nvidia_new&quot;</code>。如果不这么修改，重新启动以后，驱动就会失败。</p>
+<p> 如果没有配置好，或者显卡驱动安装以后出了问题，还可以通过以下方法解决。</p>
+<p> 修改分辨率：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gedit /etc/X11/xorg.conf</div></pre></td></tr></table></figure></p>
+<p> 去掉logo（最新版本的驱动没有logo）<br>在Driver “nvidia” 后面加上 Option “NoLogo”</p>
+<p> 重新配置x server：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install pkg-config xserver-xorg-dev3</div><div class="line">sudo dpkg-reconfigure xserver-xorg</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1135,7 +1158,7 @@
   </nav>
 
 
-          
+
           </div>
           
 
@@ -1155,6 +1178,7 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
@@ -1163,17 +1187,18 @@
 
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.jpg"
-               alt="東木" />
-          <p class="site-author-name" itemprop="name">東木</p>
-          <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          
+            <p class="site-author-name" itemprop="name">東木</p>
+            <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
         </div>
+
         <nav class="site-state motion-element">
-        
+
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives">
+            
+              <a href="/archives/">
+            
                 <span class="site-state-item-count">286</span>
                 <span class="site-state-item-name">日志</span>
               </a>
@@ -1181,8 +1206,10 @@
           
 
           
+            
+            
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -1190,8 +1217,10 @@
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">199</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -1226,6 +1255,8 @@
 
       
 
+      
+
     </div>
   </aside>
 
@@ -1238,36 +1269,43 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy;  2007 - 
+  &copy;  2007 &mdash; 
   <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
 </div>
 
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
 
 
         
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
@@ -1287,6 +1325,14 @@
 
 
   
+
+
+
+
+
+
+
+
 
 
 
@@ -1313,28 +1359,32 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
 
 
 
   
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
 
 
 
@@ -1361,7 +1411,7 @@
     
       
       <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.2"></script>
     
     
     <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
@@ -1379,16 +1429,14 @@
 
 
 
-  
-  
+
+
+
 
   
 
-  
 
-  
 
-  
 
   
   
@@ -1400,9 +1448,21 @@
   <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
   
 
-  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+  <script src="/js/src/algolia-search.js?v=5.1.2"></script>
 
 
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 </body>
 </html>

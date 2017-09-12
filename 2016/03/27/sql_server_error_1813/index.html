@@ -1,20 +1,31 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
 
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
 
 
 
@@ -83,7 +94,7 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="SQL Server," />
@@ -97,26 +108,25 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
 
 
 
-<meta name="description" content="无法打开新数据库 ‘Dong’。CREATE DATABASE 中止。文件激活失败。物理文件名称’E:\SqlServer\MSSQL\Data\Dong_log.LDF’可能不正确。
-无法重新生成日志，原因是数据库关闭时存在打开的事务/用户，该数据库没有检查点或者该数据库是只读的。如果事务日志文件被手动删除或者由于硬件或环境问题而丢失，则可能出现此错误。 (Microsoft SQL Serv">
+<meta name="description" content="无法打开新数据库 ‘Dong’。CREATE DATABASE 中止。文件激活失败。物理文件名称’E:\SqlServer\MSSQL\Data\Dong_log.LDF’可能不正确。 无法重新生成日志，原因是数据库关闭时存在打开的事务/用户，该数据库没有检查点或者该数据库是只读的。如果事务日志文件被手动删除或者由于硬件或环境问题而丢失，则可能出现此错误。 (Microsoft SQL Serv">
+<meta name="keywords" content="SQL Server">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL Server附加数据库时报1813错误的解决方案[zt]">
 <meta property="og:url" content="http://blog.liudongkai.com/2016/03/27/sql_server_error_1813/index.html">
-<meta property="og:site_name" content="Dong's Note">
-<meta property="og:description" content="无法打开新数据库 ‘Dong’。CREATE DATABASE 中止。文件激活失败。物理文件名称’E:\SqlServer\MSSQL\Data\Dong_log.LDF’可能不正确。
-无法重新生成日志，原因是数据库关闭时存在打开的事务/用户，该数据库没有检查点或者该数据库是只读的。如果事务日志文件被手动删除或者由于硬件或环境问题而丢失，则可能出现此错误。 (Microsoft SQL Serv">
+<meta property="og:site_name" content="Dong&#39;s Note">
+<meta property="og:description" content="无法打开新数据库 ‘Dong’。CREATE DATABASE 中止。文件激活失败。物理文件名称’E:\SqlServer\MSSQL\Data\Dong_log.LDF’可能不正确。 无法重新生成日志，原因是数据库关闭时存在打开的事务/用户，该数据库没有检查点或者该数据库是只读的。如果事务日志文件被手动删除或者由于硬件或环境问题而丢失，则可能出现此错误。 (Microsoft SQL Serv">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-03-26T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL Server附加数据库时报1813错误的解决方案[zt]">
-<meta name="twitter:description" content="无法打开新数据库 ‘Dong’。CREATE DATABASE 中止。文件激活失败。物理文件名称’E:\SqlServer\MSSQL\Data\Dong_log.LDF’可能不正确。
-无法重新生成日志，原因是数据库关闭时存在打开的事务/用户，该数据库没有检查点或者该数据库是只读的。如果事务日志文件被手动删除或者由于硬件或环境问题而丢失，则可能出现此错误。 (Microsoft SQL Serv">
+<meta name="twitter:description" content="无法打开新数据库 ‘Dong’。CREATE DATABASE 中止。文件激活失败。物理文件名称’E:\SqlServer\MSSQL\Data\Dong_log.LDF’可能不正确。 无法重新生成日志，原因是数据库关闭时存在打开的事务/用户，该数据库没有检查点或者该数据库是只读的。如果事务日志文件被手动删除或者由于硬件或环境问题而丢失，则可能出现此错误。 (Microsoft SQL Serv">
 
 
 
@@ -124,10 +134,12 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
     duoshuo: {
       userId: '5094676',
       author: '東木'
@@ -150,19 +162,17 @@
 
 
 
-  <title> SQL Server附加数据库时报1813错误的解决方案[zt] | Dong's Note </title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
+  <title>SQL Server附加数据库时报1813错误的解决方案[zt] | Dong's Note</title>
   
+
+
 
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-42337789-4', 'auto');
   ga('send', 'pageview');
 </script>
@@ -181,40 +191,42 @@
 
 
 
+</head>
 
-
-
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Dong's Note</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
   </div>
-    
-      <p class="site-subtitle"></p>
-    
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -235,7 +247,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
+          <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -245,7 +257,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -255,7 +267,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -283,7 +295,7 @@
     <div class="site-search">
       
   
-  <div class="algolia-popup popup">
+  <div class="algolia-popup popup search-popup">
     <div class="algolia-search">
       <div class="algolia-search-input-icon">
         <i class="fa fa-search"></i>
@@ -329,35 +341,29 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2016/03/27/sql_server_error_1813/">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2016/03/27/sql_server_error_1813/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                SQL Server附加数据库时报1813错误的解决方案[zt]
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">SQL Server附加数据库时报1813错误的解决方案[zt]</h1>
         
 
         <div class="post-meta">
@@ -369,7 +375,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-27T00:00:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-27T00:00:00+08:00">
                 2016-03-27
               </time>
             
@@ -418,8 +424,8 @@
           
 
           
-
           
+
           
 
           
@@ -430,7 +436,9 @@
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -473,21 +481,15 @@
 
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
+    
 
-      
-    </div>
+    
 
-    <div>
-      
-        
-
-      
-    </div>
-
+    
 
     <footer class="post-footer">
       
@@ -499,11 +501,15 @@
       
 
       
+      
+      
+
+      
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/27/mysql_varchar_how_many_chinese_can_be_saved/" rel="next" title="MySQL 数据库 varchar 到底可以存多少个汉字，多少个英文呢?我们来搞搞清楚[zt]">
-                <i class="fa fa-chevron-left"></i> MySQL 数据库 varchar 到底可以存多少个汉字，多少个英文呢?我们来搞搞清楚[zt]
+              <a href="/2016/02/27/Baidu_yunpan_aria2/" rel="next" title="百度云加速下载：使用 aria2">
+                <i class="fa fa-chevron-left"></i> 百度云加速下载：使用 aria2
               </a>
             
           </div>
@@ -512,8 +518,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/03/28/mysql_recursive_query/" rel="prev" title="一句SQL实现MYSQL的递归查询[zt]">
-                一句SQL实现MYSQL的递归查询[zt] <i class="fa fa-chevron-right"></i>
+              <a href="/2016/03/27/mysql_varchar_how_many_chinese_can_be_saved/" rel="prev" title="MySQL 数据库 varchar 到底可以存多少个汉字，多少个英文呢?我们来搞搞清楚[zt]">
+                MySQL 数据库 varchar 到底可以存多少个汉字，多少个英文呢?我们来搞搞清楚[zt] <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -523,6 +529,10 @@
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -532,7 +542,7 @@
     </div>
   </div>
 
-          
+
           </div>
           
 
@@ -560,6 +570,7 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
@@ -577,17 +588,18 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.jpg"
-               alt="東木" />
-          <p class="site-author-name" itemprop="name">東木</p>
-          <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          
+            <p class="site-author-name" itemprop="name">東木</p>
+            <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
         </div>
+
         <nav class="site-state motion-element">
-        
+
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives">
+            
+              <a href="/archives/">
+            
                 <span class="site-state-item-count">286</span>
                 <span class="site-state-item-name">日志</span>
               </a>
@@ -595,8 +607,10 @@
           
 
           
+            
+            
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -604,8 +618,10 @@
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">199</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -656,6 +672,8 @@
       <!--/noindex-->
       
 
+      
+
     </div>
   </aside>
 
@@ -668,36 +686,43 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy;  2007 - 
+  &copy;  2007 &mdash; 
   <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
 </div>
 
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
 
 
         
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
@@ -717,6 +742,14 @@
 
 
   
+
+
+
+
+
+
+
+
 
 
 
@@ -743,32 +776,36 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
 
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
 
 
 
@@ -795,7 +832,7 @@
     
       
       <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.2"></script>
     
     
     <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
@@ -813,16 +850,14 @@
 
 
 
-  
-  
+
+
+
 
   
 
-  
 
-  
 
-  
 
   
   
@@ -834,9 +869,21 @@
   <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
   
 
-  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+  <script src="/js/src/algolia-search.js?v=5.1.2"></script>
 
 
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 </body>
 </html>

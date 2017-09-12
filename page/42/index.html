@@ -1,20 +1,31 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
 
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
 
 
 
@@ -83,7 +94,7 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Hexo, NexT" />
@@ -97,7 +108,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
@@ -106,12 +117,13 @@
 
 <meta name="description" content="The palest ink is better than the best memory.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Dong's Note">
+<meta property="og:title" content="Dong&#39;s Note">
 <meta property="og:url" content="http://blog.liudongkai.com/page/42/index.html">
-<meta property="og:site_name" content="Dong's Note">
+<meta property="og:site_name" content="Dong&#39;s Note">
 <meta property="og:description" content="The palest ink is better than the best memory.">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Dong's Note">
+<meta name="twitter:title" content="Dong&#39;s Note">
 <meta name="twitter:description" content="The palest ink is better than the best memory.">
 
 
@@ -120,10 +132,12 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
     duoshuo: {
       userId: '5094676',
       author: '東木'
@@ -146,19 +160,17 @@
 
 
 
-  <title> Dong's Note </title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
+  <title>Dong's Note</title>
   
+
+
 
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-42337789-4', 'auto');
   ga('send', 'pageview');
 </script>
@@ -177,42 +189,43 @@
 
 
 
+</head>
 
-
-
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Dong's Note</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
   </div>
-    
-      <p class="site-subtitle"></p>
-    
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -233,7 +246,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
+          <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -243,7 +256,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -253,7 +266,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -281,7 +294,7 @@
     <div class="site-search">
       
   
-  <div class="algolia-popup popup">
+  <div class="algolia-popup popup search-popup">
     <div class="algolia-search">
       <div class="algolia-search-input-icon">
         <i class="fa fa-search"></i>
@@ -327,21 +340,22 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/13/Geomview-Nvidia-drivers/">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/13/shell-retain-two-decimal/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
 
     
       <header class="post-header">
@@ -349,16 +363,8 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2008/05/13/Geomview-Nvidia-drivers/" itemprop="url">
-                  Geomview~编译错误及~NVIDIA~驱动~bug！
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2008/05/13/shell-retain-two-decimal/" itemprop="url">Shell运算，计算值保留两位小数</a></h1>
         
 
         <div class="post-meta">
@@ -370,7 +376,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">
                 2008-05-13
               </time>
             
@@ -411,16 +417,16 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2008/05/13/Geomview-Nvidia-drivers/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/13/Geomview-Nvidia-drivers/" itemprop="commentCount"></span>
+                <a href="/2008/05/13/shell-retain-two-decimal/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/13/shell-retain-two-decimal/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
           
+
           
 
           
@@ -431,7 +437,9 @@
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -440,37 +448,34 @@
       
         
           
-            <p>昨晚看~MAXIMA，提到了画二维图最好用~GnuPlot，而画三维图的时候最好用~Geomview，于是下载其源码，接着编译安装，但在~make~的时候出现下面的错误：</p>
-<blockquote>
-<p>/usr/X11R6/include/GL/glext.h:6952: error: redefinition of typedef ‘PFNGLGETUNIFORMUIVEXTPROC’  /usr/X11R6/include/GL/glext.h:6941: error: previous declaration of ‘PFNGLGETUNIFORMUIVEXTPROC’ was here </p>
-</blockquote>
-<p>到网上搜了下，是~NVIDIA~显卡驱动的一个~bug，于是想下载最新版本，到~NVIDIA~网站下载了最新的~1.0-9755~版本，直接运行~.run~文件，先是提示我的显卡跟这个驱动不匹配，不过是个警告，没太注意，继续，接着后来提示：</p>
-<blockquote>
-<p>ERROR: Unable to load the kernel module ‘nvidia.ko’.  This is most likely        because the kernel module was built using the wrong kernel source files.        Please make sure you have installed the kernel source files for your        kernel; on Red Hat Linux systems, for example, be sure you have the        ‘kernel-source’ rpm installed.  If you know the correct kernel source        files are installed, you may specify the kernel source path with the&lt; br /&gt;        ‘–kernel-source-path’ commandline option. </p>
-</blockquote>
-<p>搜索了一下，用下面的命令就好了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#./NVIDIA-xxx.run -k $(uname -r)</div></pre></td></tr></table></figure></p>
-<p>安装后，重启~X，但找不到设备，查看~/var/log/Xorg.0.log，原来的确是开始的警告，这个驱动根本与我的显卡不匹配，我的显卡是：</p>
-<blockquote>
-<p>nVidia Corporation NV11 [GeForce2 MX/MX 400]</p>
-</blockquote>
-<p>提示说只能用~96xx，系列的驱动，然后找个系列的驱动安装，一切顺利！然而再重新编译~Geomview~的时候仍然是那个错误，最后只好手动的修改了那个文件<strong>~/usr/X11R6/include/GL/glext.h</strong>，把里面的~6941~和~6952~两行注释掉了，然后再编译安装，一切顺利。</p>
-<p>据说~NVIDIA~的这个~bug~在最新的~97xx~系列中已经修正，可是我的显卡却只能用~96xx~系列的，可能我的显卡太老了吧 :(。</p>
+            <p>SHELL下是没有小数处理的，能进行运算的只能是-2^30到2^30-1范围的整数，否则溢出。<br>具体可以用的运算方式有：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@root ~]$ i=$[9 / 2]; echo i=$i;  </div><div class="line">i=4</div><div class="line"></div><div class="line">[root@root ~]$ i=$((9 / 2)); echo i=$i;  </div><div class="line">i=4</div><div class="line"></div><div class="line">[root@root ~]$ i=`expr 9 / 2` ; echo i=$i;</div><div class="line">i=4</div></pre></td></tr></table></figure></p>
+<p>很多最小安装的系统不会有expr，可以使用内置命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@root ~]$ i=let i=9/2 ; echo i=$i;  </div><div class="line">i=4</div></pre></td></tr></table></figure></p>
+<p>如果需要保留小数，比如两位小数，可以使用awk实现，awk真是强大：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@root ~]$ i=`awk  BEGIN&apos;&#123;printf  &quot;%.2fn&quot;, 9/2 &#125;&apos;` ; echo i=$i;</div><div class="line">i=4.50</div><div class="line">[root@root ~]$ i=`awk  BEGIN&apos;&#123;  x=9 ; y=4 ; printf  &quot;%.2fn&quot;, x/y &#125;&apos;` ; echo i=$i;</div><div class="line">i=4.50</div></pre></td></tr></table></figure>
+<p><strong>运算符类型</strong></p>
+<p>按位运算符<br>~, &lt; &lt;, &gt;&gt;, &amp;, |, ^<br>$[]表示形式告诉 shell 对方括号中的表达式求值</p>
+<p><img src="http://photo.liudongkai.com/blog/f0e0eb11af6d42c3a7ef3fa0[1].jpg" alt=""></p>
+<p>表达式替换<br>$[ ] 和 $(())<br>两种格式功能一样，所有的 shell 的求值都是用整数完成<br>$[ ] 可以接受不同基数的数字</p>
+<p><img src="http://photo.liudongkai.com/blog/190e8b44eb722e49510ffea8[1].jpg" alt=""></p>
+<p>赋值运算符<br>=、+=、-=、*=、/=、%=、&amp;=、^=、|=、&lt; &lt;=、&gt;&gt;=</p>
 
           
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
 
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -480,6 +485,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -492,21 +501,22 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/10/hamsters-common-diseases/">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/10/Google-market-share/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
 
     
       <header class="post-header">
@@ -514,16 +524,8 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2008/05/10/hamsters-common-diseases/" itemprop="url">
-                  仓鼠常见疾病的护理及预防措施
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2008/05/10/Google-market-share/" itemprop="url">Google谷歌在世界各地的市场占有率</a></h1>
         
 
         <div class="post-meta">
@@ -535,196 +537,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-10T00:00:00+08:00">
-                2008-05-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index">
-                    <span itemprop="name">Share</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/05/10/hamsters-common-diseases/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/10/hamsters-common-diseases/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>保证合理的饮食结构、保持环境的干燥与清洁、保护小宠生活的安全性，做好这“三保”，才是维持小宠健康的根本之道。</p>
-<ol>
-<li><p>腹泻、软便产生原因：不恰当饮食、压力、天气突变等。</p>
-<p>护理用品：新鲜苹果，MR牌整肠液（便性改善液）。</p>
-<p>方法：苹果多多益善，只要鼠鼠肯吃；整肠液加入水瓶中，记得每天都要换水。</p>
-<p>环境：造成腹泻、软便的原因除了不恰当的饮食之外，压力也是因素之一。所以休养阶段，尽可能不要打扰鼠鼠，给它一个安宁的环境。</p>
-</li>
-<li><p>眼睛肿胀、发炎产生原因：打斗、环境潮湿引起霉菌大量滋生。</p>
-<p>预防措施：分笼独养；勤换木屑、清洗笼子，保持环境干燥、通风。</p>
-<p>护理用品：塞司眼部护理清洁液（小动物专用）（也可使用生理食盐水清洗）金霉素眼药膏棉签。</p>
-<p>居住环境：合笼的请立即分笼，单独隔离；垫材不用木屑，而改铺柔软的碎纸巾；安心静养。</p>
-<p>方法：每天使用棉签蘸护理液帮助鼠鼠清洗眼睛，然后涂抹金霉素眼药膏。</p>
-<p>注意事项：慎用金霉素，若鼠鼠误食过量的残留药膏，会导致鼠鼠肾衰竭，所以尽量不要残留药膏。</p>
-</li>
-<li><p>脚趾肿胀产生原因： 1）脚趾被缠绕过 2）脚趾甲过长的情况下疯狂跑滚轮 3）脚趾被勾到或折到 4）高处跌落 等 建议：首先，检查一下脚趾表面是否有伤口或出血现象，如有，则需先进行外伤治疗。</p>
-<p>方法：以生理食盐水+优碘以2：1比例稀释（若此稀释比例对鼠鼠造成很大刺激时，稀释比例可再提高），消毒伤口。</p>
-<p>注意： </p>
-<ol>
-<li><p>鼠鼠容易舔伤口或手碰伤口然后抓东西吃，而食用碘对鼠鼠健康有害，因此，可让稀释液在伤口上停留2-3分钟，待其杀菌效用充分发挥后，再用食盐水清洗干净。</p>
-</li>
-<li><p>千万不要使用双氧水、碘酒对伤口进行消毒，它们的刺激性连人都难以忍受，何况如此弱小的鼠鼠；尽量不要用酒精，酒精的刺激性也太强，如使用，请一定稀释！</p>
-</li>
-<li><p>优碘与红药水不可同时使用！因为两者混合会生成有毒的碘化汞，不仅使药物失去杀菌效能，而且对皮肤粘膜及其他组织有强烈刺激作用，引起皮肤红肿起泡，伤口溃烂。<br>其次，确定表面无伤口或进行消毒之后，给予柔软的垫材（如碎纸巾、棉花等）,以代替木屑。移除滚轮，安宁静养，待骨头愈合再行走。</p>
-</li>
-</ol>
-</li>
-<li><p>皮肤病产生原因：外寄生虫、过敏症、外伤、细菌或霉菌的感染等。预防措施：</p>
-<ol>
-<li><p>木屑的选择给鼠鼠使用的木屑多以进口为主，在选购时，一定要辨明木屑所属的木材种类：千万不要选用“Cedar”（雪松）木屑，因为仓鼠对 “Cedar Oil”（雪松油）容易过敏，结果会造成身体大面积脱毛，皮肤开裂，由此带来的脱水和感染是致命的。 “aspen”（白杨木）木屑也有一定几率会造成皮肤病。“Pine”（松木）木屑比较适合仓鼠，大多数压缩包装的木屑都是这种。</p>
-</li>
-<li><p>保持环境清洁、干燥、通风勤换木屑、清洗笼子；偶尔傍晚时可以晒几分钟太阳；若饮水器有漏水状况，应立即更换；避免使用带铁丝笼底的笼子以及网状滚轮，以减少霉菌大量滋生的几率。</p>
-</li>
-<li><p>饮食方面多多补充富含矿物质的食品、综合维他命，增加抵抗力。</p>
-</li>
-<li><p>如发生打斗，或同笼中有鼠儿发生皮肤搔痒等症状时，应立即分笼隔离。</p>
-</li>
-</ol>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/10/Google-market-share/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/05/10/Google-market-share/" itemprop="url">
-                  Google谷歌在世界各地的市场占有率
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-10T00:00:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-05-10T00:00:00+08:00">
                 2008-05-10
               </time>
             
@@ -773,8 +586,8 @@
           
 
           
-
           
+
           
 
           
@@ -785,7 +598,9 @@
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -984,17 +799,19 @@
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
 
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -1004,6 +821,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1016,21 +837,22 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/10/excel-offset-notes/">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/10/excel-offset-notes/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
 
     
       <header class="post-header">
@@ -1038,16 +860,8 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2008/05/10/excel-offset-notes/" itemprop="url">
-                  Excel中OFFSET( )函数的使用
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2008/05/10/excel-offset-notes/" itemprop="url">Excel中OFFSET( )函数的使用</a></h1>
         
 
         <div class="post-meta">
@@ -1059,7 +873,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-05-10T00:00:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-05-10T00:00:00+08:00">
                 2008-05-10
               </time>
             
@@ -1108,8 +922,8 @@
           
 
           
-
           
+
           
 
           
@@ -1120,7 +934,9 @@
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1147,17 +963,19 @@
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
 
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -1167,6 +985,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1179,21 +1001,22 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/04/03/Keyconfig-for-Firefox3/">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/10/hamsters-common-diseases/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="東木">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Dong's Note">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Dong's Note" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
 
     
       <header class="post-header">
@@ -1201,16 +1024,8 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2008/04/03/Keyconfig-for-Firefox3/" itemprop="url">
-                  Keyconfig for Firefox 3
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2008/05/10/hamsters-common-diseases/" itemprop="url">仓鼠常见疾病的护理及预防措施</a></h1>
         
 
         <div class="post-meta">
@@ -1222,7 +1037,197 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-04-03T00:00:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-05-10T00:00:00+08:00">
+                2008-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index">
+                    <span itemprop="name">Share</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2008/05/10/hamsters-common-diseases/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/05/10/hamsters-common-diseases/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>保证合理的饮食结构、保持环境的干燥与清洁、保护小宠生活的安全性，做好这“三保”，才是维持小宠健康的根本之道。</p>
+<ol>
+<li><p>腹泻、软便产生原因：不恰当饮食、压力、天气突变等。</p>
+<p>护理用品：新鲜苹果，MR牌整肠液（便性改善液）。</p>
+<p>方法：苹果多多益善，只要鼠鼠肯吃；整肠液加入水瓶中，记得每天都要换水。</p>
+<p>环境：造成腹泻、软便的原因除了不恰当的饮食之外，压力也是因素之一。所以休养阶段，尽可能不要打扰鼠鼠，给它一个安宁的环境。</p>
+</li>
+<li><p>眼睛肿胀、发炎产生原因：打斗、环境潮湿引起霉菌大量滋生。</p>
+<p>预防措施：分笼独养；勤换木屑、清洗笼子，保持环境干燥、通风。</p>
+<p>护理用品：塞司眼部护理清洁液（小动物专用）（也可使用生理食盐水清洗）金霉素眼药膏棉签。</p>
+<p>居住环境：合笼的请立即分笼，单独隔离；垫材不用木屑，而改铺柔软的碎纸巾；安心静养。</p>
+<p>方法：每天使用棉签蘸护理液帮助鼠鼠清洗眼睛，然后涂抹金霉素眼药膏。</p>
+<p>注意事项：慎用金霉素，若鼠鼠误食过量的残留药膏，会导致鼠鼠肾衰竭，所以尽量不要残留药膏。</p>
+</li>
+<li><p>脚趾肿胀产生原因： 1）脚趾被缠绕过 2）脚趾甲过长的情况下疯狂跑滚轮 3）脚趾被勾到或折到 4）高处跌落 等 建议：首先，检查一下脚趾表面是否有伤口或出血现象，如有，则需先进行外伤治疗。</p>
+<p>方法：以生理食盐水+优碘以2：1比例稀释（若此稀释比例对鼠鼠造成很大刺激时，稀释比例可再提高），消毒伤口。</p>
+<p>注意： </p>
+<ol>
+<li><p>鼠鼠容易舔伤口或手碰伤口然后抓东西吃，而食用碘对鼠鼠健康有害，因此，可让稀释液在伤口上停留2-3分钟，待其杀菌效用充分发挥后，再用食盐水清洗干净。</p>
+</li>
+<li><p>千万不要使用双氧水、碘酒对伤口进行消毒，它们的刺激性连人都难以忍受，何况如此弱小的鼠鼠；尽量不要用酒精，酒精的刺激性也太强，如使用，请一定稀释！</p>
+</li>
+<li><p>优碘与红药水不可同时使用！因为两者混合会生成有毒的碘化汞，不仅使药物失去杀菌效能，而且对皮肤粘膜及其他组织有强烈刺激作用，引起皮肤红肿起泡，伤口溃烂。<br>其次，确定表面无伤口或进行消毒之后，给予柔软的垫材（如碎纸巾、棉花等）,以代替木屑。移除滚轮，安宁静养，待骨头愈合再行走。</p>
+</li>
+</ol>
+</li>
+<li><p>皮肤病产生原因：外寄生虫、过敏症、外伤、细菌或霉菌的感染等。预防措施：</p>
+<ol>
+<li><p>木屑的选择给鼠鼠使用的木屑多以进口为主，在选购时，一定要辨明木屑所属的木材种类：千万不要选用“Cedar”（雪松）木屑，因为仓鼠对 “Cedar Oil”（雪松油）容易过敏，结果会造成身体大面积脱毛，皮肤开裂，由此带来的脱水和感染是致命的。 “aspen”（白杨木）木屑也有一定几率会造成皮肤病。“Pine”（松木）木屑比较适合仓鼠，大多数压缩包装的木屑都是这种。</p>
+</li>
+<li><p>保持环境清洁、干燥、通风勤换木屑、清洗笼子；偶尔傍晚时可以晒几分钟太阳；若饮水器有漏水状况，应立即更换；避免使用带铁丝笼底的笼子以及网状滚轮，以减少霉菌大量滋生的几率。</p>
+</li>
+<li><p>饮食方面多多补充富含矿物质的食品、综合维他命，增加抵抗力。</p>
+</li>
+<li><p>如发生打斗，或同笼中有鼠儿发生皮肤搔痒等症状时，应立即分笼隔离。</p>
+</li>
+</ol>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/04/03/Keyconfig-for-Firefox3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/04/03/Keyconfig-for-Firefox3/" itemprop="url">Keyconfig for Firefox 3</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2008-04-03T00:00:00+08:00">
                 2008-04-03
               </time>
             
@@ -1271,8 +1276,8 @@
           
 
           
-
           
+
           
 
           
@@ -1283,7 +1288,9 @@
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1307,17 +1314,19 @@
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
 
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -1327,6 +1336,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1339,7 +1352,7 @@
   </nav>
 
 
-          
+
           </div>
           
 
@@ -1359,6 +1372,7 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
@@ -1367,17 +1381,18 @@
 
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.jpg"
-               alt="東木" />
-          <p class="site-author-name" itemprop="name">東木</p>
-          <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          
+            <p class="site-author-name" itemprop="name">東木</p>
+            <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
         </div>
+
         <nav class="site-state motion-element">
-        
+
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives">
+            
+              <a href="/archives/">
+            
                 <span class="site-state-item-count">286</span>
                 <span class="site-state-item-name">日志</span>
               </a>
@@ -1385,8 +1400,10 @@
           
 
           
+            
+            
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -1394,8 +1411,10 @@
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">199</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -1430,6 +1449,8 @@
 
       
 
+      
+
     </div>
   </aside>
 
@@ -1442,36 +1463,43 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy;  2007 - 
+  &copy;  2007 &mdash; 
   <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
 </div>
 
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
 
 
         
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
@@ -1491,6 +1519,14 @@
 
 
   
+
+
+
+
+
+
+
+
 
 
 
@@ -1517,28 +1553,32 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
 
 
 
   
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
 
 
 
@@ -1565,7 +1605,7 @@
     
       
       <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.2"></script>
     
     
     <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
@@ -1583,16 +1623,14 @@
 
 
 
-  
-  
+
+
+
 
   
 
-  
 
-  
 
-  
 
   
   
@@ -1604,9 +1642,21 @@
   <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
   
 
-  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+  <script src="/js/src/algolia-search.js?v=5.1.2"></script>
 
 
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 </body>
 </html>
