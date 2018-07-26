@@ -866,162 +866,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2011/04/18/how-to-find-self-path/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2011/04/18/how-to-find-self-path/" itemprop="url">
-                  获得Shell脚本所在目录的绝对路径
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2011-04-18 00:00:00" itemprop="dateCreated datePublished" datetime="2011-04-18T00:00:00+08:00">2011-04-18</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>要得到正在执行的程序/脚本自身所存放的绝对路径，在 PHP 里面可以用 <code>dirname(realpath(__FILE__))</code> ； C# 则有 <code>System.Windows.Forms.Application.StartupPath</code> ； java 似乎没有什么比较直接的方法，只能利用 CodeSource 来间接获取 。而在 linux shell 脚本里面如果想得到当前脚本文件存放的绝对路径，也没有太现成的命令可以调用，不过可以通过下面的语句来获取：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">baseDirForScriptSelf=$(cd &quot;$(dirname &quot;$0&quot;)&quot;; pwd)</span><br><span class="line">echo &quot;full path to currently executed script is : $&#123;baseDirForScriptSelf&#125;&quot;</span><br></pre></td></tr></table></figure>
-<p>虽说大部分情况下我们并不需要这样的绝对路径来完成工作；但如果要把多个脚本、数据文件等内容打包作为一个整体来交付别人使用，又希望不论用户拷贝到哪个目录下执行脚本都能够正确的找到这个包里面的其他内容的话，用这样的脚本来自动定位包的根目录应该是个比较鲁棒的做法。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2011/04/18/faster-way-to-dump-mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1129,6 +973,162 @@
 <p>根据参数值书写 mysqldump 命令，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># mysqldump -uroot -p123 21andy -e –max_allowed_packet=16777216 –net_buffer_length=16384 &gt; 21andy.sql</span><br></pre></td></tr></table></figure></p>
 <p>OK，现在速度就很快了，主要注意的是导入和导出端的 max_allowed_packet 和 net_buffer_length 这2个参数值设定，弄大点就OK了</p>
 <p>其实，最快的方法，是直接COPY数据库目录，不过记得先停止 MySQL 服务。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2011/04/18/how-to-find-self-path/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2011/04/18/how-to-find-self-path/" itemprop="url">
+                  获得Shell脚本所在目录的绝对路径
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2011-04-18 00:00:00" itemprop="dateCreated datePublished" datetime="2011-04-18T00:00:00+08:00">2011-04-18</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>要得到正在执行的程序/脚本自身所存放的绝对路径，在 PHP 里面可以用 <code>dirname(realpath(__FILE__))</code> ； C# 则有 <code>System.Windows.Forms.Application.StartupPath</code> ； java 似乎没有什么比较直接的方法，只能利用 CodeSource 来间接获取 。而在 linux shell 脚本里面如果想得到当前脚本文件存放的绝对路径，也没有太现成的命令可以调用，不过可以通过下面的语句来获取：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">baseDirForScriptSelf=$(cd &quot;$(dirname &quot;$0&quot;)&quot;; pwd)</span><br><span class="line">echo &quot;full path to currently executed script is : $&#123;baseDirForScriptSelf&#125;&quot;</span><br></pre></td></tr></table></figure>
+<p>虽说大部分情况下我们并不需要这样的绝对路径来完成工作；但如果要把多个脚本、数据文件等内容打包作为一个整体来交付别人使用，又希望不论用户拷贝到哪个目录下执行脚本都能够正确的找到这个包里面的其他内容的话，用这样的脚本来自动定位包的根目录应该是个比较鲁棒的做法。</p>
 
           
         

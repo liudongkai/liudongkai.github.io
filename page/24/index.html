@@ -732,6 +732,161 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/03/small-shell/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/03/03/small-shell/" itemprop="url">
+                  非常小的shell: 指定行号,插入文本(转)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-03-03 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-03T00:00:00+08:00">2008-03-03</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>使用这个shell可以直接在某个文件的某一行插入指定的文本,很方便. 可以把这个<br>shell加入PATH中.以下的蓝色部分为代码, 文件名为insert</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more insert</span><br><span class="line">#!/bin/bash</span><br><span class="line"># 从文件的某一行之后插入新行</span><br><span class="line"># FILE 为文件名，LINENUM为行号，TEXT为要插入的文本</span><br><span class="line"># Copyleft: cheyo@JMU</span><br><span class="line"></span><br><span class="line">showUsage()</span><br><span class="line">&#123;</span><br><span class="line">echo &quot;[Usage]: insert FILE LINENUM TEXT&quot;</span><br><span class="line">echo &quot;# 从文件的某一行之后插入新行&quot;</span><br><span class="line">echo &quot;# FILE 为文件名，LINENUM为行号，TEXT为要插入的文本&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if [ $# -lt 3 ] #少于3个参数,错误!</span><br><span class="line">then showUsage</span><br><span class="line">exit 1</span><br><span class="line">else</span><br><span class="line">sed &quot;$&#123;2&#125;a</span><br><span class="line">$&#123;3&#125;&quot; $1 &gt; tmpfile;mv tmpfile $1</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$ ./insert a 3 &quot;Test&quot;</span><br><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">Test</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/03/read-the-specified-line/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1074,7 +1229,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/03/small-shell/">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/02/23/photoshop-designer-top-10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="東木">
@@ -1093,8 +1248,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/03/03/small-shell/" itemprop="url">
-                  非常小的shell: 指定行号,插入文本(转)
+                <a class="post-title-link" href="/2008/02/23/photoshop-designer-top-10/" itemprop="url">
+                  10位顶尖photoshop设计大师
                 </a>
               
             
@@ -1120,7 +1275,7 @@
                 
               
 
-              <time title="Created: 2008-03-03 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-03T00:00:00+08:00">2008-03-03</time>
+              <time title="Created: 2008-02-23 00:00:00" itemprop="dateCreated datePublished" datetime="2008-02-23T00:00:00+08:00">2008-02-23</time>
             
 
             
@@ -1138,7 +1293,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
 
                 
                 
@@ -1174,9 +1329,46 @@
       
         
           
-            <p>使用这个shell可以直接在某个文件的某一行插入指定的文本,很方便. 可以把这个<br>shell加入PATH中.以下的蓝色部分为代码, 文件名为insert</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more insert</span><br><span class="line">#!/bin/bash</span><br><span class="line"># 从文件的某一行之后插入新行</span><br><span class="line"># FILE 为文件名，LINENUM为行号，TEXT为要插入的文本</span><br><span class="line"># Copyleft: cheyo@JMU</span><br><span class="line"></span><br><span class="line">showUsage()</span><br><span class="line">&#123;</span><br><span class="line">echo &quot;[Usage]: insert FILE LINENUM TEXT&quot;</span><br><span class="line">echo &quot;# 从文件的某一行之后插入新行&quot;</span><br><span class="line">echo &quot;# FILE 为文件名，LINENUM为行号，TEXT为要插入的文本&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if [ $# -lt 3 ] #少于3个参数,错误!</span><br><span class="line">then showUsage</span><br><span class="line">exit 1</span><br><span class="line">else</span><br><span class="line">sed &quot;$&#123;2&#125;a</span><br><span class="line">$&#123;3&#125;&quot; $1 &gt; tmpfile;mv tmpfile $1</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$ ./insert a 3 &quot;Test&quot;</span><br><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">Test</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$</span><br></pre></td></tr></table></figure>
+            <ol>
+<li><p>Adhemas Batista (Brazil)</p>
+<p>Adhemas Batista，巴西人，居住在圣保罗,25岁，美术指导，平面与插画设计师。自由职业者。1996至1998年，经人介绍进入互联网行业，当时在一家小 工作室工作。1998至1999年，致力于 Tesla Tecnologia 研究。1999至2000年，从事艺术主管，为巴西和TVA的GM做方案。在巴西做的第一个项目是网上销售汽车，从事于 AgenciaClick。2000至2002年，创作了自己的网上工作室，与巴西的私营银行和其它小客户合作。2002至2003年，回到 MSN 做 AgenciaClick，当然还有其它一些客户，如 Coca-cola， Fiat 和 TAM。2003年至今，在 AlmapBBDO 工作。</p>
+<p><a href="http://www.adhemas.com/" target="_blank" rel="noopener">http://www.adhemas.com/</a></p>
+</li>
+<li><p>Bert Monroy (USA)</p>
+<p>Bert Monroy在纽约市出生和长大，并在当地多家代理机构及其自己的公司中从事广告艺术总监和执行总监工作20余年。 当1984年Macintosh 128汁算机出现时，Bert开始了其自己新的数码职业生涯。他把计算机作为新的艺术媒体，他是大家公认的数码艺术先锋人物之一。Bert的作品出现在各 种主要杂志上，也被大量的图书昕采用，其中包括Making Art on a Macintosh、 ThePhotoshop WOW Book(所有版本)、The IllustratorWOW Book(所有版本)、 The Art of Digital Painting以及在日本出版的Photoshop A to Z。</p>
+<p><a href="http://www.bertmonroy.com/" target="_blank" rel="noopener">http://www.bertmonroy.com/</a></p>
+</li>
+<li><p>Derel Lea (Canada)</p>
+<p>1996年，在作了多年艺术指导、平面设计师和职业修图编辑之后，Derel Lea开始把精力放到了插画上。从开始创作第一幅插画时就知道这正是他想要的感觉，创作并且沉迷其中，时间仿佛终止，世界仿佛消失。最初的插画作品是摄 影、传统插画和数码艺术的一种结合。它们产生的原因完全是因为Derel Lea对之前所接触的所有艺术感到厌倦和受挫。传统插画家大都总是创作同一种风格的作品，然而 Derel Lea 不喜欢总是简单重复做同样的事情。虽然可能所有的作品从根本上还是潜藏着同一种风格，但至少是在不停的尝试新事物并且让它看起来更有趣。</p>
+<p><a href="http://www.dereklea.com/" target="_blank" rel="noopener">http://www.dereklea.com/</a></p>
+</li>
+<li><p>Eduardo Recife (Brazil)</p>
+<p>Eduardo Recife,是一位来自巴西的设计师,他的作品呈现出一种怀旧的后现代美，散发着浓郁的南美本土气息,同时他创作的一些字体也有很不错的视觉效果.我从 很小的时候就开始画画。在学校的时候我有一个记事本，里面都是我的画而没有一页笔记。我以前经常用一只黑色的钢笔给朋友刺青，还经常在无聊的时候在各种东 西的表面上画画。我相信这是我能做到的最棒的事情。对我而言，这也是当找不到合适的文字表达时最好的交流方式。绘画是一种疗法、一种爱好、一份工作，它使 我快乐。</p>
+<p><a href="http://www.eduardorecife.com/" target="_blank" rel="noopener">http://www.eduardorecife.com/</a></p>
+</li>
+<li><p>Ian Keltie (U.K)</p>
+<p>Ian Keltie是英国的商业艺术家。Ians的数码风格吸收了多种元素的影响，包括位于泰恩河上游的家乡纽卡斯尔镇的风土建筑、所有他认为酷的东西：杂志、 磨损的牛仔裤、老鞋子，70年代的摄影以及澳大利亚画家Egon Schiele的作品。Ians总是对新的项目充满兴趣，对不断增加的世界各地客户的名单也是非常高兴。</p>
+<p><a href="http://www.iankeltie.com/" target="_blank" rel="noopener">http://www.iankeltie.com/</a></p>
+</li>
+<li><p>Joan Charmant</p>
+<p><a href="http://www.joancharmant.com/" target="_blank" rel="noopener">http://www.joancharmant.com/</a></p>
+</li>
+<li><p>Joshua M. Smith</p>
+<p><a href="http://www.hydro74.com/" target="_blank" rel="noopener">http://www.hydro74.com/</a></p>
+</li>
+<li><p>Justin M. Maller (Australia)</p>
+<p>来自澳大利亚墨尔本的平面艺术家，毕业于奥尔本大学，创意艺术学士。depthcore创意指导。</p>
+<p><a href="http://www.superlover.com.au/" target="_blank" rel="noopener">http://www.superlover.com.au/</a></p>
+</li>
+<li><p>Nik Ainley (U.K)</p>
+<p>Nik Ainley是来自英国的一名视觉设计师，主要工作为个人和企业提供新锐的视觉设计和插画。作品曾多次被 Computer Arts杂志登载，并获得Computer Arts 杂志的“2006十佳创意设计师”荣誉。他的作品风格多变，但是都极具视觉冲击力。</p>
+<p><a href="http://www.shinybinary.com/" target="_blank" rel="noopener">http://www.shinybinary.com/</a></p>
+</li>
+<li><p>Scott Hansen (USA)</p>
+<p>ISO50工作室负责人，来自加利福尼亚。为多个行业的设计过各种项目，从唱片封面、海报、杂志封面到滑雪板。你可以在世界各地的产品及出版物上看到他的作品。</p>
+</li>
+</ol>
+
           
         
       
@@ -1340,198 +1532,6 @@
 <p>重新启动apachce服务以使安装后的GD库生效</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service httpd restart</span><br></pre></td></tr></table></figure>
 <p>安装完成.</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/02/23/photoshop-designer-top-10/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/02/23/photoshop-designer-top-10/" itemprop="url">
-                  10位顶尖photoshop设计大师
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-02-23 00:00:00" itemprop="dateCreated datePublished" datetime="2008-02-23T00:00:00+08:00">2008-02-23</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>Adhemas Batista (Brazil)</p>
-<p>Adhemas Batista，巴西人，居住在圣保罗,25岁，美术指导，平面与插画设计师。自由职业者。1996至1998年，经人介绍进入互联网行业，当时在一家小 工作室工作。1998至1999年，致力于 Tesla Tecnologia 研究。1999至2000年，从事艺术主管，为巴西和TVA的GM做方案。在巴西做的第一个项目是网上销售汽车，从事于 AgenciaClick。2000至2002年，创作了自己的网上工作室，与巴西的私营银行和其它小客户合作。2002至2003年，回到 MSN 做 AgenciaClick，当然还有其它一些客户，如 Coca-cola， Fiat 和 TAM。2003年至今，在 AlmapBBDO 工作。</p>
-<p><a href="http://www.adhemas.com/" target="_blank" rel="noopener">http://www.adhemas.com/</a></p>
-</li>
-<li><p>Bert Monroy (USA)</p>
-<p>Bert Monroy在纽约市出生和长大，并在当地多家代理机构及其自己的公司中从事广告艺术总监和执行总监工作20余年。 当1984年Macintosh 128汁算机出现时，Bert开始了其自己新的数码职业生涯。他把计算机作为新的艺术媒体，他是大家公认的数码艺术先锋人物之一。Bert的作品出现在各 种主要杂志上，也被大量的图书昕采用，其中包括Making Art on a Macintosh、 ThePhotoshop WOW Book(所有版本)、The IllustratorWOW Book(所有版本)、 The Art of Digital Painting以及在日本出版的Photoshop A to Z。</p>
-<p><a href="http://www.bertmonroy.com/" target="_blank" rel="noopener">http://www.bertmonroy.com/</a></p>
-</li>
-<li><p>Derel Lea (Canada)</p>
-<p>1996年，在作了多年艺术指导、平面设计师和职业修图编辑之后，Derel Lea开始把精力放到了插画上。从开始创作第一幅插画时就知道这正是他想要的感觉，创作并且沉迷其中，时间仿佛终止，世界仿佛消失。最初的插画作品是摄 影、传统插画和数码艺术的一种结合。它们产生的原因完全是因为Derel Lea对之前所接触的所有艺术感到厌倦和受挫。传统插画家大都总是创作同一种风格的作品，然而 Derel Lea 不喜欢总是简单重复做同样的事情。虽然可能所有的作品从根本上还是潜藏着同一种风格，但至少是在不停的尝试新事物并且让它看起来更有趣。</p>
-<p><a href="http://www.dereklea.com/" target="_blank" rel="noopener">http://www.dereklea.com/</a></p>
-</li>
-<li><p>Eduardo Recife (Brazil)</p>
-<p>Eduardo Recife,是一位来自巴西的设计师,他的作品呈现出一种怀旧的后现代美，散发着浓郁的南美本土气息,同时他创作的一些字体也有很不错的视觉效果.我从 很小的时候就开始画画。在学校的时候我有一个记事本，里面都是我的画而没有一页笔记。我以前经常用一只黑色的钢笔给朋友刺青，还经常在无聊的时候在各种东 西的表面上画画。我相信这是我能做到的最棒的事情。对我而言，这也是当找不到合适的文字表达时最好的交流方式。绘画是一种疗法、一种爱好、一份工作，它使 我快乐。</p>
-<p><a href="http://www.eduardorecife.com/" target="_blank" rel="noopener">http://www.eduardorecife.com/</a></p>
-</li>
-<li><p>Ian Keltie (U.K)</p>
-<p>Ian Keltie是英国的商业艺术家。Ians的数码风格吸收了多种元素的影响，包括位于泰恩河上游的家乡纽卡斯尔镇的风土建筑、所有他认为酷的东西：杂志、 磨损的牛仔裤、老鞋子，70年代的摄影以及澳大利亚画家Egon Schiele的作品。Ians总是对新的项目充满兴趣，对不断增加的世界各地客户的名单也是非常高兴。</p>
-<p><a href="http://www.iankeltie.com/" target="_blank" rel="noopener">http://www.iankeltie.com/</a></p>
-</li>
-<li><p>Joan Charmant</p>
-<p><a href="http://www.joancharmant.com/" target="_blank" rel="noopener">http://www.joancharmant.com/</a></p>
-</li>
-<li><p>Joshua M. Smith</p>
-<p><a href="http://www.hydro74.com/" target="_blank" rel="noopener">http://www.hydro74.com/</a></p>
-</li>
-<li><p>Justin M. Maller (Australia)</p>
-<p>来自澳大利亚墨尔本的平面艺术家，毕业于奥尔本大学，创意艺术学士。depthcore创意指导。</p>
-<p><a href="http://www.superlover.com.au/" target="_blank" rel="noopener">http://www.superlover.com.au/</a></p>
-</li>
-<li><p>Nik Ainley (U.K)</p>
-<p>Nik Ainley是来自英国的一名视觉设计师，主要工作为个人和企业提供新锐的视觉设计和插画。作品曾多次被 Computer Arts杂志登载，并获得Computer Arts 杂志的“2006十佳创意设计师”荣誉。他的作品风格多变，但是都极具视觉冲击力。</p>
-<p><a href="http://www.shinybinary.com/" target="_blank" rel="noopener">http://www.shinybinary.com/</a></p>
-</li>
-<li><p>Scott Hansen (USA)</p>
-<p>ISO50工作室负责人，来自加利福尼亚。为多个行业的设计过各种项目，从唱片封面、海报、杂志封面到滑雪板。你可以在世界各地的产品及出版物上看到他的作品。</p>
-</li>
-</ol>
 
           
         
