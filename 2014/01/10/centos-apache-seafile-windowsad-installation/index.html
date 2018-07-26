@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'da65f2d4ea1c6d4dccfa6d7f197d2aaf',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="20140113 更新：[1]. 忽略域中被禁止的用户。 安装环境CentOS 5.10 x64Apache 2.2.4 自编译seafile 2.0.4 with MySQLWindows AD   seafile安装目录 /home/seafile/ 相关账号mysql两套账号密码：    账号 密码 作用     root root super权限，用于数据库安装。   seafile se">
+<meta name="keywords" content="Apache,CentOS,Active Directory,seafile">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS+Apache+seafile+WindowsAD 安装记录">
+<meta property="og:url" content="http://blog.liudongkai.com/2014/01/10/centos-apache-seafile-windowsad-installation/index.html">
+<meta property="og:site_name" content="Dong&#39;s Note">
+<meta property="og:description" content="20140113 更新：[1]. 忽略域中被禁止的用户。 安装环境CentOS 5.10 x64Apache 2.2.4 自编译seafile 2.0.4 with MySQLWindows AD   seafile安装目录 /home/seafile/ 相关账号mysql两套账号密码：    账号 密码 作用     root root super权限，用于数据库安装。   seafile se">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2014-01-12T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentOS+Apache+seafile+WindowsAD 安装记录">
+<meta name="twitter:description" content="20140113 更新：[1]. 忽略域中被禁止的用户。 安装环境CentOS 5.10 x64Apache 2.2.4 自编译seafile 2.0.4 with MySQLWindows AD   seafile安装目录 /home/seafile/ 相关账号mysql两套账号密码：    账号 密码 作用     root root super权限，用于数据库安装。   seafile se">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/2014/01/10/centos-apache-seafile-windowsad-installation/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>CentOS+Apache+seafile+WindowsAD 安装记录 | Dong's Note</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42337789-4');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/01/10/centos-apache-seafile-windowsad-installation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CentOS+Apache+seafile+WindowsAD 安装记录
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2014-01-10 00:00:00" itemprop="dateCreated datePublished" datetime="2014-01-10T00:00:00+08:00">2014-01-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2014-01-13 00:00:00" itemprop="dateModified" datetime="2014-01-13T00:00:00+08:00">2014-01-13</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/seafile/" itemprop="url" rel="index"><span itemprop="name">seafile</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>20140113 更新：<br>[1]. <a href="#filter">忽略域中被禁止的用户。</a></p>
+<h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><p>CentOS 5.10 x64<br>Apache 2.2.4 自编译<br>seafile 2.0.4 with MySQL<br>Windows AD  </p>
+<p>seafile安装目录 /home/seafile/</p>
+<h3 id="相关账号"><a href="#相关账号" class="headerlink" title="相关账号"></a>相关账号</h3><p>mysql两套账号密码：</p>
+<table>
+<thead>
+<tr>
+<th>账号</th>
+<th>密码</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>root</td>
+<td>root</td>
+<td>super权限，用于数据库安装。</td>
+</tr>
+<tr>
+<td>seafile</td>
+<td>seafile</td>
+<td>仅对seafile的3个库有DML权限。</td>
+</tr>
+</tbody>
+</table>
+<p>Windows AD账号：</p>
+<table>
+<thead>
+<tr>
+<th>账号</th>
+<th>密码</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cloud</td>
+<td>cloud</td>
+<td>具体设定见 # 域设置   </td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<h3 id="域设置"><a href="#域设置" class="headerlink" title="域设置"></a>域设置</h3><p>确保域可用，为了安全性，在域控上增加一个账号，用户域账户登录查询用。</p>
+<p>假定域账户设定：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>域</td>
+<td>LIUDONGKAI.COM</td>
+</tr>
+<tr>
+<td>账号</td>
+<td>cloud</td>
+</tr>
+<tr>
+<td>用户组</td>
+<td>Users</td>
+</tr>
+</tbody>
+</table>
+<p>并将cloud账号<strong>加入Domain Admins用户组</strong>里，仅此用户组即可。</p>
+<h2 id="seafile-2-0-4-MySQL"><a href="#seafile-2-0-4-MySQL" class="headerlink" title="seafile 2.0.4 + MySQL"></a>seafile 2.0.4 + MySQL</h2><p>参考资料：<a href="https://github.com/haiwen/seafile/wiki/Deploy-Seafile-with-MySQL" target="_blank" rel="noopener">https://github.com/haiwen/seafile/wiki/Deploy-Seafile-with-MySQL</a></p>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><ol>
+<li>确保mysql已安装并可用。</li>
+<li>下载程序seafile server 2.0.4 x64至安装目录/home/seafile/下，并解压。<a href="http://seafile.googlecode.com/files/seafile-server_2.0.4_x86-64.tar.gz" target="_blank" rel="noopener">http://seafile.googlecode.com/files/seafile-server_2.0.4_x86-64.tar.gz</a></li>
+</ol>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>安装seafile-server</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /home/seafile/</span><br><span class="line">$ tar zxvf seafile-server_2.0.4_x86-64.tar.gz</span><br><span class="line">$ ln -s seafile-server seafile-server-2.0.4</span><br><span class="line"><span class="comment">#创建软连方便今后的版本更新，无需再次调整apache</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$ tree -L 2</span><br><span class="line">.</span><br><span class="line">|-- seafile-server -&gt; seafile-server-2.0.4</span><br><span class="line">|-- seafile-server-2.0.4</span><br><span class="line">|   |-- reset-admin.sh</span><br><span class="line">|   |-- runtime</span><br><span class="line">|   |-- seafile</span><br><span class="line">|   |-- seafile.sh</span><br><span class="line">|   |-- seahub</span><br><span class="line">|   |-- seahub.sh</span><br><span class="line">|   |-- setup-seafile-mysql.py</span><br><span class="line">|   |-- setup-seafile-mysql.sh</span><br><span class="line">|   |-- setup-seafile.sh</span><br><span class="line">|   `-- upgrade</span><br><span class="line">`-- seafile-server_2.0.4_x86-64.tar.gz</span><br><span class="line"></span><br><span class="line">./seafile-server/setup-seafile-mysql.sh</span><br><span class="line"><span class="comment">#按照提示一步步完成即可。安装之前会检查依赖库和工具是否存在及版本，缺啥补啥，能跑起来就好</span></span><br><span class="line"></span><br><span class="line">./seafile-server/seafile.sh start</span><br><span class="line">./seafile-server/seahub.sh start</span><br></pre></td></tr></table></figure>
+<p>完成以上步骤，依赖MySQL自建账号模式的seafile就可以通过访问设定的IP+端口的形式正常使用了。</p>
+<p>添加域的部分查看 <a href="#ldap">LDAP设置（整合Windows AD账号）</a> 。<br>需要使用域名访问，请查看 <a href="#apache">Apache部分</a></p>
+<h3 id="其他设置"><a href="#其他设置" class="headerlink" title="其他设置"></a>其他设置</h3><p><em>部分配置的变量可能在配置文件中不存在，此时会取默认配置，一旦填写后，在加载时会覆盖默认配置！</em></p>
+<h5 id="MySQL配置"><a href="#MySQL配置" class="headerlink" title="MySQL配置"></a>MySQL配置</h5><p>如果需要调整MySQL配置需要修改2个config文件，分别是<code>ccnet/ccnet.conf</code>，<code>seahub_settings.py</code>，根据实际情况调整:</p>
+<p>注意：<br>官方提示，<strong>mysql连接请不要使用<code>localhost</code>，应使用<code>127.0.0.1</code></strong>，在测试的过程中，也的确有这个问题。</p>
+<p>ccnet/ccnet.conf:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[Database]</span><br><span class="line">ENGINE = mysql</span><br><span class="line">PASSWD = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><br><span class="line">DB = ccnet-db</span><br><span class="line">HOST = 127.0.0.1</span><br><span class="line">USER = seafile</span><br><span class="line">PORT = 3306</span><br></pre></td></tr></table></figure>
+<p>seahub_settings.py</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">DATABASES = &#123;</span><br><span class="line">    'default': &#123;</span><br><span class="line">        'ENGINE': 'django.db.backends.mysql',</span><br><span class="line">        'NAME': 'seahub-db',</span><br><span class="line">        'USER': 'seafile',</span><br><span class="line">        'PASSWORD': 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',</span><br><span class="line">        'HOST': '127.0.0.1',</span><br><span class="line">        'PORT': '3306',</span><br><span class="line">        'OPTIONS': &#123;</span><br><span class="line">            'init_command': 'SET storage_engine=INNODB',</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="邮件服务设置"><a href="#邮件服务设置" class="headerlink" title="邮件服务设置"></a>邮件服务设置</h5><p>修改<code>seahub_settings.py</code>,如果没有，则在末尾添加即可:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">EMAIL_USE_TLS = False</span><br><span class="line">EMAIL_HOST = 'smtp.liudongkai.com'        # smpt server</span><br><span class="line">EMAIL_HOST_USER = 'seafile@liudongkai.com'    # username</span><br><span class="line">EMAIL_HOST_PASSWORD = 'hello!liudongkai'    # password</span><br><span class="line">EMAIL_PORT = '25'</span><br><span class="line">DEFAULT_FROM_EMAIL = EMAIL_HOST_USER</span><br><span class="line">SERVER_EMAIL = EMAIL_HOST_USER</span><br></pre></td></tr></table></figure>
+<h5 id="个性化设置"><a href="#个性化设置" class="headerlink" title="个性化设置"></a>个性化设置</h5><p>如需要调整站点名称，logo URL等信息，修改<code>seahub_settings.py</code>:</p>
+<p>Seafile的web部分是采用Django这个开源框架搭的，部分设置变量可以参考Django，这家伙的资料比较好找。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"># 站点名称，url等配置</span><br><span class="line"># 特别是在搭配Apache/nginx做代理后，一定不要忘记修改这里</span><br><span class="line">SITE_TITLE = 'HiCloud'</span><br><span class="line">SITE_BASE = 'http://cloud.liudongkai.com/'</span><br><span class="line">LOGO_URL = 'http://cloud.liudongkai.com/'</span><br><span class="line">SITE_NAME = 'HiCloud'</span><br><span class="line"></span><br><span class="line"># 搭配Apache/nginx代理是必须启用，直接IP访问的话，就注释掉吧</span><br><span class="line">HTTP_SERVER_ROOT = 'http://cloud.liudongkai.com/seafhttp'</span><br><span class="line"></span><br><span class="line"># 注册功能开关，false=关闭</span><br><span class="line">ENABLE_SIGNUP = False</span><br><span class="line"></span><br><span class="line"># 两个管理员邮件通知开关</span><br><span class="line"># 添加用户</span><br><span class="line">SEND_EMAIL_ON_ADDING_SYSTEM_MEMBER = True</span><br><span class="line"># 改密码</span><br><span class="line">SEND_EMAIL_ON_RESETTING_USER_PASSWD = True</span><br><span class="line"></span><br><span class="line"># 机构显示开关，一旦改为ture，web页面里的“机构”按钮会被隐藏</span><br><span class="line">CLOUD_MODE = False</span><br><span class="line"></span><br><span class="line"># 3个Cookie相关的开关</span><br><span class="line"># Cookie的生命周期，单位：s</span><br><span class="line">SESSION_COOKIE_AGE = 60 * 60</span><br><span class="line"></span><br><span class="line"># 是否在每次请求时都保存 Session 数据</span><br><span class="line"># ture开启后，结合SESSION_COOKIE_AGE设置，那么按用户在web上最后一次操作开始计时，1小时后cookie过期，期间一旦有操作，计时器会重新计时。</span><br><span class="line">SESSION_SAVE_EVERY_REQUEST = True</span><br><span class="line"></span><br><span class="line"># session持久化开关</span><br><span class="line"># false，那么在cookie有效期内，用户重新开启浏览器将不必重新登录。                   </span><br><span class="line">SESSION_EXPIRE_AT_BROWSER_CLOSE = False</span><br></pre></td></tr></table></figure>
+<p><a name="ldap" id="ldap"></a></p>
+<h2 id="LDAP设置（整合Windows-AD账号）"><a href="#LDAP设置（整合Windows-AD账号）" class="headerlink" title="LDAP设置（整合Windows AD账号）"></a>LDAP设置（整合Windows AD账号）</h2><p>参考资料：<a href="https://github.com/haiwen/seafile/wiki/Configure-Seafile-to-use-LDAP" target="_blank" rel="noopener">https://github.com/haiwen/seafile/wiki/Configure-Seafile-to-use-LDAP</a></p>
+<p>LDAP部分的设定非常的简单，只要对<code>ccnet/ccnet.conf</code>做相应修改即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">[LDAP]</span><br><span class="line"># LDAP URL for the host, ldap://, ldaps:// and ldapi:// are supported</span><br><span class="line"># To use TLS, you should configure the LDAP server to listen on LDAPS</span><br><span class="line"># port and specify ldaps:// here.</span><br><span class="line">HOST = ldap://127.0.0.1</span><br><span class="line"># 也可以写alias</span><br><span class="line"></span><br><span class="line"># base DN from where all the users can be reached.</span><br><span class="line">BASE = ou=组A,dc=liudongkai,dc=com;ou=组B,dc=liudongkai,dc=com</span><br><span class="line"># 如果你在AD上设有多个组，那么都加上去吧，不然没写的组就无法登录了</span><br><span class="line"># 如果还想禁用掉其中的一部分人，还可以使用过滤器FILTER</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># user DN to bind to. If not set, will use anonymous login.</span><br><span class="line">USER_DN = cn=cloud,cn=users,dc=liudongkai,dc=com</span><br><span class="line"># 因为在 安装环境 -- 域设置 这段介绍里已经说明，cloud在用户组users里，</span><br><span class="line"># 所以填写cn=users，如果是在自建的“组A”里，那么填写ou=组A</span><br><span class="line"></span><br><span class="line"># Password for the user DN</span><br><span class="line">PASSWORD = cloud</span><br><span class="line"></span><br><span class="line"># The attribute to be used as user login id.</span><br><span class="line"># By default it&apos;s the &apos;mail&apos; attribute.</span><br><span class="line">LOGIN_ATTR = mail</span><br><span class="line"># mail 一个神奇的设置，他会校验自建DB里登记的邮箱，还会去找域里用户帐号下的电子邮箱项</span><br><span class="line"># 从v2.0.4这个版本开始，登录数据源不再单一，已可以同时从DB和LDAP中取得。</span><br><span class="line"># 除了mail外，针对Win AD 还有其他验证字段可取：</span><br><span class="line"># sAMAccountName  AD中的用户名，</span><br><span class="line">#   此方式的缺点是会让 机构 -- 成员 列表里出现设备名，以$结尾，如：LIUDONGKAI-PC$</span><br><span class="line"># userPrincipalName  AD中的用户名，再和域名结合，组成邮箱形式登录，</span><br><span class="line">#   如：liudongkai@liudongkai.com</span><br></pre></td></tr></table></figure>
+<p><a name="filter" id="filter">&nbsp;</a><br>更新：<br>增加过滤禁止用户：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FILTER = &amp;(!(UserAccountControl:1.2.840.113556.1.4.803:=2))</span><br></pre></td></tr></table></figure></p>
+<p>参考资料：<br><a href="http://msdn.microsoft.com/en-us/library/aa746475(VS.85).aspx" target="_blank" rel="noopener">http://msdn.microsoft.com/en-us/library/aa746475(VS.85).aspx</a><br><a href="https://support.microsoft.com/kb/269181/zh-cn" target="_blank" rel="noopener">https://support.microsoft.com/kb/269181/zh-cn</a></p>
+<p><a name="apache" id="apache"></a></p>
+<h2 id="Apache部分"><a href="#Apache部分" class="headerlink" title="Apache部分"></a>Apache部分</h2><p>参考资料：<a href="https://github.com/haiwen/seafile/wiki/Deploy-Seafile-with-apache" target="_blank" rel="noopener">https://github.com/haiwen/seafile/wiki/Deploy-Seafile-with-apache</a></p>
+<ol>
+<li>首先得确保apache已经安装并可用。</li>
+<li><p>其次得确保apache proxy模块，和fastcgi模块 已安装并可用。</p>
+<ol start="3">
+<li><p>安装FastCGI模块（mod_fastcgi）</p>
+<ol start="4">
+<li><p>安装编译相关的依赖包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># yum install httpd-devel apr apr-devel libtool</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载mod_fastcgi源代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># wget http://www.fastcgi.com/dist/mod_fastcgi-current.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解压并进行编译安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># tar zxvf mod_fastcgi-2.4.6.tar.gz</span><br><span class="line"># cd mod_fastcgi-2.4.6</span><br><span class="line"># cp Makefile.AP2 Makefile</span><br><span class="line"># vim Makefile</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>修改top_dir目录到你真实的apache安装目录后，进行编译安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># make</span><br><span class="line"># make install</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>加载模块<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vim /etc/httpd/conf/httpd.conf</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>找到LoadModule部分，添加一行加载语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">LoadModule fastcgi_module modules/mod_fastcgi.so</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<ol start="8">
+<li>重启apache<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># /usr/local/apache/bin/apachectl restart</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>或</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># /etc/init.d/httpd restart</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装proxy模块(mod_proxy)</p>
+<ol start="10">
+<li><p>检查现有apache的版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># /usr/local/apache/bin/httpd -v</span><br><span class="line">Server version: Apache/2.2.4 (Unix)</span><br><span class="line">Server built:   Jul 27 2009 16:04:11</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载对应的源码包并安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># cd /tmp/</span><br><span class="line"># wget http://archive.apache.org/dist/httpd/httpd-2.2.4.tar.gz</span><br><span class="line"># tar zxvf httpd-2.2.4.tar.gz</span><br><span class="line"># cd httpd-2.2.4</span><br><span class="line"># ./configure --enable-mods-shared=&quot;proxy proxy_http proxy_connect&quot;</span><br><span class="line"># cd modules/proxy/</span><br><span class="line"># /usr/local/apache/bin/apxs -i -a -o mod_proxy.so -c mod_proxy.c proxy_util.c</span><br><span class="line"># /usr/local/apache/bin/apxs -i -a -o mod_proxy_http.so -c mod_proxy_http.c proxy_util.c</span><br><span class="line"># /usr/local/apache/bin/apxs -i -a -o mod_proxy_connect.so -c mod_proxy_connect.c proxy_util.c</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启apache</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># /usr/local/apache/bin/apachectl restart</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>或</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># /etc/init.d/httpd restart</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>修改Apache的vhost配置文件，并重启Apache<br>我的路径是<code>/usr/local/apache/conf/extra/httpd-vhosts.conf</code>，请找你对应的配置文件<br>在配置末尾添加上以下配置，并重启Apache：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">  ServerName cloud.liudongkai.com</span><br><span class="line">  DocumentRoot /var/www</span><br><span class="line">  Alias /media  /home/seafile/seafile-server/seahub/media</span><br><span class="line"></span><br><span class="line">  RewriteEngine On</span><br><span class="line"></span><br><span class="line">&lt;Directory /var/www&gt;</span><br><span class="line">    Order allow,deny</span><br><span class="line">    Allow from all</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line">&lt;Directory /home/seafile/seafile-server&gt;</span><br><span class="line">    Order allow,deny</span><br><span class="line">    Allow from all</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># seafile httpserver</span><br><span class="line">#</span><br><span class="line">ProxyPass /seafhttp http://127.0.0.1:8082</span><br><span class="line">ProxyPassReverse /seafhttp http://127.0.0.1:8082</span><br><span class="line">RewriteRule ^/seafhttp - [QSA,L]</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># seahub</span><br><span class="line">#</span><br><span class="line">RewriteRule ^/(media.*)$ /$1 [QSA,L,PT]</span><br><span class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; !-f</span><br><span class="line">RewriteRule ^(.*)$ /seahub.fcgi$1 [QSA,L,E=HTTP_AUTHORIZATION:%&#123;HTTP:Authorization&#125;]</span><br><span class="line">&lt;/VirtualHost&gt;</span><br><span class="line"></span><br><span class="line">FastCGIExternalServer /var/www/seahub.fcgi -host 127.0.0.1:8000</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>注意：</p>
+<pre><code>14. `seahub.fcgi`只是一个占位符，在你的系统里并不需要存在真实的文件。
+15. Directory的Order和Allow配置也尽量添上，这样不会有错。
+   如果在你的Apache根配置文件`/usr/local/apache/conf/httpd.conf`里发现下面的设置，
+   目录禁止访问的全局配置，那么不加上这个目录权限配置会报403错误，web禁止访问。
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory /&gt;</span><br><span class="line">    Options FollowSymLinks</span><br><span class="line">    AllowOverride None</span><br><span class="line">    Order deny,allow</span><br><span class="line">    Deny from all</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><ol start="16">
+<li><p>修改 ccnet.conf 和 seahub_setting.py</p>
+<ol start="17">
+<li>修改 <code>/home/seafile/ccnet/ccnet.conf</code> 里的 <code>SERVICE_URL</code> 变量值<br><code>SERVICE_URL = http://cloud.liudongkai.com</code></li>
+<li>修改 <code>/home/seafile/seahub_settings.py</code> 里的 <code>HTTP_SERVER_ROOT</code> 变量值<br><code>HTTP_SERVER_ROOT = &#39;http://cloud.liudongkai.com/seafhttp&#39;</code></li>
+</ol>
+</li>
+<li><p>重启seafile和seahub</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/home/seafile/seafile-server/seafile.sh restart</span><br><span class="line">/home/seafile/seafile-server/seahub.sh restart-fastcgi</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>注意：<br>由于启用了apache代理，seahub必须以fastcgi的模式来启动，所以 <code>./seahub.sh start-fastcgi</code></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Apache/" rel="tag"># Apache</a>
+          
+            <a href="/tags/CentOS/" rel="tag"># CentOS</a>
+          
+            <a href="/tags/Active-Directory/" rel="tag"># Active Directory</a>
+          
+            <a href="/tags/seafile/" rel="tag"># seafile</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/01/10/Zend-Studio-WordWrap/" rel="next" title="Zend Studio 代码换行">
+                <i class="fa fa-chevron-left"></i> Zend Studio 代码换行
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/01/10/SAMBA-Failed-to-set-servicePrincipalNames/" rel="prev" title="AD Domain join fails with "Failed to set servicePrincipalNames" (SAMBA)">
+                AD Domain join fails with "Failed to set servicePrincipalNames" (SAMBA) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">東木</p>
+              <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">202</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装环境"><span class="nav-number">1.</span> <span class="nav-text">安装环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关账号"><span class="nav-number">1.1.</span> <span class="nav-text">相关账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#域设置"><span class="nav-number">1.2.</span> <span class="nav-text">域设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#seafile-2-0-4-MySQL"><span class="nav-number">2.</span> <span class="nav-text">seafile 2.0.4 + MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备"><span class="nav-number">2.1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤"><span class="nav-number">2.2.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他设置"><span class="nav-number">2.3.</span> <span class="nav-text">其他设置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#MySQL配置"><span class="nav-number">2.3.0.1.</span> <span class="nav-text">MySQL配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#邮件服务设置"><span class="nav-number">2.3.0.2.</span> <span class="nav-text">邮件服务设置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#个性化设置"><span class="nav-number">2.3.0.3.</span> <span class="nav-text">个性化设置</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LDAP设置（整合Windows-AD账号）"><span class="nav-number">3.</span> <span class="nav-text">LDAP设置（整合Windows AD账号）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Apache部分"><span class="nav-number">4.</span> <span class="nav-text">Apache部分</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2007 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

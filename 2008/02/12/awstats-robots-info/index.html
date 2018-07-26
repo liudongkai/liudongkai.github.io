@@ -1,0 +1,3042 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'da65f2d4ea1c6d4dccfa6d7f197d2aaf',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="虽然AWStats中提供了蜘蛛的分类统计：  搜索引擎网站的机器人 (前 10) – 全部列出 – 最近参观日期     &amp;gt;102 个机器人* 文件数 字节 最近参观日期     Sina Iask Spider 41894 520.80 M字节 2006年 九月 09日 07:17   GouGou 34577 920.11 M字节 2006年 九月 09日 12:23   Googleb">
+<meta name="keywords" content="AWstats">
+<meta property="og:type" content="article">
+<meta property="og:title" content="给AWStats增加针对Googlebot&#x2F;Baiduspider&#x2F;Yahoo!Slurp&#x2F;MSNBot的详细统计">
+<meta property="og:url" content="http://blog.liudongkai.com/2008/02/12/awstats-robots-info/index.html">
+<meta property="og:site_name" content="Dong&#39;s Note">
+<meta property="og:description" content="虽然AWStats中提供了蜘蛛的分类统计：  搜索引擎网站的机器人 (前 10) – 全部列出 – 最近参观日期     &amp;gt;102 个机器人* 文件数 字节 最近参观日期     Sina Iask Spider 41894 520.80 M字节 2006年 九月 09日 07:17   GouGou 34577 920.11 M字节 2006年 九月 09日 12:23   Googleb">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2008-02-11T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="给AWStats增加针对Googlebot&#x2F;Baiduspider&#x2F;Yahoo!Slurp&#x2F;MSNBot的详细统计">
+<meta name="twitter:description" content="虽然AWStats中提供了蜘蛛的分类统计：  搜索引擎网站的机器人 (前 10) – 全部列出 – 最近参观日期     &amp;gt;102 个机器人* 文件数 字节 最近参观日期     Sina Iask Spider 41894 520.80 M字节 2006年 九月 09日 07:17   GouGou 34577 920.11 M字节 2006年 九月 09日 12:23   Googleb">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/2008/02/12/awstats-robots-info/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>给AWStats增加针对Googlebot/Baiduspider/Yahoo!Slurp/MSNBot的详细统计 | Dong's Note</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42337789-4');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/02/12/awstats-robots-info/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">给AWStats增加针对Googlebot/Baiduspider/Yahoo!Slurp/MSNBot的详细统计
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-02-12 00:00:00" itemprop="dateCreated datePublished" datetime="2008-02-12T00:00:00+08:00">2008-02-12</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Analytics/" itemprop="url" rel="index"><span itemprop="name">Analytics</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>虽然AWStats中提供了蜘蛛的分类统计：</p>
+<blockquote>
+<p>搜索引擎网站的机器人 (前 10) – 全部列出 – 最近参观日期</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>&gt;102 个机器人*</th>
+<th>文件数</th>
+<th>字节</th>
+<th>最近参观日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sina Iask Spider</td>
+<td>41894</td>
+<td>520.80 M字节</td>
+<td>2006年 九月 09日 07:17</td>
+</tr>
+<tr>
+<td>GouGou</td>
+<td>34577</td>
+<td>920.11 M字节</td>
+<td>2006年 九月 09日 12:23</td>
+</tr>
+<tr>
+<td>Googlebot</td>
+<td>12171+39</td>
+<td>212.60 M字节</td>
+<td>2006年 九月 09日 12:23</td>
+</tr>
+<tr>
+<td>Yahoo Slurp</td>
+<td>5775+1275</td>
+<td>91.10 M字节</td>
+<td>2006年 九月 09日 12:24</td>
+</tr>
+<tr>
+<td>GigaBot</td>
+<td>5334+233</td>
+<td>53.62 M字节</td>
+<td>2006年 九月 09日 12:24</td>
+</tr>
+<tr>
+<td>Unknown robot (identified by ‘robot’)</td>
+<td>5421+6</td>
+<td>71.46 M字节</td>
+<td>2006年 九月 09日 12:17</td>
+</tr>
+<tr>
+<td>Lilina</td>
+<td>5278</td>
+<td>76.67 M字节</td>
+<td>2006年 九月 09日 12:22</td>
+</tr>
+<tr>
+<td>MSNBot</td>
+<td>4075+217</td>
+<td>52.31 M字节</td>
+<td>2006年 九月 09日 12:19</td>
+</tr>
+<tr>
+<td>Yahoo! Slurp China</td>
+<td>3135+460</td>
+<td>25.83 M字节</td>
+<td>2006年 九月 09日 12:21</td>
+</tr>
+<tr>
+<td>Unknown robot (identified by ‘crawl’)</td>
+<td>3431+6</td>
+<td>78.98 M字节</td>
+<td>2006年 九月 09日 12:23</td>
+</tr>
+</tbody>
+</table>
+<p>有汇总后的数据，但是每个蜘蛛具体抓取了那些页面和抓取的频度就无法得知了，利用<a href="http://awstats.sourceforge.net/docs/awstats_extra.html" target="_blank" rel="noopener">AWStats的扩展配置</a>，统计也可以详细到每个蜘蛛的具体访问（参考了<a href="http://www.antezeta.com/awstats.html上的配置样例）。" target="_blank" rel="noopener">http://www.antezeta.com/awstats.html上的配置样例）。</a></p>
+<p>注意：配置完Extra后可能会遇到以下这样的警告：</p>
+<a id="more"></a>
+<blockquote>
+<p>Phase 2 : Now process new records (Flush history on disk after 20000 hosts)…<br>Error: The number of values found for extra section 5 has grown too large.<br>In order to prevent awstats from using an excessive amount of memory, the number of values is currently limited to 500. Perhaps you should consider revising extract parameters for extra section 5. If you are certain you want to track such a large data set, you can increase the limit by setting ExtraTrackedRowsLimit in your awstats configuration file.</p>
+</blockquote>
+<p>如果扩展配置统计的条目较多，比如：蜘蛛抓取的不同URL的个数很多，就需要在全局扩大一下ExtraTrackedRowsLimit这个参数， 这个参数不像其他参数一样需要加编号，缺省最多统计500个项目，我扩大到了2万，<code>ExtraTrackedRowsLimit=20000</code></p>
+<p>完整设置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">ExtraSectionName5=&quot;Google crawls – Top 50&quot;</span><br><span class="line">ExtraSectionCodeFilter5=&quot;200 304&quot;</span><br><span class="line">ExtraSectionCondition5=&quot;UA,(.*Googlebot.*)&quot;</span><br><span class="line">ExtraSectionFirstColumnValues5=&quot;URL,(.*)&quot;</span><br><span class="line">ExtraSectionFirstColumnFormat5=&quot;&lt;a href=&apos;%s&apos; title=&apos;Item Crawled&apos; target=&apos;_blank&apos;&gt;%s&lt;/a&gt;&quot;</span><br><span class="line">ExtraSectionStatTypes5=PHBL</span><br><span class="line">ExtraSectionAddAverageRow5=0</span><br><span class="line">ExtraSectionAddSumRow5=5</span><br><span class="line">MaxNbOfExtra5=50</span><br><span class="line">MinHitExtra5=1ExtraSectionName6=&quot;Baidu crawls – Top 50&quot;</span><br><span class="line">ExtraSectionCodeFilter6=&quot;200 304&quot;</span><br><span class="line">ExtraSectionCondition6=&quot;UA,(.*Baiduspider.*)&quot;</span><br><span class="line">ExtraSectionFirstColumnValues6=&quot;URL,(.*)&quot;</span><br><span class="line">ExtraSectionFirstColumnFormat6=&quot;&lt;a href=&apos;%s&apos; title=&apos;Item Crawled&apos; target=&apos;_blank&apos;&gt;%s&lt;/a&gt;&quot;</span><br><span class="line">ExtraSectionStatTypes6=PHBL</span><br><span class="line">ExtraSectionAddAverageRow6=0</span><br><span class="line">ExtraSectionAddSumRow6=6</span><br><span class="line">MaxNbOfExtra6=50</span><br><span class="line">MinHitExtra6=1</span><br><span class="line"></span><br><span class="line">ExtraSectionName7=&quot;Yahoo Slurp crawls – Top 50&quot;</span><br><span class="line">ExtraSectionCodeFilter7=&quot;200 304&quot;</span><br><span class="line">ExtraSectionCondition7=&quot;UA,(.*Slurp.*)&quot;</span><br><span class="line">ExtraSectionFirstColumnValues7=&quot;URL,(.*)&quot;</span><br><span class="line">ExtraSectionFirstColumnFormat7=&quot;&lt;a href=&apos;%s&apos; title=&apos;Item Crawled&apos; target=&apos;_blank&apos;&gt;%s&lt;/a&gt;&quot;</span><br><span class="line">ExtraSectionStatTypes7=PHBL</span><br><span class="line">ExtraSectionAddAverageRow7=0</span><br><span class="line">ExtraSectionAddSumRow7=7</span><br><span class="line">MaxNbOfExtra7=50</span><br><span class="line">MinHitExtra7=1</span><br><span class="line"></span><br><span class="line">ExtraSectionName8=&quot;MSN crawls – Top 50&quot;</span><br><span class="line">ExtraSectionCodeFilter8=&quot;200 304&quot;</span><br><span class="line">ExtraSectionCondition8=&quot;UA,(.*msnbot.*)&quot;</span><br><span class="line">ExtraSectionFirstColumnValues8=&quot;URL,(.*)&quot;</span><br><span class="line">ExtraSectionFirstColumnFormat8=&quot;&lt;a href=&apos;%s&apos; title=&apos;Item Crawled&apos; target=&apos;_blank&apos;&gt;%s&lt;/a&gt;&quot;</span><br><span class="line">ExtraSectionStatTypes8=PHBL</span><br><span class="line">ExtraSectionAddAverageRow8=0</span><br><span class="line">ExtraSectionAddSumRow8=8</span><br><span class="line">MaxNbOfExtra8=50</span><br><span class="line">MinHitExtra8=1</span><br><span class="line"></span><br><span class="line">ExtraSectionName9=&quot;Sohu crawls – Top 50&quot;</span><br><span class="line">ExtraSectionCodeFilter9=&quot;200 304&quot;</span><br><span class="line">ExtraSectionCondition9=&quot;UA,(.*sogou.*)&quot;</span><br><span class="line">ExtraSectionFirstColumnValues9=&quot;URL,(.*)&quot;</span><br><span class="line">ExtraSectionFirstColumnFormat9=&quot;&lt;a href=&apos;%s&apos; title=&apos;Item Crawled&apos; target=&apos;_blank&apos;&gt;%s&lt;/a&gt;&quot;</span><br><span class="line">ExtraSectionStatTypes9=PHBL</span><br><span class="line">ExtraSectionAddAverageRow9=0</span><br><span class="line">ExtraSectionAddSumRow9=9</span><br><span class="line">MaxNbOfExtra9=50</span><br><span class="line">MinHitExtra9=1</span><br><span class="line"></span><br><span class="line">ExtraTrackedRowsLimit=20000</span><br></pre></td></tr></table></figure>
+<p>输出样例： 从中可以发现一些蜘蛛的特点，百度只抓取中文内容，而在robots.txt的遵循上，百度是先抓后删，而Google/Yahoo!/MSN则从抓取队列中就会删除。而仍然不知是谁家的outfoxbot似乎对图片更感兴趣……</p>
+<p><strong>Google crawls – Top 50</strong></p>
+<table>
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>网页数</th>
+<th>文件数</th>
+<th>字节</th>
+<th>最近参观日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/blog/</td>
+<td>41</td>
+<td>41</td>
+<td>272.41 K字节</td>
+<td>2006年 九月 09日 20:37</td>
+</tr>
+<tr>
+<td>/phpMan.php/phpinfo</td>
+<td>4</td>
+<td>4</td>
+<td>110.92 K字节</td>
+<td>2006年 九月 09日 19:27</td>
+</tr>
+<tr>
+<td>/u2/lyrics.txt</td>
+<td>4</td>
+<td>4</td>
+<td>221.90 K字节</td>
+<td>2006年 九月 09日 20:55</td>
+</tr>
+<tr>
+<td>/bbcweb/9.htm</td>
+<td>4</td>
+<td>4</td>
+<td>4.91 K字节</td>
+<td>2006年 九月 09日 21:58</td>
+</tr>
+<tr>
+<td>/digest/20060907.html</td>
+<td>3</td>
+<td>3</td>
+<td>26.60 K字节</td>
+<td>2006年 九月 09日 20:55</td>
+</tr>
+<tr>
+<td>/bbcweb/4.htm</td>
+<td>3</td>
+<td>3</td>
+<td>3.15 K字节</td>
+<td>2006年 九月 09日 21:58</td>
+</tr>
+<tr>
+<td>/tech/lucene.html</td>
+<td>3</td>
+<td>3</td>
+<td>64.98 K字节</td>
+<td>2006年 九月 09日 21:59</td>
+</tr>
+<tr>
+<td>/</td>
+<td>3</td>
+<td>3</td>
+<td>124.52 K字节</td>
+<td>2006年 九月 09日 20:03</td>
+</tr>
+<tr>
+<td>/robots.txt</td>
+<td>3</td>
+<td>3</td>
+<td>696 个字节</td>
+<td>2006年 九月 09日 17:49</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/perlform/1</td>
+<td>3</td>
+<td>3</td>
+<td>68.74 K字节</td>
+<td>2006年 九月 09日 23:47</td>
+</tr>
+<tr>
+<td>/sitemap.html</td>
+<td>3</td>
+<td>3</td>
+<td>14.90 K字节</td>
+<td>2006年 九月 09日 01:49</td>
+</tr>
+<tr>
+<td>/bbcweb/1.htm</td>
+<td>3</td>
+<td>3</td>
+<td>6.34 K字节</td>
+<td>2006年 九月 09日 21:58</td>
+</tr>
+<tr>
+<td>/tech/</td>
+<td>3</td>
+<td>3</td>
+<td>14.39 K字节</td>
+<td>2006年 九月 09日 20:55</td>
+</tr>
+<tr>
+<td>/side_by_side/google_yahoo.html</td>
+<td>3</td>
+<td>3</td>
+<td>1.14 K字节</td>
+<td>2006年 九月 09日 20:55</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/hotplug/8</td>
+<td>3</td>
+<td>3</td>
+<td>18.57 K字节</td>
+<td>2006年 九月 09日 02:55</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/perllexwarn/1</td>
+<td>3</td>
+<td>3</td>
+<td>60.44 K字节</td>
+<td>2006年 九月 09日 23:47</td>
+</tr>
+<tr>
+<td>/tech/acdsee.html</td>
+<td>3</td>
+<td>3</td>
+<td>10.17 K字节</td>
+<td>2006年 九月 09日 21:58</td>
+</tr>
+<tr>
+<td>/digest/20060906.html</td>
+<td>3</td>
+<td>3</td>
+<td>50.66 K字节</td>
+<td>2006年 九月 09日 16:28</td>
+</tr>
+<tr>
+<td>/tech/rotate_merge_log.html</td>
+<td>3</td>
+<td>3</td>
+<td>91.96 K字节</td>
+<td>2006年 九月 09日 16:56</td>
+</tr>
+<tr>
+<td>/digest/20060905.html</td>
+<td>3</td>
+<td>3</td>
+<td>56.00 K字节</td>
+<td>2006年 九月 09日 16:28</td>
+</tr>
+<tr>
+<td>/phpMan.php</td>
+<td>3</td>
+<td>3</td>
+<td>7.94 K字节</td>
+<td>2006年 九月 09日 04:30</td>
+</tr>
+<tr>
+<td>/tech/study.html</td>
+<td>3</td>
+<td>3</td>
+<td>19.62 K字节</td>
+<td>2006年 九月 09日 21:58</td>
+</tr>
+<tr>
+<td>/bbcweb/8.htm</td>
+<td>3</td>
+<td>3</td>
+<td>4.77 K字节</td>
+<td>2006年 九月 09日 21:59</td>
+</tr>
+<tr>
+<td>/tech/oracle.html</td>
+<td>3</td>
+<td>3</td>
+<td>19.57 K字节</td>
+<td>2006年 九月 09日 21:59</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/curl_global_init/3</td>
+<td>2</td>
+<td>2</td>
+<td>7.79 K字节</td>
+<td>2006年 九月 09日 01:23</td>
+</tr>
+<tr>
+<td>/tech/gnu.html</td>
+<td>2</td>
+<td>2</td>
+<td>7.15 K字节</td>
+<td>2006年 九月 09日 21:58</td>
+</tr>
+<tr>
+<td>/tech/weblog.html</td>
+<td>2</td>
+<td>2</td>
+<td>13.36 K字节</td>
+<td>2006年 九月 09日 21:59</td>
+</tr>
+<tr>
+<td>/phpMan.php/search/(2)</td>
+<td>2</td>
+<td>2</td>
+<td>124.43 K字节</td>
+<td>2006年 九月 09日 04:53</td>
+</tr>
+<tr>
+<td>/tech/indent_tools.html</td>
+<td>2</td>
+<td>2</td>
+<td>34.31 K字节</td>
+<td>2006年 九月 09日 22:23</td>
+</tr>
+<tr>
+<td>/blog/archives/001146.html</td>
+<td>2</td>
+<td>2</td>
+<td>50.66 K字节</td>
+<td>2006年 九月 09日 17:40</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/grubby/8</td>
+<td>2</td>
+<td>2</td>
+<td>23.48 K字节</td>
+<td>2006年 九月 09日 06:03</td>
+</tr>
+<tr>
+<td>/bbcweb/10.htm</td>
+<td>2</td>
+<td>2</td>
+<td>3.04 K字节</td>
+<td>2006年 九月 09日 21:58</td>
+</tr>
+<tr>
+<td>/blog/archives/001164.html</td>
+<td>2</td>
+<td>2</td>
+<td>45.14 K字节</td>
+<td>2006年 九月 09日 13:00</td>
+</tr>
+<tr>
+<td>/phpMan.php/search/(6)</td>
+<td>2</td>
+<td>2</td>
+<td>16.36 K字节</td>
+<td>2006年 九月 09日 04:16</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/pdf2dsc/1</td>
+<td>2</td>
+<td>2</td>
+<td>7.96 K字节</td>
+<td>2006年 九月 09日 23:25</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/req/1</td>
+<td>2</td>
+<td>2</td>
+<td>51.25 K字节</td>
+<td>2006年 九月 09日 21:34</td>
+</tr>
+<tr>
+<td>/tech/mysql.html</td>
+<td>2</td>
+<td>2</td>
+<td>28.71 K字节</td>
+<td>2006年 九月 09日 21:58</td>
+</tr>
+<tr>
+<td>/blog/archives/001169.html</td>
+<td>2</td>
+<td>2</td>
+<td>36.42 K字节</td>
+<td>2006年 九月 09日 14:07</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/iopl/2</td>
+<td>2</td>
+<td>2</td>
+<td>7.90 K字节</td>
+<td>2006年 九月 09日 23:25</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/stdout/3</td>
+<td>2</td>
+<td>2</td>
+<td>13.16 K字节</td>
+<td>2006年 九月 09日 19:27</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/charset/1</td>
+<td>2</td>
+<td>2</td>
+<td>4.40 K字节</td>
+<td>2006年 九月 09日 04:33</td>
+</tr>
+<tr>
+<td>/tech/google_ads.html</td>
+<td>2</td>
+<td>2</td>
+<td>11.53 K字节</td>
+<td>2006年 九月 09日 04:11</td>
+</tr>
+<tr>
+<td>/phpMan.php/search/(9)</td>
+<td>2</td>
+<td>2</td>
+<td>28.15 K字节</td>
+<td>2006年 九月 09日 04:16</td>
+</tr>
+<tr>
+<td>/phpMan.php/search/(8)</td>
+<td>2</td>
+<td>2</td>
+<td>126.83 K字节</td>
+<td>2006年 九月 09日 04:16</td>
+</tr>
+<tr>
+<td>/tech/awstats.html</td>
+<td>2</td>
+<td>2</td>
+<td>39.49 K字节</td>
+<td>2006年 九月 09日 21:59</td>
+</tr>
+<tr>
+<td>/tech/nat.html</td>
+<td>2</td>
+<td>2</td>
+<td>18.39 K字节</td>
+<td>2006年 九月 09日 21:59</td>
+</tr>
+<tr>
+<td>/blog/archives/001199.html</td>
+<td>2</td>
+<td>2</td>
+<td>18.38 K字节</td>
+<td>2006年 九月 09日 15:45</td>
+</tr>
+<tr>
+<td>/rolling_stones/stones/the_rolling_stones.smi</td>
+<td>2</td>
+<td>2</td>
+<td>8.96 K字节</td>
+<td>2006年 九月 09日 12:14</td>
+</tr>
+<tr>
+<td>/blog/archives/001198.html</td>
+<td>2</td>
+<td>2</td>
+<td>35.09 K字节</td>
+<td>2006年 九月 09日 20:55</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/isdnctrl/8</td>
+<td>2</td>
+<td>2</td>
+<td>40.42 K字节</td>
+<td>2006年 九月 09日 23:32</td>
+</tr>
+<tr>
+<td>总数</td>
+<td>165</td>
+<td>165</td>
+<td>2.03 M字节</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Baidu crawls – Top 50</strong></p>
+<table>
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>网页数</th>
+<th>文件数</th>
+<th>字节</th>
+<th>最近参观日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/</td>
+<td>8</td>
+<td>8</td>
+<td>306.07 K字节</td>
+<td>2006年 九月 09日 17:22</td>
+</tr>
+<tr>
+<td>/robots.txt</td>
+<td>4</td>
+<td>4</td>
+<td>928 个字节</td>
+<td>2006年 九月 09日 14:30</td>
+</tr>
+<tr>
+<td>/blog/</td>
+<td>4</td>
+<td>4</td>
+<td>220.84 K字节</td>
+<td>2006年 九月 09日 15:34</td>
+</tr>
+<tr>
+<td>/linkPopCheck.php</td>
+<td>4</td>
+<td>4</td>
+<td>8.70 K字节</td>
+<td>2006年 九月 09日 21:11</td>
+</tr>
+<tr>
+<td>/blog/archives/001199.html</td>
+<td>4</td>
+<td>4</td>
+<td>73.53 K字节</td>
+<td>2006年 九月 09日 17:22</td>
+</tr>
+<tr>
+<td>/phpMan.php</td>
+<td>3</td>
+<td>3</td>
+<td>9.57 K字节</td>
+<td>2006年 九月 09日 19:27</td>
+</tr>
+<tr>
+<td>/blog/archives/001109.html</td>
+<td>2</td>
+<td>2</td>
+<td>69.52 K字节</td>
+<td>2006年 九月 09日 08:34</td>
+</tr>
+<tr>
+<td>/tech/google_url.html</td>
+<td>1</td>
+<td>1</td>
+<td>10.40 K字节</td>
+<td>2006年 九月 09日 15:34</td>
+</tr>
+<tr>
+<td>/blog/archives/001161.html</td>
+<td>1</td>
+<td>1</td>
+<td>17.67 K字节</td>
+<td>2006年 九月 09日 14:18</td>
+</tr>
+<tr>
+<td>/cgi-bin/mt/mt-atom.cgi/weblog/blog_id=1</td>
+<td>1</td>
+<td>1</td>
+<td>1.07 K字节</td>
+<td>2006年 九月 09日 17:55</td>
+</tr>
+<tr>
+<td>/blog/archives/000651.html</td>
+<td>1</td>
+<td>1</td>
+<td>12.81 K字节</td>
+<td>2006年 九月 09日 18:43</td>
+</tr>
+<tr>
+<td>/blog/archives/000638.html</td>
+<td>1</td>
+<td>1</td>
+<td>35.87 K字节</td>
+<td>2006年 九月 09日 18:42</td>
+</tr>
+<tr>
+<td>/blog/archives/001146.html</td>
+<td>1</td>
+<td>1</td>
+<td>25.33 K字节</td>
+<td>2006年 九月 09日 10:38</td>
+</tr>
+<tr>
+<td>/blog/archives/000625.html</td>
+<td>1</td>
+<td>1</td>
+<td>22.62 K字节</td>
+<td>2006年 九月 09日 18:43</td>
+</tr>
+<tr>
+<td>/blog/archives/000220.html</td>
+<td>1</td>
+<td>1</td>
+<td>10.65 K字节</td>
+<td>2006年 九月 09日 18:43</td>
+</tr>
+<tr>
+<td>/blog/archives/001157.html</td>
+<td>1</td>
+<td>1</td>
+<td>15.73 K字节</td>
+<td>2006年 九月 09日 03:37</td>
+</tr>
+<tr>
+<td>/digest/20050621.html</td>
+<td>1</td>
+<td>1</td>
+<td>12.36 K字节</td>
+<td>2006年 九月 09日 21:11</td>
+</tr>
+<tr>
+<td>/blog/archives/000011.html</td>
+<td>1</td>
+<td>1</td>
+<td>24.25 K字节</td>
+<td>2006年 九月 09日 07:12</td>
+</tr>
+<tr>
+<td>/blog/archives/000454.html</td>
+<td>1</td>
+<td>1</td>
+<td>11.52 K字节</td>
+<td>2006年 九月 09日 18:43</td>
+</tr>
+<tr>
+<td>/digest/20060120.html</td>
+<td>1</td>
+<td>1</td>
+<td>12.36 K字节</td>
+<td>2006年 九月 09日 10:57</td>
+</tr>
+<tr>
+<td>/tech/apache_install.html</td>
+<td>1</td>
+<td>1</td>
+<td>12.36 K字节</td>
+<td>2006年 九月 09日 01:25</td>
+</tr>
+<tr>
+<td>/blog/archives/001052.html</td>
+<td>1</td>
+<td>1</td>
+<td>12.56 K字节</td>
+<td>2006年 九月 09日 18:43</td>
+</tr>
+<tr>
+<td>/cgi-bin/mt/mt-atom.cgi/weblog/blog_id=1/entry_id=1174</td>
+<td>1</td>
+<td>1</td>
+<td>1.07 K字节</td>
+<td>2006年 九月 09日 10:57</td>
+</tr>
+<tr>
+<td>/blog/archives/001094.html</td>
+<td>1</td>
+<td>1</td>
+<td>19.27 K字节</td>
+<td>2006年 九月 09日 18:43</td>
+</tr>
+<tr>
+<td>/blog/archives/000519.html</td>
+<td>1</td>
+<td>1</td>
+<td>16.59 K字节</td>
+<td>2006年 九月 09日 18:43</td>
+</tr>
+<tr>
+<td>/blog/archives/000950.html</td>
+<td>1</td>
+<td>1</td>
+<td>29.79 K字节</td>
+<td>2006年 九月 09日 18:42</td>
+</tr>
+<tr>
+<td>/digest/20060908.html</td>
+<td>1</td>
+<td>1</td>
+<td>18.01 K字节</td>
+<td>2006年 九月 09日 17:22</td>
+</tr>
+<tr>
+<td>/tech/google.html</td>
+<td>1</td>
+<td>1</td>
+<td>12.36 K字节</td>
+<td>2006年 九月 09日 15:34</td>
+</tr>
+<tr>
+<td>/blog/archives/001164.html</td>
+<td>1</td>
+<td>1</td>
+<td>22.57 K字节</td>
+<td>2006年 九月 09日 00:37</td>
+</tr>
+<tr>
+<td>/blog/archives/000005.html</td>
+<td>1</td>
+<td>1</td>
+<td>10.27 K字节</td>
+<td>2006年 九月 09日 07:12</td>
+</tr>
+<tr>
+<td>/blog/archives/001182.html</td>
+<td>1</td>
+<td>1</td>
+<td>16.05 K字节</td>
+<td>2006年 九月 09日 03:02</td>
+</tr>
+<tr>
+<td>/blog/archives.html</td>
+<td>1</td>
+<td>1</td>
+<td>12.36 K字节</td>
+<td>2006年 九月 09日 22:41</td>
+</tr>
+<tr>
+<td>/blog/archives/001085.html</td>
+<td>1</td>
+<td>1</td>
+<td>14.31 K字节</td>
+<td>2006年 九月 09日 18:43</td>
+</tr>
+<tr>
+<td>/blog/archives/001131.html</td>
+<td>1</td>
+<td>1</td>
+<td>27.04 K字节</td>
+<td>2006年 九月 09日 11:18</td>
+</tr>
+<tr>
+<td>/bbcweb/204.htm</td>
+<td>1</td>
+<td>1</td>
+<td>3.05 K字节</td>
+<td>2006年 九月 09日 21:11</td>
+</tr>
+<tr>
+<td>/site_search.php</td>
+<td>1</td>
+<td>1</td>
+<td>1.54 K字节</td>
+<td>2006年 九月 09日 08:36</td>
+</tr>
+<tr>
+<td>/blog/archives/001040.html</td>
+<td>1</td>
+<td>1</td>
+<td>20.35 K字节</td>
+<td>2006年 九月 09日 18:43</td>
+</tr>
+<tr>
+<td>/blog/archives/001139.html</td>
+<td>1</td>
+<td>1</td>
+<td>24.43 K字节</td>
+<td>2006年 九月 09日 18:42</td>
+</tr>
+<tr>
+<td>/blog/archives/000859.html</td>
+<td>1</td>
+<td>1</td>
+<td>16.03 K字节</td>
+<td>2006年 九月 09日 05:46</td>
+</tr>
+<tr>
+<td>/digest/20050926.html</td>
+<td>1</td>
+<td>1</td>
+<td>12.36 K字节</td>
+<td>2006年 九月 09日 21:11</td>
+</tr>
+<tr>
+<td>/blog/archives/000284.html</td>
+<td>1</td>
+<td>1</td>
+<td>25.01 K字节</td>
+<td>2006年 九月 09日 18:43</td>
+</tr>
+<tr>
+<td>/blog/archives/2005_12.html</td>
+<td>1</td>
+<td>1</td>
+<td>12.36 K字节</td>
+<td>2006年 九月 09日 22:55</td>
+</tr>
+<tr>
+<td>/blog/archives/000741.html</td>
+<td>1</td>
+<td>1</td>
+<td>12.36 K字节</td>
+<td>2006年 九月 09日 08:35</td>
+</tr>
+<tr>
+<td>/blog/archives/000498.html</td>
+<td>1</td>
+<td>1</td>
+<td>10.55 K字节</td>
+<td>2006年 九月 09日 18:43</td>
+</tr>
+<tr>
+<td>/bbcweb/218.htm</td>
+<td>1</td>
+<td>1</td>
+<td>3.61 K字节</td>
+<td>2006年 九月 09日 10:57</td>
+</tr>
+<tr>
+<td>/tech/cvs.ppt</td>
+<td>1</td>
+<td>1</td>
+<td>12.34 K字节</td>
+<td>2006年 九月 09日 08:40</td>
+</tr>
+<tr>
+<td>/blog/archives/000645.html</td>
+<td>1</td>
+<td>1</td>
+<td>14.01 K字节</td>
+<td>2006年 九月 09日 18:43</td>
+</tr>
+<tr>
+<td>/blog/archives/000632.html</td>
+<td>1</td>
+<td>1</td>
+<td>10.22 K字节</td>
+<td>2006年 九月 09日 18:43</td>
+</tr>
+<tr>
+<td>/blog/archives/001124.html</td>
+<td>1</td>
+<td>1</td>
+<td>53.21 K字节</td>
+<td>2006年 九月 09日 04:14</td>
+</tr>
+<tr>
+<td>/blog/archives/001044.html</td>
+<td>1</td>
+<td>1</td>
+<td>13.90 K字节</td>
+<td>2006年 九月 09日 08:40</td>
+</tr>
+<tr>
+<td>总数</td>
+<td>72</td>
+<td>72</td>
+<td>1.34 M字节</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Yahoo Slurp crawls – Top 50</strong></p>
+<table>
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>网页数</th>
+<th>文件数</th>
+<th>字节</th>
+<th>最近参观日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/robots.txt</td>
+<td>104</td>
+<td>104</td>
+<td>23.56 K字节</td>
+<td>2006年 九月 09日 23:38</td>
+</tr>
+<tr>
+<td>/</td>
+<td>16</td>
+<td>16</td>
+<td>665.58 K字节</td>
+<td>2006年 九月 09日 23:36</td>
+</tr>
+<tr>
+<td>/blog/archives/001189.html</td>
+<td>8</td>
+<td>8</td>
+<td>102.40 K字节</td>
+<td>2006年 九月 09日 22:12</td>
+</tr>
+<tr>
+<td>/tech/indent_tools.html</td>
+<td>7</td>
+<td>7</td>
+<td>117.59 K字节</td>
+<td>2006年 九月 09日 22:39</td>
+</tr>
+<tr>
+<td>/tech/google.html</td>
+<td>7</td>
+<td>7</td>
+<td>251.04 K字节</td>
+<td>2006年 九月 09日 23:32</td>
+</tr>
+<tr>
+<td>/blog/</td>
+<td>6</td>
+<td>6</td>
+<td>329.88 K字节</td>
+<td>2006年 九月 09日 23:19</td>
+</tr>
+<tr>
+<td>/tech/apache_install.html</td>
+<td>5</td>
+<td>5</td>
+<td>90.00 K字节</td>
+<td>2006年 九月 09日 23:15</td>
+</tr>
+<tr>
+<td>/blog/archives/001196.html</td>
+<td>5</td>
+<td>5</td>
+<td>173.59 K字节</td>
+<td>2006年 九月 09日 23:48</td>
+</tr>
+<tr>
+<td>/blog/archives/000751.html</td>
+<td>5</td>
+<td>5</td>
+<td>104.12 K字节</td>
+<td>2006年 九月 09日 23:21</td>
+</tr>
+<tr>
+<td>/blog/archives/001197.html</td>
+<td>5</td>
+<td>5</td>
+<td>174.99 K字节</td>
+<td>2006年 九月 09日 22:37</td>
+</tr>
+<tr>
+<td>/tech/lucene.html</td>
+<td>4</td>
+<td>4</td>
+<td>136.91 K字节</td>
+<td>2006年 九月 09日 23:57</td>
+</tr>
+<tr>
+<td>/blog/archives/000828.html</td>
+<td>4</td>
+<td>4</td>
+<td>107.72 K字节</td>
+<td>2006年 九月 09日 23:27</td>
+</tr>
+<tr>
+<td>/tech/link_pop_check.html</td>
+<td>4</td>
+<td>4</td>
+<td>44.79 K字节</td>
+<td>2006年 九月 09日 23:04</td>
+</tr>
+<tr>
+<td>/tech/cms.html</td>
+<td>4</td>
+<td>4</td>
+<td>61.17 K字节</td>
+<td>2006年 九月 09日 22:13</td>
+</tr>
+<tr>
+<td>/tech/awstats.html</td>
+<td>4</td>
+<td>4</td>
+<td>56.19 K字节</td>
+<td>2006年 九月 09日 22:58</td>
+</tr>
+<tr>
+<td>/linkPopCheck.php</td>
+<td>4</td>
+<td>4</td>
+<td>8.65 K字节</td>
+<td>2006年 九月 09日 21:39</td>
+</tr>
+<tr>
+<td>/blog/archives/001199.html</td>
+<td>4</td>
+<td>4</td>
+<td>55.15 K字节</td>
+<td>2006年 九月 09日 22:14</td>
+</tr>
+<tr>
+<td>/blog/archives/000644.html</td>
+<td>3</td>
+<td>3</td>
+<td>81.88 K字节</td>
+<td>2006年 九月 09日 19:52</td>
+</tr>
+<tr>
+<td>/tech/cvs_card.html</td>
+<td>3</td>
+<td>3</td>
+<td>82.04 K字节</td>
+<td>2006年 九月 09日 22:44</td>
+</tr>
+<tr>
+<td>/blog/archives/000001.html</td>
+<td>3</td>
+<td>3</td>
+<td>93.52 K字节</td>
+<td>2006年 九月 09日 23:23</td>
+</tr>
+<tr>
+<td>/blog/archives/001198.html</td>
+<td>3</td>
+<td>3</td>
+<td>35.09 K字节</td>
+<td>2006年 九月 09日 22:49</td>
+</tr>
+<tr>
+<td>/blog/archives/cat_tech_notes.html</td>
+<td>2</td>
+<td>2</td>
+<td>509.34 K字节</td>
+<td>2006年 九月 09日 23:48</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/pkgCache::PkgFileIterator</td>
+<td>2</td>
+<td>2</td>
+<td>4.08 K字节</td>
+<td>2006年 九月 09日 23:58</td>
+</tr>
+<tr>
+<td>/digest/20060908.html</td>
+<td>2</td>
+<td>2</td>
+<td>36.03 K字节</td>
+<td>2006年 九月 09日 19:40</td>
+</tr>
+<tr>
+<td>/tech/resin.html</td>
+<td>2</td>
+<td>2</td>
+<td>18.64 K字节</td>
+<td>2006年 九月 09日 18:24</td>
+</tr>
+<tr>
+<td>/blog/archives/000496.html</td>
+<td>2</td>
+<td>2</td>
+<td>32.08 K字节</td>
+<td>2006年 九月 09日 18:22</td>
+</tr>
+<tr>
+<td>/blog/archives/000741.html</td>
+<td>2</td>
+<td>2</td>
+<td>77.94 K字节</td>
+<td>2006年 九月 09日 21:56</td>
+</tr>
+<tr>
+<td>/blog/archives/000790.html</td>
+<td>2</td>
+<td>2</td>
+<td>47.28 K字节</td>
+<td>2006年 九月 09日 22:03</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/FindBin/3</td>
+<td>1</td>
+<td>1</td>
+<td>5.18 K字节</td>
+<td>2006年 九月 09日 14:08</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/chr/11</td>
+<td>1</td>
+<td>1</td>
+<td>8.74 K字节</td>
+<td>2006年 九月 09日 18:47</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/Win32::API</td>
+<td>1</td>
+<td>1</td>
+<td>1.98 K字节</td>
+<td>2006年 九月 09日 23:02</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/ocsp/1ssl</td>
+<td>1</td>
+<td>1</td>
+<td>2.05 K字节</td>
+<td>2006年 九月 09日 23:53</td>
+</tr>
+<tr>
+<td>/tech/gnu.html</td>
+<td>1</td>
+<td>1</td>
+<td>7.15 K字节</td>
+<td>2006年 九月 09日 20:07</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/foomatic-datafile/1</td>
+<td>1</td>
+<td>1</td>
+<td>2.01 K字节</td>
+<td>2006年 九月 09日 18:21</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/pkgCache::PrvIterator</td>
+<td>1</td>
+<td>1</td>
+<td>2.03 K字节</td>
+<td>2006年 九月 09日 18:11</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/INVARIANT/3</td>
+<td>1</td>
+<td>1</td>
+<td>1.98 K字节</td>
+<td>2006年 九月 09日 20:54</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/Apache::TestMB</td>
+<td>1</td>
+<td>1</td>
+<td>2.00 K字节</td>
+<td>2006年 九月 09日 22:47</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/DBM::Deep</td>
+<td>1</td>
+<td>1</td>
+<td>1.98 K字节</td>
+<td>2006年 九月 09日 18:34</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/Pod::Select</td>
+<td>1</td>
+<td>1</td>
+<td>13.29 K字节</td>
+<td>2006年 九月 09日 21:21</td>
+</tr>
+<tr>
+<td>/digest/20051218.html</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>2006年 九月 09日 23:44</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/Other::CONST</td>
+<td>1</td>
+<td>1</td>
+<td>1.99 K字节</td>
+<td>2006年 九月 09日 23:21</td>
+</tr>
+<tr>
+<td>/blog/archives/001146.html</td>
+<td>1</td>
+<td>1</td>
+<td>25.33 K字节</td>
+<td>2006年 九月 09日 11:44</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/DH_check/3ssl</td>
+<td>1</td>
+<td>1</td>
+<td>2.10 K字节</td>
+<td>2006年 九月 09日 16:15</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/fxload/8</td>
+<td>1</td>
+<td>1</td>
+<td>11.27 K字节</td>
+<td>2006年 九月 09日 19:44</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/VOP_LEASE/9</td>
+<td>1</td>
+<td>1</td>
+<td>1.99 K字节</td>
+<td>2006年 九月 09日 14:22</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/XCopyArea/3x</td>
+<td>1</td>
+<td>1</td>
+<td>1.98 K字节</td>
+<td>2006年 九月 09日 14:27</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/log/3</td>
+<td>1</td>
+<td>1</td>
+<td>3.07 K字节</td>
+<td>2006年 九月 09日 23:28</td>
+</tr>
+<tr>
+<td>/digest/20050525.html</td>
+<td>1</td>
+<td>1</td>
+<td>23.48 K字节</td>
+<td>2006年 九月 09日 23:41</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/Data::Buffer/3</td>
+<td>1</td>
+<td>1</td>
+<td>2.00 K字节</td>
+<td>2006年 九月 09日 16:57</td>
+</tr>
+<tr>
+<td>/blog/archives/000661.html</td>
+<td>1</td>
+<td>1</td>
+<td>20.83 K字节</td>
+<td>2006年 九月 09日 22:28</td>
+</tr>
+<tr>
+<td>总数</td>
+<td>244</td>
+<td>244</td>
+<td>3.58 M字节</td>
+</tr>
+</tbody>
+</table>
+<p><strong>MSN crawls – Top 50</strong></p>
+<table>
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>网页数</th>
+<th>文件数</th>
+<th>字节</th>
+<th>最近参观日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/robots.txt</td>
+<td>9</td>
+<td>9</td>
+<td>2.04 K字节</td>
+<td>2006年 九月 09日 20:38</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/getpwnam/lgn</td>
+<td>3</td>
+<td>3</td>
+<td>21.21 K字节</td>
+<td>2006年 九月 09日 23:45</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/CGI::Session</td>
+<td>2</td>
+<td>2</td>
+<td>53.71 K字节</td>
+<td>2006年 九月 09日 23:48</td>
+</tr>
+<tr>
+<td>/side_by_side/search_form_utf8.html</td>
+<td>2</td>
+<td>2</td>
+<td>1.57 K字节</td>
+<td>2006年 九月 09日 19:06</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/munlockall/2</td>
+<td>1</td>
+<td>1</td>
+<td>3.39 K字节</td>
+<td>2006年 九月 09日 20:07</td>
+</tr>
+<tr>
+<td>/</td>
+<td>1</td>
+<td>1</td>
+<td>6.63 K字节</td>
+<td>2006年 九月 09日 16:20</td>
+</tr>
+<tr>
+<td>/blog/archives/001083.html</td>
+<td>1</td>
+<td>1</td>
+<td>15.91 K字节</td>
+<td>2006年 九月 09日 17:13</td>
+</tr>
+<tr>
+<td>/blog/archives/cat_appinstall.html</td>
+<td>1</td>
+<td>1</td>
+<td>98.97 K字节</td>
+<td>2006年 九月 09日 19:05</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/rpc.nfsd/8</td>
+<td>1</td>
+<td>1</td>
+<td>4.26 K字节</td>
+<td>2006年 九月 09日 18:20</td>
+</tr>
+<tr>
+<td>/bbcweb/223.htm</td>
+<td>1</td>
+<td>1</td>
+<td>2.48 K字节</td>
+<td>2006年 九月 09日 14:26</td>
+</tr>
+<tr>
+<td>/blog/archives/001047.html</td>
+<td>1</td>
+<td>1</td>
+<td>19.07 K字节</td>
+<td>2006年 九月 09日 17:47</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/isdntime/5</td>
+<td>1</td>
+<td>1</td>
+<td>1.94 K字节</td>
+<td>2006年 九月 09日 15:09</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/SSL_CTX_set_session_cache_mode/3</td>
+<td>1</td>
+<td>1</td>
+<td>8.29 K字节</td>
+<td>2006年 九月 09日 20:25</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/XML::PerlSAX::DOM</td>
+<td>1</td>
+<td>1</td>
+<td>1.97 K字节</td>
+<td>2006年 九月 09日 22:19</td>
+</tr>
+<tr>
+<td>/blog/archives/000738.html</td>
+<td>1</td>
+<td>1</td>
+<td>13.47 K字节</td>
+<td>2006年 九月 09日 20:38</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/unzipsfx/1</td>
+<td>1</td>
+<td>1</td>
+<td>17.98 K字节</td>
+<td>2006年 九月 09日 20:45</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/mbadblocks/1</td>
+<td>1</td>
+<td>1</td>
+<td>4.64 K字节</td>
+<td>2006年 九月 09日 14:10</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/wmemchr/3p</td>
+<td>1</td>
+<td>1</td>
+<td>4.37 K字节</td>
+<td>2006年 九月 09日 22:51</td>
+</tr>
+<tr>
+<td>/blog/archives/000220.html</td>
+<td>1</td>
+<td>1</td>
+<td>10.65 K字节</td>
+<td>2006年 九月 09日 14:34</td>
+</tr>
+<tr>
+<td>/blog/archives/000208.html</td>
+<td>1</td>
+<td>1</td>
+<td>9.65 K字节</td>
+<td>2006年 九月 09日 15:58</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/integer/3pm</td>
+<td>1</td>
+<td>1</td>
+<td>11.47 K字节</td>
+<td>2006年 九月 09日 22:34</td>
+</tr>
+<tr>
+<td>/blog/archives/000550.html</td>
+<td>1</td>
+<td>1</td>
+<td>11.97 K字节</td>
+<td>2006年 九月 09日 11:48</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/cut/1p</td>
+<td>1</td>
+<td>1</td>
+<td>15.37 K字节</td>
+<td>2006年 九月 09日 12:28</td>
+</tr>
+<tr>
+<td>/blog/archives/000454.html</td>
+<td>1</td>
+<td>1</td>
+<td>11.52 K字节</td>
+<td>2006年 九月 09日 11:58</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/adsl-start/8</td>
+<td>1</td>
+<td>1</td>
+<td>3.68 K字节</td>
+<td>2006年 九月 09日 22:46</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/df/1</td>
+<td>1</td>
+<td>1</td>
+<td>5.58 K字节</td>
+<td>2006年 九月 09日 16:00</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/mmove/1</td>
+<td>1</td>
+<td>1</td>
+<td>4.82 K字节</td>
+<td>2006年 九月 09日 18:36</td>
+</tr>
+<tr>
+<td>/blog/archives/2006_03.html</td>
+<td>1</td>
+<td>1</td>
+<td>33.75 K字节</td>
+<td>2006年 九月 09日 23:52</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/adsl-setup/8</td>
+<td>1</td>
+<td>1</td>
+<td>3.48 K字节</td>
+<td>2006年 九月 09日 20:41</td>
+</tr>
+<tr>
+<td>/tech/robots.pm</td>
+<td>1</td>
+<td>1</td>
+<td>78.83 K字节</td>
+<td>2006年 九月 09日 20:13</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/ash/1</td>
+<td>1</td>
+<td>1</td>
+<td>15.46 K字节</td>
+<td>2006年 九月 09日 20:56</td>
+</tr>
+<tr>
+<td>/blog/archives/001164.html</td>
+<td>1</td>
+<td>1</td>
+<td>22.57 K字节</td>
+<td>2006年 九月 09日 17:17</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/CGI::Session::ErrorHandler/3pm</td>
+<td>1</td>
+<td>1</td>
+<td>2.11 K字节</td>
+<td>2006年 九月 09日 19:57</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/sem_open/3p</td>
+<td>1</td>
+<td>1</td>
+<td>9.64 K字节</td>
+<td>2006年 九月 09日 23:19</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/locale/5</td>
+<td>1</td>
+<td>1</td>
+<td>15.30 K字节</td>
+<td>2006年 九月 09日 20:14</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/clock/3p</td>
+<td>1</td>
+<td>1</td>
+<td>4.84 K字节</td>
+<td>2006年 九月 09日 13:21</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/tiffgt/1</td>
+<td>1</td>
+<td>1</td>
+<td>8.38 K字节</td>
+<td>2006年 九月 09日 14:40</td>
+</tr>
+<tr>
+<td>/blog/archives/001081.html</td>
+<td>1</td>
+<td>1</td>
+<td>14.33 K字节</td>
+<td>2006年 九月 09日 18:26</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/stime/2</td>
+<td>1</td>
+<td>1</td>
+<td>3.19 K字节</td>
+<td>2006年 九月 09日 15:06</td>
+</tr>
+<tr>
+<td>/blog/archives/000656.html</td>
+<td>1</td>
+<td>1</td>
+<td>17.83 K字节</td>
+<td>2006年 九月 09日 17:33</td>
+</tr>
+<tr>
+<td>/tech/google_ads.html</td>
+<td>1</td>
+<td>1</td>
+<td>15.55 K字节</td>
+<td>2006年 九月 09日 19:23</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/uuid_parse/3</td>
+<td>1</td>
+<td>1</td>
+<td>3.73 K字节</td>
+<td>2006年 九月 09日 12:13</td>
+</tr>
+<tr>
+<td>/bbcweb/</td>
+<td>1</td>
+<td>1</td>
+<td>2.40 K字节</td>
+<td>2006年 九月 09日 12:45</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/SSL_CTX_add_session/3</td>
+<td>1</td>
+<td>1</td>
+<td>4.94 K字节</td>
+<td>2006年 九月 09日 21:12</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/diskdumpctl/8</td>
+<td>1</td>
+<td>1</td>
+<td>3.28 K字节</td>
+<td>2006年 九月 09日 14:55</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/passwd/1</td>
+<td>1</td>
+<td>1</td>
+<td>9.06 K字节</td>
+<td>2006年 九月 09日 19:43</td>
+</tr>
+<tr>
+<td>/blog/archives/000805.html</td>
+<td>1</td>
+<td>1</td>
+<td>20.12 K字节</td>
+<td>2006年 九月 09日 17:11</td>
+</tr>
+<tr>
+<td>/bbcweb/2.htm</td>
+<td>1</td>
+<td>1</td>
+<td>1.88 K字节</td>
+<td>2006年 九月 09日 15:58</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/gzcat/1L</td>
+<td>1</td>
+<td>1</td>
+<td>1.93 K字节</td>
+<td>2006年 九月 09日 15:15</td>
+</tr>
+<tr>
+<td>/phpMan.php/man/string/3</td>
+<td>1</td>
+<td>1</td>
+<td>6.71 K字节</td>
+<td>2006年 九月 09日 22:49</td>
+</tr>
+<tr>
+<td>总数</td>
+<td>62</td>
+<td>62</td>
+<td>665.90 K字节</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sohu crawls – Top 50</strong></p>
+<table>
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>网页数</th>
+<th>文件数</th>
+<th>字节</th>
+<th>最近参观日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/blog/archives/000955.html</td>
+<td>3</td>
+<td>3</td>
+<td>46.87 K字节</td>
+<td>2006年 九月 09日 23:34</td>
+</tr>
+<tr>
+<td>/tech/gnu.html</td>
+<td>1</td>
+<td>1</td>
+<td>7.14 K字节</td>
+<td>2006年 九月 09日 15:55</td>
+</tr>
+<tr>
+<td>/blog/archives/000728.html</td>
+<td>1</td>
+<td>1</td>
+<td>48.14 K字节</td>
+<td>2006年 九月 09日 23:00</td>
+</tr>
+<tr>
+<td>/blog/archives/000100.html</td>
+<td>1</td>
+<td>1</td>
+<td>15.54 K字节</td>
+<td>2006年 九月 09日 19:45</td>
+</tr>
+<tr>
+<td>/blog/archives/000012.html</td>
+<td>1</td>
+<td>1</td>
+<td>23.06 K字节</td>
+<td>2006年 九月 09日 16:02</td>
+</tr>
+<tr>
+<td>/digest/20060701.html</td>
+<td>1</td>
+<td>1</td>
+<td>39.31 K字节</td>
+<td>2006年 九月 09日 12:38</td>
+</tr>
+<tr>
+<td>/digest/20050823.html</td>
+<td>1</td>
+<td>1</td>
+<td>43.52 K字节</td>
+<td>2006年 九月 09日 13:12</td>
+</tr>
+<tr>
+<td>/blog/archives/2004_02.html</td>
+<td>1</td>
+<td>1</td>
+<td>48.14 K字节</td>
+<td>2006年 九月 09日 20:59</td>
+</tr>
+<tr>
+<td>/digest/20060703.html</td>
+<td>1</td>
+<td>1</td>
+<td>45.31 K字节</td>
+<td>2006年 九月 09日 20:54</td>
+</tr>
+<tr>
+<td>/blog/archives/000646.html</td>
+<td>1</td>
+<td>1</td>
+<td>51.85 K字节</td>
+<td>2006年 九月 09日 16:29</td>
+</tr>
+<tr>
+<td>/index.php/blog/tech/index.php/side_by_side/google_yahoo.html</td>
+<td>1</td>
+<td>1</td>
+<td>41.31 K字节</td>
+<td>2006年 九月 09日 13:27</td>
+</tr>
+<tr>
+<td>/blog/archives/001058.html</td>
+<td>1</td>
+<td>1</td>
+<td>70.79 K字节</td>
+<td>2006年 九月 09日 11:55</td>
+</tr>
+<tr>
+<td>/blog/archives/000267.html</td>
+<td>1</td>
+<td>1</td>
+<td>27.10 K字节</td>
+<td>2006年 九月 09日 20:01</td>
+</tr>
+<tr>
+<td>总数</td>
+<td>15</td>
+<td>15</td>
+<td>508.09 K字节</td>
+</tr>
+</tbody>
+</table>
+<p><strong>OutfoxBot crawls – Top 50</strong></p>
+<table>
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>网页数</th>
+<th>文件数</th>
+<th>字节</th>
+<th>最近参观日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/robots.txt</td>
+<td>3</td>
+<td>3</td>
+<td>696 个字节</td>
+<td>2006年 九月 09日 15:53</td>
+</tr>
+<tr>
+<td>/blog/archives/newsgator_buzz.png</td>
+<td>&nbsp;</td>
+<td>1</td>
+<td>5.95 K字节</td>
+<td>2006年 九月 09日 15:53</td>
+</tr>
+<tr>
+<td>/blog/archives/pairs.png</td>
+<td>&nbsp;</td>
+<td>1</td>
+<td>84.68 K字节</td>
+<td>2006年 九月 09日 15:01</td>
+</tr>
+<tr>
+<td>/blog/archives/firefox-rss.png</td>
+<td>&nbsp;</td>
+<td>1</td>
+<td>29.18 K字节</td>
+<td>2006年 九月 09日 15:03</td>
+</tr>
+<tr>
+<td>/blog/archives/pairs_wikipedia.png</td>
+<td>&nbsp;</td>
+<td>1</td>
+<td>84.56 K字节</td>
+<td>2006年 九月 09日 13:19</td>
+</tr>
+<tr>
+<td>/blog/archives/newsgator-incoming.png</td>
+<td>&nbsp;</td>
+<td>1</td>
+<td>5.82 K字节</td>
+<td>2006年 九月 09日 15:02</td>
+</tr>
+<tr>
+<td>总数</td>
+<td>3</td>
+<td>8</td>
+<td>210.87 K字节</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AWstats/" rel="tag"># AWstats</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2008/02/10/adblock-optimize-filter/" rel="next" title="Adblock过滤规则优化">
+                <i class="fa fa-chevron-left"></i> Adblock过滤规则优化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2008/02/15/WordPress-Wp-PageNavi/" rel="prev" title="WordPress分页插件：Wp-PageNavi v2.1">
+                WordPress分页插件：Wp-PageNavi v2.1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">東木</p>
+              <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">202</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2007 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

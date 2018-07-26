@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'da65f2d4ea1c6d4dccfa6d7f197d2aaf',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="用rsync对网站进行镜像备份 by inburst &amp;lt;inburst@263.net&amp;gt;http://xfocus.org 对系统管理员来说，平时的工作重心应该集中在维护系统正常运转，能够正常提供服务上，这里往往牵涉到一个数据备份的问题，在我所了解的情况中，有80%的系统管理员不是太关心自己服务器的安全性，但往往对备分镜像的技术相当感兴趣，但由于商业产品的软硬件价格都相当高昂，因此往往">
+<meta name="keywords" content="rsync">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用rsync对网站进行镜像备份">
+<meta property="og:url" content="http://blog.liudongkai.com/2008/01/19/rsync-backup/index.html">
+<meta property="og:site_name" content="Dong&#39;s Note">
+<meta property="og:description" content="用rsync对网站进行镜像备份 by inburst &amp;lt;inburst@263.net&amp;gt;http://xfocus.org 对系统管理员来说，平时的工作重心应该集中在维护系统正常运转，能够正常提供服务上，这里往往牵涉到一个数据备份的问题，在我所了解的情况中，有80%的系统管理员不是太关心自己服务器的安全性，但往往对备分镜像的技术相当感兴趣，但由于商业产品的软硬件价格都相当高昂，因此往往">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2008-01-18T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用rsync对网站进行镜像备份">
+<meta name="twitter:description" content="用rsync对网站进行镜像备份 by inburst &amp;lt;inburst@263.net&amp;gt;http://xfocus.org 对系统管理员来说，平时的工作重心应该集中在维护系统正常运转，能够正常提供服务上，这里往往牵涉到一个数据备份的问题，在我所了解的情况中，有80%的系统管理员不是太关心自己服务器的安全性，但往往对备分镜像的技术相当感兴趣，但由于商业产品的软硬件价格都相当高昂，因此往往">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/2008/01/19/rsync-backup/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>用rsync对网站进行镜像备份 | Dong's Note</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42337789-4');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/01/19/rsync-backup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">用rsync对网站进行镜像备份
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-01-19 00:00:00" itemprop="dateCreated datePublished" datetime="2008-01-19T00:00:00+08:00">2008-01-19</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>用rsync对网站进行镜像备份</p>
+<p>by inburst <code>&lt;inburst@263.net&gt;</code><br><a href="http://xfocus.org" target="_blank" rel="noopener">http://xfocus.org</a></p>
+<p>对系统管理员来说，平时的工作重心应该集中在维护系统正常运转，能够正常提供服务上，这里往往牵涉到一个数据备份的问题，在我所了解的情况中，有80%的系统管理员不是太关心自己服务器的安全性，但往往对备分镜像的技术相当感兴趣，但由于商业产品的软硬件价格都相当高昂，因此往往会选择自由软件。这里准备介绍的rsync就是这样的软件，它可以满足绝大多数要求不是特别高的备份需求。</p>
+<h2 id="一、特性简介"><a href="#一、特性简介" class="headerlink" title="一、特性简介"></a><e1>一、特性简介</e1></h2><p>rsync是类unix系统下的数据镜像备份工具，从软件的命名上就可以看出来了——remote sync。它的特性如下：</p>
+<ol>
+<li>可以镜像保存整个目录树和文件系统。</li>
+<li>可以很容易做到保持原来文件的权限、时间、软硬链接等等。</li>
+<li>无须特殊权限即可安装。</li>
+<li>优化的流程，文件传输效率高。</li>
+<li>可以使用rcp、ssh等方式来传输文件，当然也可以通过直接的socket连接。</li>
+<li>支持匿名传输。</li>
+</ol>
+<a id="more"></a>
+<h2 id="二、使用方法"><a href="#二、使用方法" class="headerlink" title="二、使用方法"></a><e2>二、使用方法</e2></h2><p>rsync的使用方法很简单，我就举自己使用的例子来说明吧。</p>
+<ol>
+<li><p>系统环境</p>
+<p>rsync支持大多数的类unix系统，无论是Linux、Solaris还是BSD上都经过了良好的测试。我的系统环境为：</p>
+<p>server: FreeBSD 4.3  ip: 192.168.168.52<br>client: Solaris 8    ip: 192.168.168.137<br>rsync 版本 2.4.6(可以从<a href="http://rsync.samba.org/rsync/获得最新版本" target="_blank" rel="noopener">http://rsync.samba.org/rsync/获得最新版本</a>)</p>
+</li>
+<li><p>配置server端的/etc/rsyncd.conf文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">bash-2.03# cat /etc/rsyncd.conf</span><br><span class="line"></span><br><span class="line">uid = nobody</span><br><span class="line">gid = nobody</span><br><span class="line">use chroot = no         # 不使用chroot</span><br><span class="line">max connections = 4         # 最大连接数为4</span><br><span class="line">pid file = /var/run/rsyncd.pid</span><br><span class="line">lock file = /var/run/rsync.lock</span><br><span class="line">log file = /var/log/rsyncd.log    # 日志记录文件</span><br><span class="line"></span><br><span class="line">[inburst]            # 这里是认证的模块名，在client端需要指定</span><br><span class="line">path = /home/inburst/python/    # 需要做镜像的目录</span><br><span class="line">comment = BACKUP CLIENT IS SOLARIS 8 E250</span><br><span class="line">ignore errors            # 可以忽略一些无关的IO错误</span><br><span class="line">read only = yes            # 只读</span><br><span class="line">list = no            # 不允许列文件</span><br><span class="line">auth users = inburst        # 认证的用户名，如果没有这行，则表明是匿名</span><br><span class="line">secrets file = /etc/inburst.pas    # 认证文件名</span><br><span class="line"></span><br><span class="line">[web]</span><br><span class="line">path = /usr/local/apache/htdocs/</span><br><span class="line">comment = inburst.org web server</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在server端生成一个密码文件/etc/inburst.pas</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash-2.03# cat /etc/inburst.pas</span><br><span class="line">inburst:hack</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>出于安全目的，文件的属性必需是只有属主可读。</p>
+<ol start="4">
+<li>在server端将rsync以守护进程形式启动<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash-2.03# rsync –daemon</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>如果要在启动时把服务起来，有几种不同的方法，比如：</p>
+<p> a、加入inetd.conf</p>
+<p> 编辑/etc/services，加入rsync   873/tcp，指定rsync的服务端口是873<br>编辑/etc/inetd.conf，加入rsync  stream  tcp   nowait  root  /bin/rsync rsync –daemon</p>
+<p> b、加入rc.local</p>
+<p> 在各种操作系统中，rc文件存放位置不尽相同，可以修改使系统启动时rsync –daemon加载进去。</p>
+<ol start="5">
+<li><p>从client端进行测试</p>
+<p>下面这个命令行中-vzrtopg里的v是verbose，z是压缩，r是recursive，topg都是保持文件原有属性如属主、时间的参数。–progress是指显示 出详细的进度情况，–delete是指如果服务器端删除了这一文件，那么客户端也相应把文件删除，保持真正的一致。后面的inburst@ip中， inburst是指定密码文件中的用户名，之后的::inburst这一inburst是模块名，也就是在/etc/rsyncd.conf中自定义的名称。最后的/tmp是备份到本地的目录名。</p>
+<p>在这里面，还可以用-e ssh的参数建立起加密的连接。可以用–password-file=/password/path/file来指定密码文件，这样就可以在脚本中使用而无需交互式地输入验证密码了，这里需要注意的是这份密码文件权限属性要设得只有属主可读。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">bash-2.03# rsync -vzrtopg –progress –delete inburst@192.168.168.52::inburst /tmp/</span><br><span class="line">Password:</span><br><span class="line">receiving file list … done</span><br><span class="line">./</span><br><span class="line">1</span><br><span class="line">785 (100%)</span><br><span class="line">1.py</span><br><span class="line">4086 (100%)</span><br><span class="line">2.py</span><br><span class="line">10680 (100%)</span><br><span class="line">a</span><br><span class="line">0 (100%)</span><br><span class="line">ip</span><br><span class="line">3956 (100%)</span><br><span class="line">./</span><br><span class="line">wrote 190 bytes  read 5499 bytes  758.53 bytes/sec</span><br><span class="line">total size is 19507  speedup is 3.43</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建更新脚本</p>
+<p>如果有比较复杂的工作，利用一些常见的脚本语言可以有帮助。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">bash-2.03# cat /usr/local/bin/rsync.sh</span><br><span class="line"></span><br><span class="line">#!/bin/sh</span><br><span class="line">DATE=`date +%w`</span><br><span class="line"></span><br><span class="line">rsync -vzrtopg –progress –delete inburst@192.168.168.52::inburst /home/quack/backup/$DATE –password-file=/etc/rsync.pass &gt;/var/log/rsync.$DATE</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改/etc/crontab做好定时</p>
+</li>
+</ol>
+<p>比如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash-2.03# echo &quot;15 4 * * 6 root rsync.sh&quot;&gt;&gt;/etc/crontab</span><br></pre></td></tr></table></figure></p>
+<h2 id="三、FAQ"><a href="#三、FAQ" class="headerlink" title="三、FAQ"></a><e3>三、FAQ</e3></h2><p>Q：如何通过ssh进行rsync，而且无须输入密码？<br>A：可以通过以下几个步骤</p>
+<ol>
+<li>通过ssh-keygen在server A上建立SSH keys，不要指定密码，你会在~/.ssh下看到identity和identity.pub文件</li>
+<li>在server B上的home目录建立子目录.ssh</li>
+<li>将A的identity.pub拷贝到server B上</li>
+<li>将identity.pub加到~[user b]/.ssh/authorized_keys</li>
+<li>于是server A上的A用户，可通过下面命令以用户B ssh到server B上了<br>e.g. ssh -l userB serverB<br>这样就使server A上的用户A就可以ssh以用户B的身份无需密码登陆到server B上了。</li>
+</ol>
+<p>Q：如何通过在不危害安全的情况下通过防火墙使用rsync?<br>A：解答如下：</p>
+<p>这通常有两种情况，一种是服务器在防火墙内，一种是服务器在防火墙外。<br>无论哪种情况，通常还是使用ssh，这时最好新建一个备份用户，并且配置sshd仅允许这个用户通过RSA认证方式进入。<br>如果服务器在防火墙内，则最好限定客户端的IP地址，拒绝其它所有连接。<br>如果客户机在防火墙内，则可以简单允许防火墙打开TCP端口22的ssh外发连接就ok了。</p>
+<p>Q：我能将更改过或者删除的文件也备份上来吗？<br>A：当然可以：</p>
+<p>你可以使用如：rsync -other -options -backupdir = ./backup-2000-2-13  …这样的命令来实现。<br>这样如果源文件:/path/to/some/file.c改变了，那么旧的文件就会被移到./backup-2000-2-13/path/to/some/file.c，这里这个目录需要自己手工建立起来</p>
+<p>Q：我需要在防火墙上开放哪些端口以适应rsync？<br>A：视情况而定</p>
+<p>rsync可以直接通过873端口的tcp连接传文件，也可以通过22端口的ssh来进行文件传递，但你也可以通过下列命令改变它的端口：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync –port 8730 otherhost::</span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -e &apos;ssh -p 2002&apos; otherhost:</span><br></pre></td></tr></table></figure></p>
+<p>Q：我如何通过rsync只复制目录结构，忽略掉文件呢？<br>A：<code>rsync -av –include &#39;*/&#39; –exclude &#39;*&#39; source-dir dest-dir</code></p>
+<p>Q：为什么我总会出现”Read-only file system”的错误呢？<br>A：看看是否忘了设”read only = no”了</p>
+<p>Q：为什么我会出现‘@ERROR: invalid gid’的错误呢？<br>A：rsync使用时默认是用uid=nobody;gid=nobody来运行的，如果你的系统不存在nobody组的话，就会出现这样的错误，可以试试gid =nogroup或者其它</p>
+<p>Q：绑定端口873失败是怎么回事？<br>A：如果你不是以root权限运行这一守护进程的话，因为1024端口以下是特权端口，会出现这样的错误。你可以用–port参数来改变。</p>
+<p>Q：为什么我认证失败？<br>A：从你的命令行看来：</p>
+<p>你用的是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; bash$ rsync -a 144.16.251.213::test test</span><br><span class="line">&gt; Password:</span><br><span class="line">&gt; @ERROR: auth failed on module test</span><br><span class="line">&gt;</span><br><span class="line">&gt; I dont understand this. Can somebody explain as to how to acomplish this.</span><br><span class="line">&gt; All suggestions are welcome.</span><br></pre></td></tr></table></figure></p>
+<p>应该是没有以你的用户名登陆导致的问题，试试rsync -a <a href="mailto:max@144.16.251.213" target="_blank" rel="noopener">max@144.16.251.213</a>::test test</p>
+<h2 id="四、一些可借鉴的脚本"><a href="#四、一些可借鉴的脚本" class="headerlink" title="四、一些可借鉴的脚本"></a><e4>四、一些可借鉴的脚本</e4></h2><p>这里这些脚本都是rsync网站上的例子：</p>
+<p>1、每隔七天将数据往中心服务器做增量备份<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line"># This script does personal backups to a rsync backup server. You will end up</span><br><span class="line"># with a 7 day rotating incremental backup. The incrementals will go</span><br><span class="line"># into subdirectories named after the day of the week, and the current</span><br><span class="line"># full backup goes into a directory called “current”</span><br><span class="line"># tridge@linuxcare.com</span><br><span class="line"></span><br><span class="line"># directory to backup</span><br><span class="line">BDIR=/home/$USER</span><br><span class="line"></span><br><span class="line"># excludes file – this contains a wildcard pattern per line of files to exclude</span><br><span class="line">EXCLUDES=$HOME/cron/excludes</span><br><span class="line"></span><br><span class="line"># the name of the backup machine</span><br><span class="line">BSERVER=owl</span><br><span class="line"></span><br><span class="line"># your password on the backup server</span><br><span class="line">export RSYNC_PASSWORD=XXXXXX</span><br><span class="line"></span><br><span class="line">########################################################################</span><br><span class="line"></span><br><span class="line">BACKUPDIR=`date +%A`</span><br><span class="line">OPTS=&quot;–force –ignore-errors –delete-excluded –exclude-from=$EXCLUDES</span><br><span class="line">–delete –backup –backup-dir=/$BACKUPDIR -a&quot;</span><br><span class="line"></span><br><span class="line">export PATH=$PATH:/bin:/usr/bin:/usr/local/bin</span><br><span class="line"></span><br><span class="line"># the following line clears the last weeks incremental directory</span><br><span class="line">[ -d $HOME/emptydir ] || mkdir $HOME/emptydir</span><br><span class="line">rsync –delete -a $HOME/emptydir/ $BSERVER::$USER/$BACKUPDIR/</span><br><span class="line">rmdir $HOME/emptydir</span><br><span class="line"></span><br><span class="line"># now the actual transfer</span><br><span class="line">rsync $OPTS $BDIR $BSERVER::$USER/current</span><br></pre></td></tr></table></figure></p>
+<p>2、备份至一个空闲的硬盘<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line">export PATH=/usr/local/bin:/usr/bin:/bin</span><br><span class="line"></span><br><span class="line">LIST=&quot;rootfs usr data data2&quot;</span><br><span class="line"></span><br><span class="line">for d in $LIST; do</span><br><span class="line">mount /backup/$d</span><br><span class="line">rsync -ax –exclude fstab –delete /$d/ /backup/$d/</span><br><span class="line">umount /backup/$d</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">DAY=`date &quot;+%A&quot;`</span><br><span class="line"></span><br><span class="line">rsync -a –delete /usr/local/apache /data2/backups/$DAY</span><br><span class="line">rsync -a –delete /data/solid /data2/backups/$DAY</span><br></pre></td></tr></table></figure></p>
+<p>3、对vger.rutgers.edu的cvs树进行镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">cd /var/www/cvs/vger/</span><br><span class="line">PATH=/usr/local/bin:/usr/freeware/bin:/usr/bin:/bin</span><br><span class="line"></span><br><span class="line">RUN=`lps x | grep rsync | grep -v grep | wc -l`</span><br><span class="line">if [ &quot;$RUN&quot; -gt 0 ]; then</span><br><span class="line">echo already running</span><br><span class="line">exit 1</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">rsync -az vger.rutgers.edu::cvs/CVSROOT/ChangeLog $HOME/ChangeLog</span><br><span class="line"></span><br><span class="line">sum1=`sum $HOME/ChangeLog`</span><br><span class="line">sum2=`sum /var/www/cvs/vger/CVSROOT/ChangeLog`</span><br><span class="line"></span><br><span class="line">if [ &quot;$sum1&quot; = &quot;$sum2&quot; ]; then</span><br><span class="line">echo nothing to do</span><br><span class="line">exit 0</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">rsync -az –delete –force vger.rutgers.edu::cvs/ /var/www/cvs/vger/</span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure></p>
+<p>4、利用find的一种巧妙方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -avR remote:&apos;`find /home -name &quot;*.[ch]&quot;`&apos; /tmp/</span><br></pre></td></tr></table></figure></p>
+<p>可以用这种方法列出需要备份的文件列表——这种方法似乎比较少人用到。</p>
+<h2 id="五、参考资料："><a href="#五、参考资料：" class="headerlink" title="五、参考资料："></a><e5>五、参考资料：</e5></h2><ol>
+<li><a href="http://rsync.samba.org/" target="_blank" rel="noopener">http://rsync.samba.org/</a></li>
+<li>rsync examples</li>
+<li>rsync FAQ</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/rsync/" rel="tag"># rsync</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2008/01/19/linux-install-rz-sz/" rel="next" title="Linux系统手动安装rz sz 软件包">
+                <i class="fa fa-chevron-left"></i> Linux系统手动安装rz sz 软件包
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2008/01/19/rsync-parameters-details/" rel="prev" title="rsync参数详解">
+                rsync参数详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">東木</p>
+              <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">202</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、特性简介"><span class="nav-number">1.</span> <span class="nav-text">一、特性简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、使用方法"><span class="nav-number">2.</span> <span class="nav-text">二、使用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、FAQ"><span class="nav-number">3.</span> <span class="nav-text">三、FAQ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、一些可借鉴的脚本"><span class="nav-number">4.</span> <span class="nav-text">四、一些可借鉴的脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、参考资料："><span class="nav-number">5.</span> <span class="nav-text">五、参考资料：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2007 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

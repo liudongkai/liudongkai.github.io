@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'da65f2d4ea1c6d4dccfa6d7f197d2aaf',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="DISCUZ5.0数据库数据字典默认库共68个数据表，（以下表数据量注释均为默认） cdb_access （用户权限表）uid 用户idfid 论坛idallowview 允许浏览allowpost 允许发新帖allowreply 允许回复allowgetattach 允许下载附件allowpostattach 允许上传附件———————————————————cdb_activitiestid">
+<meta name="keywords" content="Discuz">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DISCUZ5.5数据库数据字典">
+<meta property="og:url" content="http://blog.liudongkai.com/2008/01/08/discuz5.5-dd/index.html">
+<meta property="og:site_name" content="Dong&#39;s Note">
+<meta property="og:description" content="DISCUZ5.0数据库数据字典默认库共68个数据表，（以下表数据量注释均为默认） cdb_access （用户权限表）uid 用户idfid 论坛idallowview 允许浏览allowpost 允许发新帖allowreply 允许回复allowgetattach 允许下载附件allowpostattach 允许上传附件———————————————————cdb_activitiestid">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2008-01-07T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DISCUZ5.5数据库数据字典">
+<meta name="twitter:description" content="DISCUZ5.0数据库数据字典默认库共68个数据表，（以下表数据量注释均为默认） cdb_access （用户权限表）uid 用户idfid 论坛idallowview 允许浏览allowpost 允许发新帖allowreply 允许回复allowgetattach 允许下载附件allowpostattach 允许上传附件———————————————————cdb_activitiestid">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/2008/01/08/discuz5.5-dd/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>DISCUZ5.5数据库数据字典 | Dong's Note</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42337789-4');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/01/08/discuz5.5-dd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">DISCUZ5.5数据库数据字典
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-01-08 00:00:00" itemprop="dateCreated datePublished" datetime="2008-01-08T00:00:00+08:00">2008-01-08</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>DISCUZ5.0数据库数据字典<br>默认库共68个数据表，（以下表数据量注释均为默认）</p>
+<p>cdb_access （用户权限表）<br>uid 用户id<br>fid 论坛id<br>allowview 允许浏览<br>allowpost 允许发新帖<br>allowreply 允许回复<br>allowgetattach 允许下载附件<br>allowpostattach 允许上传附件<br>———————————————————<br>cdb_activities<br>tid 帖子ID<br>uid 发布人ID<br>cost 每人花销<br>starttimefrom 时间范围始<br>starttimeto 时间范围止<br>place 活动地点<br>class 活动类别<br>gender 性别<br>number 需要人数<br>expiration 截止日期 </p>
+<a id="more"></a>
+<p>———————————————————<br>cdb_activityapplies 活动申请列表<br>applyid 申请表ID<br>tid 帖子ID<br>username 用户名<br>uid 申请者ID<br>message 留言<br>verified 状态<br>dateline 申请时间<br>payment 每人花销<br>———————————————————<br>cdb_adminactions 关联用户组<br>admingid 管理组id<br>disabledactions 关联后的权限<br>———————————————————<br>cdb_admingroups 管理组权限设置（3条）<br>admingid 管理组id<br>alloweditpost 允许编辑帖子<br>alloweditpoll 允许编辑投票<br>allowstickthread 允许固定主题<br>allowmodpost 允许编辑帖子<br>allowdelpost 允许删除帖子<br>allowmassprune 允许批量删除帖子<br>allowrefund 允许强制退款<br>allowcensorword 允许过滤词语<br>allowviewip 允许查看用户IP信息<br>allowbanip 允许禁止IP<br>allowedituser 允许编辑用户<br>allowmoduser 允许审核用户<br>allowbanuser 允许禁止用户访问<br>allowpostannounce 允许发布公告<br>allowviewlog 允许查看版主管理记录和用户评分记录<br>disablepostctrl 发贴不受限制（不受灌水预防和最大字数等）<br>———————————————————<br>cdb_adminnotes （后台留言表）<br>id 后台留言id<br>admin 留言人<br>access 阅读权限<br>adminid 管理组id<br>dateline 发表时间<br>expiration 过期时间<br>message 留言内容<br>———————————————————<br>cdb_adminsessions 管理记录（0条）<br>uid 用户id<br>ip ip<br>dateline 时间<br>errorcount 错误次数<br>———————————————————<br>cdb_advertisements 后台广告管理<br>advid 广告id<br>available 是否启用<br>type 类型<br>displayorder 排列顺序<br>title 标题<br>targets 投放范围<br>parameters 参数<br>code 代码<br>starttime 开始时间<br>endtime 结束时间<br>———————————————————<br>cdb_announcements 公告表（0条）<br>id 公告ID<br>author 发布者用户名<br>subject 公告标题<br>displayorder 排列顺序<br>starttime 公告开始时间<br>endtime 公告失效时间<br>message 公告内容<br>———————————————————<br>cdb_attachments 附件表（0条）<br>aid 附件数据ID<br>tid 主题ID<br>pid 帖子ID<br>dateline 发布附件时间<br>readperm 阅读权限<br>filename 附件的原始文件名<br>description 附件描述<br>filetype 附件类型<br>filesize 附件文件的大小<br>attachment 服务器路径，相对于（config.php中$attachdir值）<br>downloads 下载/浏览次数<br>———————————————————<br>cdb_attachtypes 附件类型（0条）<br>id 数据ID<br>extension 扩展名<br>maxsize 最大允许的上传大小<br>———————————————————<br>cdb_banned 被禁止访问表<br>id 禁止访问id<br>ip1 ip字段1<br>ip2 ip字段2<br>ip3 ip字段3<br>ip4 ip字段4<br>admin 操作人<br>dateline 操作时间<br>expiration 过期时间<br>———————————————————<br>cdb_bbcodes 自定义Discuz!代码（3条）<br>id 数据ID<br>available 是否启用<br>tag 标签<br>replacement 替换内容<br>example 使用举例<br>explanation 代码的解释说明<br>params 参数个数<br>nest 嵌套次数<br>———————————————————<br>cdb_blogcaches 文集缓存<br>uid 用户ID<br>variable 变量（forums|hot）<br>value 值<br>———————————————————<br>cdb_buddys （好友表）<br>uid 用户id<br>buddyid 好友的id<br>dateline 加入时间<br>description 备注<br>———————————————————<br>cdb_creditslog(积分转帐交易记录表)<br>uid 用户id<br>fromto 来自/到<br>sendcredits 转出积分字段<br>receivecredits 接受积分字段<br>send 转出积分<br>receive 收到积分<br>dateline 操作时间<br>operation 操作<br>———————————————————<br>cdb_crons<br>cronid<br>available 是否可用<br>type 类型（如：system）<br>name 操作名称（如：清空今日发帖数）<br>filename 文件名<br>lastrun 最后运行时间<br>nextrun 下次运行时间<br>weekday 周<br>day 日<br>hour 小时<br>minute 分钟<br>———————————————————<br>cdb_failedlogins 登陆失败的记录（0条）<br>ip IP地址<br>count 失败的次数<br>lastupdate 最后尝试登陆时间<br>———————————————————<br>cdb_favorites 用户主题收藏（0条）<br>uid 用户id<br>tid 主题id<br>———————————————————<br>cdb_forumfields 论坛扩展信息表<br>fid 论坛id<br>description 论坛简介<br>password 访问密码<br>icon 论坛图标<br>postcredits 自定义发主题增加积分<br>replycredits 自定义发回复增加积分<br>redirect 论坛转向 URL<br>attachextensions 本论坛允许附件类型<br>moderators 斑竹列表<br>rules 本论坛规则<br>threadtypes 主题分类<br>viewperm 浏览论坛许可<br>postperm 发新话题许可<br>replyperm 发表回复许可<br>getattachperm 下载/查看附件许可<br>postattachperm 上传附件许可<br>———————————————————<br>cdb_forumlinks 联盟论坛（1条）<br>id 数据ID<br>displayorder 显示顺序<br>name 网站名称<br>url 地址<br>note 说明<br>logo logo地址<br>———————————————————<br>cdb_forums 论坛表（1条）<br>fid 论坛id<br>fup 上级论坛id<br>type 论坛类型，cat为分类，forum为论坛，sub为子论坛<br>name 论坛的名字<br>status 显示论坛<br>displayorder 显示顺序<br>styleid 风格方案id<br>threads 主题数量<br>posts 帖子数量<br>todayposts 今日发帖数量<br>lastpost 最后发表信息<br>allowsmilies 允许smilies图标<br>allowhtml 允许html<br>allowbbcode 允许discuz!代码<br>allowimgcode 允许[img]标签<br>allowblog 允许加入blog<br>allowtrade 允许发起交易<br>alloweditrules 允许版主修改本论坛规则<br>modnewposts 发帖审核<br>jammer 启用内容干扰码<br>disablewatermark 禁用图片附件添加水印<br>inheritedmod 本论坛或分类版主的权力继承到下级论坛<br>autoclose 主题自动关闭<br>———————————————————<br>cdb_medals 勋章表<br>medalid 勋章id<br>name 勋章名称<br>available 是否启用<br>image 图片地址<br>———————————————————<br>cdb_memberfields 用户扩展信息表<br>uid 用户id<br>nickname 用户昵称<br>site 主页<br>alipy 支付宝帐号<br>icq ICQ<br>qq QQ<br>yahoo Yahoo<br>msn MSN<br>taobao 淘宝旺旺<br>location 来自<br>customstatus 自定义头衔<br>medals 勋章<br>avatar 头像<br>avatarwidth 头像宽度<br>avatarheight 头像高度<br>bio 生日<br>signature 个人签名<br>sightml html解析后的签名<br>ignorepm 忽略PM列表(拒绝接受本名单中的用户发来的短消息)<br>groupterms 公众用户组信息<br>authstr 待审核用户<br>———————————————————<br>cdb_members 用户表（1条）<br>uid 用户id<br>username 用户名<br>password 密码（md5）<br>secques 安全提示问题（独立加密）<br>gender 性别<br>adminid 管理组id<br>groupid 用户组id<br>groupexpiry 用户组有效期<br>extgroupids 扩展用户组<br>regip 注册ip<br>regdate 注册时间<br>lastip 最后登陆ip<br>lastvisit 上次访问时间<br>lastactivity 上次访问时间（记录）<br>lastpost 最后发表时间<br>posts 发贴数<br>digestposts 精华帖数<br>oltime 在线时间<br>pageviews 页面访问量<br>credits 总积分<br>extcredits1 扩展积分1<br>extcredits2 扩展积分2<br>extcredits3 扩展积分3<br>extcredits4 扩展积分4<br>extcredits5 扩展积分5<br>extcredits6 扩展积分6<br>extcredits7 扩展积分7<br>extcredits8 扩展积分8<br>avatarshowid 天下秀<br>email 邮箱<br>bday 生日<br>sigstatus 签名是否改动<br>tpp 每页显示主题数<br>ppp 每页显示帖子数<br>styleid 个性定义风格id<br>dateformat 个性日期格式<br>timeformat 个性时间格式<br>pmsound 短消息提示音<br>showemail 是否公开email地址<br>newsletter 是否接受论坛通知<br>invisible 是否隐身登录<br>timeoffset 时区校正<br>newpm 是否有新短消息<br>accessmasks Access标志<br>———————————————————<br>cdb_moderators 版主表<br>uid 用户id<br>fid 版区id<br>displayorder 显示顺序<br>inherited 是否继承<br>———————————————————<br>cdb_onlinelist 在线列表定制（4条）<br>groupid 用户组ID<br>displayorder 显示顺序<br>title 组头衔<br>url 用户组图例位置（相对于./images/common目录）<br>———————————————————<br>cdb_modworks 版主工作记录<br>uid 用户ID<br>modaction 操作类型<br>dateline 操作日期<br>count 计数<br>posts<br>———————————————————<br>cdb_myposts 我的回复<br>uid 用户ID<br>tid 帖子ID<br>pid 最后回复人ID（貌似是，不确定）<br>position 所在论坛版块位置<br>dateline 回复日期<br>———————————————————<br>cdb_mythreads 我的话题<br>uid 用户ID<br>tid 帖子ID<br>dateline 发表日期<br>———————————————————<br>cdb_onlinelist 首页底部用户列表定制<br>groupid 用户组ID<br>displayorder 显示顺序<br>title 标题（管理员|超）<br>url 图标地址<br>———————————————————<br>cdb_onlinetime 在线时间表<br>uid 用户id<br>thismonth 本月在线时间<br>total 总计在线时间<br>lastupdate 最后访问时间<br>———————————————————<br>cdb_orders 订单信息表<br>orderid 订单号<br>status 状态<br>buyer 购买者<br>admin 补单操作者<br>uid 购买人id<br>amount 数量<br>price 价格<br>submitdate 提交日期<br>confirmdate 确认日期<br>———————————————————<br>cdb_paymentlog 帖子买卖表<br>uid 用户id<br>tid 主题id<br>authorid 作者id<br>dateline 时间<br>amount 价格<br>netamount 作者收入<br>———————————————————<br>cdb_pluginhooks 插件钩子<br>pluginhookid 钩子ID<br>pluginid 插件ID<br>available 是否可用<br>title 标题<br>description 描述<br>code 代码<br>———————————————————<br>cdb_plugins 插件管理表<br>pluginid 插件id<br>available 是否启用<br>adminid 管理插件的管理组id<br>name 插件名称<br>identifier 唯一标识符<br>description 描述<br>datatables 插件的数据表<br>directory 插件目录<br>copyright 版权信息<br>modules 记录插件详细信息<br>———————————————————<br>cdb_pluginvars 插件变量表<br>plginvarid 插件变量id<br>pluginid 插件id<br>displayorder 显示顺序<br>title 标题<br>description 描述<br>variable 变量<br>type 类型<br>value 数值<br>extra 存储下拉列表的详细信息<br>———————————————————<br>cdb_pms 短消息表<br>pmid 数据ID<br>msgfrom 发送者名<br>msgfromid 发送者id<br>msgtoid 接收者id<br>folder 文件夹<br>new 是否为已读<br>subject 消息标题<br>dateline 发送时间<br>message 内容<br>———————————————————<br>cdb_pmsearchindex 短消息索引<br>searchid 索引ID<br>keywords 关键字<br>searchstring 索引字符串<br>uid 用户ID<br>dateline 操作日期<br>expiration 过期<br>pms 短消息<br>pmids 短消息ID<br>———————————————————<br>cdb_polloptions 投票选项<br>polloptionid 选项ID<br>tid 帖子ID<br>votes 投票<br>displayorder 显示顺序<br>polloption 选项<br>voterids 投票者ID<br>———————————————————<br>cdb_polls 投票（0条）<br>tid 主题ID<br>pollopts 投票数据<br>———————————————————<br>cdb_posts 帖子表（0条）<br>pid 帖子id<br>fid 论坛id<br>tid 主题id<br>first 是否为主题（1为主题，0为帖子）<br>author 帖子作者用户名<br>authorid 帖子作者用户id<br>subject 帖子标题<br>dateline 帖子发表时间<br>message 帖子正文内容<br>useip 发贴时的IP<br>invisible 帖子状态（是否是被审核或者是否在回收站）<br>usesig 是否显示签名<br>htmlon 是否开启html<br>bbcodeoff 是否允许Discuz!代码标签<br>smileyoff 是否允许Smile表情图标<br>parseurloff 是否允许自动加链接<br>attachment 是否有附件<br>rate 本帖子被评分数<br>ratetimes 本帖子被评分次数<br>———————————————————<br>cdb_profilefields 用户栏目定制（0条）<br>fieldid 数据id<br>available 是否可用<br>invisible 是否隐藏<br>title 栏目标题<br>description 简短描述<br>size 内容最大长度<br>displayorder 显示顺序<br>required 必填内容<br>unchangeable 不可修改<br>showinthread 在帖子中显示<br>selective 是否可选<br>choices 选项内容<br>———————————————————<br>cdb_promotions<br>ip<br>uid<br>username<br>———————————————————<br>cdb_pushedthreads 被推荐的帖子<br>id 表ID<br>tid 帖子ID<br>status 状态<br>dateline 操作日期<br>subject 主题<br>message 说明<br>———————————————————<br>cdb_ranks （用户级别表）<br>rankid 级别id<br>ranktitle 发帖数级别头衔<br>postshigher 发帖数级别阀值<br>stars 星星数<br>color 颜色<br>———————————————————<br>cdb_ratelog(帖子评分记录表)<br>pid 帖子id<br>uid 用户id<br>username 用户名<br>extcredits 评分字段<br>dateline 时间<br>score 分数<br>reason 操作原因<br>———————————————————<br>cdb_regips (注册ip表（开启新用户注册验证后记录）)<br>ip IP<br>dateline 时间<br>count 次数<br>———————————————————<br>cdb_relatedthreads 关联帖表<br>tid 帖子ID<br>expiration 过期<br>keywords 关键字<br>relatedthreads 关联帖<br>———————————————————<br>cdb_rewardlog （悬赏日志）<br>tid 帖子ID<br>authorid 作者ID<br>answererid 回答人ID<br>dateline 操作日期<br>netamount 总计<br>———————————————————<br>cdb_rsscaches rss缓存表<br>lastupdate 最后更新<br>fid 版块id<br>tid 主题id<br>dateline 发表时间<br>forum 版块名称<br>author 作者<br>subject 标题<br>description 简短描述<br>———————————————————<br>cdb_searchindex 论坛搜索索引（0条）<br>searchid 数据ID<br>keywords 搜索类型/关键字<br>searchstring 搜索内容<br>useip 搜索者IP<br>uid 用户id<br>dateline 搜索开始时间<br>expiration 搜索失效时间<br>threads 主题数量<br>tids 主题id多个以,分割<br>———————————————————<br>cdb_sessions 在线统计（0条）<br>sid 数据ID<br>ip1 IP地址第一栏<br>ip2 IP地址第二栏<br>ip3 IP地址第三栏<br>ip4 IP地址第四栏<br>uid 用户id<br>username 用户名<br>groupid 用户组id<br>styleid 风格id<br>invisible 是否隐身登陆<br>action 当前动作<br>lastactivity 最后活动时间<br>lastolupdate 在线时间最后更新<br>pageviews 页面访问量<br>seccode 记录验证码<br>fid 正在浏览的版区id<br>tid 正在浏览的主题id<br>bloguid 记录blog用户id<br>———————————————————<br>cdb_settings 论坛基本设置表（64条）<br>variable 变量名<br>value 赋值<br>———————————————————<br>cdb_smilies 论坛表情符号（18条）<br>id 数据ID<br>displayorder 显示顺序<br>type 类别（smiley/icon）<br>code smilies代码（对于type=smiley有效）<br>url 图标位置<br>———————————————————<br>cdb_stats 论坛统计记录（50条）<br>type 统计类别<br>variable 统计的变量名<br>count 统计计数<br>———————————————————<br>cdb_statvars 论坛统计记录（在后台启用了论坛统计以后有记录）<br>type 统计类别<br>variable 统计的变量名<br>value 统计的数值<br>———————————————————<br>cdb_styles 风格样式（1条）<br>styleid 风格id<br>name 风格的名称<br>available 是否可用<br>templateid 关联的模板id<br>———————————————————<br>cdb_stylevars 风格变量设置（25条）<br>stylevarid 数据ID<br>styleid 关联的风格id<br>variable 风格的变量名<br>substitute 变量赋值<br>———————————————————<br>cdb_subscriptions 用户定阅表（0条）<br>uid 订阅用户id<br>tid 用户订阅的主题id<br>email 用户email地址<br>lastnotify 上次email通知时间<br>———————————————————<br>cdb_templates 模板表（1条）<br>templateid 数据ID<br>name 模板的名称<br>directory 模板所在的目录<br>copyright 设计者版权信息<br>———————————————————<br>cdb_threads 主题表（0条）<br>tid 主题id<br>fid 论坛id<br>iconid 主题前面的表情图标id<br>typeid 主题类型id<br>readperm 阅读权限<br>price 售价<br>author 作者的用户名<br>authorid 作者的id<br>subject 标题<br>dateline 主题发表时间<br>lastpost 最后回复者的id<br>lastposter 最后回复者的用户名<br>views 浏览次数<br>replies 回复数量<br>displayorder 显示顺序(0为普通主题,1~3分别为I,II,III级置顶)<br>highlight 是否高亮显示<br>digest 是否精华<br>rate 是否评分<br>blog 是否加入blog<br>poll 是否为投票帖<br>attachment 是否包含附件，且附件类型<br>subscribed<br>moderated 是否被编辑过<br>closed 主题是否关闭<br>itemid<br>supe_pushstatus supesite推荐状态<br>———————————————————<br>cdb_threadsmod 主题管理记录表<br>tid 主题id<br>uid 用户id<br>username 用户姓名<br>dateline 操作时间<br>action 什么操作<br>———————————————————<br>cdb_threadtypes 主题类型表<br>typeid 类型id<br>displayorder 显示顺序<br>name 类型名称<br>description 描述<br>———————————————————<br>cdb_tradelog（交易帖记录）<br>tid 帖子ID<br>orderid 定单号<br>tradeno<br>subject 商品名称<br>price 价格<br>quality 商品成色（全新|二手）<br>itemtype 商品类型<br>number 数量<br>tax 传真<br>locus 商品所在地<br>sellerid 出售者ID<br>seller 出售人<br>selleraccount<br>buyerid 购买人ID<br>buyer 购买人<br>buyercontact 购买人联系方式<br>buyercredits<br>buyermsg 购买人信息<br>status 状态<br>lastupdate 最后更新<br>———————————————————<br>cdb_trades （交易帖）<br>tid 帖子ID<br>sellerid 出售者ID<br>seller 出售人<br>account<br>subject 商品名称<br>price 出售价格<br>amount 数量<br>quality 商品成色（全新|二手）<br>locus 商品所在地<br>transport 物流方式<br>ordinaryfee 平邮价格<br>expressfee 快递价格<br>emsfee EMS价格<br>itemtype 商品类型<br>dateline 出售日期<br>expiration 有效期<br>lastbuyer 最后购买人<br>lastupdate 最后更新<br>totalitems 总条数<br>tradesum 交易量<br>closed 关闭<br>———————————————————<br>cdb_usergroups 用户组权限表（15条）<br>groupid 用户组id<br>radminid 关联的管理组id<br>type 组类型（system系统组/member会员组/special特殊组）<br>grouptitle 组头衔<br>creditshigher 该组需要的积分上限<br>creditslower 改组需要的积分下限<br>stars 星星数量<br>color 组头衔颜色<br>groupavatar 组头像图标<br>readaccess 阅读权限<br>allowvisit 允许访问论坛.<br>allowpost 允许发表新主题.<br>allowreply 允许发表回复<br>allowpostpoll 允许发表投票.<br>allowdirectpost 允许直接发表新主题是否需要审核<br>allowgetattach 允许下载附件.<br>allowpostattach 允许发表附件.<br>allowvote 允许参与投票.<br>allowmultigroups 允许加入/离开公众用户组<br>allowsearch 允许搜索.<br>allowavatar 允许使用头像.<br>allowcstatus 允许自定义头衔<br>allowuserblog 允许使用blog<br>allowinvisible 允许隐身登陆.<br>allowtransfer 允许积分转账<br>allowsetreadperm 允许设置帖子权限<br>allowsetattachperm 允许设置附件下载权限.<br>allowhidecode 允许使用[hide]代码.<br>allowhtml 允许使用html<br>allowcusbbcode 允许使用自定义Discuz!代码.<br>allownickname 允许使用昵称<br>allowsigbbcode 允许签名中使用Discuz!代码<br>allowsigimgcode 允许签名中使用img代码<br>allowviewpro 允许查看用户资料<br>allowviewstats 允许查看统计数据.<br>disableperiodctrl 不受时间段限制<br>reasonpm 操作理由短消息通知作者<br>maxprice 主题最高售价<br>maxpmnum 短消息收件箱容量.<br>maxsigsize 签名的最大长度.<br>maxattachsize 最大附件尺寸.<br>maxsizeperday 每天最大附件总尺寸(字节):<br>attachextensions 允许发布的附件类型.<br>raterange 评分范围<br>———————————————————<br>cdb_validating 用户审核表<br>uid 待审核用户id<br>submitdate 提交日期<br>moddate 审核日期<br>admin 进行审核的管理员<br>submittimes 提交的次数<br>status 状态<br>message 注册原因<br>remark 管理员留言<br>———————————————————<br>cdb_words 词语过滤（0条）<br>id 数据ID<br>admin 操作者ID<br>find 不良词语<br>replacement 替换为<br>DZ 5.5新增10个表  </p>
+<p>cdb_attachpaymentlog 5.5<br>uid<br>aid<br>authorid<br>dateline<br>amount<br>netamount<br>————————————————<br>cdb_faqs 5.5<br>id 自增ID<br>fpid<br>displayorder<br>identifier<br>keyword<br>title 问题<br>message 详细解释<br>———————————————–<br>cdb_itempool 5.5<br>id<br>type<br>question<br>answer<br>———————————————————<br>cdb_magiclog 5.5<br>uid<br>magicid<br>action<br>dateline<br>amount<br>price<br>targettid<br>targetpid<br>targetuid<br>———————————————————<br>cdb_magicmarket 5.5<br>mid<br>magicid<br>uid<br>username<br>price<br>num<br>———————————————————<br>cdb_magics 5.5<br>magicid<br>available<br>type<br>name<br>identifier<br>description<br>displayorder<br>price<br>num<br>salevolume<br>supplytype<br>supplynum<br>weight<br>filename<br>magicperm<br>————————————————<br>cdb_membermagics 5.5<br>uid<br>magicid<br>num<br>————————————————-<br>cdb_memberspaces 5.5<br>uid<br>style<br>description<br>layout<br>side<br>———————————————–<br>cdb_projects 5.5<br>id<br>name<br>type<br>description<br>value<br>————————————–<br>cdb_spacecaches 5.5<br>uid<br>variable<br>value<br>expiration<br>——————————————-  </p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Discuz/" rel="tag"># Discuz</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2008/01/07/25-High-Tech-and-Trendy-Computer-Mouse/" rel="next" title="25 High Tech and Trendy Computer Mouse">
+                <i class="fa fa-chevron-left"></i> 25 High Tech and Trendy Computer Mouse
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2008/01/10/fixed-firefox-alt-s/" rel="prev" title="Firefox升级到2.0后alt+s回复出现历史问题解决">
+                Firefox升级到2.0后alt+s回复出现历史问题解决 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">東木</p>
+              <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">202</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2007 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

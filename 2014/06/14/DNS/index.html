@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'da65f2d4ea1c6d4dccfa6d7f197d2aaf',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="原文：solifugus——国内能用的靠谱DNS整理 今天上网发现很多网站上不去，还以为网线有问题，但V2EX能上的去，上去看到有人提到114DNS的合作计划，回复有人说114没节操，劫持过一些网站，猛然想到自己用的就是114的DNS，于是就把自己的DNS改成了Google的，马上没问题了，但是Ping了一下，延迟虽然还可以，但有掉包，于是开始了找国内可用的高速的DNS的过程，把找到的能用的记录下">
+<meta name="keywords" content="DNS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="国内能用的靠谱DNS整理">
+<meta property="og:url" content="http://blog.liudongkai.com/2014/06/14/DNS/index.html">
+<meta property="og:site_name" content="Dong&#39;s Note">
+<meta property="og:description" content="原文：solifugus——国内能用的靠谱DNS整理 今天上网发现很多网站上不去，还以为网线有问题，但V2EX能上的去，上去看到有人提到114DNS的合作计划，回复有人说114没节操，劫持过一些网站，猛然想到自己用的就是114的DNS，于是就把自己的DNS改成了Google的，马上没问题了，但是Ping了一下，延迟虽然还可以，但有掉包，于是开始了找国内可用的高速的DNS的过程，把找到的能用的记录下">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2014-06-13T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="国内能用的靠谱DNS整理">
+<meta name="twitter:description" content="原文：solifugus——国内能用的靠谱DNS整理 今天上网发现很多网站上不去，还以为网线有问题，但V2EX能上的去，上去看到有人提到114DNS的合作计划，回复有人说114没节操，劫持过一些网站，猛然想到自己用的就是114的DNS，于是就把自己的DNS改成了Google的，马上没问题了，但是Ping了一下，延迟虽然还可以，但有掉包，于是开始了找国内可用的高速的DNS的过程，把找到的能用的记录下">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/2014/06/14/DNS/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>国内能用的靠谱DNS整理 | Dong's Note</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42337789-4');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/06/14/DNS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">国内能用的靠谱DNS整理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2014-06-14 00:00:00" itemprop="dateCreated datePublished" datetime="2014-06-14T00:00:00+08:00">2014-06-14</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>原文：solifugus——<a href="http://www.houge.in/dns/" target="_blank" rel="noopener">国内能用的靠谱DNS整理</a></p>
+<p>今天上网发现很多网站上不去，还以为网线有问题，但V2EX能上的去，上去看到有人提到114DNS的合作计划，回复有人说114没节操，劫持过一些网站，猛然想到自己用的就是114的DNS，于是就把自己的DNS改成了Google的，马上没问题了，但是Ping了一下，延迟虽然还可以，但有掉包，于是开始了找国内可用的高速的DNS的过程，把找到的能用的记录下，以备以后用，今天的问题就是114临时抽风，一直无法ping通。</p>
+<h2 id="0、OpenerDNS：42-120-21-30"><a href="#0、OpenerDNS：42-120-21-30" class="headerlink" title="0、OpenerDNS：42.120.21.30"></a>0、OpenerDNS：42.120.21.30</h2><p>14.2.8更新，由<a href="http://weibo.com/lmeteor924" target="_blank" rel="noopener">@L_Meteor</a>推荐：该DNS是国内服务器，延迟在30ms左右，不掉包，速度非常好，该官方称使用该DNS能够无压力访问Facebook、Twitter、Google等服务，不过要使用https:// 加密链接，我试了一下，Google没有问题，Youtube也可以访问，而且速度很靠谱，Facebook和Twitter无法访问，但也非常值得使用了。经<a href="http://weibo.com/cycou" target="_blank" rel="noopener">@CyconIn</a> 提醒，使用这个只能对‘Google被过滤和用谷歌其他产品很慢’很有用，能够访问Youtube，但并不能播放Youtube的视频，因为Youtube的视频是使用http传输的。</p>
+<a id="more"></a>
+<h2 id="1、114DNS，是因为他网官上的介绍："><a href="#1、114DNS，是因为他网官上的介绍：" class="headerlink" title="1、114DNS，是因为他网官上的介绍："></a>1、114DNS，是因为他网官上的介绍：</h2><p>纯净 无劫持 无需再忍受被强扭去看广告或粗俗网站之痛苦<br>服务地址为：114.114.114.114 和 114.114.115.115</p>
+<p>拦截 钓鱼病毒木马网站 增强网银、证券、购物、游戏、隐私信息安全<br>服务地址为：114.114.114.119 和 114.114.115.119</p>
+<p>学校或家长可选拦截 色情网站 保护少年儿童免受网络色情内容的毒害<br>服务地址为：114.114.114.110 和 114.114.115.110</p>
+<p>如果有上述需求的，可以考虑下，效果还可以，延迟基本上在10ms以下，速度很好。</p>
+<h2 id="2、V2EX-DNS：199-91-73-222-178-79-131-110"><a href="#2、V2EX-DNS：199-91-73-222-178-79-131-110" class="headerlink" title="2、V2EX DNS：199.91.73.222     178.79.131.110"></a>2、V2EX DNS：199.91.73.222     178.79.131.110</h2><p>延迟有点高，两个都在250ms以上，偶尔掉包，但这个用起来还是可以的。</p>
+<h2 id="3、阿里DNS：-223-5-5-5-223-6-6-6"><a href="#3、阿里DNS：-223-5-5-5-223-6-6-6" class="headerlink" title="3、阿里DNS：   223.5.5.5       223.6.6.6"></a>3、阿里DNS：   223.5.5.5       223.6.6.6</h2><p>虽然阿里也没什么节操，但是延迟在25ms左右，基本不掉包，速度可以保证，如果不恶心阿的同学是可以考虑的，毕竟是国内的，访问速度可以保证的。</p>
+<h2 id="4、Google-DNS：-8-8-8-8-8-8-4-4"><a href="#4、Google-DNS：-8-8-8-8-8-8-4-4" class="headerlink" title="4、Google DNS： 8.8.8.8     8.8.4.4"></a>4、Google DNS： 8.8.8.8     8.8.4.4</h2><p>几乎从知道这个DNS之后就一直在用，延迟在50ms左右，速度还可以，就是由于众所周知的原因，掉包比较严重，我在使用的时候也会有相应的感觉，但我是可以接受的。</p>
+<h2 id="5、OpenDNS：208-67-222-222-208-67-220-220"><a href="#5、OpenDNS：208-67-222-222-208-67-220-220" class="headerlink" title="5、OpenDNS：208.67.222.222      208.67.220.220"></a>5、OpenDNS：208.67.222.222      208.67.220.220</h2><p>知道这个比Google还早，也是非常知名的，但延迟有点高，在180ms左右，偶尔掉包，除了延迟大点，没有什么不能接受的。</p>
+<h2 id="6、SecDNS："><a href="#6、SecDNS：" class="headerlink" title="6、SecDNS："></a>6、SecDNS：</h2><p>这个要在自己电脑运行虚拟机搭建DNS服务器，有点麻烦，而且是14年刚刚推出，没有用过，但根据他的原理，运行过之后，访问一段时间，速度会非常快。</p>
+<h2 id="7、运营商DNS，反正我是不用，没节操的很。"><a href="#7、运营商DNS，反正我是不用，没节操的很。" class="headerlink" title="7、运营商DNS，反正我是不用，没节操的很。"></a>7、运营商DNS，反正我是不用，没节操的很。</h2><h2 id="8、OneDNS："><a href="#8、OneDNS：" class="headerlink" title="8、OneDNS："></a>8、OneDNS：</h2><p>又是<a href="http://weibo.com/lmeteor924" target="_blank" rel="noopener">@L_Meteor</a> 推荐，官方说是可以屏蔽广告，加速Google等网站的访问等，我大概试了一下，效果还是有的，速度也不慢，是一个比较新的DNS，只有单节点，不过看官方应该在努力建设中，在我这里的延迟大概在30ms左右。</p>
+<p>顺便说一下，我特别喜欢他们的口号：“我们立志为追求纯净网络的小众用户带来极致的使用体验，同时也在积极探索服务于慈善和教育行业。”</p>
+<p>最后，说一下最好的选择吧，如果是国内用户，没有洁癖的，可以考虑114DNS和阿里NDS，如果有洁癖，国内可以选择V2EX DNS，国外的可以选择很多，优选Google的，虽然延迟，但我能够接受，其他的看自己的网络情况了。</p>
+<p><strong>我现在主DNS用的是OpenerDNS，备用是Google DNS。</strong></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DNS/" rel="tag"># DNS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/06/14/ghs-service-ip/" rel="next" title="可用的ghs服务ip">
+                <i class="fa fa-chevron-left"></i> 可用的ghs服务ip
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/06/15/GoAgent-bug/" rel="prev" title="GoAgent漏洞导致中间人攻击">
+                GoAgent漏洞导致中间人攻击 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">東木</p>
+              <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">202</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0、OpenerDNS：42-120-21-30"><span class="nav-number">1.</span> <span class="nav-text">0、OpenerDNS：42.120.21.30</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1、114DNS，是因为他网官上的介绍："><span class="nav-number">2.</span> <span class="nav-text">1、114DNS，是因为他网官上的介绍：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、V2EX-DNS：199-91-73-222-178-79-131-110"><span class="nav-number">3.</span> <span class="nav-text">2、V2EX DNS：199.91.73.222     178.79.131.110</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、阿里DNS：-223-5-5-5-223-6-6-6"><span class="nav-number">4.</span> <span class="nav-text">3、阿里DNS：   223.5.5.5       223.6.6.6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、Google-DNS：-8-8-8-8-8-8-4-4"><span class="nav-number">5.</span> <span class="nav-text">4、Google DNS： 8.8.8.8     8.8.4.4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、OpenDNS：208-67-222-222-208-67-220-220"><span class="nav-number">6.</span> <span class="nav-text">5、OpenDNS：208.67.222.222      208.67.220.220</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、SecDNS："><span class="nav-number">7.</span> <span class="nav-text">6、SecDNS：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、运营商DNS，反正我是不用，没节操的很。"><span class="nav-number">8.</span> <span class="nav-text">7、运营商DNS，反正我是不用，没节操的很。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8、OneDNS："><span class="nav-number">9.</span> <span class="nav-text">8、OneDNS：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2007 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

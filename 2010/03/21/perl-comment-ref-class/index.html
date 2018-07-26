@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'da65f2d4ea1c6d4dccfa6d7f197d2aaf',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="多行注释：perl没有多行注释，可以用下面代替：1234567=pod代码行;...代码行;=cut 关于ref函数：ref EXPRref Returns a non-empty string if EXPR is a reference, the emptystring otherwise. If EXPR is not specified, $_ will be used. Thevalue">
+<meta name="keywords" content="perl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于Perl的几点：多行注释，REF函数，类的初始化">
+<meta property="og:url" content="http://blog.liudongkai.com/2010/03/21/perl-comment-ref-class/index.html">
+<meta property="og:site_name" content="Dong&#39;s Note">
+<meta property="og:description" content="多行注释：perl没有多行注释，可以用下面代替：1234567=pod代码行;...代码行;=cut 关于ref函数：ref EXPRref Returns a non-empty string if EXPR is a reference, the emptystring otherwise. If EXPR is not specified, $_ will be used. Thevalue">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2010-03-20T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于Perl的几点：多行注释，REF函数，类的初始化">
+<meta name="twitter:description" content="多行注释：perl没有多行注释，可以用下面代替：1234567=pod代码行;...代码行;=cut 关于ref函数：ref EXPRref Returns a non-empty string if EXPR is a reference, the emptystring otherwise. If EXPR is not specified, $_ will be used. Thevalue">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/2010/03/21/perl-comment-ref-class/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>关于Perl的几点：多行注释，REF函数，类的初始化 | Dong's Note</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42337789-4');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/03/21/perl-comment-ref-class/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">关于Perl的几点：多行注释，REF函数，类的初始化
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2010-03-21 00:00:00" itemprop="dateCreated datePublished" datetime="2010-03-21T00:00:00+08:00">2010-03-21</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>多行注释：<br>perl没有多行注释，可以用下面代替：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">=pod</span><br><span class="line">代码行;</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">代码行;</span><br><span class="line">=cut</span><br></pre></td></tr></table></figure></p>
+<p>关于ref函数：<br>ref EXPR<br>ref Returns a non-empty string if EXPR is a reference, the empty<br>string otherwise. If EXPR is not specified, $_ will be used. The<br>value returned depends on the type of thing the reference is a<br>reference to. Builtin types include:</p>
+<blockquote>
+<p>SCALAR<br>ARRAY<br>HASH<br>CODE<br>REF<br>GLOB<br>LVALUE</p>
+</blockquote>
+<a id="more"></a>
+<p>If the referenced object has been blessed into a package, then<br>that package name is returned instead. You can think of “ref” as<br>a “typeof” operator.</p>
+<p>讲类的段落，比较明了：<br>Object Construction<br>All objects are references, but not all references are objects. A reference won’t work as an object unless its referent is specially marked to tell Perl what package it belongs to. The act of marking a referent with a package name–and therefore, its class, since a class is just a package–is known as blessing. You can think of the blessing as turning a reference into an object, although it’s more accurate to say that it turns the reference into an object reference.</p>
+<p>The bless function takes either one or two arguments. The first argument is a reference and the second is the package to bless the referent into. If the second argument is omitted, the current package is used.</p>
+<p>$obj = { }; # Get reference to anonymous hash.<br>bless($obj); # Bless hash into current package.<br>bless($obj, “Critter”); # Bless hash into class Critter.<br>Here we’ve used a reference to an anonymous hash, which is what people usually use as the data structure for their objects. Hashes are extremely flexible, after all. But allow us to emphasize that you can bless a reference to anything you can make a reference to in Perl, including scalars, arrays, subroutines, and typeglobs. You can even bless a reference to a package’s symbol table hash if you can think of a good reason to. (Or even if you can’t.) Object orientation in Perl is completely orthogonal to data structure.</p>
+<p>Once the referent has been blessed, calling the built-in ref function on its reference returns the name of the blessed class instead of the built-in type, such as HASH. If you want the built-in type, use the reftype function from the attributes module. See use attributes in Chapter 31, “Pragmatic Modules”.</p>
+<p>And that’s how to make an object. Just take a reference to something, give it a class by blessing it into a package, and you’re done. That’s all there is to it if you’re designing a minimal class. If you’re using a class, there’s even less to it, because the author of a class will have hidden the bless inside a method called a constructor, which creates and returns instances of the class. Because bless returns its first argument, a typical constructor can be as simple as this:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">package Critter;</span><br><span class="line">sub spawn &#123; bless &#123;&#125;; &#125;</span><br><span class="line">Or, spelled out slightly more explicitly:</span><br><span class="line">package Critter;</span><br><span class="line">sub spawn &#123;</span><br><span class="line">my $self = &#123;&#125;; # Reference to an empty anonymous hash</span><br><span class="line">bless $self, “Critter”; # Make that hash a Critter object</span><br><span class="line">return $self; # Return the freshly generated Critter</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>With that definition in hand, here’s how one might create a Critter object:<br><code>$pet = Critter-&gt;spawn;</code></p>
+<p>12.4.1. Inheritable Constructors<br>Like all methods, a constructor is just a subroutine, but we don’t call it as a subroutine. We always invoke it as a method–a class method, in this particular case, because the invocant is a package name. Method invocations differ from regular subroutine calls in two ways. First, they get the extra argument we discussed earlier. Second, they obey inheritance, allowing one class to use another’s methods.</p>
+<p>We’ll describe the underlying mechanics of inheritance more rigorously in the next section, but for now, some simple examples of its effects should help you design your constructors. For instance, suppose we have a Spider class that inherits methods from the Critter class. In particular, suppose the Spider class doesn’t have its own spawn method. The following correspondences apply:</p>
+<p>Method Call Resulting Subroutine Call<br><code>Critter-&gt;spawn() Critter::spawn(“Critter”)</code><br><code>Spider-&gt;spawn() Critter::spawn(“Spider”)</code></p>
+<p>The subroutine called is the same in both cases, but the argument differs. Note that our spawn constructor above completely ignored its argument, which means our Spider object was incorrectly blessed into class Critter. A better constructor would provide the package name (passed in as the first argument) to bless:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sub spawn &#123;</span><br><span class="line">my $class = shift; # Store the package name</span><br><span class="line">my $self = &#123; &#125;;</span><br><span class="line">bless($self, $class); # Bless the reference into that package</span><br><span class="line">return $self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Now you could use the same subroutine for both these cases:<br><code>$vermin = Critter-&gt;spawn;</code><br><code>$shelob = Spider-&gt;spawn;</code><br>And each object would be of the proper class. This even works indirectly, as in:<br><code>$type = “Spider”;</code><br><code>$shelob = $type-&gt;spawn; # same as “Spider”-&gt;spawn</code><br>That’s still a class method, not an instance method, because its invocant holds a string and not a reference.</p>
+<p>If $type were an object instead of a class name, the previous constructor definition wouldn’t have worked, because bless needs a class name. But for many classes, it makes sense to use an existing object as the template from which to create another. In these cases, you can design your constructors so that they work with either objects or class names:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sub spawn &#123;</span><br><span class="line">my $invocant = shift;</span><br><span class="line">my $class = ref($invocant) || $invocant; # Object or class name</span><br><span class="line">my $self = &#123; &#125;;</span><br><span class="line">bless($self, $class);</span><br><span class="line">return $self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>12.4.2. Initializers<br>Most objects maintain internal information that is indirectly manipulated by the object’s methods. All our constructors so far have created empty hashes, but there’s no reason to leave them empty. For instance, we could have the constructor accept extra arguments to store into the hash as key/value pairs. The OO literature often refers to such data as properties, attributes, accessors, member data, instance data, or instance variables. The section “Instance Variables” later in this chapter discusses attributes in more detail.</p>
+<p>Imagine a Horse class with instance attributes like “name” and “color”:</p>
+<p>$steed = Horse-&gt;new(name =&gt; “Shadowfax”, color =&gt; “white”);<br>If the object is implemented as a hash reference, the key/value pairs can be interpolated directly into the hash once the invocant is removed from the argument list:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sub new &#123;</span><br><span class="line">my $invocant = shift;</span><br><span class="line">my $class = ref($invocant) || $invocant;</span><br><span class="line">my $self = &#123; @_ &#125;; # Remaining args become attributes</span><br><span class="line">bless($self, $class); # Bestow objecthood</span><br><span class="line">return $self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>This time we used a method named new for the class’s constructor, which just might lull C++ programmers into thinking they know what’s going on. But Perl doesn’t consider “new” to be anything special; you may name your constructors whatever you like. Any method that happens to create and return an object is a de facto constructor. In general, we recommend that you name your constructors whatever makes sense in the context of the problem you’re solving. For example, constructors in the Tk module are named after the widgets they create. In the DBI module, a constructor named connect returns a database handle object, and another constructor named prepare is invoked as an instance method and returns a statement handle object. But if there is no suitable context-specific constructor name, new is perhaps not a terrible choice. Then again, maybe it’s not such a bad thing to pick a random name to force people to read the interface contract (meaning the class documentation) before they use its constructors.</p>
+<p>Elaborating further, you can set up your constructor with default key/value pairs, which the user could later override by supplying them as arguments:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sub new &#123;</span><br><span class="line">my $invocant = shift;</span><br><span class="line">my $class = ref($invocant) || $invocant;</span><br><span class="line">my $self = &#123;</span><br><span class="line">color =&gt; “bay”,</span><br><span class="line">legs =&gt; 4,</span><br><span class="line">owner =&gt; undef,</span><br><span class="line">@_, # Override previous attributes</span><br><span class="line">&#125;;</span><br><span class="line">return bless $self, $class;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>$ed = Horse-&gt;new; # A 4-legged bay horse</code><br><code>$stallion = Horse-&gt;new(color =&gt; “black”); # A 4-legged black horse</code></p>
+<p>This Horse constructor ignores its invocant’s existing attributes when used as an instance method. You could create a second constructor designed to be called as an instance method, and if designed properly, you could use the values from the invoking object as defaults for the new one:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$steed = Horse-&gt;new(color =&gt; “dun”);</span><br><span class="line">$foal = $steed-&gt;clone(owner =&gt; “EquuGen Guild, Ltd.”);</span><br><span class="line"></span><br><span class="line">sub clone &#123;</span><br><span class="line">my $model = shift;</span><br><span class="line">my $self = $model-&gt;new(%$model, @_);</span><br><span class="line">return $self; # Previously blessed by -&gt;new</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/perl/" rel="tag"># perl</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2010/03/07/thinkpad-t61-squeak/" rel="next" title="为什么thinkpad T61会发现吱吧电流声[zt]">
+                <i class="fa fa-chevron-left"></i> 为什么thinkpad T61会发现吱吧电流声[zt]
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2010/04/22/perl-merge-files/" rel="prev" title="Perl 根据相同字段并合并两个文本">
+                Perl 根据相同字段并合并两个文本 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">東木</p>
+              <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">202</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2007 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

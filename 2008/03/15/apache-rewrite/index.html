@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'da65f2d4ea1c6d4dccfa6d7f197d2aaf',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="一: 目的本文旨在提供如何用Apache重写规则来解决一些常见的URL重写方法的问题，通过常见的实例给用户一些使用重写规则的基本方法和线索。 二:为什么需要用重写规则？一个网站，如果是长期需要放在internet上提供服务，必定会有不断地更新和维护，如临时转移到其它服务器进行维护，重新组织目录结构，变换URL甚至改变到新的域名等等，而为了让客户不会因此受到任何影响，最好的方法就是使用Apache">
+<meta name="keywords" content="Apache">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apache 重写规则的常见应用 (rewrite)">
+<meta property="og:url" content="http://blog.liudongkai.com/2008/03/15/apache-rewrite/index.html">
+<meta property="og:site_name" content="Dong&#39;s Note">
+<meta property="og:description" content="一: 目的本文旨在提供如何用Apache重写规则来解决一些常见的URL重写方法的问题，通过常见的实例给用户一些使用重写规则的基本方法和线索。 二:为什么需要用重写规则？一个网站，如果是长期需要放在internet上提供服务，必定会有不断地更新和维护，如临时转移到其它服务器进行维护，重新组织目录结构，变换URL甚至改变到新的域名等等，而为了让客户不会因此受到任何影响，最好的方法就是使用Apache">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2008-03-14T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Apache 重写规则的常见应用 (rewrite)">
+<meta name="twitter:description" content="一: 目的本文旨在提供如何用Apache重写规则来解决一些常见的URL重写方法的问题，通过常见的实例给用户一些使用重写规则的基本方法和线索。 二:为什么需要用重写规则？一个网站，如果是长期需要放在internet上提供服务，必定会有不断地更新和维护，如临时转移到其它服务器进行维护，重新组织目录结构，变换URL甚至改变到新的域名等等，而为了让客户不会因此受到任何影响，最好的方法就是使用Apache">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/2008/03/15/apache-rewrite/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Apache 重写规则的常见应用 (rewrite) | Dong's Note</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42337789-4');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/15/apache-rewrite/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Apache 重写规则的常见应用 (rewrite)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-15T00:00:00+08:00">2008-03-15</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一-目的"><a href="#一-目的" class="headerlink" title="一: 目的"></a>一: 目的</h3><p>本文旨在提供如何用Apache重写规则来解决一些常见的URL重写方法的问题，通过常见的实例给用户一些使用重写规则的基本方法和线索。</p>
+<h3 id="二-为什么需要用重写规则？"><a href="#二-为什么需要用重写规则？" class="headerlink" title="二:为什么需要用重写规则？"></a>二:为什么需要用重写规则？</h3><p>一个网站，如果是长期需要放在internet上提供服务，必定会有不断地更新和维护，如临时转移到其它服务器进行维护，重新组织目录结构，变换URL甚至改变到新的域名等等，而为了让客户不会因此受到任何影响，最好的方法就是使用Apache Rewrite Rule(重写规则)。</p>
+<h3 id="三-重写规则的作用范围"><a href="#三-重写规则的作用范围" class="headerlink" title="三: 重写规则的作用范围"></a>三: 重写规则的作用范围</h3><ol>
+<li>可以使用在Apache主配置文件httpd.conf中</li>
+<li>可以使用在httpd.conf里定义的虚拟主机配置中</li>
+<li>可以使用在基本目录的跨越配置文件.htaccess中</li>
+</ol>
+<h3 id="四-重写规则的应用条件"><a href="#四-重写规则的应用条件" class="headerlink" title="四:重写规则的应用条件"></a>四:重写规则的应用条件</h3><p>只有当用户的WEB请求最终被导向到某台WEB服务器的Apache后台，则这台WEB服务器接受进来的请求，根据配置文件该请求是主配置还是虚拟主机，再根据用户在浏览器中请求的URI来配对重写规则并且根据实际的请求路径配对.htaccess中的重写规则。最后把请求的内容传回给用户，该响应可能有两种：</p>
+<a id="more"></a>
+<ol>
+<li><p>对浏览器请求内容的外部重定向(Redirect)到另一个URL。<br>让浏览器再次以新的URI发出请求(R=301或者R=302，临时的或是永久的重定向)<br>如：一个网站有正规的URL和别名URL，对别名URL进行重定向到正规URL，或者网站改换成了新的域名，则把旧的域名重定向到新的域名(Redirect)</p>
+</li>
+<li><p>也可能是由Apache内部子请求代理产生新的内容送回给客户[P,L]<br>这是Apache内部根据重写后的URI内部通过代理模块请求内容并送回内容给客户，而客户端浏览器并不知道，浏览器中的URI不会被重写。但实际内容被Apache根据重写规则后的URI得到。<br>如：在公司防火墙上运行的Apache启动这种代理重写规则，代理对内部网段上的WEB服务器的请求。</p>
+</li>
+</ol>
+<h3 id="五-重写规则怎样工作？"><a href="#五-重写规则怎样工作？" class="headerlink" title="五:重写规则怎样工作？"></a>五:重写规则怎样工作？</h3><p>我们假定在编译Apache时已经把mod_rewrite编译成模块，确信你的httpd.conf中有<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadModule rewrite_module libexec/mod_rewrite.so</span><br></pre></td></tr></table></figure></p>
+<p>并且在Addmodule中有<code>Addmodule mod_rewrite.c</code>则可以使用重写规则。<br>当外部请求来到Apache，Apache调用重写规则中的定义来重写由用户浏览器指定请求的URI，最后被重写的URI如果是重定向，则送由浏览器作再一次请求；如果是代理则把重写后的URI交给代理模块请求最终的内容(Content),最后把内容送回给浏览器。</p>
+<h3 id="六-何时使用-htaccess中的重写规则定义？"><a href="#六-何时使用-htaccess中的重写规则定义？" class="headerlink" title="六: 何时使用.htaccess中的重写规则定义？"></a>六: 何时使用.htaccess中的重写规则定义？</h3><p>假如你对你的的网站内容所在的服务器没有管理员权限，或者你的网站放在ISP的服务器上托管等等条件下，你无法改写主配置文件，然而你可以对你的WEB站点内容所在的目录有写权限，则你可以设置自己的 <code>.htaccess</code> 文件达到同样的目的。但你需要确定主配置文件中对你的网站所在的目录定义了下面的内容:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Options Indexes FollowSymLinks</span><br><span class="line">AllowOverride all</span><br></pre></td></tr></table></figure></p>
+<p>否则你的.htaccess不会工作。</p>
+<h3 id="七-应用举例"><a href="#七-应用举例" class="headerlink" title="七: 应用举例"></a>七: 应用举例</h3><p>假定Apache被编译安装在主机192.168.1.56的/usr/local/apache/ 目录下面，我们编译进了重写和代理模块。</p>
+<ol>
+<li><p>隐藏Apache下的某个目录，使得对该目录的任何请求都重定向到另一个文件。</p>
+<ul>
+<li><p>httpd.conf的实现方法</p>
+<p>我们放下面的部分到<code>/usr/local/apache/conf/httpd.conf</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">options Indexes followsymlinks</span><br><span class="line">allowoverride all</span><br><span class="line">rewriteengine on</span><br><span class="line">rewritebase /</span><br><span class="line">rewriterule ^(.*)$ index.html.en [R=301]</span><br></pre></td></tr></table></figure>
+<p>注：rewriteengine on 为重写引擎开关，如果设为off,则任何重写规则定义将不被应用，该开关的另一好处就是如果为了临时拿掉重写规则，则改为off再重启动Apache即可，不必将下面一条条的重写规则注释掉。</p>
+<p><code>rewritebase /</code> 的作用是如果在下面的rewriterule定义中被重写后的部分(此处为文件名index.html.en)前面没有/，则是相对目录，相对于这个rewritebase后面的定义也就是<code>/usr/local/apache/htdocs/index.html.en</code>,否则，如果此处没有rewritebase /这一项，则被重写成 <code>http://192.168.1.56/usr/local/apache/htdocs/manual/index.html.en</code> ，显然是不正确的。</p>
+<p>不过这里我们也可以不用 <code>rewritebase /</code> , 而改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rewriteengine on</span><br><span class="line">rewriterule ^(.*)$ /index.html.en [R=301]</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rewriteengine on</span><br><span class="line">rewriterule ^(.*)$ http://192.168.1.56/index.html.en [R=301]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>.htaccess的实现方法</p>
+<p>我们先放下面的部分到httpd.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">options Indexes followsymlinks</span><br><span class="line">allowoverride all</span><br></pre></td></tr></table></figure>
+<p>然后放下面的部分到 <code>/usr/local/apache/htdocs/manual/.htaccess</code> 中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rewriteengine on</span><br><span class="line">rewritebase /</span><br><span class="line">rewriterule ^(.*)$ index.html.en [R=301]</span><br></pre></td></tr></table></figure>
+<p>注：对文件.htaccess所作的任何改动不需要重启动Apache.</p>
+<p>问：要是把这个manual目录重定向到用户jephe的自己的主目录呢？<br>用下面的.htaccess方案。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rewriteengine on</span><br><span class="line">rewritebase /~jephe/</span><br><span class="line">rewriterule ^(.*)$ $1 [R=301]</span><br></pre></td></tr></table></figure>
+<p>则对manual目录下任何文件的请求被重定向到~jephe目录下相同文件的请求。</p>
+</li>
+</ul>
+</li>
+<li><p>转换<a href="http://www.username.domain.com的对于username的主页请求为www.domain.com/username" target="_blank" rel="noopener">www.username.domain.com的对于username的主页请求为www.domain.com/username</a></p>
+<p>对于HTTP/1.1的请求包括一个Host: HTTP头，我们能用下面的规则集重写</p>
+<p><a href="http://www.username.domain.com/anypath" target="_blank" rel="noopener">http://www.username.domain.com/anypath</a> 到 /home/username/anypath</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Rewriteengine on</span><br><span class="line">rewritecond %&#123;HTTP_HOST&#125; ^www.[^.]+.host.com$</span><br><span class="line">rewriterule ^(.+) %&#123;HTTP_HOST&#125;$1 [C]</span><br><span class="line">rewriterule ^www.([^.]+).host.com(.*) /home/$1$2</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>注：<br>rewritecond 条件重写规则，当满足后面定义的条件后才会应用下面的重写规则，rewritecond有各种变量，请查阅相关文档。</p>
+<ol start="3">
+<li>防火墙上的重写规则代理内部网段上服务器的请求。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NameVirtualhost 1.2.3.4</span><br><span class="line"></span><br><span class="line"> servername www.domain.com</span><br><span class="line">rewriteengine on</span><br><span class="line">proxyrequest on</span><br><span class="line">rewriterule ^/(.*)$ http://192.168.1.3/$1 [P,L]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>注：当外部浏览器请求<a href="http://www.domain.com时被解析到IP地址1.2.3.4" target="_blank" rel="noopener">www.domain.com时被解析到IP地址1.2.3.4</a> ,Apache 交出<br>mod_rewrite处理转换成</p>
+<p> <a href="http://192.168.1.3/$1" target="_blank" rel="noopener">http://192.168.1.3/$1</a> 后再交由代理模块mod_proxy得到内容后传送回用户的浏览器。</p>
+<ol start="4">
+<li><p>基本预先设定的转换MAP表进行重写 rewritemap</p>
+<p>转换<a href="http://www.domain.com/{countrycode}/anypath" target="_blank" rel="noopener">www.domain.com/{countrycode}/anypath</a> 到Map表中规定的URI,上面是虚拟主机<br>中的定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">rewritelog /usr/local/apache/logs/rewrite.log</span><br><span class="line">rewriteloglevel 9</span><br><span class="line"></span><br><span class="line"> rewriteengine on</span><br><span class="line">proxyrequest on</span><br><span class="line">rewritemap sitemap txt:/usr/local/apache/conf/rewrite.map</span><br><span class="line">rewriterule ^/([^/]+)+/(.*)$ http://%&#123;REMOTE_HOST&#125;::$1 [C]</span><br><span class="line">rewriterule (.*)::([a-z]+)$ $&#123;sitemap:$2|http://h.i.j.k/&#125; [R=301,L]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>文件/usr/local/apache/conf/rewrite.map的内容如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sg http://a.b.c.d/</span><br><span class="line">sh http://e.f.g.h/</span><br></pre></td></tr></table></figure></p>
+<p>注： 当用户请求 <a href="http://www.domain.com/sg/anypath" target="_blank" rel="noopener">http://www.domain.com/sg/anypath</a> 时被重写为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://a.b.c.d/anypath .</span><br></pre></td></tr></table></figure></p>
+<p>当需要调试时请用rewritelog and rewriteloglevel 9联合,9为最大即得到最多的调试<br>信息最小为1，最小的调试信息，默认为0，没有调试信息。<br>sitemap的语法是${sitemap: LookupKey | Defaultvalue} ,有些书上把$写成了%是错<br>误的。 </p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Apache/" rel="tag"># Apache</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2008/03/15/IBM-install-drivers-2/" rel="next" title="IBM T61/R61/X61 WinXP驱动安装(二)">
+                <i class="fa fa-chevron-left"></i> IBM T61/R61/X61 WinXP驱动安装(二)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2008/03/15/IBM-install-drivers-1/" rel="prev" title="IBM T61/R61/X61 WinXP驱动安装(一)">
+                IBM T61/R61/X61 WinXP驱动安装(一) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">東木</p>
+              <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">202</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-目的"><span class="nav-number">1.</span> <span class="nav-text">一: 目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-为什么需要用重写规则？"><span class="nav-number">2.</span> <span class="nav-text">二:为什么需要用重写规则？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-重写规则的作用范围"><span class="nav-number">3.</span> <span class="nav-text">三: 重写规则的作用范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四-重写规则的应用条件"><span class="nav-number">4.</span> <span class="nav-text">四:重写规则的应用条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五-重写规则怎样工作？"><span class="nav-number">5.</span> <span class="nav-text">五:重写规则怎样工作？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六-何时使用-htaccess中的重写规则定义？"><span class="nav-number">6.</span> <span class="nav-text">六: 何时使用.htaccess中的重写规则定义？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七-应用举例"><span class="nav-number">7.</span> <span class="nav-text">七: 应用举例</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2007 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

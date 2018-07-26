@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'da65f2d4ea1c6d4dccfa6d7f197d2aaf',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="iPhone 买来第一件事不是贴保护膜也不是装保护套 or 保护壳，而是立刻拿到电脑前面 JailBreak（越狱，简称 JB）。没有 JB 的 iPhone 简直跟没装任何扩展程序的 Chrome 一样难用，是说可以装 App 的手机叫做智慧型手机，那我的Chrome应该也可以叫做智慧型浏览器吧（根本不是重点）！（所以 IE 是智障型浏览器） 话说 iOS 7 很多系统层面的东西都被改掉了，导">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="推荐 iOS7 Cydia 我的几个必装套件">
+<meta property="og:url" content="http://blog.liudongkai.com/2014/02/24/ios7-cydia-recommended-software/index.html">
+<meta property="og:site_name" content="Dong&#39;s Note">
+<meta property="og:description" content="iPhone 买来第一件事不是贴保护膜也不是装保护套 or 保护壳，而是立刻拿到电脑前面 JailBreak（越狱，简称 JB）。没有 JB 的 iPhone 简直跟没装任何扩展程序的 Chrome 一样难用，是说可以装 App 的手机叫做智慧型手机，那我的Chrome应该也可以叫做智慧型浏览器吧（根本不是重点）！（所以 IE 是智障型浏览器） 话说 iOS 7 很多系统层面的东西都被改掉了，导">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://photo.liudongkai.com/blog/ios7_cydia_001.jpg">
+<meta property="og:image" content="http://photo.liudongkai.com/blog/ios7_cydia_002.jpg">
+<meta property="og:image" content="http://photo.liudongkai.com/blog/ios7_cydia_003.jpg">
+<meta property="og:image" content="http://photo.liudongkai.com/blog/ios7_cydia_004.jpg">
+<meta property="og:image" content="http://photo.liudongkai.com/blog/ios7_cydia_005.jpg">
+<meta property="og:image" content="http://photo.liudongkai.com/blog/ios7_cydia_006.jpg">
+<meta property="og:image" content="http://photo.liudongkai.com/blog/ios7_cydia_007.jpg">
+<meta property="og:image" content="http://photo.liudongkai.com/blog/ios7_cydia_008.jpg">
+<meta property="og:image" content="http://photo.liudongkai.com/blog/ios7_cydia_009.jpg">
+<meta property="og:updated_time" content="2014-02-23T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="推荐 iOS7 Cydia 我的几个必装套件">
+<meta name="twitter:description" content="iPhone 买来第一件事不是贴保护膜也不是装保护套 or 保护壳，而是立刻拿到电脑前面 JailBreak（越狱，简称 JB）。没有 JB 的 iPhone 简直跟没装任何扩展程序的 Chrome 一样难用，是说可以装 App 的手机叫做智慧型手机，那我的Chrome应该也可以叫做智慧型浏览器吧（根本不是重点）！（所以 IE 是智障型浏览器） 话说 iOS 7 很多系统层面的东西都被改掉了，导">
+<meta name="twitter:image" content="http://photo.liudongkai.com/blog/ios7_cydia_001.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/2014/02/24/ios7-cydia-recommended-software/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>推荐 iOS7 Cydia 我的几个必装套件 | Dong's Note</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42337789-4');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/02/24/ios7-cydia-recommended-software/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">推荐 iOS7 Cydia 我的几个必装套件
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2014-02-24 00:00:00" itemprop="dateCreated datePublished" datetime="2014-02-24T00:00:00+08:00">2014-02-24</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://photo.liudongkai.com/blog/ios7_cydia_001.jpg" alt=""></p>
+<p>iPhone 买来第一件事不是贴保护膜也不是装保护套 or 保护壳，而是立刻拿到电脑前面 JailBreak（越狱，简称 JB）。没有 JB 的 iPhone 简直跟没装任何扩展程序的 Chrome 一样难用，是说可以装 App 的手机叫做智慧型手机，那我的Chrome应该也可以叫做智慧型浏览器吧（根本不是重点）！（所以 IE 是智障型浏览器）</p>
+<p>话说 iOS 7 很多系统层面的东西都被改掉了，导致一些旧版的套件没更新就无法使用；再加上 Apple 官方致敬了一大堆原本越狱社群的套件，让一些原本必装的套件不必装了或是因此又出现了一些必装的套件，所以就整理了这篇我自己的必装套件让大家参考萝。</p>
+<p>请先确认 Cydia 软体源皆有以下源址：（正常字为预设源，粗体字为我自己加上去的）</p>
+<p>BigBoss<br><a href="http://apt.thebigboss.org/repofiles/cydia/dists/stable" target="_blank" rel="noopener">http://apt.thebigboss.org/repofiles/cydia/dists/stable</a></p>
+<p>Cydia/Telesphoreo<br><a href="http://apt.saurik.com/" target="_blank" rel="noopener">http://apt.saurik.com/</a></p>
+<p>kuaidial.googlecode.comsvndeb<br><a href="http://kuaidial.googlecode.com/svn/deb/" target="_blank" rel="noopener">http://kuaidial.googlecode.com/svn/deb/</a></p>
+<p>ModMyi.com<br><a href="http://apt.modmyi.com/dists/stable" target="_blank" rel="noopener">http://apt.modmyi.com/dists/stable</a></p>
+<p>repo666.ultrasn0w.com<br><a href="http://repo666.ultrasn0w.com/" target="_blank" rel="noopener">http://repo666.ultrasn0w.com/</a></p>
+<p>ZodTTD &amp; MacCiti<br><a href="http://cydia.zodttd.com/repo/cydia/dists/stable" target="_blank" rel="noopener">http://cydia.zodttd.com/repo/cydia/dists/stable</a></p>
+<p><strong>第一中文源™</strong><br><a href="http://apt.178.com" target="_blank" rel="noopener">http://apt.178.com</a></p>
+<p>&lt;e Alex Zielenski<br><a href="http://repo.aiexzielenski.com&gt;" target="_blank" rel="noopener">http://repo.aiexzielenski.com&gt;</a></p>
+<p>&lt;e iPhone4.TW<br><a href="http://apt.iphone4.tw/&gt;" target="_blank" rel="noopener">http://apt.iphone4.tw/&gt;</a></p>
+<a id="more"></a>
+<p>以下所有 Cydia 套件皆以 evasi0n JB 后的 iPhone 5 ( iOS 7.0.4 ) 实际操作过的。</p>
+<h2 id="1-Activator"><a href="#1-Activator" class="headerlink" title="1. Activator"></a>1. Activator</h2><ul>
+<li>分类：实用</li>
+<li>价钱：免费</li>
+<li>功能：各式强大自订手势</li>
+<li><p>说明：<br>  其实这个应该也是该跳过的常见套件，不过我想跟大家分享一下怎麽用 Activator 取代 Home 键。iOS 6 之前我也是用 Activator 来返回主画面。</p>
+<p>  一直以来都是用「在顶部状态栏向右拖动」这个手势来当作按一下主画面按钮，即使 iOS 7 多了一个控制中心，那也不会有手势的冲突。</p>
+<p>  另外也设定「在顶部状态栏向左拖动」是启动多任务，这样就几乎用不到 Home 键了。</p>
+<p>  不过有个小问题是在个别全屏软件或游戏中，状态栏被遮挡或隐藏，可以下拉呼出通知栏再向右拖动来触发。但偶有失灵的时候按一次实体 Home 键通常问题就会解决了。</p>
+<p>  当然也许有人会说现在的 Home 键都很坚固了，不用怕按它。我自己也是这样觉得，只是我懒得把指头离开萤幕（是多远），用手势比较快也比较省力萝。（是多没力气）</p>
+</li>
+</ul>
+<h2 id="2-f-lux"><a href="#2-f-lux" class="headerlink" title="2. f.lux"></a>2. f.lux</h2><ul>
+<li>分类：实用、保护眼睛</li>
+<li>价钱：免费</li>
+<li>功能：会随著天黑把萤幕的色温调暖，避免眼睛接收到过多的蓝光。</li>
+<li><p>说明：<br>  Windows、Mac、Linux 上也都有，快把所有的萤幕都装一个吧，不然晚上光线不足还盯著超刺眼的萤幕看眼睛真的会坏掉，跟拿手电筒长时间照自己眼睛一样，可怕！现在白天也设定偏暖了，谁管他甚麽暖色萤幕冷色萤幕，眼睛比较重要啦！</p>
+<p>  可配合 f.lux Flipswitch 在 CCToggles 裡增加开关，在修图、看影片或是比较需要正确颜色的时候可以快速关闭。</p>
+</li>
+<li>截图：<br>  <img src="http://photo.liudongkai.com/blog/ios7_cydia_002.jpg" alt=""></li>
+</ul>
+<h2 id="3-FolderEnhancer-iOS-7"><a href="#3-FolderEnhancer-iOS-7" class="headerlink" title="3. FolderEnhancer (iOS 7)"></a>3. FolderEnhancer (iOS 7)</h2><ul>
+<li>分类：实用、美化</li>
+<li>价钱：$0.99</li>
+<li>功能：更改资料夹内的图示排数和列数、允许资料夹内再塞资料夹。</li>
+<li><p>说明：<br>  Jony Ive 这个天才把 iOS 7 的资料夹搞得有够鸡肋，明明一页的空间就这麽大还只能放 3x3，真的完全不懂在想啥。</p>
+<p>  FolderEnhancer 会记忆最后的排序，以下为回复顺序：在 iTunes 或 iCloud 上备份 iPhone &gt; 回复到全新且未 JB 状态 &gt; 从 iTunes 或 iCloud 回复先前的备份 &gt; 主画面的 app 一片乱七八糟 &gt; 越狱 &gt; 装上 FolderEnhancer &gt; Respring 后 FolderEnhancer 会问你要不要回复先前的排序，按是 &gt; 就变回来啦～</p>
+<p>  后来还尝试了 Springtomize 3，才发现它几乎可以完全取代 FolderEnhancer 的功能… 但我不是很确定 Springtomize 3 可不可以自动备份主画面排序，而且我觉得Springtomize 3多数功能是我使用不到了，那就还是选小巧的吧）</p>
+</li>
+</ul>
+<p>　* 截图：<br>     <img src="http://photo.liudongkai.com/blog/ios7_cydia_003.jpg" alt=""><br>     <img src="http://photo.liudongkai.com/blog/ios7_cydia_004.jpg" alt=""></p>
+<h2 id="4-KuaiDial-for-iOS7"><a href="#4-KuaiDial-for-iOS7" class="headerlink" title="4. KuaiDial for iOS7"></a>4. KuaiDial for iOS7</h2><ul>
+<li>分类：电话实用</li>
+<li>价钱：免费</li>
+<li>功能：为 iPhone 电话 app 加入一大堆好用功能，二话不说必装套件。</li>
+<li><p>说明：<br>  说实话 iPhone 作为一支手机，最基本的通话功能做的实在没有很好，连我之前的 Nokia 智障手机都大胜原生的 iPhone 通讯录查询功能。还好有 KuaiDial 把这些必备功能补上！</p>
+<p>  备注：请确认有安装软体源 kuaidial.googlecode.comsvndeb <a href="http://kuaidial.googlecode.com/svn/deb/" target="_blank" rel="noopener">http://kuaidial.googlecode.com/svn/deb/</a><br>　　　　&lt;e（教学详见：<a href="http://mival.pixnet.net/blog/post/40738015-kuaidial-ios7-izhuyin-keypad/" target="_blank" rel="noopener">教学 / KuaiDial for iOS7 安装注音键盘</a>）&gt;</p>
+</li>
+<li><p>截图：（如要打远东百货只需要按0213就会出现，甚至不需要按到第三或第四个数字）<br>  <img src="http://photo.liudongkai.com/blog/ios7_cydia_005.jpg" alt=""></p>
+</li>
+</ul>
+<h2 id="5-Live-Battery-Indicator-iOS-7"><a href="#5-Live-Battery-Indicator-iOS-7" class="headerlink" title="5. Live Battery Indicator iOS 7"></a>5. Live Battery Indicator iOS 7</h2><ul>
+<li>分类：美化</li>
+<li>价钱：免费</li>
+<li>功能：把状态列上又臭又长的电池电量浓缩成一个好看又能辨识电量的圆圈。</li>
+<li>说明：安装完后要到设定裡的 Alkaline 选择风格并套用。</li>
+<li>截图：<br>  <img src="http://photo.liudongkai.com/blog/ios7_cydia_006.jpg" alt=""></li>
+</ul>
+<h2 id="6-Nitrous"><a href="#6-Nitrous" class="headerlink" title="6. Nitrous"></a>6. Nitrous</h2><ul>
+<li>分类：实用</li>
+<li>价钱：$0.99</li>
+<li>功能：让第三方浏览器也可以呼叫原本只供 Safari 使用的 JavaScript 引擎 Nitro。</li>
+<li><p>说明：<br>  Apple 限制 iOS 的第三方浏览器只能使用速度较慢的 JS 引擎，所以即使 Chrome app 可以跟我桌面使用的 Chrome 浏览器完美同步，我还是一直都用 Safari 当作我的预设 iPhone 浏览器。</p>
+<p>  不过有了这个 tweak 就可以配合 Browser Changer 把预设浏览器改成 Chrome 啦！此外 Chrome app 原本可压缩网页流量的功能也还是可以使用喔！</p>
+<p>  其他 app 像是 Facebook、Feedly 等可以浏览网页的 app 也都可以因为这个 tweak 加速。</p>
+</li>
+<li><p>截图：以下是用 iPhone 5 在 Peacekeeper 网站上分别用 Safari（911分）、未装 Nitrous 的 Chrome（538分）、 装 Nitrous 的 Chrome（925分）的跑分测试。</p>
+<p>  <img src="http://photo.liudongkai.com/blog/ios7_cydia_007.jpg" alt=""><br>  ▲Safari</p>
+<p>  <img src="http://photo.liudongkai.com/blog/ios7_cydia_008.jpg" alt=""><br>  ▲未装 Nitrous 的 Chrome</p>
+<p>  <img src="http://photo.liudongkai.com/blog/ios7_cydia_009.jpg" alt=""><br>  ▲装 Nitrous 的 Chrome</p>
+</li>
+</ul>
+<h2 id="7-SwipeSelection"><a href="#7-SwipeSelection" class="headerlink" title="7. SwipeSelection"></a>7. SwipeSelection</h2><ul>
+<li>分类：打字超级实用</li>
+<li>价钱：免费</li>
+<li>功能：直接在键盘上滑动以移动文字输入游标。</li>
+<li>说明：<br>  从来没看过这麽直觉又不可或缺的套件，害我现在不管拿到谁的手机，要移动游标的下意识动作都是在键盘上左右滑…</li>
+</ul>
+<h2 id="常见必装套件："><a href="#常见必装套件：" class="headerlink" title="常见必装套件："></a><e0>常见必装套件：</e0></h2><p>A. 3G Unrestrictor 5 (iOS 7 &amp; 6)：解除各种只有 WiFi 连线才能用的限制。</p>
+<p>B. afc2add：让电脑上的管理程式如 iFunBox、iTools 可以正常读取 iPhone 内的系统档案。</p>
+<p>C. iFile：直接在 iPhone 上管理系统档案。</p>
+<p>D. WinterBoard：套用各式主题。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/02/17/Flash-P2P-Disable/" rel="next" title="屏蔽Flash P2P看在线视频偷偷上传，详尽手工教程">
+                <i class="fa fa-chevron-left"></i> 屏蔽Flash P2P看在线视频偷偷上传，详尽手工教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/03/12/php-chinese-character-to-pinyin/" rel="prev" title="PHP汉字转拼音函数">
+                PHP汉字转拼音函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">東木</p>
+              <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">202</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Activator"><span class="nav-number">1.</span> <span class="nav-text">1. Activator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-f-lux"><span class="nav-number">2.</span> <span class="nav-text">2. f.lux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-FolderEnhancer-iOS-7"><span class="nav-number">3.</span> <span class="nav-text">3. FolderEnhancer (iOS 7)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-KuaiDial-for-iOS7"><span class="nav-number">4.</span> <span class="nav-text">4. KuaiDial for iOS7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Live-Battery-Indicator-iOS-7"><span class="nav-number">5.</span> <span class="nav-text">5. Live Battery Indicator iOS 7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Nitrous"><span class="nav-number">6.</span> <span class="nav-text">6. Nitrous</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-SwipeSelection"><span class="nav-number">7.</span> <span class="nav-text">7. SwipeSelection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见必装套件："><span class="nav-number">8.</span> <span class="nav-text">常见必装套件：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2007 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

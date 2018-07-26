@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'da65f2d4ea1c6d4dccfa6d7f197d2aaf',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="基础 HideRun.vbs 1CreateObject(&amp;quot;WScript.Shell&amp;quot;).Run &amp;quot;cmd /cD:\test.bat&amp;quot;,0   其中D:\test.bat是你的批处理路径  HideRun.bat123echo CreateObject(&amp;quot;WScript.Shell&amp;quot;).Run &amp;quot;cmd /cD:\test">
+<meta name="keywords" content="CMD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="批处理隐藏运行的10种思路[zt]">
+<meta property="og:url" content="http://blog.liudongkai.com/2009/04/19/cmd-hidden-run/index.html">
+<meta property="og:site_name" content="Dong&#39;s Note">
+<meta property="og:description" content="基础 HideRun.vbs 1CreateObject(&amp;quot;WScript.Shell&amp;quot;).Run &amp;quot;cmd /cD:\test.bat&amp;quot;,0   其中D:\test.bat是你的批处理路径  HideRun.bat123echo CreateObject(&amp;quot;WScript.Shell&amp;quot;).Run &amp;quot;cmd /cD:\test">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2009-04-18T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="批处理隐藏运行的10种思路[zt]">
+<meta name="twitter:description" content="基础 HideRun.vbs 1CreateObject(&amp;quot;WScript.Shell&amp;quot;).Run &amp;quot;cmd /cD:\test.bat&amp;quot;,0   其中D:\test.bat是你的批处理路径  HideRun.bat123echo CreateObject(&amp;quot;WScript.Shell&amp;quot;).Run &amp;quot;cmd /cD:\test">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/2009/04/19/cmd-hidden-run/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>批处理隐藏运行的10种思路[zt] | Dong's Note</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42337789-4');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/04/19/cmd-hidden-run/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">批处理隐藏运行的10种思路[zt]
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2009-04-19 00:00:00" itemprop="dateCreated datePublished" datetime="2009-04-19T00:00:00+08:00">2009-04-19</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ol>
+<li><p>基础</p>
+<p>HideRun.vbs</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CreateObject(&quot;WScript.Shell&quot;).Run &quot;cmd /cD:\test.bat&quot;,0</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>其中D:\test.bat是你的批处理路径</p>
+<p> HideRun.bat<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo CreateObject(&quot;WScript.Shell&quot;).Run &quot;cmd /cD:\test.bat&quot;,0&gt;$tmp.vbs</span><br><span class="line">cscript.exe /e:vbscript $tmp.vbs</span><br><span class="line">del $tmp.vbs</span><br></pre></td></tr></table></figure></p>
+<p>这个批处理其实不能使其批处理本身隐藏，但是下面大部分隐藏调用批处理的原理和基础。</p>
+<p> HideRun.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new ActiveXObject(&apos;WScript.Shell&apos;).Run(&apos;cmd /cD:\Test.bat&apos;,0);</span><br></pre></td></tr></table></figure></p>
+<p>用Javascript有什么好处呢？js的字符串变量可以用单引号，从而方便命令行作为参数调用，而且js很好的支持多行语句用 ; 分隔写成一行。要注意的是：js要区分大小写，方法必须用括号，结尾必须有分号。所以就成了下面的命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mshta &quot;javascript:new ActiveXObject(&apos;WScript.Shell&apos;).Run(&apos;cmd /cD:\test.bat&apos;,0);window.close()&quot;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<ol start="2">
+<li><p>用快捷方式</p>
+<p>如果要使一个批处理本身隐藏，可以参考附件里的一个快捷方式，修改附件中的相关路径即可隐藏启动你的批处理。可以用vbs来建立一个 .lnk，其实用批处理也行（先echo一个vbs出来）</p>
+</li>
+<li><p>利用系统服务</p>
+<p>可以用sc建立一个系统服务然后启动这个服务来启动批处理。缺点是启动服务较慢，需要管理员权限<br>查考这个帖子，<br><a href="http://www.cn-dos.net/forum/viewthread.php?tid=21426" target="_blank" rel="noopener">http://www.cn-dos.net/forum/viewthread.php?tid=21426</a><br>asbai 兄的大作，极大的方便了我们的使用。</p>
+<!-- more -->
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">runassrv add /cmdline:&quot;C:\Windows\System32\cmd.exe /cD:\test.bat&quot; /name:&quot;mysrv&quot;</span><br><span class="line">net start mysrv</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><p>利用at计划任务</p>
+<p>用at可以建立一个计划任务，在不输入 <code>/interactive</code> 参数可以后台运行。但是建使用at必须有管理员权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">at 09:10 &quot;cmd /cD:\Test.bat&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>然后在 9:10 系统就会自动后台以SYSTEM权限运行这个bat</p>
+<ol start="5">
+<li><p>利用ftype文件关联</p>
+<p>综合上面的技术，使所有批处理都隐藏运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ftype batfile=C:\Windows\System32\mshta “javascript:new ActiveXObject(‘WScript.Shell’).Run(‘cmd /c%1′,0);window.close();”</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>大家可以讨论下下面的思路，目前没有明确的方法，但是理论上是可行的</p>
+<ol start="6">
+<li><p>rundll32</p>
+<p>其实这个方法只是理论上估计的，这里提出来占个位置，留个记号，等待高手研究<br>rundll32可以调用 dll 里的API，如果有个dll可以隐藏run一个exe就可以实现隐藏启动批处理，呵呵。目前我也没找到方法。</p>
+</li>
+<li><p>其他用户</p>
+<p>Windows 2k/XP支持多用户，如果能在后台登陆另一个账户的桌面然后运行一个批处理，就能完全达到隐藏的目的</p>
+</li>
+<li><p>bat2vbs</p>
+<p>这个方法只是一个不是很成熟的思路。<br>查考这个帖子：<br><a href="http://www.cn-dos.net/forum/viewthread.php?tid=20769" target="_blank" rel="noopener">http://www.cn-dos.net/forum/viewthread.php?tid=20769</a><br>这使我们产生了一个想法：把bat转换成vbs，然后vbs生成一个临时bat文件，然后WScript.Shell.Run隐藏启动这个临时bat</p>
+</li>
+<li><p>.NET编译</p>
+<p>参考这个帖子：<br><a href="http://www.cn-dos.net/forum/viewthread.php?tid=23374" target="_blank" rel="noopener">http://www.cn-dos.net/forum/viewthread.php?tid=23374</a><br>里面提到了一个 .NET Warpper，我们完全可以利用系统自带的组件把bat编译到 exe 当中。如果bat不涉及交互，exe自然就安静的运行了。</p>
+</li>
+<li><p>注入汇编</p>
+<p>最后向大家推出的今天最隆重的，ASCII Assembly Code专家 Herbert Kleebauer 的又一力作：showwin.exe</p>
+<p><strong>Quote:</strong></p>
+<blockquote>
+<p>showwin.exe let you minimize/maximize/hide the command window<br>within a batch program (requires W2k or better).</p>
+</blockquote>
+<blockquote>
+<p>Usage: showwin.exe number</p>
+</blockquote>
+<blockquote>
+<p>0 SW_HIDE<br>Hides the window and activates another window.</p>
+</blockquote>
+<blockquote>
+<p>1 SW_SHOWNORMAL<br>Activates and displays a window. If the window is minimized or maximized,<br>the system restores it to its original size and position. An application<br>should specify this flag when displaying the window for the first time.</p>
+</blockquote>
+<blockquote>
+<p>2 SW_SHOWMINIMIZED<br>Activates the window and displays it as a minimized window.</p>
+</blockquote>
+<blockquote>
+<p>3 SW_MAXIMIZE<br>Maximizes the specified window.</p>
+</blockquote>
+<blockquote>
+<p>3 SW_SHOWMAXIMIZED<br>Activates the window and displays it as a maximized window.</p>
+</blockquote>
+<blockquote>
+<p>4 SW_SHOWNOACTIVATE<br>Displays a window in its most recent size and position. This value is<br>similar to SW_SHOWNORMAL, except the window is not actived.</p>
+</blockquote>
+<blockquote>
+<p>5 SW_SHOW<br>Activates the window and displays it in its current size and position.</p>
+</blockquote>
+<blockquote>
+<p>6 SW_MINIMIZE<br>Minimizes the specified window and activates the next top-level window<br>in the Z order.</p>
+</blockquote>
+<blockquote>
+<p>7 SW_SHOWMINNOACTIVE<br>Displays the window as a minimized window. This value is similar to<br>SW_SHOWMINIMIZED, except the window is not activated.</p>
+</blockquote>
+<blockquote>
+<p>8 SW_SHOWNA<br>Displays the window in its current size and position. This value is<br>similar to SW_SHOW, except the window is not activated.</p>
+</blockquote>
+<blockquote>
+<p>9 SW_RESTORE<br>Activates and displays the window. If the window is minimized or maximized,<br>the system restores it to its original size and position. An application<br>should specify this flag when restoring a minimized window.</p>
+</blockquote>
+<blockquote>
+<p>10 SW_SHOWDEFAULT<br>Sets the show state based on the SW_ value specified in the STARTUPINFO<br>structure passed to the CreateProcess function by the program that<br>started the application.</p>
+</blockquote>
+<blockquote>
+<p>11 SW_FORCEMINIMIZE<br>Windows 2000/XP: Minimizes a window, even if the thread that owns the<br>window is not responding. This flag should only be used when minimizing<br>windows from a different thread.</p>
+</blockquote>
+<p>A simple example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">echo Bj@jzh`0X-`/PPPPPPa(DE(DM(DO(Dh(Ls(Lu(LX(LeZRR]EEEUYRX2Dx=&gt;showwin.com</span><br><span class="line">echo 0DxFP,0Xx.t0P,=XtGsB4o@$?PIyU WwX0GwUY Wv;ovBX2Gv0ExGIuht6&gt;&gt;showwin.com</span><br><span class="line">echo T&#125;&#123;zE~@gwkBG@OEKcUt`E&#125;@mqqBsy?seHBEaPhxr?@zAB`LrPEyoDt@Cj?&gt;&gt;showwin.com</span><br><span class="line">echo pky_jN@QEKpEt@ij?jySjN@REKpEt@jj?jyGjN@SEKkjtlGuNw?p@pjirz&gt;&gt;showwin.com</span><br><span class="line">echo FEvAUSQ?_YLTQ@@?~QCo_F~RDU@?aU?@MQ_AMy1GHs?Gw`LbLK@shM`S_d&gt;&gt;showwin.com</span><br><span class="line">echo bD_nsDddlTr_sPdlnTcnaTv_xP_ngD_rhDhsrT_kkDhrtT_fmDRNCTILk?&gt;&gt;showwin.com</span><br><span class="line">echo staThg_So_rPfnqTl`qTdq_ShtpTrdqThV_Sqrm@ILm?O?cOKFDP?@@?dx&gt;&gt;showwin.com</span><br><span class="line">echo OdFUu?N?_B@J@??KD?HUA?QOGB_QO?F?SCAQO?UDF?UCE?Q_F?DUA?CUB?&gt;&gt;showwin.com</span><br><span class="line">echo OFO?FOS?DUO?IUO?FOW?RU&#123;OWFO?mYU?wdsTeQs@OQ@?QAQ?LUA?_F_og~&gt;&gt;showwin.com</span><br><span class="line">echo UODUO?FOSAFOeAUOyAO_DCSHUOOQO?OCFGuHUOGFO?TUO?DRTTqrQ@kcmS&gt;&gt;showwin.com</span><br><span class="line">echo gFkPFUO?ngRThVvTncmTJFvPMQDTrKDDcmqOFkkDFOSAFOeAUOyAdFFSnB&gt;&gt;showwin.com</span><br><span class="line">echo sT`llTKcmTdmhTFQ@PBsdTrmnTdknTmhVTvncTwDSSOshTbnqTrrdTT~?K&gt;&gt;showwin.com</span><br><span class="line">echo ?OGOQp?o??Gds?wOw?PGAtaCHQvNntQv_w?A?it\=upkNQD??OuQsQG[i?&gt;&gt;showwin.com</span><br><span class="line">echo RwrqosHy?Mjmv\@IuBlpUrHdjNAslF~mH&#125;OKT?U??PT~OL?O?O?i?COT~B&gt;&gt;showwin.com</span><br><span class="line">echo U?OCU?YF0x&gt;&gt;showwin.com</span><br><span class="line"></span><br><span class="line"> showwin.com&gt;showwin.exe</span><br><span class="line">del showwin.com</span><br><span class="line"></span><br><span class="line"> dir</span><br><span class="line"></span><br><span class="line"> :: wait 4 seconds</span><br><span class="line">ping -n 4 localhost &gt;nul</span><br><span class="line"></span><br><span class="line"> :: hide window</span><br><span class="line">showwin.exe 0</span><br><span class="line"></span><br><span class="line"> dir /b</span><br><span class="line"></span><br><span class="line"> :: wait 4 seconds</span><br><span class="line">ping -n 4 localhost &gt;nul</span><br><span class="line"></span><br><span class="line"> :: show window</span><br><span class="line">showwin.exe 5</span><br><span class="line"></span><br><span class="line"> :: wait 4 seconds</span><br><span class="line">ping -n 4 localhost &gt;nul</span><br><span class="line"></span><br><span class="line"> del showwin.exe</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CMD/" rel="tag"># CMD</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2009/04/04/SQL-server-replace-regular/" rel="next" title="一个用于SQL Server 正则替换的函数">
+                <i class="fa fa-chevron-left"></i> 一个用于SQL Server 正则替换的函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2009/04/19/mysql-delete-binlog/" rel="prev" title="删除MYSQl BIN-LOG 日志[zt]">
+                删除MYSQl BIN-LOG 日志[zt] <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">東木</p>
+              <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">202</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2007 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

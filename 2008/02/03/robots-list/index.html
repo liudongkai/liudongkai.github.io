@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'da65f2d4ea1c6d4dccfa6d7f197d2aaf',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="高强度爬虫程序百度爬虫Baiduspider+(+http://www.baidu.com/search/spider.htm)    高强度爬虫，有时会从多个IP地址启动多个爬虫程序！由于算法问题，百度爬虫对相同页面会多次发出请求（尤其是首页），令人烦恼。推广效果好。  雅虎爬虫，分别是雅虎中国和美国总部的爬虫Mozilla/5.0 (compatible; Yahoo! Slurp China">
+<meta name="keywords" content="robots">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搜索引擎爬虫程序一览表">
+<meta property="og:url" content="http://blog.liudongkai.com/2008/02/03/robots-list/index.html">
+<meta property="og:site_name" content="Dong&#39;s Note">
+<meta property="og:description" content="高强度爬虫程序百度爬虫Baiduspider+(+http://www.baidu.com/search/spider.htm)    高强度爬虫，有时会从多个IP地址启动多个爬虫程序！由于算法问题，百度爬虫对相同页面会多次发出请求（尤其是首页），令人烦恼。推广效果好。  雅虎爬虫，分别是雅虎中国和美国总部的爬虫Mozilla/5.0 (compatible; Yahoo! Slurp China">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2008-02-02T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="搜索引擎爬虫程序一览表">
+<meta name="twitter:description" content="高强度爬虫程序百度爬虫Baiduspider+(+http://www.baidu.com/search/spider.htm)    高强度爬虫，有时会从多个IP地址启动多个爬虫程序！由于算法问题，百度爬虫对相同页面会多次发出请求（尤其是首页），令人烦恼。推广效果好。  雅虎爬虫，分别是雅虎中国和美国总部的爬虫Mozilla/5.0 (compatible; Yahoo! Slurp China">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/2008/02/03/robots-list/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>搜索引擎爬虫程序一览表 | Dong's Note</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42337789-4');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/02/03/robots-list/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">搜索引擎爬虫程序一览表
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-02-03 00:00:00" itemprop="dateCreated datePublished" datetime="2008-02-03T00:00:00+08:00">2008-02-03</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Analytics/" itemprop="url" rel="index"><span itemprop="name">Analytics</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="高强度爬虫程序"><a href="#高强度爬虫程序" class="headerlink" title="高强度爬虫程序"></a><e1>高强度爬虫程序</e1></h2><h3 id="百度爬虫"><a href="#百度爬虫" class="headerlink" title="百度爬虫"></a>百度爬虫</h3><p><strong>Baiduspider+(+<a href="http://www.baidu.com/search/spider.htm" target="_blank" rel="noopener">http://www.baidu.com/search/spider.htm</a>)</strong>  </p>
+<blockquote>
+<p>高强度爬虫，有时会从多个IP地址启动多个爬虫程序！<br>由于算法问题，百度爬虫对相同页面会多次发出请求（尤其是首页），令人烦恼。<br>推广效果好。</p>
+</blockquote>
+<h3 id="雅虎爬虫，分别是雅虎中国和美国总部的爬虫"><a href="#雅虎爬虫，分别是雅虎中国和美国总部的爬虫" class="headerlink" title="雅虎爬虫，分别是雅虎中国和美国总部的爬虫"></a>雅虎爬虫，分别是雅虎中国和美国总部的爬虫</h3><p><strong>Mozilla/5.0 (compatible; Yahoo! Slurp China; <a href="http://misc.yahoo.com.cn/help.html" target="_blank" rel="noopener">http://misc.yahoo.com.cn/help.html</a>)<br>Mozilla/5.0 (compatible; Yahoo! Slurp; <a href="http://help.yahoo.com/help/us/ysearch/slurp" target="_blank" rel="noopener">http://help.yahoo.com/help/us/ysearch/slurp</a>)</strong></p>
+<blockquote>
+<p>高强度爬虫，有时会从多个IP地址启动多个爬虫程序！<br>比较规范的爬虫，看参考其网址，设定爬虫访问间隔。（但需要考虑同时出现多个yahoo爬虫）<br>推广效果尚可。</p>
+</blockquote>
+<h3 id="新浪爱问爬虫"><a href="#新浪爱问爬虫" class="headerlink" title="新浪爱问爬虫"></a>新浪爱问爬虫</h3><p><strong>iaskspider/2.0(+<a href="http://iask.com/help/help_index.html" target="_blank" rel="noopener">http://iask.com/help/help_index.html</a>)<br>Mozilla/5.0 (compatible; iaskspider/1.0; MSIE 6.0)</strong></p>
+<blockquote>
+<p>算法差，大量扫描无实际意义的页面，对动态链接网站负担很大<br>推广效果差。  </p>
+</blockquote>
+<h3 id="搜狗爬虫"><a href="#搜狗爬虫" class="headerlink" title="搜狗爬虫"></a>搜狗爬虫</h3><p><strong>Sogou web spider/3.0(+<a href="http://www.sogou.com/docs/help/webmasters.htm#07" target="_blank" rel="noopener">http://www.sogou.com/docs/help/webmasters.htm#07</a>)<br>Sogou Push Spider/3.0(+<a href="http://www.sogou.com/docs/help/webmasters.htm#07" target="_blank" rel="noopener">http://www.sogou.com/docs/help/webmasters.htm#07</a>)</strong><br><em>【早期用法：“sogou spider”】</em></p>
+<blockquote>
+<p>算法差，大量扫描无实际意义的页面，对动态链接网站负担很大<br>推广效果差。</p>
+</blockquote>
+<h2 id="中等强度爬虫程序"><a href="#中等强度爬虫程序" class="headerlink" title="中等强度爬虫程序"></a><e2>中等强度爬虫程序</e2></h2><h3 id="Google爬虫"><a href="#Google爬虫" class="headerlink" title="Google爬虫"></a>Google爬虫</h3><p><strong>Mozilla/5.0 (compatible; Googlebot/2.1; +<a href="http://www.google.com/bot.html" target="_blank" rel="noopener">http://www.google.com/bot.html</a>)</strong></p>
+<blockquote>
+<p>算法优秀，多为访问有实际内容的页面<br>推广效果好。</p>
+</blockquote>
+<h3 id="Google-AdSense广告内容匹配爬虫"><a href="#Google-AdSense广告内容匹配爬虫" class="headerlink" title="Google AdSense广告内容匹配爬虫"></a>Google AdSense广告内容匹配爬虫</h3><p><strong>Mediapartners-Google/2.1</strong></p>
+<blockquote>
+<p>对网页收录有一定辅助作用。</p>
+</blockquote>
+<h3 id="网易爬虫"><a href="#网易爬虫" class="headerlink" title="网易爬虫"></a>网易爬虫</h3><p><strong>Mozilla/5.0 (compatible; YodaoBot/1.0; <a href="http://www.yodao.com/help/webmaster/spider/" target="_blank" rel="noopener">http://www.yodao.com/help/webmaster/spider/</a> )</strong><br><em>【早期采用“ OutfoxBot/0.5 (for internet experiments; http://”; <a href="mailto:outfoxbot@gmail.com" target="_blank" rel="noopener">outfoxbot@gmail.com</a>)】</em></p>
+<blockquote>
+<p>其搜索算法需要改进<br>推广效果差。</p>
+</blockquote>
+<h3 id="Alexa排名爬虫"><a href="#Alexa排名爬虫" class="headerlink" title="Alexa排名爬虫"></a>Alexa排名爬虫</h3><p><strong>ia_archiver</strong></p>
+<blockquote>
+<p>用于检测网站是否做了alexa排名的作弊。</p>
+</blockquote>
+<h3 id="Twiceler"><a href="#Twiceler" class="headerlink" title="Twiceler"></a>Twiceler</h3><p><strong>Mozilla/5.0 (Twiceler-0.9 <a href="http://www.cuill.com/twiceler/robot.html" target="_blank" rel="noopener">http://www.cuill.com/twiceler/robot.html</a>)</strong></p>
+<blockquote>
+<p>美国斯坦福大学的一个学生研究项目。</p>
+</blockquote>
+<h2 id="其他搜索引擎的爬虫"><a href="#其他搜索引擎的爬虫" class="headerlink" title="其他搜索引擎的爬虫"></a><e3>其他搜索引擎的爬虫</e3></h2><p><strong>msnbot/1.0 (+<a href="http://search.msn.com/msnbot.htm" target="_blank" rel="noopener">http://search.msn.com/msnbot.htm</a>)</strong></p>
+<blockquote>
+<p>MSN爬虫<br>特点未知</p>
+</blockquote>
+<p><strong>msnbot-media/1.0 (+<a href="http://search.msn.com/msnbot.htm" target="_blank" rel="noopener">http://search.msn.com/msnbot.htm</a>)</strong></p>
+<blockquote>
+<p>（欢迎补充资料）<br>特点未知</p>
+</blockquote>
+<p><strong>Mozilla/4.0(compatible; MSIE 5.0; Windows 98; DigExt)</strong></p>
+<blockquote>
+<p>DigExt并非一个独立的爬虫程序，而是IE5的“允许脱机阅读”模式标记。</p>
+</blockquote>
+<p><strong>Mozilla/3.0 (compatible; Indy Library)</strong></p>
+<blockquote>
+<p>Indy Library本来是个开源程序库，但后来被spam bots冒用。<br>抓取强度：各服务器上不一定<br>推广效果：无</p>
+</blockquote>
+<p><strong>P.Arthur 1.1</strong></p>
+<blockquote>
+<p>据称为北大天网的搜索引擎爬虫程序</p>
+</blockquote>
+<p><strong>Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; QihooBot 1.0)</strong></p>
+<blockquote>
+<p>名字上看来是Qihoo的<br>特点未知</p>
+</blockquote>
+<p><strong>Gigabot</strong><br><strong>Gigabot/2.0 (<a href="http://www.gigablast.com/spider.html" target="_blank" rel="noopener">http://www.gigablast.com/spider.html</a>)</strong></p>
+<blockquote>
+<p>Gigabot搜索引擎爬虫。已被google收购？（欢迎补充资料）</p>
+</blockquote>
+<p><strong>eApolloBot/1.0 (eApollo search engine robot; <a href="http://www.eapollo.com“" target="_blank" rel="noopener">http://www.eapollo.com“</a>; eapollo at global-opto dot com)</strong></p>
+<p><strong>lanshanbot/1.0</strong></p>
+<blockquote>
+<p>据说是中搜爬虫。（欢迎补充资料）</p>
+</blockquote>
+<p>iearthworm/1.0, <a href="mailto:iearthworm@yahoo.com.cn" target="_blank" rel="noopener">iearthworm@yahoo.com.cn</a></p>
+<blockquote>
+<p>专抓图片的爬虫，据说来源IP是3721或阿里巴巴。</p>
+</blockquote>
+<p><strong>TMCrawler</strong></p>
+<p><strong>Mozilla/5.0 (compatible; heritrix/1.10.2 +<a href="http://i.stanford.edu/" target="_blank" rel="noopener">http://i.stanford.edu/</a>)</strong></p>
+<blockquote>
+<p>开源的网络爬虫，一个数字图书馆项目。</p>
+</blockquote>
+<p><strong>WebNews http.pl</strong></p>
+<h2 id="RSS扫描器"><a href="#RSS扫描器" class="headerlink" title="RSS扫描器"></a><e4>RSS扫描器</e4></h2><h3 id="foxmail6"><a href="#foxmail6" class="headerlink" title="foxmail6"></a>foxmail6</h3><p><strong>rss.asp Mozilla/6.0 (MSIE 6.0; Windows NT 5.1;Foxmail/MILOWU)</strong></p>
+<blockquote>
+<p>这是用foxmail6.0订阅了你的rss</p>
+</blockquote>
+<h3 id="google的rss搜索扫描器"><a href="#google的rss搜索扫描器" class="headerlink" title="google的rss搜索扫描器"></a>google的rss搜索扫描器</h3><p><strong>rss.asp Feedfetcher-Google; (+<a href="http://www.google.com/feedfetcher.html" target="_blank" rel="noopener">http://www.google.com/feedfetcher.html</a>)</strong></p>
+<blockquote>
+<p>google的rss搜索扫描器</p>
+</blockquote>
+<h3 id="feedsky"><a href="#feedsky" class="headerlink" title="feedsky"></a>feedsky</h3><p><strong>rss.asp feedsky_spider <a href="http://www.feedsky.com" target="_blank" rel="noopener">http://www.feedsky.com</a></strong></p>
+<blockquote>
+<p>一款rss扫描器，有兴趣者进入此网站添加您的rss</p>
+</blockquote>
+<p>Powered by <a href="http://scribefire.com/" target="_blank" rel="noopener">ScribeFire</a>.</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/robots/" rel="tag"># robots</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2008/02/02/MSN-use-firefox-open-url/" rel="next" title="如何在 MSN 中使用 Firefox 打开链接">
+                <i class="fa fa-chevron-left"></i> 如何在 MSN 中使用 Firefox 打开链接
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2008/02/05/router-mtu/" rel="prev" title="路由器mtu设置">
+                路由器mtu设置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">東木</p>
+              <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">202</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#高强度爬虫程序"><span class="nav-number">1.</span> <span class="nav-text">高强度爬虫程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#百度爬虫"><span class="nav-number">1.1.</span> <span class="nav-text">百度爬虫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#雅虎爬虫，分别是雅虎中国和美国总部的爬虫"><span class="nav-number">1.2.</span> <span class="nav-text">雅虎爬虫，分别是雅虎中国和美国总部的爬虫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新浪爱问爬虫"><span class="nav-number">1.3.</span> <span class="nav-text">新浪爱问爬虫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搜狗爬虫"><span class="nav-number">1.4.</span> <span class="nav-text">搜狗爬虫</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中等强度爬虫程序"><span class="nav-number">2.</span> <span class="nav-text">中等强度爬虫程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Google爬虫"><span class="nav-number">2.1.</span> <span class="nav-text">Google爬虫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Google-AdSense广告内容匹配爬虫"><span class="nav-number">2.2.</span> <span class="nav-text">Google AdSense广告内容匹配爬虫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网易爬虫"><span class="nav-number">2.3.</span> <span class="nav-text">网易爬虫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Alexa排名爬虫"><span class="nav-number">2.4.</span> <span class="nav-text">Alexa排名爬虫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Twiceler"><span class="nav-number">2.5.</span> <span class="nav-text">Twiceler</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他搜索引擎的爬虫"><span class="nav-number">3.</span> <span class="nav-text">其他搜索引擎的爬虫</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RSS扫描器"><span class="nav-number">4.</span> <span class="nav-text">RSS扫描器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#foxmail6"><span class="nav-number">4.1.</span> <span class="nav-text">foxmail6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#google的rss搜索扫描器"><span class="nav-number">4.2.</span> <span class="nav-text">google的rss搜索扫描器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#feedsky"><span class="nav-number">4.3.</span> <span class="nav-text">feedsky</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2007 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

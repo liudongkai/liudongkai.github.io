@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'da65f2d4ea1c6d4dccfa6d7f197d2aaf',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="http://www.cnblogs.com/zhongweiv/archive/2013/01/05/ad_sync.html  DirectorySearcher.Filter属性扩充说明 用户属性扩充说明(含图文属性对照) 常规 地址 帐户 电话 组织    &amp;nbsp; DirectorySearcher.Filter属性扩充说明1DirectorySearcher mySearcher">
+<meta name="keywords" content="Active Directory">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C# AD(Active Directory)域信息同步，组织单位、用户等信息查询[zt]">
+<meta property="og:url" content="http://blog.liudongkai.com/2014/01/16/Active-Directory-Filter-Attributes/index.html">
+<meta property="og:site_name" content="Dong&#39;s Note">
+<meta property="og:description" content="http://www.cnblogs.com/zhongweiv/archive/2013/01/05/ad_sync.html  DirectorySearcher.Filter属性扩充说明 用户属性扩充说明(含图文属性对照) 常规 地址 帐户 电话 组织    &amp;nbsp; DirectorySearcher.Filter属性扩充说明1DirectorySearcher mySearcher">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://photo.liudongkai.com/blog/AD01a.jpg">
+<meta property="og:image" content="http://photo.liudongkai.com/blog/AD02a.jpg">
+<meta property="og:image" content="http://photo.liudongkai.com/blog/AD03a.jpg">
+<meta property="og:image" content="http://photo.liudongkai.com/blog/AD04a.jpg">
+<meta property="og:image" content="http://photo.liudongkai.com/blog/AD05a.jpg">
+<meta property="og:updated_time" content="2014-01-15T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C# AD(Active Directory)域信息同步，组织单位、用户等信息查询[zt]">
+<meta name="twitter:description" content="http://www.cnblogs.com/zhongweiv/archive/2013/01/05/ad_sync.html  DirectorySearcher.Filter属性扩充说明 用户属性扩充说明(含图文属性对照) 常规 地址 帐户 电话 组织    &amp;nbsp; DirectorySearcher.Filter属性扩充说明1DirectorySearcher mySearcher">
+<meta name="twitter:image" content="http://photo.liudongkai.com/blog/AD01a.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/2014/01/16/Active-Directory-Filter-Attributes/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>C# AD(Active Directory)域信息同步，组织单位、用户等信息查询[zt] | Dong's Note</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42337789-4');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/01/16/Active-Directory-Filter-Attributes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C# AD(Active Directory)域信息同步，组织单位、用户等信息查询[zt]
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2014-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2014-01-16T00:00:00+08:00">2014-01-16</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://www.cnblogs.com/zhongweiv/archive/2013/01/05/ad_sync.html" target="_blank" rel="noopener">http://www.cnblogs.com/zhongweiv/archive/2013/01/05/ad_sync.html</a></p>
+<ul>
+<li><a href="#filter">DirectorySearcher.Filter属性扩充说明</a></li>
+<li><a href="#sample">用户属性扩充说明(含图文属性对照)</a><ul>
+<li><a href="#comm">常规</a></li>
+<li><a href="#addr">地址</a></li>
+<li><a href="#ac">帐户</a></li>
+<li><a href="#mob">电话</a></li>
+<li><a href="#org">组织</a></li>
+</ul>
+</li>
+</ul>
+<p><a id="filter" name="filter">&nbsp;</a></p>
+<h2 id="DirectorySearcher-Filter属性扩充说明"><a href="#DirectorySearcher-Filter属性扩充说明" class="headerlink" title="DirectorySearcher.Filter属性扩充说明"></a>DirectorySearcher.Filter属性扩充说明</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DirectorySearcher mySearcher = new DirectorySearcher(entryOU, &quot;(objectclass=organizationalUnit)&quot;); //查询组织单位</span><br></pre></td></tr></table></figure>
+<p>第二个参数是一个filter，也可以根据需求输入其它筛选条件，下面列出几个常用的</p>
+<a id="more"></a>
+<table>
+<thead>
+<tr>
+<th>筛选条件</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户</td>
+<td>(&amp;(objectCategory=person)(objectClass=user))  </td>
+</tr>
+<tr>
+<td>计算机</td>
+<td>(objectCategory=computer)  </td>
+</tr>
+<tr>
+<td>组</td>
+<td>(objectCategory=group)</td>
+</tr>
+<tr>
+<td>联系人</td>
+<td>(objectCategory=contact)</td>
+</tr>
+<tr>
+<td>共享文件夹</td>
+<td>(objectCategory=volume)  </td>
+</tr>
+<tr>
+<td>打印机</td>
+<td>(objectCategory=printQueue)  </td>
+</tr>
+</tbody>
+</table>
+<p>更多高级筛选请查看：<a href="http://msdn.microsoft.com/zh-cn/library/system.directoryservices.directorysearcher.filter(v=vs.80).aspx" target="_blank" rel="noopener">http://msdn.microsoft.com/zh-cn/library/system.directoryservices.directorysearcher.filter(v=vs.80).aspx</a></p>
+<p><a id="sample" name="sample">&nbsp;</a></p>
+<h2 id="用户属性扩充说明-含图文属性对照"><a href="#用户属性扩充说明-含图文属性对照" class="headerlink" title="用户属性扩充说明(含图文属性对照)"></a>用户属性扩充说明(含图文属性对照)</h2><p>示例中只对用户进行了读取了几个属性，用过AD域的应该都知道，用户的属性较多也比较常用。</p>
+<p>下面通过AD域的用户详细信息设置来对照一下相应的属性名，<br>更多用户属性定义可参看前一篇<a href="http://www.liudongkai.com/articles/2014/01/13/1389625568310.html" target="_blank" rel="noopener">《User Attributes - Inside Active Directory》</a></p>
+<ul>
+<li>常项选项卡<a id="comm" name="comm">&nbsp;</a></li>
+</ul>
+<p><img src="http://photo.liudongkai.com/blog/AD01a.jpg" alt="常规选项卡"></p>
+<table>
+<thead>
+<tr>
+<th>对应编号</th>
+<th>选项卡对应项名</th>
+<th>属性名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>①</td>
+<td>姓(L)</td>
+<td>sn                                     </td>
+</tr>
+<tr>
+<td>②</td>
+<td>名(F)</td>
+<td>givenName                              </td>
+</tr>
+<tr>
+<td>③</td>
+<td>显示名称(S)</td>
+<td>displayName                            </td>
+</tr>
+<tr>
+<td>④</td>
+<td>描述(D)</td>
+<td>description                            </td>
+</tr>
+<tr>
+<td>⑤</td>
+<td>办公室(C)</td>
+<td>physicalDeliveryOfficeName             </td>
+</tr>
+<tr>
+<td>⑥</td>
+<td>英文缩写(I)</td>
+<td>initials                               </td>
+</tr>
+<tr>
+<td>⑦</td>
+<td>电话号码(T)</td>
+<td>telephoneNumber                        </td>
+</tr>
+<tr>
+<td>⑧</td>
+<td>电子邮件(M)</td>
+<td>mail                                   </td>
+</tr>
+<tr>
+<td>⑨</td>
+<td>网页(W)</td>
+<td>wWWHomePage                            </td>
+</tr>
+<tr>
+<td>⑩</td>
+<td>电话号码-其它(O)…</td>
+<td>otherTelephone                         </td>
+</tr>
+<tr>
+<td>⑪</td>
+<td>网页-其它(R)…</td>
+<td>url                              </td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>地址选项卡<a id="addr" name="addr">&nbsp;</a></li>
+</ul>
+<p><img src="http://photo.liudongkai.com/blog/AD02a.jpg" alt="地址选项卡"></p>
+<table>
+<thead>
+<tr>
+<th>对应编号</th>
+<th>选项卡对应项名</th>
+<th>属性名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>①</td>
+<td>国家/地区(O)</td>
+<td>co                                      </td>
+</tr>
+<tr>
+<td>②</td>
+<td>省/自治区(V)</td>
+<td>st                                      </td>
+</tr>
+<tr>
+<td>③</td>
+<td>市/县(C)</td>
+<td>l</td>
+</tr>
+<tr>
+<td>④</td>
+<td>街道(S)</td>
+<td>streetAddress</td>
+</tr>
+<tr>
+<td>⑤</td>
+<td>邮政信箱(B)</td>
+<td>postOfficeBox</td>
+</tr>
+<tr>
+<td>⑥</td>
+<td>邮政编码(Z)</td>
+<td>postalCode</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>帐户选项卡<a id="ac" name="ac">&nbsp;</a></li>
+</ul>
+<p><img src="http://photo.liudongkai.com/blog/AD03a.jpg" alt="帐户选项卡"></p>
+<table>
+<thead>
+<tr>
+<th>对应编号</th>
+<th>选项卡对应项名</th>
+<th>属性名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>①</td>
+<td>用户登录名(U)</td>
+<td>userPrincipalName</td>
+</tr>
+<tr>
+<td>②</td>
+<td>用户登录名(Windows 2000 以前版本)(W)</td>
+<td>sAMAccountName</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>电话选项卡<a id="mob" name="mob">&nbsp;</a></li>
+</ul>
+<p><img src="http://photo.liudongkai.com/blog/AD04a.jpg" alt="电话选项卡"></p>
+<table>
+<thead>
+<tr>
+<th>对应编号</th>
+<th>选项卡对应项名</th>
+<th>属性名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>①</td>
+<td>家庭电话(M)</td>
+<td>homePhone                               </td>
+</tr>
+<tr>
+<td>②</td>
+<td>寻呼机(P)</td>
+<td>pager</td>
+</tr>
+<tr>
+<td>③</td>
+<td>移动电话(B)</td>
+<td>mobile</td>
+</tr>
+<tr>
+<td>④</td>
+<td>传真(F)</td>
+<td>facsimileTelephoneNumber</td>
+</tr>
+<tr>
+<td>⑤</td>
+<td>IP电话(I)</td>
+<td>ipPhone</td>
+</tr>
+<tr>
+<td>⑥</td>
+<td>注释</td>
+<td>info</td>
+</tr>
+<tr>
+<td>⑦</td>
+<td>家庭电话-其它(O)</td>
+<td>otherHomePhone                          </td>
+</tr>
+<tr>
+<td>⑧</td>
+<td>寻呼机-其它(T)</td>
+<td>otherPager                              </td>
+</tr>
+<tr>
+<td>⑨</td>
+<td>移动电话-其它(B)</td>
+<td>otherMobile                             </td>
+</tr>
+<tr>
+<td>⑩</td>
+<td>传真-其它(E)</td>
+<td>otherFacsimileTelephoneNumber           </td>
+</tr>
+<tr>
+<td>⑪</td>
+<td>IP电话-其它(R)</td>
+<td>otherIpPhone</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>组织选项卡<a id="org" name="org">&nbsp;</a></li>
+</ul>
+<p><img src="http://photo.liudongkai.com/blog/AD05a.jpg" alt="组织选项卡"></p>
+<table>
+<thead>
+<tr>
+<th>对应编号</th>
+<th>选项卡对应项名</th>
+<th>属性名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>①</td>
+<td>公司(C)</td>
+<td>company</td>
+</tr>
+<tr>
+<td>②</td>
+<td>部门(D)</td>
+<td>department</td>
+</tr>
+<tr>
+<td>③</td>
+<td>职务(J)</td>
+<td>title</td>
+</tr>
+<tr>
+<td>④</td>
+<td>经理-姓名(N)</td>
+<td>manager  </td>
+</tr>
+<tr>
+<td>⑥</td>
+<td>直接下属(E)</td>
+<td>directReports</td>
+</tr>
+</tbody>
+</table>
+<p>还有一些属性没有列出来，可以循环输出DirectoryEntry.Properties.PropertyNames来找。<br>比如用objectsid这也是个用户比较重要的属性，在设置Windows共享时会用到!</p>
+<p>更多用户属性定义可参看前一篇<a href="/2014/01/13/User_Attributes_Inside_Active_Directory/">《User Attributes - Inside Active Directory》</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Active-Directory/" rel="tag"># Active Directory</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/01/13/User-Attributes-Inside-Active-Directory/" rel="next" title="User Attributes - Inside Active Directory">
+                <i class="fa fa-chevron-left"></i> User Attributes - Inside Active Directory
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/01/16/Ignoring-disabled-users-in-LDAP-Active-Directory/" rel="prev" title="Ignoring disabled users in LDAP Active Directory [zt]">
+                Ignoring disabled users in LDAP Active Directory [zt] <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">東木</p>
+              <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">202</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DirectorySearcher-Filter属性扩充说明"><span class="nav-number">1.</span> <span class="nav-text">DirectorySearcher.Filter属性扩充说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户属性扩充说明-含图文属性对照"><span class="nav-number">2.</span> <span class="nav-text">用户属性扩充说明(含图文属性对照)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2007 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

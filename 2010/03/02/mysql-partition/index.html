@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'da65f2d4ea1c6d4dccfa6d7f197d2aaf',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="[概述][分区表和未分区表试验过程][分区命令详解] [概述]自5.1开始对分区(Partition)有支持，6.0应比较稳定 = 水平分区（根据列属性按行分）=举个简单例子：一个包含十年发票记录的表可以被分区为十个不同的分区，每个分区包含的是其中一年的记录。 === 水平分区的几种模式：===  Range（范围） – 这种模式允许DBA将数据划分不同范围。例如DBA可以将一个表通过年份划分成三">
+<meta name="keywords" content="Mysql,Partition">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL分区（Partition）功能试验">
+<meta property="og:url" content="http://blog.liudongkai.com/2010/03/02/mysql-partition/index.html">
+<meta property="og:site_name" content="Dong&#39;s Note">
+<meta property="og:description" content="[概述][分区表和未分区表试验过程][分区命令详解] [概述]自5.1开始对分区(Partition)有支持，6.0应比较稳定 = 水平分区（根据列属性按行分）=举个简单例子：一个包含十年发票记录的表可以被分区为十个不同的分区，每个分区包含的是其中一年的记录。 === 水平分区的几种模式：===  Range（范围） – 这种模式允许DBA将数据划分不同范围。例如DBA可以将一个表通过年份划分成三">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2010-03-01T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL分区（Partition）功能试验">
+<meta name="twitter:description" content="[概述][分区表和未分区表试验过程][分区命令详解] [概述]自5.1开始对分区(Partition)有支持，6.0应比较稳定 = 水平分区（根据列属性按行分）=举个简单例子：一个包含十年发票记录的表可以被分区为十个不同的分区，每个分区包含的是其中一年的记录。 === 水平分区的几种模式：===  Range（范围） – 这种模式允许DBA将数据划分不同范围。例如DBA可以将一个表通过年份划分成三">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/2010/03/02/mysql-partition/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>MySQL分区（Partition）功能试验 | Dong's Note</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42337789-4');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/03/02/mysql-partition/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MySQL分区（Partition）功能试验
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2010-03-02 00:00:00" itemprop="dateCreated datePublished" datetime="2010-03-02T00:00:00+08:00">2010-03-02</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[概述]<br>[分区表和未分区表试验过程]<br>[分区命令详解]</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="[概述]"></a>[概述]</h2><p>自5.1开始对分区(Partition)有支持，6.0应比较稳定</p>
+<h3 id="水平分区（根据列属性按行分）"><a href="#水平分区（根据列属性按行分）" class="headerlink" title="= 水平分区（根据列属性按行分）="></a>= 水平分区（根据列属性按行分）=</h3><p>举个简单例子：一个包含十年发票记录的表可以被分区为十个不同的分区，每个分区包含的是其中一年的记录。</p>
+<p>=== 水平分区的几种模式：===</p>
+<ul>
+<li><p>Range（范围） – 这种模式允许DBA将数据划分不同范围。例如DBA可以将一个表通过年份划分成三个分区，80年代（1980′s）的数据，90年代（1990′s）的数据以及任何在2000年（包括2000年）后的数据。</p>
+</li>
+<li><p>Hash（哈希） – 这中模式允许DBA通过对表的一个或多个列的Hash Key进行计算，最后通过这个Hash码不同数值对应的数据区域进行分区，。例如DBA可以建立一个对表主键进行分区的表。</p>
+</li>
+<li><p>Key（键值） – 上面Hash模式的一种延伸，这里的Hash Key是MySQL系统产生的。</p>
+</li>
+<li><p>List（预定义列表） – 这种模式允许系统通过DBA定义的列表的值所对应的行数据进行分割。例如：DBA建立了一个横跨三个分区的表，分别根据2004年2005年和2006年值所对应的数据。</p>
+</li>
+<li><p>Composite（复合模式） – 很神秘吧，哈哈，其实是以上模式的组合使用而已，就不解释了。举例：在初始化已经进行了Range范围分区的表上，我们可以对其中一个分区再进行hash哈希分区。</p>
+</li>
+</ul>
+<h3 id="垂直分区（按列分）"><a href="#垂直分区（按列分）" class="headerlink" title="= 垂直分区（按列分）="></a>= 垂直分区（按列分）=</h3><p>举个简单例子：一个包含了大text和BLOB列的表，这些text和BLOB列又不经常被访问，这时候就要把这些不经常使用的text和BLOB了划分到另一个分区，在保证它们数据相关性的同时还能提高访问速度。</p>
+<h2 id="分区表和未分区表试验过程"><a href="#分区表和未分区表试验过程" class="headerlink" title="[分区表和未分区表试验过程]"></a>[分区表和未分区表试验过程]</h2><a id="more"></a>
+<ul>
+<li>创建分区表,按日期的年份拆分<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE TABLE part_tab ( c1 int default NULL, c2 varchar(30) default NULL, c3 date default NULL) engine=myisam</span><br><span class="line">PARTITION BY RANGE (year(c3)) (PARTITION p0 VALUES LESS THAN (1995),</span><br><span class="line">PARTITION p1 VALUES LESS THAN (1996) , PARTITION p2 VALUES LESS THAN (1997) ,</span><br><span class="line">PARTITION p3 VALUES LESS THAN (1998) , PARTITION p4 VALUES LESS THAN (1999) ,</span><br><span class="line">PARTITION p5 VALUES LESS THAN (2000) , PARTITION p6 VALUES LESS THAN (2001) ,</span><br><span class="line">PARTITION p7 VALUES LESS THAN (2002) , PARTITION p8 VALUES LESS THAN (2003) ,</span><br><span class="line">PARTITION p9 VALUES LESS THAN (2004) , PARTITION p10 VALUES LESS THAN (2010),</span><br><span class="line">PARTITION p11 VALUES LESS THAN MAXVALUE );</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注意最后一行，考虑到可能的最大值</p>
+<ul>
+<li><p>创建未分区表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table no_part_tab (c1 int(11) default NULL,c2 varchar(30) default NULL,c3 date default NULL) engine=myisam;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过存储过程灌入800万条测试数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; set sql_mode=”; /* 如果创建存储过程失败，则先需设置此变量, bug? */</span><br><span class="line">mysql&gt; delimiter // /* 设定语句终结符为 //，因存储过程语句用;结束 */</span><br><span class="line">mysql&gt; CREATE PROCEDURE load_part_tab()</span><br><span class="line">begin</span><br><span class="line">declare v int default 0;</span><br><span class="line">while v &lt; 8000000</span><br><span class="line">do</span><br><span class="line">insert into part_tab</span><br><span class="line">values (v,&apos;testing partitions&apos;,adddate(&apos;1995-01-01&apos;,(rand(v)*36520) mod 3652));</span><br><span class="line">set v = v + 1;</span><br><span class="line">end while;</span><br><span class="line">end</span><br><span class="line">//</span><br><span class="line">mysql&gt; delimiter ;</span><br><span class="line">mysql&gt; call load_part_tab();</span><br><span class="line">Query OK, 1 row affected (8 min 17.75 sec)</span><br><span class="line">mysql&gt; insert into no_part_tab select * from part_tab;</span><br><span class="line">Query OK, 8000000 rows affected (51.59 sec)</span><br><span class="line">Records: 8000000 Duplicates: 0 Warnings: 0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试SQL性能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select count(*) from part_tab where c3 &gt; date ’1995-01-01′ and c3 &lt; date &apos;1995-12-31&apos;;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">| 795181   |</span><br><span class="line">+----------+</span><br><span class="line">1 row in set (0.55 sec)</span><br><span class="line">mysql&gt; select count(*) from no_part_tab where c3 &gt; date ’1995-01-01′ and c3 &lt; date &apos;1995-12-31&apos;;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">| 795181   |</span><br><span class="line">+----------+</span><br><span class="line">1 row in set (4.69 sec)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>结果表明分区表比未分区表的执行时间少90%。</p>
+<ul>
+<li>通过explain语句来分析执行情况<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql &gt; explain select count(*) from no_part_tab where c3 &gt; date &apos;1995-01-01&apos; and c3 &lt; date &apos;1995-12-31&apos;\G</span><br><span class="line">/* 结尾的\G使得mysql的输出改为列模式 */</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">id: 1</span><br><span class="line">select_type: SIMPLE</span><br><span class="line">table: no_part_tab</span><br><span class="line">type: ALL</span><br><span class="line">possible_keys: NULL</span><br><span class="line">key: NULL</span><br><span class="line">key_len: NULL</span><br><span class="line">ref: NULL</span><br><span class="line">rows: 8000000</span><br><span class="line">Extra: Using where</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; explain select count(*) from part_tab where c3 &gt; date &apos;1995-01-01&apos; and c3 &lt; date &apos;1995-12-31&apos;\G</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">id: 1</span><br><span class="line">select_type: SIMPLE</span><br><span class="line">table: part_tab</span><br><span class="line">type: ALL</span><br><span class="line">possible_keys: NULL</span><br><span class="line">key: NULL</span><br><span class="line">key_len: NULL</span><br><span class="line">ref: NULL</span><br><span class="line">rows: 798458</span><br><span class="line">Extra: Using where</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>explain语句显示了SQL查询要处理的记录数目</p>
+<ul>
+<li>试验创建索引后情况<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create index idx_of_c3 on no_part_tab (c3);</span><br><span class="line">Query OK, 8000000 rows affected (1 min 18.08 sec)</span><br><span class="line">Records: 8000000 Duplicates: 0 Warnings: 0</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create index idx_of_c3 on part_tab (c3);</span><br><span class="line">Query OK, 8000000 rows affected (1 min 19.19 sec)</span><br><span class="line">Records: 8000000 Duplicates: 0 Warnings: 0</span><br></pre></td></tr></table></figure>
+<p>创建索引后的数据库文件大小列表：</p>
+<blockquote>
+<p>2008-05-24 09:23 8,608 no_part_tab.frm<br>2008-05-24 09:24 255,999,996 no_part_tab.MYD<br>2008-05-24 09:24 81,611,776 no_part_tab.MYI<br>2008-05-24 09:25 0 part_tab#P#p0.MYD<br>2008-05-24 09:26 1,024 part_tab#P#p0.MYI<br>2008-05-24 09:26 25,550,656 part_tab#P#p1.MYD<br>2008-05-24 09:26 8,148,992 part_tab#P#p1.MYI<br>2008-05-24 09:26 25,620,192 part_tab#P#p10.MYD<br>2008-05-24 09:26 8,170,496 part_tab#P#p10.MYI<br>2008-05-24 09:25 0 part_tab#P#p11.MYD<br>2008-05-24 09:26 1,024 part_tab#P#p11.MYI<br>2008-05-24 09:26 25,656,512 part_tab#P#p2.MYD<br>2008-05-24 09:26 8,181,760 part_tab#P#p2.MYI<br>2008-05-24 09:26 25,586,880 part_tab#P#p3.MYD<br>2008-05-24 09:26 8,160,256 part_tab#P#p3.MYI<br>2008-05-24 09:26 25,585,696 part_tab#P#p4.MYD<br>2008-05-24 09:26 8,159,232 part_tab#P#p4.MYI<br>2008-05-24 09:26 25,585,216 part_tab#P#p5.MYD<br>2008-05-24 09:26 8,159,232 part_tab#P#p5.MYI<br>2008-05-24 09:26 25,655,740 part_tab#P#p6.MYD<br>2008-05-24 09:26 8,181,760 part_tab#P#p6.MYI<br>2008-05-24 09:26 25,586,528 part_tab#P#p7.MYD<br>2008-05-24 09:26 8,160,256 part_tab#P#p7.MYI<br>2008-05-24 09:26 25,586,752 part_tab#P#p8.MYD<br>2008-05-24 09:26 8,160,256 part_tab#P#p8.MYI<br>2008-05-24 09:26 25,585,824 part_tab#P#p9.MYD<br>2008-05-24 09:26 8,159,232 part_tab#P#p9.MYI<br>2008-05-24 09:25 8,608 part_tab.frm<br>2008-05-24 09:25 68 part_tab.par</p>
+</blockquote>
+<ul>
+<li>再次测试SQL性能<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select count(*) from no_part_tab where c3 &gt; date ’1995-01-01′ and c3 &lt; date &apos;1995-12-31&apos;;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">| 795181   |</span><br><span class="line">+----------+</span><br><span class="line">1 row in set (2.42 sec) /* 为原来4.69 sec 的51%*/</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>重启mysql ( net stop mysql, net start mysql)后，查询时间降为0.89 sec,几乎与分区表相同。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select count(*) from part_tab where c3 &gt; date ’1995-01-01′ and c3 &lt; date &apos;1995-12-31&apos;;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">| 795181   |</span><br><span class="line">+----------+</span><br><span class="line">1 row in set (0.86 sec)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>更进一步的试验<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">** 增加日期范围</span><br><span class="line">mysql&gt; select count(*) from no_part_tab where c3 &gt; date ’1995-01-01′ and c3 &lt; date &apos;1997-12-31&apos;;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">| 2396524  |</span><br><span class="line">+----------+</span><br><span class="line">1 row in set (5.42 sec)</span><br><span class="line"></span><br><span class="line"> mysql&gt; select count(*) from part_tab where c3 &gt; date ’1995-01-01′ and c3 &lt; date &apos;1997-12-31&apos;;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">| 2396524  |</span><br><span class="line">+----------+</span><br><span class="line">1 row in set (2.63 sec)</span><br><span class="line"></span><br><span class="line"> ** 增加未索引字段查询</span><br><span class="line">mysql&gt; select count(*) from part_tab where c3 &gt; date ’1995-01-01′ and c3 &lt; date</span><br><span class="line">&apos;1996-12-31&apos; and c2=&apos;hello&apos;;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">| 0        |</span><br><span class="line">+----------+</span><br><span class="line">1 row in set (0.75 sec)</span><br><span class="line"></span><br><span class="line"> mysql&gt; select count(*) from no_part_tab where c3 &gt; date ’1995-01-01′ and c3 &lt; da</span><br><span class="line">te &apos;1996-12-31&apos; and c2=&apos;hello&apos;;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">| 0        |</span><br><span class="line">+----------+</span><br><span class="line">1 row in set (11.52 sec)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>= 初步结论 =</p>
+<ul>
+<li>分区和未分区占用文件空间大致相同 （数据和索引文件）</li>
+<li>如果查询语句中有未建立索引字段，分区时间远远优于未分区时间</li>
+<li>如果查询语句中字段建立了索引，分区和未分区的差别缩小，分区略优于未分区。</li>
+</ul>
+<p>= 最终结论 =</p>
+<ul>
+<li>对于大数据量，建议使用分区功能。</li>
+<li>去除不必要的字段</li>
+<li>根据手册， 增加<code>myisam_max_sort_file_size</code> 会增加分区性能</li>
+</ul>
+<h2 id="分区命令详解"><a href="#分区命令详解" class="headerlink" title="[分区命令详解]"></a>[分区命令详解]</h2><p>= 分区例子 =</p>
+<ul>
+<li><p>RANGE 类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE users (</span><br><span class="line">uid INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,</span><br><span class="line">name VARCHAR(30) NOT NULL DEFAULT &apos;&apos;,</span><br><span class="line">email VARCHAR(30) NOT NULL DEFAULT &apos;&apos;</span><br><span class="line">)</span><br><span class="line">PARTITION BY RANGE (uid) (</span><br><span class="line">PARTITION p0 VALUES LESS THAN (3000000)</span><br><span class="line">DATA DIRECTORY = &apos;/data0/data&apos;</span><br><span class="line">INDEX DIRECTORY = &apos;/data1/idx&apos;,</span><br><span class="line"></span><br><span class="line"> PARTITION p1 VALUES LESS THAN (6000000)</span><br><span class="line">DATA DIRECTORY = &apos;/data2/data&apos;</span><br><span class="line">INDEX DIRECTORY = &apos;/data3/idx&apos;,</span><br><span class="line"></span><br><span class="line"> PARTITION p2 VALUES LESS THAN (9000000)</span><br><span class="line">DATA DIRECTORY = &apos;/data4/data&apos;</span><br><span class="line">INDEX DIRECTORY = &apos;/data5/idx&apos;,</span><br><span class="line"></span><br><span class="line"> PARTITION p3 VALUES LESS THAN MAXVALUE DATA DIRECTORY = &apos;/data6/data&apos;</span><br><span class="line">INDEX DIRECTORY = &apos;/data7/idx&apos;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>在这里，将用户表分成4个分区，以每300万条记录为界限，每个分区都有自己独立的数据、索引文件的存放目录，与此同时，这些目录所在的物理磁盘分区可能也都是完全独立的，可以提高磁盘IO吞吐量。</p>
+</li>
+<li><p>LIST 类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE category (</span><br><span class="line">cid INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,</span><br><span class="line">name VARCHAR(30) NOT NULL DEFAULT &apos;&apos;</span><br><span class="line">)</span><br><span class="line">PARTITION BY LIST (cid) (</span><br><span class="line">PARTITION p0 VALUES IN (0,4,8,12)</span><br><span class="line">DATA DIRECTORY = &apos;/data0/data&apos;</span><br><span class="line">INDEX DIRECTORY = &apos;/data1/idx&apos;,</span><br><span class="line"></span><br><span class="line"> PARTITION p1 VALUES IN (1,5,9,13)</span><br><span class="line">DATA DIRECTORY = &apos;/data2/data&apos;</span><br><span class="line">INDEX DIRECTORY = &apos;/data3/idx&apos;,</span><br><span class="line"></span><br><span class="line"> PARTITION p2 VALUES IN (2,6,10,14)</span><br><span class="line">DATA DIRECTORY = &apos;/data4/data&apos;</span><br><span class="line">INDEX DIRECTORY = &apos;/data5/idx&apos;,</span><br><span class="line"></span><br><span class="line"> PARTITION p3 VALUES IN (3,7,11,15)</span><br><span class="line">DATA DIRECTORY = &apos;/data6/data&apos;</span><br><span class="line">INDEX DIRECTORY = &apos;/data7/idx&apos;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>分成4个区，数据文件和索引文件单独存放。</p>
+</li>
+<li><p>HASH 类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE users (</span><br><span class="line">uid INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,</span><br><span class="line">name VARCHAR(30) NOT NULL DEFAULT &apos;&apos;,</span><br><span class="line">email VARCHAR(30) NOT NULL DEFAULT &apos;&apos;</span><br><span class="line">)</span><br><span class="line">PARTITION BY HASH (uid) PARTITIONS 4 (</span><br><span class="line">PARTITION p0</span><br><span class="line">DATA DIRECTORY = &apos;/data0/data&apos;</span><br><span class="line">INDEX DIRECTORY = &apos;/data1/idx&apos;,</span><br><span class="line"></span><br><span class="line"> PARTITION p1</span><br><span class="line">DATA DIRECTORY = &apos;/data2/data&apos;</span><br><span class="line">INDEX DIRECTORY = &apos;/data3/idx&apos;,</span><br><span class="line"></span><br><span class="line"> PARTITION p2</span><br><span class="line">DATA DIRECTORY = &apos;/data4/data&apos;</span><br><span class="line">INDEX DIRECTORY = &apos;/data5/idx&apos;,</span><br><span class="line"></span><br><span class="line"> PARTITION p3</span><br><span class="line">DATA DIRECTORY = &apos;/data6/data&apos;</span><br><span class="line">INDEX DIRECTORY = &apos;/data7/idx&apos;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>分成4个区，数据文件和索引文件单独存放。</p>
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE ti2 (id INT, amount DECIMAL(7,2), tr_date DATE)</span><br><span class="line">ENGINE=myisam</span><br><span class="line">PARTITION BY HASH( MONTH(tr_date) )</span><br><span class="line">PARTITIONS 6;</span><br><span class="line"></span><br><span class="line"> CREATE PROCEDURE load_ti2()</span><br><span class="line">begin</span><br><span class="line">declare v int default 0;</span><br><span class="line">while v &lt; 80000</span><br><span class="line">do</span><br><span class="line">insert into ti2</span><br><span class="line">values (v,&apos;3.14&apos;,adddate(&apos;1995-01-01&apos;,(rand(v)*3652) mod 365));</span><br><span class="line">set v = v + 1;</span><br><span class="line">end while;</span><br><span class="line">end</span><br><span class="line">//</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>KEY 类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE users (</span><br><span class="line">uid INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,</span><br><span class="line">name VARCHAR(30) NOT NULL DEFAULT &apos;&apos;,</span><br><span class="line">email VARCHAR(30) NOT NULL DEFAULT &apos;&apos;</span><br><span class="line">)</span><br><span class="line">PARTITION BY KEY (uid) PARTITIONS 4 (</span><br><span class="line">PARTITION p0</span><br><span class="line">DATA DIRECTORY = &apos;/data0/data&apos;</span><br><span class="line">INDEX DIRECTORY = &apos;/data1/idx&apos;,</span><br><span class="line"></span><br><span class="line"> PARTITION p1</span><br><span class="line">DATA DIRECTORY = &apos;/data2/data&apos;</span><br><span class="line">INDEX DIRECTORY = &apos;/data3/idx&apos;,</span><br><span class="line"></span><br><span class="line"> PARTITION p2</span><br><span class="line">DATA DIRECTORY = &apos;/data4/data&apos;</span><br><span class="line">INDEX DIRECTORY = &apos;/data5/idx&apos;,</span><br><span class="line"></span><br><span class="line"> PARTITION p3</span><br><span class="line">DATA DIRECTORY = &apos;/data6/data&apos;</span><br><span class="line">INDEX DIRECTORY = &apos;/data7/idx&apos;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>分成4个区，数据文件和索引文件单独存放。</p>
+<ul>
+<li><p>子分区</p>
+<p>子分区是针对 RANGE/LIST 类型的分区表中每个分区的再次分割。再次分割可以是 HASH/KEY 等类型。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE users (</span><br><span class="line">uid INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,</span><br><span class="line">name VARCHAR(30) NOT NULL DEFAULT &apos;&apos;,</span><br><span class="line">email VARCHAR(30) NOT NULL DEFAULT &apos;&apos;</span><br><span class="line">)</span><br><span class="line">PARTITION BY RANGE (uid) SUBPARTITION BY HASH (uid % 4) SUBPARTITIONS 2(</span><br><span class="line">PARTITION p0 VALUES LESS THAN (3000000)</span><br><span class="line">DATA DIRECTORY = &apos;/data0/data&apos;</span><br><span class="line">INDEX DIRECTORY = &apos;/data1/idx&apos;,</span><br><span class="line"></span><br><span class="line"> PARTITION p1 VALUES LESS THAN (6000000)</span><br><span class="line">DATA DIRECTORY = &apos;/data2/data&apos;</span><br><span class="line">INDEX DIRECTORY = &apos;/data3/idx&apos;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>对 RANGE 分区再次进行子分区划分，子分区采用 HASH 类型。</p>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE users (</span><br><span class="line">uid INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,</span><br><span class="line">name VARCHAR(30) NOT NULL DEFAULT &apos;&apos;,</span><br><span class="line">email VARCHAR(30) NOT NULL DEFAULT &apos;&apos;</span><br><span class="line">)</span><br><span class="line">PARTITION BY RANGE (uid) SUBPARTITION BY KEY(uid) SUBPARTITIONS 2(</span><br><span class="line">PARTITION p0 VALUES LESS THAN (3000000)</span><br><span class="line">DATA DIRECTORY = &apos;/data0/data&apos;</span><br><span class="line">INDEX DIRECTORY = &apos;/data1/idx&apos;,</span><br><span class="line"></span><br><span class="line"> PARTITION p1 VALUES LESS THAN (6000000)</span><br><span class="line">DATA DIRECTORY = &apos;/data2/data&apos;</span><br><span class="line">INDEX DIRECTORY = &apos;/data3/idx&apos;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>对 RANGE 分区再次进行子分区划分，子分区采用 KEY 类型。</p>
+</li>
+</ul>
+<p>= 分区管理 =</p>
+<ul>
+<li>删除分区<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALERT TABLE users DROP PARTITION p0;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>删除分区 p0。</p>
+<ul>
+<li><p>重建分区</p>
+<ul>
+<li>RANGE 分区重建<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE users REORGANIZE PARTITION p0,p1 INTO (PARTITION p0 VALUES LESS THAN (6000000));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>将原来的 p0,p1 分区合并起来，放到新的 p0 分区中。</p>
+<pre><code>* LIST 分区重建
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE users REORGANIZE PARTITION p0,p1 INTO (PARTITION p0 VALUES IN(0,1,4,5,8,9,12,13));</span><br></pre></td></tr></table></figure>
+<p>将原来的 p0,p1 分区合并起来，放到新的 p0 分区中。</p>
+<pre><code>* HASH/KEY 分区重建
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE users REORGANIZE PARTITION COALESCE PARTITION 2;</span><br></pre></td></tr></table></figure>
+<p>用 REORGANIZE 方式重建分区的数量变成2，在这里数量只能减少不能增加。想要增加可以用 ADD PARTITION 方法。</p>
+<ul>
+<li><p>新增分区</p>
+<ul>
+<li>新增 RANGE 分区<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE category ADD PARTITION (PARTITION p4 VALUES IN (16,17,18,19)</span><br><span class="line">DATA DIRECTORY = &apos;/data8/data&apos;</span><br><span class="line">INDEX DIRECTORY = &apos;/data9/idx&apos;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>新增一个RANGE分区。</p>
+<pre><code>* 新增 HASH/KEY 分区
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE users ADD PARTITION PARTITIONS 8;</span><br></pre></td></tr></table></figure>
+<p>将分区总数扩展到8个。</p>
+<h2 id="给已有的表加上分区"><a href="#给已有的表加上分区" class="headerlink" title="[ 给已有的表加上分区 ]"></a>[ 给已有的表加上分区 ]</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">alter table results partition by RANGE (month(ttime))</span><br><span class="line">(PARTITION p0 VALUES LESS THAN (1),</span><br><span class="line">PARTITION p1 VALUES LESS THAN (2) , PARTITION p2 VALUES LESS THAN (3) ,</span><br><span class="line">PARTITION p3 VALUES LESS THAN (4) , PARTITION p4 VALUES LESS THAN (5) ,</span><br><span class="line">PARTITION p5 VALUES LESS THAN (6) , PARTITION p6 VALUES LESS THAN (7) ,</span><br><span class="line">PARTITION p7 VALUES LESS THAN (8) , PARTITION p8 VALUES LESS THAN (9) ,</span><br><span class="line">PARTITION p9 VALUES LESS THAN (10) , PARTITION p10 VALUES LESS THAN (11),</span><br><span class="line">PARTITION p11 VALUES LESS THAN (12),</span><br><span class="line">PARTITION P12 VALUES LESS THAN (13) );</span><br></pre></td></tr></table></figure>
+<p>默认分区限制分区字段必须是主键（PRIMARY KEY)的一部分，为了去除此<br>限制：</p>
+<p>[方法1] 使用ID<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER TABLE np_pk</span><br><span class="line">-&gt; PARTITION BY HASH( TO_DAYS(added) )</span><br><span class="line">-&gt; PARTITIONS 4;</span><br><span class="line">ERROR 1503 (HY000): A PRIMARY KEY must include all columns in the table’s partitioning function</span><br></pre></td></tr></table></figure></p>
+<p>However, this statement using the id column for the partitioning column is valid, as shown here:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER TABLE np_pk</span><br><span class="line">-&gt; PARTITION BY HASH(id)</span><br><span class="line">-&gt; PARTITIONS 4;</span><br><span class="line">Query OK, 0 rows affected (0.11 sec)</span><br><span class="line">Records: 0 Duplicates: 0 Warnings: 0</span><br></pre></td></tr></table></figure></p>
+<p>[方法2] 将原有PK去掉生成新PK<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; alter table results drop PRIMARY KEY;</span><br><span class="line">Query OK, 5374850 rows affected (7 min 4.05 sec)</span><br><span class="line">Records: 5374850 Duplicates: 0 Warnings: 0</span><br><span class="line"></span><br><span class="line">mysql&gt; alter table results add PRIMARY KEY(id, ttime);</span><br><span class="line">Query OK, 5374850 rows affected (6 min 14.86 sec)</span><br><span class="line">Records: 5374850 Duplicates: 0 Warnings: 0</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mysql/" rel="tag"># Mysql</a>
+          
+            <a href="/tags/Partition/" rel="tag"># Partition</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2010/02/24/mysql-errcode-13/" rel="next" title="解决mysql–Can't get stat of (Errcode: 13)">
+                <i class="fa fa-chevron-left"></i> 解决mysql–Can't get stat of (Errcode: 13)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2010/03/04/awk-single-quotes/" rel="prev" title="awk中使用单引号">
+                awk中使用单引号 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">東木</p>
+              <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">202</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">[概述]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#水平分区（根据列属性按行分）"><span class="nav-number">1.1.</span> <span class="nav-text">= 水平分区（根据列属性按行分）=</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垂直分区（按列分）"><span class="nav-number">1.2.</span> <span class="nav-text">= 垂直分区（按列分）=</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分区表和未分区表试验过程"><span class="nav-number">2.</span> <span class="nav-text">[分区表和未分区表试验过程]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分区命令详解"><span class="nav-number">3.</span> <span class="nav-text">[分区命令详解]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#给已有的表加上分区"><span class="nav-number">4.</span> <span class="nav-text">[ 给已有的表加上分区 ]</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2007 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

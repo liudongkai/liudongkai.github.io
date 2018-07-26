@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'da65f2d4ea1c6d4dccfa6d7f197d2aaf',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="XP网络不能访问的解决方案  就是像2000一样“开启guset用户”  允许Guest用户访问本机 :开始–运行–输入gpedit.msc，依次选择“计算机配置→Windows设置→安全设置→本地策略→用户权利指派”，删除“拒绝从网络访问这台计算机”策略中的“GUEST”账号。  更改网络访问模式:开始–运行–输入gpedit.msc，依次选择“计算机配置→Windows设置→安全设置→本地策略">
+<meta name="keywords" content="Network">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网上邻居可见，无法访问，您可能没有权限使用网络资源">
+<meta property="og:url" content="http://blog.liudongkai.com/2008/07/31/network-neighborhood/index.html">
+<meta property="og:site_name" content="Dong&#39;s Note">
+<meta property="og:description" content="XP网络不能访问的解决方案  就是像2000一样“开启guset用户”  允许Guest用户访问本机 :开始–运行–输入gpedit.msc，依次选择“计算机配置→Windows设置→安全设置→本地策略→用户权利指派”，删除“拒绝从网络访问这台计算机”策略中的“GUEST”账号。  更改网络访问模式:开始–运行–输入gpedit.msc，依次选择“计算机配置→Windows设置→安全设置→本地策略">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2008-07-30T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网上邻居可见，无法访问，您可能没有权限使用网络资源">
+<meta name="twitter:description" content="XP网络不能访问的解决方案  就是像2000一样“开启guset用户”  允许Guest用户访问本机 :开始–运行–输入gpedit.msc，依次选择“计算机配置→Windows设置→安全设置→本地策略→用户权利指派”，删除“拒绝从网络访问这台计算机”策略中的“GUEST”账号。  更改网络访问模式:开始–运行–输入gpedit.msc，依次选择“计算机配置→Windows设置→安全设置→本地策略">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/2008/07/31/network-neighborhood/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>网上邻居可见，无法访问，您可能没有权限使用网络资源 | Dong's Note</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42337789-4');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/07/31/network-neighborhood/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">网上邻居可见，无法访问，您可能没有权限使用网络资源
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-07-31 00:00:00" itemprop="dateCreated datePublished" datetime="2008-07-31T00:00:00+08:00">2008-07-31</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>XP网络不能访问的解决方案</p>
+<ol>
+<li><p>就是像2000一样“开启guset用户”</p>
+</li>
+<li><p>允许Guest用户访问本机 :开始–运行–输入gpedit.msc，依次选择“计算机配置→Windows设置→安全设置→本地策略→用户权利指派”，删除“拒绝从网络访问这台计算机”策略中的“GUEST”账号。</p>
+</li>
+<li><p>更改网络访问模式:开始–运行–输入gpedit.msc，依次选择“计算机配置→Windows设置→安全设置→本地策略→安全选项”，双击“ 网络访问:本地账号的共享和安全模式”策略，将“仅来宾—本地用户以来宾身份验证”改为“经典:本地用户以自己的身份验证”。</p>
+</li>
+<li><p>解除空口令限制:在系统“安全选项”中停用“账户:使用空白密码的本地账户只允许进行控制台登录”策略。</p>
+</li>
+<li><p>网络邻居看不到计算机:打开“控制面板→性能和维护→管理工具→服务”，启动里面的“Computer Browser”服务。</p>
+</li>
+<li><p>增加共享文件权限选项:依次打开“我的电脑→工具→文件夹属性→查看→高级设置”，将“简单文件共享(推荐)”前面的选择取消，若还有“Mickey Mouse”项也将其取消。</p>
+</li>
+<li><p>网络邻居不响应或者反应慢:关掉WinXP的计划任务服务(Task Scheduler) 到“控制面板/管理工具/服务”中打开“Task Scheduler”的属性对话框，停止该服务，再将启动类型设为“手动”。</p>
+</li>
+<li><p>到“工具/文件夹选项”中，关闭自动搜索的网络文件夹和打印机。</p>
+</li>
+</ol>
+<a id="more"></a>
+<p>XP网络不能访问的解决方案（详细版本）</p>
+<ol>
+<li><p>检查guest账户是否开启</p>
+<p>XP默认情况下不开启guest账户，因此些为了其他人能浏览你的计算机，请启用guest账户。同时，为了安全请为guest设置密码或相应的权限。当然，也可以为每一台机器设置一个用户名和密码以便计算机之间的互相访问。</p>
+</li>
+<li><p>检查是否拒绝Guest用户从网络访问本机</p>
+<p>当你开启了guest账户却还是根本不能访问时，请检查设置是否为拒绝guest从网络访问计算机，因为XP默认是不允许guest从网络登录的，所以即使开了guest也一样不能访问。在开启了系统Guest用户的情况下解除对Guest账号的限制，点击“开始→运行”，在“运行”对话框中输入 “GPEDIT.MSC”，打开组策略编辑器，依次选择“计算机配置→Windows设置→安全设置→本地策略→用户权利指派”，双击“拒绝从网络访问这台计算机”策略，删除里面的“GUEST”账号。这样其他用户就能够用Guest账号通过网络访问使用Windows XP系统的计算机了。</p>
+</li>
+<li><p>改网络访问模式</p>
+<p>XP默认是把从网络登录的所有用户都按来宾账户处理的，因此即使管理员从网络登录也只具有来宾的权限，若遇到不能访问的情况，请尝试更改网络的访问模式。打开组策略编辑器，依次选择“计算机配置→Windows设置→安全设置→本地策略→安全选项”，双击“网络访问：本地账号的共享和安全模式”策略，将默认设置“仅来宾—本地用户以来宾身份验证”，更改为“经典：本地用户以自己的身份验证”。</p>
+<p>这样即使不开启guest，你也可以通过输入本地的账户和密码来登录你要访问的计算机，本地的账户和密码为你要访问的计算机内已经的账户和密码。若访问网络时需要账户和密码，可以通过输入你要访问的计算机内已经的账户和密码来登录。</p>
+<p>若不对访问模式进行更改，也许你连输入用户名和密码都办不到，//computername/guest为灰色不可用。即使密码为空，在不开启guest 的情况下，你也不可能点确定登录。改成经典模式，最低限度可以达到像2000里没有开启guest账户情况时一样，可以输入用户名和密码来登录你要进入的计算机。也许你还会遇到一种特殊的情况，请看接下来的。</p>
+</li>
+<li><p>一个值得注意的问题</p>
+<p>我们可能还会遇到另外一个问题，即当用户的口令为空时，即使你做了上述的所有的更改还是不能进行登录，访问还是会被拒绝。这是因为，在系统“安全选项”中有“账户：使用空白密码的本地账户只允许进行控制台登录”策略默认是启用的，根据Windows XP安全策略中拒绝优先的原则，密码为空的用户通过网络访问使用Windows XP的计算机时便会被禁止。我们只要将这个策略停用即可解决问题。在安全选项中，找到“使用空白密码的本地账户只允许进行控制台登录”项，停用就可以，否则即使开了guest并改成经典模式还是不能登录。经过以上的更改基本就可以访问了。</p>
+</li>
+<li><p>网络邻居不能看到计算机</p>
+<p>可能经常不能在网络邻居中看到你要访问的计算机，除非你知道计算机的名字或者IP地址，通过搜索或者直接输入//computername或//IP。请按下面的操作解决：启动“计算机浏览器”服务。“计算机浏览器服务”在网络上维护一个计算机更新列表，并将此列表提供给指定为浏览器的计算机。如果停止了此服务，则既不更新也不维护该列表。</p>
+<p>137/UDP–NetBIOS名称服务器，网络基本输入/输出系统(NetBIOS)名称服务器(NBNS)协议是TCP/IP上的NetBIOS(NetBT)协议族的一部分，它在基于NetBIOS名称访问的网络上提供主机名和地址映射方法。</p>
+<p>138/UDP–NetBIOS数据报，NetBIOS数据报是TCP/IP上的NetBIOS(NetBT)协议族的一部分，它用于网络登录和浏览。</p>
+<p>139/TCP–NetBIOS会话服务，NetBIOS会话服务是TCP/IP上的NetBIOS(NetBT)协议族的一部分，它用于服务器消息块(SMB)、文件共享和打印。请设置防火墙开启相应的端口。一般只要在防火墙中允许文件夹和打印机共享服务就可以了。</p>
+</li>
+<li><p>关于共享模式</p>
+<p>对共享XP默认只给予来宾权限或选择允许用户更改“我的文件”。Windows 2000操作系统中用户在设置文件夹的共享属性时操作非常简便，只需用鼠标右击该文件夹并选择属性，就可以看到共享设置标签。而在Windows XP系统设置文件夹共享时则比较复杂，用户无法通过上述操作看到共享设置标签。具体的修改方法如下：打开“我的电脑”中的“工具”，选择“文件夹属性”，调出“查看”标签，在“高级设置”部分滚动至最底部将“简单文件共享(推荐)”前面的选择取消，另外如果选项栏里还有“Mickey Mouse”项也将其选择取消。这样修改后用户就可以象使用Windows 2000一样对文件夹属性进行方便修改了。</p>
+</li>
+<li><p>关于用网络邻居访问不响应或者反应慢的问题</p>
+<p>在WinXP和Win2000中浏览网上邻居时系统默认会延迟30秒，Windows将使用这段时间去搜寻远程计算机是否有指定的计划任务（甚至有可能到 Internet中搜寻）。如果搜寻时网络时没有反应便会陷入无限制的等待，那么10多分钟的延迟甚至报错就不足为奇了。下面是具体的解决方法。</p>
+<p>A. 关掉WinXP的计划任务服务（Task Scheduler）</p>
+<p>可以到“控制面板/管理工具/服务”中打开“Task Scheduler”的属性对话框，单击“停止”按钮停止该项服务，再将启动类型设为“手动”，这样下次启动时便不会自动启动该项服务了。</p>
+<p>B. 删除注册表中的两个子键</p>
+<p>到注册表中找到主键“HKEY_LOCAL_MACHINESOFTWAREMicrosoftWindowsCurrentVersionExplorerRemoteComputerNameSpace”</p>
+<p>删除下面的两个子健：{2227A280-3AEA-1069-A2DE-08002B30309D}和{D6277990-4C6A-11CF-87-00AA0060F5BF}。</p>
+<p>其中，第一个子健决定网上邻居是否要搜索网上的打印机（甚至要到Internet中去搜寻），如果网络中没有共享的打印机便可删除此键。第二个子健则决定是否需要查找指定的计划任务，这是网上邻居很慢的罪魁祸首，必须将此子健删除。</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Network/" rel="tag"># Network</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2008/07/18/shell-encode-url/" rel="next" title="在Linux Shell下将汉字转换为Url编码">
+                <i class="fa fa-chevron-left"></i> 在Linux Shell下将汉字转换为Url编码
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2008/08/03/QQWry-format/" rel="prev" title="纯真IP数据库格式详解 zt">
+                纯真IP数据库格式详解 zt <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">東木</p>
+              <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">202</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2007 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

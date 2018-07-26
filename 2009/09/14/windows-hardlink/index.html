@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'da65f2d4ea1c6d4dccfa6d7f197d2aaf',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="张康宗（Smallfrogs）http://www.kztechs.com 原本这个话题是准备在8个月前写的，但是由于种种原因，一直推迟到现在。今晚（或者说今天凌晨），抽空把程序弄完了，因为只有程序写完以后，这个话题才有实际的价值。 这个话题就是：Windows 目录到底占用了多少真实的硬盘空间？ 看到这个问题，我想99%的人都会说：用资源管理器右键点击Windows目录，看看属性不就知道了吗？何">
+<meta name="keywords" content="mklink">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows 7 研究——Windows 文件夹的秘密：Windows 目录到底占用了多少真实的硬盘空间[ZT]">
+<meta property="og:url" content="http://blog.liudongkai.com/2009/09/14/windows-hardlink/index.html">
+<meta property="og:site_name" content="Dong&#39;s Note">
+<meta property="og:description" content="张康宗（Smallfrogs）http://www.kztechs.com 原本这个话题是准备在8个月前写的，但是由于种种原因，一直推迟到现在。今晚（或者说今天凌晨），抽空把程序弄完了，因为只有程序写完以后，这个话题才有实际的价值。 这个话题就是：Windows 目录到底占用了多少真实的硬盘空间？ 看到这个问题，我想99%的人都会说：用资源管理器右键点击Windows目录，看看属性不就知道了吗？何">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://blog.liudongkai.com/images/2009091401.png">
+<meta property="og:updated_time" content="2009-09-13T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows 7 研究——Windows 文件夹的秘密：Windows 目录到底占用了多少真实的硬盘空间[ZT]">
+<meta name="twitter:description" content="张康宗（Smallfrogs）http://www.kztechs.com 原本这个话题是准备在8个月前写的，但是由于种种原因，一直推迟到现在。今晚（或者说今天凌晨），抽空把程序弄完了，因为只有程序写完以后，这个话题才有实际的价值。 这个话题就是：Windows 目录到底占用了多少真实的硬盘空间？ 看到这个问题，我想99%的人都会说：用资源管理器右键点击Windows目录，看看属性不就知道了吗？何">
+<meta name="twitter:image" content="http://blog.liudongkai.com/images/2009091401.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/2009/09/14/windows-hardlink/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Windows 7 研究——Windows 文件夹的秘密：Windows 目录到底占用了多少真实的硬盘空间[ZT] | Dong's Note</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42337789-4');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/09/14/windows-hardlink/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Windows 7 研究——Windows 文件夹的秘密：Windows 目录到底占用了多少真实的硬盘空间[ZT]
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2009-09-14 00:00:00" itemprop="dateCreated datePublished" datetime="2009-09-14T00:00:00+08:00">2009-09-14</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>张康宗（Smallfrogs）<br><a href="http://www.kztechs.com" target="_blank" rel="noopener">http://www.kztechs.com</a></p>
+<p>原本这个话题是准备在8个月前写的，但是由于种种原因，一直推迟到现在。今晚（或者说今天凌晨），抽空把程序弄完了，因为只有程序写完以后，这个话题才有实际的价值。</p>
+<p>这个话题就是：<strong>Windows 目录到底占用了多少真实的硬盘空间？</strong></p>
+<p>看到这个问题，我想99%的人都会说：用资源管理器右键点击Windows目录，看看属性不就知道了吗？何必故弄玄虚呢！</p>
+<p>但是，我 Smallfrogs 会有那么傻的把一个大家都知道的问题重新翻出来吗？既然提出了这个话题，就有我的道理！请各位耐住性子往下看，看看我们的Microsoft同学又玩了什么样的花活，呵呵。</p>
+<a id="more"></a>
+<p>我们知道，查看一个目录有多大的最快捷的方法就是看看资源管理器文件夹的属性，但是我今天要说的是：如果你用这个方法去看 Windows Vista / Windows 7 系统的目录，你会被你的眼睛所欺骗，因为，Microsoft 同学在 Windows Vista/ Windows 7 里面大量使用了NTFS文件系统的特性之一的：硬连接（Hard Link）来实现WinSxS机制！</p>
+<blockquote>
+<p>关于 WinSxS，可以看我之前写的 《<a href="http://blogs.itecn.net/blogs/smallfrogs/archive/2008/11/12/winsxs.aspx" title="WinSxS 混乱导致的应用程序不能启动" target="_blank" rel="noopener">WinSxS 混乱导致的应用程序不能启动</a>》一文。</p>
+</blockquote>
+<p>我们知道，要安装 Windows Vista / Windows 7系统，那么系统分区必须是NTFS文件系统。原因有以下一些：</p>
+<ul>
+<li>系统文件保护所需</li>
+<li>各种安全保护机制，如MIC所需</li>
+<li><strong>WinSxS 所需</strong></li>
+<li>……</li>
+</ul>
+<p>关于最后一点的 WinSxS 所需，我没有看到过相关的资料说明，不过可以肯定的是，这也是Windows Vista / Windows 7 系统需要NTFS文件系统的一个条件，因为只有在 NTFS 文件系统上面，才能实现硬连接机制，也才能达到优化Windows目录占用磁盘空间的目的。</p>
+<p>关于硬连接，MSDN是这样解释的：</p>
+<blockquote>
+<p>A hard link is the file system representation of a file by which more than one path references a single file in the same volume. To create a hard link, use the CreateHardLink function. Any changes to that file are instantly visible to applications that access it through the hard links that reference it. However, the directory entry size and attribute information is updated only for the link through which the change was made.</p>
+</blockquote>
+<p>简单的说，就是一种针对文件的特殊快捷方式，只不过这种快捷方式的实现和一般的快捷方式不一样。</p>
+<ul>
+<li>一般的快捷方式是创建一个LNK文件，在这个LNK文件里面描述了目标文件/目录的属性，资源管理器或者其他文件管理工具利用SHELL32.DLL里面的API函数获得这个LNK文件所指向的文件/目录，从而进行访问。 </li>
+<li><p>硬连接：是一种基于文件系统级别上的针对文件的快捷方式，基于文件系统级别的含义就是说，只要文件系统启动了，那么对应的快捷方式也就生效了。换句话说，这种连接是常存的，因为文件系统是必须要随机启动的。 </p>
+<p>  硬连接是NTFS文件系统特有的属性之一，在Linux下面，也有类似的机制。硬连接适用于在同一个卷的文件级别，硬连接是不能跨卷的。</p>
+</li>
+</ul>
+<p>Windows Vista / Windows 7 自带了创建硬连接的命令：mklink.exe，利用这个命令，我们可以给指定的文件创建硬连接： </p>
+<p>下面的命令将在link.txt和source.txt之间建立硬连接关系<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Smallfrogs\Desktop&gt;mklink /h link.txt source.txt </span><br><span class="line">为 link.txt &lt;&lt;===&gt;&gt; source.txt 创建了硬链接</span><br></pre></td></tr></table></figure></p>
+<p>注意上面的例子：link.txt本是一个不存在的文件，但是当执行完mklink命令以后，link.txt文件也就被创建了。其实，link.txt是一个虚假的文件，它是在文件系统层面上对source.txt文件的一个映射，而link.txt是不占硬盘空间的。 </p>
+<p>关于硬盘空间的占用问题，Smallfrogs 是这样测试的： </p>
+<ol>
+<li>给硬盘划分一个新分区，空间只有2GB </li>
+<li>在这个分区的test目录里面新建了一个1.9GB大小的文件，此时剩余空间是0.1GB </li>
+<li>用mklink命令给这个1.9GB大小的文件建立了一个硬连接 </li>
+<li>检查这个分区的剩余空间，还是0.1GB，但是如果用资源管理器看test目录的属性，会发现有2个文件，总大小是3.8GB（整个分区才2GB，能够容纳3.8GB大小的文件吗？显然不可能了） </li>
+</ol>
+<p>还是针对上述的例子，如果我们把原始的文件 source.txt 删除以后，link.txt文件还是会继续存在的，且内容就是source.txt的文件内容。也就是说，我们删除source.txt，实际上删除的仅仅是这种连接关系，文件本身还是没有被操作的。 </p>
+<p>关于硬连接，最后一个需要介绍的内容是：当硬连接建立以后，硬连接双方任何一个对象被修改，都会造成对应的连接对象被修改。例如上面的例子：如果修改了link.txt，那么source.txt文件也会同步被修改，反之亦然。这一点和SHELL层面的快捷方式不同，SHELL层面的快捷方式文件LNK仅仅是一个指示关系，修改LNK文件并不影响LNK文件指向的对象，修改LNK文件指向的对象也不会影响LNK文件。</p>
+<p>好了，基本知识介绍完了，我们来实际看看Windows目录里面对于硬连接的使用情况吧。</p>
+<p>经常看到有人抱怨，Windows\WinSxS目录占用了太多的空间，里面经常发现有同名的文件，而且这些同名的文件在 Windows\System32 目录下面也有存在，这是为啥呢？其实这就是硬连接导致的。</p>
+<p>Microsoft 实际上在 Windows\WinSxS 目录和Windows目录之间建立了硬连接的关系，举一个最简单的例子：</p>
+<p>对于 Windows 7 RTM 来说，你可以在2个地方找到Ntoskrnl.exe文件。第一个地方是：<code>Windows\System32\ntoskrnl.exe</code>，另外还有一个地方是<code>Windows\WinSxS\x86_microsoft-windows-os-kernel_31bf3856ad364e35_6.1.7600.16385_none_6c06b7c41576a7d9\ntoskrnl.exe</code>，这就是一个典型的硬连接例子。Microsoft 在文件系统上面对 ntoskrnl.exe 做了一个硬连接，使得 ntoskrnl.exe 能够出现在不同的目录里面，但是只占用了一份 ntoskrnl.exe 的硬盘空间。利用这种机制，有下面的一些好处：</p>
+<p>同样的文件，只需要维护硬连接关系，不需要进行多重的拷贝，这样可以节省硬盘空间<br>如果涉及文件更新，只需要先在WinSxS 目录里面下载好一个新版本，然后修改 Windows\System32 下面同名文件的硬连接关系，从旧版本的硬连接指向新版本的硬连接，这样就能够快速的完成文件的更新工作，而不需要进行文件的复制，速度也会快不少<br>补丁卸载也是一样的，只需要把硬连接指向改为旧版本就可以了，没有文件替换的问题。而且建立了硬连接关系的文件之间的修改是同步的，因此只要有一方被修改了，另一方也会得到修改<br>说了这么多，那么如何知道 Windows 目录的真实大小呢？Smallfrogs 提供了一个工具，可以很方便的知道您系统里面有哪些文件是有硬连接关系的，以及Windows 目录下真实的文件大小。</p>
+<p>工具可以从 <a href="/files/realwindirsize.zip">realwindirsize.zip</a> （请使用右键点击另存为…方式下载）或在本文附件下载到，下载解压缩以后，直接运行就可以开始扫描了。</p>
+<p>扫描过程比较漫长，扫描完成以后，会看到下面的提示信息：</p>
+<p><img src="/images/2009091401.png" alt=""></p>
+<p>另外，在realwindirsize.exe所在目录下，会生成一份文件名叫做LinkedFile.TXT的文件，里面记录了Windows目录下各个硬连接的关系。</p>
+<p>如上图所示，我们扫描到了65088个文件，其中，真实的文件有48022个，其他17066个文件都是硬连接文件。真实的文件占用了14981682 KB的硬盘空间，而如果你用资源管理器看Windows目录的话，那么会提示说Windows目录占用了 18244902 KB的硬盘空间。实际上， Windows\system32 目录下的大多数文件都和 WinSxS 目录建立了硬连接关系。</p>
+<p>说了这么多，最后总结一下吧：</p>
+<p>硬连接，一种基于文件系统的同一卷里面的文件快捷方式<br>Windows 目录下面大量使用了硬连接技术<br>Windows\System32 目录下的大多数文件，都和 WinSxS 目录建立了硬连接关系<br>要检查自己系统Windows目录里面的硬连接，请下载工具 <a href="/files/realwindirsize.zip">realwindirsize.zip</a> 自己扫描吧<br>OK，本次Windows 7 研究就此完成，请继续等待下篇吧！</p>
+<p>已发表 2009年8月15日 6:18 作者 smallfrogs<br>Attachment(s): <a href="/files/realwindirsize.zip">realwindirsize.zip</a></p>
+<p>via. <a href="http://blogs.itecn.net/blogs/smallfrogs/archive/2009/08/15/windows-7-windows-windows.aspx" target="_blank" rel="noopener">http://blogs.itecn.net/blogs/smallfrogs/archive/2009/08/15/windows-7-windows-windows.aspx</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mklink/" rel="tag"># mklink</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2009/08/19/awk-fillzero/" rel="next" title="如何实现字符串不足N位自动补零">
+                <i class="fa fa-chevron-left"></i> 如何实现字符串不足N位自动补零
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2009/10/22/outlook-not-found-pst/" rel="prev" title="outlook 找不到 Outlook.pst">
+                outlook 找不到 Outlook.pst <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">東木</p>
+              <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">202</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2007 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

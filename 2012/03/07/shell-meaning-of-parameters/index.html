@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'da65f2d4ea1c6d4dccfa6d7f197d2aaf',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="在Bash shell中经常会见到一些比较特殊的符号，本人现收集与此，以供查阅： 位置参数：详见ABS(Advanced Bash Shell)中文翻译版103页第9章第一节内部变量，当然英文版ABS都一样啦 $0, $1, $2,等等…位置参数,从命令行传递给脚本,或者是传递给函数.或者赋职给一个变量.(具体见Example 4-5 和Example 11-15)$0表示当前执行的进程名,scr">
+<meta name="keywords" content="shell,parameter">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bash shell中的位置参数$#,$*,$@,$0,$1,$2…及特殊参数$?,$-等的含义">
+<meta property="og:url" content="http://blog.liudongkai.com/2012/03/07/shell-meaning-of-parameters/index.html">
+<meta property="og:site_name" content="Dong&#39;s Note">
+<meta property="og:description" content="在Bash shell中经常会见到一些比较特殊的符号，本人现收集与此，以供查阅： 位置参数：详见ABS(Advanced Bash Shell)中文翻译版103页第9章第一节内部变量，当然英文版ABS都一样啦 $0, $1, $2,等等…位置参数,从命令行传递给脚本,或者是传递给函数.或者赋职给一个变量.(具体见Example 4-5 和Example 11-15)$0表示当前执行的进程名,scr">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2012-03-06T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bash shell中的位置参数$#,$*,$@,$0,$1,$2…及特殊参数$?,$-等的含义">
+<meta name="twitter:description" content="在Bash shell中经常会见到一些比较特殊的符号，本人现收集与此，以供查阅： 位置参数：详见ABS(Advanced Bash Shell)中文翻译版103页第9章第一节内部变量，当然英文版ABS都一样啦 $0, $1, $2,等等…位置参数,从命令行传递给脚本,或者是传递给函数.或者赋职给一个变量.(具体见Example 4-5 和Example 11-15)$0表示当前执行的进程名,scr">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/2012/03/07/shell-meaning-of-parameters/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Bash shell中的位置参数$#,$*,$@,$0,$1,$2…及特殊参数$?,$-等的含义 | Dong's Note</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42337789-4');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/03/07/shell-meaning-of-parameters/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Bash shell中的位置参数$#,$*,$@,$0,$1,$2…及特殊参数$?,$-等的含义
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2012-03-07 00:00:00" itemprop="dateCreated datePublished" datetime="2012-03-07T00:00:00+08:00">2012-03-07</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在Bash shell中经常会见到一些比较特殊的符号，本人现收集与此，以供查阅：</p>
+<h3 id="位置参数："><a href="#位置参数：" class="headerlink" title="位置参数："></a>位置参数：</h3><p>详见ABS(Advanced Bash Shell)中文翻译版103页第9章第一节内部变量，当然英文版ABS都一样啦</p>
+<h5 id="0-1-2-等等…"><a href="#0-1-2-等等…" class="headerlink" title="$0, $1, $2,等等…"></a>$0, $1, $2,等等…</h5><p>位置参数,从命令行传递给脚本,或者是传递给函数.或者赋职给一个变量.<br>(具体见Example 4-5 和Example 11-15)<br>$0表示当前执行的进程名,script 本身的名字,或者在正则表达式中表示整行输出</p>
+<h5 id=""><a href="#" class="headerlink" title="$"></a>$</h5><p>命令行或者是位置参数的个数.(见Example 33-2)<br>$<em><br>所有的位置参数,被作为一个单词.<br>注意:”$</em>“必须被””引用.</p>
+<a id="more"></a>
+<h5 id="-1"><a href="#-1" class="headerlink" title="$@"></a>$@</h5><p>与$*同义,但是每个参数都是一个独立的””引用字串,这就意味着参数被完整地传递,<br>并没有被解释和扩展.这也意味着,每个参数列表中的每个参数都被当成一个独立的单词.<br>注意:”$@”必须被””引用.</p>
+<h3 id="其他的特殊参数"><a href="#其他的特殊参数" class="headerlink" title="其他的特殊参数"></a>其他的特殊参数</h3><h5 id="-2"><a href="#-2" class="headerlink" title="$-"></a>$-</h5><p>传递给脚本的falg(使用set 命令).参考Example 11-15.<br>注意:这起初是ksh 的特征,后来被引进到Bash 中,但不幸的是,在Bash 中它看上去也不<br>能可靠的工作.使用它的一个可能的方法就是让这个脚本进行自我测试(查看是否是交<br>互的).</p>
+<h5 id="-3"><a href="#-3" class="headerlink" title="$!"></a>$!</h5><p>在后台运行的最后的工作的PID(进程ID).</p>
+<h5 id="-4"><a href="#-4" class="headerlink" title="$_"></a>$_</h5><p>保存之前执行的命令的最后一个参数.</p>
+<h5 id="-5"><a href="#-5" class="headerlink" title="$?"></a>$?</h5><p>命令,函数或者脚本本身的退出状态(见Example 23-7)<br>用于检查上一个命令,函数或者脚本执行是否正确。（在Linux中，命令退出状态为0表示该命令正确执行，任何非0值表示命令出错。）</p>
+<h5 id="-6"><a href="#-6" class="headerlink" title="$$"></a>$$</h5><p>脚本自身的进程ID.这个变量经常用来构造一个”unique”的临时文件名.<br>(参考Example A-13,Example 29-6,Example 12-28 和Example 11-25).<br>这通常比调用mktemp 来得简单.<br>注意事项:<br>[1] 当前运行的脚本的PID 为$$.<br>[2] “argument”和”parameter”这两个单词经常不加区分的使用.在这整本书中,这两个<br>单词的意思完全相同.(在翻译的时候就未加区分,统统翻译成参数)</p>
+<h3 id="退出和返回"><a href="#退出和返回" class="headerlink" title="退出和返回"></a>退出和返回</h3><h5 id="退出状态-exit-status"><a href="#退出状态-exit-status" class="headerlink" title="退出状态(exit status)"></a>退出状态(exit status)</h5><p>函数返回一个被称为退出状态的值. 退出状态可以由return 来指定statement, 否则函数的<br>退出状态是函数最后一个执行命令的退出状态(0 表示成功,非0 表示出错代码). 退出状态<br>(exit status)可以在脚本中由$? 引用. 这个机制使脚本函数也可以像C 函数一样有一个”<br>返回值”.</p>
+<h5 id="return"><a href="#return" class="headerlink" title="return"></a>return</h5><p>终止一个函数.return 命令[1]可选地带一个整数参数,这个整数作为函数的”返回值”返回<br>给调用此函数的脚本,并且这个值也被赋给变量$?.</p>
+<p>while true可以写为while :</p>
+<p>Example 23-7 两个数中的最大者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">###################Start Script#################</span><br><span class="line">#!/bin/bash</span><br><span class="line"># max.sh: 两个整数中的最大者.</span><br><span class="line"></span><br><span class="line">E_PARAM_ERR=-198 # 如果传给函数的参数少于2 个时的返回值.</span><br><span class="line">EQUAL=-199 # 如果两个整数值相等的返回值.</span><br><span class="line"># 任一个传给函数的参数值溢出</span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">max2 () # 返回两个整数的较大值.</span><br><span class="line"> &#123; # 注意: 参与比较的数必须小于257.</span><br><span class="line"> if [ -z &quot;$2&quot; ]</span><br><span class="line"> then</span><br><span class="line"> return $E_PARAM_ERR</span><br><span class="line"> fi</span><br><span class="line"></span><br><span class="line"> if [ &quot;$1&quot; -eq &quot;$2&quot; ]</span><br><span class="line"> then</span><br><span class="line"> return $EQUAL</span><br><span class="line"> else</span><br><span class="line"> if [ &quot;$1&quot; -gt &quot;$2&quot; ]</span><br><span class="line"> then</span><br><span class="line"> return $1</span><br><span class="line"> else</span><br><span class="line"> return $2</span><br><span class="line"> fi</span><br><span class="line"> fi</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> max2 33 34</span><br><span class="line"> return_val=$?</span><br><span class="line"></span><br><span class="line"> if [ &quot;$return_val&quot; -eq $E_PARAM_ERR ]</span><br><span class="line"> then</span><br><span class="line"> echo “Need to pass two parameters to the function.”</span><br><span class="line"> elif [ &quot;$return_val&quot; -eq $EQUAL ]</span><br><span class="line"> then</span><br><span class="line"> echo “The two numbers are equal.”</span><br><span class="line"> else</span><br><span class="line"> echo “The larger of the two numbers is $return_val.”</span><br><span class="line"> fi</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> exit 0</span><br><span class="line"></span><br><span class="line"> # 练习 (容易):</span><br><span class="line"> # —————</span><br><span class="line"> # 把这个脚本转化成交互式的脚本,</span><br><span class="line"> #+ 也就是说,让脚本可以要求调用者输入两个整数.</span><br><span class="line">#####################End Script##################</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/shell/" rel="tag"># shell</a>
+          
+            <a href="/tags/parameter/" rel="tag"># parameter</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2012/03/02/mysql-binlog-format/" rel="next" title="MYSQL复制参数binlog_format">
+                <i class="fa fa-chevron-left"></i> MYSQL复制参数binlog_format
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2012/03/16/mysql-timestamp-operation/" rel="prev" title="mysql timestamp时间运算">
+                mysql timestamp时间运算 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">東木</p>
+              <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">202</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#位置参数："><span class="nav-number">1.</span> <span class="nav-text">位置参数：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#0-1-2-等等…"><span class="nav-number">1.0.1.</span> <span class="nav-text">$0, $1, $2,等等…</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#"><span class="nav-number">1.0.2.</span> <span class="nav-text">$</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#-1"><span class="nav-number">1.0.3.</span> <span class="nav-text">$@</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他的特殊参数"><span class="nav-number">2.</span> <span class="nav-text">其他的特殊参数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#-2"><span class="nav-number">2.0.1.</span> <span class="nav-text">$-</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#-3"><span class="nav-number">2.0.2.</span> <span class="nav-text">$!</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#-4"><span class="nav-number">2.0.3.</span> <span class="nav-text">$_</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#-5"><span class="nav-number">2.0.4.</span> <span class="nav-text">$?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#-6"><span class="nav-number">2.0.5.</span> <span class="nav-text">$$</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#退出和返回"><span class="nav-number">3.</span> <span class="nav-text">退出和返回</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#退出状态-exit-status"><span class="nav-number">3.0.1.</span> <span class="nav-text">退出状态(exit status)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#return"><span class="nav-number">3.0.2.</span> <span class="nav-text">return</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2007 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

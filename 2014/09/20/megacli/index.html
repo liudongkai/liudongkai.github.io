@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'da65f2d4ea1c6d4dccfa6d7f197d2aaf',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="通常，我们使用的DELL/HP/IBM三家的机架式PC级服务器阵列卡是从LSI的卡OEM出来的，DELL和IBM两家的阵列卡原生程度较高，没有做太多封装，可以用原厂提供的阵列卡管理工具进行监控；而HP的阵列卡一般都做过封装了，因此需要使用自身特有的管理工具来监控。 本文以几种常用的阵列卡为例，展示其阵列卡及硬盘监控的方法。DELL SAS 6/iR卡，全称LSI Logic SAS1068E，只支">
+<meta name="keywords" content="MegaCli">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用PC服务器阵列卡、硬盘健康监控[ZT]">
+<meta property="og:url" content="http://blog.liudongkai.com/2014/09/20/megacli/index.html">
+<meta property="og:site_name" content="Dong&#39;s Note">
+<meta property="og:description" content="通常，我们使用的DELL/HP/IBM三家的机架式PC级服务器阵列卡是从LSI的卡OEM出来的，DELL和IBM两家的阵列卡原生程度较高，没有做太多封装，可以用原厂提供的阵列卡管理工具进行监控；而HP的阵列卡一般都做过封装了，因此需要使用自身特有的管理工具来监控。 本文以几种常用的阵列卡为例，展示其阵列卡及硬盘监控的方法。DELL SAS 6/iR卡，全称LSI Logic SAS1068E，只支">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2014-09-19T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用PC服务器阵列卡、硬盘健康监控[ZT]">
+<meta name="twitter:description" content="通常，我们使用的DELL/HP/IBM三家的机架式PC级服务器阵列卡是从LSI的卡OEM出来的，DELL和IBM两家的阵列卡原生程度较高，没有做太多封装，可以用原厂提供的阵列卡管理工具进行监控；而HP的阵列卡一般都做过封装了，因此需要使用自身特有的管理工具来监控。 本文以几种常用的阵列卡为例，展示其阵列卡及硬盘监控的方法。DELL SAS 6/iR卡，全称LSI Logic SAS1068E，只支">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/2014/09/20/megacli/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>常用PC服务器阵列卡、硬盘健康监控[ZT] | Dong's Note</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42337789-4');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/09/20/megacli/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">常用PC服务器阵列卡、硬盘健康监控[ZT]
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2014-09-20 00:00:00" itemprop="dateCreated datePublished" datetime="2014-09-20T00:00:00+08:00">2014-09-20</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>通常，我们使用的DELL/HP/IBM三家的机架式PC级服务器阵列卡是从LSI的卡OEM出来的，DELL和IBM两家的阵列卡原生程度较高，没有做太多封装，可以用原厂提供的阵列卡管理工具进行监控；而HP的阵列卡一般都做过封装了，因此需要使用自身特有的管理工具来监控。</p>
+<p>本文以几种常用的阵列卡为例，展示其阵列卡及硬盘监控的方法。<br><strong>DELL SAS 6/iR卡</strong>，全称LSI Logic SAS1068E，只支持RAID 0, RAID 1, RAID 1+0, 不支持RAID 5等高级RAID特性，不支持阵列卡电池。<br><strong>DELL PERC PERC H700卡</strong>，全称LSI Logic MegaRAID SAS 2108，支持各种RAID级别及高级特性，可选配阵列卡电池。<br><strong>DELL PERC H310 Mini卡</strong> ，全称LSI Logic / Symbios Logic MegaRAID SAS 2008，支持常见RAID级别，不支持高级RAID特性，不支持阵列卡电池。<br><strong>IBM ServeRAID M5014 SAS/SATA Controller卡</strong>，全称LSI Logic / Symbios Logic MegaRAID SAS 2108，支持各种RAID级别及高级特性，可选配阵列卡电池。<br><strong>IBM ServeRAID-MR10i SAS/SATA Controller卡</strong>，全称LSI Logic / Symbios Logic MegaRAID SAS 1078，支持常见RAID级别，不支持高级RAID特性，可选配阵列卡电池，这个卡其实和DELL的PERC 6/i卡是一样的，都是基于LSI MegaRAID SAS 1078基础上OEM出来的。</p>
+<p>上面是几种常见的阵列卡型号，更多的可以自行查看官方的技术手册。</p>
+<p>下面我们要继续的是，这些阵列卡以及硬盘如何监控，阵列卡的管理也请查看官方技术手册，不在本文讨论范畴，或者查看作者的一个分享PPT：PC服务器阵列卡管理简易手册。</p>
+<a id="more"></a>
+<p>一般地，支持RAID 5的卡，我们称其为阵列卡，都可以使用LSI官方提供的MegaCli工具来管理，而不支持RAID 5的卡，我们称其为SAS卡，使用lsiutil工具来管理。HP的服务器使用其特有的hpacucli工具来管理。</p>
+<h2 id="1、MegaCli工具"><a href="#1、MegaCli工具" class="headerlink" title="1、MegaCli工具"></a>1、MegaCli工具</h2><ul>
+<li><strong>a) MegaCli -adpallinfo -aall — 查看阵列卡信息</strong><br>-a 参数指定阵列卡的编号，一般服务器上只会配一个阵列卡，因此我们通常指定为 -a0（阵列卡适配器编号，从0开始） 即可，主要关注下面几个信息：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>状态值</th>
+<th>对应含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Product Name : PERC H710 Mini</td>
+<td>阵列卡名称</td>
+</tr>
+<tr>
+<td>FW Package Build: 21.2.0-0007</td>
+<td>阵列卡firmware版本号，版本如果太低，建议升级以提高稳定性及性能</td>
+</tr>
+<tr>
+<td>BBU : Present</td>
+<td>是否有配BBU电池</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>b) MegaCli -cfgdsply -aall — 查看阵列配置</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>状态值</th>
+<th>对应含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Memory: 512MB</td>
+<td>阵列卡cache大小，2的N次方，如果不是，说明阵列卡有异常</td>
+</tr>
+<tr>
+<td>Number of dedicated Hotspares: 0</td>
+<td>阵列是否有专用/独享热备盘（如果有多个逻辑磁盘组/disk group，则可以指定一个硬盘用于全局热备，那么该disk group上的专用热备盘数量为0也不用担心），除了RAID 1/RAID 1+0一般不指定热备盘以外，其他几个阵列级别建议都要指定热备盘</td>
+</tr>
+<tr>
+<td>State : Optimal</td>
+<td>阵列状态，如果不是 Optimal 就要关注了</td>
+</tr>
+<tr>
+<td>Current Cache Policy: WriteBack, ReadAheadNone, Direct, Write Cache OK if Bad BBU</td>
+<td>阵列读写cache策略，建议写策略设置为FORCE WB，最起码是WB，预读策略可以关掉，意义不大，几乎没影响</td>
+</tr>
+<tr>
+<td>Disk Cache Policy : Disabled</td>
+<td>硬盘cache策略，建议关闭，防止意外时数据丢失</td>
+</tr>
+<tr>
+<td>Current Power Savings Policy: None</td>
+<td>节电策略，建议关闭</td>
+</tr>
+<tr>
+<td>Media Error Count: 0</td>
+<td>三个错误计数器，任何一个值大于100就要立刻引起关注，尤其要关注起增长速度。1T以上SATA盘，计数值不够精确，可能所有盘上该值都会大于0，一般重启就会重新清0，如果重启后还是大于0的话，赶紧报修吧。SAS盘的计数值则比较准确。</td>
+</tr>
+<tr>
+<td>Other Error Count: 0</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Predictive Failure Count: 0</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Firmware state: Online, Spun Up</td>
+<td>查看硬盘状态，如果是unconfigured表示该硬盘未分配加入到阵列中；如果是 unconfigured(bad)表示该盘不但是未分配，而且还坏了，正是“出师未捷身先死”；如果是failed，表示该盘故障无法识别；如果是rebuilding，表示该盘正在重建数据</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>c) MegaCli -AdpBbuCmd -aall — 查看阵列卡电池信息</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>状态值</th>
+<th>对应含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Temperature: 39 C</td>
+<td>查看电池温度，如果相比上一次查看高出不少，就需要关注了，或者可以根据经验设置一个基线值</td>
+</tr>
+<tr>
+<td>Battery State: Optimal</td>
+<td>电池状态，如果不是为Optimal，就需要关注了</td>
+</tr>
+<tr>
+<td>Charger Status: Complete</td>
+<td>电池充放电状态</td>
+</tr>
+<tr>
+<td>isSOHGood: Yes</td>
+<td>电池状态，如果不是为Yes，需要关注</td>
+</tr>
+<tr>
+<td>Relative State of Charge: 93 %</td>
+<td>当前电量，当电量低于15%，或者电池坏掉时，默认都会将写策略从WB改成WT，除非设定为FORCE WB策略</td>
+</tr>
+<tr>
+<td>Max Error = 0 %</td>
+<td>电池是否有错误信息</td>
+</tr>
+<tr>
+<td>Next Learn time: Tue Oct 14 22:06:50 2014</td>
+<td>电池充放电时间，注意这是美国时间。另外，新的阵列卡电池很多改成电容式的了，也就不需要重复充放电了</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>d) MegaCli -fwtermlog -dsply -aALL — 查看阵列卡日志，关注里面的error/fail/warn等多个关键字</strong></li>
+</ul>
+<h2 id="2、lsiutil工具"><a href="#2、lsiutil工具" class="headerlink" title="2、lsiutil工具"></a>2、lsiutil工具</h2><p>lsiutil有交互和非交互两种方式，作为监控，我们肯定选择非交互模式。想要使用交互模式的，可以根据非交互模式自行练习。</p>
+<ul>
+<li><p><strong>a) lsiutil -p 1 -a 20,12,0,0 — 查看硬盘计数器</strong></p>
+<pre>Invalid DWord Count              2,563
+Running Disparity Error Count    2,366
+Loss of DWord Synch Count        0
+Phy Reset Problem Count          0</pre>
+
+<p>任何一个值大于0，都需要引起关注</p>
+</li>
+<li><p><strong>b) lsiutil -p 1 -a 21,1,0,0,0 — 查看逻辑卷状态</strong></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>状态值</th>
+<th>对应含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Volume State: optimal, enabled</td>
+<td>逻辑卷健康状况</td>
+</tr>
+<tr>
+<td>Volume draws from Hot Spare Pools: 0</td>
+<td>是否有热备</td>
+</tr>
+<tr>
+<td>Volume Size 139392 MB, 2 Members</td>
+<td>由几块硬盘组成</td>
+</tr>
+<tr>
+<td>Primary is PhysDisk 1 (Bus 0 Target 9)</td>
+<td>物理硬盘1</td>
+</tr>
+<tr>
+<td>Secondary is PhysDisk 0 (Bus 0 Target 3)</td>
+<td>物理硬盘0</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>c) lsiutil -p 1 -a 21,2,0,0,0 — 查看物理硬盘状态</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>状态值</th>
+<th>对应含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PhysDisk 0 is Bus 0 Target 3</td>
+<td>编号</td>
+</tr>
+<tr>
+<td>PhysDisk State: online</td>
+<td>状态</td>
+</tr>
+<tr>
+<td>Error Count 13, Last Error: Command = 28h, Key = 3, ASC/ASCQ = 11h/00h</td>
+<td>错误计数器，大于0的话，就需要引起关注</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3、hpacucli工具"><a href="#3、hpacucli工具" class="headerlink" title="3、hpacucli工具"></a>3、hpacucli工具</h2><p>hpacucli工具查看阵列、硬盘、电池信息，其实就只要一条指令：<br><strong>hpacucli ctrl all show config detail — 查看阵列详细信息、配置</strong></p>
+<table>
+<thead>
+<tr>
+<th>状态值</th>
+<th>对应含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Controller Status: OK</td>
+<td>阵列卡状态</td>
+</tr>
+<tr>
+<td>Firmware Version: 1.18</td>
+<td>firmware版本，太低了建议升级，以提高稳定性及性能</td>
+</tr>
+<tr>
+<td>Cache Board Present: True</td>
+<td>是否配备了cache模块</td>
+</tr>
+<tr>
+<td>Cache Status: OK</td>
+<td>cache模块状态</td>
+</tr>
+<tr>
+<td>Cache Ratio: 100% Read / 0% Write</td>
+<td>cache策略，此处只有读cache，不用于写cache，因为没有bbu电池，见下方结果</td>
+</tr>
+<tr>
+<td>Drive Write Cache: Disabled</td>
+<td>关闭磁盘cache</td>
+</tr>
+<tr>
+<td>Total Cache Size: 256 MB</td>
+<td>cache大小</td>
+</tr>
+<tr>
+<td>Total Cache Memory Available: 208 MB</td>
+<td>实际可用cache大小，和理论cache大小不一样，说明cache模块可能有问题</td>
+</tr>
+<tr>
+<td>No-Battery Write Cache: Disabled</td>
+<td>关闭FORCEWB策略</td>
+</tr>
+<tr>
+<td>Battery/Capacitor Count: 0</td>
+<td>阵列卡BBU电池数量为0，也就是没有BBU模块</td>
+</tr>
+<tr>
+<td>Battery/Capacitor Status: Failed (Replace Batteries)</td>
+<td>阵列卡BBU电池状态，这里显示是错误状态，需要及时更换</td>
+</tr>
+<tr>
+<td>Array: A</td>
+<td>第一个乌列阵列，编号从A开始，依次是A、B、C</td>
+</tr>
+<tr>
+<td>Status: OK</td>
+<td>物理阵列状态</td>
+</tr>
+<tr>
+<td>Logical Drive: 1</td>
+<td>第一个逻辑卷，编号从1开始</td>
+</tr>
+<tr>
+<td>Fault Tolerance: RAID 5</td>
+<td>第一个逻辑卷的阵列级别</td>
+</tr>
+<tr>
+<td>Status: OK</td>
+<td>第一个逻辑卷状态</td>
+</tr>
+<tr>
+<td>Caching: Enabled</td>
+<td>第一个逻辑卷是否启用了cache策略</td>
+</tr>
+<tr>
+<td>physicaldrive 1I:1:1</td>
+<td>第一块物理硬盘，编号从1开始</td>
+</tr>
+<tr>
+<td>Status: OK</td>
+<td>第一块物理硬盘状态</td>
+</tr>
+<tr>
+<td>Firmware Revision: HPDA</td>
+<td>第一块物理硬盘firmware，如果太低，也需要及时升级，HP的硬盘每个批次都有不同的firmware</td>
+</tr>
+</tbody>
+</table>
+<p>延伸阅读：</p>
+<p><a href="http://www.lsi.com/downloads/Public/Obsolete/Obsolete%20Common%20Files/mr_sas_stor_ug.pdf" target="_blank" rel="noopener">http://www.lsi.com/downloads/Public/Obsolete/Obsolete%20Common%20Files/mr_sas_stor_ug.pdf</a><br><a href="http://www.hp.com/ctg/Manual/c00709035.pdf" target="_blank" rel="noopener">http://www.hp.com/ctg/Manual/c00709035.pdf</a><br><a href="http://www.wafl.co.uk/tag/sasadmin/" target="_blank" rel="noopener">http://www.wafl.co.uk/tag/sasadmin/</a><br><a href="http://docs.oracle.com/cd/E19121-01/sf.x4200/819-1157-23/F_BIOS_RAID.html" target="_blank" rel="noopener">http://docs.oracle.com/cd/E19121-01/sf.x4200/819-1157-23/F_BIOS_RAID.html</a></p>
+<p>via @yejinrong <a href="http://imysql.cn/tag/megacli" target="_blank" rel="noopener">http://imysql.cn/tag/megacli</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MegaCli/" rel="tag"># MegaCli</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/09/07/iOS-URL-Scheme/" rel="next" title="常用iOS URL Scheme附录">
+                <i class="fa fa-chevron-left"></i> 常用iOS URL Scheme附录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/10/08/youku-url-resolve/" rel="prev" title="优酷真实视频地址解析——2014年10月7日[ZT]">
+                优酷真实视频地址解析——2014年10月7日[ZT] <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">東木</p>
+              <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">202</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、MegaCli工具"><span class="nav-number">1.</span> <span class="nav-text">1、MegaCli工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、lsiutil工具"><span class="nav-number">2.</span> <span class="nav-text">2、lsiutil工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、hpacucli工具"><span class="nav-number">3.</span> <span class="nav-text">3、hpacucli工具</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2007 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

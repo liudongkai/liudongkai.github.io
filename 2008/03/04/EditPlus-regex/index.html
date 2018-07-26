@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'da65f2d4ea1c6d4dccfa6d7f197d2aaf',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="网上搜集了些实例 正则表达式是一个查询的字符串，它包含一般的字符和一些特殊的字符，特殊字符可以扩展查找字符串的能力，正则表达式在查找和替换字符串的作用不可忽视，它能很好提高工作效率。 EditPlus的查找，替换，文件中查找支持以下的正则表达式：  Expression Description12345678910111213141516171819202122\t Tab character.">
+<meta name="keywords" content="regex,EditPlus">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EditPlus正则表达式替换字符串详解">
+<meta property="og:url" content="http://blog.liudongkai.com/2008/03/04/EditPlus-regex/index.html">
+<meta property="og:site_name" content="Dong&#39;s Note">
+<meta property="og:description" content="网上搜集了些实例 正则表达式是一个查询的字符串，它包含一般的字符和一些特殊的字符，特殊字符可以扩展查找字符串的能力，正则表达式在查找和替换字符串的作用不可忽视，它能很好提高工作效率。 EditPlus的查找，替换，文件中查找支持以下的正则表达式：  Expression Description12345678910111213141516171819202122\t Tab character.">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2008-03-03T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="EditPlus正则表达式替换字符串详解">
+<meta name="twitter:description" content="网上搜集了些实例 正则表达式是一个查询的字符串，它包含一般的字符和一些特殊的字符，特殊字符可以扩展查找字符串的能力，正则表达式在查找和替换字符串的作用不可忽视，它能很好提高工作效率。 EditPlus的查找，替换，文件中查找支持以下的正则表达式：  Expression Description12345678910111213141516171819202122\t Tab character.">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/2008/03/04/EditPlus-regex/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>EditPlus正则表达式替换字符串详解 | Dong's Note</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42337789-4');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/04/EditPlus-regex/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">EditPlus正则表达式替换字符串详解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-03-04 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-04T00:00:00+08:00">2008-03-04</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>网上搜集了些实例</p>
+<p>正则表达式是一个查询的字符串，它包含一般的字符和一些特殊的字符，特殊字符可以扩展查找字符串的能力，正则表达式在查找和替换字符串的作用不可忽视，它能很好提高工作效率。</p>
+<p>EditPlus的查找，替换，文件中查找支持以下的正则表达式：</p>
+<blockquote>
+<p>Expression Description<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">\t Tab character.  </span><br><span class="line">\n New line.  </span><br><span class="line">. Matches any character.  </span><br><span class="line">| Either expression on its left and right side matches the target string.  </span><br><span class="line">For example, &quot;a|b&quot; matches &quot;a&quot; and &quot;b&quot;.  </span><br><span class="line">[] Any of the enclosed characters may match the target character.  </span><br><span class="line">  For example, &quot;[ab]&quot; matches &quot;a&quot; and &quot;b&quot;. &quot;[0-9]&quot; matches any digit.  </span><br><span class="line">[^] None of the enclosed characters may match the target character.  </span><br><span class="line">  For example, &quot;[^ab]&quot; matches all character EXCEPT &quot;a&quot; and &quot;b&quot;.  </span><br><span class="line">&quot;[^0-9]&quot; matches any non-digit character.  </span><br><span class="line">* Character to the left of asterisk in the expression should match 0 or more times.  </span><br><span class="line">For example &quot;be*&quot; matches &quot;b&quot;, &quot;be&quot; and &quot;bee&quot;.    </span><br><span class="line">+ Character to the left of plus sign in the expression should match 1 or more times.  </span><br><span class="line">For example &quot;be+&quot; matches &quot;be&quot; and &quot;bee&quot; but not &quot;b&quot;.  </span><br><span class="line">? Character to the left of question mark in the expression should match 0 or 1 time.  </span><br><span class="line">For example &quot;be?&quot; matches &quot;b&quot; and &quot;be&quot; but not &quot;bee&quot;.  </span><br><span class="line">^ Expression to the right of ^ matches only when it is at the beginning of line.  </span><br><span class="line">For example &quot;^A&quot; matches an &quot;A&quot; that is only at the beginning of line.  </span><br><span class="line">$ Expression to the left of $ matches only when it is at the end of line.  </span><br><span class="line">For example &quot;e$&quot; matches an &quot;e&quot; that is only at the end of line.  </span><br><span class="line">() Affects evaluation order of expression and also used for tagged expression.  </span><br><span class="line">\ scape character. If you want to use character &quot;\&quot; itself, you should use &quot;\\&quot;.</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<a id="more"></a>
+<p>例子：</p>
+<p>原始串</p>
+<blockquote>
+<p>str[1]abc[991];<br>str[2]abc[992];<br>str[11]abc[993];<br>str[22]abc[994];<br>str[111]abc[995];<br>str[222]abc[996];<br>str[1111]abc[997];<br>str[2222]abc[999];</p>
+</blockquote>
+<p>目标串：</p>
+<blockquote>
+<p>abc[1];<br>abc[2];<br>abc[11];<br>abc[22];<br>abc[111];<br>abc[222];<br>abc[1111];<br>abc[2222];</p>
+</blockquote>
+<p>处理：<br>查找串：<code>str\[([0-9]+)\]abc\[[0-9]+\]</code><br>替换串：<code>abc[\1]</code></p>
+<ol>
+<li><p>正则表达式应用——替换指定内容到行尾<br>原始文本如下面两行<br>abc aaaaa<br>123 abc 444</p>
+<p>希望每次遇到”abc”，则替换”abc”以及其后到行尾的内容为”abc efg”<br>即上面的文本最终替换为：<br>abc efg<br>123 abc efg</p>
+<p>解决：</p>
+<ul>
+<li>在替换对话框，查找内容里输入”abc.*”</li>
+<li>同时勾选”正则表达式”复选框，然后点击”全部替换”按钮<br>其中，符号的含义如下：<br>“.” ＝匹配任意字符<br>“*” ＝匹配0次或更多  </li>
+</ul>
+<p>注意：其实就是正则表达式替换，这里只是把一些曾经提出的问题加以整理，单纯从正则表达式本身来说，就可以引申出成千上万种特例。</p>
+</li>
+<li><p>正则表达式应用——数字替换<br>希望把<br>asdadas123asdasdas456asdasdasd789asdasd<br>替换为:<br>asdadas[123]asdasdas[456]asdasdasd[789]asdasd</p>
+<p>在替换对话框里面，勾选”正则表达式”复选框；<br>在查找内容里面输入”<code>[0-9][0-9][0-9]</code>“，不含引号<br>“替换为:”里面输入”<code>[\0\1\2]</code>“，不含引号<br>范围为你所操作的范围，然后选择替换即可。</p>
+<p>实际上这也是正则表达式的使用特例，”[0-9]”表示匹配0～9之间的任何特例，同样”[a-z]”就表示匹配a～z之间的任何特例<br>上面重复使用了”[0-9]”，表示连续出现的三个数字<br>“\0”代表第一个”[0-9]”对应的原型，”\1”代表第二个”[0-9]”对应的原型，依此类推<br>“[“、”]”为单纯的字符，表示添加”[“或”]”，如果输入”<code>其它\0\1\2其它</code>“，则替换结果为：</p>
+<blockquote>
+<p>asdadas其它123其它asdasdas其它456其它asdasdasd其它789其它asdasd</p>
+</blockquote>
+<p>功能增强（by jiuk2k）：<br>如果将查找内容”<code>[0-9][0-9][0-9]</code>“改为”<code>[0-9]*[0-9]</code>“，对应1 或 123 或 12345 或 …<br>大家根据需要定制  </p>
+<p>相关内容还有很多，可以自己参考正则表达式的语法仔细研究一下</p>
+</li>
+<li><p>正则表达式应用——删除每一行行尾的指定字符<br>因为这几个字符在行中也是出现的,所以肯定不能用简单的替换实现<br>比如<br>12345 1265345<br>2345<br>需要删除每行末尾的”345”<br>这个也算正则表达式的用法，其实仔细看正则表达式应该比较简单，不过既然有这个问题提出，说明对正则表达式还得有个认识过程，解决方法如下<br>解决：<br>在替换对话框中，启用”正则表达式”复选框<br>在查找内容里面输入”345$”<br>这里”$”表示从行尾匹配</p>
+<p>如果从行首匹配，可以用”^”来实现，不过 EditPlus 有另一个功能可以很简单的删除行首的字符串<br>a. 选择要操作的行<br>b. 编辑－格式－删除行注释<br>c. 在弹出对话框里面输入要清除的行首字符，确定</p>
+</li>
+<li><p>正则表达式应用——替换带有半角括号的多行<br>几百个网页中都有下面一段代码： <code>\n</code><br>在替换对话框启用”正则表达式”选项，这时就可以完成替换了</p>
+</li>
+<li><p>正则表达式应用——删除空行<br>启动EditPlus，打开待处理的文本类型文件。  </p>
+<ul>
+<li>选择”查找”菜单的”替换”命令，弹出文本替换对话框。选中”正则表达式”复选框，表明我们要在查找、替换中使用正则表达式。然后，选中”替换范围”中的”当前文件”，表明对当前文件操作。</li>
+<li>单击”查找内容”组合框右侧的按钮，出现下拉菜单。</li>
+<li>下面的操作添加正则表达式，该表达式代表待查找的空行。（技巧提示：空行仅包括空格符、制表符、回车符，且必须以这三个符号之一作为一行的开头，并且以回车符结尾，查找空行的关键是构造代表空行的正则表达式）。<br>直接在”查找”中输入正则表达式”<code>^[\t]*\n</code>“，注意\t前有空格符。<br>（1）选择”从行首开始匹配”，”查找内容”组合框中出现字符”^”，表示待查找字符串必须出现在文本中一行的行首。<br>（2）选择”字符在范围中”，那么在”^”后会增加一对括号”[]”，当前插入点在括号中。括号在正则表达式中表示，文本中的字符匹配括号中任意一个字符即符合查找条件。<br>（3）按一下空格键，添加空格符。空格符是空行的一个组成成分。<br>（4）选择”制表符”，添加代表制表符的”\t”。<br>（5）移动光标，将当前插入点移到”]”之后，然后选择”匹配 0 次或更多”，该操作会添加星号字符”*”。星号表示，其前面的括号”[]”内的空格符或制表符，在一行中出现0个或多个。<br>（6）选择”换行符”，插入”\n”，表示回车符。  </li>
+<li>“替换为”组合框保持空，表示删除查找到的内容。单击”替换”按钮逐个行删除空行，或单击”全部替换”按钮删除全部空行（注意：EditPlus有时存在”全部替换”不能一次性完全删除空行的问题，可能是程序BUG，需要多按几次按钮）。</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><p>在汉化的时候，是否经常碰到这样的语句需要翻译：</p>
+<blockquote>
+<p>“Error adding the post!”;<br>“Error adding the comment!”;<br>“Error adding the user!”;</p>
+</blockquote>
+<p>如果有很多类似的文件一个一个翻译显然很累而且感觉很无聊。</p>
+<p>其实可以这样处理，在Editplus里面用 替换 功能，在替换对话框选中”正则表达式”复选框：<br>查找原文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;Error adding ([^!|&quot;|;]*)</span><br></pre></td></tr></table></figure>
+<p>替换成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;在增加\1时发生错误</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这样替换之后发生了什么？结果是：</p>
+<blockquote>
+<p>“在增加the post时发生错误!”;<br>“在增加the comment时发生错误!”;<br>“在增加the user时发生错误!”;</p>
+</blockquote>
+<p> ok，接下来你会怎么做？当然再替换一次把the post、the comment、the user替换成你要翻译的词。得到最后的结果：</p>
+<blockquote>
+<p>“在增加帖子时发生错误!”;<br>“在增加评论时发生错误!”;<br>“在增加用户时发生错误!”;</p>
+</blockquote>
+<ol start="2">
+<li><p>要提取的单词在中间，比如：</p>
+<blockquote>
+<p>can not be deleted because<br>can not be added because<br>can not be updating because</p>
+</blockquote>
+<p>可以用这种方式：<br>在Editplus里面用 替换 功能，在替换对话框选中”正则表达式”复选框：<br>查找原文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">can not be ([^ ]*) because</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>替换成：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">无法被\1因为</span><br></pre></td></tr></table></figure></p>
+<p>这样替换之后发生了什么？结果是：</p>
+<blockquote>
+<p>无法被deleted因为<br>无法被added因为<br>无法被updating因为</p>
+</blockquote>
+<p> 其余步骤如上。</p>
+<p> 在汉化量很大而且句式比较单调的情况下对效率的提高很明显！</p>
+<p> 解释一下：<code>([^!|&quot;|;]*)</code> 的意思是 不等于 ! 和 “ 和 ; 中的任何一个，意思就是这3个字符之外的所有字符将被选中（替换区域）；<br> \1 即被选中的替换区域所在的新位置（复制到这个新位置）。</p>
+<ol start="3">
+<li><p>经常手工清理一行一行地删除文本文件里面的空白行，其实可以交给Editplus更好的完成，在Editplus里面用替换功能，在替换对话框选中”正则表达式”复选框：<br>查找原文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[\t]*\n</span><br></pre></td></tr></table></figure>
+<p>替换部分为空就可以删除空白行了，执行一下看看：）</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/regex/" rel="tag"># regex</a>
+          
+            <a href="/tags/EditPlus/" rel="tag"># EditPlus</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2008/03/03/read-the-specified-line/" rel="next" title="如何提取指定行的内容？">
+                <i class="fa fa-chevron-left"></i> 如何提取指定行的内容？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2008/03/04/EditPlus-regex-example/" rel="prev" title="Editplus 正则替换实例 By Stabx">
+                Editplus 正则替换实例 By Stabx <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">東木</p>
+              <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">202</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2007 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

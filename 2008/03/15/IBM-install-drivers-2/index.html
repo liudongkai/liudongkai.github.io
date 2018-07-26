@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'da65f2d4ea1c6d4dccfa6d7f197d2aaf',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="十五 、安装 UltraNav driver for Windows 2000, XP注 1 ： 如果网友的 ThinkPad 是 X61/X61s ，请至 此连结 下载 TrackPoint Only 驱动程序。  可以从 http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-42487 下载。  所安装的版本是">
+<meta name="keywords" content="ThinkPad">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IBM T61&#x2F;R61&#x2F;X61 WinXP驱动安装(二)">
+<meta property="og:url" content="http://blog.liudongkai.com/2008/03/15/IBM-install-drivers-2/index.html">
+<meta property="og:site_name" content="Dong&#39;s Note">
+<meta property="og:description" content="十五 、安装 UltraNav driver for Windows 2000, XP注 1 ： 如果网友的 ThinkPad 是 X61/X61s ，请至 此连结 下载 TrackPoint Only 驱动程序。  可以从 http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-42487 下载。  所安装的版本是">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2008-03-14T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IBM T61&#x2F;R61&#x2F;X61 WinXP驱动安装(二)">
+<meta name="twitter:description" content="十五 、安装 UltraNav driver for Windows 2000, XP注 1 ： 如果网友的 ThinkPad 是 X61/X61s ，请至 此连结 下载 TrackPoint Only 驱动程序。  可以从 http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-42487 下载。  所安装的版本是">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/2008/03/15/IBM-install-drivers-2/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>IBM T61/R61/X61 WinXP驱动安装(二) | Dong's Note</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42337789-4');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/15/IBM-install-drivers-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">IBM T61/R61/X61 WinXP驱动安装(二)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-15T00:00:00+08:00">2008-03-15</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="十五-、安装-UltraNav-driver-for-Windows-2000-XP"><a href="#十五-、安装-UltraNav-driver-for-Windows-2000-XP" class="headerlink" title="十五 、安装 UltraNav driver for Windows 2000, XP"></a>十五 、安装 UltraNav driver for Windows 2000, XP</h3><p>注 1 ： 如果网友的 ThinkPad 是 X61/X61s ，请至 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-4kmuyl" target="_blank" rel="noopener">此连结</a> 下载 TrackPoint Only 驱动程序。</p>
+<ol>
+<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-42487" target="_blank" rel="noopener">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-42487</a> 下载。</p>
+</li>
+<li><p>所安装的版本是 7.5.17 .20 版， 2006/05/27 发布。档名为 77gu08ww.exe</p>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
+<li>License Agreement 画面，选「 I accept the terms in the license agreement 」按「 Next 」 </li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\WIN\UNAV 」，如不想变更请直接按「 Next 」 </li>
+<li>解压缩完成后按「 Finish 」</li>
+</ul>
+</li>
+<li><p>到「 C:\DRIVERS\WIN\UNAV 」里，双击「 Setup.exe 」</p>
+<ul>
+<li>首先出现「选取安装语言」，选「英语」，按「确定」 </li>
+<li>按「 Next 」 </li>
+<li>按「 Next 」 </li>
+<li>安装完毕后选「 Yes, I want to restart my computer now 」，按「 Finish 」</li>
+</ul>
+</li>
+</ol>
+<a id="more"></a>
+<h3 id="十六-、安装-Hotkey-driver-for-Windows-Vista-XP-2000"><a href="#十六-、安装-Hotkey-driver-for-Windows-Vista-XP-2000" class="headerlink" title="十六 、安装 Hotkey driver for Windows Vista, XP, 2000"></a>十六 、安装 Hotkey driver for Windows Vista, XP, 2000</h3><ol>
+<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-67047" target="_blank" rel="noopener">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-67047</a> 下载。</p>
+</li>
+<li><p>所安装版本是 2.03.0705 版， 2007/05/16 发布，档名为 7kvu13ww.exe</p>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
+<li>License Agreement 画面，选择「 I accept the terms in the license agreement 」，按「 Next 」 </li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\WIN\HOTKEY 」，如不想变更请直接按「 Next 」 </li>
+<li>解压缩完成，按「 Finish 」</li>
+</ul>
+</li>
+<li><p>到「 C:\DRIVERS\WIN\HOTKEY 」，双击「 Setup.exe 」</p>
+<ul>
+<li>出现欢迎画面，按「安装或升级驱动程序或软件」，按「下一步」 </li>
+<li>点选「 On Screen Display 」、「 ThinkPad FullScreen Magnifier 」，按「安装」 </li>
+<li>按「确定」 </li>
+<li>按「关闭」 </li>
+<li>按「是」，重新开机</li>
+</ul>
+</li>
+</ol>
+<h3 id="十七-、安装-Bluetooth-with-Enhanced-Data-Rate-Software-for-Windows-XP-2000"><a href="#十七-、安装-Bluetooth-with-Enhanced-Data-Rate-Software-for-Windows-XP-2000" class="headerlink" title="十七 、安装 Bluetooth with Enhanced Data Rate Software for Windows XP, 2000"></a>十七 、安装 Bluetooth with Enhanced Data Rate Software for Windows XP, 2000</h3><ol>
+<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-61425" target="_blank" rel="noopener">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-61425</a> 下载。</p>
+</li>
+<li><p>所安装的版本是 5.1.0 .3100 版， 2007/05/17 发布。档名为 7jba08ww.exe</p>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
+<li>License Agreement 画面，选「 I accept the terms in the license agreement 」按「 Next 」 </li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\TPBTooth 」，如不想变更请直接按「 Next 」 </li>
+<li>解压缩完成后按「 Finish 」</li>
+</ul>
+</li>
+<li><p>要开始安装驱动程序前，请「务必」遵守以下几点规则，以免安装失败 !</p>
+<ul>
+<li>在安装此版 <a href="http://mobiledigit.net/bbs/viewthread.php?tid=40188&amp;extra=page%3D1" target="_blank" rel="noopener">Bluetooth软件</a> 前，移除掉先前功能旧版的 Bluetooth 软件 </li>
+<li>Bluetooth 软件安装时， 「不要」 任意碰触键盘、 TrackPoint 、 TouchPad 。 </li>
+<li>将 ThinkPad 的「无线硬件开关」打开，确认 LCD 下方蓝芽标志有亮。或是按下「 Fn+F5 」热键，确定闭蓝芽无线通讯功能已开启</li>
+</ul>
+</li>
+<li><p>到「 C:\DRIVERS\TPBTooth 」里，双击 Setup.exe</p>
+<ul>
+<li>出现欢迎画面，按「下一步」 </li>
+<li>选择「我接受该授权合约中的条款 (A) 」，按「下一步」 </li>
+<li>预设安装到「 C:\Program Files\ThinkPad\Bluetooth Software 」，请直接按「下一步」 </li>
+<li>按「安装」 </li>
+<li>当「 Driver Signature Notice 」画面出现时，按「 OK 」 </li>
+<li>稍待一会之后，按「完成」</li>
+</ul>
+</li>
+<li><p>手动重新开机</p>
+</li>
+</ol>
+<h3 id="十八-、安装-IBM-fingerprint-reader-software-for-Windows-2000-XP"><a href="#十八-、安装-IBM-fingerprint-reader-software-for-Windows-2000-XP" class="headerlink" title="十八 、安装 IBM fingerprint reader software for Windows 2000, XP"></a>十八 、安装 IBM fingerprint reader software for Windows 2000, XP</h3><ol>
+<li><p>由于原厂网站上尚未提供驱动程序下载，<a href="http://www.tpuser.idv.tw/files/fps.zip" target="_blank" rel="noopener">请点击这里下载5.6版</a>。</p>
+<ul>
+<li><a href="http://www.tpuser.idv.tw/files/4IN1.zip" target="_blank" rel="noopener">下载此文件于硬盘后</a>，双击执行「 setup.exe 」后，按「 Next 」 </li>
+<li>License Agreement 画面，选「 I accept the terms in the license agreement 」按「 Next 」 </li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\WIN\FPS 」，如不想变更请直接按「 Next 」 </li>
+<li>解压缩完成后按「 Finish 」</li>
+</ul>
+</li>
+<li><p>到「 C:\DRIVERS\WIN\FPS 」，双击「 Setup.exe 」</p>
+<ul>
+<li>出现欢迎画面，按「下一步」 </li>
+<li>预设安装到「 C:\Program Files\ThinkVantage Fingerprint Software\ 」，请按「下一步」 </li>
+<li>按「下一步」 </li>
+<li>按「完成」 </li>
+<li>按「是」，重新开机。</li>
+</ul>
+</li>
+</ol>
+<h3 id="十九-、安装四合一读卡器驱动"><a href="#十九-、安装四合一读卡器驱动" class="headerlink" title="十九 、安装四合一读卡器驱动"></a>十九 、安装四合一读卡器驱动</h3><p>注：此项功能仅限有内建四合一 ( SD/MMC/MS/xD) 读卡器的机种。</p>
+<ol>
+<li>由于原厂网站上尚未提供驱动程序下载，<a href="http://www.tpuser.idv.tw/files/4IN1.zip" target="_blank" rel="noopener">请点击这里下载</a>。<ul>
+<li>下载此文件于硬盘后 ，双击执行「 DPInst.exe 」后，按「下一步」 </li>
+<li>按「完成」 </li>
+<li>License Agreement 画面，选「 I accept the terms in the license agreement 」按「 Next 」 </li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\WIN\FPS 」，如不想变更请直接按「 Next 」 </li>
+<li>解压缩完成后按「 Finish 」</li>
+</ul>
+</li>
+</ol>
+<h3 id="二十-、安装-ThinkVantage-Active-Protection-System-for-Windows-Vista-32-bit-XP-2000"><a href="#二十-、安装-ThinkVantage-Active-Protection-System-for-Windows-Vista-32-bit-XP-2000" class="headerlink" title="二十 、安装 ThinkVantage Active Protection System for Windows Vista 32-bit, XP, 2000 　　"></a>二十 、安装 ThinkVantage Active Protection System for Windows Vista 32-bit, XP, 2000 　　</h3><ol>
+<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-53150" target="_blank" rel="noopener">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-53150</a> 下载。</p>
+</li>
+<li><p>所安装的版本是 1.52 版， 2007/04/04 发布。档名为 7ksa10ww.exe</p>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
+<li>License Agreement 画面，选「 I accept the terms in the license agreement 」按「 Next 」 </li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\WIN\HPROTECT 」，如不想变更请直接按「 Next 」 </li>
+<li>解压缩完成后按「 Finish 」</li>
+</ul>
+</li>
+<li><p>到「 C:\DRIVERS\WIN\HPROTECT 」，双击「 Setup.exe 」</p>
+<ul>
+<li>出现欢迎画面，按「下一步」 </li>
+<li>按「安装」 </li>
+<li>按「完成」 </li>
+<li>按「是」，重新开机。</li>
+</ul>
+</li>
+</ol>
+<h3 id="二十一-、安装-Atmel-TPM-Trusted-Platform-Module-device-driver-for-Windows-Vista-32-bit-XP-2000"><a href="#二十一-、安装-Atmel-TPM-Trusted-Platform-Module-device-driver-for-Windows-Vista-32-bit-XP-2000" class="headerlink" title="二十一 、安装 Atmel TPM (Trusted Platform Module) device driver for Windows Vista 32-bit, XP, 2000"></a>二十一 、安装 Atmel TPM (Trusted Platform Module) device driver for Windows Vista 32-bit, XP, 2000</h3><ol>
+<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-58054" target="_blank" rel="noopener">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-58054</a> 下载。</p>
+</li>
+<li><p>所安装的版本是 3.0.0 .15 版， 2006/03/15 发布。档名为 79za05ww.exe</p>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
+<li>License Agreement 画面，选「 I accept the terms in the license agreement 」按「 Next 」 </li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\WIN\TPM 」，如不想变更请直接按「 Next 」 </li>
+<li>解压缩完成后按「 Finish 」</li>
+</ul>
+</li>
+<li><p>在桌面上的「我的计算机」上按右键，选「内容」，请在「硬件」里点选「装置管理员」，请双击其中的「其它装置」，展开后请双击「无法辨识的装置」，会进入内容。</p>
+<ul>
+<li>在内容进入「驱动程序」页，并点选「更新驱动程序」 </li>
+<li>此时会出现硬件更新精灵，点选「不，现在不要」，按「下一步」 </li>
+<li>选择「从清单或特定位置安装 ( 进阶 ) 」，按「下一步」 </li>
+<li>先点选「在这些位置中搜寻最好的驱动程序」，然后勾选「搜寻时包括这个位置」，按下「浏览」键，将路径指向「 C:\DRIVERS\WIN\TPM 」，按「下一步」 </li>
+<li>系统显示找到「 Atmel TPM 」，按「完成」</li>
+<li>关闭相关的画面。</li>
+</ul>
+</li>
+</ol>
+<h3 id="二十二-、安装-EasyEject-Utility-for-Windows-Vista-XP-2000"><a href="#二十二-、安装-EasyEject-Utility-for-Windows-Vista-XP-2000" class="headerlink" title="二十二 、安装 EasyEject Utility for Windows Vista, XP, 2000"></a>二十二 、安装 EasyEject Utility for Windows Vista, XP, 2000</h3><ol>
+<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-44035" target="_blank" rel="noopener">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-44035</a> 下载。</p>
+</li>
+<li><p>所安装的版本是 2.33 版， 2007/06/19 发布。档名为 7ku208ww.exe</p>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
+<li>License Agreement 画面，选「 I accept the terms in the license agreement 」按「 Next 」 </li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\W2K\EZEJECT 」，如不想变更请直接按「 Next 」 </li>
+<li>解压缩完成后按「 Finish 」</li>
+</ul>
+</li>
+<li><p>到「 C:\DRIVERS\W2K\EZEJECT 」，双击「 Setup.exe 」</p>
+<ul>
+<li>首先选择安装的语系，例如中文 ( 繁体 ) ，按「确定」 </li>
+<li>按「下一步」 </li>
+<li>预设安装路径为「 C:\Program Files\ThinkPad\Utilities 」，按「下一步」 </li>
+<li>选择安装类型，预设是「一般安装」，如不想变更， 按「下一步」 </li>
+<li>选择程序数据夹，预设会安装到「 ThinkVantage 」， 如不想变更， 按「下一步」 </li>
+<li>安装完成后，请选择「是，立即重新启动计算机」，并按「完成」准备重新开机。</li>
+</ul>
+</li>
+</ol>
+<h3 id="二十三-、安装-Presentation-Director-for-Windows-Vista-XP-2000"><a href="#二十三-、安装-Presentation-Director-for-Windows-Vista-XP-2000" class="headerlink" title="二十三 、安装 Presentation Director for Windows Vista, XP, 2000"></a>二十三 、安装 Presentation Director for Windows Vista, XP, 2000</h3><ol>
+<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-67364" target="_blank" rel="noopener">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-67364</a> 下载。</p>
+</li>
+<li><p>所安装的版本是 3.03a 版， 2007/06/06 发布。档名为 7rua05ww.exe</p>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
+<li>License Agreement 画面，选「 I accept the terms in the license agreement 」按「 Next 」 </li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\W2K\PDIRECT 」，如不想变更请直接按「 Next 」 </li>
+<li>解压缩完成后按「 Finish 」</li>
+</ul>
+</li>
+<li><p>到「 C:\DRIVERS\W2K\PDIRECT 」，双击「 Setup.exe 」</p>
+<ul>
+<li>首先选择安装的语系，例如中文 ( 繁体 ) ，按「确定」 </li>
+<li>按「下一步」 </li>
+<li>预设安装路径为「 C:\Program Files\Lenovo\NPDIRECT 」，按「下一步」 </li>
+<li>选择程序数据夹，预设会安装到「 ThinkVantage 」， 如不想变更， 按「下一步」 </li>
+<li>按「下一步」 </li>
+<li>安装完成后，请选择「是，立即重新启动计算机」，并按「完成」准备重新开机。</li>
+</ul>
+</li>
+</ol>
+<h3 id="二十四-、安装-Access-Help-online-User’s-Guide"><a href="#二十四-、安装-Access-Help-online-User’s-Guide" class="headerlink" title="二十四 、安装 Access Help online User’s Guide"></a>二十四 、安装 Access Help online User’s Guide</h3><ol>
+<li><p>目前网络上提供的 Access Help 都没有繁体中文版。但是繁体中文版的 Access Help 其实就在 ThinkPad 预载系统「 C:\SWTOOLS\apps\ 」里面。数据夹名称为「 ahlp 」。所以网友 务必自行备份！</p>
+</li>
+<li><p>如需安装英文版的 Access Help ，程序如下：</p>
+<ul>
+<li>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-67828" target="_blank" rel="noopener">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-67828</a> 下载 T61/R61 版本。</li>
+<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-67949" target="_blank" rel="noopener">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-67949</a> 下载 X61/X61s 版本。</p>
+</li>
+<li><p>所安装的英文版本是 2.01 版， 2007/05/17 发布，档名为 7kta06us.exe</p>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，出现欢迎画面，按「 Next 」 </li>
+<li>License Agreement 画面，点选「 I accept the terms in the license agreement. 」，然后按「 Next 」 </li>
+<li>预设安装到「 C:\DRIVERS\WIN\AHLP 」，请按「 Next 」 </li>
+<li>按「 Finish 」</li>
+</ul>
+</li>
+<li>首先选择安装的语系，例如中文 ( 繁体 ) ，按「确定」 </li>
+<li>按「下一步」 </li>
+<li>预设安装路径为「 C:\Program Files\ThinkVantage\AHLP 」，按「下一步」 </li>
+<li>选择程序数据夹，预设会安装到「 ThinkVantage 」， 如不想变更， 按「下一步」 </li>
+<li>按「完成」</li>
+</ul>
+</li>
+</ol>
+<h3 id="二十五-、安装-Help-Center-for-Windows-Vista-XP-2000"><a href="#二十五-、安装-Help-Center-for-Windows-Vista-XP-2000" class="headerlink" title="二十五 、安装 Help Center for Windows Vista, XP, 2000"></a>二十五 、安装 Help Center for Windows Vista, XP, 2000</h3><ol>
+<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-67244" target="_blank" rel="noopener">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-67244</a> 下载。</p>
+</li>
+<li><p>所安装版本是 2.00c 版， 2007/05/16 发布，档名为 7kth08ww.exe</p>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
+<li>License Agreement 画面，选择「 I accept the terms in the license agreement 」，按「 Next 」</li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\WIN\ALRN 」，如不想变更请直接按「 Next 」</li>
+<li>解压缩完成，按「 Finish 」</li>
+</ul>
+</li>
+<li><p>到「 C:\DRIVERS\WIN\ALRN 」」，双击「 Setup.exe 」</p>
+<ul>
+<li>出现欢迎画面，按「下一步」 </li>
+<li>预设安装到「 C:\Program Files\ThinkVantage\ALRN 」，请按「下一步」 </li>
+<li>选择程序数据夹，预设会安装到「 ThinkVantage 」， 如不想变更， 按「下一步」 </li>
+<li>按「完成」</li>
+</ul>
+</li>
+</ol>
+<h3 id="二十六-、安装-ThinkVantage-Productivity-Center"><a href="#二十六-、安装-ThinkVantage-Productivity-Center" class="headerlink" title="二十六 、安装 ThinkVantage Productivity Center"></a>二十六 、安装 ThinkVantage Productivity Center</h3><ol>
+<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-61378" target="_blank" rel="noopener">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-61378</a> 下载。</p>
+</li>
+<li><p>所安装版本是 2.02 版， 2007/05/14 发布，档名为 7kuy03cw.exe</p>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
+<li>License Agreement 画面，选择「 I accept the terms in the license agreement 」，按「 Next 」</li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\W2K\PRDCTR 」，如不想变更请直接按「 Next 」</li>
+<li>解压缩完成，按「 Finish 」</li>
+</ul>
+</li>
+<li><p>到「 C:\DRIVERS\W2K\PRDCTR 」，双击「 Setup.exe 」</p>
+<ul>
+<li>出现欢迎画面，按「安装或升级驱动程序或软件」，按「下一步」 </li>
+<li>点选「 Productivity Center Supplement for ThinkPad 」、「 ThinkVantage Productivity Center 」，按「安装」 </li>
+<li>按「确定」 </li>
+<li>按「关闭」 </li>
+<li>按「是」，重新开机</li>
+</ul>
+</li>
+</ol>
+<h3 id="二十七-、安装-PCMCIA-Power-Policy-Registry-Patch"><a href="#二十七-、安装-PCMCIA-Power-Policy-Registry-Patch" class="headerlink" title="二十七 、安装 PCMCIA Power Policy Registry Patch"></a>二十七 、安装 PCMCIA Power Policy Registry Patch</h3><ol>
+<li><p>由于原厂网站上尚未提供驱动程序下载，请点击<a href="http://www.tpuser.idv.tw/files/PCMCIAPW.zip" target="_blank" rel="noopener">这里下载</a>。</p>
+<ul>
+<li><a href="http://www.tpuser.idv.tw/files/PCMCIAPW.zip" target="_blank" rel="noopener">下载此文件于硬盘后</a> ，双击执行「 Install.bat 」即可。</li>
+</ul>
+</li>
+</ol>
+<p>【总结】：以上为 ThinkPad T61/R61/X61 系统各项驱动程序的安装流程，至于系统预载的各种应用程序皆放在「 C:\SWTOOLS\apps\ 」里面，这些程序使用者在自行安装操作系统之前「 务必自行备份 」。</p>
+<hr>
+<p>增加Vista迅盘驱动下载：</p>
+<p>Intel Turbo Memory Driver for Windows Vista – ThinkPad Reserve Edition, R61, T61, X61, X61s, X61 Tablet</p>
+<p>地址：<a href="http://www-307.ibm.com/pc/support/site.wss/license.do?filename=mobiles/7kin14ww.exe&amp;velxr-layout=popupLenovo" target="_blank" rel="noopener">http://www-307.ibm.com/pc/support/site.wss/license.do?filename=mobiles/7kin14ww.exe&amp;velxr-layout=popupLenovo</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ThinkPad/" rel="tag"># ThinkPad</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2008/03/15/wp-plugin-tiger-administration/" rel="next" title="WP插件–WP Tiger Administration">
+                <i class="fa fa-chevron-left"></i> WP插件–WP Tiger Administration
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2008/03/15/apache-rewrite/" rel="prev" title="Apache 重写规则的常见应用 (rewrite)">
+                Apache 重写规则的常见应用 (rewrite) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">東木</p>
+              <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">202</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#十五-、安装-UltraNav-driver-for-Windows-2000-XP"><span class="nav-number">1.</span> <span class="nav-text">十五 、安装 UltraNav driver for Windows 2000, XP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十六-、安装-Hotkey-driver-for-Windows-Vista-XP-2000"><span class="nav-number">2.</span> <span class="nav-text">十六 、安装 Hotkey driver for Windows Vista, XP, 2000</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十七-、安装-Bluetooth-with-Enhanced-Data-Rate-Software-for-Windows-XP-2000"><span class="nav-number">3.</span> <span class="nav-text">十七 、安装 Bluetooth with Enhanced Data Rate Software for Windows XP, 2000</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十八-、安装-IBM-fingerprint-reader-software-for-Windows-2000-XP"><span class="nav-number">4.</span> <span class="nav-text">十八 、安装 IBM fingerprint reader software for Windows 2000, XP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十九-、安装四合一读卡器驱动"><span class="nav-number">5.</span> <span class="nav-text">十九 、安装四合一读卡器驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二十-、安装-ThinkVantage-Active-Protection-System-for-Windows-Vista-32-bit-XP-2000"><span class="nav-number">6.</span> <span class="nav-text">二十 、安装 ThinkVantage Active Protection System for Windows Vista 32-bit, XP, 2000 　　</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二十一-、安装-Atmel-TPM-Trusted-Platform-Module-device-driver-for-Windows-Vista-32-bit-XP-2000"><span class="nav-number">7.</span> <span class="nav-text">二十一 、安装 Atmel TPM (Trusted Platform Module) device driver for Windows Vista 32-bit, XP, 2000</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二十二-、安装-EasyEject-Utility-for-Windows-Vista-XP-2000"><span class="nav-number">8.</span> <span class="nav-text">二十二 、安装 EasyEject Utility for Windows Vista, XP, 2000</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二十三-、安装-Presentation-Director-for-Windows-Vista-XP-2000"><span class="nav-number">9.</span> <span class="nav-text">二十三 、安装 Presentation Director for Windows Vista, XP, 2000</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二十四-、安装-Access-Help-online-User’s-Guide"><span class="nav-number">10.</span> <span class="nav-text">二十四 、安装 Access Help online User’s Guide</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二十五-、安装-Help-Center-for-Windows-Vista-XP-2000"><span class="nav-number">11.</span> <span class="nav-text">二十五 、安装 Help Center for Windows Vista, XP, 2000</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二十六-、安装-ThinkVantage-Productivity-Center"><span class="nav-number">12.</span> <span class="nav-text">二十六 、安装 ThinkVantage Productivity Center</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二十七-、安装-PCMCIA-Power-Policy-Registry-Patch"><span class="nav-number">13.</span> <span class="nav-text">二十七 、安装 PCMCIA Power Policy Registry Patch</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2007 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

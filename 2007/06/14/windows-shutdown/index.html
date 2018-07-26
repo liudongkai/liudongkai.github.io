@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'da65f2d4ea1c6d4dccfa6d7f197d2aaf',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="WINDOWS XP的关机中。Windows XP系统是通过一个名为Shutdown.exe的程序来完成关机操作的，关机的时候调用shutdown.exe。在Windows XP的运用中，如果我们能很好的利用这个工具，这对我们的工作是大有益处的。作为Shutdown.exe的运用，我想作以下几点来讲。 一、自动关机其实现在我们只要在网上一搜，自动关机的小软件可以搜一大堆。也就是说大多数实现自动关机">
+<meta name="keywords" content="shutdown">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows shutdown">
+<meta property="og:url" content="http://blog.liudongkai.com/2007/06/14/windows-shutdown/index.html">
+<meta property="og:site_name" content="Dong&#39;s Note">
+<meta property="og:description" content="WINDOWS XP的关机中。Windows XP系统是通过一个名为Shutdown.exe的程序来完成关机操作的，关机的时候调用shutdown.exe。在Windows XP的运用中，如果我们能很好的利用这个工具，这对我们的工作是大有益处的。作为Shutdown.exe的运用，我想作以下几点来讲。 一、自动关机其实现在我们只要在网上一搜，自动关机的小软件可以搜一大堆。也就是说大多数实现自动关机">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2007-06-13T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows shutdown">
+<meta name="twitter:description" content="WINDOWS XP的关机中。Windows XP系统是通过一个名为Shutdown.exe的程序来完成关机操作的，关机的时候调用shutdown.exe。在Windows XP的运用中，如果我们能很好的利用这个工具，这对我们的工作是大有益处的。作为Shutdown.exe的运用，我想作以下几点来讲。 一、自动关机其实现在我们只要在网上一搜，自动关机的小软件可以搜一大堆。也就是说大多数实现自动关机">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/2007/06/14/windows-shutdown/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Windows shutdown | Dong's Note</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42337789-4');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2007/06/14/windows-shutdown/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Windows shutdown
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2007-06-14 00:00:00" itemprop="dateCreated datePublished" datetime="2007-06-14T00:00:00+08:00">2007-06-14</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/windows/" itemprop="url" rel="index"><span itemprop="name">windows</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>WINDOWS XP的关机中。Windows XP系统是通过一个名为Shutdown.exe的程序来完成关机操作的，关机的时候调用shutdown.exe。在Windows XP的运用中，如果我们能很好的利用这个工具，这对我们的工作是大有益处的。作为Shutdown.exe的运用，我想作以下几点来讲。</p>
+<h2 id="一、自动关机"><a href="#一、自动关机" class="headerlink" title="一、自动关机"></a>一、自动关机</h2><p>其实现在我们只要在网上一搜，自动关机的小软件可以搜一大堆。也就是说大多数实现自动关机的方法都是使用一些第三方软件，这样不仅麻烦，而且为实现这个小功能而专门动用一个软件，显的小题大做了!其实Windows XP自身就具备定时关机的功能，下面我们就来看看如何实现Windows XP的自动关机。为找到答案，我们有必要先了解一下WINDOWS XP的关机。Windows XP系统通过一个名为Shutdown.exe的程序来完成关机操作(位置在WindowsSystem下)，关机的时候调用shutdown.exe。因此，要实现自动关机，就是对shutdown.exe的调用。比如你的电脑要在12:00关机，可以选择”开始→运行”，输入<code>at 12:00 Shutdown -s</code>，这样，到了12点电脑就会出现”系统关机”对话框，默认有30秒钟的倒计时并提示你保存工作。如果你想以倒计时的方式关机，可以输入<code>Shutdown.exe -s -t 3600</code>，这里表示60分钟后自动关机，”3600”代表60分钟。</p>
+<p>设置好自动关机后，如果想取消的话，可以在运行中输入<code>shutdown -a</code>。另外输入<code>shutdown -i</code>，则可以打开设置自动关机对话框，对自动关机进行设置。</p>
+<p>Shutdown.exe的参数，每个都具有特定的用途，执行每一个都会产生不同的效果，比如”-s”就表示关闭本地计算机，”-a”表示取消关机操作，下面列出了更多参数，大家可以在Shutdown.exe中按需使用。</p>
+<blockquote>
+<p>shutdown.exe -a 取消关机<br>shutdown.exe -d [p]:xx:yy 列出系统关闭的原因代码。<br>shutdown.exe -f 强行关闭应用程序。<br>shutdown.exe -m \计算机名　控制远程计算机。<br>shutdown.exe -i 显示图形用户界面，但必须是Shutdown的第一个参数。<br>shutdown.exe -l 注销当前用户。<br>shutdown.exe -r 关机并重启。<br>shutdown.exe -t 时间 设置关机倒计时。默认值是 30 秒。<br>shutdown.exe -c”消息内容”输入关机对话框中的消息内容(不能超127个字符)。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="二、一键关机"><a href="#二、一键关机" class="headerlink" title="二、一键关机"></a>二、一键关机</h2><ol>
+<li><p>首先在桌面的空白处单击鼠标右键，新建一个”快捷方式”。</p>
+</li>
+<li><p>在创建快捷方式的”命令行”中输入以下的指令:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shutdown –s –t 0</span><br><span class="line">#在windows98按此输入&quot;C:windowsRUNDLL32.EXE user,ExitWindows&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>按着鼠标选择”下一步”，在快捷方式的名称栏中输入”一键关机”或其他自己喜欢的名称。</p>
+</li>
+<li><p>之后，你就会在桌面见到一个名为”一键关机”的快捷方式图标，在该图标上单击鼠标右键，选择”属性”，再进入”快捷方式”页，然后在”快速键一栏内随便按选一个功能键(如F1-F12)。建议大家最好选一个平时不常用的功能键，最后按确定退出即可。</p>
+</li>
+</ol>
+<h2 id="三、远程关机"><a href="#三、远程关机" class="headerlink" title="三、远程关机"></a>三、远程关机</h2><p>前面已经介绍了一些关于shutdown的运用，那么对远程计算机进行操作，又该如何才能实现呢?</p>
+<p>在该命令的格式中，前面已经列了一个参数[-m [\ComputerName]，用它可以指定将要关闭或重启的计算机名称，省略的话则默认为对本机操作。 而在Windows XP默认的安全策略中，只有管理员组的用户才有权从远端关闭计算机，而一般情况下我们从局域网内的其他电脑来访问该计算机时，则只有guest用户权限，这种用户权限是无法实现对远程计算机进行关机，要实现远程关机，只要在客户计算机(能够被远程关闭的计算机)中赋予guest用户远程关机的权限即可。这可利用Windows XP的”组策略”或”管理工具”中的”本地安全策略”来实现。下面以”组策略”为例进行介绍:</p>
+<ol>
+<li><p>单击”开始”按钮，选择”运行”，在对话框中输入”gpedit.msc”，然后单击”确定”，打开”组策略编辑器”。</p>
+</li>
+<li><p>在”组策略”窗口的左窗格中打开”计算机配置”—“Windows 设置”—“安全设置”—“本地策略”—“用户权利指派”.</p>
+</li>
+<li><p>在”组策略”窗口的右窗格中选择”从远端系统强制关机”，双击。</p>
+</li>
+<li><p>在弹出的对话框中显示目前只有”Administrators”组的成员才有权从远程关机;单击对话框下方的”添加用户或组”按钮，然后在新弹出的对话框中输入”guest”，再单击”确定”。</p>
+</li>
+<li><p>关闭”组策略”窗中。</p>
+</li>
+</ol>
+<p>通过上述操作后，我们便给计算机的guest用户授予了远程关机的权限。然后我们在开始/运行里输入:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shutdown -s –m \\ ComputerName -t 30</span><br></pre></td></tr></table></figure></p>
+<p>这时，在ComputerName 计算机的屏幕上将显示一个”系统关机”的对话框，提示”系统即将关机。请保存所有正在运行的工作，然后注销。未保存的改动将会丢失。关机是由ComputerName \guest初始的。”在对话框下方还有一个计时器，显示离关机还有多少时间。在等待关机的时间里，用户还可以执行其他的任务，如关闭程序、打开文件等，但无法关闭该对话框，除非你用shutdown -a命令来中止关机任务。</p>
+<p>能够灵活运用这些参数，可以帮助我们更好的解决计算机故障，比如，当我们遇到冲击波或震荡波病毒时，运用shutdown –a，可以终止当前的关机进程，这样就可以避免由于这些病毒侵袭时，出现强迫关机而造成的我们不必要的损失。Shutdown.exe不仅仅是在windows xp中可以用。在Win2000也可利用它，方法如下:在WinXP安装目录下的System32文件夹中找到Shutdown.exe，将它复制到Win2000安装目录下的System32文件夹中，在”运行”中输入”Shutdown.exe”，即可像在Windows XP中一样使用该程序了。其实，在windows xp中的实用命令还有很多。上面介绍的仅仅是shutdown.exe的一小部分用法，它还有许多其他的实际的用法，这儿就不在一一列出来了。在这儿，我想说的是，命令是死的，思维是活的。用思维支配命令，这才能把命令用活，把死的用成活的;才能更好地利用这些命令给我解决运用中的实际问题。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/shutdown/" rel="tag"># shutdown</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2007/12/13/aWstats-IIS-installtion/" rel="prev" title="AWstats 在 IIS 下最详细的安装说明文档">
+                AWstats 在 IIS 下最详细的安装说明文档 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">東木</p>
+              <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">202</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、自动关机"><span class="nav-number">1.</span> <span class="nav-text">一、自动关机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、一键关机"><span class="nav-number">2.</span> <span class="nav-text">二、一键关机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、远程关机"><span class="nav-number">3.</span> <span class="nav-text">三、远程关机</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2007 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

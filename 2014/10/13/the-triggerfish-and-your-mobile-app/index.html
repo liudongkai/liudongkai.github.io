@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'PFZ0Y857EY',
+      apiKey: 'da65f2d4ea1c6d4dccfa6d7f197d2aaf',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="应用商店中有数百万个app。 每部智能手机平均安装41个app。 人们每天所使用的app平均为8个。 用户的下载不再意味着一款产品的成功，而只是漫长成功路上的一个节点而已。网上已经有很多文章教你怎么从上百万个app中脱颖而出，成为用户下载的41个app之一；但是如何成为人们每天使用的8个应用，却少有人谈及。">
+<meta name="keywords" content="trigger">
+<meta property="og:type" content="article">
+<meta property="og:title" content="找到一个触发器，成为用户每天使用的app">
+<meta property="og:url" content="http://blog.liudongkai.com/2014/10/13/the-triggerfish-and-your-mobile-app/index.html">
+<meta property="og:site_name" content="Dong&#39;s Note">
+<meta property="og:description" content="应用商店中有数百万个app。 每部智能手机平均安装41个app。 人们每天所使用的app平均为8个。 用户的下载不再意味着一款产品的成功，而只是漫长成功路上的一个节点而已。网上已经有很多文章教你怎么从上百万个app中脱颖而出，成为用户下载的41个app之一；但是如何成为人们每天使用的8个应用，却少有人谈及。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://blog.liudongkai.com/images/20141013-the-triggerfish-and-your-mobile-app-01.png">
+<meta property="og:image" content="http://blog.liudongkai.com/images/20141013-the-triggerfish-and-your-mobile-app-02.png">
+<meta property="og:image" content="http://blog.liudongkai.com/images/20141013-the-triggerfish-and-your-mobile-app-03.png">
+<meta property="og:image" content="http://blog.liudongkai.com/images/20141013-the-triggerfish-and-your-mobile-app-04.png">
+<meta property="og:image" content="http://blog.liudongkai.com/images/20141013-the-triggerfish-and-your-mobile-app-05.png">
+<meta property="og:image" content="http://blog.liudongkai.com/images/20141013-the-triggerfish-and-your-mobile-app-06.jpg">
+<meta property="og:image" content="http://blog.liudongkai.com/images/20141013-the-triggerfish-and-your-mobile-app-07.png">
+<meta property="og:updated_time" content="2014-10-12T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="找到一个触发器，成为用户每天使用的app">
+<meta name="twitter:description" content="应用商店中有数百万个app。 每部智能手机平均安装41个app。 人们每天所使用的app平均为8个。 用户的下载不再意味着一款产品的成功，而只是漫长成功路上的一个节点而已。网上已经有很多文章教你怎么从上百万个app中脱颖而出，成为用户下载的41个app之一；但是如何成为人们每天使用的8个应用，却少有人谈及。">
+<meta name="twitter:image" content="http://blog.liudongkai.com/images/20141013-the-triggerfish-and-your-mobile-app-01.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Dong's Note" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://blog.liudongkai.com/2014/10/13/the-triggerfish-and-your-mobile-app/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>找到一个触发器，成为用户每天使用的app | Dong's Note</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42337789-4');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dong's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/10/13/the-triggerfish-and-your-mobile-app/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">找到一个触发器，成为用户每天使用的app
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2014-10-13 00:00:00" itemprop="dateCreated datePublished" datetime="2014-10-13T00:00:00+08:00">2014-10-13</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>应用商店中有<a href="http://www.geekwire.com/2013/report-ios-app-store-hits-950k-apps/" target="_blank" rel="noopener">数百万个app</a>。</p>
+<p>每部智能手机平均安装<a href="http://thenextweb.com/insider/2012/05/16/nielsen-us-smartphones-have-an-average-of-41-apps-installed-up-from-32-last-year/" target="_blank" rel="noopener">41个app</a>。</p>
+<p>人们每天所使用的app平均为<a href="http://blog.flurry.com/?Tag=smartphone" target="_blank" rel="noopener">8个</a>。</p>
+<p>用户的下载不再意味着一款产品的成功，而只是漫长成功路上的一个节点而已。网上已经有很多文章教你怎么从上百万个app中脱颖而出，成为用户下载的41个app之一；但是如何成为人们每天使用的8个应用，却少有人谈及。</p>
+<a id="more"></a>
+<p>那么，怎样才能让用户天天使用你的产品呢？答案非常简单：找到一个 <strong>触发器(Trigger)</strong> 。</p>
+<h3 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h3><p>假设你所在的社区周三统一清理垃圾，有一次你忘记了，但是周二晚上回家时你看到邻居们都把垃圾桶整齐的放在外面，你会立马想起来。你看到了一个触发器（其他人的垃圾桶），接下来你就会采取行动（倒垃圾）。</p>
+<p>Charles Duhigg在他的著作《The Power Of Habit》（《习惯的力量》）中，解释了触发器的原理，以及它是如何塑造人类日常习惯的。</p>
+<p>Duhigg认为，几乎所有的触发器都可以归结为以下5类：</p>
+<ol>
+<li><p>地理位置(Location)</p>
+</li>
+<li><p>时间(Time)</p>
+</li>
+<li><p>情绪状态(Emotional State)</p>
+</li>
+<li><p>其他人(Other People)</p>
+</li>
+<li><p>前一步行为(Immediately Preceding Action)</p>
+</li>
+</ol>
+<p>一个触发器实际上就是一种提醒，最终会导致某种行动。</p>
+<h3 id="移动互联网的触发器"><a href="#移动互联网的触发器" class="headerlink" title="移动互联网的触发器"></a>移动互联网的触发器</h3><p>我们来看看这5类触发器会在移动互联网中会导致什么样的行动：</p>
+<ol>
+<li><p>地理位置——“我到了一个新地点，我会打开foursquare找附近最好的咖啡馆。”</p>
+</li>
+<li><p>时间——“我要迟到了，我会用Lyft或Uber打车，而不坐公交地铁了。”</p>
+</li>
+<li><p>情绪状态——“我是个怀旧的人，所以我会用时光机应用Timehop看看往年的今天发生了什么。”</p>
+</li>
+<li><p>其他人——“别人都没在这，我得把这场景拍下来发到Snapchat上给他们看看。”</p>
+</li>
+<li><p>前一步行为——“我感觉很不舒服，我得上ZocDoc联系一下我的医生。”</p>
+</li>
+</ol>
+<h3 id="触发器必须表达出明确的信息"><a href="#触发器必须表达出明确的信息" class="headerlink" title="触发器必须表达出明确的信息"></a>触发器必须表达出明确的信息</h3><p>你需要向你的用户解释清楚“你的服务解决什么样问题”，然后告诉人们在什么情况下使用你的产品。</p>
+<p>很多公司会用一句简单的宣传语表达使用场景，比如帮助用户征集好友意见的工具Seesaw在“当你需要观点时”使用（他人触发）；Pocket的宣传语是“当你看到一些内容想要稍后阅读时，把它放在Pocket中”（前一步行为触发）；价格追踪网站Nifti的应用场景是“当你在网上看到喜欢的东西时。”（情绪状态触发）。</p>
+<p><img src="/images/20141013-the-triggerfish-and-your-mobile-app-01.png" alt=""></p>
+<h3 id="启动你的触发器"><a href="#启动你的触发器" class="headerlink" title="启动你的触发器"></a>启动你的触发器</h3><p>理想的情况是触发器能够自动启动。但是，很多初创公司的产品在试图改变人们的行为，这时，触发器就很难自己产生作用。</p>
+<p>该怎么办呢？答案就是，你来触发这个点。最常见的方法是推送通知。200个字符不长，但是分量很重（因为会推送到千千万万人的口袋里）。</p>
+<p>Foursquare之前的一个版本中添加了地理位置触发器，当你距离某人或某地不远时，会收到通知。</p>
+<p>当你的一位朋友要去附近看演出时，WillCall就会使用“他人”触发器来通知你。</p>
+<p><img src="/images/20141013-the-triggerfish-and-your-mobile-app-02.png" alt=""></p>
+<p>Fab的目标并不是做日用品交易，但是他们以此起步，引入“时间触发器”，通过促销邮件，做成“精美设计”的在线交易平台。</p>
+<p><a href="https://ifttt.com/" target="_blank" rel="noopener">If This Then That(IFTTT)</a> 让你自己建立触发器，差不多属于“前一步行动”类型的。成千上万的用户在平台上制作触发器供人们使用，他们管这个叫做制作“菜谱”（recipe）。</p>
+<p><img src="/images/20141013-the-triggerfish-and-your-mobile-app-03.png" alt=""></p>
+<p>当然，力量越大责任也就越大。推送消息需要内容专注并保持与产品的相关性。用户收到信息时是高度警觉状态的，然而，很多公司却越来越朝相反的方向发展，不断地打扰用户。</p>
+<h3 id="用触发器培养习惯"><a href="#用触发器培养习惯" class="headerlink" title="用触发器培养习惯"></a>用触发器培养习惯</h3><p>清晰的触发机制有什么好处呢？答案是形成习惯。让用户养成使用习惯是极具价值的，是培养终生用户的关键所在。</p>
+<p>Duhigg在他的书中详细的阐释了习惯循环，很值得一读。接下来就举几个例子，来说明Uber和ZocDoc是如何改变数百万人的习惯的。这里用“触发器”(Trigger)来代替Duhigg原书中所用的“暗示”(cue)这个词，以保持本文的连贯性。</p>
+<p><img src="/images/20141013-the-triggerfish-and-your-mobile-app-04.png" alt=""></p>
+<p>用户感觉不舒服（前一步行为触发器），他们习惯性地打开ZocDoc，身体好些后他们感到满足，下一次不舒服还会用ZocDoc。</p>
+<p><img src="/images/20141013-the-triggerfish-and-your-mobile-app-05.png" alt=""></p>
+<p>用户要迟到了（时间触发器），他习惯性地打开Uber应用，最终准时到达，下一次快迟到时还会用Uber。</p>
+<h3 id="利用触发器盈利"><a href="#利用触发器盈利" class="headerlink" title="利用触发器盈利"></a>利用触发器盈利</h3><p>越来越多的人发现了触发器的力量，作为习惯循环第一步的触发器变得越来越重要。</p>
+<p>第三方Push服务商Urban Airship能够帮助开发者获得更多的收益。去年，Facebook也开始拓展app安装广告，推出更有效的互动式app安装广告。Estimote Beacons则着力于“地理位置触发”，它可以通过蓝牙推送基于地理位置的通知，精确到一个特定的房间，这样推送的内容与用户的需求相关度极高。</p>
+<p><img src="/images/20141013-the-triggerfish-and-your-mobile-app-06.jpg" alt=""></p>
+<p><em>当用户接近某个商场时会收到推送的通知，用户进入商场后收到最新促销信息，并通过室内定位相关的商品，最终用手机支付。</em></p>
+<h3 id="在移动互联网的混战中取得成功"><a href="#在移动互联网的混战中取得成功" class="headerlink" title="在移动互联网的混战中取得成功"></a>在移动互联网的混战中取得成功</h3><p>在印度洋和太平洋的热带海域，有一种鱼叫引金鱼（Trigger fish），颜色非常艳丽，它的背部长了两根脊椎来抵御掠食者，保护自己。如果要启用第二根脊椎，另一个必须受到了压迫，这种压迫就是一种触发器。两根脊椎相辅相成。</p>
+<p><img src="/images/20141013-the-triggerfish-and-your-mobile-app-07.png" alt=""></p>
+<p>当然，在移动互联网的混战中，你首先需要用户下载你的产品，并利用触发器的原理使产品的作用最大化。</p>
+<p>不管是在大海中，还是在应用商店里，触发机制是防范天敌和竞争对手的利器， <strong>你默默无闻还是成为弄潮儿，完全取决于自己</strong>。</p>
+<p>[本文编译自： <a href="https://medium.com/@dannysauter/the-triggerfish-and-your-mobile-app-880f2b2519fb" target="_blank" rel="noopener">medium.com</a> ]</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/trigger/" rel="tag"># trigger</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/10/08/youku-url-resolve/" rel="next" title="优酷真实视频地址解析——2014年10月7日[ZT]">
+                <i class="fa fa-chevron-left"></i> 优酷真实视频地址解析——2014年10月7日[ZT]
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/10/15/10common-database-security-problems/" rel="prev" title="10大最常见的数据库安全问题">
+                10大最常见的数据库安全问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">東木</p>
+              <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">202</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#触发器"><span class="nav-number">1.</span> <span class="nav-text">触发器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移动互联网的触发器"><span class="nav-number">2.</span> <span class="nav-text">移动互联网的触发器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#触发器必须表达出明确的信息"><span class="nav-number">3.</span> <span class="nav-text">触发器必须表达出明确的信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动你的触发器"><span class="nav-number">4.</span> <span class="nav-text">启动你的触发器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用触发器培养习惯"><span class="nav-number">5.</span> <span class="nav-text">用触发器培养习惯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用触发器盈利"><span class="nav-number">6.</span> <span class="nav-text">利用触发器盈利</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在移动互联网的混战中取得成功"><span class="nav-number">7.</span> <span class="nav-text">在移动互联网的混战中取得成功</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2007 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
