@@ -825,7 +825,7 @@
       
         
           
-            <p>From: Andreas Stieger <a href="mailto:&#97;&#110;&#100;&#114;&#101;&#97;&#x73;&#46;&#115;&#x74;&#x69;&#x65;&#103;&#101;&#x72;&#64;&#x67;&#x6d;&#120;&#x2e;&#100;&#101;" target="_blank" rel="noopener">&#97;&#110;&#100;&#114;&#101;&#97;&#x73;&#46;&#115;&#x74;&#x69;&#x65;&#103;&#101;&#x72;&#64;&#x67;&#x6d;&#120;&#x2e;&#100;&#101;</a><br>Date: 2013-01-28 19:18:21 +0000<br>Subject: [PATCH] fix compiler warning about isatty()<br>Upstream: sent to <a href="mailto:lar@quicklz.com" target="_blank" rel="noopener">lar@quicklz.com</a></p>
+            <p>From: Andreas Stieger <a href="mailto:&#97;&#x6e;&#x64;&#114;&#101;&#97;&#x73;&#46;&#115;&#116;&#105;&#x65;&#103;&#x65;&#114;&#x40;&#x67;&#109;&#x78;&#x2e;&#x64;&#101;" target="_blank" rel="noopener">&#97;&#x6e;&#x64;&#114;&#101;&#97;&#x73;&#46;&#115;&#116;&#105;&#x65;&#103;&#x65;&#114;&#x40;&#x67;&#109;&#x78;&#x2e;&#x64;&#101;</a><br>Date: 2013-01-28 19:18:21 +0000<br>Subject: [PATCH] fix compiler warning about isatty()<br>Upstream: sent to <a href="mailto:lar@quicklz.com" target="_blank" rel="noopener">lar@quicklz.com</a></p>
 <blockquote>
 <p>Fix compiler error<br>qpress.cpp: In function ‘int main(int, char**)’:<br>qpress.cpp:1039:39: error: ‘isatty’ was not declared in this scope</p>
 </blockquote>
@@ -1213,194 +1213,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2016/03/27/sql_server_error_1813/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/03/27/sql_server_error_1813/" itemprop="url">
-                  SQL Server附加数据库时报1813错误的解决方案[zt]
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-03-27 00:00:00" itemprop="dateCreated datePublished" datetime="2016-03-27T00:00:00+08:00">2016-03-27</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MSSQL/" itemprop="url" rel="index"><span itemprop="name">MSSQL</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>无法打开新数据库 ‘Dong’。CREATE DATABASE 中止。<br>文件激活失败。物理文件名称’E:\SqlServer\MSSQL\Data\Dong_log.LDF’可能不正确。</p>
-</blockquote>
-<blockquote>
-<p>无法重新生成日志，原因是数据库关闭时存在打开的事务/用户，该数据库没有检查点或者该数据库是只读的。如果事务日志文件被手动删除或者由于硬件或环境问题而丢失，则可能出现此错误。 (Microsoft SQL Server，错误: 1813)</p>
-</blockquote>
-<h3 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h3><ol>
-<li><p>新建一个同名数据库。</p>
-</li>
-<li><p>停止数据库服务，覆盖新建的数据库主文件（小技巧：最好放在同一个磁盘里面，把新建的数据库主文件删掉或移开，再把要恢复的数据库主文件剪切过去，这样就可以节省时间。）</p>
-</li>
-<li><p>启动数据库服务，数据库变为置疑或可疑状态。然后在查询分析器中运行：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">database</span> 无日志文件的数据库名称 <span class="keyword">set</span> emergency</span><br></pre></td></tr></table></figure>
-<p>设置为紧急状态。</p>
-</li>
-<li><p>再运行：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">database</span> 无日志文件的数据库名称 <span class="keyword">set</span> single_user</span><br></pre></td></tr></table></figure>
-<p>或者：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sp_dboption '无日志文件的数据库名称', 'single user', 'true'</span><br></pre></td></tr></table></figure>
-<p>设置为单用户模式。</p>
-</li>
-<li><p>检查并重建日志文件，运行：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbcc checkdb('无日志文件的数据库名称',REPAIR_ALLOW_DATA_LOSS)</span><br></pre></td></tr></table></figure>
-<p>这个时间比较长。耐心等待！如果有错误提示，再运行：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbcc checkdb('无日志文件的数据库名称',REPAIR_REBUILD)</span><br></pre></td></tr></table></figure>
-<p>进行修复。如果没有错误，可以跳过。</p>
-</li>
-<li><p>恢复成多用户模式</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">database</span> 无日志文件的数据库名称 <span class="keyword">set</span> multi_user</span><br></pre></td></tr></table></figure>
-<p>或者：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sp_dboption '无日志文件的数据库名称', 'single user', 'false'</span><br></pre></td></tr></table></figure>
-<p>刷新数据库，你就可以看到已经修复好的数据库了。</p>
-</li>
-</ol>
-<p>via. <a href="http://www.cnblogs.com/lyl6796910/p/3628066.html" target="_blank" rel="noopener">http://www.cnblogs.com/lyl6796910/p/3628066.html</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2016/03/27/mysql_varchar_how_many_chinese_can_be_saved/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1662,6 +1474,194 @@
 <p>在gbk状态下，汉字最多可以存 32766个字符串，英文也为 32766个字符串。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://my.oschina.net/wingyiu/blog/153357" target="_blank" rel="noopener">mysql utf8mb4与emoji表情</a><br><a href="http://csumissu.iteye.com/blog/1090053" target="_blank" rel="noopener">关于GBK、GB2312、UTF8</a><br><a href="https://importnew.com/topics/24693" target="_blank" rel="noopener">阿里云 Rails 项目调整 RDS MySQL 编码为 utf8mb4 的详细步骤</a><br><a href="http://www.111cn.net/database/mysql/54999.htm" target="_blank" rel="noopener">MySQL下varchar类型最大长度是多少</a></p>
 <p>via. <a href="https://ruby-china.org/topics/24920" target="_blank" rel="noopener">https://ruby-china.org/topics/24920</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2016/03/27/sql_server_error_1813/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/03/27/sql_server_error_1813/" itemprop="url">
+                  SQL Server附加数据库时报1813错误的解决方案[zt]
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-03-27 00:00:00" itemprop="dateCreated datePublished" datetime="2016-03-27T00:00:00+08:00">2016-03-27</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MSSQL/" itemprop="url" rel="index"><span itemprop="name">MSSQL</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>无法打开新数据库 ‘Dong’。CREATE DATABASE 中止。<br>文件激活失败。物理文件名称’E:\SqlServer\MSSQL\Data\Dong_log.LDF’可能不正确。</p>
+</blockquote>
+<blockquote>
+<p>无法重新生成日志，原因是数据库关闭时存在打开的事务/用户，该数据库没有检查点或者该数据库是只读的。如果事务日志文件被手动删除或者由于硬件或环境问题而丢失，则可能出现此错误。 (Microsoft SQL Server，错误: 1813)</p>
+</blockquote>
+<h3 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h3><ol>
+<li><p>新建一个同名数据库。</p>
+</li>
+<li><p>停止数据库服务，覆盖新建的数据库主文件（小技巧：最好放在同一个磁盘里面，把新建的数据库主文件删掉或移开，再把要恢复的数据库主文件剪切过去，这样就可以节省时间。）</p>
+</li>
+<li><p>启动数据库服务，数据库变为置疑或可疑状态。然后在查询分析器中运行：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">database</span> 无日志文件的数据库名称 <span class="keyword">set</span> emergency</span><br></pre></td></tr></table></figure>
+<p>设置为紧急状态。</p>
+</li>
+<li><p>再运行：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">database</span> 无日志文件的数据库名称 <span class="keyword">set</span> single_user</span><br></pre></td></tr></table></figure>
+<p>或者：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sp_dboption '无日志文件的数据库名称', 'single user', 'true'</span><br></pre></td></tr></table></figure>
+<p>设置为单用户模式。</p>
+</li>
+<li><p>检查并重建日志文件，运行：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbcc checkdb('无日志文件的数据库名称',REPAIR_ALLOW_DATA_LOSS)</span><br></pre></td></tr></table></figure>
+<p>这个时间比较长。耐心等待！如果有错误提示，再运行：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbcc checkdb('无日志文件的数据库名称',REPAIR_REBUILD)</span><br></pre></td></tr></table></figure>
+<p>进行修复。如果没有错误，可以跳过。</p>
+</li>
+<li><p>恢复成多用户模式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">database</span> 无日志文件的数据库名称 <span class="keyword">set</span> multi_user</span><br></pre></td></tr></table></figure>
+<p>或者：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sp_dboption '无日志文件的数据库名称', 'single user', 'false'</span><br></pre></td></tr></table></figure>
+<p>刷新数据库，你就可以看到已经修复好的数据库了。</p>
+</li>
+</ol>
+<p>via. <a href="http://www.cnblogs.com/lyl6796910/p/3628066.html" target="_blank" rel="noopener">http://www.cnblogs.com/lyl6796910/p/3628066.html</a></p>
 
           
         
