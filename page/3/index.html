@@ -2039,7 +2039,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #8fb9ba;
+  background: #dfffa6;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -4810,6 +4810,166 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/08/16/Use-CSS3-or-Javascript-to-add-raquo-to-a-link-on-hover/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/08/16/Use-CSS3-or-Javascript-to-add-raquo-to-a-link-on-hover/" itemprop="url">
+                  Use CSS3 or Javascript to add » to a link on hover
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2014-08-16 00:00:00" itemprop="dateCreated datePublished" datetime="2014-08-16T00:00:00+08:00">2014-08-16</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/W3C/" itemprop="url" rel="index"><span itemprop="name">W3C</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>For my menu of a website I want to add text-decoaration on a:hover to be the » sign/symbol.</p>
+<p>I tried it like this:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.navbar .nav &gt; li &gt; a:hover:before {</span><br><span class="line">    content: "&amp;raquo;";</span><br><span class="line">    color: #fff;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>Any thoughts?</p>
+<h4 id="It-needs-to-be-in-Unicode"><a href="#It-needs-to-be-in-Unicode" class="headerlink" title="It needs to be in Unicode."></a>It needs to be in Unicode.</h4><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.navbar .nav &gt; li &gt; a:hover:before {</span><br><span class="line">    content: "\00BB";</span><br><span class="line">    color: #fff;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>via:<br><a href="http://stackoverflow.com/questions/13213826/use-css3-or-javascript-to-add-raquo-to-a-link-on-hover" target="_blank" rel="noopener">http://stackoverflow.com/questions/13213826/use-css3-or-javascript-to-add-raquo-to-a-link-on-hover</a></p>
+<p>reference:<br><a href="http://stackoverflow.com/questions/8621481/removing-raquo-from-a-string-using-jquery" target="_blank" rel="noopener">http://stackoverflow.com/questions/8621481/removing-raquo-from-a-string-using-jquery</a><br>javascript：<code>slicedCrumb = $(this).html().replace('/[&amp;]raquo[;]/ ', '');</code><br><a href="http://stackoverflow.com/questions/6202470/set-raquo-html-entity-in-javascripts-document-title" target="_blank" rel="noopener">http://stackoverflow.com/questions/6202470/set-raquo-html-entity-in-javascripts-document-title</a><br>javascript：<code>innerHTML = '&amp;raquo;'</code></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/08/16/How-to-Encrypt-Your-Bash-Shell-Script-on-Linux-Using-SHC/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -5080,166 +5240,6 @@ ul.breadcrumb li+li:last-child {
             </a>
           </div>
           <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/08/16/Use-CSS3-or-Javascript-to-add-raquo-to-a-link-on-hover/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/08/16/Use-CSS3-or-Javascript-to-add-raquo-to-a-link-on-hover/" itemprop="url">
-                  Use CSS3 or Javascript to add » to a link on hover
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2014-08-16 00:00:00" itemprop="dateCreated datePublished" datetime="2014-08-16T00:00:00+08:00">2014-08-16</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/W3C/" itemprop="url" rel="index"><span itemprop="name">W3C</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>For my menu of a website I want to add text-decoaration on a:hover to be the » sign/symbol.</p>
-<p>I tried it like this:</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.navbar .nav &gt; li &gt; a:hover:before {</span><br><span class="line">    content: "&amp;raquo;";</span><br><span class="line">    color: #fff;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<p>Any thoughts?</p>
-<h4 id="It-needs-to-be-in-Unicode"><a href="#It-needs-to-be-in-Unicode" class="headerlink" title="It needs to be in Unicode."></a>It needs to be in Unicode.</h4><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.navbar .nav &gt; li &gt; a:hover:before {</span><br><span class="line">    content: "\00BB";</span><br><span class="line">    color: #fff;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<p>via:<br><a href="http://stackoverflow.com/questions/13213826/use-css3-or-javascript-to-add-raquo-to-a-link-on-hover" target="_blank" rel="noopener">http://stackoverflow.com/questions/13213826/use-css3-or-javascript-to-add-raquo-to-a-link-on-hover</a></p>
-<p>reference:<br><a href="http://stackoverflow.com/questions/8621481/removing-raquo-from-a-string-using-jquery" target="_blank" rel="noopener">http://stackoverflow.com/questions/8621481/removing-raquo-from-a-string-using-jquery</a><br>javascript：<code>slicedCrumb = $(this).html().replace('/[&amp;]raquo[;]/ ', '');</code><br><a href="http://stackoverflow.com/questions/6202470/set-raquo-html-entity-in-javascripts-document-title" target="_blank" rel="noopener">http://stackoverflow.com/questions/6202470/set-raquo-html-entity-in-javascripts-document-title</a><br>javascript：<code>innerHTML = '&amp;raquo;'</code></p>
-
-          
         
       
     </div>
