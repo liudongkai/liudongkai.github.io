@@ -2039,7 +2039,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #dfffa6;
+  background: #4409c6;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3621,6 +3621,168 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/11/24/mysql-load-data-infile/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2009/11/24/mysql-load-data-infile/" itemprop="url">
+                  mysql load data infile[zt]
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2009-11-24 00:00:00" itemprop="dateCreated datePublished" datetime="2009-11-24T00:00:00+08:00">2009-11-24</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="如何提高mysql-load-data-infile的速度"><a href="#如何提高mysql-load-data-infile的速度" class="headerlink" title="如何提高mysql load data infile的速度"></a>如何提高mysql load data infile的速度</h3><p>测试数据2.5G，共有数据9427567条。用的mysql的large服务器的配置。<br>load一次需要大概10分钟左右。<br>建的表用的是MYISAM，调整了几个session的参数值</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SET SESSION BULK_INSERT_BUFFER_SIZE=256217728;</span><br><span class="line">SET SESSION MYISAM_SORT_BUFFER_SIZE=256217728;</span><br></pre></td></tr></tbody></table></figure>
+<p>运行结果如下:<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Query OK, 9427567 rows affected, 1558 warnings (3 min 55.21 sec)</span><br><span class="line">Records: 9427567 Deleted: 0 Skipped: 0 Warnings: 0</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>google到的,还可以:<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set global KEY_BUFFER_SIZE=256217728;</span><br><span class="line">alter table tablename disable keys;</span><br></pre></td></tr></tbody></table></figure><p></p>
+<h3 id="如何load数据里面带反斜杠-backslash-”-’-的数据"><a href="#如何load数据里面带反斜杠-backslash-”-’-的数据" class="headerlink" title="如何load数据里面带反斜杠(backslash)”\’ 的数据"></a>如何load数据里面带反斜杠(backslash)”\’ 的数据</h3><p>由于如果你没有指定FIELDS子句，则默认值为假设您写下如下语句时的值：<br><code>FIELDS TERMINATED BY '\t' ENCLOSED BY " ESCAPED BY '\\'</code><br>所以，如果你的数据里面有反斜杠(backslash)”\”的时候，数据会出现被截断的问题。出现这种问题，只要写上如下的fields子句即可<br><code>FIELDS TERMINATED BY '\t' ENCLOSED BY " ESCAPED BY "</code></p>
+<h3 id="如何load不同编码的数据"><a href="#如何load不同编码的数据" class="headerlink" title="如何load不同编码的数据"></a>如何load不同编码的数据</h3><p>原来用的4.X的mysql，我是select INTO OUTFILE ，只后用iconv,或者其他软件来做。可以<a href="http://www.micronsky.com/2009/11/discuz-mysql-database-charset-convert-latin1-utf8/" target="_blank" rel="noopener">参考这里</a>，但是由于这次数据大，用ultraedit等软件打开都要半天。好在新版的mysql可以增加一个新的参数<br><code>CHARACTER SET gbk</code><br>我的文本数据是GBK的编码，数据表是utf8的，用这种方法测试成功。</p>
+<h3 id="如何load的时候只insert特定的列"><a href="#如何load的时候只insert特定的列" class="headerlink" title="如何load的时候只insert特定的列"></a>如何load的时候只insert特定的列</h3><p>比如表里面有比元数据多的列。可以在load的时候指定要插入的字段名字。</p>
+<p>示例的代码如下：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">LOAD DATA INFILE '~/data.txt'</span><br><span class="line">INTO TABLE fb0505</span><br><span class="line">CHARACTER SET  gbk</span><br><span class="line">FIELDS TERMINATED BY '\t' ENCLOSED BY " ESCAPED BY "</span><br><span class="line">LINES TERMINATED BY '\n' STARTING BY "</span><br><span class="line">(seller_id,fb_type,fb_date,item_url);</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>其中表fb0505里面还有一列是id。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/11/24/discuz-mysql-iconv-character-set/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -5080,212 +5242,6 @@ ul.breadcrumb li+li:last-child {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/07/09/A-useful-apache-command-SetEnvIf/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2009/07/09/A-useful-apache-command-SetEnvIf/" itemprop="url">
-                  一个很有用的apache指令SetEnvIf
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2009-07-09 00:00:00" itemprop="dateCreated datePublished" datetime="2009-07-09T00:00:00+08:00">2009-07-09</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="SetEnv-指令"><a href="#SetEnv-指令" class="headerlink" title="SetEnv 指令"></a>SetEnv 指令</h2><table>
-<thead>
-<tr>
-<th>说明</th>
-<th>设置环境变量</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>语法</td>
-<td>SetEnv env-variable value</td>
-</tr>
-</tbody>
-</table>
-<h2 id="SetEnvIf-指令"><a href="#SetEnvIf-指令" class="headerlink" title="SetEnvIf 指令"></a>SetEnvIf 指令</h2><table>
-<thead>
-<tr>
-<th>说明</th>
-<th>根据客户端请求属性设置环境变量</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>语法</td>
-<td>SetEnvIf attribute regex [!]env-variable[=value] [[!]env-variable[=value]] …</td>
-</tr>
-<tr>
-<td>作用域</td>
-<td>server config, virtual host, directory, .htaccess</td>
-</tr>
-</tbody>
-</table>
-<p>SetEnvIf指令根据客户端的请求属性设置环境变量。第一个参数attribute必须是下列三种类别之一：</p>
-<ol>
-<li>一个HTTP请求头域(参见RFC2616)；例如：Host, User-Agent, Referer, Accept-Language 。可以用一个正则表达式来进行匹配。</li>
-<li>下列请求属性之一：<ul>
-<li>Remote_Host 远程主机名(若可用)</li>
-<li>Remote_Addr 远程主机IP地址</li>
-<li>Server_Addr 接收到请求的服务器IP地址(2.0.43及以后版本)</li>
-<li>Request_Method 所用的请求方法(GET, POST等等)</li>
-<li>Request_Protocol 请求所使用的协议及其版本(“HTTP/0.9”, “HTTP/1.0”, “HTTP/1.1”等)</li>
-<li>Request_URI 在HTTP请求行中请求的资源(通常是URL中去除协议、主机以及查询字符串后剩余的部分)。</li>
-</ul>
-</li>
-<li>列出的与该请求关联的环境变量名字中的一个。这将允许SetEnvIf指令基于预先匹配的结果进行测试。只有那些由较早的SetEnvIf[NoCase]指令定义的环境变量才可以按照这种方式测试。”较早的”意思是它们在更上层的作用域(比如全局范围)中被定义或者在同一作用域中较早出现。只有在请求的属性未能得到匹配并且attribute没有使用正则表达式的时候，环境变量才会被考虑。</li>
-</ol>
-<p>如：不记录192.168.7.139的访问日志<br>首先设置环境变量 <code>SetEnvIf Remote_Addr "192\.168\.7\.139" dontlog</code><br>使用上面设置的环境变量<br><code>CustomLog "logs/access_log" common env=!dontlog</code></p>
-<p><strong>SetEnvIfNoCase</strong><br><strong>说明</strong>: Sets environment variables based on attributes of the request without respect to case<br><strong>语法</strong>: SetEnvIfNoCase attribute regex [!]env-variable[=value] [[!]env-variable[=value]] …<br><strong>上下文</strong>: 服务器配置, 虚拟主机, 目录, .htaccess<br><strong>覆盖项</strong>: FileInfo<br><strong>状态</strong>: Base<br><strong>模块</strong>: mod_setenvif<br><strong>兼容性</strong>: Apache 1.3 and above  </p>
-<p>The SetEnvIfNoCase is semantically identical to the SetEnvIf directive, and differs only in that the regular expression matching is performed in a case-insensitive manner. For example:<br><strong>SetEnvIfNoCase</strong> Host Apache.Org site=apache<br>This will cause the site environment variable to be set to “apache” if the HTTP request header field Host: was included and contained Apache.Org, apache.org, or any other combination.<br><strong>SetEnvIfNoCase 当满足某个条件时，为变量赋值，一般结合其他指令使用。</strong><br>如：</p>
-<ol>
-<li><code>SetEnvIf Request_URI "/logo(.)+" local_ref=0</code><br><code>Allow from env=local_ref</code>  当local_ref有值时，可以访问。</li>
-<li><code>SetEnvIfNoCase Request_URI .js$ useless-file</code><br><code>CustomLog logs/hebgc.com/access.log combined env=!useless-file</code><br>当满足条件时才记录日志。</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -5333,7 +5289,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-count">289</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -5797,7 +5753,11 @@ ul.breadcrumb li+li:last-child {
                     
                       
                     
-                    <span class="site-state-item-count">202</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">204</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

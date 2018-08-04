@@ -2039,7 +2039,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #dfffa6;
+  background: #4409c6;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3621,6 +3621,173 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2013/04/09/tcp-sysctl-close-wait/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/04/09/tcp-sysctl-close-wait/" itemprop="url">
+                  CLOSE_WAIT状态 生产过程分析 linux系统sysctl.conf配置优化 [ZT]
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2013-04-09 00:00:00" itemprop="dateCreated datePublished" datetime="2013-04-09T00:00:00+08:00">2013-04-09</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>CLOSE_WAIT状态</p>
+<p>首先我们知道，如果我们的服务器程序APACHE,nginx,resin处于CLOSE_WAIT状态的话，说明套接字是被动关闭的！</p>
+<p>因为如果是CLIENT端主动断掉当前连接的话，那么双方关闭这个TCP连接共需要四个packet：</p>
+<p>Client —&gt; FIN —&gt; ServerClient &lt;— ACK &lt;— Server</p>
+<p>这时候Client端处于FIN_WAIT_2状态；而Server 程序处于CLOSE_WAIT状态。</p>
+<p>Client &lt;— FIN &lt;— Server</p>
+<p>这时Server 发送FIN给Client，Server 就置为LAST_ACK状态。</p>
+<p>Client —&gt; ACK —&gt; Server</p>
+<p>Client回应了ACK，那么Server 的套接字才会真正置为CLOSED状态。</p>
+<p>Server 程序处于CLOSE_WAIT状态，而不是LAST_ACK状态，说明还没有发FIN给Client，那么可能是在关闭连接之前还有许多数据要发送或者其他事要做，导致没有发这个FIN packet。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2013/04/09/tcp-sysctl-close-wait/#more" rel="contents">
+              Read more »
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2013/03/16/VBoxGuestAdditions-iso/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -5046,165 +5213,6 @@ ul.breadcrumb li+li:last-child {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/09/25/mysql-innodb-doublewrite/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2012/09/25/mysql-innodb-doublewrite/" itemprop="url">
-                  mysql innodb doublewrite
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2012-09-25 00:00:00" itemprop="dateCreated datePublished" datetime="2012-09-25T00:00:00+08:00">2012-09-25</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Double write写给innodb带来的是可靠性，主要用来解决部分写失败(partial page write)。</p>
-<p>doublewrite有两部分组成，一部分是内存中的doublewrite buffer，大小为2M，另外一部分就是物理磁盘上的共享表空间中连续的128个页，即两个区，大小同样为2M。</p>
-<p>当缓冲池的胀业刷新时，并不直接写硬盘，而是通过memcpy函数将脏页先拷贝到内存中的doublewrite buffer，之后通过doublewrite buffer再分两次写，每次写入1M到共享表空间的物理磁盘上，然后马上调用fsync函数，同步磁盘。以下命令可以查看doublewrite的使用 情况。</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show global status like 'innodb_dblwr%';</span><br><span class="line"> +----------------------------+----------+</span><br><span class="line"> | Variable_name              | Value    |</span><br><span class="line"> +----------------------------+----------+</span><br><span class="line"> | Innodb_dblwr_pages_written | 60511554 |</span><br><span class="line"> | Innodb_dblwr_writes        | 828734   |</span><br><span class="line"> +----------------------------+----------+</span><br></pre></td></tr></tbody></table></figure>
-<p>这台DB doublewrite一共写了60511554个页，但实际写入次数为828734，60511554/828734=73。说明这台DB的压力一般。 slave上可以通过设置skip_innodb_doublewrite参数关闭两次写功能来提高性能，但是master上一定要开启此功能，保证数据安全。</p>
-<p>skip_innodb_doublewrite，是一个自读变量，需在配置文件中设置，并重启生效。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -5252,7 +5260,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-count">289</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -5716,7 +5724,11 @@ ul.breadcrumb li+li:last-child {
                     
                       
                     
-                    <span class="site-state-item-count">202</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">204</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

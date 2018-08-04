@@ -2039,7 +2039,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #dfffa6;
+  background: #4409c6;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3621,6 +3621,167 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/03/07/shell-meaning-of-parameters/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2012/03/07/shell-meaning-of-parameters/" itemprop="url">
+                  Bash shell中的位置参数$#,$*,$@,$0,$1,$2…及特殊参数$?,$-等的含义
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2012-03-07 00:00:00" itemprop="dateCreated datePublished" datetime="2012-03-07T00:00:00+08:00">2012-03-07</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在Bash shell中经常会见到一些比较特殊的符号，本人现收集与此，以供查阅：</p>
+<h3 id="位置参数："><a href="#位置参数：" class="headerlink" title="位置参数："></a>位置参数：</h3><p>详见ABS(Advanced Bash Shell)中文翻译版103页第9章第一节内部变量，当然英文版ABS都一样啦</p>
+<h5 id="0-1-2-等等…"><a href="#0-1-2-等等…" class="headerlink" title="$0, $1, $2,等等…"></a>$0, $1, $2,等等…</h5><p>位置参数,从命令行传递给脚本,或者是传递给函数.或者赋职给一个变量.<br>(具体见Example 4-5 和Example 11-15)<br>$0表示当前执行的进程名,script 本身的名字,或者在正则表达式中表示整行输出</p>
+<h5 id=""><a href="#" class="headerlink" title="$"></a>$</h5><p>命令行或者是位置参数的个数.(见Example 33-2)<br>$<em><br>所有的位置参数,被作为一个单词.<br>注意:”$</em>“必须被””引用.</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2012/03/07/shell-meaning-of-parameters/#more" rel="contents">
+              Read more »
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/03/02/mysql-binlog-format/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -4966,165 +5127,6 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2011/11/14/linux-ssh-while-exit/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2011/11/14/linux-ssh-while-exit/" itemprop="url">
-                  while循环中碰到ssh的话,如何避免退出 zt
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2011-11-14 00:00:00" itemprop="dateCreated datePublished" datetime="2011-11-14T00:00:00+08:00">2011-11-14</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>先看一个例子:<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line">. /root/.bash_profile</span><br><span class="line"></span><br><span class="line">cat /home/yejr/alldb|while read LINE</span><br><span class="line">do</span><br><span class="line">   #取得IP和组号</span><br><span class="line">   IP=`echo $LINE | awk '{print $1}'`</span><br><span class="line">   NU=`echo $LINE | awk '{print $2}' | awk -F '-' '{print $1}'`</span><br><span class="line"></span><br><span class="line">   cnt=`ssh root@$IP "mysql -e 'select count(*) from yejr.tbl1'|tail -n 1"`</span><br><span class="line"></span><br><span class="line">   echo "$IP $NU $cnt"</span><br><span class="line">done</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>看起来没有问题吧,实际上,执行的时候只循环了一次,就退出while循环了,为什么呢?</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2011/11/14/linux-ssh-while-exit/#more" rel="contents">
-              Read more »
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2011/11/14/mysql-datatype-introduction/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -5396,7 +5398,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-count">289</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -5860,7 +5862,11 @@ ul.breadcrumb li+li:last-child {
                     
                       
                     
-                    <span class="site-state-item-count">202</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">204</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

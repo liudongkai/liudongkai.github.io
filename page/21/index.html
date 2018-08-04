@@ -2039,7 +2039,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #dfffa6;
+  background: #4409c6;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3621,6 +3621,176 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/18/regular-expression/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/05/18/regular-expression/" itemprop="url">
+                  揭开正则表达式的神秘面纱
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-05-18 00:00:00" itemprop="dateCreated datePublished" datetime="2008-05-18T00:00:00+08:00">2008-05-18</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>正则表达式（regular expression）就是用一个“字符串”来描述一个特征，然后去验证另一个“字符串”是否符合这个特征。比如 表达式“ab+” 描述的特征是“一个 ‘a’ 和 任意个 ‘b’ ”，那么 ‘ab’, ‘abb’, ‘abbbbbbbbbb’ 都符合这个特征。</p>
+<p>正则表达式可以用来：</p>
+<ol>
+<li>验证字符串是否符合指定特征，比如验证是否是合法的邮件地址。</li>
+<li>用来查找字符串，从一个长的文本中查找符合指定特征的字符串，比查找固定字符串更加灵活方便。</li>
+<li>用来替换，比普通的替换更强大。</li>
+</ol>
+<p>正则表达式学习起来其实是很简单的，不多的几个较为抽象的概念也很容易理解。之所以很多人感觉正则表达式比较复杂，一方面是因为大多数的文档没有做到由浅入深地讲解，概念上没有注意先后顺序，给读者的理解带来困难；另一方面，各种引擎自带的文档一般都要介绍它特有的功能，然而这部分特有的功能并不是我们首先要理解的。</p>
+<p>文章中的每一个举例，都可以点击进入到测试页面进行测试。闲话少说，开始。</p>
+<p>##1. 正则表达式规则</p>
+<h3 id="1-普通字符"><a href="#1-普通字符" class="headerlink" title="1. 普通字符"></a>1. 普通字符</h3><p>字母、数字、汉字、下划线、以及后边章节中没有特殊定义的标点符号，都是”普通字符”。表达式中的普通字符，在匹配一个字符串的时候，匹配与之相同的一个字符。</p>
+<p><strong>举例1：表达式 “c”，在匹配字符串 “abcde” 时</strong>，匹配结果是：成功；匹配到的内容是：”c”；匹配到的位置是：开始于2，结束于3。（注：下标从0开始还是从1开始，因当前编程语言的不同而可能不同）</p>
+<p><strong>举例2：表达式 “bcd”，在匹配字符串 “abcde” 时</strong>，匹配结果是：成功；匹配到的内容是：”bcd”；匹配到的位置是：开始于1，结束于4。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2008/05/18/regular-expression/#more" rel="contents">
+              Read more »
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/17/awk-notes/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -5078,198 +5248,6 @@ ul.breadcrumb li+li:last-child {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/10/hamsters-common-diseases/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/05/10/hamsters-common-diseases/" itemprop="url">
-                  仓鼠常见疾病的护理及预防措施
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-05-10 00:00:00" itemprop="dateCreated datePublished" datetime="2008-05-10T00:00:00+08:00">2008-05-10</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>保证合理的饮食结构、保持环境的干燥与清洁、保护小宠生活的安全性，做好这“三保”，才是维持小宠健康的根本之道。</p>
-<ol>
-<li><p>腹泻、软便产生原因：不恰当饮食、压力、天气突变等。</p>
-<p>护理用品：新鲜苹果，MR牌整肠液（便性改善液）。</p>
-<p>方法：苹果多多益善，只要鼠鼠肯吃；整肠液加入水瓶中，记得每天都要换水。</p>
-<p>环境：造成腹泻、软便的原因除了不恰当的饮食之外，压力也是因素之一。所以休养阶段，尽可能不要打扰鼠鼠，给它一个安宁的环境。</p>
-</li>
-<li><p>眼睛肿胀、发炎产生原因：打斗、环境潮湿引起霉菌大量滋生。</p>
-<p>预防措施：分笼独养；勤换木屑、清洗笼子，保持环境干燥、通风。</p>
-<p>护理用品：塞司眼部护理清洁液（小动物专用）（也可使用生理食盐水清洗）金霉素眼药膏棉签。</p>
-<p>居住环境：合笼的请立即分笼，单独隔离；垫材不用木屑，而改铺柔软的碎纸巾；安心静养。</p>
-<p>方法：每天使用棉签蘸护理液帮助鼠鼠清洗眼睛，然后涂抹金霉素眼药膏。</p>
-<p>注意事项：慎用金霉素，若鼠鼠误食过量的残留药膏，会导致鼠鼠肾衰竭，所以尽量不要残留药膏。</p>
-</li>
-<li><p>脚趾肿胀产生原因： 1）脚趾被缠绕过 2）脚趾甲过长的情况下疯狂跑滚轮 3）脚趾被勾到或折到 4）高处跌落 等 建议：首先，检查一下脚趾表面是否有伤口或出血现象，如有，则需先进行外伤治疗。</p>
-<p>方法：以生理食盐水+优碘以2：1比例稀释（若此稀释比例对鼠鼠造成很大刺激时，稀释比例可再提高），消毒伤口。</p>
-<p>注意： </p>
-<ol>
-<li><p>鼠鼠容易舔伤口或手碰伤口然后抓东西吃，而食用碘对鼠鼠健康有害，因此，可让稀释液在伤口上停留2-3分钟，待其杀菌效用充分发挥后，再用食盐水清洗干净。</p>
-</li>
-<li><p>千万不要使用双氧水、碘酒对伤口进行消毒，它们的刺激性连人都难以忍受，何况如此弱小的鼠鼠；尽量不要用酒精，酒精的刺激性也太强，如使用，请一定稀释！</p>
-</li>
-<li><p>优碘与红药水不可同时使用！因为两者混合会生成有毒的碘化汞，不仅使药物失去杀菌效能，而且对皮肤粘膜及其他组织有强烈刺激作用，引起皮肤红肿起泡，伤口溃烂。<br>其次，确定表面无伤口或进行消毒之后，给予柔软的垫材（如碎纸巾、棉花等）,以代替木屑。移除滚轮，安宁静养，待骨头愈合再行走。</p>
-</li>
-</ol>
-</li>
-<li><p>皮肤病产生原因：外寄生虫、过敏症、外伤、细菌或霉菌的感染等。预防措施：</p>
-<ol>
-<li><p>木屑的选择给鼠鼠使用的木屑多以进口为主，在选购时，一定要辨明木屑所属的木材种类：千万不要选用“Cedar”（雪松）木屑，因为仓鼠对 “Cedar Oil”（雪松油）容易过敏，结果会造成身体大面积脱毛，皮肤开裂，由此带来的脱水和感染是致命的。 “aspen”（白杨木）木屑也有一定几率会造成皮肤病。“Pine”（松木）木屑比较适合仓鼠，大多数压缩包装的木屑都是这种。</p>
-</li>
-<li><p>保持环境清洁、干燥、通风勤换木屑、清洗笼子；偶尔傍晚时可以晒几分钟太阳；若饮水器有漏水状况，应立即更换；避免使用带铁丝笼底的笼子以及网状滚轮，以减少霉菌大量滋生的几率。</p>
-</li>
-<li><p>饮食方面多多补充富含矿物质的食品、综合维他命，增加抵抗力。</p>
-</li>
-<li><p>如发生打斗，或同笼中有鼠儿发生皮肤搔痒等症状时，应立即分笼隔离。</p>
-</li>
-</ol>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -5317,7 +5295,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-count">289</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -5781,7 +5759,11 @@ ul.breadcrumb li+li:last-child {
                     
                       
                     
-                    <span class="site-state-item-count">202</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">204</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

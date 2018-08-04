@@ -2039,7 +2039,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #dfffa6;
+  background: #4409c6;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3621,7 +3621,7 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/02/24/mysql-errcode-13/">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/03/02/mysql-partition/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="東木">
@@ -3640,8 +3640,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2010/02/24/mysql-errcode-13/" itemprop="url">
-                  解决mysql–Can't get stat of (Errcode: 13)
+                <a class="post-title-link" href="/2010/03/02/mysql-partition/" itemprop="url">
+                  MySQL分区（Partition）功能试验
                 </a>
               
             
@@ -3667,25 +3667,9 @@ ul.breadcrumb li+li:last-child {
                 
               
 
-              <time title="Created: 2010-02-24 00:00:00" itemprop="dateCreated datePublished" datetime="2010-02-24T00:00:00+08:00">2010-02-24</time>
+              <time title="Created: 2010-03-02 00:00:00" itemprop="dateCreated datePublished" datetime="2010-03-02T00:00:00+08:00">2010-03-02</time>
             
 
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 1970-01-01 08:00:02" itemprop="dateModified" datetime="1970-01-01T08:00:02+08:00">1970-01-01</time>
-              
             
           </span>
 
@@ -3736,11 +3720,31 @@ ul.breadcrumb li+li:last-child {
 
       
         
-          
-            <p>mysql错误提示：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ERROR 13 (HY000): Can't get stat of '/root/aaa' (Errcode: 13)</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>目录权限问题，将/root/aaa的父子两层目录均设为 <strong>777</strong> 就可以了。</p>
-
-          
+          <p>[概述]<br>[分区表和未分区表试验过程]<br>[分区命令详解]</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="[概述]"></a>[概述]</h2><p>自5.1开始对分区(Partition)有支持，6.0应比较稳定</p>
+<h3 id="水平分区（根据列属性按行分）"><a href="#水平分区（根据列属性按行分）" class="headerlink" title="= 水平分区（根据列属性按行分）="></a>= 水平分区（根据列属性按行分）=</h3><p>举个简单例子：一个包含十年发票记录的表可以被分区为十个不同的分区，每个分区包含的是其中一年的记录。</p>
+<p>=== 水平分区的几种模式：===</p>
+<ul>
+<li><p>Range（范围） – 这种模式允许DBA将数据划分不同范围。例如DBA可以将一个表通过年份划分成三个分区，80年代（1980′s）的数据，90年代（1990′s）的数据以及任何在2000年（包括2000年）后的数据。</p>
+</li>
+<li><p>Hash（哈希） – 这中模式允许DBA通过对表的一个或多个列的Hash Key进行计算，最后通过这个Hash码不同数值对应的数据区域进行分区，。例如DBA可以建立一个对表主键进行分区的表。</p>
+</li>
+<li><p>Key（键值） – 上面Hash模式的一种延伸，这里的Hash Key是MySQL系统产生的。</p>
+</li>
+<li><p>List（预定义列表） – 这种模式允许系统通过DBA定义的列表的值所对应的行数据进行分割。例如：DBA建立了一个横跨三个分区的表，分别根据2004年2005年和2006年值所对应的数据。</p>
+</li>
+<li><p>Composite（复合模式） – 很神秘吧，哈哈，其实是以上模式的组合使用而已，就不解释了。举例：在初始化已经进行了Range范围分区的表上，我们可以对其中一个分区再进行hash哈希分区。</p>
+</li>
+</ul>
+<h3 id="垂直分区（按列分）"><a href="#垂直分区（按列分）" class="headerlink" title="= 垂直分区（按列分）="></a>= 垂直分区（按列分）=</h3><p>举个简单例子：一个包含了大text和BLOB列的表，这些text和BLOB列又不经常被访问，这时候就要把这些不经常使用的text和BLOB了划分到另一个分区，在保证它们数据相关性的同时还能提高访问速度。</p>
+<h2 id="分区表和未分区表试验过程"><a href="#分区表和未分区表试验过程" class="headerlink" title="[分区表和未分区表试验过程]"></a>[分区表和未分区表试验过程]</h2>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2010/03/02/mysql-partition/#more" rel="contents">
+              Read more »
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -3896,6 +3900,177 @@ ul.breadcrumb li+li:last-child {
 <p>先按文本的方式放入一个单元格里，即<br>显示出来：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">123</span><br><span class="line">456</span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>这样的字符串录入进去。<br>之后用<code>ALT+10</code>替换掉<br>即可完成换行。</p>
 <p>当然，你可以使用更加个性化的标识来替代<br>做前期的录入。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/02/24/mysql-errcode-13/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2010/02/24/mysql-errcode-13/" itemprop="url">
+                  解决mysql–Can't get stat of (Errcode: 13)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2010-02-24 00:00:00" itemprop="dateCreated datePublished" datetime="2010-02-24T00:00:00+08:00">2010-02-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 1970-01-01 08:00:02" itemprop="dateModified" datetime="1970-01-01T08:00:02+08:00">1970-01-01</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>mysql错误提示：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ERROR 13 (HY000): Can't get stat of '/root/aaa' (Errcode: 13)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>目录权限问题，将/root/aaa的父子两层目录均设为 <strong>777</strong> 就可以了。</p>
 
           
         
@@ -5069,168 +5244,6 @@ ul.breadcrumb li+li:last-child {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/01/07/perl-cpan-china-mirror/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2010/01/07/perl-cpan-china-mirror/" itemprop="url">
-                  cpan 更新 中国镜像 加速安装模块[zt]
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2010-01-07 00:00:00" itemprop="dateCreated datePublished" datetime="2010-01-07T00:00:00+08:00">2010-01-07</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>使用cpan，大概进去后，help一下就会用。</p>
-<p>但是今天想安装Chart::OFC的时候还是碰到问题。</p>
-<p>不知道为什么我的一台老的rhel3的系统里的urllist竟然是<a href="ftp://cpan.cse.msu.edu/" target="_blank" rel="noopener">ftp://cpan.cse.msu.edu/</a>，半天一个<code>i Chart::OFC</code>的命令也没有反应，速度太慢了，后来查了一下那个大学是密歇根州立大学，好偏远，于是必须更新一下urllist，但是我又忘了怎么更新了。</p>
-<p>好在网上找到个帖子( <a href="http://mail.pm.org/pipermail/china-pm/2007-August/001002.html" target="_blank" rel="noopener">http://mail.pm.org/pipermail/china-pm/2007-August/001002.html</a> )告诉了我，转到如下：</p>
-<p>你无需手工修改 <code>/etc/perl/CPAN/Config.pm</code> 来改变 CPAN 镜像地址的，以ROOT身<br>份运行：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># perl -MCPAN -e shell</span><br><span class="line">cpan&gt; o conf urllist unshift  http://www.perl.com/CPAN/</span><br><span class="line">cpan&gt; o conf commit</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>在<a href="http://search.cpan.org" target="_blank" rel="noopener">search.cpan.org</a>也看到有两个中国的镜像，考虑到稳定性，还是使用perl.com的</p>
-<p>还有一点是在用cpan的时候，因为模块安装时默认的make  test不成功，make install就不会去做，但是因为某些情况并不需要这样，这时候，可以<code>force install DBD::mysql</code></p>
-<p>配置http_proxy的方法：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">o conf http_proxy http://proxy:8080`</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>有时候，可能几个不重要的make test中的测试项导致make test失败，这时候就用强制安装:<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">force install Test::WWW::Mechanize::Catalyst</span><br></pre></td></tr></tbody></table></figure><p></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -5278,7 +5291,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">288</span>
+                    <span class="site-state-item-count">289</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -5742,7 +5755,11 @@ ul.breadcrumb li+li:last-child {
                     
                       
                     
-                    <span class="site-state-item-count">202</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">204</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
