@@ -2039,7 +2039,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2196ff;
+  background: #6c9aff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3621,7 +3621,7 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/15/IBM-install-drivers-1/">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/15/IBM-install-drivers-2/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="東木">
@@ -3640,8 +3640,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/03/15/IBM-install-drivers-1/" itemprop="url">
-                  IBM T61/R61/X61 WinXP驱动安装(一)
+                <a class="post-title-link" href="/2008/03/15/IBM-install-drivers-2/" itemprop="url">
+                  IBM T61/R61/X61 WinXP驱动安装(二)
                 </a>
               
             
@@ -3720,27 +3720,195 @@ ul.breadcrumb li+li:last-child {
 
       
         
-          <p>==== 20140221更新 ====<br>重新整理，终于找到原帖：<a href="http://www.tpuser.idv.tw/articles/santarosa-test-wxp.html" target="_blank" rel="noopener">http://www.tpuser.idv.tw/articles/santarosa-test-wxp.html</a></p>
-<hr>
-<p>ThinkPad T61/R61/X61系列硬件架构相当接近，原厂维修手册都可共享，此篇安装流程理论上可以适用在 ThinkPad T61/R61/X61系列上面，记得再根据个别机种的硬件安装对应驱动程序。</p>
-<ul>
-<li><a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=TPAD-MATRIX" target="_blank" rel="noopener">ThinkPad 全系列机型驱动程序 矩阵列表</a></li>
-</ul>
-<p>由 于微软的许多组件都需在线下载，无法直接下载完整版本，因此才会视需要，将网络卡的驱动程序安装程序放在前面。此外 ThinkPad 的相关驱动程序也有安装顺序上的考虑，以下的安装流程其实已经把各环节都尽量考虑进去，如网友没有把握，不妨按照以下的顺序安装，感谢。</p>
-<h3 id="准备动作：设定-SATA-硬盘"><a href="#准备动作：设定-SATA-硬盘" class="headerlink" title="准备动作：设定 SATA 硬盘"></a>准备动作：设定 SATA 硬盘</h3><p>自从 T60/R60/X60 开始改用 SATA 界面硬盘，手动安装 WinXP 便遇到一个问题：「要选择 Compatibility 还是 AHCI 模式？」，这问题的主因源自于设定为 AHCI 模式时，必须在安装时按下「 F6 」，然后预先加载芯片组驱动程序。但现在拥有 USB 界面软驱的使用者实在太少了。</p>
-<p>在没有 USB 软驱的状况下，有的使用者便设定成 「 Compatibility 模式」，却发现硬盘效能不彰，接着去 BIOS 调回 AHCI 模式之后，就会发生蓝底白字的系统当机惨剧。因此很多人想到要重装 WinXP 就头大。</p>
-<p>但根据 Lenovo 原厂提供的资料，以及亲身体验，其实手动安装 WinXP 并不困难！不需要准备 USB 软驱﹔不用忍受「 Compatibility 模式」效能不彰问题，更不会发生蓝底白字惨剧，关键只在于「安装流程的顺序！」</p>
-<p>请跟着本文的流程依序安装，相信大家都能顺利重返 WinXP 环境！</p>
+          <h3 id="十五-、安装-UltraNav-driver-for-Windows-2000-XP"><a href="#十五-、安装-UltraNav-driver-for-Windows-2000-XP" class="headerlink" title="十五 、安装 UltraNav driver for Windows 2000, XP"></a>十五 、安装 UltraNav driver for Windows 2000, XP</h3><p>注 1 ： 如果网友的 ThinkPad 是 X61/X61s ，请至 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-4kmuyl" target="_blank" rel="noopener">此连结</a> 下载 TrackPoint Only 驱动程序。</p>
 <ol>
-<li>按下电源开关，开机时请按「 F1 」键，之后会进入 BIOS 画面。</li>
-<li>进入 BIOS 之后，进入「 Config 」页面</li>
-<li>再进入「 Serial ATA(SATA) 」页面</li>
-<li>将原先的「 AHCI 」改成「 Compatibility 」</li>
+<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-42487" target="_blank" rel="noopener">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-42487</a> 下载。</p>
+</li>
+<li><p>所安装的版本是 7.5.17 .20 版， 2006/05/27 发布。档名为 77gu08ww.exe</p>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
+<li>License Agreement 画面，选「 I accept the terms in the license agreement 」按「 Next 」 </li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\WIN\UNAV 」，如不想变更请直接按「 Next 」 </li>
+<li>解压缩完成后按「 Finish 」</li>
+</ul>
+</li>
+<li><p>到「 C:\DRIVERS\WIN\UNAV 」里，双击「 Setup.exe 」</p>
+<ul>
+<li>首先出现「选取安装语言」，选「英语」，按「确定」 </li>
+<li>按「 Next 」 </li>
+<li>按「 Next 」 </li>
+<li>安装完毕后选「 Yes, I want to restart my computer now 」，按「 Finish 」</li>
+</ul>
+</li>
 </ol>
-<p>换言之，手动安装 WinXP 时，先采用「 Compatibility 模式」，规避掉需要透过 USB 软驱安装驱动程序的困扰，然后在后面的「步骤三」请网友务必按照说明安装 Intel Matrix Storage Manager Driver ，同时将硬盘更改为 AHCI 模式。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2008/03/15/IBM-install-drivers-1/#more" rel="contents">
+            <a class="btn" href="/2008/03/15/IBM-install-drivers-2/#more" rel="contents">
+              Read more »
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/15/apache-rewrite/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/03/15/apache-rewrite/" itemprop="url">
+                  Apache 重写规则的常见应用 (rewrite)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-15T00:00:00+08:00">2008-03-15</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="一-目的"><a href="#一-目的" class="headerlink" title="一: 目的"></a>一: 目的</h3><p>本文旨在提供如何用Apache重写规则来解决一些常见的URL重写方法的问题，通过常见的实例给用户一些使用重写规则的基本方法和线索。</p>
+<h3 id="二-为什么需要用重写规则？"><a href="#二-为什么需要用重写规则？" class="headerlink" title="二:为什么需要用重写规则？"></a>二:为什么需要用重写规则？</h3><p>一个网站，如果是长期需要放在internet上提供服务，必定会有不断地更新和维护，如临时转移到其它服务器进行维护，重新组织目录结构，变换URL甚至改变到新的域名等等，而为了让客户不会因此受到任何影响，最好的方法就是使用Apache Rewrite Rule(重写规则)。</p>
+<h3 id="三-重写规则的作用范围"><a href="#三-重写规则的作用范围" class="headerlink" title="三: 重写规则的作用范围"></a>三: 重写规则的作用范围</h3><ol>
+<li>可以使用在Apache主配置文件httpd.conf中</li>
+<li>可以使用在httpd.conf里定义的虚拟主机配置中</li>
+<li>可以使用在基本目录的跨越配置文件.htaccess中</li>
+</ol>
+<h3 id="四-重写规则的应用条件"><a href="#四-重写规则的应用条件" class="headerlink" title="四:重写规则的应用条件"></a>四:重写规则的应用条件</h3><p>只有当用户的WEB请求最终被导向到某台WEB服务器的Apache后台，则这台WEB服务器接受进来的请求，根据配置文件该请求是主配置还是虚拟主机，再根据用户在浏览器中请求的URI来配对重写规则并且根据实际的请求路径配对.htaccess中的重写规则。最后把请求的内容传回给用户，该响应可能有两种：</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2008/03/15/apache-rewrite/#more" rel="contents">
               Read more »
             </a>
           </div>
@@ -4300,161 +4468,6 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/03/small-shell/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/03/03/small-shell/" itemprop="url">
-                  非常小的shell: 指定行号,插入文本(转)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-03-03 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-03T00:00:00+08:00">2008-03-03</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>使用这个shell可以直接在某个文件的某一行插入指定的文本,很方便. 可以把这个<br>shell加入PATH中.以下的蓝色部分为代码, 文件名为insert</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more insert</span><br><span class="line">#!/bin/bash</span><br><span class="line"># 从文件的某一行之后插入新行</span><br><span class="line"># FILE 为文件名，LINENUM为行号，TEXT为要插入的文本</span><br><span class="line"># Copyleft: cheyo@JMU</span><br><span class="line"></span><br><span class="line">showUsage()</span><br><span class="line">{</span><br><span class="line">echo "[Usage]: insert FILE LINENUM TEXT"</span><br><span class="line">echo "# 从文件的某一行之后插入新行"</span><br><span class="line">echo "# FILE 为文件名，LINENUM为行号，TEXT为要插入的文本"</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">if [ $# -lt 3 ] #少于3个参数,错误!</span><br><span class="line">then showUsage</span><br><span class="line">exit 1</span><br><span class="line">else</span><br><span class="line">sed "${2}a</span><br><span class="line">${3}" $1 &gt; tmpfile;mv tmpfile $1</span><br><span class="line">fi</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$ ./insert a 3 "Test"</span><br><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">Test</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$</span><br></pre></td></tr></tbody></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/03/read-the-specified-line/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -4583,6 +4596,161 @@ ul.breadcrumb li+li:last-child {
 </li>
 </ol>
 
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/03/small-shell/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/03/03/small-shell/" itemprop="url">
+                  非常小的shell: 指定行号,插入文本(转)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-03-03 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-03T00:00:00+08:00">2008-03-03</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>使用这个shell可以直接在某个文件的某一行插入指定的文本,很方便. 可以把这个<br>shell加入PATH中.以下的蓝色部分为代码, 文件名为insert</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more insert</span><br><span class="line">#!/bin/bash</span><br><span class="line"># 从文件的某一行之后插入新行</span><br><span class="line"># FILE 为文件名，LINENUM为行号，TEXT为要插入的文本</span><br><span class="line"># Copyleft: cheyo@JMU</span><br><span class="line"></span><br><span class="line">showUsage()</span><br><span class="line">{</span><br><span class="line">echo "[Usage]: insert FILE LINENUM TEXT"</span><br><span class="line">echo "# 从文件的某一行之后插入新行"</span><br><span class="line">echo "# FILE 为文件名，LINENUM为行号，TEXT为要插入的文本"</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">if [ $# -lt 3 ] #少于3个参数,错误!</span><br><span class="line">then showUsage</span><br><span class="line">exit 1</span><br><span class="line">else</span><br><span class="line">sed "${2}a</span><br><span class="line">${3}" $1 &gt; tmpfile;mv tmpfile $1</span><br><span class="line">fi</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$ ./insert a 3 "Test"</span><br><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">Test</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$</span><br></pre></td></tr></tbody></table></figure>
           
         
       
@@ -5138,171 +5306,11 @@ ul.breadcrumb li+li:last-child {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/02/21/firefox-save-mht/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/02/21/firefox-save-mht/" itemprop="url">
-                  让Firefox也可以保存mht单一网页文件
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-02-21 00:00:00" itemprop="dateCreated datePublished" datetime="2008-02-21T00:00:00+08:00">2008-02-21</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>大家都知道，Firefox不可已保存mht文件，这一点就不如IE了，mht无论是查看还是发送都是很方便的。</p>
-<p>天给大家带来的这个插件(<strong>Mozilla_Archive Format</strong>)就能让firefox也可以把网页保存mth怎么样，赶紧下载下来吧。</p>
-<p>点击下载：<a href="http://www.harde.com.cn/soft/2007-07/maf-0.6.3.rar" target="_blank" rel="noopener">maf-0.6.3.rar</a></p>
-<p>如果你只需要一个快速的MHT阅读器， <strong>MHT Reader</strong> 是一个不错的FF轻量级扩展。</p>
-<p>下载: <a href="http://addons.mozine.cn/firefox/522/" target="_blank" rel="noopener">http://addons.mozine.cn/firefox/522/</a></p>
-<p>和MAF相比较，MHT Reader打开MHT文档的速度明显加快，具备了实用性。另外，MHT Reader全部用JavaScript实现，支持Firefox的所有系统版本。</p>
-<p>Note：MAF也处理MHT文档，因此和MHT Reader相冲突。请先删除MAF扩展，并删除profile目录下mimeTypes.rdf文件，再安装MHT Reader。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/23/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">…</span><a class="page-number" href="/page/23/">23</a><span class="page-number current">24</span><a class="page-number" href="/page/25/">25</a><span class="space">…</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/25/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/23/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">…</span><a class="page-number" href="/page/23/">23</a><span class="page-number current">24</span><a class="page-number" href="/page/25/">25</a><span class="space">…</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/25/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -5345,7 +5353,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">290</span>
+                    <span class="site-state-item-count">291</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -5817,7 +5825,13 @@ ul.breadcrumb li+li:last-child {
                     
                       
                     
-                    <span class="site-state-item-count">206</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">209</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

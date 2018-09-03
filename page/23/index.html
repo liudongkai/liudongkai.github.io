@@ -2039,7 +2039,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2196ff;
+  background: #6c9aff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3621,163 +3621,6 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/27/scp-without-password/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/03/27/scp-without-password/" itemprop="url">
-                  如何使执行scp命令时不需要输入用户密码
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-03-27 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-27T00:00:00+08:00">2008-03-27</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>首先制作密码匙∶<br><code>ssh-keygen -t rsa</code> 按三次 Return 键<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp ~/.ssh/ida_dsa.pub username@somewhere.com:~/.ssh/authorized_keys2</span><br></pre></td></tr></tbody></table></figure><p></p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ssh-keygen -t rsa</span><br><span class="line">$Generating public/private rsa key pair.</span><br><span class="line">$Enter file in which to save the key (/root/.ssh/id_rsa):     &lt;-- 直接输入回车</span><br><span class="line">$Enter passphrase (empty for no passphrase):            &lt;-- 直接输入回车</span><br><span class="line">$Enter same passphrase again:                           &lt;-- 直接输入回车</span><br><span class="line">$Your identification has been saved in /root/.ssh/id_rsa.</span><br><span class="line">$Your public key has been saved in /root/.ssh/id_rsa.pub.</span><br><span class="line">$The key fingerprint is:</span><br><span class="line">$49:9c:8a:8f:bc:19:5e:8c:c0:10:d3:15:60:a3:32:1c root@Client</span><br></pre></td></tr></tbody></table></figure>
-<p>假如 ~/.ssh/ida_dsa.pub 已经存在，可以直接 scp 到 remote 主机，放于 ~/.ssh/ 下并改名做 authorized_keys2。而 Remote 主机已有 ~/.ssh/authorized_keys2 的话，则可先上存 ida_dsa.pub，然后用:<br><code>cat ida_dsa.pub &gt;&gt; authorized_keys2</code></p>
-<p>这样，以后使用 ssh 或 scp 也不需要再键入密码。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/27/zlib-installation/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3886,6 +3729,163 @@ ul.breadcrumb li+li:last-child {
 <p>先到zlib官方网站：<a href="http://www.zlib.net" target="_blank" rel="noopener">http://www.zlib.net</a> 上下载源码来安装zlib软件包。</p>
 <p>目前最新版本zlib是zlib1.2.3，安装开始；<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.zlib.net/zlib-1.2.3.tar.gz</span><br><span class="line">tar -xvzf zlib-1.2.3.tar.gz</span><br><span class="line">cd zlib-1.2.3</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>这就完成了zlib1.2.3的安装，由于安装zlib1.2.3需要编译，所以最基本的编译器是要安装好的。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/27/ssh-remote-host-identification-has-changed/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/03/27/ssh-remote-host-identification-has-changed/" itemprop="url">
+                  WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-03-27 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-27T00:00:00+08:00">2008-03-27</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>使用SSH登录另外一台机器，<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh 192.168.1.105</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>得到如下输出<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">@ WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED! @</span><br><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!</span><br><span class="line">Someone could be eavesdropping on you right now (man-in-the-middle attack)!</span><br><span class="line">It is also possible that the RSA host key has just been changed.</span><br><span class="line">The fingerprint for the RSA key sent by the remote host is</span><br><span class="line">a5:1c:99:1f:fa:d7:1e:76:8b:0a:67:eb:4f:90:24:7a.</span><br><span class="line">Please contact your system administrator.</span><br><span class="line">Add correct host key in /root/.ssh/known_hosts to get rid of this message.</span><br><span class="line">Offending key in /root/.ssh/known_hosts:1</span><br><span class="line">RSA host key for 192.168.1.105 has changed and you have requested strict checking.</span><br><span class="line">Host key verification failed.</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>搜索得到如下解决：</p>
+<p>因为在本地机器上曾经用SSH登录过这台远程计算机，因而留下了known_hosts的记录，在远程计算机重新安装系统后不能够通过鉴权。删除<code>~/.ssh/known_hosts</code>中对应的项目，问题获得解决。</p>
 
           
         
@@ -4057,6 +4057,163 @@ ul.breadcrumb li+li:last-child {
 <p>尽管人脑的模糊纠错能力使大家能看懂这些乱七八糟的东西，但是随着句子长度增加，甚至出现整段整段的脑残体文字，看懂其内容所需要的运算量也会呈几何级数增长，产生眼花缭乱的感觉。最后人们不是看不懂，而是根本没心情去辨认这些文字。随着脑残体的大面积流行，人们越来越不堪忍受满屏幕的脑残体文字，同时认为只有脑残儿才会看着这种字体不烦、才会乐于使用这种字体，于是这之前被脑残儿们称为“酷炫个性签名”、“非主流”的东西，终于得正名“脑残体”。</p>
 <h2 id="脑残体的用户群"><a href="#脑残体的用户群" class="headerlink" title="脑残体的用户群"></a>脑残体的用户群</h2><p>脑残体的使用者们，也是一个特征比较明显的人群。脑残体的大量使用90%以上是在脑残儿的QQ签名、个人说明、论坛/游戏ID中，有时也出现在聊天和博客中。常见成段脑残体写的“爱情诗”，其内容多半是无病呻吟，没有任何阅读价值，恐怕也正是内容空虚苍白，才需要用看似“华丽”的文字去掩盖。虽然他们也组建了脑残博客圈、脑残QQ群和脑残论坛专以脑残体进行交流，但网民们大多有QQ、博客以及常上的论坛，其中脑残儿也并不在多数。说到这里，不得不提一个叫做“劲舞团”的网络游戏——脑残儿的模范集会场所。  </p>
 <p>用大量文字论证劲舞团这个游戏为什么是脑残之家背离了本文的主题。总之，这个号称适合未成年人的网络游戏却是连大部分交友网站都</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/27/scp-without-password/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/03/27/scp-without-password/" itemprop="url">
+                  如何使执行scp命令时不需要输入用户密码
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-03-27 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-27T00:00:00+08:00">2008-03-27</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>首先制作密码匙∶<br><code>ssh-keygen -t rsa</code> 按三次 Return 键<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp ~/.ssh/ida_dsa.pub username@somewhere.com:~/.ssh/authorized_keys2</span><br></pre></td></tr></tbody></table></figure><p></p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ssh-keygen -t rsa</span><br><span class="line">$Generating public/private rsa key pair.</span><br><span class="line">$Enter file in which to save the key (/root/.ssh/id_rsa):     &lt;-- 直接输入回车</span><br><span class="line">$Enter passphrase (empty for no passphrase):            &lt;-- 直接输入回车</span><br><span class="line">$Enter same passphrase again:                           &lt;-- 直接输入回车</span><br><span class="line">$Your identification has been saved in /root/.ssh/id_rsa.</span><br><span class="line">$Your public key has been saved in /root/.ssh/id_rsa.pub.</span><br><span class="line">$The key fingerprint is:</span><br><span class="line">$49:9c:8a:8f:bc:19:5e:8c:c0:10:d3:15:60:a3:32:1c root@Client</span><br></pre></td></tr></tbody></table></figure>
+<p>假如 ~/.ssh/ida_dsa.pub 已经存在，可以直接 scp 到 remote 主机，放于 ~/.ssh/ 下并改名做 authorized_keys2。而 Remote 主机已有 ~/.ssh/authorized_keys2 的话，则可先上存 ida_dsa.pub，然后用:<br><code>cat ida_dsa.pub &gt;&gt; authorized_keys2</code></p>
+<p>这样，以后使用 ssh 或 scp 也不需要再键入密码。</p>
 
           
         
@@ -4751,7 +4908,7 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/15/apache-rewrite/">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/15/IBM-install-drivers-1/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="東木">
@@ -4770,8 +4927,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/03/15/apache-rewrite/" itemprop="url">
-                  Apache 重写规则的常见应用 (rewrite)
+                <a class="post-title-link" href="/2008/03/15/IBM-install-drivers-1/" itemprop="url">
+                  IBM T61/R61/X61 WinXP驱动安装(一)
                 </a>
               
             
@@ -4815,7 +4972,7 @@ ul.breadcrumb li+li:last-child {
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
 
                 
                 
@@ -4850,17 +5007,27 @@ ul.breadcrumb li+li:last-child {
 
       
         
-          <h3 id="一-目的"><a href="#一-目的" class="headerlink" title="一: 目的"></a>一: 目的</h3><p>本文旨在提供如何用Apache重写规则来解决一些常见的URL重写方法的问题，通过常见的实例给用户一些使用重写规则的基本方法和线索。</p>
-<h3 id="二-为什么需要用重写规则？"><a href="#二-为什么需要用重写规则？" class="headerlink" title="二:为什么需要用重写规则？"></a>二:为什么需要用重写规则？</h3><p>一个网站，如果是长期需要放在internet上提供服务，必定会有不断地更新和维护，如临时转移到其它服务器进行维护，重新组织目录结构，变换URL甚至改变到新的域名等等，而为了让客户不会因此受到任何影响，最好的方法就是使用Apache Rewrite Rule(重写规则)。</p>
-<h3 id="三-重写规则的作用范围"><a href="#三-重写规则的作用范围" class="headerlink" title="三: 重写规则的作用范围"></a>三: 重写规则的作用范围</h3><ol>
-<li>可以使用在Apache主配置文件httpd.conf中</li>
-<li>可以使用在httpd.conf里定义的虚拟主机配置中</li>
-<li>可以使用在基本目录的跨越配置文件.htaccess中</li>
+          <p>==== 20140221更新 ====<br>重新整理，终于找到原帖：<a href="http://www.tpuser.idv.tw/articles/santarosa-test-wxp.html" target="_blank" rel="noopener">http://www.tpuser.idv.tw/articles/santarosa-test-wxp.html</a></p>
+<hr>
+<p>ThinkPad T61/R61/X61系列硬件架构相当接近，原厂维修手册都可共享，此篇安装流程理论上可以适用在 ThinkPad T61/R61/X61系列上面，记得再根据个别机种的硬件安装对应驱动程序。</p>
+<ul>
+<li><a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=TPAD-MATRIX" target="_blank" rel="noopener">ThinkPad 全系列机型驱动程序 矩阵列表</a></li>
+</ul>
+<p>由 于微软的许多组件都需在线下载，无法直接下载完整版本，因此才会视需要，将网络卡的驱动程序安装程序放在前面。此外 ThinkPad 的相关驱动程序也有安装顺序上的考虑，以下的安装流程其实已经把各环节都尽量考虑进去，如网友没有把握，不妨按照以下的顺序安装，感谢。</p>
+<h3 id="准备动作：设定-SATA-硬盘"><a href="#准备动作：设定-SATA-硬盘" class="headerlink" title="准备动作：设定 SATA 硬盘"></a>准备动作：设定 SATA 硬盘</h3><p>自从 T60/R60/X60 开始改用 SATA 界面硬盘，手动安装 WinXP 便遇到一个问题：「要选择 Compatibility 还是 AHCI 模式？」，这问题的主因源自于设定为 AHCI 模式时，必须在安装时按下「 F6 」，然后预先加载芯片组驱动程序。但现在拥有 USB 界面软驱的使用者实在太少了。</p>
+<p>在没有 USB 软驱的状况下，有的使用者便设定成 「 Compatibility 模式」，却发现硬盘效能不彰，接着去 BIOS 调回 AHCI 模式之后，就会发生蓝底白字的系统当机惨剧。因此很多人想到要重装 WinXP 就头大。</p>
+<p>但根据 Lenovo 原厂提供的资料，以及亲身体验，其实手动安装 WinXP 并不困难！不需要准备 USB 软驱﹔不用忍受「 Compatibility 模式」效能不彰问题，更不会发生蓝底白字惨剧，关键只在于「安装流程的顺序！」</p>
+<p>请跟着本文的流程依序安装，相信大家都能顺利重返 WinXP 环境！</p>
+<ol>
+<li>按下电源开关，开机时请按「 F1 」键，之后会进入 BIOS 画面。</li>
+<li>进入 BIOS 之后，进入「 Config 」页面</li>
+<li>再进入「 Serial ATA(SATA) 」页面</li>
+<li>将原先的「 AHCI 」改成「 Compatibility 」</li>
 </ol>
-<h3 id="四-重写规则的应用条件"><a href="#四-重写规则的应用条件" class="headerlink" title="四:重写规则的应用条件"></a>四:重写规则的应用条件</h3><p>只有当用户的WEB请求最终被导向到某台WEB服务器的Apache后台，则这台WEB服务器接受进来的请求，根据配置文件该请求是主配置还是虚拟主机，再根据用户在浏览器中请求的URI来配对重写规则并且根据实际的请求路径配对.htaccess中的重写规则。最后把请求的内容传回给用户，该响应可能有两种：</p>
+<p>换言之，手动安装 WinXP 时，先采用「 Compatibility 模式」，规避掉需要透过 USB 软驱安装驱动程序的困扰，然后在后面的「步骤三」请网友务必按照说明安装 Intel Matrix Storage Manager Driver ，同时将硬盘更改为 AHCI 模式。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2008/03/15/apache-rewrite/#more" rel="contents">
+            <a class="btn" href="/2008/03/15/IBM-install-drivers-1/#more" rel="contents">
               Read more »
             </a>
           </div>
@@ -5061,189 +5228,11 @@ ul.breadcrumb li+li:last-child {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/15/IBM-install-drivers-2/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/03/15/IBM-install-drivers-2/" itemprop="url">
-                  IBM T61/R61/X61 WinXP驱动安装(二)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-15T00:00:00+08:00">2008-03-15</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="十五-、安装-UltraNav-driver-for-Windows-2000-XP"><a href="#十五-、安装-UltraNav-driver-for-Windows-2000-XP" class="headerlink" title="十五 、安装 UltraNav driver for Windows 2000, XP"></a>十五 、安装 UltraNav driver for Windows 2000, XP</h3><p>注 1 ： 如果网友的 ThinkPad 是 X61/X61s ，请至 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-4kmuyl" target="_blank" rel="noopener">此连结</a> 下载 TrackPoint Only 驱动程序。</p>
-<ol>
-<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-42487" target="_blank" rel="noopener">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-42487</a> 下载。</p>
-</li>
-<li><p>所安装的版本是 7.5.17 .20 版， 2006/05/27 发布。档名为 77gu08ww.exe</p>
-<ul>
-<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
-<li>License Agreement 画面，选「 I accept the terms in the license agreement 」按「 Next 」 </li>
-<li>档案预设解压缩路径为「 C:\DRIVERS\WIN\UNAV 」，如不想变更请直接按「 Next 」 </li>
-<li>解压缩完成后按「 Finish 」</li>
-</ul>
-</li>
-<li><p>到「 C:\DRIVERS\WIN\UNAV 」里，双击「 Setup.exe 」</p>
-<ul>
-<li>首先出现「选取安装语言」，选「英语」，按「确定」 </li>
-<li>按「 Next 」 </li>
-<li>按「 Next 」 </li>
-<li>安装完毕后选「 Yes, I want to restart my computer now 」，按「 Finish 」</li>
-</ul>
-</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2008/03/15/IBM-install-drivers-2/#more" rel="contents">
-              Read more »
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/22/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">…</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">…</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/24/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/22/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">…</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">…</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/24/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -5286,7 +5275,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">290</span>
+                    <span class="site-state-item-count">291</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -5758,7 +5747,13 @@ ul.breadcrumb li+li:last-child {
                     
                       
                     
-                    <span class="site-state-item-count">206</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">209</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

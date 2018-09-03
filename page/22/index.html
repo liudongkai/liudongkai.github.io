@@ -2039,7 +2039,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2196ff;
+  background: #6c9aff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3605,6 +3605,169 @@ ul.breadcrumb li+li:last-child {
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/13/Shell-switch-background-jobs/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/05/13/Shell-switch-background-jobs/" itemprop="url">
+                  Linux Shell下的后台运行及其前台的转换
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-05-13 00:00:00" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">2008-05-13</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>当用bash启动一个程序,你可以用在程序后加&amp;,实现程序在后台运行；</p>
+<p>例如: <code>emacs &amp;</code></p>
+<p>但如果你忘了输入&amp;;但你又不想把程序停止后重新启动；</p>
+<p>你可以这么做:</p>
+<p>按Ctrl + Z暂停前台工作,比如前面提到的Emacs；</p>
+<p>然后用jobs命令查看当前bash一共启动了多少程序,你可以看到你的emacs在其中，它的状态是Stoped的; 并且它的jobID也可以看,比如是2</p>
+<p>然后用命令<code>bg 2</code></p>
+<p>这样你就可以达到和<code>emacs &amp;</code>一样的效果了。</p>
+<p>当你有些工作比如updatedb, find等需要一定时间,这些工作可以考虑让它在后台运行,而你可以用bash做其它工作。</p>
+<p>如果需要把任务回到前台，只需要<code>fg 2</code>。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -5290,168 +5453,11 @@ ul.breadcrumb li+li:last-child {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/27/ssh-remote-host-identification-has-changed/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/03/27/ssh-remote-host-identification-has-changed/" itemprop="url">
-                  WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-03-27 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-27T00:00:00+08:00">2008-03-27</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>使用SSH登录另外一台机器，<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh 192.168.1.105</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>得到如下输出<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">@ WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED! @</span><br><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!</span><br><span class="line">Someone could be eavesdropping on you right now (man-in-the-middle attack)!</span><br><span class="line">It is also possible that the RSA host key has just been changed.</span><br><span class="line">The fingerprint for the RSA key sent by the remote host is</span><br><span class="line">a5:1c:99:1f:fa:d7:1e:76:8b:0a:67:eb:4f:90:24:7a.</span><br><span class="line">Please contact your system administrator.</span><br><span class="line">Add correct host key in /root/.ssh/known_hosts to get rid of this message.</span><br><span class="line">Offending key in /root/.ssh/known_hosts:1</span><br><span class="line">RSA host key for 192.168.1.105 has changed and you have requested strict checking.</span><br><span class="line">Host key verification failed.</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>搜索得到如下解决：</p>
-<p>因为在本地机器上曾经用SSH登录过这台远程计算机，因而留下了known_hosts的记录，在远程计算机重新安装系统后不能够通过鉴权。删除<code>~/.ssh/known_hosts</code>中对应的项目，问题获得解决。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/21/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">…</span><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/page/23/">23</a><span class="space">…</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/23/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/21/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">…</span><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/page/23/">23</a><span class="space">…</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/23/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -5494,7 +5500,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">290</span>
+                    <span class="site-state-item-count">291</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -5966,7 +5972,13 @@ ul.breadcrumb li+li:last-child {
                     
                       
                     
-                    <span class="site-state-item-count">206</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">209</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

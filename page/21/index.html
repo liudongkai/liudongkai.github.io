@@ -2039,7 +2039,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2196ff;
+  background: #6c9aff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3621,6 +3621,176 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/18/regular-expression/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/05/18/regular-expression/" itemprop="url">
+                  揭开正则表达式的神秘面纱
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-05-18 00:00:00" itemprop="dateCreated datePublished" datetime="2008-05-18T00:00:00+08:00">2008-05-18</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>正则表达式（regular expression）就是用一个“字符串”来描述一个特征，然后去验证另一个“字符串”是否符合这个特征。比如 表达式“ab+” 描述的特征是“一个 ‘a’ 和 任意个 ‘b’ ”，那么 ‘ab’, ‘abb’, ‘abbbbbbbbbb’ 都符合这个特征。</p>
+<p>正则表达式可以用来：</p>
+<ol>
+<li>验证字符串是否符合指定特征，比如验证是否是合法的邮件地址。</li>
+<li>用来查找字符串，从一个长的文本中查找符合指定特征的字符串，比查找固定字符串更加灵活方便。</li>
+<li>用来替换，比普通的替换更强大。</li>
+</ol>
+<p>正则表达式学习起来其实是很简单的，不多的几个较为抽象的概念也很容易理解。之所以很多人感觉正则表达式比较复杂，一方面是因为大多数的文档没有做到由浅入深地讲解，概念上没有注意先后顺序，给读者的理解带来困难；另一方面，各种引擎自带的文档一般都要介绍它特有的功能，然而这部分特有的功能并不是我们首先要理解的。</p>
+<p>文章中的每一个举例，都可以点击进入到测试页面进行测试。闲话少说，开始。</p>
+<p>##1. 正则表达式规则</p>
+<h3 id="1-普通字符"><a href="#1-普通字符" class="headerlink" title="1. 普通字符"></a>1. 普通字符</h3><p>字母、数字、汉字、下划线、以及后边章节中没有特殊定义的标点符号，都是”普通字符”。表达式中的普通字符，在匹配一个字符串的时候，匹配与之相同的一个字符。</p>
+<p><strong>举例1：表达式 “c”，在匹配字符串 “abcde” 时</strong>，匹配结果是：成功；匹配到的内容是：”c”；匹配到的位置是：开始于2，结束于3。（注：下标从0开始还是从1开始，因当前编程语言的不同而可能不同）</p>
+<p><strong>举例2：表达式 “bcd”，在匹配字符串 “abcde” 时</strong>，匹配结果是：成功；匹配到的内容是：”bcd”；匹配到的位置是：开始于1，结束于4。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2008/05/18/regular-expression/#more" rel="contents">
+              Read more »
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/18/sed-one-liner/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -5096,174 +5266,11 @@ ul.breadcrumb li+li:last-child {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/13/Shell-switch-background-jobs/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/05/13/Shell-switch-background-jobs/" itemprop="url">
-                  Linux Shell下的后台运行及其前台的转换
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-05-13 00:00:00" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">2008-05-13</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>当用bash启动一个程序,你可以用在程序后加&amp;,实现程序在后台运行；</p>
-<p>例如: <code>emacs &amp;</code></p>
-<p>但如果你忘了输入&amp;;但你又不想把程序停止后重新启动；</p>
-<p>你可以这么做:</p>
-<p>按Ctrl + Z暂停前台工作,比如前面提到的Emacs；</p>
-<p>然后用jobs命令查看当前bash一共启动了多少程序,你可以看到你的emacs在其中，它的状态是Stoped的; 并且它的jobID也可以看,比如是2</p>
-<p>然后用命令<code>bg 2</code></p>
-<p>这样你就可以达到和<code>emacs &amp;</code>一样的效果了。</p>
-<p>当你有些工作比如updatedb, find等需要一定时间,这些工作可以考虑让它在后台运行,而你可以用bash做其它工作。</p>
-<p>如果需要把任务回到前台，只需要<code>fg 2</code>。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">…</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><span class="space">…</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">…</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><span class="space">…</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -5306,7 +5313,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">290</span>
+                    <span class="site-state-item-count">291</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -5778,7 +5785,13 @@ ul.breadcrumb li+li:last-child {
                     
                       
                     
-                    <span class="site-state-item-count">206</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">209</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

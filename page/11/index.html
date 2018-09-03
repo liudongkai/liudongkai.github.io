@@ -2039,7 +2039,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2196ff;
+  background: #6c9aff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3621,6 +3621,166 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2011/11/18/mysqlbinlog-format-row/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2011/11/18/mysqlbinlog-format-row/" itemprop="url">
+                  用 mysqlbinlog 查看row格式的事件 zt
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2011-11-18 00:00:00" itemprop="dateCreated datePublished" datetime="2011-11-18T00:00:00+08:00">2011-11-18</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>MySQL 5.1开始，binlog支持row-based的格式，默认情况下只能看到一些经过base-64编码的信息，如:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">DELIMITER /*!*/;</span><br><span class="line"># at 7493962</span><br><span class="line">#090827 5:25:03 server id 1 end_log_pos 0 Start: binlog v 4, server v 5.1.26-rc-community-log created 090827 5:25:03</span><br><span class="line">BINLOG '</span><br><span class="line">L6iVSg8BAAAAZgAAAAAAAAAAAAQANS4xLjI2LXJjLWNvbW11bml0eS1sb2cAAAAAAAAAAAAAAAAA</span><br><span class="line">AAAAAAAAAAAAAAAAAAAAAAAAEzgNAAgAEgAEBAQEEgAAUwAEGggAAAAICAgC</span><br><span class="line">'/*!*/;</span><br><span class="line"># at 7493962</span><br><span class="line"># at 7494009</span><br><span class="line">#090827 13:20:40 server id 1 end_log_pos 7494009 Table_map: `test`.`test1` mapped to number 96991</span><br><span class="line">#090827 13:20:40 server id 1 end_log_pos 7494045 Write_rows: table id 96991 flags: STMT_END_F</span><br><span class="line"></span><br><span class="line">BINLOG '</span><br><span class="line">qBeWShMBAAAALwAAAHlZcgAAAN96AQAAAAAABHRlc3QABXRlc3QxAAIDDwI8AAM=</span><br><span class="line">qBeWShcBAAAAJAAAAJ1ZcgAQAN96AQAAAAEAAv/8AwAAAAEz</span><br><span class="line">'/*!*/;</span><br><span class="line"># at 7494045</span><br><span class="line">#090827 13:20:40 server id 1 end_log_pos 7494072 Xid = 2525562</span><br><span class="line">COMMIT/*!*/;</span><br><span class="line">DELIMITER ;</span><br><span class="line"># End of log file</span><br></pre></td></tr></tbody></table></figure>
+<p>这里只能看到<code>test</code>.<code>test1</code>表做了改动，但具体改了什么，就不知道了，那么怎样才能看到到底改了什么呢？从MySQL 5.1.28开始，mysqlbinlog多了个参数–verbose(或-v)，将改动生成带注释的语句，如果使用两次这个参数(如-v -v)，会生成字段的类型、长度、是否为null等属性信息。如下：</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2011/11/18/mysqlbinlog-format-row/#more" rel="contents">
+              Read more »
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2011/11/14/linux-ssh-while-exit/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -5110,171 +5270,11 @@ ul.breadcrumb li+li:last-child {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2011/03/06/centos-yum-use-163-com/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2011/03/06/centos-yum-use-163-com/" itemprop="url">
-                  CentOS yum 更新 网易源(mirrors.163.com)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2011-03-06 00:00:00" itemprop="dateCreated datePublished" datetime="2011-03-06T00:00:00+08:00">2011-03-06</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>如果你安装了CentOS系统，并且yum更新慢的话，可以考虑将更新源更换为 网易提供的源：mirrors.163.com</p>
-<p>具体操作如下：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/yum.repos.d/</span><br><span class="line">mv CentOS-Base.repo CentOS-Base.repo.bak</span><br><span class="line"></span><br><span class="line">vi CentOS-Base.repo</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>加入如下内容：</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2011/03/06/centos-yum-use-163-com/#more" rel="contents">
-              Read more »
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">…</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">…</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">…</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">…</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -5317,7 +5317,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">290</span>
+                    <span class="site-state-item-count">291</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -5789,7 +5789,13 @@ ul.breadcrumb li+li:last-child {
                     
                       
                     
-                    <span class="site-state-item-count">206</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">209</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

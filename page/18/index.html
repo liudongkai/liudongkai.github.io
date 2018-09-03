@@ -2039,7 +2039,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2196ff;
+  background: #6c9aff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3621,6 +3621,186 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/12/14/perl-encode-url/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/12/14/perl-encode-url/" itemprop="url">
+                  perl处理UTF-8编码，对URL地址进行编码
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-12-14 00:00:00" itemprop="dateCreated datePublished" datetime="2008-12-14T00:00:00+08:00">2008-12-14</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>首先进行声明<br><code>use Encode;</code></p>
+<ul>
+<li><p>gbk转uft-8：<br><code>$line = encode("utf-8",decode("gbk",$line));</code><br>或<br><code>$line = encode_utf8(decode("gbk",$line));</code></p>
+</li>
+<li><p>utf-8转gbk：<br><code>$line = encode("gbk", decode("utf8", $line));</code></p>
+</li>
+<li><p>uft-8转gb2312：<br><code>$line = encode("gb2312", decode("utf8", $line));</code></p>
+</li>
+</ul>
+<p>测试可用！by：Neeao</p>
+<hr>
+<p>perl中对URL地址进行编码<br>URL中如果有中文的字符，要先对其进行编码才能进行下一步的处理。</p>
+<ul>
+<li><p>用替换方法进行编码：</p>
+<p>Url encode：对 \n 不转码</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perl -pe 's/([^\w\-\.\@])/$1 eq "\n" ? "\n":sprintf("%%%2.2x",ord($1))/eg' keywords.list</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>用替换方法进行解码：</p>
+<p>Url Decode：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perl -pe 's/%(..)/pack("c", hex($1))/eg' keywords.list</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>用URI::URL模块进行编码</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">use URI::URL;</span><br><span class="line">my $str = "http://www.google.com/lxmxn's blog&amp;b=Hello,perl";</span><br><span class="line">my $url = URI::URL-&gt;new( $str );</span><br><span class="line">print $url;</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>用URI::Escape模块进行编码</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">use URI::Escape;</span><br><span class="line">my $str='北极神话';</span><br><span class="line">print uri_escape($str);</span><br><span class="line"></span><br><span class="line"> #result:%B1%B1%BC%AB%C9%F1%BB%B0</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/11/27/mysqldump-extended-insert/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -5068,177 +5248,11 @@ ul.breadcrumb li+li:last-child {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/09/03/canon-family-tree/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/09/03/canon-family-tree/" itemprop="url">
-                  小姜杂谈：Canon 消费机族谱[zt]
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2008-09-03T00:00:00+08:00">2008-09-03</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="http://photo.liudongkai.com/blog/canon_family_e4.jpg" alt=""></p>
-<p>这是小姜很久以前玩乐时的产物 XD。Canon 消费机的家族性非常地明显，除了可以从型号判断先后关系外，其实只看外表就可以知道谁和谁是一家的了。继续阅读里是每个现在还留存着的家族的介绍，请大家尽情享用 XD。</p>
-<p>Canon 目前还在添加新成员的家族：</p>
-<h2 id="A-系列家族"><a href="#A-系列家族" class="headerlink" title="A 系列家族"></a>A 系列家族</h2><p>主要特性：采用 AA（三号）电池、高中端都有、价格一般来说较便宜、人丁兴旺</p>
-<p>A 家族源远流长，说它们是所有 Canon 消费机的始祖也不为过。2002 年时，A 系列分成为两支，其中 A100 的那一系在 Canon 产品线里一直是以最低端的身份存在着，有什么新功能都是最后一个才轮到它 — A100 系列的最新机种 A470 到现在都还没有防手抖呢！</p>
-<p>2005 年在 A95 之后，A 系列又再分成了两支，A600 家族是其中一个，在特性上更接近自 A10 一脉相传的传统 A 系列。这个家族的最后一个成员是去年的 A650 IS 但目前 A600 一族的情况并不明朗，也没有小道消息说今年会不会有后继机。希望不是因为功能上太接近 G 系列，被腰斩了？A500 家族是 2005 年分家的另一支，相对于 A600 家族，走的是比较便宜的路线，规格通常也差同期的 A600 家族一截。这一脉人丁兴旺，近两年到了一年三台新机的地步。A590 IS 过了之后，下一台取名为 A1000 IS。新出来的 E1 看起来完全和 A1000IS 相同规格，只是换了个造型而已，究竟 E1 该不该分一个新系列出来，还要再观察。</p>
-<p>最后，还有一个 2006 年时从 A500 家族中分出来的 A700 家族。小姜之所以判断是从 A500 一脉分支下来的，因为同时期的 A500 家族和 A700 家族只差一个镜头是 4x 变焦、一个是 6x 变焦而已。A2000 IS 是 A700 家族的最新成员，但因为 A2000 IS 舍弃了光学观景窗，因此究竟以后的 A700 系都是这样，还是 A2000 IS 其实是一个新系列的开始，也还要再观察。</p>
-<h2 id="IXUS-V-家族"><a href="#IXUS-V-家族" class="headerlink" title="IXUS V 家族"></a>IXUS V 家族</h2><p>主要特性：Canon 最轻便的一个系列</p>
-<p>IXUS V 家族承袭自 2000 年的第一台 Digital IXUS，以轻薄方便为主要诉求。在这个市场，Canon 算是比较晚有防手震功能的，一直到今年的 80 IS 才首度加入。2006 年时 IXUS 65 从 IXUS 55 主在线分离出来，是少了观景窗，但屏幕变为三寸大的一个系列，其它规格大多和同期的标准 IXUS 家族相仿。这个系列最新的两台是 IXUS 85 IS (有观景窗）和 IXUS 90 IS（三寸屏幕）。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2008/09/03/canon-family-tree/#more" rel="contents">
-              Read more »
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">…</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">…</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">…</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">…</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -5281,7 +5295,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">290</span>
+                    <span class="site-state-item-count">291</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -5753,7 +5767,13 @@ ul.breadcrumb li+li:last-child {
                     
                       
                     
-                    <span class="site-state-item-count">206</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">209</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
