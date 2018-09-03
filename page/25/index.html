@@ -2039,7 +2039,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #7d0fff;
+  background: #2196ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -4734,176 +4734,6 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/02/07/awstats-use-maxmind-geoip/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/02/07/awstats-use-maxmind-geoip/" itemprop="url">
-                  安装 MaxMind GeoIP、GeoIP City Lite 为 awstats 配置 IP 位置国家城市统计信息
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-02-07 00:00:00" itemprop="dateCreated datePublished" datetime="2008-02-07T00:00:00+08:00">2008-02-07</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/analytics/" itemprop="url" rel="index"><span itemprop="name">Analytics</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>安装 MaxMind GeoIP、GeoIP City Lite 为 awstats 配置 IP 位置国家城市统计信息</p>
-<blockquote>
-<p><a href="http://www.maxmind.com/download/geoip/api/c/" target="_blank" rel="noopener">http://www.maxmind.com/download/geoip/api/c/</a><br><a href="http://www.maxmind.com/download/geoip/api/c/GeoIP-1.4.4.tar.gz" target="_blank" rel="noopener">http://www.maxmind.com/download/geoip/api/c/GeoIP-1.4.4.tar.gz</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://www.maxmind.com/download/geoip/api/perl/" target="_blank" rel="noopener">http://www.maxmind.com/download/geoip/api/perl/</a><br><a href="http://www.maxmind.com/download/geoip/api/perl/Geo-IP-1.31.tar.gz" target="_blank" rel="noopener">http://www.maxmind.com/download/geoip/api/perl/Geo-IP-1.31.tar.gz</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://www.maxmind.com/app/geolitecity" target="_blank" rel="noopener">http://www.maxmind.com/app/geolitecity</a><br><a href="http://www.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz" target="_blank" rel="noopener">http://www.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz</a></p>
-</blockquote>
-<p>安装配置全程脚本：</p>
-<p><strong>下载</strong><br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.maxmind.com/download/geoip/api/c/GeoIP-1.4.4.tar.gz</span><br><span class="line">wget http://www.maxmind.com/download/geoip/api/perl/Geo-IP-1.31.tar.gz</span><br><span class="line">wget http://www.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p><strong>安装</strong><br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">tar zxf GeoIP-1.4.4.tar.gz</span><br><span class="line">cd GeoIP-1.4.4</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">cd ..</span><br><span class="line"></span><br><span class="line">tar zxf Geo-IP-1.31.tar.gz</span><br><span class="line">cd Geo-IP-1.31</span><br><span class="line">perl Makefile.PL</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">cd ..</span><br><span class="line"></span><br><span class="line">gunzip GeoLiteCity.dat.gz</span><br><span class="line">cp -a GeoLiteCity.dat /usr/local/share/GeoIP/</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p><strong>更新动态库路径</strong><br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo /usr/local/lib &gt; /etc/ld.so.conf.d/geoip-i386.conf</span><br><span class="line">ldconfig -v</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p><strong>修改 awstats 配置</strong><br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LoadPlugin="geoip GEOIP_STANDARD /usr/local/share/GeoIP/GeoIP.dat"</span><br><span class="line">LoadPlugin="geoip_city_maxmind GEOIP_STANDARD /usr/local/share/GeoIP/GeoLiteCity.dat"</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>下次 update 数据和 build pages 就可以看到<br>国家或地区 (前 10) 和 主机 (前 10) 中的IP地理位置信息<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">awstats/tools/awstats_updateall.pl now</span><br><span class="line">awstats/tools/awstats_buildstaticpages.pl -config=configdomainname -month=$M -lang=cn</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>GeoIP Country 链接到 #countries<br>GeoIP City 链接到 awstats.$configdomainname.plugin_geoip_city_maxmind.html</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/02/07/awstats-install-geoip-by-perl/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -5038,6 +4868,176 @@ ul.breadcrumb li+li:last-child {
 </li>
 </ol>
 <p>Erik Reedstrom<br>IT Department<br><a href="http://www.BrokeHouse.com" target="_blank" rel="noopener">www.BrokeHouse.com</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/02/07/awstats-use-maxmind-geoip/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/02/07/awstats-use-maxmind-geoip/" itemprop="url">
+                  安装 MaxMind GeoIP、GeoIP City Lite 为 awstats 配置 IP 位置国家城市统计信息
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-02-07 00:00:00" itemprop="dateCreated datePublished" datetime="2008-02-07T00:00:00+08:00">2008-02-07</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/analytics/" itemprop="url" rel="index"><span itemprop="name">Analytics</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>安装 MaxMind GeoIP、GeoIP City Lite 为 awstats 配置 IP 位置国家城市统计信息</p>
+<blockquote>
+<p><a href="http://www.maxmind.com/download/geoip/api/c/" target="_blank" rel="noopener">http://www.maxmind.com/download/geoip/api/c/</a><br><a href="http://www.maxmind.com/download/geoip/api/c/GeoIP-1.4.4.tar.gz" target="_blank" rel="noopener">http://www.maxmind.com/download/geoip/api/c/GeoIP-1.4.4.tar.gz</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.maxmind.com/download/geoip/api/perl/" target="_blank" rel="noopener">http://www.maxmind.com/download/geoip/api/perl/</a><br><a href="http://www.maxmind.com/download/geoip/api/perl/Geo-IP-1.31.tar.gz" target="_blank" rel="noopener">http://www.maxmind.com/download/geoip/api/perl/Geo-IP-1.31.tar.gz</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.maxmind.com/app/geolitecity" target="_blank" rel="noopener">http://www.maxmind.com/app/geolitecity</a><br><a href="http://www.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz" target="_blank" rel="noopener">http://www.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz</a></p>
+</blockquote>
+<p>安装配置全程脚本：</p>
+<p><strong>下载</strong><br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.maxmind.com/download/geoip/api/c/GeoIP-1.4.4.tar.gz</span><br><span class="line">wget http://www.maxmind.com/download/geoip/api/perl/Geo-IP-1.31.tar.gz</span><br><span class="line">wget http://www.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p><strong>安装</strong><br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">tar zxf GeoIP-1.4.4.tar.gz</span><br><span class="line">cd GeoIP-1.4.4</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">cd ..</span><br><span class="line"></span><br><span class="line">tar zxf Geo-IP-1.31.tar.gz</span><br><span class="line">cd Geo-IP-1.31</span><br><span class="line">perl Makefile.PL</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">cd ..</span><br><span class="line"></span><br><span class="line">gunzip GeoLiteCity.dat.gz</span><br><span class="line">cp -a GeoLiteCity.dat /usr/local/share/GeoIP/</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p><strong>更新动态库路径</strong><br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo /usr/local/lib &gt; /etc/ld.so.conf.d/geoip-i386.conf</span><br><span class="line">ldconfig -v</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p><strong>修改 awstats 配置</strong><br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LoadPlugin="geoip GEOIP_STANDARD /usr/local/share/GeoIP/GeoIP.dat"</span><br><span class="line">LoadPlugin="geoip_city_maxmind GEOIP_STANDARD /usr/local/share/GeoIP/GeoLiteCity.dat"</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>下次 update 数据和 build pages 就可以看到<br>国家或地区 (前 10) 和 主机 (前 10) 中的IP地理位置信息<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">awstats/tools/awstats_updateall.pl now</span><br><span class="line">awstats/tools/awstats_buildstaticpages.pl -config=configdomainname -month=$M -lang=cn</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>GeoIP Country 链接到 #countries<br>GeoIP City 链接到 awstats.$configdomainname.plugin_geoip_city_maxmind.html</p>
 
           
         

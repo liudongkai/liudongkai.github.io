@@ -2039,7 +2039,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #7d0fff;
+  background: #2196ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3621,6 +3621,172 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/10/excel-offset-notes/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/05/10/excel-offset-notes/" itemprop="url">
+                  Excel中OFFSET( )函数的使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-05-10 00:00:00" itemprop="dateCreated datePublished" datetime="2008-05-10T00:00:00+08:00">2008-05-10</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>OFFSET()</strong></p>
+<p>用途：<br>以指定的引用为参照系，通过给定偏移量得到新的引用。返回的引用可以是一个单元格或单元格区域，并可以指定返回的行数或列数。</p>
+<p>语法：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OFFSET(reference, rows, cols, height, width)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>参数：</p>
+<ul>
+<li><strong>Reference</strong> 是作为偏移量参照系的引用区域，它必须是单元格或相连单元格区域的引用；</li>
+<li><strong>Rows</strong> 是相对于偏移量参照系的左上角单元格，上(下)偏移的行数。如果使用5 作为参数Rows，则说明目标引用区域的左上角单元格比reference 低5 行。行数可为正数(代表在起始引用的下方)或负数(代表在起始引用的上方)；</li>
+<li><strong>Cols</strong> 是相对于偏移量参照系的左上角单元格，左(右)偏移的列数。如果使用5 作为参数Cols，则说明目标引用区域的左上角的单元格比reference 靠右5 列。列数可为正数(代表在起始引用的右边)或负数(代表在起始引用的左边)；</li>
+<li><strong>Height</strong> 是要返回的引用区域的行数，Height 必须为正数；</li>
+<li><strong>Width</strong> 是要返回的引用区域的列数，Width 必须为正数。</li>
+</ul>
+<p>实例：如果A1=68、A2=76、A3=85、A4=90，则公式<code>=SUM(OFFSET(A1:A2，2，0，2，1))</code>返回 175 。</p>
+<p>参看：<a href="http://support.microsoft.com/kb/324991/zh-cn" target="_blank" rel="noopener">http://support.microsoft.com/kb/324991/zh-cn</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/10/Google-market-share/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3906,172 +4072,6 @@ ul.breadcrumb li+li:last-child {
 </tr>
 </tbody>
 </table>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/10/excel-offset-notes/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/05/10/excel-offset-notes/" itemprop="url">
-                  Excel中OFFSET( )函数的使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-05-10 00:00:00" itemprop="dateCreated datePublished" datetime="2008-05-10T00:00:00+08:00">2008-05-10</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>OFFSET()</strong></p>
-<p>用途：<br>以指定的引用为参照系，通过给定偏移量得到新的引用。返回的引用可以是一个单元格或单元格区域，并可以指定返回的行数或列数。</p>
-<p>语法：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OFFSET(reference, rows, cols, height, width)</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>参数：</p>
-<ul>
-<li><strong>Reference</strong> 是作为偏移量参照系的引用区域，它必须是单元格或相连单元格区域的引用；</li>
-<li><strong>Rows</strong> 是相对于偏移量参照系的左上角单元格，上(下)偏移的行数。如果使用5 作为参数Rows，则说明目标引用区域的左上角单元格比reference 低5 行。行数可为正数(代表在起始引用的下方)或负数(代表在起始引用的上方)；</li>
-<li><strong>Cols</strong> 是相对于偏移量参照系的左上角单元格，左(右)偏移的列数。如果使用5 作为参数Cols，则说明目标引用区域的左上角的单元格比reference 靠右5 列。列数可为正数(代表在起始引用的右边)或负数(代表在起始引用的左边)；</li>
-<li><strong>Height</strong> 是要返回的引用区域的行数，Height 必须为正数；</li>
-<li><strong>Width</strong> 是要返回的引用区域的列数，Width 必须为正数。</li>
-</ul>
-<p>实例：如果A1=68、A2=76、A3=85、A4=90，则公式<code>=SUM(OFFSET(A1:A2，2，0，2，1))</code>返回 175 。</p>
-<p>参看：<a href="http://support.microsoft.com/kb/324991/zh-cn" target="_blank" rel="noopener">http://support.microsoft.com/kb/324991/zh-cn</a></p>
 
           
         
