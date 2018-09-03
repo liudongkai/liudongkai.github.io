@@ -2039,7 +2039,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff5974;
+  background: #d1f75b;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3621,324 +3621,6 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/27/ssh-remote-host-identification-has-changed/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/03/27/ssh-remote-host-identification-has-changed/" itemprop="url">
-                  WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-03-27 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-27T00:00:00+08:00">2008-03-27</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>使用SSH登录另外一台机器，<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh 192.168.1.105</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>得到如下输出<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">@ WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED! @</span><br><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!</span><br><span class="line">Someone could be eavesdropping on you right now (man-in-the-middle attack)!</span><br><span class="line">It is also possible that the RSA host key has just been changed.</span><br><span class="line">The fingerprint for the RSA key sent by the remote host is</span><br><span class="line">a5:1c:99:1f:fa:d7:1e:76:8b:0a:67:eb:4f:90:24:7a.</span><br><span class="line">Please contact your system administrator.</span><br><span class="line">Add correct host key in /root/.ssh/known_hosts to get rid of this message.</span><br><span class="line">Offending key in /root/.ssh/known_hosts:1</span><br><span class="line">RSA host key for 192.168.1.105 has changed and you have requested strict checking.</span><br><span class="line">Host key verification failed.</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>搜索得到如下解决：</p>
-<p>因为在本地机器上曾经用SSH登录过这台远程计算机，因而留下了known_hosts的记录，在远程计算机重新安装系统后不能够通过鉴权。删除<code>~/.ssh/known_hosts</code>中对应的项目，问题获得解决。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/27/zlib-installation/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/03/27/zlib-installation/" itemprop="url">
-                  zlib安装
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-03-27 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-27T00:00:00+08:00">2008-03-27</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在编译软件./configure 时得到错误反馈</p>
-<blockquote>
-<p>checking zlib.h usability… no<br>checking zlib.h presence… no<br>checking for zlib.h… no</p>
-</blockquote>
-<p><strong>zlib软件包所包含的库经常被一些软件的压缩或解压缩函数用到，所以如果编译软件时需要Zlib则说明这个软件正好含有压缩或解压缩函数，我们需要安装zlib软件包。</strong></p>
-<p>先到zlib官方网站：<a href="http://www.zlib.net" target="_blank" rel="noopener">http://www.zlib.net</a> 上下载源码来安装zlib软件包。</p>
-<p>目前最新版本zlib是zlib1.2.3，安装开始；<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.zlib.net/zlib-1.2.3.tar.gz</span><br><span class="line">tar -xvzf zlib-1.2.3.tar.gz</span><br><span class="line">cd zlib-1.2.3</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>这就完成了zlib1.2.3的安装，由于安装zlib1.2.3需要编译，所以最基本的编译器是要安装好的。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/27/scp-without-password/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -4043,6 +3725,334 @@ ul.breadcrumb li+li:last-child {
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ssh-keygen -t rsa</span><br><span class="line">$Generating public/private rsa key pair.</span><br><span class="line">$Enter file in which to save the key (/root/.ssh/id_rsa):     &lt;-- 直接输入回车</span><br><span class="line">$Enter passphrase (empty for no passphrase):            &lt;-- 直接输入回车</span><br><span class="line">$Enter same passphrase again:                           &lt;-- 直接输入回车</span><br><span class="line">$Your identification has been saved in /root/.ssh/id_rsa.</span><br><span class="line">$Your public key has been saved in /root/.ssh/id_rsa.pub.</span><br><span class="line">$The key fingerprint is:</span><br><span class="line">$49:9c:8a:8f:bc:19:5e:8c:c0:10:d3:15:60:a3:32:1c root@Client</span><br></pre></td></tr></tbody></table></figure>
 <p>假如 ~/.ssh/ida_dsa.pub 已经存在，可以直接 scp 到 remote 主机，放于 ~/.ssh/ 下并改名做 authorized_keys2。而 Remote 主机已有 ~/.ssh/authorized_keys2 的话，则可先上存 ida_dsa.pub，然后用:<br><code>cat ida_dsa.pub &gt;&gt; authorized_keys2</code></p>
 <p>这样，以后使用 ssh 或 scp 也不需要再键入密码。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/27/Leetspeak-origin/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/03/27/Leetspeak-origin/" itemprop="url">
+                  脑残体和脑残
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-03-27 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-27T00:00:00+08:00">2008-03-27</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>脑残体又称为“火星文”，主要活跃于90后网民当中。这个概念很难定义，虽然它活跃于网络上，但很难说这是一种网络语言，因为脑残体与自创词汇无关，仅仅是对汉字的一种扭曲的书写形式。它一般表现为在一个词或一句话甚至一段话的文字中，大量使用字形与原文部分相似的别字的行为。这些别字的来源五花八门，大多出自繁体汉字、日文汉字和生僻字（所谓的怪字、乱码字），另外也有部分简体汉字，甚至还有日文假名、汉语拼音字母等，有时还夹杂一大堆杂乱的符号。  </p>
+<p>例：莓兲想埝祢巳宬儰⒈种漝惯（每天想念你已成为一种习惯）  </p>
+<p>上面这句话就是脑残体，而括号里是它的原意。</p>
+<h2 id="脑残体的原理"><a href="#脑残体的原理" class="headerlink" title="脑残体的原理"></a>脑残体的原理</h2><p>在说明脑残体之前，首先看一下这段很有意思的英文：  </p>
+<p>Aoccdrnig to a rscheearch at Cmabrigde Uinervtisy, it deosn’t mttaer in waht oredr the ltteers in a wrod are, the olny iprmoetnt tihng is taht the frist and lsat ltteer be at the rghit pclae. The rset can be a total mses and you can sitll raed it wouthit porbelm. Tihs is bcuseae the huamn mnid deos not raed ervey lteter by istlef, but the wrod as a wlohe. Amzanig! (还真的看得懂哦…)  </p>
+<p>将同样的原理套用到汉字上，可以看出人脑在解读一段话的时候，是整体分析的，句子中出现错别字也会联系上下文自动修正，并不影响理解。  </p>
+<p>例如这句用脑残体写的话：“皁巳绝朢旳僾凊,bú淔淂畱恋”，虽然整句话只有两个字是对的，但是用不了一两秒，只要把整句话看完，大脑会自动组合出最匹配这些字形或字音并且带有语义的句子，然后明白过来这句话要表达的意思是“早已绝望的爱情，不值得留恋”。所以，尽管脑残体由错别字、异体字组成，但一般用脑残体写出来的短句子几乎是个认字的中国人都能看懂其本意，但如果一个字一个字去认明白，反而会糊涂。</p>
+<h2 id="脑残体的起源"><a href="#脑残体的起源" class="headerlink" title="脑残体的起源"></a>脑残体的起源</h2><p>有一说火星文（包括脑残体）起源于台湾网民在网络上有时使用注音符号代替汉字进行交流，但这种说法很是缺乏说服力，因为这种行为的本意是有些字输入起来太麻烦，用拼音既快又能让对方看懂，从动机上来讲应该归入速记法一类。英语交流中也常有为了增加书写速度，把you简写成u、把for简写成4之类的方便写法，而USA、IBM、SARS等各种缩写的使用范围更是极为广泛。我们看，脑残体并不能达到加快输入的目的，相反，脑残体中的那些生僻字录入起来更加麻烦——这说明使用脑残体和使用缩写完全不同，纯属为了显示自己与别人不同、哗众取宠而费尽心机搞特别。  </p>
+<p>那么说起脑残体真正的起源，其实大家小时候学汉字字形，都接触过类似这样的教育：弓长张、白勺的……把一个字按偏旁分解进行记忆，也有一些因为字写得难看，“黄月坡”被误认为“黄肚皮”的冷笑话。网络在中国刚刚普及的年代，论坛上风行的以“走召弓虽”、“丁页”为代表的分裂体，不论从使用者意识形态上、还是阅读效果上分析，无疑正是脑残体的一种萌芽形态。  </p>
+<p>脑残体还有另一个比分裂体出现更早的祖宗是杂种体。如同白领小资们说话时动不动就夹杂些英语单词，网络上这种类似洋泾滨英语的东西非常流行，最常见的例子：不说“我”，说“me”，不分主格宾格所有格，不管在句子中什么地方都无条件替换，动不动就“me的音乐”、“me觉得”；还有日语版的，说“的”一律说“の”。这些人自以为自己很洋气，而在旁人看来不过是群土鳖。</p>
+<h2 id="脑残体的其他起源"><a href="#脑残体的其他起源" class="headerlink" title="脑残体的其他起源"></a>脑残体的其他起源</h2><p>当分裂体逐渐开始过时，被人笑话俗套，繁体字流行了起来。当时大陆的一些论坛上有时会有些台湾同胞留言，当然他们用的是繁体字，由于在这个地盘上台湾网友属于稀有品种，他们的行为也被当作新潮引来人们效仿，于是一些追时髦的大陆网民也开始使用繁体字。  </p>
+<p>说起繁体字的问题，也算是中国语言文化的一个特色。以前大陆推行简化字时，将很多意义完全不同的汉字整合为同一个字，比如“乾”和“干”简化后都为“干 ”，“发”和“发”都变成“发”等等。抛开政治因素等等，仅仅站在传统文化的角度看，这种变革抹杀了很多沿用了千年的东西，确实有些难以接受，或许以前的台湾人对简体字的想法，就好像现在我们看脑残体一样。因为缺乏相关教育大部分台湾人都是不认识简体字的，但是由于从港台引进的小说、电视节目、漫画等娱乐文化风行大陆，内地人大多能看懂日常繁体字，不过也有“格门”（格斗）这种不识繁体字、分不清“门”和“斗”的笑话。  </p>
+<p>回到正题，能看懂归能看懂，会不会写又单说了。一个简体字往往对应多个繁体字，如果没有相关的知识基础，就很可能用错，让人嘲笑没文化。由分裂体和杂种体的思路结合，并在繁体字流行的年代应运而生的脑残体就是对文化的极端抵抗——“既然没文化，就没文化到底”，写一堆大家都不认识的字，却又组成了大家都能看懂的话，这个想法在当时是十分前卫的。记得很久以前，我的高中美术老师说过他的一个朋友就专门“排列不认识的怪字”，还办了个展览，可见当时脑残体还是一种很有创意的艺术形式。</p>
+<h2 id="脑残体的兴起"><a href="#脑残体的兴起" class="headerlink" title="脑残体的兴起"></a>脑残体的兴起</h2><p>可以想象，早期的脑残体使用者大概是从word的插入符号、或者什么生僻字列表里费劲巴拉地找那些奇形怪状的字。从第一句脑残体的话诞生，网民们看到了新的潮流，于是纷纷制造自己的脑残体文字并迅速传播，这是脑残体的形成期。  </p>
+<p>直到脑残体的范围几乎覆盖了所有常用字，只要复制粘贴就能用脑残体写出自己的话，此时又有闲人编写了脑残体对照表，方便这个工作。终于，脑残体转换软件出现了，它根据脑残体对照表帮助脑残儿们自动将输入的正常文字转换成脑残体，脑残体进入了全盛期。  </p>
+<p>尽管人脑的模糊纠错能力使大家能看懂这些乱七八糟的东西，但是随着句子长度增加，甚至出现整段整段的脑残体文字，看懂其内容所需要的运算量也会呈几何级数增长，产生眼花缭乱的感觉。最后人们不是看不懂，而是根本没心情去辨认这些文字。随着脑残体的大面积流行，人们越来越不堪忍受满屏幕的脑残体文字，同时认为只有脑残儿才会看着这种字体不烦、才会乐于使用这种字体，于是这之前被脑残儿们称为“酷炫个性签名”、“非主流”的东西，终于得正名“脑残体”。</p>
+<h2 id="脑残体的用户群"><a href="#脑残体的用户群" class="headerlink" title="脑残体的用户群"></a>脑残体的用户群</h2><p>脑残体的使用者们，也是一个特征比较明显的人群。脑残体的大量使用90%以上是在脑残儿的QQ签名、个人说明、论坛/游戏ID中，有时也出现在聊天和博客中。常见成段脑残体写的“爱情诗”，其内容多半是无病呻吟，没有任何阅读价值，恐怕也正是内容空虚苍白，才需要用看似“华丽”的文字去掩盖。虽然他们也组建了脑残博客圈、脑残QQ群和脑残论坛专以脑残体进行交流，但网民们大多有QQ、博客以及常上的论坛，其中脑残儿也并不在多数。说到这里，不得不提一个叫做“劲舞团”的网络游戏——脑残儿的模范集会场所。  </p>
+<p>用大量文字论证劲舞团这个游戏为什么是脑残之家背离了本文的主题。总之，这个号称适合未成年人的网络游戏却是连大部分交友网站都</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/27/ssh-remote-host-identification-has-changed/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/03/27/ssh-remote-host-identification-has-changed/" itemprop="url">
+                  WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-03-27 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-27T00:00:00+08:00">2008-03-27</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>使用SSH登录另外一台机器，<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh 192.168.1.105</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>得到如下输出<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">@ WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED! @</span><br><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!</span><br><span class="line">Someone could be eavesdropping on you right now (man-in-the-middle attack)!</span><br><span class="line">It is also possible that the RSA host key has just been changed.</span><br><span class="line">The fingerprint for the RSA key sent by the remote host is</span><br><span class="line">a5:1c:99:1f:fa:d7:1e:76:8b:0a:67:eb:4f:90:24:7a.</span><br><span class="line">Please contact your system administrator.</span><br><span class="line">Add correct host key in /root/.ssh/known_hosts to get rid of this message.</span><br><span class="line">Offending key in /root/.ssh/known_hosts:1</span><br><span class="line">RSA host key for 192.168.1.105 has changed and you have requested strict checking.</span><br><span class="line">Host key verification failed.</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>搜索得到如下解决：</p>
+<p>因为在本地机器上曾经用SSH登录过这台远程计算机，因而留下了known_hosts的记录，在远程计算机重新安装系统后不能够通过鉴权。删除<code>~/.ssh/known_hosts</code>中对应的项目，问题获得解决。</p>
 
           
         
@@ -4737,171 +4747,6 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/15/apache-rewrite/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/03/15/apache-rewrite/" itemprop="url">
-                  Apache 重写规则的常见应用 (rewrite)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-15T00:00:00+08:00">2008-03-15</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="一-目的"><a href="#一-目的" class="headerlink" title="一: 目的"></a>一: 目的</h3><p>本文旨在提供如何用Apache重写规则来解决一些常见的URL重写方法的问题，通过常见的实例给用户一些使用重写规则的基本方法和线索。</p>
-<h3 id="二-为什么需要用重写规则？"><a href="#二-为什么需要用重写规则？" class="headerlink" title="二:为什么需要用重写规则？"></a>二:为什么需要用重写规则？</h3><p>一个网站，如果是长期需要放在internet上提供服务，必定会有不断地更新和维护，如临时转移到其它服务器进行维护，重新组织目录结构，变换URL甚至改变到新的域名等等，而为了让客户不会因此受到任何影响，最好的方法就是使用Apache Rewrite Rule(重写规则)。</p>
-<h3 id="三-重写规则的作用范围"><a href="#三-重写规则的作用范围" class="headerlink" title="三: 重写规则的作用范围"></a>三: 重写规则的作用范围</h3><ol>
-<li>可以使用在Apache主配置文件httpd.conf中</li>
-<li>可以使用在httpd.conf里定义的虚拟主机配置中</li>
-<li>可以使用在基本目录的跨越配置文件.htaccess中</li>
-</ol>
-<h3 id="四-重写规则的应用条件"><a href="#四-重写规则的应用条件" class="headerlink" title="四:重写规则的应用条件"></a>四:重写规则的应用条件</h3><p>只有当用户的WEB请求最终被导向到某台WEB服务器的Apache后台，则这台WEB服务器接受进来的请求，根据配置文件该请求是主配置还是虚拟主机，再根据用户在浏览器中请求的URI来配对重写规则并且根据实际的请求路径配对.htaccess中的重写规则。最后把请求的内容传回给用户，该响应可能有两种：</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2008/03/15/apache-rewrite/#more" rel="contents">
-              Read more »
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/15/IBM-install-drivers-1/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -5022,6 +4867,171 @@ ul.breadcrumb li+li:last-child {
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2008/03/15/IBM-install-drivers-1/#more" rel="contents">
+              Read more »
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/15/apache-rewrite/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/03/15/apache-rewrite/" itemprop="url">
+                  Apache 重写规则的常见应用 (rewrite)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-15T00:00:00+08:00">2008-03-15</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="一-目的"><a href="#一-目的" class="headerlink" title="一: 目的"></a>一: 目的</h3><p>本文旨在提供如何用Apache重写规则来解决一些常见的URL重写方法的问题，通过常见的实例给用户一些使用重写规则的基本方法和线索。</p>
+<h3 id="二-为什么需要用重写规则？"><a href="#二-为什么需要用重写规则？" class="headerlink" title="二:为什么需要用重写规则？"></a>二:为什么需要用重写规则？</h3><p>一个网站，如果是长期需要放在internet上提供服务，必定会有不断地更新和维护，如临时转移到其它服务器进行维护，重新组织目录结构，变换URL甚至改变到新的域名等等，而为了让客户不会因此受到任何影响，最好的方法就是使用Apache Rewrite Rule(重写规则)。</p>
+<h3 id="三-重写规则的作用范围"><a href="#三-重写规则的作用范围" class="headerlink" title="三: 重写规则的作用范围"></a>三: 重写规则的作用范围</h3><ol>
+<li>可以使用在Apache主配置文件httpd.conf中</li>
+<li>可以使用在httpd.conf里定义的虚拟主机配置中</li>
+<li>可以使用在基本目录的跨越配置文件.htaccess中</li>
+</ol>
+<h3 id="四-重写规则的应用条件"><a href="#四-重写规则的应用条件" class="headerlink" title="四:重写规则的应用条件"></a>四:重写规则的应用条件</h3><p>只有当用户的WEB请求最终被导向到某台WEB服务器的Apache后台，则这台WEB服务器接受进来的请求，根据配置文件该请求是主配置还是虚拟主机，再根据用户在浏览器中请求的URI来配对重写规则并且根据实际的请求路径配对.htaccess中的重写规则。最后把请求的内容传回给用户，该响应可能有两种：</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2008/03/15/apache-rewrite/#more" rel="contents">
               Read more »
             </a>
           </div>

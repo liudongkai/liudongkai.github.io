@@ -2039,7 +2039,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff5974;
+  background: #d1f75b;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3961,169 +3961,6 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/04/EditPlus-regex/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/03/04/EditPlus-regex/" itemprop="url">
-                  EditPlus正则表达式替换字符串详解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-03-04 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-04T00:00:00+08:00">2008-03-04</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>网上搜集了些实例</p>
-<p>正则表达式是一个查询的字符串，它包含一般的字符和一些特殊的字符，特殊字符可以扩展查找字符串的能力，正则表达式在查找和替换字符串的作用不可忽视，它能很好提高工作效率。</p>
-<p>EditPlus的查找，替换，文件中查找支持以下的正则表达式：</p>
-<blockquote>
-<p>Expression Description<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">\t Tab character.  </span><br><span class="line">\n New line.  </span><br><span class="line">. Matches any character.  </span><br><span class="line">| Either expression on its left and right side matches the target string.  </span><br><span class="line">For example, "a|b" matches "a" and "b".  </span><br><span class="line">[] Any of the enclosed characters may match the target character.  </span><br><span class="line">  For example, "[ab]" matches "a" and "b". "[0-9]" matches any digit.  </span><br><span class="line">[^] None of the enclosed characters may match the target character.  </span><br><span class="line">  For example, "[^ab]" matches all character EXCEPT "a" and "b".  </span><br><span class="line">"[^0-9]" matches any non-digit character.  </span><br><span class="line">* Character to the left of asterisk in the expression should match 0 or more times.  </span><br><span class="line">For example "be*" matches "b", "be" and "bee".    </span><br><span class="line">+ Character to the left of plus sign in the expression should match 1 or more times.  </span><br><span class="line">For example "be+" matches "be" and "bee" but not "b".  </span><br><span class="line">? Character to the left of question mark in the expression should match 0 or 1 time.  </span><br><span class="line">For example "be?" matches "b" and "be" but not "bee".  </span><br><span class="line">^ Expression to the right of ^ matches only when it is at the beginning of line.  </span><br><span class="line">For example "^A" matches an "A" that is only at the beginning of line.  </span><br><span class="line">$ Expression to the left of $ matches only when it is at the end of line.  </span><br><span class="line">For example "e$" matches an "e" that is only at the end of line.  </span><br><span class="line">() Affects evaluation order of expression and also used for tagged expression.  </span><br><span class="line">\ scape character. If you want to use character "\" itself, you should use "\\".</span><br></pre></td></tr></tbody></table></figure><p></p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2008/03/04/EditPlus-regex/#more" rel="contents">
-              Read more »
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/04/EditPlus-regex-example/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -4303,7 +4140,7 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/03/small-shell/">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/04/EditPlus-regex/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="東木">
@@ -4322,8 +4159,171 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/03/03/small-shell/" itemprop="url">
-                  非常小的shell: 指定行号,插入文本(转)
+                <a class="post-title-link" href="/2008/03/04/EditPlus-regex/" itemprop="url">
+                  EditPlus正则表达式替换字符串详解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-03-04 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-04T00:00:00+08:00">2008-03-04</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>网上搜集了些实例</p>
+<p>正则表达式是一个查询的字符串，它包含一般的字符和一些特殊的字符，特殊字符可以扩展查找字符串的能力，正则表达式在查找和替换字符串的作用不可忽视，它能很好提高工作效率。</p>
+<p>EditPlus的查找，替换，文件中查找支持以下的正则表达式：</p>
+<blockquote>
+<p>Expression Description<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">\t Tab character.  </span><br><span class="line">\n New line.  </span><br><span class="line">. Matches any character.  </span><br><span class="line">| Either expression on its left and right side matches the target string.  </span><br><span class="line">For example, "a|b" matches "a" and "b".  </span><br><span class="line">[] Any of the enclosed characters may match the target character.  </span><br><span class="line">  For example, "[ab]" matches "a" and "b". "[0-9]" matches any digit.  </span><br><span class="line">[^] None of the enclosed characters may match the target character.  </span><br><span class="line">  For example, "[^ab]" matches all character EXCEPT "a" and "b".  </span><br><span class="line">"[^0-9]" matches any non-digit character.  </span><br><span class="line">* Character to the left of asterisk in the expression should match 0 or more times.  </span><br><span class="line">For example "be*" matches "b", "be" and "bee".    </span><br><span class="line">+ Character to the left of plus sign in the expression should match 1 or more times.  </span><br><span class="line">For example "be+" matches "be" and "bee" but not "b".  </span><br><span class="line">? Character to the left of question mark in the expression should match 0 or 1 time.  </span><br><span class="line">For example "be?" matches "b" and "be" but not "bee".  </span><br><span class="line">^ Expression to the right of ^ matches only when it is at the beginning of line.  </span><br><span class="line">For example "^A" matches an "A" that is only at the beginning of line.  </span><br><span class="line">$ Expression to the left of $ matches only when it is at the end of line.  </span><br><span class="line">For example "e$" matches an "e" that is only at the end of line.  </span><br><span class="line">() Affects evaluation order of expression and also used for tagged expression.  </span><br><span class="line">\ scape character. If you want to use character "\" itself, you should use "\\".</span><br></pre></td></tr></tbody></table></figure><p></p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2008/03/04/EditPlus-regex/#more" rel="contents">
+              Read more »
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/03/read-the-specified-line/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/03/03/read-the-specified-line/" itemprop="url">
+                  如何提取指定行的内容？
                 </a>
               
             
@@ -4403,9 +4403,34 @@ ul.breadcrumb li+li:last-child {
       
         
           
-            <p>使用这个shell可以直接在某个文件的某一行插入指定的文本,很方便. 可以把这个<br>shell加入PATH中.以下的蓝色部分为代码, 文件名为insert</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more insert</span><br><span class="line">#!/bin/bash</span><br><span class="line"># 从文件的某一行之后插入新行</span><br><span class="line"># FILE 为文件名，LINENUM为行号，TEXT为要插入的文本</span><br><span class="line"># Copyleft: cheyo@JMU</span><br><span class="line"></span><br><span class="line">showUsage()</span><br><span class="line">{</span><br><span class="line">echo "[Usage]: insert FILE LINENUM TEXT"</span><br><span class="line">echo "# 从文件的某一行之后插入新行"</span><br><span class="line">echo "# FILE 为文件名，LINENUM为行号，TEXT为要插入的文本"</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">if [ $# -lt 3 ] #少于3个参数,错误!</span><br><span class="line">then showUsage</span><br><span class="line">exit 1</span><br><span class="line">else</span><br><span class="line">sed "${2}a</span><br><span class="line">${3}" $1 &gt; tmpfile;mv tmpfile $1</span><br><span class="line">fi</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$ ./insert a 3 "Test"</span><br><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">Test</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$</span><br></pre></td></tr></tbody></table></figure>
+            <p><strong>比如有一5行的文件，需要读取第3行的内容，文件名为test.txt</strong></p>
+<h2 id="SHELL："><a href="#SHELL：" class="headerlink" title="SHELL："></a>SHELL：</h2><ol>
+<li><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk 'NR == 3{ print; exit; }' test.txt</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -n '3{ p; q; }' test.txt</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head -3 test.txt |tail -1</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ol>
+<h2 id="CMD"><a href="#CMD" class="headerlink" title="CMD:"></a>CMD:</h2><ol>
+<li><p>for循环读取 </p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for /f "tokens=1,2* delims=:" %%i in ('findstr /n .* test.txt') do if %%i==3 echo %%j</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>使用”小函数”读取特定行：<code>Call ReadLine2.bat &lt;文件名&gt; &lt;读取行号&gt;</code></p>
+<p>例如:”<code>Call ReadLine2 test.txt 11 5 7 9</code>“，可以读取test.txt文件的第5、7、9和11行，后面的行号不分先后大小顺序。但是效率不是很高，读取小文件还是可以的。</p>
+<blockquote>
+<p><code>Call ReadLine2 test.txt 3</code></p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">@echo off&amp;SetLocal ENABLEDELAYEDEXPANSION</span><br><span class="line">:::::::::::ReadLine2.Bat::::::::::::::::::</span><br><span class="line">if "%1"=="" (goto --help) else (set file=%1)</span><br><span class="line">if not exist %file% goto :eof</span><br><span class="line">if "%2"=="" (</span><br><span class="line">for /f "tokens=1* delims=:" %%a in ('findstr /n .* "%file%"') do echo/%%b</span><br><span class="line">goto :eof</span><br><span class="line">) else (</span><br><span class="line">set args=%*</span><br><span class="line">for %%a in (!args!) do (</span><br><span class="line">if not "%%a"=="%1" (for /f "tokens=1* delims=:" %%b in ('findstr /n .* "%file%"') do (</span><br><span class="line">if "%%b"=="%%a" echo/%%c)</span><br><span class="line">)</span><br><span class="line">)</span><br><span class="line">)</span><br><span class="line">goto :eof</span><br><span class="line"></span><br><span class="line">:--help</span><br><span class="line">echo/======================================</span><br><span class="line">echo/本程序段需要带参数才能正常运行</span><br><span class="line">echo/&amp;echo/Usage:&amp;echo/Call ReadLine2 ^&lt;文件名^&gt; ^&lt;读取行号^&gt;</span><br><span class="line">echo/&amp;echo/例如：Call ReadLine2 aa.txt 5 7 11 ，将读取aa.txt文件的第5，7，11行</span><br><span class="line">echo/&amp;echo/如果^&lt;读取行号^&gt;没有指定，将读取整个文件的内容</span><br><span class="line">echo/======================================</span><br><span class="line">goto :eof</span><br></pre></td></tr></tbody></table></figure>
+</blockquote>
+</li>
+<li><p>使用”小函数”读取特定行：<code>Call ReadLine.bat &lt;文件名&gt; &lt;跳过的行数&gt; &lt;读取行数&gt;</code></p>
+<p>例如：”<code>Call ReadLine test.txt 5 7</code>“，那么将跳过test.txt文件的前5行，显示下面的7行字符，也包含空行。也可以不指定第三个参数。</p>
+<blockquote>
+<p><code>Call ReadLine test.txt 2 1</code></p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">@echo off&amp;SetLocal ENABLEDELAYEDEXPANSION</span><br><span class="line">if "%1"=="" (goto --help) else (set file=%~s1)</span><br><span class="line">if "%2"=="" (set first="delims=: tokens=1*") else (set first="skip=%2 delims=: tokens=1*")</span><br><span class="line">if "%3"=="" (</span><br><span class="line">for /f %first% %%a in ('findstr /n .* %file%') do echo/%%b</span><br><span class="line">goto :EOF</span><br><span class="line">)</span><br><span class="line">set last=%3</span><br><span class="line">set loop=0</span><br><span class="line">for /f %first% %%a in ('findstr/n .* %file%') do (</span><br><span class="line">if not defined lxmxn (echo/%%b&amp;set /a loop+=1) else (goto :EOF)</span><br><span class="line">if "!loop!"=="%last%" set lxmxn=Nothing</span><br><span class="line">)</span><br><span class="line">GOTO :EOF:--help</span><br><span class="line">echo/======================================</span><br><span class="line">echo/本程序段需要带参数才能正常运行</span><br><span class="line">echo/&amp;echo/Usage:&amp;echo/Call ReadLine ^&lt;文件名^&gt; ^&lt;跳过行数^&gt; ^&lt;读取行数^&gt;</span><br><span class="line">echo/&amp;echo/例如：call ReadLine aa.txt 5 7 ，将跳过aa.txt文件的前5行，读取下面的7行字符</span><br><span class="line">echo/&amp;echo/如果^&lt;跳过行数^&gt;没有指定，就从文件第一行读取</span><br><span class="line">echo/&amp;echo/指定^&lt;读取行数^&gt;时必须指定^&lt;跳过行^&gt;</span><br><span class="line">echo/======================================</span><br><span class="line">goto :eof</span><br></pre></td></tr></tbody></table></figure></blockquote>
+</li>
+</ol>
+
           
         
       
@@ -4620,7 +4645,7 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/03/read-the-specified-line/">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/03/small-shell/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="東木">
@@ -4639,8 +4664,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/03/03/read-the-specified-line/" itemprop="url">
-                  如何提取指定行的内容？
+                <a class="post-title-link" href="/2008/03/03/small-shell/" itemprop="url">
+                  非常小的shell: 指定行号,插入文本(转)
                 </a>
               
             
@@ -4720,34 +4745,9 @@ ul.breadcrumb li+li:last-child {
       
         
           
-            <p><strong>比如有一5行的文件，需要读取第3行的内容，文件名为test.txt</strong></p>
-<h2 id="SHELL："><a href="#SHELL：" class="headerlink" title="SHELL："></a>SHELL：</h2><ol>
-<li><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk 'NR == 3{ print; exit; }' test.txt</span><br></pre></td></tr></tbody></table></figure>
-</li>
-<li><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -n '3{ p; q; }' test.txt</span><br></pre></td></tr></tbody></table></figure>
-</li>
-<li><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head -3 test.txt |tail -1</span><br></pre></td></tr></tbody></table></figure>
-</li>
-</ol>
-<h2 id="CMD"><a href="#CMD" class="headerlink" title="CMD:"></a>CMD:</h2><ol>
-<li><p>for循环读取 </p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for /f "tokens=1,2* delims=:" %%i in ('findstr /n .* test.txt') do if %%i==3 echo %%j</span><br></pre></td></tr></tbody></table></figure>
-</li>
-<li><p>使用”小函数”读取特定行：<code>Call ReadLine2.bat &lt;文件名&gt; &lt;读取行号&gt;</code></p>
-<p>例如:”<code>Call ReadLine2 test.txt 11 5 7 9</code>“，可以读取test.txt文件的第5、7、9和11行，后面的行号不分先后大小顺序。但是效率不是很高，读取小文件还是可以的。</p>
-<blockquote>
-<p><code>Call ReadLine2 test.txt 3</code></p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">@echo off&amp;SetLocal ENABLEDELAYEDEXPANSION</span><br><span class="line">:::::::::::ReadLine2.Bat::::::::::::::::::</span><br><span class="line">if "%1"=="" (goto --help) else (set file=%1)</span><br><span class="line">if not exist %file% goto :eof</span><br><span class="line">if "%2"=="" (</span><br><span class="line">for /f "tokens=1* delims=:" %%a in ('findstr /n .* "%file%"') do echo/%%b</span><br><span class="line">goto :eof</span><br><span class="line">) else (</span><br><span class="line">set args=%*</span><br><span class="line">for %%a in (!args!) do (</span><br><span class="line">if not "%%a"=="%1" (for /f "tokens=1* delims=:" %%b in ('findstr /n .* "%file%"') do (</span><br><span class="line">if "%%b"=="%%a" echo/%%c)</span><br><span class="line">)</span><br><span class="line">)</span><br><span class="line">)</span><br><span class="line">goto :eof</span><br><span class="line"></span><br><span class="line">:--help</span><br><span class="line">echo/======================================</span><br><span class="line">echo/本程序段需要带参数才能正常运行</span><br><span class="line">echo/&amp;echo/Usage:&amp;echo/Call ReadLine2 ^&lt;文件名^&gt; ^&lt;读取行号^&gt;</span><br><span class="line">echo/&amp;echo/例如：Call ReadLine2 aa.txt 5 7 11 ，将读取aa.txt文件的第5，7，11行</span><br><span class="line">echo/&amp;echo/如果^&lt;读取行号^&gt;没有指定，将读取整个文件的内容</span><br><span class="line">echo/======================================</span><br><span class="line">goto :eof</span><br></pre></td></tr></tbody></table></figure>
-</blockquote>
-</li>
-<li><p>使用”小函数”读取特定行：<code>Call ReadLine.bat &lt;文件名&gt; &lt;跳过的行数&gt; &lt;读取行数&gt;</code></p>
-<p>例如：”<code>Call ReadLine test.txt 5 7</code>“，那么将跳过test.txt文件的前5行，显示下面的7行字符，也包含空行。也可以不指定第三个参数。</p>
-<blockquote>
-<p><code>Call ReadLine test.txt 2 1</code></p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">@echo off&amp;SetLocal ENABLEDELAYEDEXPANSION</span><br><span class="line">if "%1"=="" (goto --help) else (set file=%~s1)</span><br><span class="line">if "%2"=="" (set first="delims=: tokens=1*") else (set first="skip=%2 delims=: tokens=1*")</span><br><span class="line">if "%3"=="" (</span><br><span class="line">for /f %first% %%a in ('findstr /n .* %file%') do echo/%%b</span><br><span class="line">goto :EOF</span><br><span class="line">)</span><br><span class="line">set last=%3</span><br><span class="line">set loop=0</span><br><span class="line">for /f %first% %%a in ('findstr/n .* %file%') do (</span><br><span class="line">if not defined lxmxn (echo/%%b&amp;set /a loop+=1) else (goto :EOF)</span><br><span class="line">if "!loop!"=="%last%" set lxmxn=Nothing</span><br><span class="line">)</span><br><span class="line">GOTO :EOF:--help</span><br><span class="line">echo/======================================</span><br><span class="line">echo/本程序段需要带参数才能正常运行</span><br><span class="line">echo/&amp;echo/Usage:&amp;echo/Call ReadLine ^&lt;文件名^&gt; ^&lt;跳过行数^&gt; ^&lt;读取行数^&gt;</span><br><span class="line">echo/&amp;echo/例如：call ReadLine aa.txt 5 7 ，将跳过aa.txt文件的前5行，读取下面的7行字符</span><br><span class="line">echo/&amp;echo/如果^&lt;跳过行数^&gt;没有指定，就从文件第一行读取</span><br><span class="line">echo/&amp;echo/指定^&lt;读取行数^&gt;时必须指定^&lt;跳过行^&gt;</span><br><span class="line">echo/======================================</span><br><span class="line">goto :eof</span><br></pre></td></tr></tbody></table></figure></blockquote>
-</li>
-</ol>
-
+            <p>使用这个shell可以直接在某个文件的某一行插入指定的文本,很方便. 可以把这个<br>shell加入PATH中.以下的蓝色部分为代码, 文件名为insert</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more insert</span><br><span class="line">#!/bin/bash</span><br><span class="line"># 从文件的某一行之后插入新行</span><br><span class="line"># FILE 为文件名，LINENUM为行号，TEXT为要插入的文本</span><br><span class="line"># Copyleft: cheyo@JMU</span><br><span class="line"></span><br><span class="line">showUsage()</span><br><span class="line">{</span><br><span class="line">echo "[Usage]: insert FILE LINENUM TEXT"</span><br><span class="line">echo "# 从文件的某一行之后插入新行"</span><br><span class="line">echo "# FILE 为文件名，LINENUM为行号，TEXT为要插入的文本"</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">if [ $# -lt 3 ] #少于3个参数,错误!</span><br><span class="line">then showUsage</span><br><span class="line">exit 1</span><br><span class="line">else</span><br><span class="line">sed "${2}a</span><br><span class="line">${3}" $1 &gt; tmpfile;mv tmpfile $1</span><br><span class="line">fi</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$ ./insert a 3 "Test"</span><br><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">Test</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$</span><br></pre></td></tr></tbody></table></figure>
           
         
       

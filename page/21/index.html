@@ -2039,7 +2039,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff5974;
+  background: #d1f75b;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3621,184 +3621,6 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/18/sed-command-r/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/05/18/sed-command-r/" itemprop="url">
-                  sed命令示例：'r'
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-05-18 00:00:00" itemprop="dateCreated datePublished" datetime="2008-05-18T00:00:00+08:00">2008-05-18</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>‘r’命令用来读入文本。与’a’的作用相似，但文本是放在独立的文件而不是放在脚本中。用’r’的好处在于将数据与脚本独立，使脚本更易读并且修改数据文件更方便。</p>
-<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>这是GNU sed自带文档中对’r’命令的说明：</p>
-<blockquote>
-<p><code>r filename</code><br>Queue the contents of filename to be read and inserted into the output stream at the end of the current cycle, or when the next input line is read. Note that if filename cannot be read, it is treated as if it were an empty file, without any error indication.</p>
-</blockquote>
-<p>GNU对这个命令进行了扩展：</p>
-<ul>
-<li>接受两个地址。可以对一定的地址区间进行操作</li>
-<li>允许使用/dev/stdin作为文件名</li>
-<li>新增了一个<code>R</code>命令。这个命令用法与<code>r</code>一样但一次只读入一行。</li>
-</ul>
-<p>另外一些需要注意的地方：</p>
-<ul>
-<li>文件不能读取时，则当成空文件处理不会有出错信息。</li>
-<li>r 命令之后不能再使用其他命令，因而如果后面的命令要另起一行或以’-e’选项隔开。</li>
-<li>r是在当前的cycle结束后才在最后加入内容的，所以在无法在cycle中对读入的内容进行操作的。</li>
-</ul>
-<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>我一向认为一个例子比得上千言万语。看个例子先：现有一个网页要进行如下修改，在中增加标签。在标签前增加版权声明的标签。我们将要在标签后的内容放在meta.tag中。将放在文件未尾的内容放在copyleft.tag中。里面的内容如下：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ cat meta.tag</span><br><span class="line"></span><br><span class="line">$ cat copyleft.tag</span><br><span class="line">版权所有……</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>我们需要的命令是：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sed '/&lt; /title&gt;/r meta.tag</span><br><span class="line">/&lt; /body&gt;/{</span><br><span class="line">x</span><br><span class="line">r copyleft.tag</span><br><span class="line">G}' samp.html</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>写成单行的形式就是：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e '/&lt; /title&gt;/r meta.tag' -e '/&lt; /body&gt;/{x;r copyleft.tag' -e 'G}' samp.html</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>如果你在Windows的命令行上使用的话，那就根据你所用的版本将单引号相应的改为双引号。不过请务必注意上面脚本是一个简化的情形，因为标签也可能有大写字母(更复杂的情形是title后的方括号也许在下面一行)（虽然W3C的XHTML中要求标签必须是小写，但这种可能性是存在的视你自已的情况而定。）如果你用的是GNU sed的话那恭喜，你可以在式样后使用’I’修改符（modifier）：/&lt; /title&gt;/I。否则：/&lt; /[tT][iI] [tT][lL][eE]&gt;/当然偶尔可以偷懒：/&lt; /[tT].[tT].[eE]&gt;/。</p>
-<p>实例：批量修改</p>
-<p>当然我们想修改的通常不会只是一个文件，于是我们需要用到shell（注意文件的读写权限）：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ for a in 'find . -name "*.html"'</span><br><span class="line">do</span><br><span class="line">mv $a $a.bak</span><br><span class="line">sed -e '/&lt; /title&gt;/r meta.tag' -e '/&lt; /body&gt;/{x;r copyleft.tag' -e 'G}' $a.bak &gt;$a</span><br><span class="line">done</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>find有一个-exec，但是如果参数太多会出错因而这里使用了for命令。<br>如果是Windows平台：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for /R %a in (*.html) do @copy %a %a.bak &amp; @sed -e "…" %a.bak&gt;%a</span><br><span class="line">``</span><br><span class="line">在批处理中使用时记得要用'%%'代替'%'。</span><br><span class="line">如果你用的是GNU sed 4.0或以上版本，那你可以使用-i选项代替'mv'命令：</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>$ for a in ‘find . -name “*.html”‘<br>do<br>gsed -i.bak -e ‘<br>/&lt; /title&gt;/r meta.tag<br>/&lt; /body&gt;/{<br>x<br>r copyleft.tag<br>G}’ $a<br>done<br><code>`</code></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/18/regular-expression/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3918,6 +3740,175 @@ ul.breadcrumb li+li:last-child {
             </a>
           </div>
           <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/18/sed-one-liner/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/05/18/sed-one-liner/" itemprop="url">
+                  SED单行脚本快速参考
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-05-18 00:00:00" itemprop="dateCreated datePublished" datetime="2008-05-18T00:00:00+08:00">2008-05-18</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近版本的SED ONE-LINER现在可以在sed.sourceforge.net上找到了。有多个语言版本也包括了简体中文版本。意大利语和西班牙语的翻译也正在进行中。</p>
+<blockquote>
+<p>SED单行脚本快速参考（Unix 流编辑器） 2005年12月29日</p>
+</blockquote>
+<blockquote>
+<p>英文标题：USEFUL ONE-LINE SCRIPTS FOR SED (Unix stream editor)<br>原标题：HANDY ONE-LINERS FOR SED (Unix stream editor)</p>
+</blockquote>
+<blockquote>
+<p>整理：Eric Pement – 电邮：pemente[at]northpark[dot]edu 版本5.5<br>译者：Joe Hong – 电邮：hq00e[at]126[dot]com</p>
+</blockquote>
+<blockquote>
+<p>在以下地址可找到本文档的最新（英文）版本：<br><a href="http://sed.sourceforge.net/sed1line.txt" target="_blank" rel="noopener">http://sed.sourceforge.net/sed1line.txt</a><br><a href="http://www.pement.org/sed/sed1line.txt" target="_blank" rel="noopener">http://www.pement.org/sed/sed1line.txt</a></p>
+</blockquote>
+<blockquote>
+<p>其他语言版本：<br>中文 – <a href="http://sed.sourceforge.net/sed1line_zh-CN.html" target="_blank" rel="noopener">http://sed.sourceforge.net/sed1line_zh-CN.html</a><br>捷克语 – <a href="http://sed.sourceforge.net/sed1line_cz.html" target="_blank" rel="noopener">http://sed.sourceforge.net/sed1line_cz.html</a><br>荷语 – <a href="http://sed.sourceforge.net/sed1line_nl.html" target="_blank" rel="noopener">http://sed.sourceforge.net/sed1line_nl.html</a><br>法语 – <a href="http://sed.sourceforge.net/sed1line_fr.html" target="_blank" rel="noopener">http://sed.sourceforge.net/sed1line_fr.html</a><br>德语 – <a href="http://sed.sourceforge.net/sed1line_de.html" target="_blank" rel="noopener">http://sed.sourceforge.net/sed1line_de.html</a><br>葡语 – <a href="http://sed.sourceforge.net/sed1line_pt-BR.html" target="_blank" rel="noopener">http://sed.sourceforge.net/sed1line_pt-BR.html</a></p>
+</blockquote>
+
+          
         
       
     </div>
@@ -4284,6 +4275,162 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/14/The-Duke-of-Mount-Deer/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/05/14/The-Duke-of-Mount-Deer/" itemprop="url">
+                  时代商报：《鹿鼎记》一定要艳吗？
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-05-14 00:00:00" itemprop="dateCreated datePublished" datetime="2008-05-14T00:00:00+08:00">2008-05-14</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>韦小宝的形象是一个经典，所以当这个经典被无数次翻拍的时候，人们每一次都会有不同的意见和建议，这次也不例外。经过梁朝伟和陈小春等人多次演绎后，黄晓明这个有史以来最帅的“小宝”终于开始接受人们的检阅了。只是这次，第一个下结论的是这部戏的导演、大胡子张纪中昨天很认真地对人们说：“这个版本是以前所有版本当中最靓丽的，用贬义的词来说是最香艳的。”但是我们想问的是：“难道《鹿鼎记》就一定要香艳吗？”</p>
+<p>是的，所有人都是这样认为，包括导演。一个男人和七个女人的故事，该怎么讲？导演最开始的定位就是不香艳，“我们不会去删减什么。”导演信誓旦旦地承诺，但是我们不禁要问：“我们没有人说你的《鹿鼎记》怎么样啊？我们只是想看一个活力四射的、机智搞笑的韦小宝。”和《色，戒》一个道理，有些东西其实不需要情色，它有时候只能做噱头，但是作为电视剧，它不能用这样的噱头，于是导演自己制造，“我们的电视剧香而不艳。”想起一句成语，“此地无银三百两”。</p>
+<p>挺悲哀，因为这句话，张纪中让《鹿鼎记》与经典擦肩而过了。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/14/fixed-IDE-ACDStd-apl/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -4441,7 +4588,7 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/14/The-Duke-of-Mount-Deer/">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/13/Shell-switch-background-jobs/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="東木">
@@ -4460,8 +4607,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/05/14/The-Duke-of-Mount-Deer/" itemprop="url">
-                  时代商报：《鹿鼎记》一定要艳吗？
+                <a class="post-title-link" href="/2008/05/13/Shell-switch-background-jobs/" itemprop="url">
+                  Linux Shell下的后台运行及其前台的转换
                 </a>
               
             
@@ -4487,7 +4634,7 @@ ul.breadcrumb li+li:last-child {
                 
               
 
-              <time title="Created: 2008-05-14 00:00:00" itemprop="dateCreated datePublished" datetime="2008-05-14T00:00:00+08:00">2008-05-14</time>
+              <time title="Created: 2008-05-13 00:00:00" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">2008-05-13</time>
             
 
             
@@ -4505,7 +4652,7 @@ ul.breadcrumb li+li:last-child {
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
 
                 
                 
@@ -4541,9 +4688,16 @@ ul.breadcrumb li+li:last-child {
       
         
           
-            <p>韦小宝的形象是一个经典，所以当这个经典被无数次翻拍的时候，人们每一次都会有不同的意见和建议，这次也不例外。经过梁朝伟和陈小春等人多次演绎后，黄晓明这个有史以来最帅的“小宝”终于开始接受人们的检阅了。只是这次，第一个下结论的是这部戏的导演、大胡子张纪中昨天很认真地对人们说：“这个版本是以前所有版本当中最靓丽的，用贬义的词来说是最香艳的。”但是我们想问的是：“难道《鹿鼎记》就一定要香艳吗？”</p>
-<p>是的，所有人都是这样认为，包括导演。一个男人和七个女人的故事，该怎么讲？导演最开始的定位就是不香艳，“我们不会去删减什么。”导演信誓旦旦地承诺，但是我们不禁要问：“我们没有人说你的《鹿鼎记》怎么样啊？我们只是想看一个活力四射的、机智搞笑的韦小宝。”和《色，戒》一个道理，有些东西其实不需要情色，它有时候只能做噱头，但是作为电视剧，它不能用这样的噱头，于是导演自己制造，“我们的电视剧香而不艳。”想起一句成语，“此地无银三百两”。</p>
-<p>挺悲哀，因为这句话，张纪中让《鹿鼎记》与经典擦肩而过了。</p>
+            <p>当用bash启动一个程序,你可以用在程序后加&amp;,实现程序在后台运行；</p>
+<p>例如: <code>emacs &amp;</code></p>
+<p>但如果你忘了输入&amp;;但你又不想把程序停止后重新启动；</p>
+<p>你可以这么做:</p>
+<p>按Ctrl + Z暂停前台工作,比如前面提到的Emacs；</p>
+<p>然后用jobs命令查看当前bash一共启动了多少程序,你可以看到你的emacs在其中，它的状态是Stoped的; 并且它的jobID也可以看,比如是2</p>
+<p>然后用命令<code>bg 2</code></p>
+<p>这样你就可以达到和<code>emacs &amp;</code>一样的效果了。</p>
+<p>当你有些工作比如updatedb, find等需要一定时间,这些工作可以考虑让它在后台运行,而你可以用bash做其它工作。</p>
+<p>如果需要把任务回到前台，只需要<code>fg 2</code>。</p>
 
           
         
@@ -4712,169 +4866,6 @@ ul.breadcrumb li+li:last-child {
 </blockquote>
 <p>提示说只能用~96xx，系列的驱动，然后找个系列的驱动安装，一切顺利！然而再重新编译~Geomview~的时候仍然是那个错误，最后只好手动的修改了那个文件<strong>~/usr/X11R6/include/GL/glext.h</strong>，把里面的~6941~和~6952~两行注释掉了，然后再编译安装，一切顺利。</p>
 <p>据说~NVIDIA~的这个~bug~在最新的~97xx~系列中已经修正，可是我的显卡却只能用~96xx~系列的，可能我的显卡太老了吧 :(。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/13/shell-retain-two-decimal/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/05/13/shell-retain-two-decimal/" itemprop="url">
-                  Shell运算，计算值保留两位小数
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-05-13 00:00:00" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">2008-05-13</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>SHELL下是没有小数处理的，能进行运算的只能是-2^30到2^30-1范围的整数，否则溢出。<br>具体可以用的运算方式有：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@root ~]$ i=$[9 / 2]; echo i=$i;  </span><br><span class="line">i=4</span><br><span class="line"></span><br><span class="line">[root@root ~]$ i=$((9 / 2)); echo i=$i;  </span><br><span class="line">i=4</span><br><span class="line"></span><br><span class="line">[root@root ~]$ i=`expr 9 / 2` ; echo i=$i;</span><br><span class="line">i=4</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>很多最小安装的系统不会有expr，可以使用内置命令：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@root ~]$ i=let i=9/2 ; echo i=$i;  </span><br><span class="line">i=4</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>如果需要保留小数，比如两位小数，可以使用awk实现，awk真是强大：</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@root ~]$ i=`awk  BEGIN'{printf  "%.2fn", 9/2 }'` ; echo i=$i;</span><br><span class="line">i=4.50</span><br><span class="line">[root@root ~]$ i=`awk  BEGIN'{  x=9 ; y=4 ; printf  "%.2fn", x/y }'` ; echo i=$i;</span><br><span class="line">i=4.50</span><br></pre></td></tr></tbody></table></figure>
-<p><strong>运算符类型</strong></p>
-<p>按位运算符<br>~, &lt; &lt;, &gt;&gt;, &amp;, |, ^<br>$[]表示形式告诉 shell 对方括号中的表达式求值</p>
-<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="http://photo.liudongkai.com/blog/f0e0eb11af6d42c3a7ef3fa0[1].jpg" alt=""></p>
-<p>表达式替换<br>$[ ] 和 $(())<br>两种格式功能一样，所有的 shell 的求值都是用整数完成<br>$[ ] 可以接受不同基数的数字</p>
-<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="http://photo.liudongkai.com/blog/190e8b44eb722e49510ffea8[1].jpg" alt=""></p>
-<p>赋值运算符<br>=、+=、-=、*=、/=、%=、&amp;=、^=、|=、&lt; &lt;=、&gt;&gt;=</p>
 
           
         
@@ -5112,7 +5103,7 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/13/Shell-switch-background-jobs/">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/13/shell-retain-two-decimal/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="東木">
@@ -5131,8 +5122,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/05/13/Shell-switch-background-jobs/" itemprop="url">
-                  Linux Shell下的后台运行及其前台的转换
+                <a class="post-title-link" href="/2008/05/13/shell-retain-two-decimal/" itemprop="url">
+                  Shell运算，计算值保留两位小数
                 </a>
               
             
@@ -5212,16 +5203,16 @@ ul.breadcrumb li+li:last-child {
       
         
           
-            <p>当用bash启动一个程序,你可以用在程序后加&amp;,实现程序在后台运行；</p>
-<p>例如: <code>emacs &amp;</code></p>
-<p>但如果你忘了输入&amp;;但你又不想把程序停止后重新启动；</p>
-<p>你可以这么做:</p>
-<p>按Ctrl + Z暂停前台工作,比如前面提到的Emacs；</p>
-<p>然后用jobs命令查看当前bash一共启动了多少程序,你可以看到你的emacs在其中，它的状态是Stoped的; 并且它的jobID也可以看,比如是2</p>
-<p>然后用命令<code>bg 2</code></p>
-<p>这样你就可以达到和<code>emacs &amp;</code>一样的效果了。</p>
-<p>当你有些工作比如updatedb, find等需要一定时间,这些工作可以考虑让它在后台运行,而你可以用bash做其它工作。</p>
-<p>如果需要把任务回到前台，只需要<code>fg 2</code>。</p>
+            <p>SHELL下是没有小数处理的，能进行运算的只能是-2^30到2^30-1范围的整数，否则溢出。<br>具体可以用的运算方式有：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@root ~]$ i=$[9 / 2]; echo i=$i;  </span><br><span class="line">i=4</span><br><span class="line"></span><br><span class="line">[root@root ~]$ i=$((9 / 2)); echo i=$i;  </span><br><span class="line">i=4</span><br><span class="line"></span><br><span class="line">[root@root ~]$ i=`expr 9 / 2` ; echo i=$i;</span><br><span class="line">i=4</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>很多最小安装的系统不会有expr，可以使用内置命令：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@root ~]$ i=let i=9/2 ; echo i=$i;  </span><br><span class="line">i=4</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>如果需要保留小数，比如两位小数，可以使用awk实现，awk真是强大：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@root ~]$ i=`awk  BEGIN'{printf  "%.2fn", 9/2 }'` ; echo i=$i;</span><br><span class="line">i=4.50</span><br><span class="line">[root@root ~]$ i=`awk  BEGIN'{  x=9 ; y=4 ; printf  "%.2fn", x/y }'` ; echo i=$i;</span><br><span class="line">i=4.50</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>运算符类型</strong></p>
+<p>按位运算符<br>~, &lt; &lt;, &gt;&gt;, &amp;, |, ^<br>$[]表示形式告诉 shell 对方括号中的表达式求值</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="http://photo.liudongkai.com/blog/f0e0eb11af6d42c3a7ef3fa0[1].jpg" alt=""></p>
+<p>表达式替换<br>$[ ] 和 $(())<br>两种格式功能一样，所有的 shell 的求值都是用整数完成<br>$[ ] 可以接受不同基数的数字</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="http://photo.liudongkai.com/blog/190e8b44eb722e49510ffea8[1].jpg" alt=""></p>
+<p>赋值运算符<br>=、+=、-=、*=、/=、%=、&amp;=、^=、|=、&lt; &lt;=、&gt;&gt;=</p>
 
           
         

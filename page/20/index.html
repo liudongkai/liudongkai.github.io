@@ -2039,7 +2039,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff5974;
+  background: #d1f75b;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -5644,7 +5644,7 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/18/sed-one-liner/">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/18/sed-command-r/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="東木">
@@ -5663,8 +5663,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/05/18/sed-one-liner/" itemprop="url">
-                  SED单行脚本快速参考
+                <a class="post-title-link" href="/2008/05/18/sed-command-r/" itemprop="url">
+                  sed命令示例：'r'
                 </a>
               
             
@@ -5744,22 +5744,31 @@ ul.breadcrumb li+li:last-child {
       
         
           
-            <p>最近版本的SED ONE-LINER现在可以在sed.sourceforge.net上找到了。有多个语言版本也包括了简体中文版本。意大利语和西班牙语的翻译也正在进行中。</p>
+            <p>‘r’命令用来读入文本。与’a’的作用相似，但文本是放在独立的文件而不是放在脚本中。用’r’的好处在于将数据与脚本独立，使脚本更易读并且修改数据文件更方便。</p>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>这是GNU sed自带文档中对’r’命令的说明：</p>
 <blockquote>
-<p>SED单行脚本快速参考（Unix 流编辑器） 2005年12月29日</p>
+<p><code>r filename</code><br>Queue the contents of filename to be read and inserted into the output stream at the end of the current cycle, or when the next input line is read. Note that if filename cannot be read, it is treated as if it were an empty file, without any error indication.</p>
 </blockquote>
-<blockquote>
-<p>英文标题：USEFUL ONE-LINE SCRIPTS FOR SED (Unix stream editor)<br>原标题：HANDY ONE-LINERS FOR SED (Unix stream editor)</p>
-</blockquote>
-<blockquote>
-<p>整理：Eric Pement – 电邮：pemente[at]northpark[dot]edu 版本5.5<br>译者：Joe Hong – 电邮：hq00e[at]126[dot]com</p>
-</blockquote>
-<blockquote>
-<p>在以下地址可找到本文档的最新（英文）版本：<br><a href="http://sed.sourceforge.net/sed1line.txt" target="_blank" rel="noopener">http://sed.sourceforge.net/sed1line.txt</a><br><a href="http://www.pement.org/sed/sed1line.txt" target="_blank" rel="noopener">http://www.pement.org/sed/sed1line.txt</a></p>
-</blockquote>
-<blockquote>
-<p>其他语言版本：<br>中文 – <a href="http://sed.sourceforge.net/sed1line_zh-CN.html" target="_blank" rel="noopener">http://sed.sourceforge.net/sed1line_zh-CN.html</a><br>捷克语 – <a href="http://sed.sourceforge.net/sed1line_cz.html" target="_blank" rel="noopener">http://sed.sourceforge.net/sed1line_cz.html</a><br>荷语 – <a href="http://sed.sourceforge.net/sed1line_nl.html" target="_blank" rel="noopener">http://sed.sourceforge.net/sed1line_nl.html</a><br>法语 – <a href="http://sed.sourceforge.net/sed1line_fr.html" target="_blank" rel="noopener">http://sed.sourceforge.net/sed1line_fr.html</a><br>德语 – <a href="http://sed.sourceforge.net/sed1line_de.html" target="_blank" rel="noopener">http://sed.sourceforge.net/sed1line_de.html</a><br>葡语 – <a href="http://sed.sourceforge.net/sed1line_pt-BR.html" target="_blank" rel="noopener">http://sed.sourceforge.net/sed1line_pt-BR.html</a></p>
-</blockquote>
+<p>GNU对这个命令进行了扩展：</p>
+<ul>
+<li>接受两个地址。可以对一定的地址区间进行操作</li>
+<li>允许使用/dev/stdin作为文件名</li>
+<li>新增了一个<code>R</code>命令。这个命令用法与<code>r</code>一样但一次只读入一行。</li>
+</ul>
+<p>另外一些需要注意的地方：</p>
+<ul>
+<li>文件不能读取时，则当成空文件处理不会有出错信息。</li>
+<li>r 命令之后不能再使用其他命令，因而如果后面的命令要另起一行或以’-e’选项隔开。</li>
+<li>r是在当前的cycle结束后才在最后加入内容的，所以在无法在cycle中对读入的内容进行操作的。</li>
+</ul>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>我一向认为一个例子比得上千言万语。看个例子先：现有一个网页要进行如下修改，在中增加标签。在标签前增加版权声明的标签。我们将要在标签后的内容放在meta.tag中。将放在文件未尾的内容放在copyleft.tag中。里面的内容如下：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ cat meta.tag</span><br><span class="line"></span><br><span class="line">$ cat copyleft.tag</span><br><span class="line">版权所有……</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>我们需要的命令是：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sed '/&lt; /title&gt;/r meta.tag</span><br><span class="line">/&lt; /body&gt;/{</span><br><span class="line">x</span><br><span class="line">r copyleft.tag</span><br><span class="line">G}' samp.html</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>写成单行的形式就是：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e '/&lt; /title&gt;/r meta.tag' -e '/&lt; /body&gt;/{x;r copyleft.tag' -e 'G}' samp.html</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>如果你在Windows的命令行上使用的话，那就根据你所用的版本将单引号相应的改为双引号。不过请务必注意上面脚本是一个简化的情形，因为标签也可能有大写字母(更复杂的情形是title后的方括号也许在下面一行)（虽然W3C的XHTML中要求标签必须是小写，但这种可能性是存在的视你自已的情况而定。）如果你用的是GNU sed的话那恭喜，你可以在式样后使用’I’修改符（modifier）：/&lt; /title&gt;/I。否则：/&lt; /[tT][iI] [tT][lL][eE]&gt;/当然偶尔可以偷懒：/&lt; /[tT].[tT].[eE]&gt;/。</p>
+<p>实例：批量修改</p>
+<p>当然我们想修改的通常不会只是一个文件，于是我们需要用到shell（注意文件的读写权限）：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ for a in 'find . -name "*.html"'</span><br><span class="line">do</span><br><span class="line">mv $a $a.bak</span><br><span class="line">sed -e '/&lt; /title&gt;/r meta.tag' -e '/&lt; /body&gt;/{x;r copyleft.tag' -e 'G}' $a.bak &gt;$a</span><br><span class="line">done</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>find有一个-exec，但是如果参数太多会出错因而这里使用了for命令。<br>如果是Windows平台：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for /R %a in (*.html) do @copy %a %a.bak &amp; @sed -e "…" %a.bak&gt;%a</span><br><span class="line">``</span><br><span class="line">在批处理中使用时记得要用'%%'代替'%'。</span><br><span class="line">如果你用的是GNU sed 4.0或以上版本，那你可以使用-i选项代替'mv'命令：</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>$ for a in ‘find . -name “*.html”‘<br>do<br>gsed -i.bak -e ‘<br>/&lt; /title&gt;/r meta.tag<br>/&lt; /body&gt;/{<br>x<br>r copyleft.tag<br>G}’ $a<br>done<br><code>`</code></p>
 
           
         
