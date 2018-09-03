@@ -2039,7 +2039,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #b85328;
+  background: #ff5974;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3685,7 +3685,7 @@ ul.breadcrumb li+li:last-child {
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
 
                 
                 
@@ -3722,6 +3722,374 @@ ul.breadcrumb li+li:last-child {
         
           
             <p>首先请点击“Bookmarks（书签）－Manage Bookmarks（书签管理器）”，启动书签管理器，然后在想使用缩写的网址上点击鼠标右键，并选择属性，这时能看到该网址的信息窗口，在窗口的第三栏 是keyword（关键字）栏，在这儿输入希望的关键字，以后就可以通过在地址栏输入关键字来打开这个网页了。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2007/12/19/bash/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2007/12/19/bash/" itemprop="url">
+                  10条捷径掌握bash
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2007-12-19 00:00:00" itemprop="dateCreated datePublished" datetime="2007-12-19T00:00:00+08:00">2007-12-19</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>如果你曾在Linux shell命令提示符中输入过命令，那么你很可能也使用过bash。因为，它是大多数现代GNU/Linux发行版的默认shell。</p>
+<p>Bash shell是Linux操作系统的主要接口，它可接受、解释和执行你输入的命令，向用户提供shell脚本和自动任务执行后的输出结果。</p>
+<p>Bash保守的外表隐藏了很多十分有用的工具和快捷操作。如果你是一位经常使用命令行的用户，那么了解这些工具和捷径可以让你节省很多输入。本文为大家介绍了10种十分有用的捷径。</p>
+<ol>
+<li><p>轻松找回以前输入的命令</p>
+<p>Bash在一个历史缓冲区中记录已经执行的命令，并允许用户利用向上和向下方向键在历史命令中循环召回以前输入的命令。</p>
+<p>键入命令的前几个字母然后按下组合键Ctrl-R，bash将会扫描历史命令来匹配输入的命令并将它们显示在控制台上。这样可以“快速搜索”以前执行的命令。重复键入组合键Ctrl-R可以循环整个匹配命令列表。</p>
+</li>
+<li><p>使用命令别名</p>
+<p>如果你经常需要运行一个拥有相同参数选项的命令，你可以用bash为该命令建立一个别名。</p>
+<p>别名可以将需要的选项组合在一起，因此不需要用户记住所有参数或每次都要手工输入它们。例如，如果你经常需要运行带有参数-l的ls命令来获得一个 详细的目录列表，你可以使用下面的命令：<code>bash&gt;alias ls='ls –l'</code>来创建一个自动包含 -l 参数的别名。</p>
+<p>建立别名后，在bash的命令提示符下输入ls就会调用别名并产生 ls –l 的输出。</p>
+<p>还可以调用alias建立一个没有任何参数的可用别名列表。同时，还可以使用unalias删除一个别名。</p>
+</li>
+<li><p>使用文件名自动完成功能</p>
+<p>Bash支持命令行提示符下的文件名自动完成功能。为了使用这个特性，我们首先输入文件名的前几个字母，然后后面跟着按下Tab键。Bash将会扫 描当前目录以及搜索路径中的所有其它目录来查找匹配的文件。如果只搜索到一个匹配，bash将会自动完成文件名。如果有多个匹配，将会提示你选择其中的一 个。</p>
+</li>
+<li><p>利用快捷键高效编辑命令行</p>
+<p>Bash支持大量键盘快捷操作进行命令行导航和编辑。快捷键Ctrl-A可将光标移动到命令行行首，而Ctrl-E可将光标移动到命令行行尾。Ctrl-W快捷键可以快速删除光标前的字符，而Ctrl-K可以立即删除光标后的字符。使用Ctrl-Y取消删除操作。</p>
+</li>
+<li><p>获得新邮件自动通知</p>
+<p>我们可以配置bash当有新邮件时可以自动通知用户。通过设置$MAILPATH变量来指向你的本地邮件池。例如，下面的命令：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; MAILPATH='/var/spool/mail/john'</span><br><span class="line">bash&gt; export MAILPATH</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ol>
+<p>该命令在每次有新的消息添加到john的邮件池时，可以使bash在john的控制台上输出一个通知。</p>
+<ol start="6">
+<li><p>在后台运行任务</p>
+<p>Bash运行在后台运行一个或多个任务，并可有选择地挂起或恢复任何一个当前任务（或“作业”）。为了在后台运行一个任务，需要在命令的末尾添加一 个连接符（&amp;）。下面是一个例子：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; tail -f /var/log/messages &amp;</span><br><span class="line">[1] 614</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ol>
+<p>每个以这种方式放入后台运行的任务被分配一个作业ID号，并打印输出到控制台上。利用命令fg 作业号可以将一个后台任务调回前台运行，此处的作业号就是你想要调回前台运行的任务的作业ID号。下面是一个例子：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash&gt;fg 1</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>通过在bash命令提示符下键入jobs，可以获得一个活动作业列表。</p>
+<ol start="7">
+<li><p>快速跳至常用目录</p>
+<p>你可能已经知道$PATH变量可以列出bash的“搜索路径”——当在当前目录不能找到请求的文件时，bash会自动搜索的目录。不过，bash也 支持$CDPATH变量，当试图改变目录时该变量列出cd命令转向的目录。为了使用这个特性，我们要对$CDPATH变量赋值一个目录列表，如下面的例子 所示：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; CDPATH='.:~:/usr/local/apache/htdocs:/disk1/backups'</span><br><span class="line">bash&gt; export CDPATH</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ol>
+<p>现在，无论何时使用cd命令，bash将会检查$CDPATH列表中的所有目录来查找要转向的目录名。</p>
+<ol start="8">
+<li><p>执行计算</p>
+<p>Bash可以在命令提示行下执行一些简单的算术操作。为了使用该特性，在命令提示符下输入你想要计算的算术表达式，并用双圆括号括起来，如下面的例子所示。Bash将会执行计算并返回结果。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash&gt;echo$((16/2))</span><br><span class="line">8</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>定制命令提示符</p>
+<p>我们可以定制要显示的bash命令提示符，包括当前用户名和主机名，当前时间，平均负载和当前工作目录。要实现该目的，修改$PS1变量，如下所示：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; PS1='u@h:w @&gt; '</span><br><span class="line">bash&gt; export PS1</span><br><span class="line">root@medusa:/tmp 03:01 PM&gt;</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ol>
+<p>结果将会在命令行显示当前登录的用户名、主机名、当前工作目录和当前时间。从用户指南页可以获得bash可以理解的符号列表。</p>
+<ol start="10">
+<li><p>获得特定上下文帮助</p>
+<p>Bash对所有内建命令都同时提供了帮助。键入help，可以查看内建命令列表。键入help命令名可以获得特定命令的帮助。Help后的命令名就是你想要查看帮助的命令。下面是一个例子：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash&gt;help alias</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ol>
+<p>一些帮助文本</p>
+<p>很明显，任何时刻在命令行键入man bash，都可以获得关于bash命令的详细帮助。</p>
+<p>原文地址 <a href="http://www.builder.com.cn/2007/0703/415647.shtml" target="_blank" rel="noopener">http://www.builder.com.cn/2007/0703/415647.shtml</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2007/12/18/use-wget-clean-squid-cache/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2007/12/18/use-wget-clean-squid-cache/" itemprop="url">
+                  用wget来清空squid缓存
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2007-12-18 00:00:00" itemprop="dateCreated datePublished" datetime="2007-12-18T00:00:00+08:00">2007-12-18</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>可以使用以下命令来清空squid的缓存：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -c -S –header='Pragma:no-cache" url</span><br></pre></td></tr></tbody></table></figure><p></p>
 
           
         
@@ -3839,7 +4207,7 @@ ul.breadcrumb li+li:last-child {
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
 
                 
                 
@@ -3963,160 +4331,6 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2007/12/18/use-wget-clean-squid-cache/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2007/12/18/use-wget-clean-squid-cache/" itemprop="url">
-                  用wget来清空squid缓存
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2007-12-18 00:00:00" itemprop="dateCreated datePublished" datetime="2007-12-18T00:00:00+08:00">2007-12-18</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>可以使用以下命令来清空squid的缓存：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -c -S –header='Pragma:no-cache" url</span><br></pre></td></tr></tbody></table></figure><p></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2007/12/17/firefox-profile/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -4181,7 +4395,7 @@ ul.breadcrumb li+li:last-child {
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
 
                 
                 
@@ -4365,7 +4579,7 @@ ul.breadcrumb li+li:last-child {
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
 
                 
                 
@@ -4521,7 +4735,7 @@ ul.breadcrumb li+li:last-child {
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Analytics/" itemprop="url" rel="index"><span itemprop="name">Analytics</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/analytics/" itemprop="url" rel="index"><span itemprop="name">Analytics</span></a></span>
 
                 
                 
@@ -4700,7 +4914,7 @@ ul.breadcrumb li+li:last-child {
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Analytics/" itemprop="url" rel="index"><span itemprop="name">Analytics</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/analytics/" itemprop="url" rel="index"><span itemprop="name">Analytics</span></a></span>
 
                 
                 
@@ -4864,7 +5078,7 @@ ul.breadcrumb li+li:last-child {
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Analytics/" itemprop="url" rel="index"><span itemprop="name">Analytics</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/analytics/" itemprop="url" rel="index"><span itemprop="name">Analytics</span></a></span>
 
                 
                 
@@ -5159,7 +5373,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">289</span>
+                    <span class="site-state-item-count">290</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -5627,7 +5841,11 @@ ul.breadcrumb li+li:last-child {
                     
                       
                     
-                    <span class="site-state-item-count">204</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">206</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

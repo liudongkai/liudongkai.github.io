@@ -2039,7 +2039,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #b85328;
+  background: #ff5974;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3621,7 +3621,7 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/11/26/linux-process-priority/">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/11/27/mysqldump-extended-insert/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="東木">
@@ -3640,8 +3640,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/11/26/linux-process-priority/" itemprop="url">
-                  Linux下调节进程优先级
+                <a class="post-title-link" href="/2008/11/27/mysqldump-extended-insert/" itemprop="url">
+                  mysqldump导出sql中insert语句的问题
                 </a>
               
             
@@ -3667,7 +3667,7 @@ ul.breadcrumb li+li:last-child {
                 
               
 
-              <time title="Created: 2008-11-26 00:00:00" itemprop="dateCreated datePublished" datetime="2008-11-26T00:00:00+08:00">2008-11-26</time>
+              <time title="Created: 2008-11-27 00:00:00" itemprop="dateCreated datePublished" datetime="2008-11-27T00:00:00+08:00">2008-11-27</time>
             
 
             
@@ -3685,7 +3685,7 @@ ul.breadcrumb li+li:last-child {
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
 
                 
                 
@@ -3721,12 +3721,10 @@ ul.breadcrumb li+li:last-child {
       
         
           
-            <p><strong>命令</strong>：<br>nice(1): 以指定优先级运行程序<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nice [OPTION] [COMMAND [ARG]…]</span><br><span class="line">nice –n 1 ls</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>renice(8): 调整运行进程的优先级<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">renice priority [[-p] pid …] [[-g] pgrp …] [[-u] user …]</span><br><span class="line">renice +1 987 -u daemon root -p 32</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p><strong>API</strong>：<br>nice(2): 改变进程优先级<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int nice(int inc);</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>getpriority(2): 获取优先级<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int getpriority(int which, int who);</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>setpriority(2): 设置优先级<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int setpriority(int which, int who, int prio);</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>Reference:<br><a href="http://unix-cd.com/unixcd12/article_4602.html" target="_blank" rel="noopener">http://unix-cd.com/unixcd12/article_4602.html</a></p>
+            <p>mysqldump怎么样才能够将导出的sql中，每条记录对应一个insert语句，默认总是导出一个长的insert语句，如下所示：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[zzx@localhost ~]$ mysqldump –compact -uroot test t1&gt; a</span><br><span class="line">[zzx@localhost ~]$ more a</span><br><span class="line">CREATE TABLE `t1` (</span><br><span class="line">`id` int(10) default NULL,</span><br><span class="line">UNIQUE KEY `idx_1` (`id`)</span><br><span class="line">) ENGINE=MyISAM DEFAULT CHARSET=gbk;</span><br><span class="line">INSERT INTO `t1` VALUES (1),(2),(3);</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>我们希望把导出语句中的insert改为：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO `t1` VALUES (1);</span><br><span class="line">INSERT INTO `t1` VALUES (2);</span><br><span class="line">INSERT INTO `t1` VALUES (3);</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>这样在不支持insert多值的数据库中，可以很方便的进行迁移，其实方法很简单，只需要加 <code>–extented-insert=false</code>即可：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[zzx@localhost ~]$ mysqldump –compact –extended-insert=false -uroot test t1&gt; a</span><br><span class="line">[zzx@localhost ~]$ more a</span><br><span class="line">CREATE TABLE `t1` (</span><br><span class="line">`id` int(10) default NULL,</span><br><span class="line">UNIQUE KEY `idx_1` (`id`)</span><br><span class="line">) ENGINE=MyISAM DEFAULT CHARSET=gbk;</span><br><span class="line">INSERT INTO `t1` VALUES (1);</span><br><span class="line">INSERT INTO `t1` VALUES (2);</span><br><span class="line">INSERT INTO `t1` VALUES (3);</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>我们从mysqldump中可以看到此参数的默认值为true：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[zzx@localhost ~]$ mysqldump –help|grep extended-insert</span><br><span class="line">......</span><br><span class="line">extended-insert TRUE</span><br><span class="line">......</span><br></pre></td></tr></tbody></table></figure><p></p>
 
           
         
@@ -3844,7 +3842,7 @@ ul.breadcrumb li+li:last-child {
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
 
                 
                 
@@ -3939,7 +3937,7 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/11/22/FileZilla-Server-Aliases/">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/11/26/linux-process-priority/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="東木">
@@ -3958,8 +3956,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/11/22/FileZilla-Server-Aliases/" itemprop="url">
-                  FileZilla Server虚拟路径设定
+                <a class="post-title-link" href="/2008/11/26/linux-process-priority/" itemprop="url">
+                  Linux下调节进程优先级
                 </a>
               
             
@@ -3985,7 +3983,7 @@ ul.breadcrumb li+li:last-child {
                 
               
 
-              <time title="Created: 2008-11-22 00:00:00" itemprop="dateCreated datePublished" datetime="2008-11-22T00:00:00+08:00">2008-11-22</time>
+              <time title="Created: 2008-11-26 00:00:00" itemprop="dateCreated datePublished" datetime="2008-11-26T00:00:00+08:00">2008-11-26</time>
             
 
             
@@ -4003,7 +4001,7 @@ ul.breadcrumb li+li:last-child {
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
 
                 
                 
@@ -4039,12 +4037,12 @@ ul.breadcrumb li+li:last-child {
       
         
           
-            <p>不用还不知道，原来设定filezilla的虚拟路径还有语法。关键处解决了，设定就简单多了。</p>
-<p>方法如下:<br>按下filezilla server的「edit」下拉选单选择「user」，进入user窗口之后，找到「shared folders」。设定好主要的目录（home dir)后，就可以设定其它次要的目录。</p>
-<p>设定其它目录的方法如下，首先点选「Add」键，依次把其余的目录设置。但要注意的是，如果仅仅把别的目录添加进 去，那么从远程登入连接后，会发现除了主目录和它的子目录之外，另外设置的目录是看不见。<br>为了解决这个问题，必需要透过filezilla server内建的「虚拟路径」（Aliases)的设置。</p>
-<p>虚拟路径，就是在客户端看到的目录结构。由于一个用户只能有一个主目录，别的目录如果不映像成虚拟目录的话，客户端将看不到它。所以只有把除了主目录之 外的其它目录，虚拟成主目录的子目录，这样在客户端才能看到。</p>
-<p>所 以为了要让其它目录能够顺利在的客户端显示，当放置新的目录之后，都要对其作「虚拟路径」的设定，设定的方式假设主目录为C:FTP，新设置的目录为 E:UPLOAD。在新设置的目录按下鼠标右键，在下拉选单中选择「Edit aliases」就可以编辑「虚拟路径」。</p>
-<p>编辑的规则：要把E:\UPLOAD目录作为客户端uploae的目录，在「Edit aliases」输入「C:\FTP\upload」按下「ok」确定就可以了。上述的例子中，编写的规则在于路径的前面必须是主目录的路径。如此一来当使用者登入到ftp server时，才能顺利的显示出upload数据夹。</p>
+            <p><strong>命令</strong>：<br>nice(1): 以指定优先级运行程序<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nice [OPTION] [COMMAND [ARG]…]</span><br><span class="line">nice –n 1 ls</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>renice(8): 调整运行进程的优先级<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">renice priority [[-p] pid …] [[-g] pgrp …] [[-u] user …]</span><br><span class="line">renice +1 987 -u daemon root -p 32</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p><strong>API</strong>：<br>nice(2): 改变进程优先级<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int nice(int inc);</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>getpriority(2): 获取优先级<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int getpriority(int which, int who);</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>setpriority(2): 设置优先级<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int setpriority(int which, int who, int prio);</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>Reference:<br><a href="http://unix-cd.com/unixcd12/article_4602.html" target="_blank" rel="noopener">http://unix-cd.com/unixcd12/article_4602.html</a></p>
 
           
         
@@ -4162,7 +4160,7 @@ ul.breadcrumb li+li:last-child {
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
 
                 
                 
@@ -4217,6 +4215,165 @@ ul.breadcrumb li+li:last-child {
             </a>
           </div>
           <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/11/22/FileZilla-Server-Aliases/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/11/22/FileZilla-Server-Aliases/" itemprop="url">
+                  FileZilla Server虚拟路径设定
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-11-22 00:00:00" itemprop="dateCreated datePublished" datetime="2008-11-22T00:00:00+08:00">2008-11-22</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>不用还不知道，原来设定filezilla的虚拟路径还有语法。关键处解决了，设定就简单多了。</p>
+<p>方法如下:<br>按下filezilla server的「edit」下拉选单选择「user」，进入user窗口之后，找到「shared folders」。设定好主要的目录（home dir)后，就可以设定其它次要的目录。</p>
+<p>设定其它目录的方法如下，首先点选「Add」键，依次把其余的目录设置。但要注意的是，如果仅仅把别的目录添加进 去，那么从远程登入连接后，会发现除了主目录和它的子目录之外，另外设置的目录是看不见。<br>为了解决这个问题，必需要透过filezilla server内建的「虚拟路径」（Aliases)的设置。</p>
+<p>虚拟路径，就是在客户端看到的目录结构。由于一个用户只能有一个主目录，别的目录如果不映像成虚拟目录的话，客户端将看不到它。所以只有把除了主目录之 外的其它目录，虚拟成主目录的子目录，这样在客户端才能看到。</p>
+<p>所 以为了要让其它目录能够顺利在的客户端显示，当放置新的目录之后，都要对其作「虚拟路径」的设定，设定的方式假设主目录为C:FTP，新设置的目录为 E:UPLOAD。在新设置的目录按下鼠标右键，在下拉选单中选择「Edit aliases」就可以编辑「虚拟路径」。</p>
+<p>编辑的规则：要把E:\UPLOAD目录作为客户端uploae的目录，在「Edit aliases」输入「C:\FTP\upload」按下「ok」确定就可以了。上述的例子中，编写的规则在于路径的前面必须是主目录的路径。如此一来当使用者登入到ftp server时，才能顺利的显示出upload数据夹。</p>
+
+          
         
       
     </div>
@@ -4332,7 +4489,7 @@ ul.breadcrumb li+li:last-child {
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
 
                 
                 
@@ -4488,7 +4645,7 @@ ul.breadcrumb li+li:last-child {
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
 
                 
                 
@@ -4643,7 +4800,7 @@ ul.breadcrumb li+li:last-child {
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
 
                 
                 
@@ -4835,7 +4992,7 @@ ul.breadcrumb li+li:last-child {
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
 
                 
                 
@@ -4990,7 +5147,7 @@ ul.breadcrumb li+li:last-child {
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
 
                 
                 
@@ -5077,169 +5234,6 @@ ul.breadcrumb li+li:last-child {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/08/26/sed-newline/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/08/26/sed-newline/" itemprop="url">
-                  sed 关于换行符 “\n” 的处理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2008-08-26T00:00:00+08:00">2008-08-26</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>我有一段文本有多行<br>如：<br>12<br>23<br>34</p>
-</blockquote>
-<blockquote>
-<p>我想把它换成一行<br>结果如下： 122334</p>
-</blockquote>
-<p>vi中 ：<code>%s/n//g</code> 可以合并成一行</p>
-<p>但是使用命令 <code>sed 's/n//g'</code> 对于换行符不起作用。</p>
-<p>因为sed是对行操作，所以没有换行。<br>解决方案：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tr -d 'n'</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>真的需要sed<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sed -nr ' H;</span><br><span class="line">$ {</span><br><span class="line">x;</span><br><span class="line">s/n//g;</span><br><span class="line">p</span><br><span class="line">}'</span><br></pre></td></tr></tbody></table></figure><p></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -5287,7 +5281,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">289</span>
+                    <span class="site-state-item-count">290</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -5755,7 +5749,11 @@ ul.breadcrumb li+li:last-child {
                     
                       
                     
-                    <span class="site-state-item-count">204</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">206</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
