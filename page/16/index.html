@@ -116,7 +116,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '6.3.0',
+    version: '6.4.1',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     fastclick: false,
@@ -1947,16 +1947,6 @@ pre .javascript .function {
   border: 1px solid #eee;
   opacity: 1;
 }
-img:hover {
-  -webkit-transform: rotateZ(360deg);
-  -moz-transform: rotateZ(360deg);
-  -ms-transform: rotate(360deg);
-  -webkit-transform: rotateZ(360deg);
-  -moz-transform: rotateZ(360deg);
-  -ms-transform: rotateZ(360deg);
-  -o-transform: rotateZ(360deg);
-  transform: rotateZ(360deg);
-}
 .site-author-name {
   margin: 0;
   text-align: center;
@@ -2039,7 +2029,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #6c9aff;
+  background: #b9ffff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3959,168 +3949,6 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/11/24/mysql-load-data-infile/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2009/11/24/mysql-load-data-infile/" itemprop="url">
-                  mysql load data infile[zt]
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2009-11-24 00:00:00" itemprop="dateCreated datePublished" datetime="2009-11-24T00:00:00+08:00">2009-11-24</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="如何提高mysql-load-data-infile的速度"><a href="#如何提高mysql-load-data-infile的速度" class="headerlink" title="如何提高mysql load data infile的速度"></a>如何提高mysql load data infile的速度</h3><p>测试数据2.5G，共有数据9427567条。用的mysql的large服务器的配置。<br>load一次需要大概10分钟左右。<br>建的表用的是MYISAM，调整了几个session的参数值</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SET SESSION BULK_INSERT_BUFFER_SIZE=256217728;</span><br><span class="line">SET SESSION MYISAM_SORT_BUFFER_SIZE=256217728;</span><br></pre></td></tr></tbody></table></figure>
-<p>运行结果如下:<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Query OK, 9427567 rows affected, 1558 warnings (3 min 55.21 sec)</span><br><span class="line">Records: 9427567 Deleted: 0 Skipped: 0 Warnings: 0</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>google到的,还可以:<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set global KEY_BUFFER_SIZE=256217728;</span><br><span class="line">alter table tablename disable keys;</span><br></pre></td></tr></tbody></table></figure><p></p>
-<h3 id="如何load数据里面带反斜杠-backslash-”-’-的数据"><a href="#如何load数据里面带反斜杠-backslash-”-’-的数据" class="headerlink" title="如何load数据里面带反斜杠(backslash)”\’ 的数据"></a>如何load数据里面带反斜杠(backslash)”\’ 的数据</h3><p>由于如果你没有指定FIELDS子句，则默认值为假设您写下如下语句时的值：<br><code>FIELDS TERMINATED BY '\t' ENCLOSED BY " ESCAPED BY '\\'</code><br>所以，如果你的数据里面有反斜杠(backslash)”\”的时候，数据会出现被截断的问题。出现这种问题，只要写上如下的fields子句即可<br><code>FIELDS TERMINATED BY '\t' ENCLOSED BY " ESCAPED BY "</code></p>
-<h3 id="如何load不同编码的数据"><a href="#如何load不同编码的数据" class="headerlink" title="如何load不同编码的数据"></a>如何load不同编码的数据</h3><p>原来用的4.X的mysql，我是select INTO OUTFILE ，只后用iconv,或者其他软件来做。可以<a href="http://www.micronsky.com/2009/11/discuz-mysql-database-charset-convert-latin1-utf8/" target="_blank" rel="noopener">参考这里</a>，但是由于这次数据大，用ultraedit等软件打开都要半天。好在新版的mysql可以增加一个新的参数<br><code>CHARACTER SET gbk</code><br>我的文本数据是GBK的编码，数据表是utf8的，用这种方法测试成功。</p>
-<h3 id="如何load的时候只insert特定的列"><a href="#如何load的时候只insert特定的列" class="headerlink" title="如何load的时候只insert特定的列"></a>如何load的时候只insert特定的列</h3><p>比如表里面有比元数据多的列。可以在load的时候指定要插入的字段名字。</p>
-<p>示例的代码如下：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">LOAD DATA INFILE '~/data.txt'</span><br><span class="line">INTO TABLE fb0505</span><br><span class="line">CHARACTER SET  gbk</span><br><span class="line">FIELDS TERMINATED BY '\t' ENCLOSED BY " ESCAPED BY "</span><br><span class="line">LINES TERMINATED BY '\n' STARTING BY "</span><br><span class="line">(seller_id,fb_type,fb_date,item_url);</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>其中表fb0505里面还有一列是id。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/11/24/discuz-mysql-iconv-character-set/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -4237,6 +4065,168 @@ ul.breadcrumb li+li:last-child {
 <p>上面还有一个问题是TERMINATED,ENCLOSED的选取，如果选的不对，会load失败。</p>
 <p>附1：共迁移了如下表<br>cdb_attachments<br>cdb_forums<br>cdb_memberfields<br>cdb_members<br>cdb_onlinetime<br>cdb_posts<br>cdb_threads</p>
 <p>附2：google到的链接<br><a href="http://gentoo-wiki.com/TIP_Convert_latin1_to_UTF-8_in_MySQL" target="_blank" rel="noopener">http://gentoo-wiki.com/TIP_Convert_latin1_to_UTF-8_in_MySQL</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/11/24/mysql-load-data-infile/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2009/11/24/mysql-load-data-infile/" itemprop="url">
+                  mysql load data infile[zt]
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2009-11-24 00:00:00" itemprop="dateCreated datePublished" datetime="2009-11-24T00:00:00+08:00">2009-11-24</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="如何提高mysql-load-data-infile的速度"><a href="#如何提高mysql-load-data-infile的速度" class="headerlink" title="如何提高mysql load data infile的速度"></a>如何提高mysql load data infile的速度</h3><p>测试数据2.5G，共有数据9427567条。用的mysql的large服务器的配置。<br>load一次需要大概10分钟左右。<br>建的表用的是MYISAM，调整了几个session的参数值</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SET SESSION BULK_INSERT_BUFFER_SIZE=256217728;</span><br><span class="line">SET SESSION MYISAM_SORT_BUFFER_SIZE=256217728;</span><br></pre></td></tr></tbody></table></figure>
+<p>运行结果如下:<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Query OK, 9427567 rows affected, 1558 warnings (3 min 55.21 sec)</span><br><span class="line">Records: 9427567 Deleted: 0 Skipped: 0 Warnings: 0</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>google到的,还可以:<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set global KEY_BUFFER_SIZE=256217728;</span><br><span class="line">alter table tablename disable keys;</span><br></pre></td></tr></tbody></table></figure><p></p>
+<h3 id="如何load数据里面带反斜杠-backslash-”-’-的数据"><a href="#如何load数据里面带反斜杠-backslash-”-’-的数据" class="headerlink" title="如何load数据里面带反斜杠(backslash)”\’ 的数据"></a>如何load数据里面带反斜杠(backslash)”\’ 的数据</h3><p>由于如果你没有指定FIELDS子句，则默认值为假设您写下如下语句时的值：<br><code>FIELDS TERMINATED BY '\t' ENCLOSED BY " ESCAPED BY '\\'</code><br>所以，如果你的数据里面有反斜杠(backslash)”\”的时候，数据会出现被截断的问题。出现这种问题，只要写上如下的fields子句即可<br><code>FIELDS TERMINATED BY '\t' ENCLOSED BY " ESCAPED BY "</code></p>
+<h3 id="如何load不同编码的数据"><a href="#如何load不同编码的数据" class="headerlink" title="如何load不同编码的数据"></a>如何load不同编码的数据</h3><p>原来用的4.X的mysql，我是select INTO OUTFILE ，只后用iconv,或者其他软件来做。可以<a href="http://www.micronsky.com/2009/11/discuz-mysql-database-charset-convert-latin1-utf8/" target="_blank" rel="noopener">参考这里</a>，但是由于这次数据大，用ultraedit等软件打开都要半天。好在新版的mysql可以增加一个新的参数<br><code>CHARACTER SET gbk</code><br>我的文本数据是GBK的编码，数据表是utf8的，用这种方法测试成功。</p>
+<h3 id="如何load的时候只insert特定的列"><a href="#如何load的时候只insert特定的列" class="headerlink" title="如何load的时候只insert特定的列"></a>如何load的时候只insert特定的列</h3><p>比如表里面有比元数据多的列。可以在load的时候指定要插入的字段名字。</p>
+<p>示例的代码如下：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">LOAD DATA INFILE '~/data.txt'</span><br><span class="line">INTO TABLE fb0505</span><br><span class="line">CHARACTER SET  gbk</span><br><span class="line">FIELDS TERMINATED BY '\t' ENCLOSED BY " ESCAPED BY "</span><br><span class="line">LINES TERMINATED BY '\n' STARTING BY "</span><br><span class="line">(seller_id,fb_type,fb_date,item_url);</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>其中表fb0505里面还有一列是id。</p>
 
           
         
@@ -5825,7 +5815,7 @@ ul.breadcrumb li+li:last-child {
         })();
       </script>
       <div class="footer-inner">
-        <div class="copyright">© 2007 — <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">© 2007 – <span itemprop="copyrightYear">2018</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -5847,7 +5837,7 @@ ul.breadcrumb li+li:last-child {
 
 
 
-  <div class="theme-info">Theme — <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
 
 
 

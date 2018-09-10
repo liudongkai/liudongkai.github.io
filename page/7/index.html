@@ -116,7 +116,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '6.3.0',
+    version: '6.4.1',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     fastclick: false,
@@ -1947,16 +1947,6 @@ pre .javascript .function {
   border: 1px solid #eee;
   opacity: 1;
 }
-img:hover {
-  -webkit-transform: rotateZ(360deg);
-  -moz-transform: rotateZ(360deg);
-  -ms-transform: rotate(360deg);
-  -webkit-transform: rotateZ(360deg);
-  -moz-transform: rotateZ(360deg);
-  -ms-transform: rotateZ(360deg);
-  -o-transform: rotateZ(360deg);
-  transform: rotateZ(360deg);
-}
 .site-author-name {
   margin: 0;
   text-align: center;
@@ -2039,7 +2029,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #6c9aff;
+  background: #b9ffff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3621,7 +3611,7 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/01/10/SAMBA-Failed-to-set-servicePrincipalNames/">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/01/10/windows-set-come-into-force/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="東木">
@@ -3640,8 +3630,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2014/01/10/SAMBA-Failed-to-set-servicePrincipalNames/" itemprop="url">
-                  AD Domain join fails with "Failed to set servicePrincipalNames" (SAMBA)
+                <a class="post-title-link" href="/2014/01/10/windows-set-come-into-force/" itemprop="url">
+                  Windows下如何不重启就使环境变量修改生效
                 </a>
               
             
@@ -3720,17 +3710,14 @@ ul.breadcrumb li+li:last-child {
 
       
         
-          <p><a href="">http://www.novell.com/support/kb/doc.php?id=3842088</a></p>
-<p>This document (3842088) is provided subject to the <a href="http://www.novell.com/support/kb/doc.php?id=3842088#disclaimer" target="_blank" rel="noopener">disclaimer</a> at the end of this document.</p>
-<h3 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h3><p>Novell SUSE Linux Enterprise Server 10<br>Novell SUSE Linux Enterprise Desktop 10<br>Novell SUSE Linux Enterprise Server 9</p>
-<h3 id="Situation"><a href="#Situation" class="headerlink" title="Situation"></a>Situation</h3><p>You are trying to join an AD Domain with Samba using the proper command. But it fails similar to this:</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2014/01/10/SAMBA-Failed-to-set-servicePrincipalNames/#more" rel="contents">
-              Read more »
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <p>在“我的电脑”-&gt;“属性”-&gt;“高级”-&gt;“环境变量”中增加或修改环境变量后，需重启系统才能使之生效。有没有什么方法可让它即时生效呢？下面介绍一种方法： </p>
+<p>以修改环境变量“PATH”为例，修改完成后，进入DOS命令提示符，输入：<br></p><figure class="highlight cmd"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> <span class="built_in">PATH</span>=C:</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>关闭DOS窗口。再次打开DOS窗口，输入：<br></p><figure class="highlight cmd"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">%PATH%</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>可以发现“我的电脑”-&gt;“属性”-&gt;“高级”-&gt;“环境变量”中设置的 PATH 值已经生效。 </p>
+<p>不用担心DOS窗口中的修改会影响环境变量的值，DOS窗口中的环境变量只是Windows环境变量的一个副本而已。但是对副本的修改却会引发Windows环境变量的刷新，这正是我们想要的！</p>
+
+          
         
       
     </div>
@@ -5847,7 +5834,7 @@ ul.breadcrumb li+li:last-child {
         })();
       </script>
       <div class="footer-inner">
-        <div class="copyright">© 2007 — <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">© 2007 – <span itemprop="copyrightYear">2018</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -5869,7 +5856,7 @@ ul.breadcrumb li+li:last-child {
 
 
 
-  <div class="theme-info">Theme — <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
 
 
 
