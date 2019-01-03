@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="theme-next gemini use-motion" lang="zh-Hans"><head>
+<!DOCTYPE html><html class="theme-next gemini use-motion" lang="zh-Hans"><head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -15,8 +15,6 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -24,18 +22,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-  
-  
-  
 
 
 
@@ -109,16 +95,14 @@
 
 
 
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '6.4.1',
+    version: '6.7.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    fancybox: false,
     fastclick: false,
     lazyload: false,
     tabs: true,
@@ -161,7 +145,7 @@
 
 
 
-<script type="text/javascript" id="page.configurations">
+<script id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
@@ -173,14 +157,16 @@
 
 
 
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-42337789-4');
+  </script>
 
-  gtag('config', 'UA-42337789-4');
-</script>
+
+
 
 
 
@@ -418,62 +404,103 @@ h6 {
 h1 {
   font-size: 22px;
 }
+h1 code {
+  font-size: 22px;
+}
 @media (max-width: 767px) {
   h1 {
+    font-size: 18px;
+  }
+  h1 code {
     font-size: 18px;
   }
 }
 h2 {
   font-size: 20px;
 }
+h2 code {
+  font-size: 20px;
+}
 @media (max-width: 767px) {
   h2 {
+    font-size: 16px;
+  }
+  h2 code {
     font-size: 16px;
   }
 }
 h3 {
   font-size: 18px;
 }
+h3 code {
+  font-size: 18px;
+}
 @media (max-width: 767px) {
   h3 {
+    font-size: 14px;
+  }
+  h3 code {
     font-size: 14px;
   }
 }
 h4 {
   font-size: 16px;
 }
+h4 code {
+  font-size: 16px;
+}
 @media (max-width: 767px) {
   h4 {
+    font-size: 12px;
+  }
+  h4 code {
     font-size: 12px;
   }
 }
 h5 {
   font-size: 14px;
 }
+h5 code {
+  font-size: 14px;
+}
 @media (max-width: 767px) {
   h5 {
+    font-size: 10px;
+  }
+  h5 code {
     font-size: 10px;
   }
 }
 h6 {
   font-size: 12px;
 }
+h6 code {
+  font-size: 12px;
+}
 @media (max-width: 767px) {
   h6 {
+    font-size: 8px;
+  }
+  h6 code {
     font-size: 8px;
   }
 }
 p {
   margin: 0 0 20px 0;
 }
-a {
+a,
+span.exturl {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  background-color: transparent;
   color: #555;
   text-decoration: none;
   outline: none;
   border-bottom: 1px solid #999;
-  word-wrap: break-word;
+  cursor: pointer;
 }
-a:hover {
+a:hover,
+span.exturl:hover {
   color: #222;
   border-bottom-color: #222;
 }
@@ -595,7 +622,7 @@ table {
   border-spacing: 0;
   border: 1px solid #ddd;
   font-size: 14px;
-  word-wrap: break-all;
+  word-break: break-all;
 }
 table>tbody>tr:nth-of-type(odd) {
   background-color: #f9f9f9;
@@ -646,9 +673,6 @@ body {
     width: 73%;
   }
 }
-.main {
-  padding-bottom: 150px;
-}
 .main-inner {
   margin: 0 auto;
   width: calc(100% - 20px);
@@ -664,15 +688,11 @@ body {
   }
 }
 .footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  min-height: 50px;
+  padding: 20px 0;
 }
 .footer-inner {
   box-sizing: border-box;
-  margin: 20px auto;
+  margin: 0px auto;
   width: calc(100% - 20px);
 }
 @media (min-width: 1200px) {
@@ -700,8 +720,9 @@ code {
   font-family: 'PT Mono', consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace;
 }
 code {
-  padding: 2px 4px;
+  overflow-wrap: break-word;
   word-wrap: break-word;
+  padding: 2px 4px;
   color: #555;
   background: #eee;
   border-radius: 3px;
@@ -801,6 +822,7 @@ pre .comment {
 pre .variable,
 pre .attribute,
 pre .tag,
+pre .name,
 pre .regexp,
 pre .ruby .constant,
 pre .xml .tag .title,
@@ -815,6 +837,7 @@ pre .css .pseudo {
 pre .number,
 pre .preprocessor,
 pre .built_in,
+pre .builtin-name,
 pre .literal,
 pre .params,
 pre .constant,
@@ -824,13 +847,13 @@ pre .command {
 pre .ruby .class .title,
 pre .css .rules .attribute,
 pre .string,
+pre .symbol,
 pre .value,
 pre .inheritance,
 pre .header,
 pre .ruby .symbol,
 pre .xml .cdata,
 pre .special,
-pre .number,
 pre .formula {
   color: #b9ca4a;
 }
@@ -1342,7 +1365,8 @@ pre .javascript .function {
 }
 .use-motion .logo,
 .use-motion .site-title,
-.use-motion .site-subtitle {
+.use-motion .site-subtitle,
+.use-motion .custom-logo-image {
   opacity: 0;
   position: relative;
   top: -10px;
@@ -1398,7 +1422,8 @@ pre .javascript .function {
     margin-top: 10px;
   }
 }
-.menu .menu-item a {
+.menu .menu-item a,
+.menu .menu-item span.exturl {
   display: block;
   font-size: 13px;
   line-height: inherit;
@@ -1409,7 +1434,7 @@ pre .javascript .function {
   transition-delay: 0s;
 }
 .menu .menu-item a:hover,
-.menu-item-active a {
+.menu .menu-item span.exturl:hover {
   border-bottom-color: #222;
 }
 .menu .menu-item .fa {
@@ -1419,12 +1444,13 @@ pre .javascript .function {
   opacity: 0;
 }
 .post-body {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   font-family: 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
-@media (max-width: 767px) {
-  .post-body {
-    word-break: break-word;
-  }
+.post-body .exturl .fa {
+  font-size: 14px;
+  margin-left: 4px;
 }
 .post-body .fancybox img {
   display: block !important;
@@ -1645,7 +1671,8 @@ pre .javascript .function {
   margin-left: 3px;
   opacity: 0.6;
 }
-.posts-collapse .post-title a {
+.posts-collapse .post-title a,
+.posts-collapse .post-title span.exturl {
   color: #666;
   border-bottom: none;
 }
@@ -1656,8 +1683,9 @@ pre .javascript .function {
   display: none;
 }
 .posts-expand .post-title {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   text-align: center;
-  word-break: break-word;
   font-weight: 400;
 }
 .posts-expand .post-title-link {
@@ -1695,7 +1723,8 @@ pre .javascript .function {
   transform: scaleX(1);
 }
 .posts-expand .post-title-link .fa {
-  font-size: 16px;
+  font-size: 20px;
+  margin-left: 5px;
 }
 .posts-expand .post-meta {
   margin: 3px 0 60px 0;
@@ -1790,23 +1819,20 @@ pre .javascript .function {
   top: 2px;
 }
 .post-nav-item .fa {
-  position: absolute;
-  top: 8px;
-  left: 0;
   font-size: 12px;
+  margin-right: 5px;
 }
 .post-nav-next a {
-  padding-left: 15px;
+  padding-left: 5px;
 }
 .post-nav-prev {
   text-align: right;
 }
 .post-nav-prev a {
-  padding-right: 15px;
+  padding-right: 5px;
 }
 .post-nav-prev .fa {
-  right: 0;
-  left: auto;
+  margin-left: 5px;
 }
 .posts-expand .post-eof {
   display: block;
@@ -2029,7 +2055,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #b9ffff;
+  background: #e4e40f;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2047,7 +2073,8 @@ pre .javascript .function {
 .links-of-blogroll-item {
   padding: 2px 10px;
 }
-.links-of-blogroll-item a {
+.links-of-blogroll-item a,
+.links-of-blogroll-item span.exturl {
   max-width: 280px;
   box-sizing: border-box;
   display: inline-block;
@@ -2301,9 +2328,6 @@ pre .javascript .function {
     transform: scale(1.1);
   }
 }
-.fa {
-  font-family: FontAwesome !important;
-}
 .local-search-pop-overlay {
   position: fixed;
   width: 100%;
@@ -2554,9 +2578,10 @@ pre .javascript .function {
   transition-delay: 0s;
 }
 .algolia-pagination .pagination {
-  margin-top: 40px;
+  margin: 40px 0px;
   border-top: none;
   padding: 0;
+  opacity: 1;
 }
 .algolia-pagination .pagination-item {
   display: inline-block;
@@ -2591,6 +2616,10 @@ pre .javascript .function {
   background: #555;
   border: 1px solid #fff;
   border-radius: 50%;
+}
+.page-archive .fa-external-link {
+  font-size: 15px;
+  margin-left: 5px;
 }
 .category-all-page .category-all-title {
   text-align: center;
@@ -2688,9 +2717,10 @@ pre .javascript .function {
 }
 #schedule ul#event-list li.event-past {
   background: #fcfcfc;
+  padding: 15px 0 15px 10px;
 }
 #schedule ul#event-list li.event-past > * {
-  opacity: 0.6;
+  opacity: 0.9;
 }
 #schedule ul#event-list li.event-past h2.event-summary {
   color: #bbb;
@@ -2713,6 +2743,23 @@ pre .javascript .function {
   animation: dot-flash 1s alternate infinite ease-in-out;
 }
 #schedule ul#event-list li.event-now * {
+  color: #fff !important;
+}
+#schedule ul#event-list li.event-future {
+  background: #222;
+  color: #fff;
+  padding: 15px 0 15px 10px;
+}
+#schedule ul#event-list li.event-future h2.event-summary:before {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+  color: #fff;
+  animation: dot-flash 1s alternate infinite ease-in-out;
+}
+#schedule ul#event-list li.event-future * {
   color: #fff !important;
 }
 @-moz-keyframes dot-flash {
@@ -2874,16 +2921,6 @@ ul.breadcrumb li+li:last-child {
   clear: both;
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  .main {
-    padding-bottom: 100px;
-  }
-}
-@media (max-width: 767px) {
-  .main {
-    padding-bottom: 100px;
-  }
-}
-@media (min-width: 768px) and (max-width: 991px) {
   .container .main-inner {
     width: auto;
   }
@@ -2921,7 +2958,7 @@ ul.breadcrumb li+li:last-child {
 .sidebar {
   position: static;
   float: left;
-  margin-top: 300px;
+  margin-left: -100%;
   width: 240px;
   background: #eee;
   box-shadow: none;
@@ -2998,6 +3035,19 @@ ul.breadcrumb li+li:last-child {
   margin: 10px 10px 0;
   font-weight: initial;
 }
+.custom-logo-image {
+  margin-top: 20px;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .custom-logo-image {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .custom-logo-image {
+    display: none;
+  }
+}
 .site-search form {
   display: none;
 }
@@ -3014,11 +3064,31 @@ ul.breadcrumb li+li:last-child {
     display: block !important;
   }
 }
+.menu-item-active a,
+.menu .menu-item a:hover,
+.menu .menu-item span.exturl:hover {
+  background: #f9f9f9;
+  border-bottom-color: #fff;
+}
+.menu-item-active a:after,
+.menu .menu-item a:hover:after,
+.menu .menu-item span.exturl:hover:after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  margin-top: -3px;
+  right: 15px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #bbb;
+}
 .menu .menu-item {
   display: block;
   margin: 0;
 }
-.menu .menu-item a {
+.menu .menu-item a,
+.menu .menu-item span.exturl {
   position: relative;
   box-sizing: border-box;
   padding: 5px 20px;
@@ -3029,10 +3099,11 @@ ul.breadcrumb li+li:last-child {
   transition-timing-function: ease-in-out;
   transition-delay: 0s;
 }
-.menu .menu-item a:hover,
-.menu-item-active a {
-  background: #f9f9f9;
-  border-bottom-color: #fff;
+@media (hover: none) {
+  .menu .menu-item a:hover,
+  .menu .menu-item span.exturl:hover {
+    background: none;
+  }
 }
 .menu .menu-item .badge {
   display: inline-block;
@@ -3051,17 +3122,6 @@ ul.breadcrumb li+li:last-child {
 }
 .menu .menu-item br {
   display: none;
-}
-.menu-item-active a:after {
-  content: " ";
-  position: absolute;
-  top: 50%;
-  margin-top: -3px;
-  right: 15px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #bbb;
 }
 .btn-bar {
   background-color: #fff;
@@ -3090,11 +3150,13 @@ ul.breadcrumb li+li:last-child {
 .sub-menu .menu-item {
   display: inline-block !important;
 }
-.sub-menu .menu-item a {
+.sub-menu .menu-item a,
+.sub-menu .menu-item span.exturl {
   padding: initial !important;
   margin: 5px 10px;
 }
-.sub-menu .menu-item a:hover {
+.sub-menu .menu-item a:hover,
+.sub-menu .menu-item span.exturl:hover {
   background: initial !important;
   color: #fc6423;
 }
@@ -3114,7 +3176,6 @@ ul.breadcrumb li+li:last-child {
   opacity: 1;
 }
 .sidebar {
-  margin-left: -100%;
   right: auto;
   bottom: auto;
   -webkit-transform: none;
@@ -3147,22 +3208,22 @@ ul.breadcrumb li+li:last-child {
   clear: both;
 }
 .sidebar a,
-.sidebar .exturl {
+.sidebar span.exturl {
   color: #555;
 }
 .sidebar a:hover,
-.sidebar .exturl:hover {
+.sidebar span.exturl:hover {
   color: #222;
 }
 .site-state-item {
   padding: 0 10px;
 }
 .links-of-author-item a:before,
-.links-of-author-item .exturl:before {
+.links-of-author-item span.exturl:before {
   display: none;
 }
 .links-of-author-item a,
-.links-of-author-item .exturl {
+.links-of-author-item span.exturl {
   border-bottom: none;
   text-decoration: underline;
 }
@@ -3188,7 +3249,7 @@ ul.breadcrumb li+li:last-child {
   flex-wrap: wrap;
   justify-content: center;
 }
-.links-of-author .exturl {
+.links-of-author span.exturl {
   font-size: 13px;
 }
 .links-of-author-item {
@@ -3208,12 +3269,12 @@ ul.breadcrumb li+li:last-child {
   text-overflow: ellipsis;
 }
 .links-of-author-item a,
-.links-of-author-item .exturl {
+.links-of-author-item span.exturl {
   display: block;
   text-decoration: none;
 }
 .links-of-author-item a:hover,
-.links-of-author-item .exturl:hover {
+.links-of-author-item span.exturl:hover {
   border-radius: 4px;
   background: #eee;
 }
@@ -3281,7 +3342,7 @@ ul.breadcrumb li+li:last-child {
 }
 .comments {
   padding: 40px;
-  margin: initial;
+  margin: auto;
   margin-top: 12px;
   background: #fff;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
@@ -3352,22 +3413,40 @@ ul.breadcrumb li+li:last-child {
   font-size: 1.6em;
   border-bottom: 1px solid #eee;
 }
+.post-body h1 code {
+  font-size: 1em;
+}
 .post-body h2 {
   font-size: 1.45em;
   border-bottom: 1px solid #eee;
+}
+.post-body h2 code {
+  font-size: 1em;
 }
 .post-body h3 {
   font-size: 1.3em;
   border-bottom: 1px dotted #eee;
 }
+.post-body h3 code {
+  font-size: 1em;
+}
 .post-body h4 {
   font-size: 1.2em;
+}
+.post-body h4 code {
+  font-size: 1em;
 }
 .post-body h5 {
   font-size: 1.07em;
 }
+.post-body h5 code {
+  font-size: 1em;
+}
 .post-body h6 {
   font-size: 1.03em;
+}
+.post-body h6 code {
+  font-size: 1em;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .content-wrap {
@@ -3426,29 +3505,27 @@ ul.breadcrumb li+li:last-child {
   }
 }
 </style><noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
 
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
 </noscript>
 
@@ -3467,7 +3544,7 @@ ul.breadcrumb li+li:last-child {
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -3477,6 +3554,7 @@ ul.breadcrumb li+li:last-child {
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
     
   </div>
 
@@ -3500,32 +3578,68 @@ ul.breadcrumb li+li:last-child {
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
   </li>
 
       
@@ -3611,6 +3725,188 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/15/IBM-install-drivers-2/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2008/03/15/IBM-install-drivers-2/" class="post-title-link" itemprop="url">IBM T61/R61/X61 WinXP驱动安装(二)</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-15T00:00:00+08:00">2008-03-15</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="十五-、安装-UltraNav-driver-for-Windows-2000-XP"><a href="#十五-、安装-UltraNav-driver-for-Windows-2000-XP" class="headerlink" title="十五 、安装 UltraNav driver for Windows 2000, XP"></a>十五 、安装 UltraNav driver for Windows 2000, XP</h3><p>注 1 ： 如果网友的 ThinkPad 是 X61/X61s ，请至 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-4kmuyl" target="_blank" rel="noopener">此连结</a> 下载 TrackPoint Only 驱动程序。</p>
+<ol>
+<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-42487" target="_blank" rel="noopener">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-42487</a> 下载。</p>
+</li>
+<li><p>所安装的版本是 7.5.17 .20 版， 2006/05/27 发布。档名为 77gu08ww.exe</p>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
+<li>License Agreement 画面，选「 I accept the terms in the license agreement 」按「 Next 」 </li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\WIN\UNAV 」，如不想变更请直接按「 Next 」 </li>
+<li>解压缩完成后按「 Finish 」</li>
+</ul>
+</li>
+<li><p>到「 C:\DRIVERS\WIN\UNAV 」里，双击「 Setup.exe 」</p>
+<ul>
+<li>首先出现「选取安装语言」，选「英语」，按「确定」 </li>
+<li>按「 Next 」 </li>
+<li>按「 Next 」 </li>
+<li>安装完毕后选「 Yes, I want to restart my computer now 」，按「 Finish 」</li>
+</ul>
+</li>
+</ol>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2008/03/15/IBM-install-drivers-2/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/15/apache-rewrite/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3630,9 +3926,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/03/15/apache-rewrite/" itemprop="url">
-                  Apache 重写规则的常见应用 (rewrite)
-                </a>
+                
+                <a href="/2008/03/15/apache-rewrite/" class="post-title-link" itemprop="url">Apache 重写规则的常见应用 (rewrite)</a>
               
             
           </h1>
@@ -3719,11 +4014,13 @@ ul.breadcrumb li+li:last-child {
 </ol>
 <h3 id="四-重写规则的应用条件"><a href="#四-重写规则的应用条件" class="headerlink" title="四:重写规则的应用条件"></a>四:重写规则的应用条件</h3><p>只有当用户的WEB请求最终被导向到某台WEB服务器的Apache后台，则这台WEB服务器接受进来的请求，根据配置文件该请求是主配置还是虚拟主机，再根据用户在浏览器中请求的URI来配对重写规则并且根据实际的请求路径配对.htaccess中的重写规则。最后把请求的内容传回给用户，该响应可能有两种：</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2008/03/15/apache-rewrite/#more" rel="contents">
-              Read more »
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2008/03/15/apache-rewrite/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -3738,165 +4035,8 @@ ul.breadcrumb li+li:last-child {
     
 
     
-
-    
-
-    <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/15/wp-plugin-tiger-administration/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/03/15/wp-plugin-tiger-administration/" itemprop="url">
-                  WP插件–WP Tiger Administration
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-15T00:00:00+08:00">2008-03-15</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>WP Tiger Administration是一款WP后台美化插件，整体感觉比较庄重严肃……具体看下面的截图:</p>
-<p>一套超强的CSS系统,只有170K左右,就能把你的后台打造成你喜欢的样式…实在令人不得不PF…</p>
-<p>下载:<a href="/files/wp-admin-tiger-v30.zip">Download the plugin</a></p>
-<p>下载下来后,解压,当然,一般都是解压到当前文件夹,这样的话,就出现两个文件,一个主文件,一个是介绍文档,PDF格式…如果你轻易看懂英文的话,那就不用往下看了,那个介绍也挺简单的.只是要注意一些问题而已…你应该把整个文件传到/wp-content/plugins/目录下…即:<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/wp-content/plugins/wp-admin-tiger/</span><br><span class="line">/wp-admin-tiger/wp-admin-tiger_files/</span><br><span class="line">/wp-admin-tiger/wp-admin-tiger.php</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>需要注意的就是这点了…</p>
-<p>当然,最后一步,激活插件,然后你什么都不用做,就可以拥有一个全新的后台了.</p>
-<p>更多的可以查看：<a href="http://orderedlist.com/wordpress-plugins/wp-tiger-administration/" target="_blank" rel="noopener">插件作者页面</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
     
 
     
@@ -3955,9 +4095,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/03/05/transformers-cg/" itemprop="url">
-                  《变形金刚》高清人物CG组图
-                </a>
+                
+                <a href="/2008/03/05/transformers-cg/" class="post-title-link" itemprop="url">《变形金刚》高清人物CG组图</a>
               
             
           </h1>
@@ -4060,6 +4199,9 @@ ul.breadcrumb li+li:last-child {
     
 
     
+      
+    
+    
 
     
 
@@ -4117,9 +4259,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/03/04/EditPlus-regex/" itemprop="url">
-                  EditPlus正则表达式替换字符串详解
-                </a>
+                
+                <a href="/2008/03/04/EditPlus-regex/" class="post-title-link" itemprop="url">EditPlus正则表达式替换字符串详解</a>
               
             
           </h1>
@@ -4204,11 +4345,13 @@ ul.breadcrumb li+li:last-child {
 <p>Expression Description<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">\t Tab character.  </span><br><span class="line">\n New line.  </span><br><span class="line">. Matches any character.  </span><br><span class="line">| Either expression on its left and right side matches the target string.  </span><br><span class="line">For example, "a|b" matches "a" and "b".  </span><br><span class="line">[] Any of the enclosed characters may match the target character.  </span><br><span class="line">  For example, "[ab]" matches "a" and "b". "[0-9]" matches any digit.  </span><br><span class="line">[^] None of the enclosed characters may match the target character.  </span><br><span class="line">  For example, "[^ab]" matches all character EXCEPT "a" and "b".  </span><br><span class="line">"[^0-9]" matches any non-digit character.  </span><br><span class="line">* Character to the left of asterisk in the expression should match 0 or more times.  </span><br><span class="line">For example "be*" matches "b", "be" and "bee".    </span><br><span class="line">+ Character to the left of plus sign in the expression should match 1 or more times.  </span><br><span class="line">For example "be+" matches "be" and "bee" but not "b".  </span><br><span class="line">? Character to the left of question mark in the expression should match 0 or 1 time.  </span><br><span class="line">For example "be?" matches "b" and "be" but not "bee".  </span><br><span class="line">^ Expression to the right of ^ matches only when it is at the beginning of line.  </span><br><span class="line">For example "^A" matches an "A" that is only at the beginning of line.  </span><br><span class="line">$ Expression to the left of $ matches only when it is at the end of line.  </span><br><span class="line">For example "e$" matches an "e" that is only at the end of line.  </span><br><span class="line">() Affects evaluation order of expression and also used for tagged expression.  </span><br><span class="line">\ scape character. If you want to use character "\" itself, you should use "\\".</span><br></pre></td></tr></tbody></table></figure><p></p>
 </blockquote>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2008/03/04/EditPlus-regex/#more" rel="contents">
-              Read more »
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2008/03/04/EditPlus-regex/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -4222,6 +4365,9 @@ ul.breadcrumb li+li:last-child {
 
     
 
+    
+      
+    
     
 
     
@@ -4280,9 +4426,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/03/04/EditPlus-regex-example/" itemprop="url">
-                  Editplus 正则替换实例 By Stabx
-                </a>
+                
+                <a href="/2008/03/04/EditPlus-regex-example/" class="post-title-link" itemprop="url">Editplus 正则替换实例 By Stabx</a>
               
             
           </h1>
@@ -4402,160 +4547,8 @@ ul.breadcrumb li+li:last-child {
     
 
     
-
-    
-
-    <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/03/small-shell/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/03/03/small-shell/" itemprop="url">
-                  非常小的shell: 指定行号,插入文本(转)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-03-03 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-03T00:00:00+08:00">2008-03-03</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>使用这个shell可以直接在某个文件的某一行插入指定的文本,很方便. 可以把这个<br>shell加入PATH中.以下的蓝色部分为代码, 文件名为insert</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more insert</span><br><span class="line">#!/bin/bash</span><br><span class="line"># 从文件的某一行之后插入新行</span><br><span class="line"># FILE 为文件名，LINENUM为行号，TEXT为要插入的文本</span><br><span class="line"># Copyleft: cheyo@JMU</span><br><span class="line"></span><br><span class="line">showUsage()</span><br><span class="line">{</span><br><span class="line">echo "[Usage]: insert FILE LINENUM TEXT"</span><br><span class="line">echo "# 从文件的某一行之后插入新行"</span><br><span class="line">echo "# FILE 为文件名，LINENUM为行号，TEXT为要插入的文本"</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">if [ $# -lt 3 ] #少于3个参数,错误!</span><br><span class="line">then showUsage</span><br><span class="line">exit 1</span><br><span class="line">else</span><br><span class="line">sed "${2}a</span><br><span class="line">${3}" $1 &gt; tmpfile;mv tmpfile $1</span><br><span class="line">fi</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$ ./insert a 3 "Test"</span><br><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">Test</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$</span><br></pre></td></tr></tbody></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
     
 
     
@@ -4614,9 +4607,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/03/03/read-the-specified-line/" itemprop="url">
-                  如何提取指定行的内容？
-                </a>
+                
+                <a href="/2008/03/03/read-the-specified-line/" class="post-title-link" itemprop="url">如何提取指定行的内容？</a>
               
             
           </h1>
@@ -4737,6 +4729,166 @@ ul.breadcrumb li+li:last-child {
     
 
     
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/03/small-shell/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2008/03/03/small-shell/" class="post-title-link" itemprop="url">非常小的shell: 指定行号,插入文本(转)</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-03-03 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-03T00:00:00+08:00">2008-03-03</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>使用这个shell可以直接在某个文件的某一行插入指定的文本,很方便. 可以把这个<br>shell加入PATH中.以下的蓝色部分为代码, 文件名为insert</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more insert</span><br><span class="line">#!/bin/bash</span><br><span class="line"># 从文件的某一行之后插入新行</span><br><span class="line"># FILE 为文件名，LINENUM为行号，TEXT为要插入的文本</span><br><span class="line"># Copyleft: cheyo@JMU</span><br><span class="line"></span><br><span class="line">showUsage()</span><br><span class="line">{</span><br><span class="line">echo "[Usage]: insert FILE LINENUM TEXT"</span><br><span class="line">echo "# 从文件的某一行之后插入新行"</span><br><span class="line">echo "# FILE 为文件名，LINENUM为行号，TEXT为要插入的文本"</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">if [ $# -lt 3 ] #少于3个参数,错误!</span><br><span class="line">then showUsage</span><br><span class="line">exit 1</span><br><span class="line">else</span><br><span class="line">sed "${2}a</span><br><span class="line">${3}" $1 &gt; tmpfile;mv tmpfile $1</span><br><span class="line">fi</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$ ./insert a 3 "Test"</span><br><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">Test</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$</span><br></pre></td></tr></tbody></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
 
     
 
@@ -4794,9 +4946,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/03/03/linux-c-shell/" itemprop="url">
-                  Linux下C编程系列–Shell(续)
-                </a>
+                
+                <a href="/2008/03/03/linux-c-shell/" class="post-title-link" itemprop="url">Linux下C编程系列–Shell(续)</a>
               
             
           </h1>
@@ -4880,11 +5031,13 @@ ul.breadcrumb li+li:last-child {
 </blockquote>
 <h3 id="echo-e-n-string"><a href="#echo-e-n-string" class="headerlink" title="echo [-e] [-n] string"></a>echo [-e] [-n] string</h3><p>string : 字符串，可以含 shell 变量、转义符等， 一般用双引号括起来<br>-e : 让 echo 解释 string 中的转义符<br>-n : 禁止 echo 输出后输出 NEWLINE（换行）</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2008/03/03/linux-c-shell/#more" rel="contents">
-              Read more »
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2008/03/03/linux-c-shell/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -4898,6 +5051,9 @@ ul.breadcrumb li+li:last-child {
 
     
 
+    
+      
+    
     
 
     
@@ -4956,9 +5112,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/02/23/centos-install-gb/" itemprop="url">
-                  为CentOS安装GD库
-                </a>
+                
+                <a href="/2008/02/23/centos-install-gb/" class="post-title-link" itemprop="url">为CentOS安装GD库</a>
               
             
           </h1>
@@ -5063,6 +5218,9 @@ ul.breadcrumb li+li:last-child {
     
 
     
+      
+    
+    
 
     
 
@@ -5120,9 +5278,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/02/23/photoshop-designer-top-10/" itemprop="url">
-                  10位顶尖photoshop设计大师
-                </a>
+                
+                <a href="/2008/02/23/photoshop-designer-top-10/" class="post-title-link" itemprop="url">10位顶尖photoshop设计大师</a>
               
             
           </h1>
@@ -5255,6 +5412,9 @@ ul.breadcrumb li+li:last-child {
     
 
     
+      
+    
+    
 
     
 
@@ -5310,7 +5470,7 @@ ul.breadcrumb li+li:last-child {
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -5823,7 +5983,6 @@ ul.breadcrumb li+li:last-child {
           
 
           
-          
 
           
           
@@ -5834,7 +5993,7 @@ ul.breadcrumb li+li:last-child {
           
 
         </div>
-      </section>
+      </div>
 
       
 
@@ -5864,7 +6023,7 @@ ul.breadcrumb li+li:last-child {
         })();
       </script>
       <div class="footer-inner">
-        <div class="copyright">© 2007 – <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">© 2007 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -5876,9 +6035,7 @@ ul.breadcrumb li+li:last-child {
 </div>
 
 
-
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
@@ -5886,7 +6043,7 @@ ul.breadcrumb li+li:last-child {
 
 
 
-  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
 
 
 
@@ -5920,7 +6077,7 @@ ul.breadcrumb li+li:last-child {
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -5937,8 +6094,6 @@ ul.breadcrumb li+li:last-child {
 
 
 
-  
-
 
 
 
@@ -5955,22 +6110,11 @@ ul.breadcrumb li+li:last-child {
 
   
   
-    
-  
 
   
   
-    
-  
 
   
-  
-    
-  
-
-  
-  
-    
   
 
 
@@ -6017,15 +6161,11 @@ ul.breadcrumb li+li:last-child {
 
 
 
+
   
 
 
 
-
-  
-  
-  
-  
 
   
   
@@ -6033,6 +6173,11 @@ ul.breadcrumb li+li:last-child {
   
 
   
+  
+  
+  
+
+  
 
 
 
@@ -6045,6 +6190,7 @@ ul.breadcrumb li+li:last-child {
   
 
   
+
   
 
   

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="theme-next gemini use-motion" lang="zh-Hans"><head>
+<!DOCTYPE html><html class="theme-next gemini use-motion" lang="zh-Hans"><head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -15,8 +15,6 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -24,18 +22,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-  
-  
-  
 
 
 
@@ -109,16 +95,14 @@
 
 
 
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '6.4.1',
+    version: '6.7.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    fancybox: false,
     fastclick: false,
     lazyload: false,
     tabs: true,
@@ -161,7 +145,7 @@
 
 
 
-<script type="text/javascript" id="page.configurations">
+<script id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
@@ -173,14 +157,16 @@
 
 
 
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-42337789-4');
+  </script>
 
-  gtag('config', 'UA-42337789-4');
-</script>
+
+
 
 
 
@@ -418,62 +404,103 @@ h6 {
 h1 {
   font-size: 22px;
 }
+h1 code {
+  font-size: 22px;
+}
 @media (max-width: 767px) {
   h1 {
+    font-size: 18px;
+  }
+  h1 code {
     font-size: 18px;
   }
 }
 h2 {
   font-size: 20px;
 }
+h2 code {
+  font-size: 20px;
+}
 @media (max-width: 767px) {
   h2 {
+    font-size: 16px;
+  }
+  h2 code {
     font-size: 16px;
   }
 }
 h3 {
   font-size: 18px;
 }
+h3 code {
+  font-size: 18px;
+}
 @media (max-width: 767px) {
   h3 {
+    font-size: 14px;
+  }
+  h3 code {
     font-size: 14px;
   }
 }
 h4 {
   font-size: 16px;
 }
+h4 code {
+  font-size: 16px;
+}
 @media (max-width: 767px) {
   h4 {
+    font-size: 12px;
+  }
+  h4 code {
     font-size: 12px;
   }
 }
 h5 {
   font-size: 14px;
 }
+h5 code {
+  font-size: 14px;
+}
 @media (max-width: 767px) {
   h5 {
+    font-size: 10px;
+  }
+  h5 code {
     font-size: 10px;
   }
 }
 h6 {
   font-size: 12px;
 }
+h6 code {
+  font-size: 12px;
+}
 @media (max-width: 767px) {
   h6 {
+    font-size: 8px;
+  }
+  h6 code {
     font-size: 8px;
   }
 }
 p {
   margin: 0 0 20px 0;
 }
-a {
+a,
+span.exturl {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  background-color: transparent;
   color: #555;
   text-decoration: none;
   outline: none;
   border-bottom: 1px solid #999;
-  word-wrap: break-word;
+  cursor: pointer;
 }
-a:hover {
+a:hover,
+span.exturl:hover {
   color: #222;
   border-bottom-color: #222;
 }
@@ -595,7 +622,7 @@ table {
   border-spacing: 0;
   border: 1px solid #ddd;
   font-size: 14px;
-  word-wrap: break-all;
+  word-break: break-all;
 }
 table>tbody>tr:nth-of-type(odd) {
   background-color: #f9f9f9;
@@ -646,9 +673,6 @@ body {
     width: 73%;
   }
 }
-.main {
-  padding-bottom: 150px;
-}
 .main-inner {
   margin: 0 auto;
   width: calc(100% - 20px);
@@ -664,15 +688,11 @@ body {
   }
 }
 .footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  min-height: 50px;
+  padding: 20px 0;
 }
 .footer-inner {
   box-sizing: border-box;
-  margin: 20px auto;
+  margin: 0px auto;
   width: calc(100% - 20px);
 }
 @media (min-width: 1200px) {
@@ -700,8 +720,9 @@ code {
   font-family: 'PT Mono', consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace;
 }
 code {
-  padding: 2px 4px;
+  overflow-wrap: break-word;
   word-wrap: break-word;
+  padding: 2px 4px;
   color: #555;
   background: #eee;
   border-radius: 3px;
@@ -801,6 +822,7 @@ pre .comment {
 pre .variable,
 pre .attribute,
 pre .tag,
+pre .name,
 pre .regexp,
 pre .ruby .constant,
 pre .xml .tag .title,
@@ -815,6 +837,7 @@ pre .css .pseudo {
 pre .number,
 pre .preprocessor,
 pre .built_in,
+pre .builtin-name,
 pre .literal,
 pre .params,
 pre .constant,
@@ -824,13 +847,13 @@ pre .command {
 pre .ruby .class .title,
 pre .css .rules .attribute,
 pre .string,
+pre .symbol,
 pre .value,
 pre .inheritance,
 pre .header,
 pre .ruby .symbol,
 pre .xml .cdata,
 pre .special,
-pre .number,
 pre .formula {
   color: #b9ca4a;
 }
@@ -1342,7 +1365,8 @@ pre .javascript .function {
 }
 .use-motion .logo,
 .use-motion .site-title,
-.use-motion .site-subtitle {
+.use-motion .site-subtitle,
+.use-motion .custom-logo-image {
   opacity: 0;
   position: relative;
   top: -10px;
@@ -1398,7 +1422,8 @@ pre .javascript .function {
     margin-top: 10px;
   }
 }
-.menu .menu-item a {
+.menu .menu-item a,
+.menu .menu-item span.exturl {
   display: block;
   font-size: 13px;
   line-height: inherit;
@@ -1409,7 +1434,7 @@ pre .javascript .function {
   transition-delay: 0s;
 }
 .menu .menu-item a:hover,
-.menu-item-active a {
+.menu .menu-item span.exturl:hover {
   border-bottom-color: #222;
 }
 .menu .menu-item .fa {
@@ -1419,12 +1444,13 @@ pre .javascript .function {
   opacity: 0;
 }
 .post-body {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   font-family: 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
-@media (max-width: 767px) {
-  .post-body {
-    word-break: break-word;
-  }
+.post-body .exturl .fa {
+  font-size: 14px;
+  margin-left: 4px;
 }
 .post-body .fancybox img {
   display: block !important;
@@ -1645,7 +1671,8 @@ pre .javascript .function {
   margin-left: 3px;
   opacity: 0.6;
 }
-.posts-collapse .post-title a {
+.posts-collapse .post-title a,
+.posts-collapse .post-title span.exturl {
   color: #666;
   border-bottom: none;
 }
@@ -1656,8 +1683,9 @@ pre .javascript .function {
   display: none;
 }
 .posts-expand .post-title {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   text-align: center;
-  word-break: break-word;
   font-weight: 400;
 }
 .posts-expand .post-title-link {
@@ -1695,7 +1723,8 @@ pre .javascript .function {
   transform: scaleX(1);
 }
 .posts-expand .post-title-link .fa {
-  font-size: 16px;
+  font-size: 20px;
+  margin-left: 5px;
 }
 .posts-expand .post-meta {
   margin: 3px 0 60px 0;
@@ -1790,23 +1819,20 @@ pre .javascript .function {
   top: 2px;
 }
 .post-nav-item .fa {
-  position: absolute;
-  top: 8px;
-  left: 0;
   font-size: 12px;
+  margin-right: 5px;
 }
 .post-nav-next a {
-  padding-left: 15px;
+  padding-left: 5px;
 }
 .post-nav-prev {
   text-align: right;
 }
 .post-nav-prev a {
-  padding-right: 15px;
+  padding-right: 5px;
 }
 .post-nav-prev .fa {
-  right: 0;
-  left: auto;
+  margin-left: 5px;
 }
 .posts-expand .post-eof {
   display: block;
@@ -2029,7 +2055,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #b9ffff;
+  background: #e4e40f;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2047,7 +2073,8 @@ pre .javascript .function {
 .links-of-blogroll-item {
   padding: 2px 10px;
 }
-.links-of-blogroll-item a {
+.links-of-blogroll-item a,
+.links-of-blogroll-item span.exturl {
   max-width: 280px;
   box-sizing: border-box;
   display: inline-block;
@@ -2301,9 +2328,6 @@ pre .javascript .function {
     transform: scale(1.1);
   }
 }
-.fa {
-  font-family: FontAwesome !important;
-}
 .local-search-pop-overlay {
   position: fixed;
   width: 100%;
@@ -2554,9 +2578,10 @@ pre .javascript .function {
   transition-delay: 0s;
 }
 .algolia-pagination .pagination {
-  margin-top: 40px;
+  margin: 40px 0px;
   border-top: none;
   padding: 0;
+  opacity: 1;
 }
 .algolia-pagination .pagination-item {
   display: inline-block;
@@ -2591,6 +2616,10 @@ pre .javascript .function {
   background: #555;
   border: 1px solid #fff;
   border-radius: 50%;
+}
+.page-archive .fa-external-link {
+  font-size: 15px;
+  margin-left: 5px;
 }
 .category-all-page .category-all-title {
   text-align: center;
@@ -2688,9 +2717,10 @@ pre .javascript .function {
 }
 #schedule ul#event-list li.event-past {
   background: #fcfcfc;
+  padding: 15px 0 15px 10px;
 }
 #schedule ul#event-list li.event-past > * {
-  opacity: 0.6;
+  opacity: 0.9;
 }
 #schedule ul#event-list li.event-past h2.event-summary {
   color: #bbb;
@@ -2713,6 +2743,23 @@ pre .javascript .function {
   animation: dot-flash 1s alternate infinite ease-in-out;
 }
 #schedule ul#event-list li.event-now * {
+  color: #fff !important;
+}
+#schedule ul#event-list li.event-future {
+  background: #222;
+  color: #fff;
+  padding: 15px 0 15px 10px;
+}
+#schedule ul#event-list li.event-future h2.event-summary:before {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+  color: #fff;
+  animation: dot-flash 1s alternate infinite ease-in-out;
+}
+#schedule ul#event-list li.event-future * {
   color: #fff !important;
 }
 @-moz-keyframes dot-flash {
@@ -2874,16 +2921,6 @@ ul.breadcrumb li+li:last-child {
   clear: both;
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  .main {
-    padding-bottom: 100px;
-  }
-}
-@media (max-width: 767px) {
-  .main {
-    padding-bottom: 100px;
-  }
-}
-@media (min-width: 768px) and (max-width: 991px) {
   .container .main-inner {
     width: auto;
   }
@@ -2921,7 +2958,7 @@ ul.breadcrumb li+li:last-child {
 .sidebar {
   position: static;
   float: left;
-  margin-top: 300px;
+  margin-left: -100%;
   width: 240px;
   background: #eee;
   box-shadow: none;
@@ -2998,6 +3035,19 @@ ul.breadcrumb li+li:last-child {
   margin: 10px 10px 0;
   font-weight: initial;
 }
+.custom-logo-image {
+  margin-top: 20px;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .custom-logo-image {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .custom-logo-image {
+    display: none;
+  }
+}
 .site-search form {
   display: none;
 }
@@ -3014,11 +3064,31 @@ ul.breadcrumb li+li:last-child {
     display: block !important;
   }
 }
+.menu-item-active a,
+.menu .menu-item a:hover,
+.menu .menu-item span.exturl:hover {
+  background: #f9f9f9;
+  border-bottom-color: #fff;
+}
+.menu-item-active a:after,
+.menu .menu-item a:hover:after,
+.menu .menu-item span.exturl:hover:after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  margin-top: -3px;
+  right: 15px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #bbb;
+}
 .menu .menu-item {
   display: block;
   margin: 0;
 }
-.menu .menu-item a {
+.menu .menu-item a,
+.menu .menu-item span.exturl {
   position: relative;
   box-sizing: border-box;
   padding: 5px 20px;
@@ -3029,10 +3099,11 @@ ul.breadcrumb li+li:last-child {
   transition-timing-function: ease-in-out;
   transition-delay: 0s;
 }
-.menu .menu-item a:hover,
-.menu-item-active a {
-  background: #f9f9f9;
-  border-bottom-color: #fff;
+@media (hover: none) {
+  .menu .menu-item a:hover,
+  .menu .menu-item span.exturl:hover {
+    background: none;
+  }
 }
 .menu .menu-item .badge {
   display: inline-block;
@@ -3051,17 +3122,6 @@ ul.breadcrumb li+li:last-child {
 }
 .menu .menu-item br {
   display: none;
-}
-.menu-item-active a:after {
-  content: " ";
-  position: absolute;
-  top: 50%;
-  margin-top: -3px;
-  right: 15px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #bbb;
 }
 .btn-bar {
   background-color: #fff;
@@ -3090,11 +3150,13 @@ ul.breadcrumb li+li:last-child {
 .sub-menu .menu-item {
   display: inline-block !important;
 }
-.sub-menu .menu-item a {
+.sub-menu .menu-item a,
+.sub-menu .menu-item span.exturl {
   padding: initial !important;
   margin: 5px 10px;
 }
-.sub-menu .menu-item a:hover {
+.sub-menu .menu-item a:hover,
+.sub-menu .menu-item span.exturl:hover {
   background: initial !important;
   color: #fc6423;
 }
@@ -3114,7 +3176,6 @@ ul.breadcrumb li+li:last-child {
   opacity: 1;
 }
 .sidebar {
-  margin-left: -100%;
   right: auto;
   bottom: auto;
   -webkit-transform: none;
@@ -3147,22 +3208,22 @@ ul.breadcrumb li+li:last-child {
   clear: both;
 }
 .sidebar a,
-.sidebar .exturl {
+.sidebar span.exturl {
   color: #555;
 }
 .sidebar a:hover,
-.sidebar .exturl:hover {
+.sidebar span.exturl:hover {
   color: #222;
 }
 .site-state-item {
   padding: 0 10px;
 }
 .links-of-author-item a:before,
-.links-of-author-item .exturl:before {
+.links-of-author-item span.exturl:before {
   display: none;
 }
 .links-of-author-item a,
-.links-of-author-item .exturl {
+.links-of-author-item span.exturl {
   border-bottom: none;
   text-decoration: underline;
 }
@@ -3188,7 +3249,7 @@ ul.breadcrumb li+li:last-child {
   flex-wrap: wrap;
   justify-content: center;
 }
-.links-of-author .exturl {
+.links-of-author span.exturl {
   font-size: 13px;
 }
 .links-of-author-item {
@@ -3208,12 +3269,12 @@ ul.breadcrumb li+li:last-child {
   text-overflow: ellipsis;
 }
 .links-of-author-item a,
-.links-of-author-item .exturl {
+.links-of-author-item span.exturl {
   display: block;
   text-decoration: none;
 }
 .links-of-author-item a:hover,
-.links-of-author-item .exturl:hover {
+.links-of-author-item span.exturl:hover {
   border-radius: 4px;
   background: #eee;
 }
@@ -3281,7 +3342,7 @@ ul.breadcrumb li+li:last-child {
 }
 .comments {
   padding: 40px;
-  margin: initial;
+  margin: auto;
   margin-top: 12px;
   background: #fff;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
@@ -3352,22 +3413,40 @@ ul.breadcrumb li+li:last-child {
   font-size: 1.6em;
   border-bottom: 1px solid #eee;
 }
+.post-body h1 code {
+  font-size: 1em;
+}
 .post-body h2 {
   font-size: 1.45em;
   border-bottom: 1px solid #eee;
+}
+.post-body h2 code {
+  font-size: 1em;
 }
 .post-body h3 {
   font-size: 1.3em;
   border-bottom: 1px dotted #eee;
 }
+.post-body h3 code {
+  font-size: 1em;
+}
 .post-body h4 {
   font-size: 1.2em;
+}
+.post-body h4 code {
+  font-size: 1em;
 }
 .post-body h5 {
   font-size: 1.07em;
 }
+.post-body h5 code {
+  font-size: 1em;
+}
 .post-body h6 {
   font-size: 1.03em;
+}
+.post-body h6 code {
+  font-size: 1em;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .content-wrap {
@@ -3426,29 +3505,27 @@ ul.breadcrumb li+li:last-child {
   }
 }
 </style><noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
 
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
 </noscript>
 
@@ -3467,7 +3544,7 @@ ul.breadcrumb li+li:last-child {
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -3477,6 +3554,7 @@ ul.breadcrumb li+li:last-child {
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
     
   </div>
 
@@ -3500,32 +3578,68 @@ ul.breadcrumb li+li:last-child {
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
   </li>
 
       
@@ -3630,9 +3744,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2014/10/29/ios8-cydia-sources/" itemprop="url">
-                  JB後支援iOS6-iOS8 Cydia軟體源推薦與教學
-                </a>
+                
+                <a href="/2014/10/29/ios8-cydia-sources/" class="post-title-link" itemprop="url">JB後支援iOS6-iOS8 Cydia軟體源推薦與教學</a>
               
             
           </h1>
@@ -3715,11 +3828,13 @@ ul.breadcrumb li+li:last-child {
 <p>App Store與Cydia其實都是同樣模式再經營，「<strong>App Store</strong>」可視它為Apple的主要的賣場，開發人員必須遵守Apple規則撰寫APP，需通過Apple審核機制審核才會上架，才能提供讓使用者在App Store購買或是下載，如果是無法通過Apple審核的APP，別灰心在Cydia上一定能夠將此APP功能讓你發揚光大。</p>
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="/images/20141029002.jpg" alt=""></p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2014/10/29/ios8-cydia-sources/#more" rel="contents">
-              Read more »
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2014/10/29/ios8-cydia-sources/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -3733,6 +3848,9 @@ ul.breadcrumb li+li:last-child {
 
     
 
+    
+      
+    
     
 
     
@@ -3791,9 +3909,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2014/10/28/ios8-battery/" itemprop="url">
-                  iOS8省電技巧大公開！讓iOS8更持久減少耗電
-                </a>
+                
+                <a href="/2014/10/28/ios8-battery/" class="post-title-link" itemprop="url">iOS8省電技巧大公開！讓iOS8更持久減少耗電</a>
               
             
           </h1>
@@ -3875,11 +3992,13 @@ ul.breadcrumb li+li:last-child {
 <p>每當新一代iOS一推出時候，就會有使用者反應感覺更耗電或是更省電，為了解決這問題，其實在iOS8上面也是一樣有些多餘的功能沒用到，但設定裡面還偷偷一直幫你開啟，就會造成耗電現象，為了擺脫耗電惡夢，趕緊來透過這篇教學設定一下吧！</p>
 <h2 id="找出最耗電APP方法"><a href="#找出最耗電APP方法" class="headerlink" title="找出最耗電APP方法"></a>找出最耗電APP方法</h2><p>如何得知目前iOS中哪些APP最耗電？此功能在iOS8已經內建於系統中，使用者可以輕鬆透過「一般 &gt; 用量 &gt; 電池用量」來查詢自己設備，找出到底哪些APP是最耗電的罪魁禍首。</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2014/10/28/ios8-battery/#more" rel="contents">
-              Read more »
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2014/10/28/ios8-battery/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -3893,6 +4012,9 @@ ul.breadcrumb li+li:last-child {
 
     
 
+    
+      
+    
     
 
     
@@ -3951,9 +4073,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2014/10/27/ios8-Activator/" itemprop="url">
-                  讓非5s機種也有指紋辨識！Activator iOS7、iOS8上最強手勢教學（含移除Activator廣告）
-                </a>
+                
+                <a href="/2014/10/27/ios8-Activator/" class="post-title-link" itemprop="url">讓非5s機種也有指紋辨識！Activator iOS7、iOS8上最強手勢教學（含移除Activator廣告）</a>
               
             
           </h1>
@@ -4035,11 +4156,13 @@ ul.breadcrumb li+li:last-child {
 <p>剛JB的iOS7、iOS8使用者都會面臨Activator手勢軟體無法支援問題，但這問題已經在2014/1/1更新到1.8.2版本以上解決，目前許多插件都需依靠Activator來做補助，像是魔神之塔玩家最愛的自動轉珠外掛等，且不單單只能夠讓其它插件作補助作用還能夠讓使用者自己自訂模擬HOME鍵、搖一搖、重開機、解鎖等等功能，甚至還能夠讓非iPhone、iPad機種模擬5S虛擬指紋辨識功能，這些密技技巧都在底下文章會教導大家。</p>
 <h2 id="支援設備："><a href="#支援設備：" class="headerlink" title="支援設備："></a>支援設備：</h2><p>全部iOS7、iOS8設備，目前iOS8尚未完全支援，請安裝測試版本。</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2014/10/27/ios8-Activator/#more" rel="contents">
-              Read more »
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2014/10/27/ios8-Activator/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -4053,6 +4176,9 @@ ul.breadcrumb li+li:last-child {
 
     
 
+    
+      
+    
     
 
     
@@ -4111,9 +4237,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2014/10/20/How-to-Create-an-OS-X-Yosemite-USB-Installation-Drive/" itemprop="url">
-                  如何制作OS X Yosemite 独立安装U盘
-                </a>
+                
+                <a href="/2014/10/20/How-to-Create-an-OS-X-Yosemite-USB-Installation-Drive/" class="post-title-link" itemprop="url">如何制作OS X Yosemite 独立安装U盘</a>
               
             
           </h1>
@@ -4213,6 +4338,9 @@ ul.breadcrumb li+li:last-child {
     
 
     
+      
+    
+    
 
     
 
@@ -4270,9 +4398,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2014/10/15/10common-database-security-problems/" itemprop="url">
-                  10大最常见的数据库安全问题
-                </a>
+                
+                <a href="/2014/10/15/10common-database-security-problems/" class="post-title-link" itemprop="url">10大最常见的数据库安全问题</a>
               
             
           </h1>
@@ -4361,11 +4488,13 @@ ul.breadcrumb li+li:last-child {
 </li>
 </ol>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2014/10/15/10common-database-security-problems/#more" rel="contents">
-              Read more »
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2014/10/15/10common-database-security-problems/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -4379,6 +4508,9 @@ ul.breadcrumb li+li:last-child {
 
     
 
+    
+      
+    
     
 
     
@@ -4437,9 +4569,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2014/10/13/the-triggerfish-and-your-mobile-app/" itemprop="url">
-                  找到一个触发器，成为用户每天使用的app
-                </a>
+                
+                <a href="/2014/10/13/the-triggerfish-and-your-mobile-app/" class="post-title-link" itemprop="url">找到一个触发器，成为用户每天使用的app</a>
               
             
           </h1>
@@ -4522,11 +4653,13 @@ ul.breadcrumb li+li:last-child {
 <p>人们每天所使用的app平均为<a href="http://blog.flurry.com/?Tag=smartphone" target="_blank" rel="noopener">8个</a>。</p>
 <p>用户的下载不再意味着一款产品的成功，而只是漫长成功路上的一个节点而已。网上已经有很多文章教你怎么从上百万个app中脱颖而出，成为用户下载的41个app之一；但是如何成为人们每天使用的8个应用，却少有人谈及。</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2014/10/13/the-triggerfish-and-your-mobile-app/#more" rel="contents">
-              Read more »
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2014/10/13/the-triggerfish-and-your-mobile-app/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -4540,6 +4673,9 @@ ul.breadcrumb li+li:last-child {
 
     
 
+    
+      
+    
     
 
     
@@ -4598,9 +4734,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2014/10/08/youku-url-resolve/" itemprop="url">
-                  优酷真实视频地址解析——2014年10月7日[ZT]
-                </a>
+                
+                <a href="/2014/10/08/youku-url-resolve/" class="post-title-link" itemprop="url">优酷真实视频地址解析——2014年10月7日[ZT]</a>
               
             
           </h1>
@@ -4684,11 +4819,13 @@ ul.breadcrumb li+li:last-child {
 <h2 id="1-获取视频vid"><a href="#1-获取视频vid" class="headerlink" title="1:获取视频vid"></a>1:获取视频vid</h2><p>在视频url中标红部分。一个正则表达式即可获取。</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">string getVid(string url)</span><br><span class="line">{</span><br><span class="line">    string strRegex = "(?&lt;=id_)(\\w+)";</span><br><span class="line">    Regex reg = new Regex(strRegex);</span><br><span class="line">    Match match = reg.Match(url);</span><br><span class="line">    return match.ToString();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2014/10/08/youku-url-resolve/#more" rel="contents">
-              Read more »
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2014/10/08/youku-url-resolve/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -4702,6 +4839,9 @@ ul.breadcrumb li+li:last-child {
 
     
 
+    
+      
+    
     
 
     
@@ -4760,9 +4900,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2014/09/20/megacli/" itemprop="url">
-                  常用PC服务器阵列卡、硬盘健康监控[ZT]
-                </a>
+                
+                <a href="/2014/09/20/megacli/" class="post-title-link" itemprop="url">常用PC服务器阵列卡、硬盘健康监控[ZT]</a>
               
             
           </h1>
@@ -4845,11 +4984,13 @@ ul.breadcrumb li+li:last-child {
 <p>上面是几种常见的阵列卡型号，更多的可以自行查看官方的技术手册。</p>
 <p>下面我们要继续的是，这些阵列卡以及硬盘如何监控，阵列卡的管理也请查看官方技术手册，不在本文讨论范畴，或者查看作者的一个分享PPT：PC服务器阵列卡管理简易手册。</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2014/09/20/megacli/#more" rel="contents">
-              Read more »
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2014/09/20/megacli/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -4863,6 +5004,9 @@ ul.breadcrumb li+li:last-child {
 
     
 
+    
+      
+    
     
 
     
@@ -4921,9 +5065,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2014/09/07/iOS-URL-Scheme/" itemprop="url">
-                  常用iOS URL Scheme附录
-                </a>
+                
+                <a href="/2014/09/07/iOS-URL-Scheme/" class="post-title-link" itemprop="url">常用iOS URL Scheme附录</a>
               
             
           </h1>
@@ -5064,11 +5207,13 @@ ul.breadcrumb li+li:last-child {
 </tbody>
 </table>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2014/09/07/iOS-URL-Scheme/#more" rel="contents">
-              Read more »
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2014/09/07/iOS-URL-Scheme/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -5082,6 +5227,9 @@ ul.breadcrumb li+li:last-child {
 
     
 
+    
+      
+    
     
 
     
@@ -5140,9 +5288,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2014/08/17/compile-bash-shell-with-shc/" itemprop="url">
-                  用shc加密或者编译shell脚本
-                </a>
+                
+                <a href="/2014/08/17/compile-bash-shell-with-shc/" class="post-title-link" itemprop="url">用shc加密或者编译shell脚本</a>
               
             
           </h1>
@@ -5224,11 +5371,13 @@ ul.breadcrumb li+li:last-child {
 <h2 id="1-动态链接"><a href="#1-动态链接" class="headerlink" title="1. 动态链接"></a>1. 动态链接</h2><p>文中介绍的两种编译方式，无论是<code>shc -r -f random.sh</code>还是<code>shc -v -r -T -f random.sh</code>生成的二进制文件都是<strong>动态链接</strong>形式的，所以，在其他平台上不能运行。</p>
 <h2 id="2-静态链接"><a href="#2-静态链接" class="headerlink" title="2. 静态链接"></a>2. 静态链接</h2><p>不过，我们可以通过下面的方式生成一个<strong>静态链接</strong>的二进制可执行文件。<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># CFLAGS=-static shc -r -f random.sh</span><br></pre></td></tr></tbody></table></figure><p></p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2014/08/17/compile-bash-shell-with-shc/#more" rel="contents">
-              Read more »
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2014/08/17/compile-bash-shell-with-shc/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -5242,6 +5391,9 @@ ul.breadcrumb li+li:last-child {
 
     
 
+    
+      
+    
     
 
     
@@ -5298,7 +5450,7 @@ ul.breadcrumb li+li:last-child {
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -5811,7 +5963,6 @@ ul.breadcrumb li+li:last-child {
           
 
           
-          
 
           
           
@@ -5822,7 +5973,7 @@ ul.breadcrumb li+li:last-child {
           
 
         </div>
-      </section>
+      </div>
 
       
 
@@ -5852,7 +6003,7 @@ ul.breadcrumb li+li:last-child {
         })();
       </script>
       <div class="footer-inner">
-        <div class="copyright">© 2007 – <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">© 2007 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -5864,9 +6015,7 @@ ul.breadcrumb li+li:last-child {
 </div>
 
 
-
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
@@ -5874,7 +6023,7 @@ ul.breadcrumb li+li:last-child {
 
 
 
-  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
 
 
 
@@ -5908,7 +6057,7 @@ ul.breadcrumb li+li:last-child {
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -5925,8 +6074,6 @@ ul.breadcrumb li+li:last-child {
 
 
 
-  
-
 
 
 
@@ -5943,22 +6090,11 @@ ul.breadcrumb li+li:last-child {
 
   
   
-    
-  
 
   
   
-    
-  
 
   
-  
-    
-  
-
-  
-  
-    
   
 
 
@@ -6005,15 +6141,11 @@ ul.breadcrumb li+li:last-child {
 
 
 
+
   
 
 
 
-
-  
-  
-  
-  
 
   
   
@@ -6021,6 +6153,11 @@ ul.breadcrumb li+li:last-child {
   
 
   
+  
+  
+  
+
+  
 
 
 
@@ -6033,6 +6170,7 @@ ul.breadcrumb li+li:last-child {
   
 
   
+
   
 
   

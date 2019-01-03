@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="theme-next gemini use-motion" lang="zh-Hans"><head>
+<!DOCTYPE html><html class="theme-next gemini use-motion" lang="zh-Hans"><head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -15,8 +15,6 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -24,18 +22,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-  
-  
-  
 
 
 
@@ -109,16 +95,14 @@
 
 
 
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '6.4.1',
+    version: '6.7.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    fancybox: false,
     fastclick: false,
     lazyload: false,
     tabs: true,
@@ -161,7 +145,7 @@
 
 
 
-<script type="text/javascript" id="page.configurations">
+<script id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
@@ -173,14 +157,16 @@
 
 
 
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-42337789-4');
+  </script>
 
-  gtag('config', 'UA-42337789-4');
-</script>
+
+
 
 
 
@@ -418,62 +404,103 @@ h6 {
 h1 {
   font-size: 22px;
 }
+h1 code {
+  font-size: 22px;
+}
 @media (max-width: 767px) {
   h1 {
+    font-size: 18px;
+  }
+  h1 code {
     font-size: 18px;
   }
 }
 h2 {
   font-size: 20px;
 }
+h2 code {
+  font-size: 20px;
+}
 @media (max-width: 767px) {
   h2 {
+    font-size: 16px;
+  }
+  h2 code {
     font-size: 16px;
   }
 }
 h3 {
   font-size: 18px;
 }
+h3 code {
+  font-size: 18px;
+}
 @media (max-width: 767px) {
   h3 {
+    font-size: 14px;
+  }
+  h3 code {
     font-size: 14px;
   }
 }
 h4 {
   font-size: 16px;
 }
+h4 code {
+  font-size: 16px;
+}
 @media (max-width: 767px) {
   h4 {
+    font-size: 12px;
+  }
+  h4 code {
     font-size: 12px;
   }
 }
 h5 {
   font-size: 14px;
 }
+h5 code {
+  font-size: 14px;
+}
 @media (max-width: 767px) {
   h5 {
+    font-size: 10px;
+  }
+  h5 code {
     font-size: 10px;
   }
 }
 h6 {
   font-size: 12px;
 }
+h6 code {
+  font-size: 12px;
+}
 @media (max-width: 767px) {
   h6 {
+    font-size: 8px;
+  }
+  h6 code {
     font-size: 8px;
   }
 }
 p {
   margin: 0 0 20px 0;
 }
-a {
+a,
+span.exturl {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  background-color: transparent;
   color: #555;
   text-decoration: none;
   outline: none;
   border-bottom: 1px solid #999;
-  word-wrap: break-word;
+  cursor: pointer;
 }
-a:hover {
+a:hover,
+span.exturl:hover {
   color: #222;
   border-bottom-color: #222;
 }
@@ -595,7 +622,7 @@ table {
   border-spacing: 0;
   border: 1px solid #ddd;
   font-size: 14px;
-  word-wrap: break-all;
+  word-break: break-all;
 }
 table>tbody>tr:nth-of-type(odd) {
   background-color: #f9f9f9;
@@ -646,9 +673,6 @@ body {
     width: 73%;
   }
 }
-.main {
-  padding-bottom: 150px;
-}
 .main-inner {
   margin: 0 auto;
   width: calc(100% - 20px);
@@ -664,15 +688,11 @@ body {
   }
 }
 .footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  min-height: 50px;
+  padding: 20px 0;
 }
 .footer-inner {
   box-sizing: border-box;
-  margin: 20px auto;
+  margin: 0px auto;
   width: calc(100% - 20px);
 }
 @media (min-width: 1200px) {
@@ -700,8 +720,9 @@ code {
   font-family: 'PT Mono', consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace;
 }
 code {
-  padding: 2px 4px;
+  overflow-wrap: break-word;
   word-wrap: break-word;
+  padding: 2px 4px;
   color: #555;
   background: #eee;
   border-radius: 3px;
@@ -801,6 +822,7 @@ pre .comment {
 pre .variable,
 pre .attribute,
 pre .tag,
+pre .name,
 pre .regexp,
 pre .ruby .constant,
 pre .xml .tag .title,
@@ -815,6 +837,7 @@ pre .css .pseudo {
 pre .number,
 pre .preprocessor,
 pre .built_in,
+pre .builtin-name,
 pre .literal,
 pre .params,
 pre .constant,
@@ -824,13 +847,13 @@ pre .command {
 pre .ruby .class .title,
 pre .css .rules .attribute,
 pre .string,
+pre .symbol,
 pre .value,
 pre .inheritance,
 pre .header,
 pre .ruby .symbol,
 pre .xml .cdata,
 pre .special,
-pre .number,
 pre .formula {
   color: #b9ca4a;
 }
@@ -1342,7 +1365,8 @@ pre .javascript .function {
 }
 .use-motion .logo,
 .use-motion .site-title,
-.use-motion .site-subtitle {
+.use-motion .site-subtitle,
+.use-motion .custom-logo-image {
   opacity: 0;
   position: relative;
   top: -10px;
@@ -1398,7 +1422,8 @@ pre .javascript .function {
     margin-top: 10px;
   }
 }
-.menu .menu-item a {
+.menu .menu-item a,
+.menu .menu-item span.exturl {
   display: block;
   font-size: 13px;
   line-height: inherit;
@@ -1409,7 +1434,7 @@ pre .javascript .function {
   transition-delay: 0s;
 }
 .menu .menu-item a:hover,
-.menu-item-active a {
+.menu .menu-item span.exturl:hover {
   border-bottom-color: #222;
 }
 .menu .menu-item .fa {
@@ -1419,12 +1444,13 @@ pre .javascript .function {
   opacity: 0;
 }
 .post-body {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   font-family: 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
-@media (max-width: 767px) {
-  .post-body {
-    word-break: break-word;
-  }
+.post-body .exturl .fa {
+  font-size: 14px;
+  margin-left: 4px;
 }
 .post-body .fancybox img {
   display: block !important;
@@ -1645,7 +1671,8 @@ pre .javascript .function {
   margin-left: 3px;
   opacity: 0.6;
 }
-.posts-collapse .post-title a {
+.posts-collapse .post-title a,
+.posts-collapse .post-title span.exturl {
   color: #666;
   border-bottom: none;
 }
@@ -1656,8 +1683,9 @@ pre .javascript .function {
   display: none;
 }
 .posts-expand .post-title {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   text-align: center;
-  word-break: break-word;
   font-weight: 400;
 }
 .posts-expand .post-title-link {
@@ -1695,7 +1723,8 @@ pre .javascript .function {
   transform: scaleX(1);
 }
 .posts-expand .post-title-link .fa {
-  font-size: 16px;
+  font-size: 20px;
+  margin-left: 5px;
 }
 .posts-expand .post-meta {
   margin: 3px 0 60px 0;
@@ -1790,23 +1819,20 @@ pre .javascript .function {
   top: 2px;
 }
 .post-nav-item .fa {
-  position: absolute;
-  top: 8px;
-  left: 0;
   font-size: 12px;
+  margin-right: 5px;
 }
 .post-nav-next a {
-  padding-left: 15px;
+  padding-left: 5px;
 }
 .post-nav-prev {
   text-align: right;
 }
 .post-nav-prev a {
-  padding-right: 15px;
+  padding-right: 5px;
 }
 .post-nav-prev .fa {
-  right: 0;
-  left: auto;
+  margin-left: 5px;
 }
 .posts-expand .post-eof {
   display: block;
@@ -2029,7 +2055,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #b9ffff;
+  background: #e4e40f;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2047,7 +2073,8 @@ pre .javascript .function {
 .links-of-blogroll-item {
   padding: 2px 10px;
 }
-.links-of-blogroll-item a {
+.links-of-blogroll-item a,
+.links-of-blogroll-item span.exturl {
   max-width: 280px;
   box-sizing: border-box;
   display: inline-block;
@@ -2301,9 +2328,6 @@ pre .javascript .function {
     transform: scale(1.1);
   }
 }
-.fa {
-  font-family: FontAwesome !important;
-}
 .local-search-pop-overlay {
   position: fixed;
   width: 100%;
@@ -2554,9 +2578,10 @@ pre .javascript .function {
   transition-delay: 0s;
 }
 .algolia-pagination .pagination {
-  margin-top: 40px;
+  margin: 40px 0px;
   border-top: none;
   padding: 0;
+  opacity: 1;
 }
 .algolia-pagination .pagination-item {
   display: inline-block;
@@ -2591,6 +2616,10 @@ pre .javascript .function {
   background: #555;
   border: 1px solid #fff;
   border-radius: 50%;
+}
+.page-archive .fa-external-link {
+  font-size: 15px;
+  margin-left: 5px;
 }
 .category-all-page .category-all-title {
   text-align: center;
@@ -2688,9 +2717,10 @@ pre .javascript .function {
 }
 #schedule ul#event-list li.event-past {
   background: #fcfcfc;
+  padding: 15px 0 15px 10px;
 }
 #schedule ul#event-list li.event-past > * {
-  opacity: 0.6;
+  opacity: 0.9;
 }
 #schedule ul#event-list li.event-past h2.event-summary {
   color: #bbb;
@@ -2713,6 +2743,23 @@ pre .javascript .function {
   animation: dot-flash 1s alternate infinite ease-in-out;
 }
 #schedule ul#event-list li.event-now * {
+  color: #fff !important;
+}
+#schedule ul#event-list li.event-future {
+  background: #222;
+  color: #fff;
+  padding: 15px 0 15px 10px;
+}
+#schedule ul#event-list li.event-future h2.event-summary:before {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+  color: #fff;
+  animation: dot-flash 1s alternate infinite ease-in-out;
+}
+#schedule ul#event-list li.event-future * {
   color: #fff !important;
 }
 @-moz-keyframes dot-flash {
@@ -2874,16 +2921,6 @@ ul.breadcrumb li+li:last-child {
   clear: both;
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  .main {
-    padding-bottom: 100px;
-  }
-}
-@media (max-width: 767px) {
-  .main {
-    padding-bottom: 100px;
-  }
-}
-@media (min-width: 768px) and (max-width: 991px) {
   .container .main-inner {
     width: auto;
   }
@@ -2921,7 +2958,7 @@ ul.breadcrumb li+li:last-child {
 .sidebar {
   position: static;
   float: left;
-  margin-top: 300px;
+  margin-left: -100%;
   width: 240px;
   background: #eee;
   box-shadow: none;
@@ -2998,6 +3035,19 @@ ul.breadcrumb li+li:last-child {
   margin: 10px 10px 0;
   font-weight: initial;
 }
+.custom-logo-image {
+  margin-top: 20px;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .custom-logo-image {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .custom-logo-image {
+    display: none;
+  }
+}
 .site-search form {
   display: none;
 }
@@ -3014,11 +3064,31 @@ ul.breadcrumb li+li:last-child {
     display: block !important;
   }
 }
+.menu-item-active a,
+.menu .menu-item a:hover,
+.menu .menu-item span.exturl:hover {
+  background: #f9f9f9;
+  border-bottom-color: #fff;
+}
+.menu-item-active a:after,
+.menu .menu-item a:hover:after,
+.menu .menu-item span.exturl:hover:after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  margin-top: -3px;
+  right: 15px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #bbb;
+}
 .menu .menu-item {
   display: block;
   margin: 0;
 }
-.menu .menu-item a {
+.menu .menu-item a,
+.menu .menu-item span.exturl {
   position: relative;
   box-sizing: border-box;
   padding: 5px 20px;
@@ -3029,10 +3099,11 @@ ul.breadcrumb li+li:last-child {
   transition-timing-function: ease-in-out;
   transition-delay: 0s;
 }
-.menu .menu-item a:hover,
-.menu-item-active a {
-  background: #f9f9f9;
-  border-bottom-color: #fff;
+@media (hover: none) {
+  .menu .menu-item a:hover,
+  .menu .menu-item span.exturl:hover {
+    background: none;
+  }
 }
 .menu .menu-item .badge {
   display: inline-block;
@@ -3051,17 +3122,6 @@ ul.breadcrumb li+li:last-child {
 }
 .menu .menu-item br {
   display: none;
-}
-.menu-item-active a:after {
-  content: " ";
-  position: absolute;
-  top: 50%;
-  margin-top: -3px;
-  right: 15px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #bbb;
 }
 .btn-bar {
   background-color: #fff;
@@ -3090,11 +3150,13 @@ ul.breadcrumb li+li:last-child {
 .sub-menu .menu-item {
   display: inline-block !important;
 }
-.sub-menu .menu-item a {
+.sub-menu .menu-item a,
+.sub-menu .menu-item span.exturl {
   padding: initial !important;
   margin: 5px 10px;
 }
-.sub-menu .menu-item a:hover {
+.sub-menu .menu-item a:hover,
+.sub-menu .menu-item span.exturl:hover {
   background: initial !important;
   color: #fc6423;
 }
@@ -3114,7 +3176,6 @@ ul.breadcrumb li+li:last-child {
   opacity: 1;
 }
 .sidebar {
-  margin-left: -100%;
   right: auto;
   bottom: auto;
   -webkit-transform: none;
@@ -3147,22 +3208,22 @@ ul.breadcrumb li+li:last-child {
   clear: both;
 }
 .sidebar a,
-.sidebar .exturl {
+.sidebar span.exturl {
   color: #555;
 }
 .sidebar a:hover,
-.sidebar .exturl:hover {
+.sidebar span.exturl:hover {
   color: #222;
 }
 .site-state-item {
   padding: 0 10px;
 }
 .links-of-author-item a:before,
-.links-of-author-item .exturl:before {
+.links-of-author-item span.exturl:before {
   display: none;
 }
 .links-of-author-item a,
-.links-of-author-item .exturl {
+.links-of-author-item span.exturl {
   border-bottom: none;
   text-decoration: underline;
 }
@@ -3188,7 +3249,7 @@ ul.breadcrumb li+li:last-child {
   flex-wrap: wrap;
   justify-content: center;
 }
-.links-of-author .exturl {
+.links-of-author span.exturl {
   font-size: 13px;
 }
 .links-of-author-item {
@@ -3208,12 +3269,12 @@ ul.breadcrumb li+li:last-child {
   text-overflow: ellipsis;
 }
 .links-of-author-item a,
-.links-of-author-item .exturl {
+.links-of-author-item span.exturl {
   display: block;
   text-decoration: none;
 }
 .links-of-author-item a:hover,
-.links-of-author-item .exturl:hover {
+.links-of-author-item span.exturl:hover {
   border-radius: 4px;
   background: #eee;
 }
@@ -3281,7 +3342,7 @@ ul.breadcrumb li+li:last-child {
 }
 .comments {
   padding: 40px;
-  margin: initial;
+  margin: auto;
   margin-top: 12px;
   background: #fff;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
@@ -3352,22 +3413,40 @@ ul.breadcrumb li+li:last-child {
   font-size: 1.6em;
   border-bottom: 1px solid #eee;
 }
+.post-body h1 code {
+  font-size: 1em;
+}
 .post-body h2 {
   font-size: 1.45em;
   border-bottom: 1px solid #eee;
+}
+.post-body h2 code {
+  font-size: 1em;
 }
 .post-body h3 {
   font-size: 1.3em;
   border-bottom: 1px dotted #eee;
 }
+.post-body h3 code {
+  font-size: 1em;
+}
 .post-body h4 {
   font-size: 1.2em;
+}
+.post-body h4 code {
+  font-size: 1em;
 }
 .post-body h5 {
   font-size: 1.07em;
 }
+.post-body h5 code {
+  font-size: 1em;
+}
 .post-body h6 {
   font-size: 1.03em;
+}
+.post-body h6 code {
+  font-size: 1em;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .content-wrap {
@@ -3426,29 +3505,27 @@ ul.breadcrumb li+li:last-child {
   }
 }
 </style><noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
 
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
 </noscript>
 
@@ -3467,7 +3544,7 @@ ul.breadcrumb li+li:last-child {
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -3477,6 +3554,7 @@ ul.breadcrumb li+li:last-child {
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
     
   </div>
 
@@ -3500,32 +3578,68 @@ ul.breadcrumb li+li:last-child {
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
   </li>
 
       
@@ -3630,9 +3744,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2009/07/18/urchin-installation/" itemprop="url">
-                  urchin的安装及使用
-                </a>
+                
+                <a href="/2009/07/18/urchin-installation/" class="post-title-link" itemprop="url">urchin的安装及使用</a>
               
             
           </h1>
@@ -3755,6 +3868,9 @@ ul.breadcrumb li+li:last-child {
     
 
     
+      
+    
+    
 
     
 
@@ -3812,9 +3928,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2009/07/13/Google-Analytics-theory-and-case/" itemprop="url">
-                  Google Analytics 原理与实例分析[zt]
-                </a>
+                
+                <a href="/2009/07/13/Google-Analytics-theory-and-case/" class="post-title-link" itemprop="url">Google Analytics 原理与实例分析[zt]</a>
               
             
           </h1>
@@ -3895,11 +4010,13 @@ ul.breadcrumb li+li:last-child {
           <p>最近在做Web统计相关的工作，在查资料的同时，顺手找到了GA的原理分析：）</p>
 <h2 id="发统计包"><a href="#发统计包" class="headerlink" title="发统计包"></a>发统计包</h2><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">GET http://www.google-analytics.com/__utm.gif?utmwv=1&amp;utmn=1261523910&amp;utmcs=gb2312&amp;utmsr=1400×1050&amp;utmsc=32-bit&amp;utmul=en-us&amp;utmje=1&amp;utmfl=-&amp;utmhn=www.mydll.com&amp;utmr=-&amp;utmp=/gg.htm&amp;utmac=UA-2789145-1&amp;utmcc=__utma%3D251296922.1430927915.1192194210.1192194210.1192194210.1%3B%2B__utmb%3D251296922%3B%2B__utmc%3D251296922%3B%2B__utmz%3D251296922.1192194210.1.1.utmccn%3D(direct)%7Cutmcsr%3D(direct)%7Cutmcmd%3D(none)%3B%2B HTTP/1.1</span><br><span class="line">Accept: */*</span><br><span class="line">Referer: http://www.mydll.com/gg.htm</span><br><span class="line">Accept-Language: zh-cn</span><br><span class="line">UA-CPU: x86</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)</span><br><span class="line">Connection: Keep-Alive</span><br><span class="line">Host: www.google-analytics.com</span><br><span class="line">Pragma: no-cache</span><br><span class="line"></span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Pragma: no-cache</span><br><span class="line">Cache-Control: private, no-cache, no-cache=”Set-Cookie”, proxy-revalidate</span><br><span class="line">Expires: Fri, 04 Aug 1978 12:00:00 GMT</span><br><span class="line">Content-Type: image/gif</span><br><span class="line">Server: ucfe</span><br><span class="line">Content-Length: 35</span><br><span class="line">Date: Fri, 12 Oct 2007 13:04:04 GMT</span><br><span class="line">Via: 1.1 HttpSpy</span><br></pre></td></tr></tbody></table></figure>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2009/07/13/Google-Analytics-theory-and-case/#more" rel="contents">
-              Read more »
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2009/07/13/Google-Analytics-theory-and-case/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -3913,6 +4030,9 @@ ul.breadcrumb li+li:last-child {
 
     
 
+    
+      
+    
     
 
     
@@ -3971,9 +4091,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2009/07/09/A-useful-apache-command-SetEnvIf/" itemprop="url">
-                  一个很有用的apache指令SetEnvIf
-                </a>
+                
+                <a href="/2009/07/09/A-useful-apache-command-SetEnvIf/" class="post-title-link" itemprop="url">一个很有用的apache指令SetEnvIf</a>
               
             
           </h1>
@@ -4120,163 +4239,8 @@ ul.breadcrumb li+li:last-child {
     
 
     
-
-    
-
-    <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/07/03/Fixed-IBM-ThinkPad-Volume-HOTKEY/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2009/07/03/Fixed-IBM-ThinkPad-Volume-HOTKEY/" itemprop="url">
-                  解决IBM ThinkPad HOTKEY在WIN7 中音量无法显示的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2009-07-03 00:00:00" itemprop="dateCreated datePublished" datetime="2009-07-03T00:00:00+08:00">2009-07-03</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>其他功能均正常，但音量和亮度的调节无法正常使用，事实上并不是IBM自带HOTKEY的问题，只要安装Lenovo System Interface驱动程序即可，无论音量调节或屏幕亮度全部正常使用</p>
-<p>ThinkPad — Lenovo System Interface驱动程序 (Windows Vista/XP) 下载地址：</p>
-<p>当前版本号：1.01.0805</p>
-<p>发布时间：2009-6-22</p>
-<p><a href="http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1217231721126&amp;docTypeID=DOC_TYPE_DRIVER" target="_blank" rel="noopener">http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1217231721126&amp;docTypeID=DOC_TYPE_DRIVER</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
     
 
     
@@ -4335,9 +4299,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2009/07/03/VirtualBox-network/" itemprop="url">
-                  VirtualBox 使用主机网络上网的配置[zt]
-                </a>
+                
+                <a href="/2009/07/03/VirtualBox-network/" class="post-title-link" itemprop="url">VirtualBox 使用主机网络上网的配置[zt]</a>
               
             
           </h1>
@@ -4450,6 +4413,169 @@ ul.breadcrumb li+li:last-child {
     
 
     
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/07/03/Fixed-IBM-ThinkPad-Volume-HOTKEY/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2009/07/03/Fixed-IBM-ThinkPad-Volume-HOTKEY/" class="post-title-link" itemprop="url">解决IBM ThinkPad HOTKEY在WIN7 中音量无法显示的问题</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2009-07-03 00:00:00" itemprop="dateCreated datePublished" datetime="2009-07-03T00:00:00+08:00">2009-07-03</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>其他功能均正常，但音量和亮度的调节无法正常使用，事实上并不是IBM自带HOTKEY的问题，只要安装Lenovo System Interface驱动程序即可，无论音量调节或屏幕亮度全部正常使用</p>
+<p>ThinkPad — Lenovo System Interface驱动程序 (Windows Vista/XP) 下载地址：</p>
+<p>当前版本号：1.01.0805</p>
+<p>发布时间：2009-6-22</p>
+<p><a href="http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1217231721126&amp;docTypeID=DOC_TYPE_DRIVER" target="_blank" rel="noopener">http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1217231721126&amp;docTypeID=DOC_TYPE_DRIVER</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
 
     
 
@@ -4507,9 +4633,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2009/05/02/Linux-count-apache-connections/" itemprop="url">
-                  Linux下查看apache连接数
-                </a>
+                
+                <a href="/2009/05/02/Linux-count-apache-connections/" class="post-title-link" itemprop="url">Linux下查看apache连接数</a>
               
             
           </h1>
@@ -4611,6 +4736,9 @@ ul.breadcrumb li+li:last-child {
     
 
     
+      
+    
+    
 
     
 
@@ -4668,9 +4796,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2009/04/19/mysql-delete-binlog/" itemprop="url">
-                  删除MYSQl BIN-LOG 日志[zt]
-                </a>
+                
+                <a href="/2009/04/19/mysql-delete-binlog/" class="post-title-link" itemprop="url">删除MYSQl BIN-LOG 日志[zt]</a>
               
             
           </h1>
@@ -4790,6 +4917,9 @@ ul.breadcrumb li+li:last-child {
     
 
     
+      
+    
+    
 
     
 
@@ -4847,9 +4977,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2009/04/19/cmd-hidden-run/" itemprop="url">
-                  批处理隐藏运行的10种思路[zt]
-                </a>
+                
+                <a href="/2009/04/19/cmd-hidden-run/" class="post-title-link" itemprop="url">批处理隐藏运行的10种思路[zt]</a>
               
             
           </h1>
@@ -4939,11 +5068,13 @@ ul.breadcrumb li+li:last-child {
 <p> HideRun.js<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new ActiveXObject('WScript.Shell').Run('cmd /cD:\Test.bat',0);</span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>用Javascript有什么好处呢？js的字符串变量可以用单引号，从而方便命令行作为参数调用，而且js很好的支持多行语句用 ; 分隔写成一行。要注意的是：js要区分大小写，方法必须用括号，结尾必须有分号。所以就成了下面的命令：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mshta "javascript:new ActiveXObject('WScript.Shell').Run('cmd /cD:\test.bat',0);window.close()"</span><br></pre></td></tr></tbody></table></figure><p></p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2009/04/19/cmd-hidden-run/#more" rel="contents">
-              Read more »
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2009/04/19/cmd-hidden-run/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -4957,6 +5088,9 @@ ul.breadcrumb li+li:last-child {
 
     
 
+    
+      
+    
     
 
     
@@ -5015,9 +5149,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2009/04/04/SQL-server-replace-regular/" itemprop="url">
-                  一个用于SQL Server 正则替换的函数
-                </a>
+                
+                <a href="/2009/04/04/SQL-server-replace-regular/" class="post-title-link" itemprop="url">一个用于SQL Server 正则替换的函数</a>
               
             
           </h1>
@@ -5111,6 +5244,9 @@ ul.breadcrumb li+li:last-child {
     
 
     
+      
+    
+    
 
     
 
@@ -5149,7 +5285,7 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/12/14/perl-encode-url/">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/12/14/iconv-gbk-utf8/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="東木">
@@ -5168,9 +5304,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/12/14/perl-encode-url/" itemprop="url">
-                  perl处理UTF-8编码，对URL地址进行编码
-                </a>
+                
+                <a href="/2008/12/14/iconv-gbk-utf8/" class="post-title-link" itemprop="url">Linux系统下处理从GB2312到UTF-8的转换</a>
               
             
           </h1>
@@ -5249,34 +5384,15 @@ ul.breadcrumb li+li:last-child {
       
         
           
-            <p>首先进行声明<br><code>use Encode;</code></p>
-<ul>
-<li><p>gbk转uft-8：<br><code>$line = encode("utf-8",decode("gbk",$line));</code><br>或<br><code>$line = encode_utf8(decode("gbk",$line));</code></p>
-</li>
-<li><p>utf-8转gbk：<br><code>$line = encode("gbk", decode("utf8", $line));</code></p>
-</li>
-<li><p>uft-8转gb2312：<br><code>$line = encode("gb2312", decode("utf8", $line));</code></p>
-</li>
-</ul>
-<p>测试可用！by：Neeao</p>
-<hr>
-<p>perl中对URL地址进行编码<br>URL中如果有中文的字符，要先对其进行编码才能进行下一步的处理。</p>
-<ul>
-<li><p>用替换方法进行编码：</p>
-<p>Url encode：对 \n 不转码</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perl -pe 's/([^\w\-\.\@])/$1 eq "\n" ? "\n":sprintf("%%%2.2x",ord($1))/eg' keywords.list</span><br></pre></td></tr></tbody></table></figure>
-</li>
-<li><p>用替换方法进行解码：</p>
-<p>Url Decode：</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perl -pe 's/%(..)/pack("c", hex($1))/eg' keywords.list</span><br></pre></td></tr></tbody></table></figure>
-</li>
-<li><p>用URI::URL模块进行编码</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">use URI::URL;</span><br><span class="line">my $str = "http://www.google.com/lxmxn's blog&amp;b=Hello,perl";</span><br><span class="line">my $url = URI::URL-&gt;new( $str );</span><br><span class="line">print $url;</span><br></pre></td></tr></tbody></table></figure>
-</li>
-<li><p>用URI::Escape模块进行编码</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">use URI::Escape;</span><br><span class="line">my $str='北极神话';</span><br><span class="line">print uri_escape($str);</span><br><span class="line"></span><br><span class="line"> #result:%B1%B1%BC%AB%C9%F1%BB%B0</span><br></pre></td></tr></tbody></table></figure></li>
-</ul>
-
+            <p>UTF-8 这种编码已经是大势所趋，但是还有不少中文的文档保留着老式的 GB2312编码，而且只要你要和 Windows 打交道，就免不了要处理 GB2312 的问题，比如处理从 Windows 下拷过来的程序源代码、文本文件、字母文件之类。</p>
+<p>编码转换的方法估计大多数同学都知道了，不过还是有必要再强调一下，我就是老忘。</p>
+<p>Linux 下的 iconv 命令可以来处理字符编码的转换，基本命令格式如下：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iconv -f 原始编码 -t 目标编码 文件名 &gt; 新文件名</span><br></pre></td></tr></tbody></table></figure>
+<p>-f 代表 from，-t 代表 to。</p>
+<p>假设我要把 text.txt 从 GB2312 编码转换成 UTF-8，并且保存为 text-utf-8.txt 的话，那么命令如下：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iconv -f GB2312 -t utf-8 text.txt &gt; text-utf-8.txt</span><br></pre></td></tr></tbody></table></figure>
+<p>不过有的时候，转换会报错，很可能的原因是原文件中有些字符超过了 GB2312 的范围，那么，这个时候，我们可以把 GB2312 改成它的超集 GB18030，一般就解决问题了：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iconv -f gb18030 -t utf-8 text.txt &gt; text-utf-8.txt</span><br></pre></td></tr></tbody></table></figure>
           
         
       
@@ -5290,6 +5406,9 @@ ul.breadcrumb li+li:last-child {
 
     
 
+    
+      
+    
     
 
     
@@ -5346,7 +5465,7 @@ ul.breadcrumb li+li:last-child {
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -5859,7 +5978,6 @@ ul.breadcrumb li+li:last-child {
           
 
           
-          
 
           
           
@@ -5870,7 +5988,7 @@ ul.breadcrumb li+li:last-child {
           
 
         </div>
-      </section>
+      </div>
 
       
 
@@ -5900,7 +6018,7 @@ ul.breadcrumb li+li:last-child {
         })();
       </script>
       <div class="footer-inner">
-        <div class="copyright">© 2007 – <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">© 2007 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -5912,9 +6030,7 @@ ul.breadcrumb li+li:last-child {
 </div>
 
 
-
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
@@ -5922,7 +6038,7 @@ ul.breadcrumb li+li:last-child {
 
 
 
-  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
 
 
 
@@ -5956,7 +6072,7 @@ ul.breadcrumb li+li:last-child {
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -5973,8 +6089,6 @@ ul.breadcrumb li+li:last-child {
 
 
 
-  
-
 
 
 
@@ -5991,22 +6105,11 @@ ul.breadcrumb li+li:last-child {
 
   
   
-    
-  
 
   
   
-    
-  
 
   
-  
-    
-  
-
-  
-  
-    
   
 
 
@@ -6053,15 +6156,11 @@ ul.breadcrumb li+li:last-child {
 
 
 
+
   
 
 
 
-
-  
-  
-  
-  
 
   
   
@@ -6069,6 +6168,11 @@ ul.breadcrumb li+li:last-child {
   
 
   
+  
+  
+  
+
+  
 
 
 
@@ -6081,6 +6185,7 @@ ul.breadcrumb li+li:last-child {
   
 
   
+
   
 
   

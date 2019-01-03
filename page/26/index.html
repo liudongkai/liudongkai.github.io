@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="theme-next gemini use-motion" lang="zh-Hans"><head>
+<!DOCTYPE html><html class="theme-next gemini use-motion" lang="zh-Hans"><head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -15,8 +15,6 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -24,18 +22,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-  
-  
-  
 
 
 
@@ -109,16 +95,14 @@
 
 
 
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '6.4.1',
+    version: '6.7.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    fancybox: false,
     fastclick: false,
     lazyload: false,
     tabs: true,
@@ -161,7 +145,7 @@
 
 
 
-<script type="text/javascript" id="page.configurations">
+<script id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
@@ -173,14 +157,16 @@
 
 
 
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-42337789-4');
+  </script>
 
-  gtag('config', 'UA-42337789-4');
-</script>
+
+
 
 
 
@@ -418,62 +404,103 @@ h6 {
 h1 {
   font-size: 22px;
 }
+h1 code {
+  font-size: 22px;
+}
 @media (max-width: 767px) {
   h1 {
+    font-size: 18px;
+  }
+  h1 code {
     font-size: 18px;
   }
 }
 h2 {
   font-size: 20px;
 }
+h2 code {
+  font-size: 20px;
+}
 @media (max-width: 767px) {
   h2 {
+    font-size: 16px;
+  }
+  h2 code {
     font-size: 16px;
   }
 }
 h3 {
   font-size: 18px;
 }
+h3 code {
+  font-size: 18px;
+}
 @media (max-width: 767px) {
   h3 {
+    font-size: 14px;
+  }
+  h3 code {
     font-size: 14px;
   }
 }
 h4 {
   font-size: 16px;
 }
+h4 code {
+  font-size: 16px;
+}
 @media (max-width: 767px) {
   h4 {
+    font-size: 12px;
+  }
+  h4 code {
     font-size: 12px;
   }
 }
 h5 {
   font-size: 14px;
 }
+h5 code {
+  font-size: 14px;
+}
 @media (max-width: 767px) {
   h5 {
+    font-size: 10px;
+  }
+  h5 code {
     font-size: 10px;
   }
 }
 h6 {
   font-size: 12px;
 }
+h6 code {
+  font-size: 12px;
+}
 @media (max-width: 767px) {
   h6 {
+    font-size: 8px;
+  }
+  h6 code {
     font-size: 8px;
   }
 }
 p {
   margin: 0 0 20px 0;
 }
-a {
+a,
+span.exturl {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  background-color: transparent;
   color: #555;
   text-decoration: none;
   outline: none;
   border-bottom: 1px solid #999;
-  word-wrap: break-word;
+  cursor: pointer;
 }
-a:hover {
+a:hover,
+span.exturl:hover {
   color: #222;
   border-bottom-color: #222;
 }
@@ -595,7 +622,7 @@ table {
   border-spacing: 0;
   border: 1px solid #ddd;
   font-size: 14px;
-  word-wrap: break-all;
+  word-break: break-all;
 }
 table>tbody>tr:nth-of-type(odd) {
   background-color: #f9f9f9;
@@ -646,9 +673,6 @@ body {
     width: 73%;
   }
 }
-.main {
-  padding-bottom: 150px;
-}
 .main-inner {
   margin: 0 auto;
   width: calc(100% - 20px);
@@ -664,15 +688,11 @@ body {
   }
 }
 .footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  min-height: 50px;
+  padding: 20px 0;
 }
 .footer-inner {
   box-sizing: border-box;
-  margin: 20px auto;
+  margin: 0px auto;
   width: calc(100% - 20px);
 }
 @media (min-width: 1200px) {
@@ -700,8 +720,9 @@ code {
   font-family: 'PT Mono', consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace;
 }
 code {
-  padding: 2px 4px;
+  overflow-wrap: break-word;
   word-wrap: break-word;
+  padding: 2px 4px;
   color: #555;
   background: #eee;
   border-radius: 3px;
@@ -801,6 +822,7 @@ pre .comment {
 pre .variable,
 pre .attribute,
 pre .tag,
+pre .name,
 pre .regexp,
 pre .ruby .constant,
 pre .xml .tag .title,
@@ -815,6 +837,7 @@ pre .css .pseudo {
 pre .number,
 pre .preprocessor,
 pre .built_in,
+pre .builtin-name,
 pre .literal,
 pre .params,
 pre .constant,
@@ -824,13 +847,13 @@ pre .command {
 pre .ruby .class .title,
 pre .css .rules .attribute,
 pre .string,
+pre .symbol,
 pre .value,
 pre .inheritance,
 pre .header,
 pre .ruby .symbol,
 pre .xml .cdata,
 pre .special,
-pre .number,
 pre .formula {
   color: #b9ca4a;
 }
@@ -1342,7 +1365,8 @@ pre .javascript .function {
 }
 .use-motion .logo,
 .use-motion .site-title,
-.use-motion .site-subtitle {
+.use-motion .site-subtitle,
+.use-motion .custom-logo-image {
   opacity: 0;
   position: relative;
   top: -10px;
@@ -1398,7 +1422,8 @@ pre .javascript .function {
     margin-top: 10px;
   }
 }
-.menu .menu-item a {
+.menu .menu-item a,
+.menu .menu-item span.exturl {
   display: block;
   font-size: 13px;
   line-height: inherit;
@@ -1409,7 +1434,7 @@ pre .javascript .function {
   transition-delay: 0s;
 }
 .menu .menu-item a:hover,
-.menu-item-active a {
+.menu .menu-item span.exturl:hover {
   border-bottom-color: #222;
 }
 .menu .menu-item .fa {
@@ -1419,12 +1444,13 @@ pre .javascript .function {
   opacity: 0;
 }
 .post-body {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   font-family: 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
-@media (max-width: 767px) {
-  .post-body {
-    word-break: break-word;
-  }
+.post-body .exturl .fa {
+  font-size: 14px;
+  margin-left: 4px;
 }
 .post-body .fancybox img {
   display: block !important;
@@ -1645,7 +1671,8 @@ pre .javascript .function {
   margin-left: 3px;
   opacity: 0.6;
 }
-.posts-collapse .post-title a {
+.posts-collapse .post-title a,
+.posts-collapse .post-title span.exturl {
   color: #666;
   border-bottom: none;
 }
@@ -1656,8 +1683,9 @@ pre .javascript .function {
   display: none;
 }
 .posts-expand .post-title {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   text-align: center;
-  word-break: break-word;
   font-weight: 400;
 }
 .posts-expand .post-title-link {
@@ -1695,7 +1723,8 @@ pre .javascript .function {
   transform: scaleX(1);
 }
 .posts-expand .post-title-link .fa {
-  font-size: 16px;
+  font-size: 20px;
+  margin-left: 5px;
 }
 .posts-expand .post-meta {
   margin: 3px 0 60px 0;
@@ -1790,23 +1819,20 @@ pre .javascript .function {
   top: 2px;
 }
 .post-nav-item .fa {
-  position: absolute;
-  top: 8px;
-  left: 0;
   font-size: 12px;
+  margin-right: 5px;
 }
 .post-nav-next a {
-  padding-left: 15px;
+  padding-left: 5px;
 }
 .post-nav-prev {
   text-align: right;
 }
 .post-nav-prev a {
-  padding-right: 15px;
+  padding-right: 5px;
 }
 .post-nav-prev .fa {
-  right: 0;
-  left: auto;
+  margin-left: 5px;
 }
 .posts-expand .post-eof {
   display: block;
@@ -2029,7 +2055,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #b9ffff;
+  background: #e4e40f;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2047,7 +2073,8 @@ pre .javascript .function {
 .links-of-blogroll-item {
   padding: 2px 10px;
 }
-.links-of-blogroll-item a {
+.links-of-blogroll-item a,
+.links-of-blogroll-item span.exturl {
   max-width: 280px;
   box-sizing: border-box;
   display: inline-block;
@@ -2301,9 +2328,6 @@ pre .javascript .function {
     transform: scale(1.1);
   }
 }
-.fa {
-  font-family: FontAwesome !important;
-}
 .local-search-pop-overlay {
   position: fixed;
   width: 100%;
@@ -2554,9 +2578,10 @@ pre .javascript .function {
   transition-delay: 0s;
 }
 .algolia-pagination .pagination {
-  margin-top: 40px;
+  margin: 40px 0px;
   border-top: none;
   padding: 0;
+  opacity: 1;
 }
 .algolia-pagination .pagination-item {
   display: inline-block;
@@ -2591,6 +2616,10 @@ pre .javascript .function {
   background: #555;
   border: 1px solid #fff;
   border-radius: 50%;
+}
+.page-archive .fa-external-link {
+  font-size: 15px;
+  margin-left: 5px;
 }
 .category-all-page .category-all-title {
   text-align: center;
@@ -2688,9 +2717,10 @@ pre .javascript .function {
 }
 #schedule ul#event-list li.event-past {
   background: #fcfcfc;
+  padding: 15px 0 15px 10px;
 }
 #schedule ul#event-list li.event-past > * {
-  opacity: 0.6;
+  opacity: 0.9;
 }
 #schedule ul#event-list li.event-past h2.event-summary {
   color: #bbb;
@@ -2713,6 +2743,23 @@ pre .javascript .function {
   animation: dot-flash 1s alternate infinite ease-in-out;
 }
 #schedule ul#event-list li.event-now * {
+  color: #fff !important;
+}
+#schedule ul#event-list li.event-future {
+  background: #222;
+  color: #fff;
+  padding: 15px 0 15px 10px;
+}
+#schedule ul#event-list li.event-future h2.event-summary:before {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+  color: #fff;
+  animation: dot-flash 1s alternate infinite ease-in-out;
+}
+#schedule ul#event-list li.event-future * {
   color: #fff !important;
 }
 @-moz-keyframes dot-flash {
@@ -2874,16 +2921,6 @@ ul.breadcrumb li+li:last-child {
   clear: both;
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  .main {
-    padding-bottom: 100px;
-  }
-}
-@media (max-width: 767px) {
-  .main {
-    padding-bottom: 100px;
-  }
-}
-@media (min-width: 768px) and (max-width: 991px) {
   .container .main-inner {
     width: auto;
   }
@@ -2921,7 +2958,7 @@ ul.breadcrumb li+li:last-child {
 .sidebar {
   position: static;
   float: left;
-  margin-top: 300px;
+  margin-left: -100%;
   width: 240px;
   background: #eee;
   box-shadow: none;
@@ -2998,6 +3035,19 @@ ul.breadcrumb li+li:last-child {
   margin: 10px 10px 0;
   font-weight: initial;
 }
+.custom-logo-image {
+  margin-top: 20px;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .custom-logo-image {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .custom-logo-image {
+    display: none;
+  }
+}
 .site-search form {
   display: none;
 }
@@ -3014,11 +3064,31 @@ ul.breadcrumb li+li:last-child {
     display: block !important;
   }
 }
+.menu-item-active a,
+.menu .menu-item a:hover,
+.menu .menu-item span.exturl:hover {
+  background: #f9f9f9;
+  border-bottom-color: #fff;
+}
+.menu-item-active a:after,
+.menu .menu-item a:hover:after,
+.menu .menu-item span.exturl:hover:after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  margin-top: -3px;
+  right: 15px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #bbb;
+}
 .menu .menu-item {
   display: block;
   margin: 0;
 }
-.menu .menu-item a {
+.menu .menu-item a,
+.menu .menu-item span.exturl {
   position: relative;
   box-sizing: border-box;
   padding: 5px 20px;
@@ -3029,10 +3099,11 @@ ul.breadcrumb li+li:last-child {
   transition-timing-function: ease-in-out;
   transition-delay: 0s;
 }
-.menu .menu-item a:hover,
-.menu-item-active a {
-  background: #f9f9f9;
-  border-bottom-color: #fff;
+@media (hover: none) {
+  .menu .menu-item a:hover,
+  .menu .menu-item span.exturl:hover {
+    background: none;
+  }
 }
 .menu .menu-item .badge {
   display: inline-block;
@@ -3051,17 +3122,6 @@ ul.breadcrumb li+li:last-child {
 }
 .menu .menu-item br {
   display: none;
-}
-.menu-item-active a:after {
-  content: " ";
-  position: absolute;
-  top: 50%;
-  margin-top: -3px;
-  right: 15px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #bbb;
 }
 .btn-bar {
   background-color: #fff;
@@ -3090,11 +3150,13 @@ ul.breadcrumb li+li:last-child {
 .sub-menu .menu-item {
   display: inline-block !important;
 }
-.sub-menu .menu-item a {
+.sub-menu .menu-item a,
+.sub-menu .menu-item span.exturl {
   padding: initial !important;
   margin: 5px 10px;
 }
-.sub-menu .menu-item a:hover {
+.sub-menu .menu-item a:hover,
+.sub-menu .menu-item span.exturl:hover {
   background: initial !important;
   color: #fc6423;
 }
@@ -3114,7 +3176,6 @@ ul.breadcrumb li+li:last-child {
   opacity: 1;
 }
 .sidebar {
-  margin-left: -100%;
   right: auto;
   bottom: auto;
   -webkit-transform: none;
@@ -3147,22 +3208,22 @@ ul.breadcrumb li+li:last-child {
   clear: both;
 }
 .sidebar a,
-.sidebar .exturl {
+.sidebar span.exturl {
   color: #555;
 }
 .sidebar a:hover,
-.sidebar .exturl:hover {
+.sidebar span.exturl:hover {
   color: #222;
 }
 .site-state-item {
   padding: 0 10px;
 }
 .links-of-author-item a:before,
-.links-of-author-item .exturl:before {
+.links-of-author-item span.exturl:before {
   display: none;
 }
 .links-of-author-item a,
-.links-of-author-item .exturl {
+.links-of-author-item span.exturl {
   border-bottom: none;
   text-decoration: underline;
 }
@@ -3188,7 +3249,7 @@ ul.breadcrumb li+li:last-child {
   flex-wrap: wrap;
   justify-content: center;
 }
-.links-of-author .exturl {
+.links-of-author span.exturl {
   font-size: 13px;
 }
 .links-of-author-item {
@@ -3208,12 +3269,12 @@ ul.breadcrumb li+li:last-child {
   text-overflow: ellipsis;
 }
 .links-of-author-item a,
-.links-of-author-item .exturl {
+.links-of-author-item span.exturl {
   display: block;
   text-decoration: none;
 }
 .links-of-author-item a:hover,
-.links-of-author-item .exturl:hover {
+.links-of-author-item span.exturl:hover {
   border-radius: 4px;
   background: #eee;
 }
@@ -3281,7 +3342,7 @@ ul.breadcrumb li+li:last-child {
 }
 .comments {
   padding: 40px;
-  margin: initial;
+  margin: auto;
   margin-top: 12px;
   background: #fff;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
@@ -3352,22 +3413,40 @@ ul.breadcrumb li+li:last-child {
   font-size: 1.6em;
   border-bottom: 1px solid #eee;
 }
+.post-body h1 code {
+  font-size: 1em;
+}
 .post-body h2 {
   font-size: 1.45em;
   border-bottom: 1px solid #eee;
+}
+.post-body h2 code {
+  font-size: 1em;
 }
 .post-body h3 {
   font-size: 1.3em;
   border-bottom: 1px dotted #eee;
 }
+.post-body h3 code {
+  font-size: 1em;
+}
 .post-body h4 {
   font-size: 1.2em;
+}
+.post-body h4 code {
+  font-size: 1em;
 }
 .post-body h5 {
   font-size: 1.07em;
 }
+.post-body h5 code {
+  font-size: 1em;
+}
 .post-body h6 {
   font-size: 1.03em;
+}
+.post-body h6 code {
+  font-size: 1em;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .content-wrap {
@@ -3426,29 +3505,27 @@ ul.breadcrumb li+li:last-child {
   }
 }
 </style><noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
 
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
 </noscript>
 
@@ -3467,7 +3544,7 @@ ul.breadcrumb li+li:last-child {
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -3477,6 +3554,7 @@ ul.breadcrumb li+li:last-child {
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
     
   </div>
 
@@ -3500,32 +3578,68 @@ ul.breadcrumb li+li:last-child {
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
   </li>
 
       
@@ -3630,9 +3744,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/02/05/router-mtu/" itemprop="url">
-                  路由器mtu设置
-                </a>
+                
+                <a href="/2008/02/05/router-mtu/" class="post-title-link" itemprop="url">路由器mtu设置</a>
               
             
           </h1>
@@ -3753,6 +3866,9 @@ ul.breadcrumb li+li:last-child {
     
 
     
+      
+    
+    
 
     
 
@@ -3810,9 +3926,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/02/03/robots-list/" itemprop="url">
-                  搜索引擎爬虫程序一览表
-                </a>
+                
+                <a href="/2008/02/03/robots-list/" class="post-title-link" itemprop="url">搜索引擎爬虫程序一览表</a>
               
             
           </h1>
@@ -3998,6 +4113,9 @@ ul.breadcrumb li+li:last-child {
     
 
     
+      
+    
+    
 
     
 
@@ -4055,9 +4173,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/02/02/MSN-use-firefox-open-url/" itemprop="url">
-                  如何在 MSN 中使用 Firefox 打开链接
-                </a>
+                
+                <a href="/2008/02/02/MSN-use-firefox-open-url/" class="post-title-link" itemprop="url">如何在 MSN 中使用 Firefox 打开链接</a>
               
             
           </h1>
@@ -4162,6 +4279,9 @@ ul.breadcrumb li+li:last-child {
     
 
     
+      
+    
+    
 
     
 
@@ -4219,9 +4339,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/01/29/KAV7-free/" itemprop="url">
-                  《暴雪无情,卡巴有情》卡巴斯基反病毒软件KAV7.0免费送一年
-                </a>
+                
+                <a href="/2008/01/29/KAV7-free/" class="post-title-link" itemprop="url">《暴雪无情,卡巴有情》卡巴斯基反病毒软件KAV7.0免费送一年</a>
               
             
           </h1>
@@ -4320,6 +4439,9 @@ ul.breadcrumb li+li:last-child {
     
 
     
+      
+    
+    
 
     
 
@@ -4377,9 +4499,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/01/24/php-regex-exclude/" itemprop="url">
-                  php 正则 不包含某字符串的正则表达式
-                </a>
+                
+                <a href="/2008/01/24/php-regex-exclude/" class="post-title-link" itemprop="url">php 正则 不包含某字符串的正则表达式</a>
               
             
           </h1>
@@ -4482,6 +4603,9 @@ ul.breadcrumb li+li:last-child {
     
 
     
+      
+    
+    
 
     
 
@@ -4539,9 +4663,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/01/23/linux-chmod-chown/" itemprop="url">
-                  Linux改变文件或目录的访问权限命令
-                </a>
+                
+                <a href="/2008/01/23/linux-chmod-chown/" class="post-title-link" itemprop="url">Linux改变文件或目录的访问权限命令</a>
               
             
           </h1>
@@ -4628,11 +4751,13 @@ ul.breadcrumb li+li:last-child {
 <p>横线代表空许可。r代表只读，w代表写，x代表可执行。注意这里共有10个位置。第一个字符指定了文件类型。在通常意义上，一个目录也是一个文件。如果第一个字符是横线，表示是一个非目录的文件。如果是d，表示是一个目录。<br>例如：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- 　　　 rw- 　 r– 　 r–</span><br><span class="line">普通文件 文件主 组用户 其他用户</span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>是文件sobsrc.tgz 的访问权限，表示sobsrc.tgz是一个普通文件；sobsrc.tgz的属主有读写权限；与sobsrc.tgz属主同组的用户只有读权限；其他用户也只有读权限。<br>确定了一个文件的访问权限后，用户可以利用Linux系统提供的chmod命令来重新设定不同的访问权限。也可以利用chown命令来更改某个文件或目录的所有者。利用chgrp命令来更改某个文件或目录的用户组。<br>下面分别对这些命令加以介绍。</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2008/01/23/linux-chmod-chown/#more" rel="contents">
-              Read more »
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2008/01/23/linux-chmod-chown/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -4646,6 +4771,9 @@ ul.breadcrumb li+li:last-child {
 
     
 
+    
+      
+    
     
 
     
@@ -4704,9 +4832,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/01/22/mysql-imput-output/" itemprop="url">
-                  MySQL导出导入命令的用例
-                </a>
+                
+                <a href="/2008/01/22/mysql-imput-output/" class="post-title-link" itemprop="url">MySQL导出导入命令的用例</a>
               
             
           </h1>
@@ -4791,11 +4918,13 @@ ul.breadcrumb li+li:last-child {
 </li>
 </ol>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2008/01/22/mysql-imput-output/#more" rel="contents">
-              Read more »
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2008/01/22/mysql-imput-output/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -4809,6 +4938,9 @@ ul.breadcrumb li+li:last-child {
 
     
 
+    
+      
+    
     
 
     
@@ -4867,9 +4999,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/01/21/Linux-tar-introduction/" itemprop="url">
-                  Linux下的压缩打包–tar命令详解
-                </a>
+                
+                <a href="/2008/01/21/Linux-tar-introduction/" class="post-title-link" itemprop="url">Linux下的压缩打包–tar命令详解</a>
               
             
           </h1>
@@ -4980,168 +5111,8 @@ ul.breadcrumb li+li:last-child {
     
 
     
-
-    
-
-    <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/01/19/rsync-parameters-details/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/01/19/rsync-parameters-details/" itemprop="url">
-                  rsync参数详解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-01-19 00:00:00" itemprop="dateCreated datePublished" datetime="2008-01-19T00:00:00+08:00">2008-01-19</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>选项说明</p>
-<blockquote>
-<p>-v, –verbose 详细模式输出<br>-q, –quiet 精简输出模式<br>-c, –checksum 打开校验开关，强制对文件传输进行校验<br>-a, –archive 归档模式，表示以递归方式传输文件，并保持所有文件属性，等于-rlptgoD<br>-r, –recursive 对子目录以递归模式处理<br>-R, –relative 使用相对路径信息</p>
-</blockquote>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync foo/bar/foo.c remote:/tmp/</span><br></pre></td></tr></tbody></table></figure>
-<p>则在/tmp目录下创建foo.c文件，而如果使用-R参数：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -R foo/bar/foo.c remote:/tmp/</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>则会创建文件/tmp/foo/bar/foo.c，也就是会保持完全路径信息。</p>
-<blockquote>
-<p>-b, –backup 创建备份，也就是对于目的已经存在有同样的文件名时，将老的文件重新命名为~filename。可以使用–suffix选项来指定不同的备份文件前缀。<br>–backup-dir 将备份文件(如~filename)存放在在目录下。<br>-suffix=SUFFIX 定义备份文件前缀<br>-u, –update 仅仅进行更新，也就是跳过所有已经存在于DST，并且文件时间晚于要备份的文件。(不覆盖更新的文件)<br>-l, –links 保留软链结<br>-L, –copy-links 想对待常规文件一样处理软链结<br>–copy-unsafe-links 仅仅拷贝指向SRC路径目录树以外的链结<br>–safe-links 忽略指向SRC路径目录树以外的链结<br>-H, –hard-links 保留硬链结<br>-p, –perms 保持文件权限<br>-o, –owner 保持文件属主信息<br>-g, –group 保持文件属组信息<br>-D, –devices 保持设备文件信息<br>-t, –times 保持文件时间信息<br>-S, –sparse 对稀疏文件进行特殊处理以节省DST的空间<br>-n, –dry-run现实哪些文件将被传输<br>-W, –whole-file 拷贝文件，不进行增量检测<br>-x, –one-file-system 不要跨越文件系统边界<br>-B, –block-size=SIZE 检验算法使用的块尺寸，默认是700字节<br>-e, –rsh=COMMAND 指定替代rsh的shell程序<br>–rsync-path=PATH 指定远程服务器上的rsync命令所在路径信息<br>-C, –cvs-exclude 使用和CVS一样的方法自动忽略文件，用来排除那些不希望传输的文件<br>–existing 仅仅更新那些已经存在于DST的文件，而不备份那些新创建的文件<br>–delete 删除那些DST中SRC没有的文件<br>–delete-excluded 同样删除接收端那些被该选项指定排除的文件<br>–delete-after 传输结束以后再删除<br>–ignore-errors 及时出现IO错误也进行删除<br>–max-delete=NUM 最多删除NUM个文件<br>–partial 保留那些因故没有完全传输的文件，以是加快随后的再次传输<br>–force 强制删除目录，即使不为空<br>–numeric-ids 不将数字的用户和组ID匹配为用户名和组名<br>–timeout=TIME IP超时时间，单位为秒<br>-I, –ignore-times 不跳过那些有同样的时间和长度的文件<br>–size-only 当决定是否要备份文件时，仅仅察看文件大小而不考虑文件时间<br>–modify-window=NUM 决定文件是否时间相同时使用的时间戳窗口，默认为0<br>-T –temp-dir=DIR 在DIR中创建临时文件<br>–compare-dest=DIR 同样比较DIR中的文件来决定是否需要备份<br>-P 等同于 –partial<br>–progress 显示备份过程<br>-z, –compress 对备份的文件在传输时进行压缩处理<br>–exclude=PATTERN 指定排除不需要传输的文件模式<br>–include=PATTERN 指定不排除而需要传输的文件模式<br>–exclude-from=FILE 排除FILE中指定模式的文件<br>–include-from=FILE 不排除FILE指定模式匹配的文件<br>–version 打印版本信息<br>–address 绑定到特定的地址<br>–config=FILE 指定其他的配置文件，不使用默认的rsyncd.conf文件<br>–port=PORT 指定其他的rsync服务端口<br>–blocking-io 对远程shell使用阻塞IO<br>-stats 给出某些文件的传输状态<br>–progress 在传输时现实传输过程<br>–log-format=FORMAT 指定日志文件格式<br>–password-file=FILE 从FILE中得到密码<br>–bwlimit=KBPS 限制I/O带宽，KBytes per second<br>-h, –help 显示帮助信息</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
     
 
     
@@ -5200,9 +5171,8 @@ ul.breadcrumb li+li:last-child {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/01/19/linux-install-rz-sz/" itemprop="url">
-                  Linux系统手动安装rz sz 软件包
-                </a>
+                
+                <a href="/2008/01/19/linux-install-rz-sz/" class="post-title-link" itemprop="url">Linux系统手动安装rz sz 软件包</a>
               
             
           </h1>
@@ -5317,6 +5287,174 @@ ul.breadcrumb li+li:last-child {
     
 
     
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/01/19/rsync-parameters-details/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2008/01/19/rsync-parameters-details/" class="post-title-link" itemprop="url">rsync参数详解</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-01-19 00:00:00" itemprop="dateCreated datePublished" datetime="2008-01-19T00:00:00+08:00">2008-01-19</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>选项说明</p>
+<blockquote>
+<p>-v, –verbose 详细模式输出<br>-q, –quiet 精简输出模式<br>-c, –checksum 打开校验开关，强制对文件传输进行校验<br>-a, –archive 归档模式，表示以递归方式传输文件，并保持所有文件属性，等于-rlptgoD<br>-r, –recursive 对子目录以递归模式处理<br>-R, –relative 使用相对路径信息</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync foo/bar/foo.c remote:/tmp/</span><br></pre></td></tr></tbody></table></figure>
+<p>则在/tmp目录下创建foo.c文件，而如果使用-R参数：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -R foo/bar/foo.c remote:/tmp/</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>则会创建文件/tmp/foo/bar/foo.c，也就是会保持完全路径信息。</p>
+<blockquote>
+<p>-b, –backup 创建备份，也就是对于目的已经存在有同样的文件名时，将老的文件重新命名为~filename。可以使用–suffix选项来指定不同的备份文件前缀。<br>–backup-dir 将备份文件(如~filename)存放在在目录下。<br>-suffix=SUFFIX 定义备份文件前缀<br>-u, –update 仅仅进行更新，也就是跳过所有已经存在于DST，并且文件时间晚于要备份的文件。(不覆盖更新的文件)<br>-l, –links 保留软链结<br>-L, –copy-links 想对待常规文件一样处理软链结<br>–copy-unsafe-links 仅仅拷贝指向SRC路径目录树以外的链结<br>–safe-links 忽略指向SRC路径目录树以外的链结<br>-H, –hard-links 保留硬链结<br>-p, –perms 保持文件权限<br>-o, –owner 保持文件属主信息<br>-g, –group 保持文件属组信息<br>-D, –devices 保持设备文件信息<br>-t, –times 保持文件时间信息<br>-S, –sparse 对稀疏文件进行特殊处理以节省DST的空间<br>-n, –dry-run现实哪些文件将被传输<br>-W, –whole-file 拷贝文件，不进行增量检测<br>-x, –one-file-system 不要跨越文件系统边界<br>-B, –block-size=SIZE 检验算法使用的块尺寸，默认是700字节<br>-e, –rsh=COMMAND 指定替代rsh的shell程序<br>–rsync-path=PATH 指定远程服务器上的rsync命令所在路径信息<br>-C, –cvs-exclude 使用和CVS一样的方法自动忽略文件，用来排除那些不希望传输的文件<br>–existing 仅仅更新那些已经存在于DST的文件，而不备份那些新创建的文件<br>–delete 删除那些DST中SRC没有的文件<br>–delete-excluded 同样删除接收端那些被该选项指定排除的文件<br>–delete-after 传输结束以后再删除<br>–ignore-errors 及时出现IO错误也进行删除<br>–max-delete=NUM 最多删除NUM个文件<br>–partial 保留那些因故没有完全传输的文件，以是加快随后的再次传输<br>–force 强制删除目录，即使不为空<br>–numeric-ids 不将数字的用户和组ID匹配为用户名和组名<br>–timeout=TIME IP超时时间，单位为秒<br>-I, –ignore-times 不跳过那些有同样的时间和长度的文件<br>–size-only 当决定是否要备份文件时，仅仅察看文件大小而不考虑文件时间<br>–modify-window=NUM 决定文件是否时间相同时使用的时间戳窗口，默认为0<br>-T –temp-dir=DIR 在DIR中创建临时文件<br>–compare-dest=DIR 同样比较DIR中的文件来决定是否需要备份<br>-P 等同于 –partial<br>–progress 显示备份过程<br>-z, –compress 对备份的文件在传输时进行压缩处理<br>–exclude=PATTERN 指定排除不需要传输的文件模式<br>–include=PATTERN 指定不排除而需要传输的文件模式<br>–exclude-from=FILE 排除FILE中指定模式的文件<br>–include-from=FILE 不排除FILE指定模式匹配的文件<br>–version 打印版本信息<br>–address 绑定到特定的地址<br>–config=FILE 指定其他的配置文件，不使用默认的rsyncd.conf文件<br>–port=PORT 指定其他的rsync服务端口<br>–blocking-io 对远程shell使用阻塞IO<br>-stats 给出某些文件的传输状态<br>–progress 在传输时现实传输过程<br>–log-format=FORMAT 指定日志文件格式<br>–password-file=FILE 从FILE中得到密码<br>–bwlimit=KBPS 限制I/O带宽，KBytes per second<br>-h, –help 显示帮助信息</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
 
     
 
@@ -5372,7 +5510,7 @@ ul.breadcrumb li+li:last-child {
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -5885,7 +6023,6 @@ ul.breadcrumb li+li:last-child {
           
 
           
-          
 
           
           
@@ -5896,7 +6033,7 @@ ul.breadcrumb li+li:last-child {
           
 
         </div>
-      </section>
+      </div>
 
       
 
@@ -5926,7 +6063,7 @@ ul.breadcrumb li+li:last-child {
         })();
       </script>
       <div class="footer-inner">
-        <div class="copyright">© 2007 – <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">© 2007 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -5938,9 +6075,7 @@ ul.breadcrumb li+li:last-child {
 </div>
 
 
-
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
@@ -5948,7 +6083,7 @@ ul.breadcrumb li+li:last-child {
 
 
 
-  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
 
 
 
@@ -5982,7 +6117,7 @@ ul.breadcrumb li+li:last-child {
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -5999,8 +6134,6 @@ ul.breadcrumb li+li:last-child {
 
 
 
-  
-
 
 
 
@@ -6017,22 +6150,11 @@ ul.breadcrumb li+li:last-child {
 
   
   
-    
-  
 
   
   
-    
-  
 
   
-  
-    
-  
-
-  
-  
-    
   
 
 
@@ -6079,15 +6201,11 @@ ul.breadcrumb li+li:last-child {
 
 
 
+
   
 
 
 
-
-  
-  
-  
-  
 
   
   
@@ -6095,6 +6213,11 @@ ul.breadcrumb li+li:last-child {
   
 
   
+  
+  
+  
+
+  
 
 
 
@@ -6107,6 +6230,7 @@ ul.breadcrumb li+li:last-child {
   
 
   
+
   
 
   

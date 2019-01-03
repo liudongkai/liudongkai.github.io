@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="theme-next gemini use-motion" lang="zh-Hans"><head>
+<!DOCTYPE html><html class="theme-next gemini use-motion" lang="zh-Hans"><head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -15,8 +15,6 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -24,18 +22,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-  
-  
-  
 
 
 
@@ -109,16 +95,14 @@
 
 
 
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '6.4.1',
+    version: '6.7.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    fancybox: false,
     fastclick: false,
     lazyload: false,
     tabs: true,
@@ -161,7 +145,7 @@
 
 
 
-<script type="text/javascript" id="page.configurations">
+<script id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
@@ -173,14 +157,16 @@
 
 
 
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-42337789-4');
+  </script>
 
-  gtag('config', 'UA-42337789-4');
-</script>
+
+
 
 
 
@@ -418,62 +404,103 @@ h6 {
 h1 {
   font-size: 22px;
 }
+h1 code {
+  font-size: 22px;
+}
 @media (max-width: 767px) {
   h1 {
+    font-size: 18px;
+  }
+  h1 code {
     font-size: 18px;
   }
 }
 h2 {
   font-size: 20px;
 }
+h2 code {
+  font-size: 20px;
+}
 @media (max-width: 767px) {
   h2 {
+    font-size: 16px;
+  }
+  h2 code {
     font-size: 16px;
   }
 }
 h3 {
   font-size: 18px;
 }
+h3 code {
+  font-size: 18px;
+}
 @media (max-width: 767px) {
   h3 {
+    font-size: 14px;
+  }
+  h3 code {
     font-size: 14px;
   }
 }
 h4 {
   font-size: 16px;
 }
+h4 code {
+  font-size: 16px;
+}
 @media (max-width: 767px) {
   h4 {
+    font-size: 12px;
+  }
+  h4 code {
     font-size: 12px;
   }
 }
 h5 {
   font-size: 14px;
 }
+h5 code {
+  font-size: 14px;
+}
 @media (max-width: 767px) {
   h5 {
+    font-size: 10px;
+  }
+  h5 code {
     font-size: 10px;
   }
 }
 h6 {
   font-size: 12px;
 }
+h6 code {
+  font-size: 12px;
+}
 @media (max-width: 767px) {
   h6 {
+    font-size: 8px;
+  }
+  h6 code {
     font-size: 8px;
   }
 }
 p {
   margin: 0 0 20px 0;
 }
-a {
+a,
+span.exturl {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  background-color: transparent;
   color: #555;
   text-decoration: none;
   outline: none;
   border-bottom: 1px solid #999;
-  word-wrap: break-word;
+  cursor: pointer;
 }
-a:hover {
+a:hover,
+span.exturl:hover {
   color: #222;
   border-bottom-color: #222;
 }
@@ -595,7 +622,7 @@ table {
   border-spacing: 0;
   border: 1px solid #ddd;
   font-size: 14px;
-  word-wrap: break-all;
+  word-break: break-all;
 }
 table>tbody>tr:nth-of-type(odd) {
   background-color: #f9f9f9;
@@ -646,9 +673,6 @@ body {
     width: 73%;
   }
 }
-.main {
-  padding-bottom: 150px;
-}
 .main-inner {
   margin: 0 auto;
   width: calc(100% - 20px);
@@ -664,15 +688,11 @@ body {
   }
 }
 .footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  min-height: 50px;
+  padding: 20px 0;
 }
 .footer-inner {
   box-sizing: border-box;
-  margin: 20px auto;
+  margin: 0px auto;
   width: calc(100% - 20px);
 }
 @media (min-width: 1200px) {
@@ -700,8 +720,9 @@ code {
   font-family: 'PT Mono', consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace;
 }
 code {
-  padding: 2px 4px;
+  overflow-wrap: break-word;
   word-wrap: break-word;
+  padding: 2px 4px;
   color: #555;
   background: #eee;
   border-radius: 3px;
@@ -801,6 +822,7 @@ pre .comment {
 pre .variable,
 pre .attribute,
 pre .tag,
+pre .name,
 pre .regexp,
 pre .ruby .constant,
 pre .xml .tag .title,
@@ -815,6 +837,7 @@ pre .css .pseudo {
 pre .number,
 pre .preprocessor,
 pre .built_in,
+pre .builtin-name,
 pre .literal,
 pre .params,
 pre .constant,
@@ -824,13 +847,13 @@ pre .command {
 pre .ruby .class .title,
 pre .css .rules .attribute,
 pre .string,
+pre .symbol,
 pre .value,
 pre .inheritance,
 pre .header,
 pre .ruby .symbol,
 pre .xml .cdata,
 pre .special,
-pre .number,
 pre .formula {
   color: #b9ca4a;
 }
@@ -1342,7 +1365,8 @@ pre .javascript .function {
 }
 .use-motion .logo,
 .use-motion .site-title,
-.use-motion .site-subtitle {
+.use-motion .site-subtitle,
+.use-motion .custom-logo-image {
   opacity: 0;
   position: relative;
   top: -10px;
@@ -1398,7 +1422,8 @@ pre .javascript .function {
     margin-top: 10px;
   }
 }
-.menu .menu-item a {
+.menu .menu-item a,
+.menu .menu-item span.exturl {
   display: block;
   font-size: 13px;
   line-height: inherit;
@@ -1409,7 +1434,7 @@ pre .javascript .function {
   transition-delay: 0s;
 }
 .menu .menu-item a:hover,
-.menu-item-active a {
+.menu .menu-item span.exturl:hover {
   border-bottom-color: #222;
 }
 .menu .menu-item .fa {
@@ -1419,12 +1444,13 @@ pre .javascript .function {
   opacity: 0;
 }
 .post-body {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   font-family: 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
-@media (max-width: 767px) {
-  .post-body {
-    word-break: break-word;
-  }
+.post-body .exturl .fa {
+  font-size: 14px;
+  margin-left: 4px;
 }
 .post-body .fancybox img {
   display: block !important;
@@ -1645,7 +1671,8 @@ pre .javascript .function {
   margin-left: 3px;
   opacity: 0.6;
 }
-.posts-collapse .post-title a {
+.posts-collapse .post-title a,
+.posts-collapse .post-title span.exturl {
   color: #666;
   border-bottom: none;
 }
@@ -1656,8 +1683,9 @@ pre .javascript .function {
   display: none;
 }
 .posts-expand .post-title {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   text-align: center;
-  word-break: break-word;
   font-weight: 400;
 }
 .posts-expand .post-title-link {
@@ -1695,7 +1723,8 @@ pre .javascript .function {
   transform: scaleX(1);
 }
 .posts-expand .post-title-link .fa {
-  font-size: 16px;
+  font-size: 20px;
+  margin-left: 5px;
 }
 .posts-expand .post-meta {
   margin: 3px 0 60px 0;
@@ -1790,23 +1819,20 @@ pre .javascript .function {
   top: 2px;
 }
 .post-nav-item .fa {
-  position: absolute;
-  top: 8px;
-  left: 0;
   font-size: 12px;
+  margin-right: 5px;
 }
 .post-nav-next a {
-  padding-left: 15px;
+  padding-left: 5px;
 }
 .post-nav-prev {
   text-align: right;
 }
 .post-nav-prev a {
-  padding-right: 15px;
+  padding-right: 5px;
 }
 .post-nav-prev .fa {
-  right: 0;
-  left: auto;
+  margin-left: 5px;
 }
 .posts-expand .post-eof {
   display: block;
@@ -2029,7 +2055,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #b9ffff;
+  background: #e4e40f;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2047,7 +2073,8 @@ pre .javascript .function {
 .links-of-blogroll-item {
   padding: 2px 10px;
 }
-.links-of-blogroll-item a {
+.links-of-blogroll-item a,
+.links-of-blogroll-item span.exturl {
   max-width: 280px;
   box-sizing: border-box;
   display: inline-block;
@@ -2301,9 +2328,6 @@ pre .javascript .function {
     transform: scale(1.1);
   }
 }
-.fa {
-  font-family: FontAwesome !important;
-}
 .local-search-pop-overlay {
   position: fixed;
   width: 100%;
@@ -2554,9 +2578,10 @@ pre .javascript .function {
   transition-delay: 0s;
 }
 .algolia-pagination .pagination {
-  margin-top: 40px;
+  margin: 40px 0px;
   border-top: none;
   padding: 0;
+  opacity: 1;
 }
 .algolia-pagination .pagination-item {
   display: inline-block;
@@ -2591,6 +2616,10 @@ pre .javascript .function {
   background: #555;
   border: 1px solid #fff;
   border-radius: 50%;
+}
+.page-archive .fa-external-link {
+  font-size: 15px;
+  margin-left: 5px;
 }
 .category-all-page .category-all-title {
   text-align: center;
@@ -2688,9 +2717,10 @@ pre .javascript .function {
 }
 #schedule ul#event-list li.event-past {
   background: #fcfcfc;
+  padding: 15px 0 15px 10px;
 }
 #schedule ul#event-list li.event-past > * {
-  opacity: 0.6;
+  opacity: 0.9;
 }
 #schedule ul#event-list li.event-past h2.event-summary {
   color: #bbb;
@@ -2713,6 +2743,23 @@ pre .javascript .function {
   animation: dot-flash 1s alternate infinite ease-in-out;
 }
 #schedule ul#event-list li.event-now * {
+  color: #fff !important;
+}
+#schedule ul#event-list li.event-future {
+  background: #222;
+  color: #fff;
+  padding: 15px 0 15px 10px;
+}
+#schedule ul#event-list li.event-future h2.event-summary:before {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+  color: #fff;
+  animation: dot-flash 1s alternate infinite ease-in-out;
+}
+#schedule ul#event-list li.event-future * {
   color: #fff !important;
 }
 @-moz-keyframes dot-flash {
@@ -2874,16 +2921,6 @@ ul.breadcrumb li+li:last-child {
   clear: both;
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  .main {
-    padding-bottom: 100px;
-  }
-}
-@media (max-width: 767px) {
-  .main {
-    padding-bottom: 100px;
-  }
-}
-@media (min-width: 768px) and (max-width: 991px) {
   .container .main-inner {
     width: auto;
   }
@@ -2921,7 +2958,7 @@ ul.breadcrumb li+li:last-child {
 .sidebar {
   position: static;
   float: left;
-  margin-top: 300px;
+  margin-left: -100%;
   width: 240px;
   background: #eee;
   box-shadow: none;
@@ -2998,6 +3035,19 @@ ul.breadcrumb li+li:last-child {
   margin: 10px 10px 0;
   font-weight: initial;
 }
+.custom-logo-image {
+  margin-top: 20px;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .custom-logo-image {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .custom-logo-image {
+    display: none;
+  }
+}
 .site-search form {
   display: none;
 }
@@ -3014,11 +3064,31 @@ ul.breadcrumb li+li:last-child {
     display: block !important;
   }
 }
+.menu-item-active a,
+.menu .menu-item a:hover,
+.menu .menu-item span.exturl:hover {
+  background: #f9f9f9;
+  border-bottom-color: #fff;
+}
+.menu-item-active a:after,
+.menu .menu-item a:hover:after,
+.menu .menu-item span.exturl:hover:after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  margin-top: -3px;
+  right: 15px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #bbb;
+}
 .menu .menu-item {
   display: block;
   margin: 0;
 }
-.menu .menu-item a {
+.menu .menu-item a,
+.menu .menu-item span.exturl {
   position: relative;
   box-sizing: border-box;
   padding: 5px 20px;
@@ -3029,10 +3099,11 @@ ul.breadcrumb li+li:last-child {
   transition-timing-function: ease-in-out;
   transition-delay: 0s;
 }
-.menu .menu-item a:hover,
-.menu-item-active a {
-  background: #f9f9f9;
-  border-bottom-color: #fff;
+@media (hover: none) {
+  .menu .menu-item a:hover,
+  .menu .menu-item span.exturl:hover {
+    background: none;
+  }
 }
 .menu .menu-item .badge {
   display: inline-block;
@@ -3051,17 +3122,6 @@ ul.breadcrumb li+li:last-child {
 }
 .menu .menu-item br {
   display: none;
-}
-.menu-item-active a:after {
-  content: " ";
-  position: absolute;
-  top: 50%;
-  margin-top: -3px;
-  right: 15px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #bbb;
 }
 .btn-bar {
   background-color: #fff;
@@ -3090,11 +3150,13 @@ ul.breadcrumb li+li:last-child {
 .sub-menu .menu-item {
   display: inline-block !important;
 }
-.sub-menu .menu-item a {
+.sub-menu .menu-item a,
+.sub-menu .menu-item span.exturl {
   padding: initial !important;
   margin: 5px 10px;
 }
-.sub-menu .menu-item a:hover {
+.sub-menu .menu-item a:hover,
+.sub-menu .menu-item span.exturl:hover {
   background: initial !important;
   color: #fc6423;
 }
@@ -3114,7 +3176,6 @@ ul.breadcrumb li+li:last-child {
   opacity: 1;
 }
 .sidebar {
-  margin-left: -100%;
   right: auto;
   bottom: auto;
   -webkit-transform: none;
@@ -3147,22 +3208,22 @@ ul.breadcrumb li+li:last-child {
   clear: both;
 }
 .sidebar a,
-.sidebar .exturl {
+.sidebar span.exturl {
   color: #555;
 }
 .sidebar a:hover,
-.sidebar .exturl:hover {
+.sidebar span.exturl:hover {
   color: #222;
 }
 .site-state-item {
   padding: 0 10px;
 }
 .links-of-author-item a:before,
-.links-of-author-item .exturl:before {
+.links-of-author-item span.exturl:before {
   display: none;
 }
 .links-of-author-item a,
-.links-of-author-item .exturl {
+.links-of-author-item span.exturl {
   border-bottom: none;
   text-decoration: underline;
 }
@@ -3188,7 +3249,7 @@ ul.breadcrumb li+li:last-child {
   flex-wrap: wrap;
   justify-content: center;
 }
-.links-of-author .exturl {
+.links-of-author span.exturl {
   font-size: 13px;
 }
 .links-of-author-item {
@@ -3208,12 +3269,12 @@ ul.breadcrumb li+li:last-child {
   text-overflow: ellipsis;
 }
 .links-of-author-item a,
-.links-of-author-item .exturl {
+.links-of-author-item span.exturl {
   display: block;
   text-decoration: none;
 }
 .links-of-author-item a:hover,
-.links-of-author-item .exturl:hover {
+.links-of-author-item span.exturl:hover {
   border-radius: 4px;
   background: #eee;
 }
@@ -3281,7 +3342,7 @@ ul.breadcrumb li+li:last-child {
 }
 .comments {
   padding: 40px;
-  margin: initial;
+  margin: auto;
   margin-top: 12px;
   background: #fff;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
@@ -3352,22 +3413,40 @@ ul.breadcrumb li+li:last-child {
   font-size: 1.6em;
   border-bottom: 1px solid #eee;
 }
+.post-body h1 code {
+  font-size: 1em;
+}
 .post-body h2 {
   font-size: 1.45em;
   border-bottom: 1px solid #eee;
+}
+.post-body h2 code {
+  font-size: 1em;
 }
 .post-body h3 {
   font-size: 1.3em;
   border-bottom: 1px dotted #eee;
 }
+.post-body h3 code {
+  font-size: 1em;
+}
 .post-body h4 {
   font-size: 1.2em;
+}
+.post-body h4 code {
+  font-size: 1em;
 }
 .post-body h5 {
   font-size: 1.07em;
 }
+.post-body h5 code {
+  font-size: 1em;
+}
 .post-body h6 {
   font-size: 1.03em;
+}
+.post-body h6 code {
+  font-size: 1em;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .content-wrap {
@@ -3426,29 +3505,27 @@ ul.breadcrumb li+li:last-child {
   }
 }
 </style><noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
 
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
 </noscript>
 
@@ -3466,7 +3543,7 @@ ul.breadcrumb li+li:last-child {
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -3476,6 +3553,7 @@ ul.breadcrumb li+li:last-child {
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
     
   </div>
 
@@ -3499,32 +3577,68 @@ ul.breadcrumb li+li:last-child {
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-categories menu-item-active">
-    <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
   </li>
 
       
@@ -3632,11 +3746,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2015/04/17/chrome-42-alipay-wangwang/" itemprop="url">
-              
-                <span itemprop="name">chrome V42版本，支付宝、旺旺插件失效解决办法</span>
-              
-            </a>
+          <a class="post-title-link" href="/2015/04/17/chrome-42-alipay-wangwang/" itemprop="url">
+            
+              <span itemprop="name">chrome V42版本，支付宝、旺旺插件失效解决办法</span>
+            
+          </a>
         
       </h2>
 
@@ -3658,11 +3772,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2015/02/01/google-earth-pro-free/" itemprop="url">
-              
-                <span itemprop="name">Google Earth专业版完全免费了</span>
-              
-            </a>
+          <a class="post-title-link" href="/2015/02/01/google-earth-pro-free/" itemprop="url">
+            
+              <span itemprop="name">Google Earth专业版完全免费了</span>
+            
+          </a>
         
       </h2>
 
@@ -3684,11 +3798,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2014/11/08/qnap-ts-212p-fireware-recovery/" itemprop="url">
-              
-                <span itemprop="name">QNAP TS-212P 重刷固件后起死回生</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/11/08/qnap-ts-212p-fireware-recovery/" itemprop="url">
+            
+              <span itemprop="name">QNAP TS-212P 重刷固件后起死回生</span>
+            
+          </a>
         
       </h2>
 
@@ -3710,11 +3824,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2014/10/13/the-triggerfish-and-your-mobile-app/" itemprop="url">
-              
-                <span itemprop="name">找到一个触发器，成为用户每天使用的app</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/10/13/the-triggerfish-and-your-mobile-app/" itemprop="url">
+            
+              <span itemprop="name">找到一个触发器，成为用户每天使用的app</span>
+            
+          </a>
         
       </h2>
 
@@ -3736,11 +3850,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2014/10/08/youku-url-resolve/" itemprop="url">
-              
-                <span itemprop="name">优酷真实视频地址解析——2014年10月7日[ZT]</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/10/08/youku-url-resolve/" itemprop="url">
+            
+              <span itemprop="name">优酷真实视频地址解析——2014年10月7日[ZT]</span>
+            
+          </a>
         
       </h2>
 
@@ -3762,11 +3876,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2014/08/12/dropbox-hosts/" itemprop="url">
-              
-                <span itemprop="name">Dropbox 可用 hosts</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/08/12/dropbox-hosts/" itemprop="url">
+            
+              <span itemprop="name">Dropbox 可用 hosts</span>
+            
+          </a>
         
       </h2>
 
@@ -3788,11 +3902,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2014/06/18/chrome-thirdparty-extensions-not-available/" itemprop="url">
-              
-                <span itemprop="name">解决chrome高版本Stable、Beta扩展程序强制停用问题</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/06/18/chrome-thirdparty-extensions-not-available/" itemprop="url">
+            
+              <span itemprop="name">解决chrome高版本Stable、Beta扩展程序强制停用问题</span>
+            
+          </a>
         
       </h2>
 
@@ -3814,11 +3928,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2014/06/15/GoAgent-bug/" itemprop="url">
-              
-                <span itemprop="name">GoAgent漏洞导致中间人攻击</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/06/15/GoAgent-bug/" itemprop="url">
+            
+              <span itemprop="name">GoAgent漏洞导致中间人攻击</span>
+            
+          </a>
         
       </h2>
 
@@ -3840,11 +3954,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2014/06/14/ghs-service-ip/" itemprop="url">
-              
-                <span itemprop="name">可用的ghs服务ip</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/06/14/ghs-service-ip/" itemprop="url">
+            
+              <span itemprop="name">可用的ghs服务ip</span>
+            
+          </a>
         
       </h2>
 
@@ -3866,11 +3980,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2014/06/14/DNS/" itemprop="url">
-              
-                <span itemprop="name">国内能用的靠谱DNS整理</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/06/14/DNS/" itemprop="url">
+            
+              <span itemprop="name">国内能用的靠谱DNS整理</span>
+            
+          </a>
         
       </h2>
 
@@ -3892,11 +4006,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2014/06/13/root-certificate-installed-no-response/" itemprop="url">
-              
-                <span itemprop="name">根证书安装时无响应解决办法</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/06/13/root-certificate-installed-no-response/" itemprop="url">
+            
+              <span itemprop="name">根证书安装时无响应解决办法</span>
+            
+          </a>
         
       </h2>
 
@@ -3918,11 +4032,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2014/02/24/ios7-cydia-recommended-software/" itemprop="url">
-              
-                <span itemprop="name">推荐 iOS7 Cydia 我的几个必装套件</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/02/24/ios7-cydia-recommended-software/" itemprop="url">
+            
+              <span itemprop="name">推荐 iOS7 Cydia 我的几个必装套件</span>
+            
+          </a>
         
       </h2>
 
@@ -3944,11 +4058,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2014/02/17/Flash-P2P-Disable/" itemprop="url">
-              
-                <span itemprop="name">屏蔽Flash P2P看在线视频偷偷上传，详尽手工教程</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/02/17/Flash-P2P-Disable/" itemprop="url">
+            
+              <span itemprop="name">屏蔽Flash P2P看在线视频偷偷上传，详尽手工教程</span>
+            
+          </a>
         
       </h2>
 
@@ -3970,11 +4084,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2014/01/22/ignore-prompt-NPAPI-chrome-v32/" itemprop="url">
-              
-                <span itemprop="name">避免chrome总是提示需要你许可才能运行</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/01/22/ignore-prompt-NPAPI-chrome-v32/" itemprop="url">
+            
+              <span itemprop="name">避免chrome总是提示需要你许可才能运行</span>
+            
+          </a>
         
       </h2>
 
@@ -3996,11 +4110,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2014/01/10/Zend-Studio-WordWrap/" itemprop="url">
-              
-                <span itemprop="name">Zend Studio 代码换行</span>
-              
-            </a>
+          <a class="post-title-link" href="/2014/01/10/Zend-Studio-WordWrap/" itemprop="url">
+            
+              <span itemprop="name">Zend Studio 代码换行</span>
+            
+          </a>
         
       </h2>
 
@@ -4022,11 +4136,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2013/04/17/xml-sql-symbol-convert/" itemprop="url">
-              
-                <span itemprop="name">通过xml处理sql语句时对小于号与大于号的处理转换</span>
-              
-            </a>
+          <a class="post-title-link" href="/2013/04/17/xml-sql-symbol-convert/" itemprop="url">
+            
+              <span itemprop="name">通过xml处理sql语句时对小于号与大于号的处理转换</span>
+            
+          </a>
         
       </h2>
 
@@ -4048,11 +4162,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2011/11/14/chrome-sync-internals/" itemprop="url">
-              
-                <span itemprop="name">通过 chrome://sync-internals/ 了解 Chrome 同步细节 zt</span>
-              
-            </a>
+          <a class="post-title-link" href="/2011/11/14/chrome-sync-internals/" itemprop="url">
+            
+              <span itemprop="name">通过 chrome://sync-internals/ 了解 Chrome 同步细节 zt</span>
+            
+          </a>
         
       </h2>
 
@@ -4074,11 +4188,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2011/03/18/firefox-startup-page/" itemprop="url">
-              
-                <span itemprop="name">如何恢复Firefox内建的关闭窗口提示时是否保存标签页的功能？</span>
-              
-            </a>
+          <a class="post-title-link" href="/2011/03/18/firefox-startup-page/" itemprop="url">
+            
+              <span itemprop="name">如何恢复Firefox内建的关闭窗口提示时是否保存标签页的功能？</span>
+            
+          </a>
         
       </h2>
 
@@ -4100,11 +4214,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2011/02/16/firefox-not-scan-viruses/" itemprop="url">
-              
-                <span itemprop="name">让firefox下载不进行病毒扫描</span>
-              
-            </a>
+          <a class="post-title-link" href="/2011/02/16/firefox-not-scan-viruses/" itemprop="url">
+            
+              <span itemprop="name">让firefox下载不进行病毒扫描</span>
+            
+          </a>
         
       </h2>
 
@@ -4126,11 +4240,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2010/10/13/firefox-replace-orange-button/" itemprop="url">
-              
-                <span itemprop="name">Firefox 4 将橙色按钮的文本替换掉</span>
-              
-            </a>
+          <a class="post-title-link" href="/2010/10/13/firefox-replace-orange-button/" itemprop="url">
+            
+              <span itemprop="name">Firefox 4 将橙色按钮的文本替换掉</span>
+            
+          </a>
         
       </h2>
 
@@ -4152,11 +4266,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2010/09/28/firefox-remove-sync-icon/" itemprop="url">
-              
-                <span itemprop="name">去掉firefox sync状态栏图标</span>
-              
-            </a>
+          <a class="post-title-link" href="/2010/09/28/firefox-remove-sync-icon/" itemprop="url">
+            
+              <span itemprop="name">去掉firefox sync状态栏图标</span>
+            
+          </a>
         
       </h2>
 
@@ -4178,11 +4292,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2010/08/17/firefox-disable-plugin-container/" itemprop="url">
-              
-                <span itemprop="name">禁用火狐浏览器的plugin-container.exe[zt]</span>
-              
-            </a>
+          <a class="post-title-link" href="/2010/08/17/firefox-disable-plugin-container/" itemprop="url">
+            
+              <span itemprop="name">禁用火狐浏览器的plugin-container.exe[zt]</span>
+            
+          </a>
         
       </h2>
 
@@ -4204,11 +4318,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2010/07/29/Thunder-BlogCID/" itemprop="url">
-              
-                <span itemprop="name">迅雷导致桌面出现BlogCID.dat的解决方法[zt]</span>
-              
-            </a>
+          <a class="post-title-link" href="/2010/07/29/Thunder-BlogCID/" itemprop="url">
+            
+              <span itemprop="name">迅雷导致桌面出现BlogCID.dat的解决方法[zt]</span>
+            
+          </a>
         
       </h2>
 
@@ -4230,11 +4344,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2010/07/28/Lingoes-disable-AD/" itemprop="url">
-              
-                <span itemprop="name">去掉灵格斯Lingoes 2.7的弹出广告</span>
-              
-            </a>
+          <a class="post-title-link" href="/2010/07/28/Lingoes-disable-AD/" itemprop="url">
+            
+              <span itemprop="name">去掉灵格斯Lingoes 2.7的弹出广告</span>
+            
+          </a>
         
       </h2>
 
@@ -4256,11 +4370,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2010/07/24/chrome-sina-image/" itemprop="url">
-              
-                <span itemprop="name">在chrome中无法正常浏览新浪微博图片的解决方法[zt]</span>
-              
-            </a>
+          <a class="post-title-link" href="/2010/07/24/chrome-sina-image/" itemprop="url">
+            
+              <span itemprop="name">在chrome中无法正常浏览新浪微博图片的解决方法[zt]</span>
+            
+          </a>
         
       </h2>
 
@@ -4282,11 +4396,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2010/07/22/MSN-disable-AD/" itemprop="url">
-              
-                <span itemprop="name">MSN 8.1/8.5 去广告修改方法 [zt]</span>
-              
-            </a>
+          <a class="post-title-link" href="/2010/07/22/MSN-disable-AD/" itemprop="url">
+            
+              <span itemprop="name">MSN 8.1/8.5 去广告修改方法 [zt]</span>
+            
+          </a>
         
       </h2>
 
@@ -4308,11 +4422,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2010/03/07/thinkpad-t61-squeak/" itemprop="url">
-              
-                <span itemprop="name">为什么thinkpad T61会发现吱吧电流声[zt]</span>
-              
-            </a>
+          <a class="post-title-link" href="/2010/03/07/thinkpad-t61-squeak/" itemprop="url">
+            
+              <span itemprop="name">为什么thinkpad T61会发现吱吧电流声[zt]</span>
+            
+          </a>
         
       </h2>
 
@@ -4334,11 +4448,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2010/02/24/excel-newline/" itemprop="url">
-              
-                <span itemprop="name">EXCEL导入网页表格时把软回车换成单元格内部的换行</span>
-              
-            </a>
+          <a class="post-title-link" href="/2010/02/24/excel-newline/" itemprop="url">
+            
+              <span itemprop="name">EXCEL导入网页表格时把软回车换成单元格内部的换行</span>
+            
+          </a>
         
       </h2>
 
@@ -4360,11 +4474,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2010/02/09/VirtualBox-Network-Windows/" itemprop="url">
-              
-                <span itemprop="name">windows 下安装 VirtualBox 网络配置[zt]</span>
-              
-            </a>
+          <a class="post-title-link" href="/2010/02/09/VirtualBox-Network-Windows/" itemprop="url">
+            
+              <span itemprop="name">windows 下安装 VirtualBox 网络配置[zt]</span>
+            
+          </a>
         
       </h2>
 
@@ -4386,11 +4500,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2010/02/08/usbkey-for-windows-7/" itemprop="url">
-              
-                <span itemprop="name">解决K宝U盾等网上银行不能在windows 7 下登录问题</span>
-              
-            </a>
+          <a class="post-title-link" href="/2010/02/08/usbkey-for-windows-7/" itemprop="url">
+            
+              <span itemprop="name">解决K宝U盾等网上银行不能在windows 7 下登录问题</span>
+            
+          </a>
         
       </h2>
 
@@ -4412,11 +4526,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2010/02/08/find-real-url-for-skydrive-by-javascript/" itemprop="url">
-              
-                <span itemprop="name">一段脚本代码找出Skydrive的真实外链地址</span>
-              
-            </a>
+          <a class="post-title-link" href="/2010/02/08/find-real-url-for-skydrive-by-javascript/" itemprop="url">
+            
+              <span itemprop="name">一段脚本代码找出Skydrive的真实外链地址</span>
+            
+          </a>
         
       </h2>
 
@@ -4438,11 +4552,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2010/01/04/firefox-check-Compatibility/" itemprop="url">
-              
-                <span itemprop="name">Firefox忽略兼容性检查</span>
-              
-            </a>
+          <a class="post-title-link" href="/2010/01/04/firefox-check-Compatibility/" itemprop="url">
+            
+              <span itemprop="name">Firefox忽略兼容性检查</span>
+            
+          </a>
         
       </h2>
 
@@ -4464,11 +4578,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2009/12/18/G-Alarm-crack/" itemprop="url">
-              
-                <span itemprop="name">迷宫闹钟G-Alarm 注册方法</span>
-              
-            </a>
+          <a class="post-title-link" href="/2009/12/18/G-Alarm-crack/" itemprop="url">
+            
+              <span itemprop="name">迷宫闹钟G-Alarm 注册方法</span>
+            
+          </a>
         
       </h2>
 
@@ -4490,11 +4604,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2009/12/03/xmarks-network/" itemprop="url">
-              
-                <span itemprop="name">解决xmarks不能用的方法[zt]</span>
-              
-            </a>
+          <a class="post-title-link" href="/2009/12/03/xmarks-network/" itemprop="url">
+            
+              <span itemprop="name">解决xmarks不能用的方法[zt]</span>
+            
+          </a>
         
       </h2>
 
@@ -4516,11 +4630,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2009/11/07/Firefox-flashgot-AddRef/" itemprop="url">
-              
-                <span itemprop="name">解决Firefox3下Flashgot的"AddRef"问题</span>
-              
-            </a>
+          <a class="post-title-link" href="/2009/11/07/Firefox-flashgot-AddRef/" itemprop="url">
+            
+              <span itemprop="name">解决Firefox3下Flashgot的"AddRef"问题</span>
+            
+          </a>
         
       </h2>
 
@@ -4542,11 +4656,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2009/11/06/DD-WRT-Release-notes/" itemprop="url">
-              
-                <span itemprop="name">DD-WRT版本说明</span>
-              
-            </a>
+          <a class="post-title-link" href="/2009/11/06/DD-WRT-Release-notes/" itemprop="url">
+            
+              <span itemprop="name">DD-WRT版本说明</span>
+            
+          </a>
         
       </h2>
 
@@ -4568,11 +4682,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2009/10/22/outlook-not-found-pst/" itemprop="url">
-              
-                <span itemprop="name">outlook 找不到 Outlook.pst</span>
-              
-            </a>
+          <a class="post-title-link" href="/2009/10/22/outlook-not-found-pst/" itemprop="url">
+            
+              <span itemprop="name">outlook 找不到 Outlook.pst</span>
+            
+          </a>
         
       </h2>
 
@@ -4594,11 +4708,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2009/07/03/Fixed-IBM-ThinkPad-Volume-HOTKEY/" itemprop="url">
-              
-                <span itemprop="name">解决IBM ThinkPad HOTKEY在WIN7 中音量无法显示的问题</span>
-              
-            </a>
+          <a class="post-title-link" href="/2009/07/03/Fixed-IBM-ThinkPad-Volume-HOTKEY/" itemprop="url">
+            
+              <span itemprop="name">解决IBM ThinkPad HOTKEY在WIN7 中音量无法显示的问题</span>
+            
+          </a>
         
       </h2>
 
@@ -4620,11 +4734,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2009/04/19/cmd-hidden-run/" itemprop="url">
-              
-                <span itemprop="name">批处理隐藏运行的10种思路[zt]</span>
-              
-            </a>
+          <a class="post-title-link" href="/2009/04/19/cmd-hidden-run/" itemprop="url">
+            
+              <span itemprop="name">批处理隐藏运行的10种思路[zt]</span>
+            
+          </a>
         
       </h2>
 
@@ -4646,11 +4760,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2009/04/04/SQL-server-replace-regular/" itemprop="url">
-              
-                <span itemprop="name">一个用于SQL Server 正则替换的函数</span>
-              
-            </a>
+          <a class="post-title-link" href="/2009/04/04/SQL-server-replace-regular/" itemprop="url">
+            
+              <span itemprop="name">一个用于SQL Server 正则替换的函数</span>
+            
+          </a>
         
       </h2>
 
@@ -4672,11 +4786,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/11/22/FileZilla-Server-Aliases/" itemprop="url">
-              
-                <span itemprop="name">FileZilla Server虚拟路径设定</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/11/22/FileZilla-Server-Aliases/" itemprop="url">
+            
+              <span itemprop="name">FileZilla Server虚拟路径设定</span>
+            
+          </a>
         
       </h2>
 
@@ -4698,11 +4812,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/11/04/Windows7-font-Gabriola/" itemprop="url">
-              
-                <span itemprop="name">Windows7 中的新字体: Gabriola</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/11/04/Windows7-font-Gabriola/" itemprop="url">
+            
+              <span itemprop="name">Windows7 中的新字体: Gabriola</span>
+            
+          </a>
         
       </h2>
 
@@ -4724,11 +4838,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/10/30/custom-firefox-CSS/" itemprop="url">
-              
-                <span itemprop="name">定义火狐的userChrome.css</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/10/30/custom-firefox-CSS/" itemprop="url">
+            
+              <span itemprop="name">定义火狐的userChrome.css</span>
+            
+          </a>
         
       </h2>
 
@@ -4750,11 +4864,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/10/07/fixed-thinkpad-t60-pxe-e05/" itemprop="url">
-              
-                <span itemprop="name">解决T60的网卡的pxe-e05的错误</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/10/07/fixed-thinkpad-t60-pxe-e05/" itemprop="url">
+            
+              <span itemprop="name">解决T60的网卡的pxe-e05的错误</span>
+            
+          </a>
         
       </h2>
 
@@ -4776,11 +4890,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/09/03/canon-family-tree/" itemprop="url">
-              
-                <span itemprop="name">小姜杂谈：Canon 消费机族谱[zt]</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/09/03/canon-family-tree/" itemprop="url">
+            
+              <span itemprop="name">小姜杂谈：Canon 消费机族谱[zt]</span>
+            
+          </a>
         
       </h2>
 
@@ -4802,11 +4916,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/08/18/EditPlus-remove-blank-lines/" itemprop="url">
-              
-                <span itemprop="name">在EditPlus中删除空行</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/08/18/EditPlus-remove-blank-lines/" itemprop="url">
+            
+              <span itemprop="name">在EditPlus中删除空行</span>
+            
+          </a>
         
       </h2>
 
@@ -4828,11 +4942,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/08/13/chinese-football/" itemprop="url">
-              
-                <span itemprop="name">足球队的比较–绝非侮辱国足！[zt]</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/08/13/chinese-football/" itemprop="url">
+            
+              <span itemprop="name">足球队的比较–绝非侮辱国足！[zt]</span>
+            
+          </a>
         
       </h2>
 
@@ -4854,11 +4968,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/08/12/StarCraft2-not-support-multiple-core-CPU/" itemprop="url">
-              
-                <span itemprop="name">《星际争霸2》不支持多核心处理器</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/08/12/StarCraft2-not-support-multiple-core-CPU/" itemprop="url">
+            
+              <span itemprop="name">《星际争霸2》不支持多核心处理器</span>
+            
+          </a>
         
       </h2>
 
@@ -4880,11 +4994,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/08/03/showip-for-QQWry/" itemprop="url">
-              
-                <span itemprop="name">读取纯真IP数据库 showip [zt]</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/08/03/showip-for-QQWry/" itemprop="url">
+            
+              <span itemprop="name">读取纯真IP数据库 showip [zt]</span>
+            
+          </a>
         
       </h2>
 
@@ -4906,11 +5020,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/08/03/QQWry-format/" itemprop="url">
-              
-                <span itemprop="name">纯真IP数据库格式详解 zt</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/08/03/QQWry-format/" itemprop="url">
+            
+              <span itemprop="name">纯真IP数据库格式详解 zt</span>
+            
+          </a>
         
       </h2>
 
@@ -4932,11 +5046,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/07/31/network-neighborhood/" itemprop="url">
-              
-                <span itemprop="name">网上邻居可见，无法访问，您可能没有权限使用网络资源</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/07/31/network-neighborhood/" itemprop="url">
+            
+              <span itemprop="name">网上邻居可见，无法访问，您可能没有权限使用网络资源</span>
+            
+          </a>
         
       </h2>
 
@@ -4958,11 +5072,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/07/18/shell-encode-url/" itemprop="url">
-              
-                <span itemprop="name">在Linux Shell下将汉字转换为Url编码</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/07/18/shell-encode-url/" itemprop="url">
+            
+              <span itemprop="name">在Linux Shell下将汉字转换为Url编码</span>
+            
+          </a>
         
       </h2>
 
@@ -4984,11 +5098,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/07/08/fixed-Pidgin-QQ-NULL/" itemprop="url">
-              
-                <span itemprop="name">Pidgin(Gaim)登录QQ显示NULL问题的完全解决方法！</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/07/08/fixed-Pidgin-QQ-NULL/" itemprop="url">
+            
+              <span itemprop="name">Pidgin(Gaim)登录QQ显示NULL问题的完全解决方法！</span>
+            
+          </a>
         
       </h2>
 
@@ -5010,11 +5124,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/06/17/fixed-windows-patch-failed/" itemprop="url">
-              
-                <span itemprop="name">windows更新补丁失败的解决办法</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/06/17/fixed-windows-patch-failed/" itemprop="url">
+            
+              <span itemprop="name">windows更新补丁失败的解决办法</span>
+            
+          </a>
         
       </h2>
 
@@ -5036,11 +5150,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/06/16/Synergy-Manual/" itemprop="url">
-              
-                <span itemprop="name">用 Synergy 控制多台电脑</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/06/16/Synergy-Manual/" itemprop="url">
+            
+              <span itemprop="name">用 Synergy 控制多台电脑</span>
+            
+          </a>
         
       </h2>
 
@@ -5062,11 +5176,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/06/11/Doraemon-cosplay/" itemprop="url">
-              
-                <span itemprop="name">哆啦A梦之COSPLAY版</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/06/11/Doraemon-cosplay/" itemprop="url">
+            
+              <span itemprop="name">哆啦A梦之COSPLAY版</span>
+            
+          </a>
         
       </h2>
 
@@ -5088,11 +5202,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/05/23/google-20080519/" itemprop="url">
-              
-                <span itemprop="name">中国人的团结</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/05/23/thunder5-disable-upload/" itemprop="url">
+            
+              <span itemprop="name">防止迅雷上传的另一种方法 – 改属性[zt]</span>
+            
+          </a>
         
       </h2>
 
@@ -5114,11 +5228,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/05/23/thunder5-disable-upload/" itemprop="url">
-              
-                <span itemprop="name">防止迅雷上传的另一种方法 – 改属性[zt]</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/05/23/google-20080519/" itemprop="url">
+            
+              <span itemprop="name">中国人的团结</span>
+            
+          </a>
         
       </h2>
 
@@ -5140,11 +5254,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/05/14/The-Duke-of-Mount-Deer/" itemprop="url">
-              
-                <span itemprop="name">时代商报：《鹿鼎记》一定要艳吗？</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/05/14/fixed-IDE-ACDStd-apl/" itemprop="url">
+            
+              <span itemprop="name">IDE_ACDStd.apl，不可恢复的插件错误</span>
+            
+          </a>
         
       </h2>
 
@@ -5166,11 +5280,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/05/14/fixed-IDE-ACDStd-apl/" itemprop="url">
-              
-                <span itemprop="name">IDE_ACDStd.apl，不可恢复的插件错误</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/05/14/The-Duke-of-Mount-Deer/" itemprop="url">
+            
+              <span itemprop="name">时代商报：《鹿鼎记》一定要艳吗？</span>
+            
+          </a>
         
       </h2>
 
@@ -5192,11 +5306,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/05/10/Google-market-share/" itemprop="url">
-              
-                <span itemprop="name">Google谷歌在世界各地的市场占有率</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/05/10/excel-offset-notes/" itemprop="url">
+            
+              <span itemprop="name">Excel中OFFSET( )函数的使用</span>
+            
+          </a>
         
       </h2>
 
@@ -5218,11 +5332,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/05/10/excel-offset-notes/" itemprop="url">
-              
-                <span itemprop="name">Excel中OFFSET( )函数的使用</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/05/10/hamsters-common-diseases/" itemprop="url">
+            
+              <span itemprop="name">仓鼠常见疾病的护理及预防措施</span>
+            
+          </a>
         
       </h2>
 
@@ -5244,11 +5358,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/05/10/hamsters-common-diseases/" itemprop="url">
-              
-                <span itemprop="name">仓鼠常见疾病的护理及预防措施</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/05/10/Google-market-share/" itemprop="url">
+            
+              <span itemprop="name">Google谷歌在世界各地的市场占有率</span>
+            
+          </a>
         
       </h2>
 
@@ -5270,11 +5384,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/04/03/firefox-smooth-scroll/" itemprop="url">
-              
-                <span itemprop="name">Firefox 页面滚动设置</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/04/03/firefox-smooth-scroll/" itemprop="url">
+            
+              <span itemprop="name">Firefox 页面滚动设置</span>
+            
+          </a>
         
       </h2>
 
@@ -5296,11 +5410,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/04/03/Keyconfig-for-Firefox3/" itemprop="url">
-              
-                <span itemprop="name">Keyconfig for Firefox 3</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/04/03/Keyconfig-for-Firefox3/" itemprop="url">
+            
+              <span itemprop="name">Keyconfig for Firefox 3</span>
+            
+          </a>
         
       </h2>
 
@@ -5322,11 +5436,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/04/01/my-computer-ordering/" itemprop="url">
-              
-                <span itemprop="name">把“我的电脑”捧上去放在桌面第一</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/04/01/my-computer-ordering/" itemprop="url">
+            
+              <span itemprop="name">把“我的电脑”捧上去放在桌面第一</span>
+            
+          </a>
         
       </h2>
 
@@ -5348,11 +5462,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/03/29/Thunderbird-mail-import-export/" itemprop="url">
-              
-                <span itemprop="name">Thunderbird 邮件导入导出的方法</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/03/29/Thunderbird-mail-import-export/" itemprop="url">
+            
+              <span itemprop="name">Thunderbird 邮件导入导出的方法</span>
+            
+          </a>
         
       </h2>
 
@@ -5374,11 +5488,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/03/29/firefox-thunderbird-portable/" itemprop="url">
-              
-                <span itemprop="name">关于Firefox与Thunderbird便携版、绿色版制作完全攻略</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/03/29/firefox-thunderbird-portable/" itemprop="url">
+            
+              <span itemprop="name">关于Firefox与Thunderbird便携版、绿色版制作完全攻略</span>
+            
+          </a>
         
       </h2>
 
@@ -5400,11 +5514,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/03/27/Leetspeak-origin/" itemprop="url">
-              
-                <span itemprop="name">脑残体和脑残</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/03/27/Leetspeak-origin/" itemprop="url">
+            
+              <span itemprop="name">脑残体和脑残</span>
+            
+          </a>
         
       </h2>
 
@@ -5426,11 +5540,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/03/26/nero8-crack/" itemprop="url">
-              
-                <span itemprop="name">nero8 第三方专利</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/03/26/nero8-crack/" itemprop="url">
+            
+              <span itemprop="name">nero8 第三方专利</span>
+            
+          </a>
         
       </h2>
 
@@ -5452,11 +5566,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/03/24/IETester/" itemprop="url">
-              
-                <span itemprop="name">IETester: Vista 和 XP 下 IE8 IE7 IE6 IE5.5 的共存方法</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/03/24/IETester/" itemprop="url">
+            
+              <span itemprop="name">IETester: Vista 和 XP 下 IE8 IE7 IE6 IE5.5 的共存方法</span>
+            
+          </a>
         
       </h2>
 
@@ -5478,11 +5592,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/03/22/Iconspedia/" itemprop="url">
-              
-                <span itemprop="name">推荐一个图标分享网站 — Iconspedia</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/03/22/Iconspedia/" itemprop="url">
+            
+              <span itemprop="name">推荐一个图标分享网站 — Iconspedia</span>
+            
+          </a>
         
       </h2>
 
@@ -5504,11 +5618,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/03/15/wp-plugin-tiger-administration/" itemprop="url">
-              
-                <span itemprop="name">WP插件–WP Tiger Administration</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/03/15/wp-plugin-tiger-administration/" itemprop="url">
+            
+              <span itemprop="name">WP插件–WP Tiger Administration</span>
+            
+          </a>
         
       </h2>
 
@@ -5530,11 +5644,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/03/15/IBM-install-drivers-1/" itemprop="url">
-              
-                <span itemprop="name">IBM T61/R61/X61 WinXP驱动安装(一)</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/03/15/IBM-install-drivers-2/" itemprop="url">
+            
+              <span itemprop="name">IBM T61/R61/X61 WinXP驱动安装(二)</span>
+            
+          </a>
         
       </h2>
 
@@ -5556,11 +5670,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/03/15/IBM-install-drivers-2/" itemprop="url">
-              
-                <span itemprop="name">IBM T61/R61/X61 WinXP驱动安装(二)</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/03/15/IBM-install-drivers-1/" itemprop="url">
+            
+              <span itemprop="name">IBM T61/R61/X61 WinXP驱动安装(一)</span>
+            
+          </a>
         
       </h2>
 
@@ -5582,11 +5696,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/03/05/transformers-cg/" itemprop="url">
-              
-                <span itemprop="name">《变形金刚》高清人物CG组图</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/03/05/transformers-cg/" itemprop="url">
+            
+              <span itemprop="name">《变形金刚》高清人物CG组图</span>
+            
+          </a>
         
       </h2>
 
@@ -5608,11 +5722,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/03/04/EditPlus-regex/" itemprop="url">
-              
-                <span itemprop="name">EditPlus正则表达式替换字符串详解</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/03/04/EditPlus-regex-example/" itemprop="url">
+            
+              <span itemprop="name">Editplus 正则替换实例 By Stabx</span>
+            
+          </a>
         
       </h2>
 
@@ -5634,11 +5748,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/03/04/EditPlus-regex-example/" itemprop="url">
-              
-                <span itemprop="name">Editplus 正则替换实例 By Stabx</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/03/04/EditPlus-regex/" itemprop="url">
+            
+              <span itemprop="name">EditPlus正则表达式替换字符串详解</span>
+            
+          </a>
         
       </h2>
 
@@ -5660,11 +5774,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/02/23/photoshop-designer-top-10/" itemprop="url">
-              
-                <span itemprop="name">10位顶尖photoshop设计大师</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/02/23/photoshop-designer-top-10/" itemprop="url">
+            
+              <span itemprop="name">10位顶尖photoshop设计大师</span>
+            
+          </a>
         
       </h2>
 
@@ -5686,11 +5800,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/02/21/firefox-save-mht/" itemprop="url">
-              
-                <span itemprop="name">让Firefox也可以保存mht单一网页文件</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/02/21/firefox-save-mht/" itemprop="url">
+            
+              <span itemprop="name">让Firefox也可以保存mht单一网页文件</span>
+            
+          </a>
         
       </h2>
 
@@ -5712,11 +5826,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/02/15/WordPress-Wp-PageNavi/" itemprop="url">
-              
-                <span itemprop="name">WordPress分页插件：Wp-PageNavi v2.1</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/02/15/WordPress-Wp-PageNavi/" itemprop="url">
+            
+              <span itemprop="name">WordPress分页插件：Wp-PageNavi v2.1</span>
+            
+          </a>
         
       </h2>
 
@@ -5738,11 +5852,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/02/10/adblock-optimize-filter/" itemprop="url">
-              
-                <span itemprop="name">Adblock过滤规则优化</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/02/10/adblock-optimize-filter/" itemprop="url">
+            
+              <span itemprop="name">Adblock过滤规则优化</span>
+            
+          </a>
         
       </h2>
 
@@ -5764,11 +5878,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/02/08/How-big-is-this-page/" itemprop="url">
-              
-                <span itemprop="name">世界上最大网页有多大呢?</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/02/08/How-big-is-this-page/" itemprop="url">
+            
+              <span itemprop="name">世界上最大网页有多大呢?</span>
+            
+          </a>
         
       </h2>
 
@@ -5790,11 +5904,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/02/05/router-mtu/" itemprop="url">
-              
-                <span itemprop="name">路由器mtu设置</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/02/05/router-mtu/" itemprop="url">
+            
+              <span itemprop="name">路由器mtu设置</span>
+            
+          </a>
         
       </h2>
 
@@ -5816,11 +5930,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/02/02/MSN-use-firefox-open-url/" itemprop="url">
-              
-                <span itemprop="name">如何在 MSN 中使用 Firefox 打开链接</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/02/02/MSN-use-firefox-open-url/" itemprop="url">
+            
+              <span itemprop="name">如何在 MSN 中使用 Firefox 打开链接</span>
+            
+          </a>
         
       </h2>
 
@@ -5842,11 +5956,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/01/29/KAV7-free/" itemprop="url">
-              
-                <span itemprop="name">《暴雪无情,卡巴有情》卡巴斯基反病毒软件KAV7.0免费送一年</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/01/29/KAV7-free/" itemprop="url">
+            
+              <span itemprop="name">《暴雪无情,卡巴有情》卡巴斯基反病毒软件KAV7.0免费送一年</span>
+            
+          </a>
         
       </h2>
 
@@ -5868,11 +5982,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/01/10/fixed-firefox-alt-s/" itemprop="url">
-              
-                <span itemprop="name">Firefox升级到2.0后alt+s回复出现历史问题解决</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/01/10/fixed-firefox-alt-s/" itemprop="url">
+            
+              <span itemprop="name">Firefox升级到2.0后alt+s回复出现历史问题解决</span>
+            
+          </a>
         
       </h2>
 
@@ -5894,11 +6008,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/01/08/discuz5.5-dd/" itemprop="url">
-              
-                <span itemprop="name">DISCUZ5.5数据库数据字典</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/01/08/discuz5.5-dd/" itemprop="url">
+            
+              <span itemprop="name">DISCUZ5.5数据库数据字典</span>
+            
+          </a>
         
       </h2>
 
@@ -5920,11 +6034,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/01/07/Wikipedia-mirror/" itemprop="url">
-              
-                <span itemprop="name">Wikipedia-镜像站点</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/01/07/25-High-Tech-and-Trendy-Computer-Mouse/" itemprop="url">
+            
+              <span itemprop="name">25 High Tech and Trendy Computer Mouse</span>
+            
+          </a>
         
       </h2>
 
@@ -5946,11 +6060,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/01/07/25-High-Tech-and-Trendy-Computer-Mouse/" itemprop="url">
-              
-                <span itemprop="name">25 High Tech and Trendy Computer Mouse</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/01/07/Wikipedia-mirror/" itemprop="url">
+            
+              <span itemprop="name">Wikipedia-镜像站点</span>
+            
+          </a>
         
       </h2>
 
@@ -5972,11 +6086,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/01/05/IBM-disable-magnifier/" itemprop="url">
-              
-                <span itemprop="name">如何禁用IBM的FN+空格键屏幕放大功能： 删除ThinkPad Magnifier驱动</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/01/05/IBM-disable-magnifier/" itemprop="url">
+            
+              <span itemprop="name">如何禁用IBM的FN+空格键屏幕放大功能： 删除ThinkPad Magnifier驱动</span>
+            
+          </a>
         
       </h2>
 
@@ -5998,11 +6112,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2008/01/04/ztgame/" itemprop="url">
-              
-                <span itemprop="name">玩《征途》感受，这么多年白玩游戏了</span>
-              
-            </a>
+          <a class="post-title-link" href="/2008/01/04/ztgame/" itemprop="url">
+            
+              <span itemprop="name">玩《征途》感受，这么多年白玩游戏了</span>
+            
+          </a>
         
       </h2>
 
@@ -6024,11 +6138,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2007/12/26/Jay-On-the-run/" itemprop="url">
-              
-                <span itemprop="name">周杰伦2007第八张国语大碟《我很忙》</span>
-              
-            </a>
+          <a class="post-title-link" href="/2007/12/26/Jay-On-the-run/" itemprop="url">
+            
+              <span itemprop="name">周杰伦2007第八张国语大碟《我很忙》</span>
+            
+          </a>
         
       </h2>
 
@@ -6050,11 +6164,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2007/12/25/photoshop-CS3-stop-responding/" itemprop="url">
-              
-                <span itemprop="name">Adobe Photoshop CS3文字编辑时程序停止响应的解决办法</span>
-              
-            </a>
+          <a class="post-title-link" href="/2007/12/25/photoshop-CS3-stop-responding/" itemprop="url">
+            
+              <span itemprop="name">Adobe Photoshop CS3文字编辑时程序停止响应的解决办法</span>
+            
+          </a>
         
       </h2>
 
@@ -6076,11 +6190,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2007/12/24/VBScript-error-code/" itemprop="url">
-              
-                <span itemprop="name">VBScript错误代码</span>
-              
-            </a>
+          <a class="post-title-link" href="/2007/12/24/VBScript-error-code/" itemprop="url">
+            
+              <span itemprop="name">VBScript错误代码</span>
+            
+          </a>
         
       </h2>
 
@@ -6102,11 +6216,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2007/12/23/outllook-menu-class/" itemprop="url">
-              
-                <span itemprop="name">OUTLOOK菜单类</span>
-              
-            </a>
+          <a class="post-title-link" href="/2007/12/23/outllook-menu-class/" itemprop="url">
+            
+              <span itemprop="name">OUTLOOK菜单类</span>
+            
+          </a>
         
       </h2>
 
@@ -6128,11 +6242,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2007/12/22/firefox-speed-ogame/" itemprop="url">
-              
-                <span itemprop="name">OGame 本地外观使用 &amp; Firefox 提速</span>
-              
-            </a>
+          <a class="post-title-link" href="/2007/12/22/firefox-speed-ogame/" itemprop="url">
+            
+              <span itemprop="name">OGame 本地外观使用 &amp; Firefox 提速</span>
+            
+          </a>
         
       </h2>
 
@@ -6154,11 +6268,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2007/12/22/firefox-source-font/" itemprop="url">
-              
-                <span itemprop="name">firefox 自带源代码查看器字体修改方法</span>
-              
-            </a>
+          <a class="post-title-link" href="/2007/12/22/firefox-source-font/" itemprop="url">
+            
+              <span itemprop="name">firefox 自带源代码查看器字体修改方法</span>
+            
+          </a>
         
       </h2>
 
@@ -6180,11 +6294,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2007/12/21/change-firefox-bookmarks-path/" itemprop="url">
-              
-                <span itemprop="name">自定义 Firefox 书签的存放路径</span>
-              
-            </a>
+          <a class="post-title-link" href="/2007/12/21/change-firefox-bookmarks-path/" itemprop="url">
+            
+              <span itemprop="name">自定义 Firefox 书签的存放路径</span>
+            
+          </a>
         
       </h2>
 
@@ -6206,11 +6320,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2007/12/20/firefox-import-favorites-from-ie/" itemprop="url">
-              
-                <span itemprop="name">将IE收藏夹和Firefox书签相互转移</span>
-              
-            </a>
+          <a class="post-title-link" href="/2007/12/20/firefox-import-favorites-from-ie/" itemprop="url">
+            
+              <span itemprop="name">将IE收藏夹和Firefox书签相互转移</span>
+            
+          </a>
         
       </h2>
 
@@ -6232,11 +6346,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2007/12/19/firefox-short-url/" itemprop="url">
-              
-                <span itemprop="name">实现Firefox网址缩写的功能</span>
-              
-            </a>
+          <a class="post-title-link" href="/2007/12/19/firefox-short-url/" itemprop="url">
+            
+              <span itemprop="name">实现Firefox网址缩写的功能</span>
+            
+          </a>
         
       </h2>
 
@@ -6258,11 +6372,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2007/12/18/firefox-profile-path/" itemprop="url">
-              
-                <span itemprop="name">Firefox 个人配置文件夹（profile）的存放路径</span>
-              
-            </a>
+          <a class="post-title-link" href="/2007/12/18/firefox-profile-path/" itemprop="url">
+            
+              <span itemprop="name">Firefox 个人配置文件夹（profile）的存放路径</span>
+            
+          </a>
         
       </h2>
 
@@ -6284,11 +6398,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2007/12/17/firefox-profile/" itemprop="url">
-              
-                <span itemprop="name">Firefox 个人配置文件夹（profile）中有什么，为什么很重要？</span>
-              
-            </a>
+          <a class="post-title-link" href="/2007/12/17/firefox-profile/" itemprop="url">
+            
+              <span itemprop="name">Firefox 个人配置文件夹（profile）中有什么，为什么很重要？</span>
+            
+          </a>
         
       </h2>
 
@@ -6310,11 +6424,11 @@ ul.breadcrumb li+li:last-child {
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2007/12/16/change-firefox-useragent/" itemprop="url">
-              
-                <span itemprop="name">修改Firefox的user agent</span>
-              
-            </a>
+          <a class="post-title-link" href="/2007/12/16/change-firefox-useragent/" itemprop="url">
+            
+              <span itemprop="name">修改Firefox的user agent</span>
+            
+          </a>
         
       </h2>
 
@@ -6363,7 +6477,7 @@ ul.breadcrumb li+li:last-child {
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -6876,7 +6990,6 @@ ul.breadcrumb li+li:last-child {
           
 
           
-          
 
           
           
@@ -6887,7 +7000,7 @@ ul.breadcrumb li+li:last-child {
           
 
         </div>
-      </section>
+      </div>
 
       
 
@@ -6917,7 +7030,7 @@ ul.breadcrumb li+li:last-child {
         })();
       </script>
       <div class="footer-inner">
-        <div class="copyright">© 2007 – <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">© 2007 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -6929,9 +7042,7 @@ ul.breadcrumb li+li:last-child {
 </div>
 
 
-
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
@@ -6939,7 +7050,7 @@ ul.breadcrumb li+li:last-child {
 
 
 
-  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
 
 
 
@@ -6973,7 +7084,7 @@ ul.breadcrumb li+li:last-child {
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -6990,8 +7101,6 @@ ul.breadcrumb li+li:last-child {
 
 
 
-  
-
 
 
 
@@ -7008,22 +7117,11 @@ ul.breadcrumb li+li:last-child {
 
   
   
-    
-  
 
   
   
-    
-  
 
   
-  
-    
-  
-
-  
-  
-    
   
 
 
@@ -7070,15 +7168,11 @@ ul.breadcrumb li+li:last-child {
 
 
 
+
   
 
 
 
-
-  
-  
-  
-  
 
   
   
@@ -7086,6 +7180,11 @@ ul.breadcrumb li+li:last-child {
   
 
   
+  
+  
+  
+
+  
 
 
 
@@ -7098,6 +7197,7 @@ ul.breadcrumb li+li:last-child {
   
 
   
+
   
 
   
