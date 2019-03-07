@@ -100,8 +100,10 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '6.7.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -156,14 +158,6 @@
 
 
 
-
-  <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-42337789-4');
-  </script>
 
 
 
@@ -504,9 +498,11 @@ span.exturl:hover {
   color: #222;
   border-bottom-color: #222;
 }
-blockquote {
-  margin: 0;
-  padding: 0;
+video {
+  max-width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 img {
   display: block;
@@ -522,6 +518,7 @@ hr {
   background-image: repeating-linear-gradient(-45deg, #fff, #fff 4px, transparent 4px, transparent 8px);
 }
 blockquote {
+  margin: 0;
   padding: 0 15px;
   color: #666;
   border-left: 4px solid #ddd;
@@ -615,14 +612,16 @@ kbd {
 .use-motion .motion-element {
   opacity: 0;
 }
-table {
+.table-container {
   margin: 20px 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+table {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
-  border: 1px solid #ddd;
   font-size: 14px;
-  word-break: break-all;
 }
 table>tbody>tr:nth-of-type(odd) {
   background-color: #f9f9f9;
@@ -640,8 +639,8 @@ td {
 }
 th,
 td {
+  border: 1px solid #ddd;
   border-bottom: 3px solid #ddd;
-  border-right: 1px solid #eee;
 }
 th {
   padding-bottom: 10px;
@@ -656,7 +655,6 @@ body {
 }
 .container {
   position: relative;
-  min-height: 100%;
 }
 .header-inner {
   margin: 0 auto;
@@ -962,6 +960,29 @@ pre .javascript .function {
   max-width: 150px;
   max-height: 150px;
 }
+.post-body .label {
+  display: inline;
+  padding: 0 2px;
+  white-space: nowrap;
+}
+.post-body .label.default {
+  background-color: #f0f0f0;
+}
+.post-body .label.primary {
+  background-color: #efe6f7;
+}
+.post-body .label.info {
+  background-color: #e5f2f8;
+}
+.post-body .label.success {
+  background-color: #e7f4e9;
+}
+.post-body .label.warning {
+  background-color: #fcf6e1;
+}
+.post-body .label.danger {
+  background-color: #fae8eb;
+}
 .post-body .note {
   position: relative;
   padding: 15px;
@@ -1055,29 +1076,6 @@ pre .javascript .function {
 .post-body .note.danger h5,
 .post-body .note.danger h6 {
   color: #d9534f;
-}
-.post-body .label {
-  display: inline;
-  padding: 0 2px;
-  white-space: nowrap;
-}
-.post-body .label.default {
-  background-color: #f0f0f0;
-}
-.post-body .label.primary {
-  background-color: #efe6f7;
-}
-.post-body .label.info {
-  background-color: #e5f2f8;
-}
-.post-body .label.success {
-  background-color: #e7f4e9;
-}
-.post-body .label.warning {
-  background-color: #fcf6e1;
-}
-.post-body .label.danger {
-  background-color: #fae8eb;
 }
 .post-body .tabs {
   position: relative;
@@ -1277,6 +1275,9 @@ pre .javascript .function {
 .tag-cloud a {
   display: inline-block;
   margin: 10px;
+}
+.tag-cloud a:hover {
+  color: #222 !important;
 }
 .back-to-top {
   box-sizing: border-box;
@@ -1548,20 +1549,14 @@ pre .javascript .function {
 .posts-expand .post-body h6:hover .header-anchor {
   visibility: visible;
 }
-.posts-expand .post-body ul li {
+.posts-expand .post-body ul > li {
   list-style: circle;
 }
 .posts-expand .post-body img {
   box-sizing: border-box;
-  margin: auto;
+  margin: 0 auto 25px;
   padding: 3px;
   border: 1px solid #ddd;
-}
-.posts-expand .post-body .fancybox img {
-  margin: 0 auto 25px;
-}
-.posts-expand .post-body img {
-  margin: 0 auto 25px;
 }
 @media (max-width: 767px) {
   .posts-collapse {
@@ -1929,6 +1924,20 @@ pre .javascript .function {
   overflow-y: auto;
   overflow-x: hidden;
 }
+.cc-license {
+  margin-top: 10px;
+  text-align: center;
+}
+.cc-license .cc-opacity {
+  opacity: 0.7;
+  border-bottom: none;
+}
+.cc-license .cc-opacity:hover {
+  opacity: 0.9;
+}
+.cc-license img {
+  display: inline-block;
+}
 .sidebar-toggle {
   position: fixed;
   right: 30px;
@@ -1990,6 +1999,7 @@ pre .javascript .function {
   line-height: 1.4;
   white-space: nowrap;
   text-align: center;
+  margin-top: 10px;
 }
 .site-state-item {
   display: inline-block;
@@ -2014,7 +2024,7 @@ pre .javascript .function {
   color: #999;
 }
 .feed-link {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .feed-link a {
   display: inline-block;
@@ -2055,7 +2065,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #e4e40f;
+  background: #34b914;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2192,20 +2202,6 @@ pre .javascript .function {
 }
 .powered-by,
 .theme-info {
-  display: inline-block;
-}
-.cc-license {
-  margin-top: 10px;
-  text-align: center;
-}
-.cc-license .cc-opacity {
-  opacity: 0.7;
-  border-bottom: none;
-}
-.cc-license .cc-opacity:hover {
-  opacity: 0.9;
-}
-.cc-license img {
   display: inline-block;
 }
 @-moz-keyframes iconAnimate {
@@ -2438,16 +2434,6 @@ pre .javascript .function {
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   color: #ccc;
-}
-.site-uv,
-.site-pv,
-.page-pv {
-  display: inline-block;
-}
-.site-uv .busuanzi-value,
-.site-pv .busuanzi-value,
-.page-pv .busuanzi-value {
-  margin: 0 5px;
 }
 .ais-search-box--magnifier svg {
   display: none !important;
@@ -3287,9 +3273,8 @@ ul.breadcrumb li+li:last-child {
 }
 .links-of-blogroll {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 5px;
   padding: 3px 0 0;
-  border-top: 1px dotted #ccc;
 }
 .links-of-blogroll-title {
   margin-top: 0;
@@ -3482,7 +3467,7 @@ ul.breadcrumb li+li:last-child {
     margin: initial;
   }
   .posts-expand .post-button {
-    margin-top: 12px;
+    margin: 12px 0px;
   }
   .posts-expand img {
     padding: initial !important;
@@ -3798,6 +3783,7 @@ ul.breadcrumb li+li:last-child {
 
           
             
+            
           
 
           
@@ -3832,6 +3818,166 @@ ul.breadcrumb li+li:last-child {
 <p>先到zlib官方网站：<a href="http://www.zlib.net" target="_blank" rel="noopener">http://www.zlib.net</a> 上下载源码来安装zlib软件包。</p>
 <p>目前最新版本zlib是zlib1.2.3，安装开始；<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.zlib.net/zlib-1.2.3.tar.gz</span><br><span class="line">tar -xvzf zlib-1.2.3.tar.gz</span><br><span class="line">cd zlib-1.2.3</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>这就完成了zlib1.2.3的安装，由于安装zlib1.2.3需要编译，所以最基本的编译器是要安装好的。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/27/scp-without-password/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2008/03/27/scp-without-password/" class="post-title-link" itemprop="url">如何使执行scp命令时不需要输入用户密码</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-03-27 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-27T00:00:00+08:00">2008-03-27</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>首先制作密码匙∶<br><code>ssh-keygen -t rsa</code> 按三次 Return 键<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp ~/.ssh/ida_dsa.pub username@somewhere.com:~/.ssh/authorized_keys2</span><br></pre></td></tr></tbody></table></figure><p></p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ssh-keygen -t rsa</span><br><span class="line">$Generating public/private rsa key pair.</span><br><span class="line">$Enter file in which to save the key (/root/.ssh/id_rsa):     &lt;-- 直接输入回车</span><br><span class="line">$Enter passphrase (empty for no passphrase):            &lt;-- 直接输入回车</span><br><span class="line">$Enter same passphrase again:                           &lt;-- 直接输入回车</span><br><span class="line">$Your identification has been saved in /root/.ssh/id_rsa.</span><br><span class="line">$Your public key has been saved in /root/.ssh/id_rsa.pub.</span><br><span class="line">$The key fingerprint is:</span><br><span class="line">$49:9c:8a:8f:bc:19:5e:8c:c0:10:d3:15:60:a3:32:1c root@Client</span><br></pre></td></tr></tbody></table></figure>
+<p>假如 ~/.ssh/ida_dsa.pub 已经存在，可以直接 scp 到 remote 主机，放于 ~/.ssh/ 下并改名做 authorized_keys2。而 Remote 主机已有 ~/.ssh/authorized_keys2 的话，则可先上存 ida_dsa.pub，然后用:<br><code>cat ida_dsa.pub &gt;&gt; authorized_keys2</code></p>
+<p>这样，以后使用 ssh 或 scp 也不需要再键入密码。</p>
 
           
         
@@ -3960,6 +4106,7 @@ ul.breadcrumb li+li:last-child {
           
 
           
+            
             
           
 
@@ -4120,6 +4267,7 @@ ul.breadcrumb li+li:last-child {
 
           
             
+            
           
 
           
@@ -4164,165 +4312,6 @@ ul.breadcrumb li+li:last-child {
 <p>尽管人脑的模糊纠错能力使大家能看懂这些乱七八糟的东西，但是随着句子长度增加，甚至出现整段整段的脑残体文字，看懂其内容所需要的运算量也会呈几何级数增长，产生眼花缭乱的感觉。最后人们不是看不懂，而是根本没心情去辨认这些文字。随着脑残体的大面积流行，人们越来越不堪忍受满屏幕的脑残体文字，同时认为只有脑残儿才会看着这种字体不烦、才会乐于使用这种字体，于是这之前被脑残儿们称为“酷炫个性签名”、“非主流”的东西，终于得正名“脑残体”。</p>
 <h2 id="脑残体的用户群"><a href="#脑残体的用户群" class="headerlink" title="脑残体的用户群"></a>脑残体的用户群</h2><p>脑残体的使用者们，也是一个特征比较明显的人群。脑残体的大量使用90%以上是在脑残儿的QQ签名、个人说明、论坛/游戏ID中，有时也出现在聊天和博客中。常见成段脑残体写的“爱情诗”，其内容多半是无病呻吟，没有任何阅读价值，恐怕也正是内容空虚苍白，才需要用看似“华丽”的文字去掩盖。虽然他们也组建了脑残博客圈、脑残QQ群和脑残论坛专以脑残体进行交流，但网民们大多有QQ、博客以及常上的论坛，其中脑残儿也并不在多数。说到这里，不得不提一个叫做“劲舞团”的网络游戏——脑残儿的模范集会场所。  </p>
 <p>用大量文字论证劲舞团这个游戏为什么是脑残之家背离了本文的主题。总之，这个号称适合未成年人的网络游戏却是连大部分交友网站都</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/27/scp-without-password/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2008/03/27/scp-without-password/" class="post-title-link" itemprop="url">如何使执行scp命令时不需要输入用户密码</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-03-27 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-27T00:00:00+08:00">2008-03-27</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>首先制作密码匙∶<br><code>ssh-keygen -t rsa</code> 按三次 Return 键<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp ~/.ssh/ida_dsa.pub username@somewhere.com:~/.ssh/authorized_keys2</span><br></pre></td></tr></tbody></table></figure><p></p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ssh-keygen -t rsa</span><br><span class="line">$Generating public/private rsa key pair.</span><br><span class="line">$Enter file in which to save the key (/root/.ssh/id_rsa):     &lt;-- 直接输入回车</span><br><span class="line">$Enter passphrase (empty for no passphrase):            &lt;-- 直接输入回车</span><br><span class="line">$Enter same passphrase again:                           &lt;-- 直接输入回车</span><br><span class="line">$Your identification has been saved in /root/.ssh/id_rsa.</span><br><span class="line">$Your public key has been saved in /root/.ssh/id_rsa.pub.</span><br><span class="line">$The key fingerprint is:</span><br><span class="line">$49:9c:8a:8f:bc:19:5e:8c:c0:10:d3:15:60:a3:32:1c root@Client</span><br></pre></td></tr></tbody></table></figure>
-<p>假如 ~/.ssh/ida_dsa.pub 已经存在，可以直接 scp 到 remote 主机，放于 ~/.ssh/ 下并改名做 authorized_keys2。而 Remote 主机已有 ~/.ssh/authorized_keys2 的话，则可先上存 ida_dsa.pub，然后用:<br><code>cat ida_dsa.pub &gt;&gt; authorized_keys2</code></p>
-<p>这样，以后使用 ssh 或 scp 也不需要再键入密码。</p>
 
           
         
@@ -4451,6 +4440,7 @@ ul.breadcrumb li+li:last-child {
           
 
           
+            
             
           
 
@@ -4613,6 +4603,7 @@ ul.breadcrumb li+li:last-child {
 
           
             
+            
           
 
           
@@ -4772,6 +4763,7 @@ ul.breadcrumb li+li:last-child {
 
           
             
+            
           
 
           
@@ -4928,6 +4920,7 @@ ul.breadcrumb li+li:last-child {
 
           
             
+            
           
 
           
@@ -4971,6 +4964,189 @@ ul.breadcrumb li+li:last-child {
           
             <div class="post-button text-center">
               <a class="btn" href="/2008/03/20/linux-rsync/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/15/IBM-install-drivers-2/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2008/03/15/IBM-install-drivers-2/" class="post-title-link" itemprop="url">IBM T61/R61/X61 WinXP驱动安装(二)</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-15T00:00:00+08:00">2008-03-15</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="十五-、安装-UltraNav-driver-for-Windows-2000-XP"><a href="#十五-、安装-UltraNav-driver-for-Windows-2000-XP" class="headerlink" title="十五 、安装 UltraNav driver for Windows 2000, XP"></a>十五 、安装 UltraNav driver for Windows 2000, XP</h3><p>注 1 ： 如果网友的 ThinkPad 是 X61/X61s ，请至 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-4kmuyl" target="_blank" rel="noopener">此连结</a> 下载 TrackPoint Only 驱动程序。</p>
+<ol>
+<li><p>可以从 <a href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-42487" target="_blank" rel="noopener">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-42487</a> 下载。</p>
+</li>
+<li><p>所安装的版本是 7.5.17 .20 版， 2006/05/27 发布。档名为 77gu08ww.exe</p>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
+<li>License Agreement 画面，选「 I accept the terms in the license agreement 」按「 Next 」 </li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\WIN\UNAV 」，如不想变更请直接按「 Next 」 </li>
+<li>解压缩完成后按「 Finish 」</li>
+</ul>
+</li>
+<li><p>到「 C:\DRIVERS\WIN\UNAV 」里，双击「 Setup.exe 」</p>
+<ul>
+<li>首先出现「选取安装语言」，选「英语」，按「确定」 </li>
+<li>按「 Next 」 </li>
+<li>按「 Next 」 </li>
+<li>安装完毕后选「 Yes, I want to restart my computer now 」，按「 Finish 」</li>
+</ul>
+</li>
+</ol>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2008/03/15/IBM-install-drivers-2/#more" rel="contents">
                 Read more »
               </a>
             </div>
@@ -5103,6 +5279,7 @@ ul.breadcrumb li+li:last-child {
 
           
             
+            
           
 
           
@@ -5194,168 +5371,6 @@ ul.breadcrumb li+li:last-child {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/15/wp-plugin-tiger-administration/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2008/03/15/wp-plugin-tiger-administration/" class="post-title-link" itemprop="url">WP插件–WP Tiger Administration</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-15T00:00:00+08:00">2008-03-15</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>WP Tiger Administration是一款WP后台美化插件，整体感觉比较庄重严肃……具体看下面的截图:</p>
-<p>一套超强的CSS系统,只有170K左右,就能把你的后台打造成你喜欢的样式…实在令人不得不PF…</p>
-<p>下载:<a href="/files/wp-admin-tiger-v30.zip">Download the plugin</a></p>
-<p>下载下来后,解压,当然,一般都是解压到当前文件夹,这样的话,就出现两个文件,一个主文件,一个是介绍文档,PDF格式…如果你轻易看懂英文的话,那就不用往下看了,那个介绍也挺简单的.只是要注意一些问题而已…你应该把整个文件传到/wp-content/plugins/目录下…即:<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/wp-content/plugins/wp-admin-tiger/</span><br><span class="line">/wp-admin-tiger/wp-admin-tiger_files/</span><br><span class="line">/wp-admin-tiger/wp-admin-tiger.php</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>需要注意的就是这点了…</p>
-<p>当然,最后一步,激活插件,然后你什么都不用做,就可以拥有一个全新的后台了.</p>
-<p>更多的可以查看：<a href="http://orderedlist.com/wordpress-plugins/wp-tiger-administration/" target="_blank" rel="noopener">插件作者页面</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -5381,7 +5396,6 @@ ul.breadcrumb li+li:last-child {
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
@@ -5393,7 +5407,7 @@ ul.breadcrumb li+li:last-child {
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">東木</p>
-              <p class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</p>
+              <div class="site-description motion-element" itemprop="description">The palest ink is better than the best memory.</div>
           </div>
 
           
@@ -5413,7 +5427,11 @@ ul.breadcrumb li+li:last-child {
                 
                 
                 <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
                     
                     
                       
@@ -5460,7 +5478,11 @@ ul.breadcrumb li+li:last-child {
                 
                 
                 <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
                     
                     
                       
@@ -5919,6 +5941,7 @@ ul.breadcrumb li+li:last-child {
 
     </div>
   </aside>
+  
 
 
         
@@ -5926,20 +5949,6 @@ ul.breadcrumb li+li:last-child {
     </main>
 
     <footer id="footer" class="footer">
-      <script>
-        (function(){
-            var bp = document.createElement('script');
-            var curProtocol = window.location.protocol.split(':')[0];
-            if (curProtocol === 'https') {
-                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-            }
-            else {
-                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-            }
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(bp, s);
-        })();
-      </script>
       <div class="footer-inner">
         <div class="copyright">© 2007 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
@@ -5961,7 +5970,7 @@ ul.breadcrumb li+li:last-child {
 
 
 
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.1</div>
 
 
 
@@ -5987,7 +5996,7 @@ ul.breadcrumb li+li:last-child {
     
 
     
-	
+
     
 
     
@@ -6055,33 +6064,22 @@ ul.breadcrumb li+li:last-child {
 
 
 
-  
 
   
 
-
   
-
 
 
   
 
 
+  
 
   
 
 
 
-
-
-
-
-
-
-
-
   
-
 
 
 
@@ -6098,6 +6096,12 @@ ul.breadcrumb li+li:last-child {
   
 
 
+
+  
+
+  
+
+  
 
   
 
