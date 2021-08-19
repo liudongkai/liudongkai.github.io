@@ -1219,7 +1219,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #d2ff8c;
+  background: #ffffaf;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2710,6 +2710,93 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2013/08/02/mysql-smart-patch/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/08/02/mysql-smart-patch/" class="post-title-link" itemprop="url">MySQL备库复制SQL线程中断问题及解决方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2013-08-02 00:00:00" itemprop="dateCreated datePublished" datetime="2013-08-02T00:00:00+08:00">2013-08-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>MySQL5.6之前的备库复制有两个工作线程：IO线程和SQL线程。SQL线程异常导致复制被中断。</p>
+<p>许多DBA会遭受备库复制线程中断的报警，具体说来常见的错误有如下几类：</p>
+<ul>
+<li>1032错误 – HA_ERR_KEY_NOT_FOUND</li>
+<li>1062错误 – HA_ERR_FOUND_DUPP_KEY （HA_ERR_FOUND_DUPP_KEY 或 HA_ERR_FOUND_DUPP_UNIQUE）</li>
+</ul>
+<h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>主备数据一不致，往往是由于MySQL的Bug导致，其中MySQL复制相关的Bug从每次Release Notes都可以看到相关的身影，就我们最近两周线上遇到的列举如下：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://bugs.mysql.com/bug.php?id=56226">Table map set to 0 after altering MyISAM table</a> （对InnoDB表也会触发）</li>
+<li><a target="_blank" rel="noopener" href="http://bugs.mysql.com/bug.php?id=54453">Failing assertion: trx-&gt;active_trans when renaming a table with active trx</a></li>
+<li><a target="_blank" rel="noopener" href="https://bugs.launchpad.net/bugs/951588">Querying I_S.GLOBAL_TEMPORARY_TABLES or TEMPORARY_TABLES crashes threads working with temp tables</a> （非DEBUG版本也存在）</li>
+</ul>
+<p>当然，最大的一个未知的因素是主库宕机，甚至为保证服务可用而做的主备切换，有多少数据不致，我们心里没有谱。只有依赖后续的定时扫描来做事后检测。虽然我们目前做的MHA从一定程度上回减少数据不一致的数量，但也无法做到数据严格一致。这个问题是MySQL社区的一大难题，在些不展开讨论。</p>
+<p>另外，有发生异常时，DBA的不严格操作也可能会加深这种数据不一致的影响，例如，遇到错误时，跳过若干错误，直到复制能正常工作。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2013/08/02/mysql-smart-patch/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2013/08/01/mysql-smart-path-yinfeng/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3416,87 +3503,6 @@ ul.breadcrumb li + li:last-child {
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2013/01/08/lnmp-mail-function-doesnt-work/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2013/01/08/lnmp-mail-function-doesnt-work/" class="post-title-link" itemprop="url">LNMP笔记：解决mail函数不能发送邮件</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2013-01-08 00:00:00" itemprop="dateCreated datePublished" datetime="2013-01-08T00:00:00+08:00">2013-01-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="问题根源"><a href="#问题根源" class="headerlink" title="问题根源"></a>问题根源</h2><p>没有安装或启动 sendmail 组件</p>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><ol>
-<li><p>确认已经安装sendmail</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install sendmail</span><br></pre></td></tr></tbody></table></figure>
-<p>Redhat 与<br>CentOS 用户可以使用 yum 进行安装；Ubuntu 与 Debian 用户可以使用 apt-get 进行<br>安装。</p>
-</li>
-<li><p>使用下面的命令重启php-fpm进程</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/php-fpm restart</span><br></pre></td></tr></tbody></table></figure></li>
-<li><p>检测sendmail是否运行正常，确保</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/sendmail status</span><br></pre></td></tr></tbody></table></figure></li>
-<li><p>配置php.ini，填写sendmail的绝对路径</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sendmail_path = /usr/sbin/sendmail -t -i</span><br></pre></td></tr></tbody></table></figure></li>
-<li><p>重启php-fpm进程</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/php-fpm restart</span><br></pre></td></tr></tbody></table></figure></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3566,7 +3572,7 @@ ul.breadcrumb li + li:last-child {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">294</span>
+          <span class="site-state-item-count">295</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -3577,7 +3583,7 @@ ul.breadcrumb li + li:last-child {
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">211</span>
+        <span class="site-state-item-count">212</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

@@ -1219,7 +1219,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #d2ff8c;
+  background: #ffffaf;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2710,6 +2710,87 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2013/01/08/lnmp-mail-function-doesnt-work/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/01/08/lnmp-mail-function-doesnt-work/" class="post-title-link" itemprop="url">LNMP笔记：解决mail函数不能发送邮件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2013-01-08 00:00:00" itemprop="dateCreated datePublished" datetime="2013-01-08T00:00:00+08:00">2013-01-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="问题根源"><a href="#问题根源" class="headerlink" title="问题根源"></a>问题根源</h2><p>没有安装或启动 sendmail 组件</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><ol>
+<li><p>确认已经安装sendmail</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install sendmail</span><br></pre></td></tr></tbody></table></figure>
+<p>Redhat 与<br>CentOS 用户可以使用 yum 进行安装；Ubuntu 与 Debian 用户可以使用 apt-get 进行<br>安装。</p>
+</li>
+<li><p>使用下面的命令重启php-fpm进程</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/php-fpm restart</span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>检测sendmail是否运行正常，确保</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/sendmail status</span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>配置php.ini，填写sendmail的绝对路径</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sendmail_path = /usr/sbin/sendmail -t -i</span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>重启php-fpm进程</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/php-fpm restart</span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/12/25/CentOS-Flashcache-installation/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3394,82 +3475,6 @@ SHOW VARIABLES LIKE ‘thread_stack’;
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/06/29/offline-chrome-installer/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2012/06/29/offline-chrome-installer/" class="post-title-link" itemprop="url">Chrome独立安装包下载地址</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2012-06-29 00:00:00" itemprop="dateCreated datePublished" datetime="2012-06-29T00:00:00+08:00">2012-06-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Chrome和Google其他软件的一个“不显著”区别在——Chrome官网没有独立安装包下载地址，只有一个ChromeSetup。ChromeSetup仅仅是一个下载准备工具，还需要在联网后下载Chrome完整独立安装包。这个和微软的Live组件相似，不但麻烦、不方便备份，而且和国外服务器的联网是一个痛苦的过程。</p>
-<p>——————————————————————————–</p>
-<p>个人觉得最好不要使用ChromeSetup，除了使用和联网麻烦外：</p>
-<ol>
-<li>ChromeSetup的联网下载有收集数据的嫌疑；</li>
-<li>制作Chrome便携版不需要ChromeSetup的自动安装而产生的注册表垃圾</li>
-</ol>
-<p>记得以前是可以直接通过官网链接进入到Chrome独立安装包下载页面，但是不断更新的Chrome现在似乎也看不到独立安装包下载页面了。</p>
-<p>偶然一次，从一个Google服务中“误”点击到Chrome的下载页面，发现居然是独立安装包下载页面，特此记录一下：</p>
-<p><a target="_blank" rel="noopener" href="http://www.google.com/chrome/eula.html?standalone=1&amp;hl=zh-CN">http://www.google.com/chrome/eula.html?standalone=1&amp;hl=zh-CN</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3539,7 +3544,7 @@ SHOW VARIABLES LIKE ‘thread_stack’;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">294</span>
+          <span class="site-state-item-count">295</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -3550,7 +3555,7 @@ SHOW VARIABLES LIKE ‘thread_stack’;
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">211</span>
+        <span class="site-state-item-count">212</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

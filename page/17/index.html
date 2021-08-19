@@ -1219,7 +1219,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #d2ff8c;
+  background: #ffffaf;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2710,6 +2710,75 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/10/22/outlook-not-found-pst/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2009/10/22/outlook-not-found-pst/" class="post-title-link" itemprop="url">outlook 找不到 Outlook.pst</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2009-10-22 00:00:00" itemprop="dateCreated datePublished" datetime="2009-10-22T00:00:00+08:00">2009-10-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在DOS下，用CD 切换到 Outlook.exe 可执行文件目录下（安装目录如：<code>C:\Program Files\Microsoft Office\OFFICE11</code>）</p>
+<p>使用命令 <code>outlook /importprf .\.prf</code> 进行初始化 Outlook 数据文件。</p>
+<p>取其一界面（很熟悉的）（初安装 Outlook 启动时，需要新建一电子邮件帐户界面）</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/09/14/windows-hardlink/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3462,103 +3531,6 @@ ul.breadcrumb li + li:last-child {
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/04/19/mysql-delete-binlog/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2009/04/19/mysql-delete-binlog/" class="post-title-link" itemprop="url">删除MYSQl BIN-LOG 日志[zt]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2009-04-19 00:00:00" itemprop="dateCreated datePublished" datetime="2009-04-19T00:00:00+08:00">2009-04-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>想要恢愎数据库以前的资料,执行:show binlog events;屏幕就开始闪,闪的人眼花,心里烦(那有这么多没有用的破LOG^0^),还是删除一些去吧!</p>
-<ol>
-<li><p>列出当前的binlog文件</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show binary logs;</span><br><span class="line">+------------------+-----------+</span><br><span class="line">| Log_name         | File_size |</span><br><span class="line">+------------------+-----------+</span><br><span class="line">| mysql-bin.000001 | 150462942 |</span><br><span class="line">| mysql-bin.000002 |       125 |</span><br><span class="line">| mysql-bin.000003 |       106 |</span><br><span class="line">+------------------+-----------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></tbody></table></figure></li>
-<li><p>删除bin-log(删除mysql-bin.000003之前的而没有包含mysql-bin.000003)</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; purge binary logs to 'mysql-bin.000003';</span><br><span class="line">Query OK, 0 rows affected (0.16 sec)</span><br></pre></td></tr></tbody></table></figure></li>
-<li><p>查询结果(现在只有一条记录了.)</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show binlog events\G</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">Log_name: mysql-bin.000003</span><br><span class="line">Pos: 4</span><br><span class="line">Event_type: Format_desc</span><br><span class="line">Server_id: 1</span><br><span class="line">End_log_pos: 106</span><br><span class="line">Info: Server ver: 5.1.26-rc-log, Binlog ver: 4</span><br><span class="line">1 row in set (0.01 sec)</span><br></pre></td></tr></tbody></table></figure>
-<p>(mysql-bin.000001和mysql-bin.000002已被删除)</p>
-</li>
-</ol>
- <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show binary logs;</span><br><span class="line">+------------------+-----------+</span><br><span class="line">| Log_name         | File_size |</span><br><span class="line">+------------------+-----------+</span><br><span class="line">| mysql-bin.000003 |       106 |</span><br><span class="line">+------------------+-----------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></tbody></table></figure>
-
-<p> (删除的其它格式运用!)</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PURGE {MASTER | BINARY} LOGS TO 'log_name'</span><br><span class="line">PURGE {MASTER | BINARY} LOGS BEFORE 'date'</span><br></pre></td></tr></tbody></table></figure>
-
-<p> 用于删除列于在指定的日志或日期之前的日志索引中的所有二进制日志。这些日志也会从记录在日志索引文件中的清单中被删除，这样被给定的日志成为第一个。<br> 例如：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PURGE MASTER LOGS TO 'mysql-bin.010';</span><br><span class="line">PURGE MASTER LOGS BEFORE '2008-06-22 13:00:00';</span><br></pre></td></tr></tbody></table></figure>
-
-<p> 清除3天前的 binlog</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PURGE MASTER LOGS BEFORE DATE_SUB( NOW( ), INTERVAL 3 DAY);</span><br></pre></td></tr></tbody></table></figure>
-
-<p> BEFORE变量的date自变量可以为’YYYY-MM-DD hh:mm:ss’格式。MASTER和BINARY是同义词。<br> 如果您有一个活性的从属服务器，该服务器当前正在读取您正在试图删除的日志之一，则本语句不会起作用，而是会失败，并伴随一个错误。不过，如果从属服务器是休止的，并且您碰巧清理了其想要读取的日志之一，则从属服务器启动后不能复制。当从属服务器正在复制时，本语句可以安全运行。您不需要停止它们。</p>
-<p> 要清理日志，需按照以下步骤：</p>
-<ol>
-<li>在每个从属服务器上，使用<code>SHOW SLAVE STATUS</code>来检查它正在读取哪个日志。</li>
-<li>使用<code>SHOW MASTER LOGS</code>获得主服务器上的一系列日志。</li>
-<li>在所有的从属服务器中判定最早的日志。这个是目标日志。如果所有的从属服务器是更新的，这是清单上的最后一个日志。</li>
-<li>制作您将要删除的所有日志的备份。（这个步骤是自选的，但是建议采用。）</li>
-<li>清理所有的日志，但是不包括目标日志我。</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3628,7 +3600,7 @@ ul.breadcrumb li + li:last-child {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">294</span>
+          <span class="site-state-item-count">295</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -3639,7 +3611,7 @@ ul.breadcrumb li + li:last-child {
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">211</span>
+        <span class="site-state-item-count">212</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

@@ -1219,7 +1219,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #d2ff8c;
+  background: #ffffaf;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2710,6 +2710,92 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/08/16/linux-IFS-summary/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2010/08/16/linux-IFS-summary/" class="post-title-link" itemprop="url">对于IFS的一点总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2010-08-16 00:00:00" itemprop="dateCreated datePublished" datetime="2010-08-16T00:00:00+08:00">2010-08-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><p>什么是IFS ？<br>IFS是bash的内部变量，称为内部域分隔符.这个变量用来决定Bash在解释字符串时如何识别域,或者单词边界.</p>
+</li>
+<li><p>如何查看当前的IFS值？<br><code>[root@Dong tmp]# echo "$IFS"</code></p>
+</li>
+</ol>
+<p> 由于IFS默认为空白(空格,tab和新行)，所以使用以上的命令似乎看不到字符。没关系，你可以用od命令看16进制，或是2进制值：<br> </p><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@Dong tmp]# echo "$IFS" | od -t x1</span><br><span class="line">0000000 20 09 0a 0a</span><br><span class="line">0000004</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p> 注意:$*使用$IFS 中的第一个字符，比如：<br> </p><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@Dong tmp]# set w x y z;echo "$*"</span><br><span class="line">w x y z</span><br></pre></td></tr></tbody></table></figure><p></p>
+<ol start="3">
+<li>如何修改IFS值？</li>
+</ol>
+<p> 普通的赋值命令即可：<br> </p><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@Dong tmp]# IFS=":"</span><br><span class="line">[root@Dong tmp]# echo "$IFS"</span><br><span class="line">:</span><br><span class="line">[root@Dong tmp]# echo "$IFS" | od -t x1</span><br><span class="line">0000000 3a 0a</span><br><span class="line">0000002</span><br><span class="line">[root@Dong tmp]# set w x y z;echo "$*"</span><br><span class="line">w:x:y:z</span><br></pre></td></tr></tbody></table></figure><p></p>
+<ol start="4">
+<li>实验:$*使用$IFS 中的第一个字符</li>
+</ol>
+ <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@Dong tmp]# IFS="\\:;"</span><br><span class="line">[root@Dong tmp]# echo "$IFS"</span><br><span class="line">\:;</span><br><span class="line">[root@Dong tmp]# echo "$IFS" | od -t x1</span><br><span class="line">0000000 5c 3a 3b 0a</span><br><span class="line">0000004</span><br><span class="line">[root@Dong tmp]# set w x y z;echo "$*"</span><br><span class="line">w\x\y\z</span><br><span class="line">[root@Dong tmp]# IFS=":;\\"</span><br><span class="line">[root@Dong tmp]# echo "$IFS"</span><br><span class="line">:;\</span><br><span class="line">[root@Dong tmp]# echo "$IFS" | od -t x1</span><br><span class="line">0000000 3a 3b 5c 0a</span><br><span class="line">0000004</span><br><span class="line">[root@Dong tmp]# set w x y z;echo "$*"</span><br><span class="line">w:x:y:z</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="5">
+<li>备份IFS<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@Dong tmp]# echo "$IFS" | od -t x1</span><br><span class="line">0000000 20 09 0a 0a</span><br><span class="line">0000004</span><br><span class="line">[root@Dong tmp]# OLDIFS="$IFS"</span><br><span class="line">[root@Dong tmp]# echo "$OLDIFS" | od -t x1</span><br><span class="line">0000000 20 09 0a 0a</span><br><span class="line">0000004</span><br><span class="line">[root@Dong tmp]# IFS=":"</span><br><span class="line">[root@Dong tmp]# echo "$IFS" | od -t x1</span><br><span class="line">0000000 3a 0a</span><br><span class="line">0000002</span><br><span class="line">[root@Dong tmp]# IFS="$OLDIFS"</span><br><span class="line">[root@Dong tmp]# echo "$IFS" | od -t x1</span><br><span class="line">0000000 20 09 0a 0a</span><br><span class="line">0000004</span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/08/12/php-odd-or-even/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3367,85 +3453,6 @@ ul.breadcrumb li + li:last-child {
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/04/22/awk-merge-columns/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2010/04/22/awk-merge-columns/" class="post-title-link" itemprop="url">awk 列相同 合并行</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2010-04-22 00:00:00" itemprop="dateCreated datePublished" datetime="2010-04-22T00:00:00+08:00">2010-04-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>如果第一列与第二列相同，就合并行</p>
-<blockquote>
-<p>cat a.txt</p>
-</blockquote>
-<blockquote>
-<p>a b c<br>a b d<br>a b e</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk '{v=$1" "$2;a[v]=a[v](a[v]?" ":"")$3}END{for (j in a) print j,a[j]}' file</span><br></pre></td></tr></tbody></table></figure>
-
-<p>获得结果：</p>
-<blockquote>
-<p>a b c d e</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3515,7 +3522,7 @@ ul.breadcrumb li + li:last-child {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">294</span>
+          <span class="site-state-item-count">295</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -3526,7 +3533,7 @@ ul.breadcrumb li + li:last-child {
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">211</span>
+        <span class="site-state-item-count">212</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

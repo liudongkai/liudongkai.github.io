@@ -1219,7 +1219,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #d2ff8c;
+  background: #ffffaf;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2710,6 +2710,86 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/02/09/mysql-replicate-ignore-db/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2012/02/09/mysql-replicate-ignore-db/" class="post-title-link" itemprop="url">配置mysql丛库小心使用replicate_do_db和replicate_ignore_db</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2012-02-09 00:00:00" itemprop="dateCreated datePublished" datetime="2012-02-09T00:00:00+08:00">2012-02-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>使用replicate_do_db和replicate_ignore_db时有一个隐患，跨库更新时会出错。</p>
+<ul>
+<li><p>如设置 replicate_do_db=test</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use mysql;</span><br><span class="line">update test.table1 set</span><br><span class="line">……</span><br></pre></td></tr></tbody></table></figure>
+<p>第二句将不会被执行</p>
+</li>
+<li><p>如设置 replicate_ignore_db=mysql</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use mysql;</span><br><span class="line">update test.table1 set</span><br><span class="line">……</span><br></pre></td></tr></tbody></table></figure>
+<p>第二句会被忽略执行</p>
+</li>
+</ul>
+<p>原因是设置replicate_do_db或replicate_ignore_db后，MySQL执行sql前检查的是当前默认数据库，所以跨库更新语句被忽略。<br>可以使用replicate_wild_do_table和replicate_wild_ignore_table来代替</p>
+<p>如:<br><code>replicate_wild_do_table=test.%</code> 或 <code>replicate_wild_ignore_table=mysql.%</code></p>
+<p>这样就可以避免出现上述问题了</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/02/07/mysql-timestamp-introduction/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3420,81 +3500,6 @@ ul.breadcrumb li + li:last-child {
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2011/04/18/faster-way-to-dump-mysql/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2011/04/18/faster-way-to-dump-mysql/" class="post-title-link" itemprop="url">加速 MySQL 导入导出的方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2011-04-18 00:00:00" itemprop="dateCreated datePublished" datetime="2011-04-18T00:00:00+08:00">2011-04-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>MySQL导出的SQL语句在导入时有可能会非常非常慢，在处理百万级数据的时候，可能导入要花几小时。在导出时合理使用几个参数，可以大大加快导 入的速度。</p>
-<p>-e 使用包括几个VALUES列表的多行INSERT语法;<br>–max_allowed_packet=XXX 客户端/服务器之间通信的缓存区的最大大小;<br>–net_buffer_length=XXX TCP/IP和套接字通信缓冲区大小,创建长度达net_buffer_length的行。</p>
-<p>注意：max_allowed_packet 和 net_buffer_length 不能比目标数据库的设定数值 大，否则可能出错。</p>
-<p>首先确定目标数据库的参数值</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show variables like 'max_allowed_packet';</span><br><span class="line">mysql&gt; show variables like 'net_buffer_length';</span><br></pre></td></tr></tbody></table></figure>
-<p>根据参数值书写 mysqldump 命令，如：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># mysqldump -uroot -p123 21andy -e –max_allowed_packet=16777216 –net_buffer_length=16384 &gt; 21andy.sql</span><br></pre></td></tr></tbody></table></figure>
-<p>OK，现在速度就很快了，主要注意的是导入和导出端的 max_allowed_packet 和 net_buffer_length 这2个参数值设定，弄大点就OK了</p>
-<p>其实，最快的方法，是直接COPY数据库目录，不过记得先停止 MySQL 服务。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3564,7 +3569,7 @@ ul.breadcrumb li + li:last-child {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">294</span>
+          <span class="site-state-item-count">295</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -3575,7 +3580,7 @@ ul.breadcrumb li + li:last-child {
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">211</span>
+        <span class="site-state-item-count">212</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
