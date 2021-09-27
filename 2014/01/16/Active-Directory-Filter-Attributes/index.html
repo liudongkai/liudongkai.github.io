@@ -15,13 +15,13 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.liudongkai.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"PFZ0Y857EY","apiKey":"da65f2d4ea1c6d4dccfa6d7f197d2aaf","indexName":"blog","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"www.liudongkai.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"PFZ0Y857EY","apiKey":"da65f2d4ea1c6d4dccfa6d7f197d2aaf","indexName":"blog","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="http://www.cnblogs.com/zhongweiv/archive/2013/01/05/ad_sync.html  DirectorySearcher.Filter属性扩充说明 用户属性扩充说明(含图文属性对照) 常规 地址 帐户 电话 组织    &amp;nbsp; DirectorySearcher.Filter属性扩充说明1DirectorySearcher mySearcher">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C# AD(Active Directory)域信息同步，组织单位、用户等信息查询[zt]">
-<meta property="og:url" content="http://blog.liudongkai.com/2014/01/16/Active-Directory-Filter-Attributes/index.html">
+<meta property="og:url" content="http://www.liudongkai.com/2014/01/16/Active-Directory-Filter-Attributes/index.html">
 <meta property="og:site_name" content="Dong's Note">
 <meta property="og:description" content="http://www.cnblogs.com/zhongweiv/archive/2013/01/05/ad_sync.html  DirectorySearcher.Filter属性扩充说明 用户属性扩充说明(含图文属性对照) 常规 地址 帐户 电话 组织    &amp;nbsp; DirectorySearcher.Filter属性扩充说明1DirectorySearcher mySearcher">
 <meta property="og:locale">
@@ -37,7 +37,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://photo.liudongkai.com/blog/AD01a.jpg">
 
-<link rel="canonical" href="http://blog.liudongkai.com/2014/01/16/Active-Directory-Filter-Attributes/">
+<link rel="canonical" href="http://www.liudongkai.com/2014/01/16/Active-Directory-Filter-Attributes/">
 
 
 <script id="page-configurations">
@@ -1228,7 +1228,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #7de5ff;
+  background: #ffc1ff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2720,7 +2720,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/01/16/Active-Directory-Filter-Attributes/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/01/16/Active-Directory-Filter-Attributes/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -2819,7 +2819,7 @@ ul.breadcrumb li + li:last-child {
 <p>更多高级筛选请查看：<a target="_blank" rel="noopener" href="http://msdn.microsoft.com/zh-cn/library/system.directoryservices.directorysearcher.filter(v=vs.80).aspx">http://msdn.microsoft.com/zh-cn/library/system.directoryservices.directorysearcher.filter(v=vs.80).aspx</a></p>
 <p><a id="sample" name="sample">&nbsp;</a></p>
 <h2 id="用户属性扩充说明-含图文属性对照"><a href="#用户属性扩充说明-含图文属性对照" class="headerlink" title="用户属性扩充说明(含图文属性对照)"></a>用户属性扩充说明(含图文属性对照)</h2><p>示例中只对用户进行了读取了几个属性，用过AD域的应该都知道，用户的属性较多也比较常用。</p>
-<p>下面通过AD域的用户详细信息设置来对照一下相应的属性名，<br>更多用户属性定义可参看前一篇<a target="_blank" rel="noopener" href="http://www.liudongkai.com/articles/2014/01/13/1389625568310.html">《User Attributes - Inside Active Directory》</a></p>
+<p>下面通过AD域的用户详细信息设置来对照一下相应的属性名，<br>更多用户属性定义可参看前一篇<a href="http://www.liudongkai.com/articles/2014/01/13/1389625568310.html">《User Attributes - Inside Active Directory》</a></p>
 <ul>
 <li>常项选项卡<a id="comm" name="comm">&nbsp;</a></li>
 </ul>
@@ -3159,7 +3159,7 @@ ul.breadcrumb li + li:last-child {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">297</span>
+          <span class="site-state-item-count">298</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

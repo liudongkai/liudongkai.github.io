@@ -15,20 +15,20 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.liudongkai.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"PFZ0Y857EY","apiKey":"da65f2d4ea1c6d4dccfa6d7f197d2aaf","indexName":"blog","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"www.liudongkai.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"PFZ0Y857EY","apiKey":"da65f2d4ea1c6d4dccfa6d7f197d2aaf","indexName":"blog","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="The palest ink is better than the best memory.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Dong's Note">
-<meta property="og:url" content="http://blog.liudongkai.com/page/25/index.html">
+<meta property="og:url" content="http://www.liudongkai.com/page/25/index.html">
 <meta property="og:site_name" content="Dong's Note">
 <meta property="og:description" content="The palest ink is better than the best memory.">
 <meta property="og:locale">
 <meta property="article:author" content="東木">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://blog.liudongkai.com/page/25/">
+<link rel="canonical" href="http://www.liudongkai.com/page/25/">
 
 
 <script id="page-configurations">
@@ -1219,7 +1219,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #7de5ff;
+  background: #ffc1ff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2710,7 +2710,87 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/04/EditPlus-regex-example/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/04/EditPlus-regex/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/03/04/EditPlus-regex/" class="post-title-link" itemprop="url">EditPlus正则表达式替换字符串详解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-03-04 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-04T00:00:00+08:00">2008-03-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>网上搜集了些实例</p>
+<p>正则表达式是一个查询的字符串，它包含一般的字符和一些特殊的字符，特殊字符可以扩展查找字符串的能力，正则表达式在查找和替换字符串的作用不可忽视，它能很好提高工作效率。</p>
+<p>EditPlus的查找，替换，文件中查找支持以下的正则表达式：</p>
+<blockquote>
+<p>Expression Description</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">\t Tab character.  </span><br><span class="line">\n New line.  </span><br><span class="line">. Matches any character.  </span><br><span class="line">| Either expression on its left and right side matches the target string.  </span><br><span class="line">For example, "a|b" matches "a" and "b".  </span><br><span class="line">[] Any of the enclosed characters may match the target character.  </span><br><span class="line">  For example, "[ab]" matches "a" and "b". "[0-9]" matches any digit.  </span><br><span class="line">[^] None of the enclosed characters may match the target character.  </span><br><span class="line">  For example, "[^ab]" matches all character EXCEPT "a" and "b".  </span><br><span class="line">"[^0-9]" matches any non-digit character.  </span><br><span class="line">* Character to the left of asterisk in the expression should match 0 or more times.  </span><br><span class="line">For example "be*" matches "b", "be" and "bee".    </span><br><span class="line">+ Character to the left of plus sign in the expression should match 1 or more times.  </span><br><span class="line">For example "be+" matches "be" and "bee" but not "b".  </span><br><span class="line">? Character to the left of question mark in the expression should match 0 or 1 time.  </span><br><span class="line">For example "be?" matches "b" and "be" but not "bee".  </span><br><span class="line">^ Expression to the right of ^ matches only when it is at the beginning of line.  </span><br><span class="line">For example "^A" matches an "A" that is only at the beginning of line.  </span><br><span class="line">$ Expression to the left of $ matches only when it is at the end of line.  </span><br><span class="line">For example "e$" matches an "e" that is only at the end of line.  </span><br><span class="line">() Affects evaluation order of expression and also used for tagged expression.  </span><br><span class="line">\ scape character. If you want to use character "\" itself, you should use "\\".</span><br></pre></td></tr></tbody></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2008/03/04/EditPlus-regex/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/04/EditPlus-regex-example/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -2802,7 +2882,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/03/linux-c-shell/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/03/linux-c-shell/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -2880,7 +2960,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/03/read-the-specified-line/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/03/read-the-specified-line/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -2960,7 +3040,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/03/small-shell/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/03/small-shell/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -3029,7 +3109,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/02/23/photoshop-designer-top-10/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/02/23/photoshop-designer-top-10/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -3142,7 +3222,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/02/23/centos-install-gb/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/02/23/centos-install-gb/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -3220,7 +3300,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/02/21/firefox-save-mht/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/02/21/firefox-save-mht/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -3293,7 +3373,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/02/20/linux-hosts/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/02/20/linux-hosts/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -3417,7 +3497,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/02/16/GD-Graphics-Library/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/02/16/GD-Graphics-Library/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -3503,87 +3583,6 @@ ul.breadcrumb li + li:last-child {
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/02/15/WordPress-Wp-PageNavi/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/02/15/WordPress-Wp-PageNavi/" class="post-title-link" itemprop="url">WordPress分页插件：Wp-PageNavi v2.1</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-02-15 00:00:00" itemprop="dateCreated datePublished" datetime="2008-02-15T00:00:00+08:00">2008-02-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>安装方法：</p>
-<blockquote>
-<p>1、把下载下来的文件解压，并将pagenavi（注意，把pagenavi文件夹而不是wp-pagenavi文件）上传到/wp-content/plugins/目录下。</p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="http://www.lesterchan.net/others/downloads.php?id=11">官方下载：WP-pagenavi</a></p>
-<blockquote>
-<p>2、到后台的设置（optation）,在PageNavi下设置参数，英文版本的为：’<strong>WP-Admin -&gt; Options -&gt; PageNavi</strong>‘</p>
-</blockquote>
-<blockquote>
-<p>3、最后，在你想要添加这个分页的地方加上如下的代码：</p>
-</blockquote>
-<blockquote>
-<p><code>&lt;?php if(function_exists('wp_pagenavi')) { wp_pagenavi(); } ?&gt;</code></p>
-</blockquote>
-<p>这样，就大功告成了！不过，如果你要达到更好的效果的话，那就么要设置一下插件的CSS文件。你可以用以下链接进行修改/wp-content/plugins/pagenavi/pagenavi-css.css</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3653,7 +3652,7 @@ ul.breadcrumb li + li:last-child {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">297</span>
+          <span class="site-state-item-count">298</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -15,20 +15,20 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.liudongkai.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"PFZ0Y857EY","apiKey":"da65f2d4ea1c6d4dccfa6d7f197d2aaf","indexName":"blog","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"www.liudongkai.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"PFZ0Y857EY","apiKey":"da65f2d4ea1c6d4dccfa6d7f197d2aaf","indexName":"blog","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="The palest ink is better than the best memory.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Dong's Note">
-<meta property="og:url" content="http://blog.liudongkai.com/page/3/index.html">
+<meta property="og:url" content="http://www.liudongkai.com/page/3/index.html">
 <meta property="og:site_name" content="Dong's Note">
 <meta property="og:description" content="The palest ink is better than the best memory.">
 <meta property="og:locale">
 <meta property="article:author" content="東木">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://blog.liudongkai.com/page/3/">
+<link rel="canonical" href="http://www.liudongkai.com/page/3/">
 
 
 <script id="page-configurations">
@@ -1219,7 +1219,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #7de5ff;
+  background: #ffc1ff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2710,7 +2710,98 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2015/04/17/chrome-42-alipay-wangwang/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2015/04/29/apache-modrewrite-support/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2015/04/29/apache-modrewrite-support/" class="post-title-link" itemprop="url">linux下让apache支持mod_rewrite模块</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2015-04-29 00:00:00" itemprop="dateCreated datePublished" datetime="2015-04-29T00:00:00+08:00">2015-04-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="重新编译mod-rewrite-so："><a href="#重新编译mod-rewrite-so：" class="headerlink" title="重新编译mod_rewrite.so："></a>重新编译mod_rewrite.so：</h1><h2 id="查找源码"><a href="#查找源码" class="headerlink" title="查找源码"></a>查找源码</h2><p>在apache的源码安装目录中寻找mod_rewrite.c文件 </p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ find ./ -name "mod_rewrite.c"</span><br><span class="line">/usr/local/src/httpd-2.2.4/modules/mappers/mod_rewrite.c</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="编译："><a href="#编译：" class="headerlink" title="编译："></a>编译：</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cd /usr/local/src/httpd-2.2.4/modules/mappers/</span><br><span class="line">$ /usr/local/apache/bin/apxs -c mod_rewrite.c</span><br><span class="line">$ /usr/local/apache/bin/apxs -i -a -n mod_rewrite mod_rewrite.la</span><br></pre></td></tr></tbody></table></figure>
+
+<p>如果没有什么错误的话，应该在你的apache的modules目录中编译出一个mod_rewrite.so文件。<br>编辑httpd.conf文件，确认httpd.conf中已经包含mod_rewrite.so的加载语句，如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadModule rewrite_module modules/mod_rewrite.so</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h2><p>完成之后，记得重启服务器apache。</p>
+<h2 id="可能碰到的问题"><a href="#可能碰到的问题" class="headerlink" title="可能碰到的问题"></a>可能碰到的问题</h2><h3 id="错误一"><a href="#错误一" class="headerlink" title="错误一"></a>错误一</h3><p>如果出现这个错误</p>
+<blockquote>
+<p>httpd: Syntax error on line 61 of /usr/local/apache/conf/httpd.conf: Can’t locate API module structure `mod_rewrite_module’ in file /usr/local/apache/modules/mod_rewrite.so: /usr/local/apache/modules/mod_rewrite.so: undefined symbol: mod_rewrite_module</p>
+</blockquote>
+<p>修改http.conf<br>原来：httpd.conf里面写的<code>mod_rewrite_module</code><br>改成：<code>rewrite_module</code></p>
+<h3 id="错误二"><a href="#错误二" class="headerlink" title="错误二"></a>错误二</h3><p>如果重启apache出现这个错误</p>
+<blockquote>
+<p>httpd: Syntax error on line 61 of /usr/local/apache/conf/httpd.conf: module rewrite_module is built-in and can’t be loaded</p>
+</blockquote>
+<p>表示模块是内建的，不用再调入,修改http.conf注释掉</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#LoadModule rewrite_module modules/mod_rewrite.so</span><br></pre></td></tr></tbody></table></figure>
+
+<h1 id="修改虚拟机配置"><a href="#修改虚拟机配置" class="headerlink" title="修改虚拟机配置"></a>修改虚拟机配置</h1><p>注意下一步，配置虚拟主机的时候要类似如下设置才可以生效：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">    ServerName www.liudongkai.com</span><br><span class="line">    DocumentRoot /home/www.liudongkai.com</span><br><span class="line">    ErrorLog logs/www.liudongkai.com-error_log</span><br><span class="line">    CustomLog logs/www.liudongkai.com combined</span><br><span class="line">	&lt;Directory /home/www.liudongkai.com&gt;</span><br><span class="line">        AllowOverride All</span><br><span class="line">        Order allow,deny</span><br><span class="line">        allow from all</span><br><span class="line">    &lt;/Directory&gt;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>如果AllowOverride设置为none的话，apache会不读取网站的.htaccess文件！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2015/04/17/chrome-42-alipay-wangwang/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -2781,7 +2872,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2015/04/07/linux-data/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2015/04/07/linux-data/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -2863,7 +2954,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2015/02/01/google-earth-pro-free/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2015/02/01/google-earth-pro-free/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -2946,7 +3037,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/11/10/mac-os-x-screencapture/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/11/10/mac-os-x-screencapture/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -3016,7 +3107,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/11/08/qnap-ts-212p-fireware-recovery/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/11/08/qnap-ts-212p-fireware-recovery/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -3091,7 +3182,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/11/04/VirtualBox-compact-vdi/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/11/04/VirtualBox-compact-vdi/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -3167,7 +3258,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/10/29/ios8-cydia-sources/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/10/29/ios8-cydia-sources/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -3244,7 +3335,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/10/28/ios8-battery/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/10/28/ios8-battery/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -3320,7 +3411,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/10/27/ios8-Activator/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/10/27/ios8-Activator/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -3378,79 +3469,6 @@ ul.breadcrumb li + li:last-child {
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2014/10/20/How-to-Create-an-OS-X-Yosemite-USB-Installation-Drive/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2014/10/20/How-to-Create-an-OS-X-Yosemite-USB-Installation-Drive/" class="post-title-link" itemprop="url">如何制作OS X Yosemite 独立安装U盘</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2014-10-20 00:00:00" itemprop="dateCreated datePublished" datetime="2014-10-20T00:00:00+08:00">2014-10-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/mac-os/" itemprop="url" rel="index"><span itemprop="name">Mac OS</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>制作方法和Mavericks一致，见前一篇<a href="/2013/10/28/How-to-Create-an-OS-X-Mavericks-USB-Installation-Drive/">《How to Create an OS X Mavericks USB Installation Drive》</a></p>
-<p>准备独立安装盘介质： 你需要一个容量至少大于 8GB 的移动存储设备，比如 U盘、移动硬盘或 SD卡，将其插入 Mac，并启动磁盘工具对该介质执行“抹掉”操作，抹掉前请备份好该介质中的重要数据。盘符名请命名为“<em>Untitled</em>”。</p>
-<p>通过“终端”命令制作安装盘：打开“终端”，在命令行中执行下面的命令，当提示输入密码时请输入你的 OS X 管理员登陆密码。</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /Applications/Install\ OS\ X\ Yosemite.app/Contents/Resources/createinstallmedia --volume /Volumes/Untitled --applicationpath /Applications/Install\ OS\ X\ Yosemite.app --nointeraction</span><br></pre></td></tr></tbody></table></figure>
-
-<p>完成制作： 如果一切正常的话，“终端”界面中就会显示 Erasing Disk: 0%… 10%…20%… ，并最终完成制作了。制作完成后，你可以使用该介质启动任意一台兼容 OS X Yosemite 的 Mac(需要在目标 Mac 上插入该介质，然后在开机时按住 option 键)，开始 OS X Yosemite 的安装之旅。</p>
-<p>PS: 如果你将盘符命名为其他名称，请在命令中降 /Volumes/Untitled 修改为 /Volumes/{盘符名称}。</p>
-
       
     </div>
 
@@ -3534,7 +3552,7 @@ ul.breadcrumb li + li:last-child {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">297</span>
+          <span class="site-state-item-count">298</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -15,20 +15,20 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.liudongkai.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"PFZ0Y857EY","apiKey":"da65f2d4ea1c6d4dccfa6d7f197d2aaf","indexName":"blog","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"www.liudongkai.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"PFZ0Y857EY","apiKey":"da65f2d4ea1c6d4dccfa6d7f197d2aaf","indexName":"blog","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="The palest ink is better than the best memory.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Dong's Note">
-<meta property="og:url" content="http://blog.liudongkai.com/page/19/index.html">
+<meta property="og:url" content="http://www.liudongkai.com/page/19/index.html">
 <meta property="og:site_name" content="Dong's Note">
 <meta property="og:description" content="The palest ink is better than the best memory.">
 <meta property="og:locale">
 <meta property="article:author" content="東木">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://blog.liudongkai.com/page/19/">
+<link rel="canonical" href="http://www.liudongkai.com/page/19/">
 
 
 <script id="page-configurations">
@@ -1219,7 +1219,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #7de5ff;
+  background: #ffc1ff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2710,7 +2710,79 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/11/22/FileZilla-Server-Aliases/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/11/26/awk-no-wrap/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/11/26/awk-no-wrap/" class="post-title-link" itemprop="url">awk输出时不换行</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-11-26 00:00:00" itemprop="dateCreated datePublished" datetime="2008-11-26T00:00:00+08:00">2008-11-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>输出时使用printf</li>
+<li>输出后，利用 <code>tr -d 'n'</code> 实现替换换行</li>
+<li><code>awk 'BEGIN{ORS=""}{print $0;}'</code> <strong>//推荐</strong></li>
+<li><code>awk '{printf("%s",$0);}'</code></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/11/22/FileZilla-Server-Aliases/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -2782,7 +2854,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/11/22/shell-process-control/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/11/22/shell-process-control/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -2884,7 +2956,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/11/04/Windows7-font-Gabriola/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/11/04/Windows7-font-Gabriola/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -2953,7 +3025,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/10/30/custom-firefox-CSS/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/10/30/custom-firefox-CSS/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -3023,7 +3095,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/10/07/fixed-thinkpad-t60-pxe-e05/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/10/07/fixed-thinkpad-t60-pxe-e05/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -3130,7 +3202,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/09/04/mysqldump-import/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/09/04/mysqldump-import/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -3200,7 +3272,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/09/03/canon-family-tree/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/09/03/canon-family-tree/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -3282,7 +3354,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/08/26/sed-newline/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/08/26/sed-newline/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -3360,7 +3432,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/08/24/shell-loop-control/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/08/24/shell-loop-control/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -3448,84 +3520,6 @@ ul.breadcrumb li + li:last-child {
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/08/18/EditPlus-remove-blank-lines/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/08/18/EditPlus-remove-blank-lines/" class="post-title-link" itemprop="url">在EditPlus中删除空行</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-08-18 00:00:00" itemprop="dateCreated datePublished" datetime="2008-08-18T00:00:00+08:00">2008-08-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>经常从网上粘贴或下载一篇文章，需要打印时，发现有大量多余的空行占据了许多篇幅，需要删除。这些空行要么不包含任何字符，要么包含了许多空格、制表符(Tab)。如果文章比较长，那么手工删除空行就成为一件颇费鼠标和精力的事。难道就没有别的办法？答案是：有！</p>
-<p>我们可以借助文本编辑器软件EditPlus、UltraEdit实现。EditPlus、UltraEdit是常 见的共享软件，几乎所有软件下载网站都提供下载。由于EditPlus的操作更容易上手，但UltraEdit更为常用，所以本文先介绍在EditPlus的操作，再介绍UltraEdit。</p>
-<ol>
-<li>在EditPlus中删除空行</li>
-</ol>
-<p> 启动EditPlus，打开待处理的文件。需要注意，必须是纯文本文件，如果是Word文档，需要先粘贴到纯文本文件中。然后，步骤如下：搜索-替换-正则表达式-当前文件-点击查找内容后面的向下箭头-选单-行首-范围内的字符-制表符-0或多次匹配-换行-形成<code>^[t]*n</code></p>
-<p> Replace with组合框保持空，表示删除查找到的内容。单击Replace按钮逐个行删除空行，或单击Replace All按钮删除全部空行(注意：EditPlus和UltraEdit均存在Replace All不能一次性完全删除空行的问题，可能是程序BUG，需要多按几次按钮)。</p>
-<p> 对于熟悉EditPlus的朋友，可以直接在Find what中输入正则表达式<code>^[ ]*</code> ，注意 前有空格符。</p>
-<ol start="2">
-<li>在UltraEdit中删除空行<br>使用UltraEdit的原理一样，但是UltraEdit没有提供菜单方式，所以需要手工输入正则表达式，而且UltraEdit的正则表达式符号与EditPlus不同。</li>
-</ol>
-<p> 用UltraEdit打开文件后，选择Search菜单的Replace命令。在Replace对话框中，选中Regular Expression复选框，并在Find what中输入：<code>%[ ^t]++^p</code>，注意^t之前有空格。该表达式字符含义与EditPlus的相对应。然后，单击Start或Replace All按钮，进行替换删除空行</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3595,7 +3589,7 @@ ul.breadcrumb li + li:last-child {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">297</span>
+          <span class="site-state-item-count">298</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
