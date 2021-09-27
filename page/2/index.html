@@ -1219,7 +1219,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffffaf;
+  background: #ff88b4;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2710,6 +2710,167 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2017/03/08/mac_nodejs_update/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/03/08/mac_nodejs_update/" class="post-title-link" itemprop="url">mac下nodejs更新到最新版本</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-03-08 00:00:00" itemprop="dateCreated datePublished" datetime="2017-03-08T00:00:00+08:00">2017-03-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/mac-os/" itemprop="url" rel="index"><span itemprop="name">Mac OS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="第一步：使用npm安装n模块"><a href="#第一步：使用npm安装n模块" class="headerlink" title="第一步：使用npm安装n模块"></a>第一步：使用npm安装n模块</h2><blockquote>
+<p>n模块是专门用来管理nodejs版本的</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g n</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>提示 : 如果不使用sudo作为前缀，很可能出现权限访问异常导致安装失败</p>
+</blockquote>
+<h2 id="第二步：升级nodejs"><a href="#第二步：升级nodejs" class="headerlink" title="第二步：升级nodejs"></a>第二步：升级nodejs</h2><p>升级nodejs是有两种方法：<br>第一种是升级到最新版本</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo n latest</span><br></pre></td></tr></tbody></table></figure>
+
+<p>第二种是升级到稳定版本</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo n stable</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>提示 : 建议是稳定版本<br>更多n模块管理请搜索【nodejs n模块使用说明】</p>
+</blockquote>
+<h2 id="权限相关的异常："><a href="#权限相关的异常：" class="headerlink" title="权限相关的异常："></a>权限相关的异常：</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">npm ERR! Darwin 16.4.0</span><br><span class="line">npm ERR! argv "/usr/local/Cellar/node/6.4.0/bin/node" "/usr/local/bin/npm" "update" "-g"</span><br><span class="line">npm ERR! node v6.4.0</span><br><span class="line">npm ERR! npm  v4.1.2</span><br><span class="line">npm ERR! path /usr/local/lib/node_modules/cnpm/node_modules/agentkeepalive</span><br><span class="line">npm ERR! code EACCES</span><br><span class="line">npm ERR! errno -13</span><br><span class="line">npm ERR! syscall access</span><br><span class="line"></span><br><span class="line">npm ERR! Error: EACCES: permission denied, access '/usr/local/lib/node_modules/cnpm/node_modules/agentkeepalive'</span><br><span class="line">npm ERR!     at Error (native)</span><br><span class="line">npm ERR!  { Error: EACCES: permission denied, access '/usr/local/lib/node_modules/cnpm/node_modules/agentkeepalive'</span><br><span class="line">npm ERR!     at Error (native)</span><br><span class="line">npm ERR!   errno: -13,</span><br><span class="line">npm ERR!   code: 'EACCES',</span><br><span class="line">npm ERR!   syscall: 'access',</span><br><span class="line">npm ERR!   path: '/usr/local/lib/node_modules/cnpm/node_modules/agentkeepalive' }</span><br><span class="line">npm ERR! </span><br><span class="line">npm ERR! Please try running this command again as root/Administrator.</span><br><span class="line"></span><br><span class="line">npm ERR! Please include the following file with any support request:</span><br><span class="line">npm ERR!     /Users/</span><br><span class="line">admin/Projects/CoPilot/npm-debug.log</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>提示 : 解决方案是在命令前加sudo</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2017/02/11/qpress_error_isatty/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/02/11/qpress_error_isatty/" class="post-title-link" itemprop="url">File qpress-1.1-isatty-include.patch of Package qpress</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-02-11 00:00:00" itemprop="dateCreated datePublished" datetime="2017-02-11T00:00:00+08:00">2017-02-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>From: Andreas Stieger <a href="mailto:andreas.stieger@gmx.de">andreas.stieger@gmx.de</a><br>Date: 2013-01-28 19:18:21 +0000<br>Subject: [PATCH] fix compiler warning about isatty()<br>Upstream: sent to <a href="mailto:lar@quicklz.com">lar@quicklz.com</a></p>
+<blockquote>
+<p>Fix compiler error<br>qpress.cpp: In function ‘int main(int, char**)’:<br>qpress.cpp:1039:39: error: ‘isatty’ was not declared in this scope</p>
+</blockquote>
+<figure class="highlight diff"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--- a/qpress.cpp	2010-09-23 20:09:26.000000000 +0100</span></span><br><span class="line"><span class="comment">+++ b/qpress.cpp	2013-01-28 19:18:21.000000000 +0000</span></span><br><span class="line"><span class="meta">@@ -89,6 +89,7 @@</span></span><br><span class="line"> #include &lt;sys/stat.h&gt;</span><br><span class="line"> #include &lt;stdlib.h&gt;</span><br><span class="line"> #include &lt;stdio.h&gt;</span><br><span class="line"><span class="addition">+#include &lt;unistd.h&gt;</span></span><br><span class="line"> #include "aio.hpp"</span><br><span class="line"> #include &lt;stdarg.h&gt;</span><br><span class="line"> #include &lt;string&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>via. <a target="_blank" rel="noopener" href="https://build.opensuse.org/package/view_file/Archiving/qpress/qpress-1.1-isatty-include.patch?expand=1">https://build.opensuse.org/package/view_file/Archiving/qpress/qpress-1.1-isatty-include.patch?expand=1</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2017/01/01/centos_yum_repositories/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3562,159 +3723,6 @@ ul.breadcrumb li + li:last-child {
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2015/04/17/chrome-42-alipay-wangwang/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2015/04/17/chrome-42-alipay-wangwang/" class="post-title-link" itemprop="url">chrome V42版本，支付宝、旺旺插件失效解决办法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2015-04-17 00:00:00" itemprop="dateCreated datePublished" datetime="2015-04-17T00:00:00+08:00">2015-04-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>chrome浏览器升级到42版本后，旺旺、支付宝等插件失效是因为chrome v42默认关闭了npapi。</p>
-<p>解决办法：</p>
-<blockquote>
-<p>可以直接在chrome地址栏输入 <code>chrome://flags/#enable-npapi</code> 找到npapi选项并启用。</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2015/04/07/linux-data/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2015/04/07/linux-data/" class="post-title-link" itemprop="url">date用法总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2015-04-07 00:00:00" itemprop="dateCreated datePublished" datetime="2015-04-07T00:00:00+08:00">2015-04-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="1-数字域的填充："><a href="#1-数字域的填充：" class="headerlink" title="1. 数字域的填充："></a>1. 数字域的填充：</h1><p>默认情况下，在显示日期和时间时，date命令使用数字0填充数字域。例如，如果用两位数字显示月份，则6月显示为“06”，如下所示：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ date +%m</span><br><span class="line">06</span><br></pre></td></tr></tbody></table></figure>
-
-<p>当然，一切皆有变通，你可以用下述控制符来控制填充符号：</p>
-<blockquote>
-<p>短线(-):       表示不填充数字域<br>下划线(_):  表示用空格填充数字域</p>
-</blockquote>
-<p>Examples:</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ date +%d/%m</span><br><span class="line">14/06</span><br><span class="line">$ date +%-d/%-m</span><br><span class="line">14/6</span><br><span class="line">$ date +%_d/%_m</span><br><span class="line">14/ 6   #注意/和6之间有个空格</span><br></pre></td></tr></tbody></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2015/04/07/linux-data/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3784,7 +3792,7 @@ ul.breadcrumb li + li:last-child {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">295</span>
+          <span class="site-state-item-count">297</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -3795,7 +3803,7 @@ ul.breadcrumb li + li:last-child {
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">212</span>
+        <span class="site-state-item-count">213</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

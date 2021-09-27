@@ -1219,7 +1219,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffffaf;
+  background: #ff88b4;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2710,6 +2710,593 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/06/04/mysql-error-can-not-connect-to-local-mysql-server-through-socket/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/06/04/mysql-error-can-not-connect-to-local-mysql-server-through-socket/" class="post-title-link" itemprop="url">Can’t connect to local MySQL server through socket 解决办法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-06-04 00:00:00" itemprop="dateCreated datePublished" datetime="2008-06-04T00:00:00+08:00">2008-06-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>启动mysql 报错：</p>
+<blockquote>
+<p>ERROR 2002 (HY000): Can’t connect to local MySQL server through socket ‘/var/lib/mysql/mysql.sock’ (2)</p>
+</blockquote>
+<ol>
+<li><p>先查看 <code>/etc/rc.d/init.d/mysqld status</code> 看看 mysql 是否已经启动.<br>另外看看是不是权限问题.</p>
+</li>
+<li><p>确定你的mysql.sock是不是在那个位置，<br><code>mysql -u 用户名 -p -S /var/lib/mysql/mysql.sock</code></p>
+</li>
+<li><p>试试：<code>service mysqld start</code></p>
+</li>
+<li><p>如果是权限问题，则先改变权限 <code>#chown -R mysql:mysql /var/lib/mysql</code></p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# /etc/init.d/mysqld start</span><br><span class="line">启动 MySQL： [ 确定 ]</span><br><span class="line">[root@localhost ~]# mysql -uroot -p</span><br><span class="line"></span><br><span class="line">ERROR 2002 (HY000): Can’t connect to local MySQL server through socket ‘/var/lib/mysql/mysql.sock’ (2)</span><br></pre></td></tr></tbody></table></figure>
+<p>原因是，/var/lib/mysql 的访问权限问题。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; chown -R mysql:mysql /var/lib/mysql</span><br></pre></td></tr></tbody></table></figure>
+
+<p>接着启动服务器</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; /etc/init.d/mysql start</span><br></pre></td></tr></tbody></table></figure>
+
+<p>服务器正常启动后察看 <code>/var/lib/mysql</code> 自动生成mysql.sock文件。</p>
+<p>但是我的问题仍然没有得到解决。</p>
+<p>问题终于解决：<br>方法： 修改<code>/etc/my.conf</code>:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">datadir=/usr/local/mysql/data</span><br><span class="line">socket=/var/lib/mysql/mysql.sock</span><br><span class="line"></span><br><span class="line">[mysql.server]</span><br><span class="line">user=mysql</span><br><span class="line">basedir=/usr/local/mysql</span><br><span class="line"></span><br><span class="line">If there is not currently a section called [client], add one at the bottom of the file and copy the socket= line under the [mysqld] section such as:</span><br><span class="line"></span><br><span class="line">[client]</span><br><span class="line">socket=/var/lib/mysql/mysql.sock</span><br></pre></td></tr></tbody></table></figure>
+
+<p>发现依旧如此，运行/etc/init.d/mysql start报错： Starting MySQLCouldn’t find MySQL manager or server<br>是mysqld服务没启，运行<code>/usr/local/mysql/bin/mysqld_safe &amp;</code></p>
+<p>问题解决。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/28/awk-notes-functions-variables/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/05/28/awk-notes-functions-variables/" class="post-title-link" itemprop="url">awk常用函数以及变量参考</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-05-28 00:00:00" itemprop="dateCreated datePublished" datetime="2008-05-28T00:00:00+08:00">2008-05-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-awk的常规表达式元字符"><a href="#1-awk的常规表达式元字符" class="headerlink" title="1. awk的常规表达式元字符"></a>1. awk的常规表达式元字符</h2><table>
+<thead>
+<tr>
+<th>换码序列</th>
+<th>&nbsp;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>^</td>
+<td>在字符串的开头开始匹配</td>
+</tr>
+<tr>
+<td>$</td>
+<td>在字符串的结尾开始匹配</td>
+</tr>
+<tr>
+<td>.</td>
+<td>与任何单个字符串匹配</td>
+</tr>
+<tr>
+<td>[ABC]</td>
+<td>与[]内的任一字符匹配</td>
+</tr>
+<tr>
+<td>[A-Ca-c]</td>
+<td>与A-C及a-c范围内的字符匹配（按字母表顺序）</td>
+</tr>
+<tr>
+<td>[^ABC]</td>
+<td>与除[]内的所有字符以外的任一字符匹配</td>
+</tr>
+<tr>
+<td>Desk|Chair</td>
+<td>与Desk和Chair中的任一个匹配</td>
+</tr>
+<tr>
+<td>[ABC][DEF]</td>
+<td>关联。与A、B、C中的任一字符匹配，且其后要跟D、E、F中的任一个字符。</td>
+</tr>
+<tr>
+<td>[ABC]*</td>
+<td>与A、B或C中任一个出现0次或多次的字符相匹配</td>
+</tr>
+<tr>
+<td>[ABC]+</td>
+<td>与A、B或C中任何一个出现1次或多次的字符相匹配</td>
+</tr>
+<tr>
+<td>[ABC]？</td>
+<td>与一个空串或A、B或C在任何一个字符相匹配</td>
+</tr>
+<tr>
+<td>(Blue|Black)berry</td>
+<td>合并常规表达式，与Blueberry或Blackberry相匹配</td>
+</tr>
+</tbody></table>
+<h2 id="2-awk算术运算符"><a href="#2-awk算术运算符" class="headerlink" title="2. awk算术运算符"></a>2. awk算术运算符</h2><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>x^y</td>
+<td>x的y次幂</td>
+</tr>
+<tr>
+<td>x**y</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>x%y</td>
+<td>计算x/y的余数（求模）</td>
+</tr>
+<tr>
+<td>x+y</td>
+<td>x加y</td>
+</tr>
+<tr>
+<td>x-y</td>
+<td>x减y</td>
+</tr>
+<tr>
+<td>x*y</td>
+<td>x乘y</td>
+</tr>
+<tr>
+<td>x/y</td>
+<td>x除y</td>
+</tr>
+<tr>
+<td>-y</td>
+<td>负y(y的开关符号);也称一目减</td>
+</tr>
+<tr>
+<td>++y</td>
+<td>y加1后使用y(前置加）</td>
+</tr>
+<tr>
+<td>y++</td>
+<td>使用y值后加1（后缀加）</td>
+</tr>
+<tr>
+<td>-y</td>
+<td>y减1后使用y(前置减）</td>
+</tr>
+<tr>
+<td>y-</td>
+<td>使用后y减1(后缀减）</td>
+</tr>
+<tr>
+<td>x=y</td>
+<td>将y的值赋给x</td>
+</tr>
+<tr>
+<td>x+=y</td>
+<td>将x+y的值赋给x</td>
+</tr>
+<tr>
+<td>x-=y</td>
+<td>将x-y的值赋给x</td>
+</tr>
+<tr>
+<td>x*=y</td>
+<td>将x*y的值赋给x</td>
+</tr>
+<tr>
+<td>x/=y</td>
+<td>将x/y的值赋给x x%=y 将x%y的值赋给x</td>
+</tr>
+<tr>
+<td>x^=y</td>
+<td>将x^y的值赋给x</td>
+</tr>
+<tr>
+<td>x**=y</td>
+<td>将x**y的值赋给x</td>
+</tr>
+</tbody></table>
+<h2 id="3-awk允许的测试："><a href="#3-awk允许的测试：" class="headerlink" title="3. awk允许的测试："></a>3. awk允许的测试：</h2><table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>x==y</td>
+<td>x等于y</td>
+</tr>
+<tr>
+<td>x!=y</td>
+<td>x不等于y</td>
+</tr>
+<tr>
+<td>x&gt;y</td>
+<td>x大于y</td>
+</tr>
+<tr>
+<td>x&gt;=y</td>
+<td>x大于或等于y</td>
+</tr>
+<tr>
+<td>x&lt; =y</td>
+<td>x小于或等于y</td>
+</tr>
+<tr>
+<td>x~re</td>
+<td>x匹配正则表达式re</td>
+</tr>
+<tr>
+<td>x!~re</td>
+<td>x不匹配正则表达式re</td>
+</tr>
+</tbody></table>
+<h2 id="4-awk的操作符-级别越高越优先"><a href="#4-awk的操作符-级别越高越优先" class="headerlink" title="4. awk的操作符(级别越高越优先)"></a>4. awk的操作符(级别越高越优先)</h2><p>级别 | 运算符 | 说明<br>—|—<br>1 | =,+=,-=,*=,/=,%=,&amp;=,^=,|=,&lt;&lt;=,&gt;&gt;= | 赋值、运算<br>2 | || | 逻辑或<br>3 | &amp;&amp; | 逻辑与<br>4 | | | 按位或<br>5 | ^ | 按位异或<br>6 | &amp; | 按位与<br>7 | ==,!= | 等于，不等于<br>8 | &lt;=,&gt;=,&lt;,&gt; | 小于等于，大于等于，小于，大于<br>9 | &lt;&lt;,&gt;&gt; | 按位左移，按位右移<br>10 | +，- | 加，减<br>11 | *,/,% | 乘，除，取模<br>12 | !，~ | 逻辑非，按位取反或补码<br>13 | -,+ | 正，负</p>
+<h2 id="5-awk内置变量（预定义变量）"><a href="#5-awk内置变量（预定义变量）" class="headerlink" title="5. awk内置变量（预定义变量）"></a>5. awk内置变量（预定义变量）</h2><p>说明：表中v项表示第一个支持变量的工具（下同）：A=awk，N=nawk,P=POSIX awk,G=gawk</p>
+<table>
+<thead>
+<tr>
+<th>V</th>
+<th>变量</th>
+<th>含义</th>
+<th>缺省值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>N</td>
+<td>ARGC</td>
+<td>命令行参数个数</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>G</td>
+<td>ARGIND</td>
+<td>当前被处理文件的ARGV标志符</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>N</td>
+<td>ARGV</td>
+<td>命令行参数数组</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>G</td>
+<td>CONVFMT</td>
+<td>数字转换格式</td>
+<td>%.6g</td>
+</tr>
+<tr>
+<td>P</td>
+<td>ENVIRON</td>
+<td>UNIX环境变量</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>N</td>
+<td>ERRNO</td>
+<td>UNIX系统错误消息</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>G</td>
+<td>FIELDWIDTHS</td>
+<td>输入字段宽度的空白分隔字符串</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>A</td>
+<td>FILENAME</td>
+<td>当前输入文件的名字</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>P</td>
+<td>FNR</td>
+<td>当前记录数</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>A</td>
+<td>FS</td>
+<td>输入字段分隔符</td>
+<td>空格</td>
+</tr>
+<tr>
+<td>G</td>
+<td>IGNORECASE</td>
+<td>控制大小写敏感0（大小写敏感）</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>A</td>
+<td>NF</td>
+<td>当前记录中的字段个数</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>A</td>
+<td>NR</td>
+<td>已经读出的记录数</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>A</td>
+<td>OFMT</td>
+<td>数字的输出格式</td>
+<td>%.6g</td>
+</tr>
+<tr>
+<td>A</td>
+<td>OFS</td>
+<td>输出字段分隔符</td>
+<td>空格</td>
+</tr>
+<tr>
+<td>A</td>
+<td>ORS</td>
+<td>输出的记录分隔符</td>
+<td>新行</td>
+</tr>
+<tr>
+<td>A</td>
+<td>RS</td>
+<td>输入的记录他隔符</td>
+<td>新行</td>
+</tr>
+<tr>
+<td>N</td>
+<td>RSTART</td>
+<td>被匹配函数匹配的字符串首</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>N</td>
+<td>RLENGTH</td>
+<td>被匹配函数匹配的字符串长度</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>N</td>
+<td>SUBSEP</td>
+<td>下标分隔符</td>
+<td>\034</td>
+</tr>
+</tbody></table>
+<h2 id="6-awk的内置函数"><a href="#6-awk的内置函数" class="headerlink" title="6. awk的内置函数"></a>6. awk的内置函数</h2><table>
+<thead>
+<tr>
+<th>V</th>
+<th>函数</th>
+<th>用途或返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>N</td>
+<td>gsub(reg,string,target)</td>
+<td>每次常规表达式reg匹配时替换target中的string</td>
+</tr>
+<tr>
+<td>N</td>
+<td>index(search,string)</td>
+<td>返回string中search串的位置</td>
+</tr>
+<tr>
+<td>A</td>
+<td>length(string)</td>
+<td>求串string中的字符个数</td>
+</tr>
+<tr>
+<td>N</td>
+<td>match(string,reg)</td>
+<td>返回常规表达式reg匹配的string中的位置</td>
+</tr>
+<tr>
+<td>N</td>
+<td>printf(format,variable)</td>
+<td>格式化输出，按format提供的格式输出变量variable。</td>
+</tr>
+<tr>
+<td>N</td>
+<td>split(string,store,delim)</td>
+<td>根据分界符delim,分解string为store的数组元素</td>
+</tr>
+<tr>
+<td>N</td>
+<td>sprintf(format,variable)</td>
+<td>返回一个包含基于format的格式化数据，variables是要放到串中的数据</td>
+</tr>
+<tr>
+<td>G</td>
+<td>strftime(format,timestamp)</td>
+<td>返回一个基于format的日期或者时间串，timestmp是systime()函数返回的时间</td>
+</tr>
+<tr>
+<td>N</td>
+<td>sub(reg,string,target)</td>
+<td>第一次当常规表达式reg匹配，替换target串中的字符串</td>
+</tr>
+<tr>
+<td>A</td>
+<td>substr(string,position,len)</td>
+<td>返回一个以position开始len个字符的子串</td>
+</tr>
+<tr>
+<td>P</td>
+<td>totower(string)</td>
+<td>返回string中对应的小写字符</td>
+</tr>
+<tr>
+<td>P</td>
+<td>toupper(string)</td>
+<td>返回string中对应的大写字符</td>
+</tr>
+<tr>
+<td>A</td>
+<td>atan(x,y)</td>
+<td>x的余切(弧度)</td>
+</tr>
+<tr>
+<td>N</td>
+<td>cos(x)</td>
+<td>x的余弦(弧度)</td>
+</tr>
+<tr>
+<td>A</td>
+<td>exp(x)</td>
+<td>e的x幂</td>
+</tr>
+<tr>
+<td>A</td>
+<td>int(x)</td>
+<td>x的整数部分</td>
+</tr>
+<tr>
+<td>A</td>
+<td>log(x)</td>
+<td>x的自然对数值</td>
+</tr>
+<tr>
+<td>N</td>
+<td>rand()</td>
+<td>0-1之间的随机数</td>
+</tr>
+<tr>
+<td>N</td>
+<td>sin(x)</td>
+<td>x的正弦(弧度)</td>
+</tr>
+<tr>
+<td>A</td>
+<td>sqrt(x)</td>
+<td>x的平方根</td>
+</tr>
+<tr>
+<td>A</td>
+<td>srand(x)</td>
+<td>初始化随机数发生器。如果忽略x，则使用system()</td>
+</tr>
+<tr>
+<td>G</td>
+<td>system()</td>
+<td>返回自1970年1月1日以来经过的时间（按秒计算）</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/23/google-20080519/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3398,149 +3985,6 @@ ul.breadcrumb li + li:last-child {
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/17/regex-notes/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/05/17/regex-notes/" class="post-title-link" itemprop="url">正则笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-05-17 00:00:00" itemprop="dateCreated datePublished" datetime="2008-05-17T00:00:00+08:00">2008-05-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>列出UA字符串：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zcat log.gz |awk -F '""' '{print $2}'|sed -e 's/" .{1,}//g'|head</span><br></pre></td></tr></tbody></table></figure>
-
-<p>正则回逆引用：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sed '/pattern/&amp;/g' file</span><br><span class="line">sed '/(pattern)/1/g' file</span><br></pre></td></tr></tbody></table></figure>
-
-<p>向前匹配：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perl -ne 'print if s/.*(?=pattern)/pattern2/' file</span><br></pre></td></tr></tbody></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/05/14/fixed-IDE-ACDStd-apl/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/05/14/fixed-IDE-ACDStd-apl/" class="post-title-link" itemprop="url">IDE_ACDStd.apl，不可恢复的插件错误</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-05-14 00:00:00" itemprop="dateCreated datePublished" datetime="2008-05-14T00:00:00+08:00">2008-05-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="http://photo.liudongkai.com/blog/Snap1.png"></p>
-<p>ACDSee3.1 RC1 蓝色网际版，带Picaview插件，报”不可恢复的插件错误“的解决办法：</p>
-<p>在系统属性=&gt;高级=&gt;数据执行保护，选择第二项”为除下列选定程序之外的所有程序和服务启用DEP“，然后将ACDSeeX.EXE，IDE_ACDStd.apl,PicaView.dll 一并添加进去。</p>
-<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="http://photo.liudongkai.com/blog/Snap2.png"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3610,7 +4054,7 @@ ul.breadcrumb li + li:last-child {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">295</span>
+          <span class="site-state-item-count">297</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -3621,7 +4065,7 @@ ul.breadcrumb li + li:last-child {
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">212</span>
+        <span class="site-state-item-count">213</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

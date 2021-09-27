@@ -1219,7 +1219,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffffaf;
+  background: #ff88b4;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2710,6 +2710,153 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2013/03/10/IE10-taobao/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/03/10/IE10-taobao/" class="post-title-link" itemprop="url">IE10打不开淘宝网的解决方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2013-03-10 00:00:00" itemprop="dateCreated datePublished" datetime="2013-03-10T00:00:00+08:00">2013-03-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>我的电脑装的是Windows7 64位版,安装的IE版本是IE10 pre-release版,在浏览器的地址栏窗格中输入淘宝网的域名后，浏览器无任何反应，点击窗格右侧的向右箭头也无反应。登录其它网站都很正常，重置IE后也不能解决问题。一直不知道是IE10的设置哪里出了问题，登陆淘宝要先在打开天猫，登陆天猫后再进入淘宝，使用很不方便。今天google搜索，终于找到了解决问题的方法。</p>
+<p>从INTERNET选项的“安全”选项卡中，最下方有个<strong>“启用保护模式”</strong>。把这个勾去掉，再重启浏览器就可以打开淘宝网了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2013/01/10/shell-file-merge/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/01/10/shell-file-merge/" class="post-title-link" itemprop="url">shell同时读取多个文件合并</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2013-01-10 00:00:00" itemprop="dateCreated datePublished" datetime="2013-01-10T00:00:00+08:00">2013-01-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>现有多个文本文件想要合并在一起，以两个文件为例子吧：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#fileA.txt</span></span><br><span class="line">this is File A line1</span><br><span class="line">this is File A line2</span><br><span class="line">this is File A line3</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#fileB.txt</span></span><br><span class="line">this is File B line1</span><br><span class="line">this is File B line2</span><br><span class="line">this is File B line3</span><br></pre></td></tr></tbody></table></figure>
+
+<p>想要实现交叉的合并，合并后结果为：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">this is File A line1</span><br><span class="line">this is File B line1</span><br><span class="line">this is File A line2</span><br><span class="line">this is File B line2</span><br><span class="line">this is File A line3</span><br><span class="line">this is File B line3</span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<p>command1:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">paste $fileA $fileB |tr "\t" "\n" &gt; newfile</span><br></pre></td></tr></tbody></table></figure>
+
+<p>command2:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk '{getline line &lt; "fileB.txt";print $0;print line}' fileA.txt</span><br></pre></td></tr></tbody></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2013/01/08/lnmp-mail-function-doesnt-work/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3326,155 +3473,6 @@ SHOW VARIABLES LIKE ‘thread_stack’;
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/08/25/argument-list-too-long-solution%E2%80%8E/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2012/08/25/argument-list-too-long-solution%E2%80%8E/" class="post-title-link" itemprop="url">Argument list too long问题的解决方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2012-08-25 00:00:00" itemprop="dateCreated datePublished" datetime="2012-08-25T00:00:00+08:00">2012-08-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>rm、cp、mv是unix下面常用到的档案处理指令，譬如我们需要移除不必要的档案通常会使用rm xxx来删除，如果档案数目眾多且命名具有规则，eg. file1.log、file2.log、file3.log等，為求方便则会利用万用字元来处理，eg. rm -f *.log，但是当这些指令后面所处理档案数量多到某种程度时，就会出现/bin/rm: Argument list too long这个错误讯息。</p>
-<p>往往在我们执行一些程式时，系统会產生大量的log或者是不必要的暂存档(有时候是程式出错的悲剧@@)，但是如果在删除时遇到这种错误，往往会很呕，这表示又要写一些code来处理这些garbage，所以在网路上面查了一下，目前最常看到的解决方法是用xargs来处理，方式如下：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name '*.log' | xargs rm</span><br></pre></td></tr></tbody></table></figure>
-
-<p>另外，在对岸的同胞上的网誌上面也看到不用xargs的解法：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /var/spool/mqueue -type f -exec rm {} \;</span><br></pre></td></tr></tbody></table></figure>
-
-<p>/var/spool/mqueue是要删除档案的存放资料夹，type -f指的是一般档案，{}的后方可以接其他参数，所以如果指令后方要加入多个参数的话，例如copy 档案 到B资料夹的时候，就可以透过以下指令来做：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /var/spool/mqueue -type f -exec cp {} ../backup \;</span><br></pre></td></tr></tbody></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/07/03/awk-join-every-two-lines-in-a-text-file/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2012/07/03/awk-join-every-two-lines-in-a-text-file/" class="post-title-link" itemprop="url">awk 固定行数合并</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2012-07-03 00:00:00" itemprop="dateCreated datePublished" datetime="2012-07-03T00:00:00+08:00">2012-07-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>希望将以下数据：</p>
-<blockquote>
-<p>A<br>1<br>B<br>2<br>C<br>3</p>
-</blockquote>
-<p>合并成：</p>
-<blockquote>
-<p>A,1<br>B,2<br>C,3</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk '{if(NR%2==0){printf("%s\n",$1)}else{printf("%s,",$1)}}' test</span><br></pre></td></tr></tbody></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3544,7 +3542,7 @@ SHOW VARIABLES LIKE ‘thread_stack’;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">295</span>
+          <span class="site-state-item-count">297</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -3555,7 +3553,7 @@ SHOW VARIABLES LIKE ‘thread_stack’;
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">212</span>
+        <span class="site-state-item-count">213</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

@@ -1219,7 +1219,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffffaf;
+  background: #ff88b4;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2710,6 +2710,159 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/02/24/mysql-errcode-13/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2010/02/24/mysql-errcode-13/" class="post-title-link" itemprop="url">解决mysql–Can't get stat of (Errcode: 13)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2010-02-24 00:00:00" itemprop="dateCreated datePublished" datetime="2010-02-24T00:00:00+08:00">2010-02-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 1970-01-01 08:00:02" itemprop="dateModified" datetime="1970-01-01T08:00:02+08:00">1970-01-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>mysql错误提示：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ERROR 13 (HY000): Can't get stat of '/root/aaa' (Errcode: 13)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>目录权限问题，将/root/aaa的父子两层目录均设为 <strong>777</strong> 就可以了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/02/22/mysql-error-1307/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2010/02/22/mysql-error-1307/" class="post-title-link" itemprop="url">mysql存储过程错误代码1307,”Failed to create procedure …”</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2010-02-22 00:00:00" itemprop="dateCreated datePublished" datetime="2010-02-22T00:00:00+08:00">2010-02-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>将mysql数据库中的表proc删除，或者改名</p>
+<p>执行以下代码重建该表<br>————————————————————————</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `proc` (</span><br><span class="line">`db` char(64) character set utf8 collate utf8_bin NOT NULL default '',</span><br><span class="line">`name` char(64) NOT NULL default '',</span><br><span class="line">`type` enum('FUNCTION','PROCEDURE') NOT NULL,</span><br><span class="line">`specific_name` char(64) NOT NULL default '',</span><br><span class="line">`language` enum('SQL') NOT NULL default 'SQL',</span><br><span class="line">`sql_data_access` enum('CONTAINS_SQL','NO_SQL','READS_SQL_DATA','MODIFIES_SQL_DATA') NOT NULL default 'CONTAINS_SQL',</span><br><span class="line">`is_deterministic` enum('YES','NO') NOT NULL default 'NO',</span><br><span class="line">`security_type` enum('INVOKER','DEFINER') NOT NULL default 'DEFINER',</span><br><span class="line">`param_list` blob NOT NULL,</span><br><span class="line">`returns` char(64) NOT NULL default '',</span><br><span class="line">`body` longblob NOT NULL,</span><br><span class="line">`definer` char(77) character set utf8 collate utf8_bin NOT NULL default '',</span><br><span class="line">`created` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,</span><br><span class="line">`modified` timestamp NOT NULL default '0000-00-00 00:00:00',</span><br><span class="line">`sql_mode` set('REAL_AS_FLOAT','PIPES_AS_CONCAT','ANSI_QUOTES','IGNORE_SPACE','NOT_USED','ONLY_FULL_GROUP_BY',\</span><br><span class="line">'NO_UNSIGNED_SUBTRACTION','NO_DIR_IN_CREATE','POSTGRESQL','ORACLE','MSSQL','DB2','MAXDB','NO_KEY_OPTIONS',\</span><br><span class="line">'NO_TABLE_OPTIONS','NO_FIELD_OPTIONS','GBASE80','GBASE81','ANSI','NO_AUTO_VALUE_ON_ZERO',\</span><br><span class="line">'NO_BACKSLASH_ESCAPES','STRICT_TRANS_TABLES','STRICT_ALL_TABLES','NO_ZERO_IN_DATE','NO_ZERO_DATE',\</span><br><span class="line">'INVALID_DATES',\</span><br><span class="line">'ERROR_FOR_DIVISION_BY_ZERO','TRADITIONAL','NO_AUTO_CREATE_USER','HIGH_NOT_PRECEDENCE') NOT NULL default '',</span><br><span class="line">`comment` char(64) character set utf8 collate utf8_bin NOT NULL default '',</span><br><span class="line">`character_set_client` char(32) character set utf8 collate utf8_bin default NULL,</span><br><span class="line">`collation_connection` char(32) character set utf8 collate utf8_bin default NULL,</span><br><span class="line">`db_collation` char(32) character set utf8 collate utf8_bin default NULL,</span><br><span class="line">`body_utf8` longblob,</span><br><span class="line">PRIMARY KEY (`db`,`name`,`type`)</span><br><span class="line">) DEFAULT CHARSET=utf8 COMMENT='Stored Procedures';</span><br></pre></td></tr></tbody></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2010/02/22/mysql-error-1307/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/02/21/CentOS-LAMP-installation/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3318,148 +3471,6 @@ ul.breadcrumb li + li:last-child {
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/01/01/nginx-config/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2010/01/01/nginx-config/" class="post-title-link" itemprop="url">Nginx配置</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2010-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2010-01-01T00:00:00+08:00">2010-01-01</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-Nginx配置文件的修改"><a href="#1-Nginx配置文件的修改" class="headerlink" title="1. Nginx配置文件的修改"></a>1. Nginx配置文件的修改</h2><p>修改nginx的默认配置文件：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/nginx/nginx.conf</span><br></pre></td></tr></tbody></table></figure>
-<p>按下面的内容修改Nginx的配置文件。兰色表示需要手动修改的内容，红色表示增加的内容：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2010/01/01/nginx-config/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/12/30/php-merge-array/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2009/12/30/php-merge-array/" class="post-title-link" itemprop="url">PHP：两个数组合并，相同键名的值相加</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2009-12-30 00:00:00" itemprop="dateCreated datePublished" datetime="2009-12-30T00:00:00+08:00">2009-12-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$array1</span> = <span class="keyword">array</span>(<span class="string">'a'</span>=&gt;<span class="number">1</span>,<span class="string">'b'</span>=&gt;<span class="number">2</span>);</span><br><span class="line"><span class="variable">$array2</span> = <span class="keyword">array</span>(<span class="string">'b'</span>=&gt;<span class="number">1</span>,<span class="string">'c'</span>=&gt;<span class="number">5</span>,<span class="string">'d'</span>=&gt;<span class="number">4</span>);</span><br><span class="line"><span class="keyword">foreach</span> ((<span class="keyword">array</span>)array_intersect(array_keys(<span class="variable">$array1</span>),array_keys(<span class="variable">$array2</span>)) <span class="keyword">as</span> <span class="variable">$key</span>){</span><br><span class="line"><span class="variable">$mixed</span>[<span class="variable">$key</span>] = <span class="variable">$array1</span>[<span class="variable">$key</span>]+<span class="variable">$array2</span>[<span class="variable">$key</span>];</span><br><span class="line"><span class="keyword">unset</span>(<span class="variable">$array1</span>[<span class="variable">$key</span>],<span class="variable">$array2</span>[<span class="variable">$key</span>]);</span><br><span class="line">}</span><br><span class="line"><span class="variable">$mixed</span> = array_merge(<span class="variable">$array1</span>,<span class="variable">$array2</span>,(<span class="keyword">array</span>)<span class="variable">$mixed</span>);</span><br></pre></td></tr></tbody></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3529,7 +3540,7 @@ ul.breadcrumb li + li:last-child {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">295</span>
+          <span class="site-state-item-count">297</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -3540,7 +3551,7 @@ ul.breadcrumb li + li:last-child {
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">212</span>
+        <span class="site-state-item-count">213</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

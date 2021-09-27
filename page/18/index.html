@@ -1219,7 +1219,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffffaf;
+  background: #ff88b4;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2710,6 +2710,155 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/07/03/Fixed-IBM-ThinkPad-Volume-HOTKEY/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2009/07/03/Fixed-IBM-ThinkPad-Volume-HOTKEY/" class="post-title-link" itemprop="url">解决IBM ThinkPad HOTKEY在WIN7 中音量无法显示的问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2009-07-03 00:00:00" itemprop="dateCreated datePublished" datetime="2009-07-03T00:00:00+08:00">2009-07-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>其他功能均正常，但音量和亮度的调节无法正常使用，事实上并不是IBM自带HOTKEY的问题，只要安装Lenovo System Interface驱动程序即可，无论音量调节或屏幕亮度全部正常使用</p>
+<p>ThinkPad — Lenovo System Interface驱动程序 (Windows Vista/XP) 下载地址：</p>
+<p>当前版本号：1.01.0805</p>
+<p>发布时间：2009-6-22</p>
+<p><a target="_blank" rel="noopener" href="http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1217231721126&amp;docTypeID=DOC_TYPE_DRIVER">http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1217231721126&amp;docTypeID=DOC_TYPE_DRIVER</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/05/02/Linux-count-apache-connections/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2009/05/02/Linux-count-apache-connections/" class="post-title-link" itemprop="url">Linux下查看apache连接数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2009-05-02 00:00:00" itemprop="dateCreated datePublished" datetime="2009-05-02T00:00:00+08:00">2009-05-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Linux命令：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep httpd | wc -l</span><br></pre></td></tr></tbody></table></figure>
+
+<p>查看Apache的并发请求数及其TCP连接状态：</p>
+<p>Linux命令：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -n | awk ‘/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}’</span><br></pre></td></tr></tbody></table></figure>
+
+<p>返回结果示例：</p>
+<blockquote>
+<p>　　LAST_ACK 5<br>　　SYN_RECV 30<br>　　ESTABLISHED 1597<br>　　FIN_WAIT1 51<br>　　FIN_WAIT2 504<br>　　TIME_WAIT 1057  </p>
+</blockquote>
+<p>说明:　　<br>SYN_RECV表示正在等待处理的请求数；<br>ESTABLISHED表示正常数据传输状态；<br>TIME_WAIT表示处理完毕，等待超时结束的请求数。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2009/04/19/mysql-delete-binlog/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3357,180 +3506,6 @@ ul.breadcrumb li + li:last-child {
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/11/22/FileZilla-Server-Aliases/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/11/22/FileZilla-Server-Aliases/" class="post-title-link" itemprop="url">FileZilla Server虚拟路径设定</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-11-22 00:00:00" itemprop="dateCreated datePublished" datetime="2008-11-22T00:00:00+08:00">2008-11-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>不用还不知道，原来设定filezilla的虚拟路径还有语法。关键处解决了，设定就简单多了。</p>
-<p>方法如下:<br>按下filezilla server的「edit」下拉选单选择「user」，进入user窗口之后，找到「shared folders」。设定好主要的目录（home dir)后，就可以设定其它次要的目录。</p>
-<p>设定其它目录的方法如下，首先点选「Add」键，依次把其余的目录设置。但要注意的是，如果仅仅把别的目录添加进 去，那么从远程登入连接后，会发现除了主目录和它的子目录之外，另外设置的目录是看不见。<br>为了解决这个问题，必需要透过filezilla server内建的「虚拟路径」（Aliases)的设置。</p>
-<p>虚拟路径，就是在客户端看到的目录结构。由于一个用户只能有一个主目录，别的目录如果不映像成虚拟目录的话，客户端将看不到它。所以只有把除了主目录之 外的其它目录，虚拟成主目录的子目录，这样在客户端才能看到。</p>
-<p>所 以为了要让其它目录能够顺利在的客户端显示，当放置新的目录之后，都要对其作「虚拟路径」的设定，设定的方式假设主目录为C:FTP，新设置的目录为 E:UPLOAD。在新设置的目录按下鼠标右键，在下拉选单中选择「Edit aliases」就可以编辑「虚拟路径」。</p>
-<p>编辑的规则：要把E:\UPLOAD目录作为客户端uploae的目录，在「Edit aliases」输入「C:\FTP\upload」按下「ok」确定就可以了。上述的例子中，编写的规则在于路径的前面必须是主目录的路径。如此一来当使用者登入到ftp server时，才能顺利的显示出upload数据夹。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/11/22/shell-process-control/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/11/22/shell-process-control/" class="post-title-link" itemprop="url">Shell程序设计的流程控制</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-11-22 00:00:00" itemprop="dateCreated datePublished" datetime="2008-11-22T00:00:00+08:00">2008-11-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>和其他高级程序设计语言一样，Shell提供了用来控制程序执行流程的命令，包括条件分支和循环结构，用户可以用这些命令创建非常复杂的程序。</p>
-<p>与传统语言不同的是，Shell用于指定条件值的不是布尔运算式，而是命令和字串。</p>
-<ol>
-<li>测试命令</li>
-</ol>
-<p> test命令用于检查某个条件是否成立，它可以进行数值、字符和文件3个方面的测试，其测试符和相应的功能分别如下。</p>
-<ul>
-<li><p>数值测试：  </p>
-</li>
-<li><p>eq 等于则为真。  </p>
-</li>
-<li><p>ne 不等于则为真。  </p>
-</li>
-<li><p>gt 大于则为真。  </p>
-</li>
-<li><p>ge 大于等于则为真。  </p>
-</li>
-<li><p>lt 小于则为真。  </p>
-</li>
-<li><p>le 小于等于则为真。</p>
-<ul>
-<li>字串测试：<br>= 等于则为真。<br>!= 不相等则为真。  </li>
-</ul>
-</li>
-<li><p>z 字串 字串长度伪则为真。  </p>
-</li>
-<li><p>n 字串 字串长度不伪则为真。</p>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2008/11/22/shell-process-control/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3600,7 +3575,7 @@ ul.breadcrumb li + li:last-child {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">295</span>
+          <span class="site-state-item-count">297</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -3611,7 +3586,7 @@ ul.breadcrumb li + li:last-child {
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">212</span>
+        <span class="site-state-item-count">213</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

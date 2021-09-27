@@ -1219,7 +1219,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffffaf;
+  background: #ff88b4;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2710,6 +2710,155 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/08/25/argument-list-too-long-solution%E2%80%8E/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2012/08/25/argument-list-too-long-solution%E2%80%8E/" class="post-title-link" itemprop="url">Argument list too long问题的解决方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2012-08-25 00:00:00" itemprop="dateCreated datePublished" datetime="2012-08-25T00:00:00+08:00">2012-08-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>rm、cp、mv是unix下面常用到的档案处理指令，譬如我们需要移除不必要的档案通常会使用rm xxx来删除，如果档案数目眾多且命名具有规则，eg. file1.log、file2.log、file3.log等，為求方便则会利用万用字元来处理，eg. rm -f *.log，但是当这些指令后面所处理档案数量多到某种程度时，就会出现/bin/rm: Argument list too long这个错误讯息。</p>
+<p>往往在我们执行一些程式时，系统会產生大量的log或者是不必要的暂存档(有时候是程式出错的悲剧@@)，但是如果在删除时遇到这种错误，往往会很呕，这表示又要写一些code来处理这些garbage，所以在网路上面查了一下，目前最常看到的解决方法是用xargs来处理，方式如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name '*.log' | xargs rm</span><br></pre></td></tr></tbody></table></figure>
+
+<p>另外，在对岸的同胞上的网誌上面也看到不用xargs的解法：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /var/spool/mqueue -type f -exec rm {} \;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>/var/spool/mqueue是要删除档案的存放资料夹，type -f指的是一般档案，{}的后方可以接其他参数，所以如果指令后方要加入多个参数的话，例如copy 档案 到B资料夹的时候，就可以透过以下指令来做：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /var/spool/mqueue -type f -exec cp {} ../backup \;</span><br></pre></td></tr></tbody></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/07/03/awk-join-every-two-lines-in-a-text-file/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2012/07/03/awk-join-every-two-lines-in-a-text-file/" class="post-title-link" itemprop="url">awk 固定行数合并</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2012-07-03 00:00:00" itemprop="dateCreated datePublished" datetime="2012-07-03T00:00:00+08:00">2012-07-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>希望将以下数据：</p>
+<blockquote>
+<p>A<br>1<br>B<br>2<br>C<br>3</p>
+</blockquote>
+<p>合并成：</p>
+<blockquote>
+<p>A,1<br>B,2<br>C,3</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk '{if(NR%2==0){printf("%s\n",$1)}else{printf("%s,",$1)}}' test</span><br></pre></td></tr></tbody></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/06/29/offline-chrome-installer/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3321,175 +3470,6 @@ ul.breadcrumb li + li:last-child {
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/03/02/mysql-function-uuid/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2012/03/02/mysql-function-uuid/" class="post-title-link" itemprop="url">MySQL UUID函数的详解[zt]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2012-03-02 00:00:00" itemprop="dateCreated datePublished" datetime="2012-03-02T00:00:00+08:00">2012-03-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>MySQL中可以有二类用于生成唯一值性质的工具：UUID()函数和自增序列，那么二者有何区别呢？我们就此对比下各自的特性及异同点：</p>
-<ul>
-<li>都可以实现生成唯一值的功能；</li>
-<li>UUID是可以生成时间、空间上都独一无二的值；自增序列只能生成基于表内的唯一值，且需要搭配使其为唯一的主键或唯一索引；</li>
-<li>实现方式不一样，UUID是随机+规则组合而成的，而自增序列是控制一个值逐步增长的；</li>
-<li>UUID产生的是字符串类型值，固定长度为：36个字符，而自增序列产生的是整数类型值，长度由字段定义属性决定；</li>
-</ul>
-<p>接下来，<strong>详细讲解下UUID()函数产生的值</strong>：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">oot@localhost : (none) 06:09:40&gt; SELECT UUID(),UUID(),LENGTH(UUID()),CHAR_LENGTH(UUID())\G</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">             UUID(): de7ee638-4322-11e0-85ab-842b2b4a7e75</span><br><span class="line">             UUID(): de7ee642-4322-11e0-85ab-842b2b4a7e75</span><br><span class="line">     LENGTH(UUID()): 36</span><br><span class="line">CHAR_LENGTH(UUID()): 36</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></tbody></table></figure>
-
-<p><strong>从上面的执行结果部分的信息看</strong>：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2012/03/02/mysql-function-uuid/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/03/01/mysql-The-server-quit-without-updating-PID-file/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2012/03/01/mysql-The-server-quit-without-updating-PID-file/" class="post-title-link" itemprop="url">Starting MySQL...The server quit without updating PID file</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2012-03-01 00:00:00" itemprop="dateCreated datePublished" datetime="2012-03-01T00:00:00+08:00">2012-03-01</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>今天在linux中启动mysql时提示mysql Starting MySQL…The server quit without updating PID file</p>
-<p>从网上找了一堆方法如下：</p>
-<ol>
-<li><p>可能是pid文件没有写的权限<br>解决方法： 给予权限，执行 <code>chown -R mysql:mysql datadir</code> 然后重新启动mysql</p>
-</li>
-<li><p>可能进程里已经存在mysql进程<br>解决方法： 用命令<code>ps -ef|grep mysqld</code>查看是否有mysqld进程，如果有使用<code>kill -9  进程号</code>杀死，然后重新启动mysql</p>
-</li>
-<li><p>可能是第二次在机器上安装mysql，有残余数据影响了服务的启动<br>解决方法： 去mysql的数据目录看看，如果存在<code>mysql-bin.index</code>，删除并重启mysql试试</p>
-</li>
-<li><p>mysql在启动时没有指定配置文件时会使用<code>/etc/my.cnf</code>配置文件，请打开这个文件查看在[mysqld]节下有没有指定数据目录(datadir)<br>解决方法： 请在[mysqld]下设置这一行：<code>datadir = /opt/data</code></p>
-</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2012/03/01/mysql-The-server-quit-without-updating-PID-file/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3559,7 +3539,7 @@ ul.breadcrumb li + li:last-child {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">295</span>
+          <span class="site-state-item-count">297</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -3570,7 +3550,7 @@ ul.breadcrumb li + li:last-child {
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">212</span>
+        <span class="site-state-item-count">213</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

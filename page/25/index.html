@@ -1219,7 +1219,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffffaf;
+  background: #ff88b4;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2710,6 +2710,176 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/04/EditPlus-regex-example/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/03/04/EditPlus-regex-example/" class="post-title-link" itemprop="url">Editplus 正则替换实例 By Stabx</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-03-04 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-04T00:00:00+08:00">2008-03-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>abandon[2’b9nd2n]v.抛弃，放弃<br>abandonment[2’b9nd2nm2nt]n.放弃<br>abbreviation[2bri:vi’ei62n]n.缩写<br>abeyance[2’bei2ns]n.缓办，中止<br>abide[2’baid]v.遵守<br>ability[2’biliti]n.能力<br>able[’eibl]adj.有能力的，能干的<br>abnormal[9b’n0:m2l]adj.反常的，变态的<br>aboard[2’b0:d]adv.船(车)上</p>
+</blockquote>
+<ol>
+<li><p>查找: <code>(^[a-zA-Z0-0\-]+)(\[*.*\]+)(.*) </code><br>替换: <code>@@@@@"\1″,"\2″,"\3″, </code><br>效果:   </p>
+<blockquote>
+<p>@@@@@”abandon”,”[2’’b9nd2n]”,”v.抛弃，放弃”,<br>@@@@@”abandonment”,”[2’’b9nd2nm2nt]”,”n.放弃”,<br>@@@@@”abbreviation”,”[2bri:vi’’ei62n]”,”n.缩写”,<br>@@@@@”abeyance”,”[2’’bei2ns]”,”n.缓办，中止”,<br>@@@@@”abide”,”[2’’baid]”,”v.遵守”,<br>@@@@@”ability”,”[2’’biliti]”,”n.能力”,<br>@@@@@”able”,”[‘’eibl]”,”adj.有能力的，能干的”,<br>@@@@@”abnormal”,”[9b’’n0:m2l]”,”adj.反常的，变态的”,<br>@@@@@”aboard”,”[2’’b0:d]”,”adv.船(车)上”, </p>
+</blockquote>
+</li>
+<li><p>查找: <code>\n</code><br>替换:<br>注: 要次替换内容为空<br>效果:   </p>
+<blockquote>
+<p>@@@@@”abandon”,”[2’’b9nd2n]”,”v.抛弃，放弃 “,@@@@@”abandonment”,”[2’’b9nd2nm2nt]”,”n.放弃 “,@@@@@”abbreviation”,”[2bri:vi’’ei62n]”,”n.缩写 “,@@@@@”abeyance”,”[2’’bei2ns]”,”n.缓办，中止”,@@@@@”abide”,”[2’’baid]”,”v.遵守 “,@@@@@”ability”,”[2’’biliti]”,”n.能力”,@@@@@”able”,”[‘’eibl]”,”adj.有能力的，能 干的 “,@@@@@”abnormal”,”[9b’’n0:m2l]”,”adj.反常的，变态的 “,@@@@@”aboard”,”[2’’b0:d]”,”adv.船(车)上”,@@@@@”abolish”,”[2’’b0li6]”,”v.废 除，取消”,@@@@@”abolition”,”[9b2’’li62n]”,”n.废除，取消” </p>
+</blockquote>
+</li>
+<li><p>查找: <code>@@@@@</code><br>替换: <code>\n</code><br>效果:   </p>
+<blockquote>
+<p>“abandon”,”[2’’b9nd2n]”,”v.抛弃，放弃”,<br>“abandonment”,”[2’’b9nd2nm2nt]”,”n.放弃”,<br>“abbreviation”,”[2bri:vi’’ei62n]”,”n.缩写”,<br>“abeyance”,”[2’’bei2ns]”,”n.缓办，中止”,<br>“abide”,”[2’’baid]”,”v.遵守”,<br>“ability”,”[2’’biliti]”,”n.能力”,<br>“able”,”[‘’eibl]”,”adj.有能力的，能干的”,<br>“abnormal”,”[9b’’n0:m2l]”,”adj.反常的，变态的”,<br>“aboard”,”[2’’b0:d]”,”adv.船(车)上”,<br>“abolish”,”[2’’b0li6]”,”v.废除，取消”, </p>
+</blockquote>
+</li>
+<li><p>任务完成  </p>
+</li>
+<li><p>作用说明<br>本次操作主要是为了将数据导入 MS Access</p>
+</li>
+</ol>
+<p>注: 本次操作导入数据 7988 行</p>
+<p>shawl.qiu<br>15:39 2006-5-16</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/03/linux-c-shell/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/03/03/linux-c-shell/" class="post-title-link" itemprop="url">Linux下C编程系列–Shell(续)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-03-03 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-03T00:00:00+08:00">2008-03-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>shell的输入与输出主要包括：</p>
+<blockquote>
+<p>echo命令<br>read命令<br>cat命令<br>管道<br>tee命令<br>标准输入、输出和标准错误<br>重定向</p>
+</blockquote>
+<h3 id="echo-e-n-string"><a href="#echo-e-n-string" class="headerlink" title="echo [-e] [-n] string"></a>echo [-e] [-n] string</h3><p>string : 字符串，可以含 shell 变量、转义符等， 一般用双引号括起来<br>-e : 让 echo 解释 string 中的转义符<br>-n : 禁止 echo 输出后输出 NEWLINE（换行）</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2008/03/03/linux-c-shell/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/03/03/read-the-specified-line/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3414,159 +3584,6 @@ ul.breadcrumb li + li:last-child {
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/02/12/awstats-robots-info/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/02/12/awstats-robots-info/" class="post-title-link" itemprop="url">给AWStats增加针对Googlebot/Baiduspider/Yahoo!Slurp/MSNBot的详细统计</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-02-12 00:00:00" itemprop="dateCreated datePublished" datetime="2008-02-12T00:00:00+08:00">2008-02-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/analytics/" itemprop="url" rel="index"><span itemprop="name">Analytics</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>虽然AWStats中提供了蜘蛛的分类统计：</p>
-<blockquote>
-<p>搜索引擎网站的机器人 (前 10) – 全部列出 – 最近参观日期</p>
-</blockquote>
-<blockquote>
-<p>102 个机器人* | 文件数 | 字节 | 最近参观日期<br>—|—<br>Sina Iask Spider | 41894 | 520.80 M字节 | 2006年 九月 09日 07:17<br>GouGou | 34577 | 920.11 M字节 | 2006年 九月 09日 12:23<br>Googlebot | 12171+39 | 212.60 M字节 | 2006年 九月 09日 12:23<br>Yahoo Slurp | 5775+1275 | 91.10 M字节 | 2006年 九月 09日 12:24<br>GigaBot | 5334+233 | 53.62 M字节 | 2006年 九月 09日 12:24<br>Unknown robot (identified by ‘robot’) | 5421+6 | 71.46 M字节 | 2006年 九月 09日 12:17<br>Lilina | 5278 | 76.67 M字节 | 2006年 九月 09日 12:22<br>MSNBot | 4075+217 | 52.31 M字节 | 2006年 九月 09日 12:19<br>Yahoo! Slurp China | 3135+460 | 25.83 M字节 | 2006年 九月 09日 12:21<br>Unknown robot (identified by ‘crawl’) | 3431+6 | 78.98 M字节 | 2006年 九月 09日 12:23</p>
-</blockquote>
-<p>有汇总后的数据，但是每个蜘蛛具体抓取了那些页面和抓取的频度就无法得知了，利用<a target="_blank" rel="noopener" href="http://awstats.sourceforge.net/docs/awstats_extra.html">AWStats的扩展配置</a>，统计也可以详细到每个蜘蛛的具体访问（参考了<a target="_blank" rel="noopener" href="http://www.antezeta.com/awstats.html%E4%B8%8A%E7%9A%84%E9%85%8D%E7%BD%AE%E6%A0%B7%E4%BE%8B%EF%BC%89%E3%80%82">http://www.antezeta.com/awstats.html上的配置样例）。</a></p>
-<p>注意：配置完Extra后可能会遇到以下这样的警告：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2008/02/12/awstats-robots-info/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2008/02/10/adblock-optimize-filter/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/02/10/adblock-optimize-filter/" class="post-title-link" itemprop="url">Adblock过滤规则优化</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-02-10 00:00:00" itemprop="dateCreated datePublished" datetime="2008-02-10T00:00:00+08:00">2008-02-10</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>英文：<a target="_blank" rel="noopener" href="http://adblock.free.fr/optimize/index.php?lang=en">http://adblock.free.fr/optimize/index.php?lang=en</a><br>德文：<a target="_blank" rel="noopener" href="http://adblock.free.fr/optimize/index.php?lang=de">http://adblock.free.fr/optimize/index.php?lang=de</a><br>法文：<a target="_blank" rel="noopener" href="http://adblock.free.fr/optimize/">http://adblock.free.fr/optimize/</a></p>
-<p>可以将众多过滤规则优化成正则表达式，只需要将你的规则拷贝进去，优化后再导入你的AdBlock中就行了。</p>
-<p>现在推出了新版本，不仅仅进行正则式的转化，还可以将重复的规则删除，我以前几十行的规则，优化以后只有十来行，看起来舒服极了。</p>
-<p>如果不可以访问可以访问以下地址：</p>
-<p><a target="_blank" rel="noopener" href="http://adblock.free.fr/optimize/index.php?lang=en">http://adblock.free.fr/optimize/index.php?lang=en</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3636,7 +3653,7 @@ ul.breadcrumb li + li:last-child {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">295</span>
+          <span class="site-state-item-count">297</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -3647,7 +3664,7 @@ ul.breadcrumb li + li:last-child {
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">212</span>
+        <span class="site-state-item-count">213</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

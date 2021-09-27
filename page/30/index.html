@@ -1219,7 +1219,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffffaf;
+  background: #ff88b4;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2710,6 +2710,170 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2007/12/18/use-wget-clean-squid-cache/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2007/12/18/use-wget-clean-squid-cache/" class="post-title-link" itemprop="url">用wget来清空squid缓存</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2007-12-18 00:00:00" itemprop="dateCreated datePublished" datetime="2007-12-18T00:00:00+08:00">2007-12-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>可以使用以下命令来清空squid的缓存：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -c -S –header='Pragma:no-cache" url</span><br></pre></td></tr></tbody></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2007/12/17/firefox-profile/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2007/12/17/firefox-profile/" class="post-title-link" itemprop="url">Firefox 个人配置文件夹（profile）中有什么，为什么很重要？</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2007-12-17 00:00:00" itemprop="dateCreated datePublished" datetime="2007-12-17T00:00:00+08:00">2007-12-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>配置文件是Firefox存放各项设置的地方，除此之外，浏览网页时存放的缓存、安装的扩展和主题也在其中。如果想将Firefox恢复到初始状态，只需删除配置文件夹即可。</p>
+<p>部分文件说明：</p>
+<ul>
+<li>prefs.js：Firefox的各项设定</li>
+<li>bookmarks.html：Firefox的书签</li>
+<li>cookies.txt：Cookies</li>
+<li>hostperm.1：Cookies 允许/禁止列表</li>
+<li>downloads.rdf：下载历史</li>
+<li>formhistory.dat：表单输入历史记录</li>
+<li>mimeTypes.rdf：文件类型处理设定</li>
+<li>extensions.rdf：安装的扩展的信息</li>
+<li>search.rdf：搜索栏历史记录</li>
+<li>key3.db：密码文件，必须和 signons.txt 一起保存</li>
+<li>signons.txt：密码文件，必须和 key3.db 一起保存</li>
+</ul>
+<p>部分文件夹说明：</p>
+<ul>
+<li>bookmarkbackups：自动备份书签的文件夹，每当更改书签后，就能里面找到原来的书签，备份的文件加上了备份的日期，想恢复时，请将文件重命 名为 bookmark.html 再放到配置文件中，替换已有的 bookmark.html。（Firefox 1.5 以上版本才有这个文件夹）</li>
+<li>searchplugins：存放搜索引擎和其图标的文件夹。（Firefox 1.5 以上版本才有这个文件夹）</li>
+<li>Cache：Firefox的缓存文件夹，Firefox浏览过的网页的缓存文件默认是在个人配置文件夹的\cache\目录下</li>
+<li>extensions：存放主题和扩展的文件夹。安装后的Extensions（扩展)就放在配置文件夹的extensions子目录下。删除extensions这个子目录就可将已安装的extensions全部删除。</li>
+</ul>
+<p>如果是global安装，主题在firefox\extensins下的某个文件夹内；如果是local安装，主题在profile\extensons下某个文件夹内</p>
+<p>win系统下，Firefox 的主题保存在类似下面这个文件夹中：<br>local：</p>
+<blockquote>
+<p>C:\Documents and Settings\UserName\Application ata\Mozilla\Firefox\Profiles \dbuoun8g.default\extensions{00D4154F-96D3-41ff-8E8E-113596D8670B}\</p>
+</blockquote>
+<p>global：</p>
+<blockquote>
+<p>D:\Program Files\Mozilla Firefox\extensions{972ce4c6-7e08-4474-a285-3208198ce6fd}\</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2007/12/16/change-firefox-useragent/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3176,7 +3340,7 @@ ul.breadcrumb li + li:last-child {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">295</span>
+          <span class="site-state-item-count">297</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -3187,7 +3351,7 @@ ul.breadcrumb li + li:last-child {
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">212</span>
+        <span class="site-state-item-count">213</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

@@ -1219,7 +1219,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffffaf;
+  background: #ff88b4;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2710,6 +2710,175 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/03/02/mysql-function-uuid/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2012/03/02/mysql-function-uuid/" class="post-title-link" itemprop="url">MySQL UUID函数的详解[zt]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2012-03-02 00:00:00" itemprop="dateCreated datePublished" datetime="2012-03-02T00:00:00+08:00">2012-03-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>MySQL中可以有二类用于生成唯一值性质的工具：UUID()函数和自增序列，那么二者有何区别呢？我们就此对比下各自的特性及异同点：</p>
+<ul>
+<li>都可以实现生成唯一值的功能；</li>
+<li>UUID是可以生成时间、空间上都独一无二的值；自增序列只能生成基于表内的唯一值，且需要搭配使其为唯一的主键或唯一索引；</li>
+<li>实现方式不一样，UUID是随机+规则组合而成的，而自增序列是控制一个值逐步增长的；</li>
+<li>UUID产生的是字符串类型值，固定长度为：36个字符，而自增序列产生的是整数类型值，长度由字段定义属性决定；</li>
+</ul>
+<p>接下来，<strong>详细讲解下UUID()函数产生的值</strong>：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">oot@localhost : (none) 06:09:40&gt; SELECT UUID(),UUID(),LENGTH(UUID()),CHAR_LENGTH(UUID())\G</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">             UUID(): de7ee638-4322-11e0-85ab-842b2b4a7e75</span><br><span class="line">             UUID(): de7ee642-4322-11e0-85ab-842b2b4a7e75</span><br><span class="line">     LENGTH(UUID()): 36</span><br><span class="line">CHAR_LENGTH(UUID()): 36</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>从上面的执行结果部分的信息看</strong>：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2012/03/02/mysql-function-uuid/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/03/01/mysql-The-server-quit-without-updating-PID-file/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2012/03/01/mysql-The-server-quit-without-updating-PID-file/" class="post-title-link" itemprop="url">Starting MySQL...The server quit without updating PID file</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2012-03-01 00:00:00" itemprop="dateCreated datePublished" datetime="2012-03-01T00:00:00+08:00">2012-03-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天在linux中启动mysql时提示mysql Starting MySQL…The server quit without updating PID file</p>
+<p>从网上找了一堆方法如下：</p>
+<ol>
+<li><p>可能是pid文件没有写的权限<br>解决方法： 给予权限，执行 <code>chown -R mysql:mysql datadir</code> 然后重新启动mysql</p>
+</li>
+<li><p>可能进程里已经存在mysql进程<br>解决方法： 用命令<code>ps -ef|grep mysqld</code>查看是否有mysqld进程，如果有使用<code>kill -9  进程号</code>杀死，然后重新启动mysql</p>
+</li>
+<li><p>可能是第二次在机器上安装mysql，有残余数据影响了服务的启动<br>解决方法： 去mysql的数据目录看看，如果存在<code>mysql-bin.index</code>，删除并重启mysql试试</p>
+</li>
+<li><p>mysql在启动时没有指定配置文件时会使用<code>/etc/my.cnf</code>配置文件，请打开这个文件查看在[mysqld]节下有没有指定数据目录(datadir)<br>解决方法： 请在[mysqld]下设置这一行：<code>datadir = /opt/data</code></p>
+</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2012/03/01/mysql-The-server-quit-without-updating-PID-file/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2012/02/09/mysql-replicate-ignore-db/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3346,160 +3515,6 @@ ul.breadcrumb li + li:last-child {
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2011/11/10/mysql-load-data-infile/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2011/11/10/mysql-load-data-infile/" class="post-title-link" itemprop="url">MySQL 执行load data infile时同步原理及注意事项</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2011-11-10 00:00:00" itemprop="dateCreated datePublished" datetime="2011-11-10T00:00:00+08:00">2011-11-10</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Master上执行</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; load data INFILE '/tmp/del_proid.txt' INTO table del_proid;</span><br></pre></td></tr></tbody></table></figure>
-
-<p>在Binlog中记录的SQL是这样的</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">load data LOCAL INFILE '/tmp/SQL_LOAD_MB-1-0' INTO table del_proid</span><br></pre></td></tr></tbody></table></figure>
-
-<p>并且在/tmp目录中也确实出现了这个文件，内容和del_proid.txt一模一样。</p>
-<p>同步时，Master的Binlog Dump进程会读取SQL_LOAD_MB-1-0文件的数据传，送给Slave的IO进程写入Relaylog，当Slave同步到该语句时，SQL进 程从Relaylog中解出数据，仍以文件名SQL_LOAD_MB-1-0写入slave-load-tmpdir参数打定的目录下，然后执行 <code>load data LOCAL INFILE '/tmp/SQL_LOAD_MB-1-0' INTO table del_proid</code> , 完成后，删除该文件。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2011/11/10/mysql-load-data-infile/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2011/10/20/batch-rename-files/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2011/10/20/batch-rename-files/" class="post-title-link" itemprop="url">按格式批量修改文件名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2011-10-20 00:00:00" itemprop="dateCreated datePublished" datetime="2011-10-20T00:00:00+08:00">2011-10-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>按固定格式批量修改文件名，如：</p>
-<blockquote>
-<p>XXX-001.txt<br>XXX-002.txt<br>XXX-003.txt</p>
-</blockquote>
-<p>首先进入文件目录，然后利用语句；如果不是在文件目录下，就得改下命令，在mv时，新旧文件都能有对应的绝对路径。</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for $file (`ls x*`){chomp $file;$new=sprintf "XXX-%03d.txt",++$i;system "mv","$file","$new"}</span><br></pre></td></tr></tbody></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3569,7 +3584,7 @@ ul.breadcrumb li + li:last-child {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">295</span>
+          <span class="site-state-item-count">297</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -3580,7 +3595,7 @@ ul.breadcrumb li + li:last-child {
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">212</span>
+        <span class="site-state-item-count">213</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

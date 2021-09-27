@@ -1219,7 +1219,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffffaf;
+  background: #ff88b4;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2710,6 +2710,160 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2011/11/10/mysql-load-data-infile/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2011/11/10/mysql-load-data-infile/" class="post-title-link" itemprop="url">MySQL 执行load data infile时同步原理及注意事项</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2011-11-10 00:00:00" itemprop="dateCreated datePublished" datetime="2011-11-10T00:00:00+08:00">2011-11-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Master上执行</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; load data INFILE '/tmp/del_proid.txt' INTO table del_proid;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>在Binlog中记录的SQL是这样的</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">load data LOCAL INFILE '/tmp/SQL_LOAD_MB-1-0' INTO table del_proid</span><br></pre></td></tr></tbody></table></figure>
+
+<p>并且在/tmp目录中也确实出现了这个文件，内容和del_proid.txt一模一样。</p>
+<p>同步时，Master的Binlog Dump进程会读取SQL_LOAD_MB-1-0文件的数据传，送给Slave的IO进程写入Relaylog，当Slave同步到该语句时，SQL进 程从Relaylog中解出数据，仍以文件名SQL_LOAD_MB-1-0写入slave-load-tmpdir参数打定的目录下，然后执行 <code>load data LOCAL INFILE '/tmp/SQL_LOAD_MB-1-0' INTO table del_proid</code> , 完成后，删除该文件。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2011/11/10/mysql-load-data-infile/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2011/10/20/batch-rename-files/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2011/10/20/batch-rename-files/" class="post-title-link" itemprop="url">按格式批量修改文件名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2011-10-20 00:00:00" itemprop="dateCreated datePublished" datetime="2011-10-20T00:00:00+08:00">2011-10-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>按固定格式批量修改文件名，如：</p>
+<blockquote>
+<p>XXX-001.txt<br>XXX-002.txt<br>XXX-003.txt</p>
+</blockquote>
+<p>首先进入文件目录，然后利用语句；如果不是在文件目录下，就得改下命令，在mv时，新旧文件都能有对应的绝对路径。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for $file (`ls x*`){chomp $file;$new=sprintf "XXX-%03d.txt",++$i;system "mv","$file","$new"}</span><br></pre></td></tr></tbody></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2011/04/18/faster-way-to-dump-mysql/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3280,153 +3434,6 @@ ul.breadcrumb li + li:last-child {
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/08/18/mysql-error-no-curses-termcap-library-found/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2010/08/18/mysql-error-no-curses-termcap-library-found/" class="post-title-link" itemprop="url">mysql安装错误：error: No curses/termcap library found的解决办法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2010-08-18 00:00:00" itemprop="dateCreated datePublished" datetime="2010-08-18T00:00:00+08:00">2010-08-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在./configure后，make时出现以下错误：<br><code>make: *** No targets specified and no makefile found. stop.</code></p>
-<p>在网上找到相关资料，确认是./configure出了问题，于是回头查看，果然发现问题：<br>最后几行出了错，完整错误信息如下：</p>
-<blockquote>
-<p>   checking for tgetent in -lncurses… no<br>    checking for tgetent in -lcurses… no<br>    checking for tgetent in -ltermcap… no<br>    checking for tgetent in -ltinfo… no<br>    checking for termcap functions library… configure: error: No curses/termcap library found</p>
-</blockquote>
-<p><strong>原因</strong>：<br>缺少ncurses安装包</p>
-<p><strong>解决办法</strong>：<br>下载安装相应软件包<br>一、如果你的系统是RedHat系列：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum list|grep ncurses</span><br><span class="line">yum -y install ncurses-devel</span><br><span class="line">yum install ncurses-devel</span><br></pre></td></tr></tbody></table></figure>
-
-<p>二、如果你的系统是Ubuntu或Debian：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-cache search ncurses</span><br><span class="line">apt-get install libncurses5-dev</span><br></pre></td></tr></tbody></table></figure>
-
-<p>待安装completed！之后，再./configure，顺利通过，然后<code>make &amp;&amp; make install</code>，成功安装，一切OK！~~~</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://blog.liudongkai.com/2010/08/17/firefox-disable-plugin-container/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2010/08/17/firefox-disable-plugin-container/" class="post-title-link" itemprop="url">禁用火狐浏览器的plugin-container.exe[zt]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2010-08-17 00:00:00" itemprop="dateCreated datePublished" datetime="2010-08-17T00:00:00+08:00">2010-08-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>firefox版本3.6.6，我最近发现多了个plugin-container.exe，手动结束这个进程后，firefox的flash插件立马崩溃。这个进程的作用描述如下：<br>使某些plugin崩溃了也不影响firefox，不用重启fx，刷新下即可恢复正常。然而本功能比较占内存，不喜欢的可以禁用。</p>
-<p>禁用方法：<br>输入<code>about:config</code>，会有一个“失去质保”的提示，确认继续。(fileter:)plugins，以下是默认值，全部修改为false。</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dom.ipc.plugins.enabled</span><br><span class="line">dom.ipc.plugins.enabled.npctrl.dll</span><br><span class="line">dom.ipc.plugins.enabled.npqtplugin.dll</span><br><span class="line">dom.ipc.plugins.enabled.npswf32.dll</span><br><span class="line">dom.ipc.plugins.enabled.nptest.dll</span><br></pre></td></tr></tbody></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3496,7 +3503,7 @@ ul.breadcrumb li + li:last-child {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">295</span>
+          <span class="site-state-item-count">297</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -3507,7 +3514,7 @@ ul.breadcrumb li + li:last-child {
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">212</span>
+        <span class="site-state-item-count">213</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
