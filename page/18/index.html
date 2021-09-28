@@ -1237,7 +1237,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #6b9e2a;
+  background: #61ffe5;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2962,6 +2962,92 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/04/19/cmd-hidden-run/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2009/04/19/cmd-hidden-run/" class="post-title-link" itemprop="url">批处理隐藏运行的10种思路[zt]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2009-04-19 00:00:00" itemprop="dateCreated datePublished" datetime="2009-04-19T00:00:00+08:00">2009-04-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>基础</li>
+</ol>
+<p> HideRun.vbs</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CreateObject("WScript.Shell").Run "cmd /cD:\test.bat",0</span><br></pre></td></tr></tbody></table></figure>
+<p>其中D:\test.bat是你的批处理路径</p>
+<p> HideRun.bat</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo CreateObject("WScript.Shell").Run "cmd /cD:\test.bat",0&gt;$tmp.vbs</span><br><span class="line">cscript.exe /e:vbscript $tmp.vbs</span><br><span class="line">del $tmp.vbs</span><br></pre></td></tr></tbody></table></figure>
+<p>这个批处理其实不能使其批处理本身隐藏，但是下面大部分隐藏调用批处理的原理和基础。</p>
+<p> HideRun.js</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new ActiveXObject('WScript.Shell').Run('cmd /cD:\Test.bat',0);</span><br></pre></td></tr></tbody></table></figure>
+<p>用Javascript有什么好处呢？js的字符串变量可以用单引号，从而方便命令行作为参数调用，而且js很好的支持多行语句用 ; 分隔写成一行。要注意的是：js要区分大小写，方法必须用括号，结尾必须有分号。所以就成了下面的命令：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mshta "javascript:new ActiveXObject('WScript.Shell').Run('cmd /cD:\test.bat',0);window.close()"</span><br></pre></td></tr></tbody></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2009/04/19/cmd-hidden-run/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/04/19/mysql-delete-binlog/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3041,92 +3127,6 @@ ul.breadcrumb li + li:last-child {
 <li>清理所有的日志，但是不包括目标日志我。</li>
 </ol>
 
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/04/19/cmd-hidden-run/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2009/04/19/cmd-hidden-run/" class="post-title-link" itemprop="url">批处理隐藏运行的10种思路[zt]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2009-04-19 00:00:00" itemprop="dateCreated datePublished" datetime="2009-04-19T00:00:00+08:00">2009-04-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>基础</li>
-</ol>
-<p> HideRun.vbs</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CreateObject("WScript.Shell").Run "cmd /cD:\test.bat",0</span><br></pre></td></tr></tbody></table></figure>
-<p>其中D:\test.bat是你的批处理路径</p>
-<p> HideRun.bat</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo CreateObject("WScript.Shell").Run "cmd /cD:\test.bat",0&gt;$tmp.vbs</span><br><span class="line">cscript.exe /e:vbscript $tmp.vbs</span><br><span class="line">del $tmp.vbs</span><br></pre></td></tr></tbody></table></figure>
-<p>这个批处理其实不能使其批处理本身隐藏，但是下面大部分隐藏调用批处理的原理和基础。</p>
-<p> HideRun.js</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new ActiveXObject('WScript.Shell').Run('cmd /cD:\Test.bat',0);</span><br></pre></td></tr></tbody></table></figure>
-<p>用Javascript有什么好处呢？js的字符串变量可以用单引号，从而方便命令行作为参数调用，而且js很好的支持多行语句用 ; 分隔写成一行。要注意的是：js要区分大小写，方法必须用括号，结尾必须有分号。所以就成了下面的命令：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mshta "javascript:new ActiveXObject('WScript.Shell').Run('cmd /cD:\test.bat',0);window.close()"</span><br></pre></td></tr></tbody></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2009/04/19/cmd-hidden-run/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
@@ -3460,7 +3460,7 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/11/26/linux-process-priority/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/11/26/awk-no-wrap/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -3474,7 +3474,7 @@ ul.breadcrumb li + li:last-child {
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2008/11/26/linux-process-priority/" class="post-title-link" itemprop="url">Linux下调节进程优先级</a>
+            <a href="/2008/11/26/awk-no-wrap/" class="post-title-link" itemprop="url">awk输出时不换行</a>
         </h2>
 
         <div class="post-meta">
@@ -3507,21 +3507,12 @@ ul.breadcrumb li + li:last-child {
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>命令</strong>：<br>nice(1): 以指定优先级运行程序</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nice [OPTION] [COMMAND [ARG]…]</span><br><span class="line">nice –n 1 ls</span><br></pre></td></tr></tbody></table></figure>
-<p>renice(8): 调整运行进程的优先级</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">renice priority [[-p] pid …] [[-g] pgrp …] [[-u] user …]</span><br><span class="line">renice +1 987 -u daemon root -p 32</span><br></pre></td></tr></tbody></table></figure>
-
-<p><strong>API</strong>：<br>nice(2): 改变进程优先级</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int nice(int inc);</span><br></pre></td></tr></tbody></table></figure>
-
-<p>getpriority(2): 获取优先级</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int getpriority(int which, int who);</span><br></pre></td></tr></tbody></table></figure>
-
-<p>setpriority(2): 设置优先级</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int setpriority(int which, int who, int prio);</span><br></pre></td></tr></tbody></table></figure>
-
-<p>Reference:<br><a target="_blank" rel="noopener" href="http://unix-cd.com/unixcd12/article_4602.html">http://unix-cd.com/unixcd12/article_4602.html</a></p>
+          <ol>
+<li>输出时使用printf</li>
+<li>输出后，利用 <code>tr -d 'n'</code> 实现替换换行</li>
+<li><code>awk 'BEGIN{ORS=""}{print $0;}'</code> <strong>//推荐</strong></li>
+<li><code>awk '{printf("%s",$0);}'</code></li>
+</ol>
 
       
     </div>

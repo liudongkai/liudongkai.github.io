@@ -1237,7 +1237,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #6b9e2a;
+  background: #61ffe5;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2874,80 +2874,6 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/07/28/mac-os-networksetup/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2014/07/28/mac-os-networksetup/" class="post-title-link" itemprop="url">从命令行修改你的Mac OS DNS（主要在在线恢复mac系统不能上网时候使用）[ZT]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2014-07-28 00:00:00" itemprop="dateCreated datePublished" datetime="2014-07-28T00:00:00+08:00">2014-07-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/mac-os/" itemprop="url" rel="index"><span itemprop="name">Mac OS</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">networksetup -listallnetworkservices</span><br></pre></td></tr></tbody></table></figure>
-<p>得到所有接口（interfaces）.</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">networksetup -setdnsservers {INTERFACE NAME} {YOUR DNS SERVER}</span><br></pre></td></tr></tbody></table></figure>
-<p>设置DNS.</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">networksetup -setdnsservers {INTERFACE NAME} {YOUR DNS SERVER} {YOUR DNS SERVER}</span><br></pre></td></tr></tbody></table></figure>
-<p>如果有多个DNS，那么用空格隔开。</p>
-<p>之后就可以用ifconfig查看修改了。</p>
-<p>networksetup更多参数可以查看:<br><a target="_blank" rel="noopener" href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/networksetup.8.html">https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/networksetup.8.html</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/07/28/mac-os-Charles/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3006,6 +2932,80 @@ ul.breadcrumb li + li:last-child {
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/07/28/mac-os-networksetup/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2014/07/28/mac-os-networksetup/" class="post-title-link" itemprop="url">从命令行修改你的Mac OS DNS（主要在在线恢复mac系统不能上网时候使用）[ZT]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2014-07-28 00:00:00" itemprop="dateCreated datePublished" datetime="2014-07-28T00:00:00+08:00">2014-07-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/mac-os/" itemprop="url" rel="index"><span itemprop="name">Mac OS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">networksetup -listallnetworkservices</span><br></pre></td></tr></tbody></table></figure>
+<p>得到所有接口（interfaces）.</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">networksetup -setdnsservers {INTERFACE NAME} {YOUR DNS SERVER}</span><br></pre></td></tr></tbody></table></figure>
+<p>设置DNS.</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">networksetup -setdnsservers {INTERFACE NAME} {YOUR DNS SERVER} {YOUR DNS SERVER}</span><br></pre></td></tr></tbody></table></figure>
+<p>如果有多个DNS，那么用空格隔开。</p>
+<p>之后就可以用ifconfig查看修改了。</p>
+<p>networksetup更多参数可以查看:<br><a target="_blank" rel="noopener" href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/networksetup.8.html">https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/networksetup.8.html</a></p>
+
       
     </div>
 

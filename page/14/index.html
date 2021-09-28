@@ -1237,7 +1237,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #6b9e2a;
+  background: #61ffe5;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2943,85 +2943,6 @@ ul.breadcrumb li + li:last-child {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2010/04/22/awk-merge-columns/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2010/04/22/awk-merge-columns/" class="post-title-link" itemprop="url">awk 列相同 合并行</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2010-04-22 00:00:00" itemprop="dateCreated datePublished" datetime="2010-04-22T00:00:00+08:00">2010-04-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>如果第一列与第二列相同，就合并行</p>
-<blockquote>
-<p>cat a.txt</p>
-</blockquote>
-<blockquote>
-<p>a b c<br>a b d<br>a b e</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk '{v=$1" "$2;a[v]=a[v](a[v]?" ":"")$3}END{for (j in a) print j,a[j]}' file</span><br></pre></td></tr></tbody></table></figure>
-
-<p>获得结果：</p>
-<blockquote>
-<p>a b c d e</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2010/04/22/perl-merge-files/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3084,6 +3005,85 @@ ul.breadcrumb li + li:last-child {
 <p>AAAAA|0001|abc|1000.00<br>BBBBB|0002|ddd|1200.20<br>CCCCC|0003|dde|100.01<br>AAAAA|0005|ggg|200<br>……</p>
 </blockquote>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/perl</span><br><span class="line"></span><br><span class="line">$filea="a.txt";</span><br><span class="line">$fileb="b.txt";</span><br><span class="line"></span><br><span class="line">open(FB,"&lt;$fileb") || die "Can't read $fileb\n$!\n";</span><br><span class="line">while() {</span><br><span class="line">@line=split(/\|/);</span><br><span class="line">$datab{$line[2]}=$line[3];</span><br><span class="line">}</span><br><span class="line">close FB;</span><br><span class="line">open (FA,"&lt;$filea") || die "Can't read $filea\n$!\n";</span><br><span class="line">while()</span><br><span class="line">{</span><br><span class="line">@line = split(/\|/);</span><br><span class="line">$dataa{$line[0]} = $_;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">foreach $key (sort {$b cmp $a} keys %dataa)</span><br><span class="line">{</span><br><span class="line">print $datab{int $key}.'|'.$dataa{$key} if exists $datab{int $key};</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2010/04/22/awk-merge-columns/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2010/04/22/awk-merge-columns/" class="post-title-link" itemprop="url">awk 列相同 合并行</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2010-04-22 00:00:00" itemprop="dateCreated datePublished" datetime="2010-04-22T00:00:00+08:00">2010-04-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>如果第一列与第二列相同，就合并行</p>
+<blockquote>
+<p>cat a.txt</p>
+</blockquote>
+<blockquote>
+<p>a b c<br>a b d<br>a b e</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk '{v=$1" "$2;a[v]=a[v](a[v]?" ":"")$3}END{for (j in a) print j,a[j]}' file</span><br></pre></td></tr></tbody></table></figure>
+
+<p>获得结果：</p>
+<blockquote>
+<p>a b c d e</p>
+</blockquote>
 
       
     </div>
