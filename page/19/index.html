@@ -163,6 +163,81 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/11/27/mysqldump-extended-insert/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/11/27/mysqldump-extended-insert/" class="post-title-link" itemprop="url">mysqldump导出sql中insert语句的问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-11-27 00:00:00" itemprop="dateCreated datePublished" datetime="2008-11-27T00:00:00+08:00">2008-11-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>mysqldump怎么样才能够将导出的sql中，每条记录对应一个insert语句，默认总是导出一个长的insert语句，如下所示：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[zzx@localhost ~]$ mysqldump –compact -uroot test t1&gt; a</span><br><span class="line">[zzx@localhost ~]$ more a</span><br><span class="line">CREATE TABLE `t1` (</span><br><span class="line">`id` int(10) default NULL,</span><br><span class="line">UNIQUE KEY `idx_1` (`id`)</span><br><span class="line">) ENGINE=MyISAM DEFAULT CHARSET=gbk;</span><br><span class="line">INSERT INTO `t1` VALUES (1),(2),(3);</span><br></pre></td></tr></tbody></table></figure>
+<p>我们希望把导出语句中的insert改为：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO `t1` VALUES (1);</span><br><span class="line">INSERT INTO `t1` VALUES (2);</span><br><span class="line">INSERT INTO `t1` VALUES (3);</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这样在不支持insert多值的数据库中，可以很方便的进行迁移，其实方法很简单，只需要加 <code>–extented-insert=false</code>即可：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[zzx@localhost ~]$ mysqldump –compact –extended-insert=false -uroot test t1&gt; a</span><br><span class="line">[zzx@localhost ~]$ more a</span><br><span class="line">CREATE TABLE `t1` (</span><br><span class="line">`id` int(10) default NULL,</span><br><span class="line">UNIQUE KEY `idx_1` (`id`)</span><br><span class="line">) ENGINE=MyISAM DEFAULT CHARSET=gbk;</span><br><span class="line">INSERT INTO `t1` VALUES (1);</span><br><span class="line">INSERT INTO `t1` VALUES (2);</span><br><span class="line">INSERT INTO `t1` VALUES (3);</span><br></pre></td></tr></tbody></table></figure>
+
+<p>我们从mysqldump中可以看到此参数的默认值为true：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[zzx@localhost ~]$ mysqldump –help|grep extended-insert</span><br><span class="line">......</span><br><span class="line">extended-insert TRUE</span><br><span class="line">......</span><br></pre></td></tr></tbody></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/11/26/awk-no-wrap/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -216,6 +291,87 @@
 <li><code>awk 'BEGIN{ORS=""}{print $0;}'</code> <strong>//推荐</strong></li>
 <li><code>awk '{printf("%s",$0);}'</code></li>
 </ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/11/26/linux-process-priority/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/11/26/linux-process-priority/" class="post-title-link" itemprop="url">Linux下调节进程优先级</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-11-26 00:00:00" itemprop="dateCreated datePublished" datetime="2008-11-26T00:00:00+08:00">2008-11-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>命令</strong>：<br>nice(1): 以指定优先级运行程序</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nice [OPTION] [COMMAND [ARG]…]</span><br><span class="line">nice –n 1 ls</span><br></pre></td></tr></tbody></table></figure>
+<p>renice(8): 调整运行进程的优先级</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">renice priority [[-p] pid …] [[-g] pgrp …] [[-u] user …]</span><br><span class="line">renice +1 987 -u daemon root -p 32</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>API</strong>：<br>nice(2): 改变进程优先级</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int nice(int inc);</span><br></pre></td></tr></tbody></table></figure>
+
+<p>getpriority(2): 获取优先级</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int getpriority(int which, int who);</span><br></pre></td></tr></tbody></table></figure>
+
+<p>setpriority(2): 设置优先级</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int setpriority(int which, int who, int prio);</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Reference:<br><a target="_blank" rel="noopener" href="http://unix-cd.com/unixcd12/article_4602.html">http://unix-cd.com/unixcd12/article_4602.html</a></p>
 
       
     </div>
@@ -803,176 +959,6 @@
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/08/26/sed-newline/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/08/26/sed-newline/" class="post-title-link" itemprop="url">sed 关于换行符 “\n” 的处理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2008-08-26T00:00:00+08:00">2008-08-26</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>我有一段文本有多行<br>如：<br>12<br>23<br>34</p>
-</blockquote>
-<blockquote>
-<p>我想把它换成一行<br>结果如下： 122334</p>
-</blockquote>
-<p>vi中 ：<code>%s/n//g</code> 可以合并成一行</p>
-<p>但是使用命令 <code>sed 's/n//g'</code> 对于换行符不起作用。</p>
-<p>因为sed是对行操作，所以没有换行。<br>解决方案：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tr -d 'n'</span><br></pre></td></tr></tbody></table></figure>
-
-<p>真的需要sed</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sed -nr ' H;</span><br><span class="line">$ {</span><br><span class="line">x;</span><br><span class="line">s/n//g;</span><br><span class="line">p</span><br><span class="line">}'</span><br></pre></td></tr></tbody></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/08/24/shell-loop-control/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/08/24/shell-loop-control/" class="post-title-link" itemprop="url">SHELL之循环语句</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-08-24 00:00:00" itemprop="dateCreated datePublished" datetime="2008-08-24T00:00:00+08:00">2008-08-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>if语句</li>
-<li>交互选择</li>
-<li>循环判断</li>
-<li>数值运算符</li>
-<li>…………</li>
-</ol>
-<p>if语句格式:</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if [ 条件 ]</span><br><span class="line">then</span><br><span class="line"> command</span><br><span class="line">else</span><br><span class="line"> command</span><br><span class="line">fi</span><br></pre></td></tr></tbody></table></figure>
-
-<p>交互选择（N可以为*）</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">echo -e "提示语言，后边有光标提供输入"c</span><br><span class="line">read VAR</span><br><span class="line">case $VAR in</span><br><span class="line">Y)</span><br><span class="line"> command</span><br><span class="line">;;</span><br><span class="line">N)</span><br><span class="line"> command</span><br><span class="line">;;</span><br><span class="line">esac</span><br></pre></td></tr></tbody></table></figure>
-
-<p>对条件进行循环检查，成立则处理，否则继续检查</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">a=1</span><br><span class="line">while [ "$a" = "1" ]</span><br><span class="line">do</span><br><span class="line">fileno=`ls -l /list/filename* |wc -l`</span><br><span class="line">if [ "$fileno" = "10" ]</span><br><span class="line">then</span><br><span class="line"> a=10</span><br><span class="line"> command</span><br><span class="line">else</span><br><span class="line"> a=1</span><br><span class="line"> sleep 300</span><br><span class="line">fi</span><br><span class="line">done</span><br></pre></td></tr></tbody></table></figure>
-
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">grep -v www filename 过滤不包含</span><br><span class="line">grep www filename 过滤包含</span><br><span class="line">uniq -u 过滤没有相同行</span><br><span class="line">uniq -d 过滤具有相同行</span><br><span class="line">sort 排序</span><br><span class="line">paste -d”;” filename1 filename2 把文件并列合并并且以;间隔</span><br></pre></td></tr></tbody></table></figure>
-
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">if [ "a" = "10" ] #a=10</span><br><span class="line">[ "a" -ne "10" ] 同上一行</span><br><span class="line">[ -s filename ] 文件大小大于0</span><br><span class="line">-s 文件大小大于0返回真</span><br><span class="line">-d 是一个目录是返回真</span><br><span class="line">-e 文件或目录存在返回真</span><br><span class="line">-g 存在是SGID返回真</span><br><span class="line">-h 文件是连接文件返回真</span><br><span class="line">-k 文件是粘滞位返回真</span><br><span class="line">-r 文件或目录存在并可读时返回真</span><br><span class="line">-w 文件或目录存在并可写时返回真</span><br><span class="line">-u 文件是SUID返回真</span><br><span class="line">-x 文件是可执行的返回真</span><br><span class="line"></span><br><span class="line">-eq 等于</span><br><span class="line">-ne 不等于</span><br><span class="line">-lt 小于</span><br><span class="line">-le 小于等于</span><br><span class="line">-gt 大于</span><br><span class="line">-ge 大于等于</span><br></pre></td></tr></tbody></table></figure>
-
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2*3+4|bc 计算前面的数据</span><br><span class="line">ping -w 2 www.163.com 测试2两次</span><br><span class="line">对上一次指令结果判断</span><br><span class="line">$?=0 为真</span><br><span class="line">$?=1 为假</span><br></pre></td></tr></tbody></table></figure>
-
-<p>给SHELL后边加参数</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">XXXX=`echo | wc -c`</span><br><span class="line">cat $HOME/list/file.txt 1&gt;/dev/null 2&gt;/dev/null</span><br><span class="line">OK=$?</span><br><span class="line">if [ "" = "" ] || [ "$XXXX" -lt "4" ] || [ "$OK" -ne "0" ]</span><br><span class="line">then</span><br><span class="line"> echo "参数没有输入，输入位数不等于3，file.txt不存在，请重新输入"</span><br><span class="line">exit</span><br><span class="line">fi</span><br></pre></td></tr></tbody></table></figure>
-
-<p>一个循环检查</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">line=1</span><br><span class="line">for i in `cat bb`</span><br><span class="line">do</span><br><span class="line">qq=`echo "scale=2;$i*100" | bc | awk -F. "{print }"`</span><br><span class="line">if [ "$qq" -ge "75" ]</span><br><span class="line">then</span><br><span class="line">sed -n "$line"p temp.1 &gt;&gt; bad.1</span><br><span class="line">fi</span><br><span class="line">line=`expr $line + 1` ###每次加1</span><br></pre></td></tr></tbody></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1042,7 +1028,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">298</span>
+          <span class="site-state-item-count">300</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1053,7 +1039,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">215</span>
+        <span class="site-state-item-count">216</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

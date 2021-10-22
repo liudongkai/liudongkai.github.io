@@ -1,0 +1,481 @@
+<!DOCTYPE html><html lang="zh-Hans"><head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.liudongkai.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"PFZ0Y857EY","apiKey":"da65f2d4ea1c6d4dccfa6d7f197d2aaf","indexName":"blog","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Youtube-dl 这套强大的网络影片下载器，目前很多朋友可能会使用一些线上下载YouTube的网站，除了网页上满满的广告之外，还可能会常常遇到画质、音质不佳、下载速度慢，或是根本无法正常下载，毕竟 YouTube 也是随时在改版，虽然 Google 对于下载 YouTube 这件事算睁一只眼闭一只眼，但时不时还是会顺手防堵下载的漏洞。而 youtube-dl 则是在 GitHub 上公开的开源">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用 Homebrew 安裝 youtube-dl 下載 YouTube 影片">
+<meta property="og:url" content="http://www.liudongkai.com/2021/10/21/download_youtube_videos_with_youtube-dl_install_by_homebrew/index.html">
+<meta property="og:site_name" content="Dong's Note">
+<meta property="og:description" content="Youtube-dl 这套强大的网络影片下载器，目前很多朋友可能会使用一些线上下载YouTube的网站，除了网页上满满的广告之外，还可能会常常遇到画质、音质不佳、下载速度慢，或是根本无法正常下载，毕竟 YouTube 也是随时在改版，虽然 Google 对于下载 YouTube 这件事算睁一只眼闭一只眼，但时不时还是会顺手防堵下载的漏洞。而 youtube-dl 则是在 GitHub 上公开的开源">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-10-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-10-20T16:00:00.000Z">
+<meta property="article:author" content="東木">
+<meta property="article:tag" content="Mac OS">
+<meta property="article:tag" content="YouTube">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://www.liudongkai.com/2021/10/21/download_youtube_videos_with_youtube-dl_install_by_homebrew/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>用 Homebrew 安裝 youtube-dl 下載 YouTube 影片 | Dong's Note</title>
+  
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-42337789-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c7096e12ca3876b01c9b962bd40adf7e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Dong's Note</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2021/10/21/download_youtube_videos_with_youtube-dl_install_by_homebrew/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          用 Homebrew 安裝 youtube-dl 下載 YouTube 影片
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-10-21 00:00:00" itemprop="dateCreated datePublished" datetime="2021-10-21T00:00:00+08:00">2021-10-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/mac-os/" itemprop="url" rel="index"><span itemprop="name">Mac OS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Youtube-dl 这套强大的网络影片下载器，目前很多朋友可能会使用一些线上下载YouTube的网站，除了网页上满满的广告之外，还可能会常常遇到画质、音质不佳、下载速度慢，或是根本无法正常下载，毕竟 YouTube 也是随时在改版，虽然 Google 对于下载 YouTube 这件事算睁一只眼闭一只眼，但时不时还是会顺手防堵下载的漏洞。<br>而 youtube-dl 则是在 GitHub 上公开的开源软体，且他更新的频率相当惊人，几乎每隔几天就会更新，而更新内容大多都是针对各个影音网站的下载支持或功能修正。虽然 youtube-dl 没有 GUI，而是通过终端命令行操作，但非常轻量，且效率极佳。</p>
+<h1 id="安装-youtube-dl"><a href="#安装-youtube-dl" class="headerlink" title="安装 youtube-dl"></a>安装 youtube-dl</h1><p>请先安装 Homebrew，若你已经装好 Homebrew，则可以透过指令来安装 youtube-dl，打开终端并输入：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install youtube-dl</span><br></pre></td></tr></tbody></table></figure>
+
+<h1 id="安装-ffmpeg"><a href="#安装-ffmpeg" class="headerlink" title="安装 ffmpeg"></a>安装 ffmpeg</h1><p>我们下载 YouTube 影片时可能会用到转档、嵌入字幕等功能，这些功能必须安装 ffmpeg 来达成。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install ffmpeg</span><br></pre></td></tr></tbody></table></figure>
+
+<h1 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h1><p>如上面所说，<code>youtube-dl</code> 没有GUI，而是通过终端操作，因此在应用程序里是找不到它的，必须使用终端来操作。</p>
+<h2 id="下载影片"><a href="#下载影片" class="headerlink" title="下载影片"></a>下载影片</h2><p>在 macOS 中，终端预设目录是下载文件夹，但我们一般下载影片通常不会存在预设目录里，因此我们可以先指定下载目录。</p>
+<p>选择好下载目录后，在终端输入 <code>youtube-dl</code>，后跟 YouTube 影片网址即可下载，以下载 YouTube 影片 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=aaIUjeg9MpY">第五季 | 預告 Trailer【畫江湖之不良人 第5季 The Degenerate-Drawing Jianghu S5】</a> 为例：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[liudongkai@MBPR DIR]$ youtube-dl 'https://www.youtube.com/watch?v=aaIUjeg9MpY'</span><br><span class="line"></span><br><span class="line">[youtube] aaIUjeg9MpY: Downloading webpage</span><br><span class="line">[download] Destination: 第五季 _ 預告 Trailer【畫江湖之不良人 第5季 The Degenerate-Drawing Jianghu S5】-aaIUjeg9MpY.mp4</span><br><span class="line">[download]   3.9% of 5.54MiB at 64.92KiB/s ETA 01:23</span><br></pre></td></tr></tbody></table></figure>
+<p>按下回车之后 <code>youtube-dl</code> 便开始下载，在没有设定任何下载选项的状况下，可以看到这支影片以预设的 WebM 格式下载到下载项目资料夹中。在 YouTube 下载影片，来源的影片文件可能是各种格式、分段或是影音分开，这时通常都是靠 ffmpeg 将其转换为单一的影片文件。</p>
+<h2 id="影片转档"><a href="#影片转档" class="headerlink" title="影片转档"></a>影片转档</h2><p>刚刚下载的影片是 WebM 格式储存（有时可能是 mov 或 mkv 等等）不过其实 WebM 通常用于网页播放，我们一般在电脑、手机播放或剪辑，其实还是以 mp4 最通用。因此，我们可以在 youtube-dl 下载影片时，在指令后方加入 -f mp4 即可指定下载成 mp4 文件格式：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl 'https://www.youtube.com/watch?v=aaIUjeg9MpY' -f mp4</span><br></pre></td></tr></tbody></table></figure>
+<p>所以 -f 后面的文件格式也可以换成 3gp、aac、flv、m4a、mp3、mp4、ogg、wav、webm 等等。</p>
+<p>下载完成的文件，以 YouTube 来说，下载的文件名称就是 <u>影片名称-影片网址的编号.文件格式</u>，如上文案例文件名为：<code>第五季 _ 預告 Trailer【畫江湖之不良人 第5季 The Degenerate-Drawing Jianghu S5】-aaIUjeg9MpY.mp4</code>。</p>
+<h2 id="指定最高质量下载"><a href="#指定最高质量下载" class="headerlink" title="指定最高质量下载"></a>指定最高质量下载</h2><p>YouTube 通常会提供不同分辨率、不同码率的影片文件，我们可以通过指定编码序号进行下载。首先使用 <code>-F</code> 参数查看相关编码序号与质量（注意F为大写）</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">[liudongkai@MBPR DIR]$ youtube-dl -F 'https://www.youtube.com/watch?v=aaIUjeg9MpY' </span><br><span class="line">[youtube] aaIUjeg9MpY: Downloading webpage</span><br><span class="line">[info] Available formats for aaIUjeg9MpY:</span><br><span class="line">format code  extension  resolution note</span><br><span class="line">249          webm       audio only tiny   44k , webm_dash container, opus @ 44k (48000Hz), 342.00KiB</span><br><span class="line">250          webm       audio only tiny   58k , webm_dash container, opus @ 58k (48000Hz), 450.04KiB</span><br><span class="line">251          webm       audio only tiny  117k , webm_dash container, opus @117k (48000Hz), 894.48KiB</span><br><span class="line">140          m4a        audio only tiny  129k , m4a_dash container, mp4a.40.2@129k (44100Hz), 990.85KiB</span><br><span class="line">160          mp4        256x106    144p   47k , mp4_dash container, avc1.4d400b@  47k, 25fps, video only, 362.21KiB</span><br><span class="line">394          mp4        256x106    144p   48k , mp4_dash container, av01.0.00M.08@  48k, 25fps, video only, 372.20KiB</span><br><span class="line">278          webm       256x106    144p   55k , webm_dash container, vp9@  55k, 25fps, video only, 427.04KiB</span><br><span class="line">395          mp4        426x178    240p   86k , mp4_dash container, av01.0.00M.08@  86k, 25fps, video only, 658.65KiB</span><br><span class="line">133          mp4        426x178    240p  100k , mp4_dash container, avc1.4d400d@ 100k, 25fps, video only, 766.11KiB</span><br><span class="line">242          webm       426x178    240p  103k , webm_dash container, vp9@ 103k, 25fps, video only, 792.85KiB</span><br><span class="line">396          mp4        640x266    360p  165k , mp4_dash container, av01.0.01M.08@ 165k, 25fps, video only, 1.24MiB</span><br><span class="line">134          mp4        640x266    360p  198k , mp4_dash container, avc1.4d4015@ 198k, 25fps, video only, 1.48MiB</span><br><span class="line">243          webm       640x266    360p  216k , webm_dash container, vp9@ 216k, 25fps, video only, 1.62MiB</span><br><span class="line">397          mp4        854x356    480p  298k , mp4_dash container, av01.0.04M.08@ 298k, 25fps, video only, 2.23MiB</span><br><span class="line">135          mp4        854x356    480p  356k , mp4_dash container, avc1.4d401e@ 356k, 25fps, video only, 2.66MiB</span><br><span class="line">244          webm       854x356    480p  382k , webm_dash container, vp9@ 382k, 25fps, video only, 2.85MiB</span><br><span class="line">398          mp4        1280x532   720p  562k , mp4_dash container, av01.0.05M.08@ 562k, 25fps, video only, 4.20MiB</span><br><span class="line">136          mp4        1280x532   720p  613k , mp4_dash container, avc1.4d401f@ 613k, 25fps, video only, 4.57MiB</span><br><span class="line">247          webm       1280x532   720p  710k , webm_dash container, vp9@ 710k, 25fps, video only, 5.30MiB</span><br><span class="line">399          mp4        1920x798   1080p  983k , mp4_dash container, av01.0.08M.08@ 983k, 25fps, video only, 7.34MiB</span><br><span class="line">248          webm       1920x798   1080p 1246k , webm_dash container, vp9@1246k, 25fps, video only, 9.30MiB</span><br><span class="line">137          mp4        1920x798   1080p 1540k , mp4_dash container, avc1.640028@1540k, 25fps, video only, 11.50MiB</span><br><span class="line">400          mp4        2048x852   1080p 2075k , mp4_dash container, av01.0.08M.08@2075k, 25fps, video only, 15.49MiB</span><br><span class="line">271          webm       2048x852   1080p 2298k , webm_dash container, vp9@2298k, 25fps, video only, 17.15MiB</span><br><span class="line">18           mp4        640x266    360p  487k , avc1.42001E, 25fps, mp4a.40.2 (44100Hz), 3.64MiB</span><br><span class="line">22           mp4        1280x532   720p  742k , avc1.64001F, 25fps, mp4a.40.2 (44100Hz) (best)</span><br></pre></td></tr></tbody></table></figure>
+<p>查看输出列表，找到画质音质最好的序号，案例中1920x798分辨率下视频最好的是271，音频最好的是140，得到这两个序号后，可以通过 <code>youtube-dl -f 视频序号+音频序号</code> 进行合并下载，这样下载后，视频和音频会自动合并。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[liudongkai@MBPR DIR]$ youtube-dl -f 271+140 'https://www.youtube.com/watch?v=aaIUjeg9MpY'</span><br><span class="line">[youtube] aaIUjeg9MpY: Downloading webpage</span><br><span class="line">WARNING: You have requested multiple formats but ffmpeg or avconv are not installed. The formats won't be merged.</span><br><span class="line">WARNING: Requested formats are incompatible for merge and will be merged into mkv.</span><br><span class="line">[download] Destination: 第五季 _ 預告 Trailer【畫江湖之不良人 第5季 The Degenerate-Drawing Jianghu S5】-aaIUjeg9MpY.f271.webm</span><br><span class="line">[download]   5.8% of 17.15MiB at 942.21KiB/s ETA 00:17</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>注意：-f 后跟的两个序号需要必须先视频后音频</strong></p>
+<h2 id="嵌入字幕"><a href="#嵌入字幕" class="headerlink" title="嵌入字幕"></a>嵌入字幕</h2><p>有时 YouTube 影片会有不同语言的 CC 字幕可选择，我们可以透过 <code>youtube-dl</code> 将字幕嵌入到影片中。</p>
+<p>首先我们先列出可以下载的字幕，以上文案例为例，在 <code>youtube-dl</code> 下载指令后方加入 –list-subs</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl 'https://www.youtube.com/watch?v=aaIUjeg9MpY' --list-subs</span><br></pre></td></tr></tbody></table></figure>
+<p>youtube-dl 分析 YouTube 网页后，在最下方 Available subtitles 列出可用的字幕包含：</p>
+<ul>
+<li>zh-CN</li>
+<li>en</li>
+<li>zh</li>
+<li>zh-TW</li>
+</ul>
+<p>也就是简体中文、英文、中文、中文(台湾)这几种选择。</p>
+<p>有关嵌入字幕的 youtube-dl 指令：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">--write-sub #下载字幕</span><br><span class="line">--embed-sub #嵌入字幕</span><br><span class="line">—-sub-lang zh-CN #指定语言（以简体中文为例）</span><br><span class="line">--all-subs #下载所有字幕（如果要将所有可用的字幕嵌入）</span><br></pre></td></tr></tbody></table></figure>
+<p>因此如果我们要下载嵌入简体中文字幕的 mp4 影片，指令为：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl 'https://www.youtube.com/watch?v=aaIUjeg9MpY' --write-sub --embed-sub --sub-lang zh-CN -f mp4</span><br></pre></td></tr></tbody></table></figure>
+<p>支援嵌入字幕的影片格式包含：mp4、mkv 以及 webm；与格式工厂、HandBreak 那种将字幕直接写入在影片画面上的方式不同，使用 youtube-dl 嵌入的字幕是可以选择开启或关闭，以及选择不同语言的。此外，语系的代号大小写有别，必须一模一样，例如简体中文 zh-CN 的 CN 一定要是大写，非常重要！</p>
+<p>下载完成后，以 QuickTime Player 打开，可以看到出现中文字幕的选项；若是以其他播放软体如 INNA 开启，也是可以选择字幕的，不过每个软件显示情况可能有所不同。</p>
+<h1 id="高级应用"><a href="#高级应用" class="headerlink" title="高级应用"></a>高级应用</h1><h2 id="指定格式以最优质量下载视频"><a href="#指定格式以最优质量下载视频" class="headerlink" title="指定格式以最优质量下载视频"></a>指定格式以最优质量下载视频</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 指定视频为mp4格式、音频为m4a格式以最优质量下载youtube视频，其它网站暂未测试，官方说Windows下换单引号为双引号</span><br><span class="line">youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' 'https://www.youtube.com/watch?v=aaIUjeg9MpY'</span><br><span class="line"></span><br><span class="line"># 或者直接使用默认设置，一般会下载两个webm文件，分别为视频和音频，</span><br><span class="line"># 再自动合并成附带音轨的webm格式视频，测试发现也是最高分辨率，有4K就下4K版本</span><br><span class="line">youtube-dl 'https://www.youtube.com/watch?v=aaIUjeg9MpY'</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="以最优质量下载音频"><a href="#以最优质量下载音频" class="headerlink" title="以最优质量下载音频"></a>以最优质量下载音频</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 默认下载音频为opus格式</span><br><span class="line">youtube-dl -x 'https://www.youtube.com/watch?v=aaIUjeg9MpY'</span><br><span class="line"></span><br><span class="line"># 下载mp3格式的音频</span><br><span class="line">youtube-dl -x --audio-format mp3 'https://www.youtube.com/watch?v=aaIUjeg9MpY'</span><br><span class="line"></span><br><span class="line"># 最优质量下载音频</span><br><span class="line">youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 'https://www.youtube.com/watch?v=aaIUjeg9MpY'</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="下载播放列表中的视频"><a href="#下载播放列表中的视频" class="headerlink" title="下载播放列表中的视频"></a>下载播放列表中的视频</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 使用默认，与下载单个视频格式一样</span><br><span class="line">youtbue-dl 'https://www.youtube.com/watch?v=rbxjUvJjFhU&amp;list=PLTQ0CcMHNrjudMnoc2wCxWk0el8AIhWhd'</span><br><span class="line"></span><br><span class="line"># 可以使用选项--playlist-start, --playlist-end或者指定某个视频 --playlist-items</span><br><span class="line"># --playlist-items 可设置多个值.如："--playlist-items 1,2,5 下载1、2、5项</span><br><span class="line"></span><br><span class="line"># 下载列表第二个及以后的所有视频</span><br><span class="line">youtube-dl --playstart-start 2 'https://www.youtube.com/watch?v=rbxjUvJjFhU&amp;list=PLTQ0CcMHNrjudMnoc2wCxWk0el8AIhWhd'</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="限定分辨率下载播放列表中的视频"><a href="#限定分辨率下载播放列表中的视频" class="headerlink" title="限定分辨率下载播放列表中的视频"></a>限定分辨率下载播放列表中的视频</h3><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 以最高480P下载列表第3个及以后的所有视频</span><br><span class="line">youtube-dl --playlist-start 3 -f 'bestvideo[height&lt;=480]+bestaudio/best[height&lt;=480]' 'https://www.youtube.com/watch?v=rbxjUvJjFhU&amp;list=PLTQ0CcMHNrjudMnoc2wCxWk0el8AIhWhd'</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="下载播放列表中视频的音轨"><a href="#下载播放列表中视频的音轨" class="headerlink" title="下载播放列表中视频的音轨"></a>下载播放列表中视频的音轨</h3><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 使用--playlist-start、--playlist-end、--playlist-items来限定</span><br><span class="line"></span><br><span class="line"># 最优质量下载播放列表中3-6这四个视频的音频文件，并转换成mp3格式</span><br><span class="line">youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --playlist-start 3 --playlist-end 6 'https://www.youtube.com/watch?v=rbxjUvJjFhU&amp;list=PLTQ0CcMHNrjudMnoc2wCxWk0el8AIhWhd'</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="调用aria2加速下载"><a href="#调用aria2加速下载" class="headerlink" title="调用aria2加速下载"></a>调用aria2加速下载</h2><p>​解决使用youtube-dl默认下载时常常断开连接的问题。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl --external-downloader aria2c --external-downloader-args "-x 16 -k 1M" 'https://www.youtube.com/watch?v=aaIUjeg9MpY'</span><br></pre></td></tr></tbody></table></figure>
+<p>参数说明：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">--external-downloader aria2c # 调用外部下载工具</span><br><span class="line">--external-downloader-args # 外部下载工具指定参数</span><br><span class="line">-x 16 # 启用aria2 16个线程，最多就支持16线程</span><br><span class="line">-K 1M # 指定块的大小</span><br></pre></td></tr></tbody></table></figure>
+<p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://askubuntu.com/questions/634584/how-to-download-youtube-videos-as-a-best-quality-audio-mp3-using-youtube-dl">How to download youtube videos as a best quality audio mp3 using youtube-dl [duplicate]</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.sysgeek.cn/youtube-dl-examples/">Youtube 专业下载工具，Youtube-dl 详细使用教程与初学上手示例</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u014389734/article/details/86751840">Youtube-dl调用外部Aria2多线程加速下载</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/mac-os/" rel="tag"># Mac OS</a>
+              <a href="/tags/youtube/" rel="tag"># YouTube</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/09/26/timeout_command_on_mac/" rel="prev" title="Timeout command on Mac OS X?">
+      <i class="fa fa-chevron-left"></i> Timeout command on Mac OS X?
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/10/22/use_youtubedr_download_youtube_videos/" rel="next" title="用 youtubedr 下載 YouTube 影片">
+      用 youtubedr 下載 YouTube 影片 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-youtube-dl"><span class="nav-number">1.</span> <span class="nav-text">安装 youtube-dl</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-ffmpeg"><span class="nav-number">2.</span> <span class="nav-text">安装 ffmpeg</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C"><span class="nav-number">3.</span> <span class="nav-text">运行</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%BD%B1%E7%89%87"><span class="nav-number">3.1.</span> <span class="nav-text">下载影片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%B1%E7%89%87%E8%BD%AC%E6%A1%A3"><span class="nav-number">3.2.</span> <span class="nav-text">影片转档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E5%AE%9A%E6%9C%80%E9%AB%98%E8%B4%A8%E9%87%8F%E4%B8%8B%E8%BD%BD"><span class="nav-number">3.3.</span> <span class="nav-text">指定最高质量下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E5%AD%97%E5%B9%95"><span class="nav-number">3.4.</span> <span class="nav-text">嵌入字幕</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E5%BA%94%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">高级应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E5%AE%9A%E6%A0%BC%E5%BC%8F%E4%BB%A5%E6%9C%80%E4%BC%98%E8%B4%A8%E9%87%8F%E4%B8%8B%E8%BD%BD%E8%A7%86%E9%A2%91"><span class="nav-number">4.1.</span> <span class="nav-text">指定格式以最优质量下载视频</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A5%E6%9C%80%E4%BC%98%E8%B4%A8%E9%87%8F%E4%B8%8B%E8%BD%BD%E9%9F%B3%E9%A2%91"><span class="nav-number">4.2.</span> <span class="nav-text">以最优质量下载音频</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E6%92%AD%E6%94%BE%E5%88%97%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%A7%86%E9%A2%91"><span class="nav-number">4.3.</span> <span class="nav-text">下载播放列表中的视频</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%90%E5%AE%9A%E5%88%86%E8%BE%A8%E7%8E%87%E4%B8%8B%E8%BD%BD%E6%92%AD%E6%94%BE%E5%88%97%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%A7%86%E9%A2%91"><span class="nav-number">4.3.1.</span> <span class="nav-text">限定分辨率下载播放列表中的视频</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E6%92%AD%E6%94%BE%E5%88%97%E8%A1%A8%E4%B8%AD%E8%A7%86%E9%A2%91%E7%9A%84%E9%9F%B3%E8%BD%A8"><span class="nav-number">4.3.2.</span> <span class="nav-text">下载播放列表中视频的音轨</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E7%94%A8aria2%E5%8A%A0%E9%80%9F%E4%B8%8B%E8%BD%BD"><span class="nav-number">4.4.</span> <span class="nav-text">调用aria2加速下载</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">東木</p>
+  <div class="site-description" itemprop="description">The palest ink is better than the best memory.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">300</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">216</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  © 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> &amp; <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+<script type="text/javascript" src="/bundle.js"></script><script type="text/javascript">
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 3,
+                processImages: null,
+            };
+        ;
+window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});;
+!function(n){n.imageLazyLoadSetting.processImages=o;var e=n.imageLazyLoadSetting.isSPA,i=n.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},t.src!==i&&(n.src=i)}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body></html>

@@ -163,6 +163,220 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/02/20/linux-hosts/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/02/20/linux-hosts/" class="post-title-link" itemprop="url">linux /etc/hosts解说</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-02-20 00:00:00" itemprop="dateCreated datePublished" datetime="2008-02-20T00:00:00+08:00">2008-02-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>关于/etc/host，主机名和ip配置文件</li>
+</ol>
+<p> hosts – The static table lookup for host name（主机名查询静态表）</p>
+<p> linux 的/etc/hosts是配置ip地址和其对应主机名的文件，这里可以记录本机的或其他主机的ip及其对应主机名。<br>不同的linux版本，这个配置文件也可能不同。比如Debian的对应文件是/etc/hostname。</p>
+<ol start="2">
+<li>配置文件用途；</li>
+</ol>
+<p> 这个文件可以配置主机ip及对应的主机名，对于服务器类型的linux系统其作用还是不可忽略的。</p>
+<p> 在局域网或是INTERNET上，每台主机都有一个IP地址，它区分开每台主机，并可以根据ip进行通讯。但IP地址不方便记忆，所以又有了域名。</p>
+<p> 在一个局域网中，每台机器都有一个主机名，用于区分主机，便于相互访问。</p>
+<p> linux主机名的相关配置文件就是/etc/hosts;这个文件告诉本主机哪些域名对应那些ip，那些主机名对应哪些ip：</p>
+<p> 比如文件中有这样的定义</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.168.1.100 linumu100 test100</span><br></pre></td></tr></tbody></table></figure>
+<p>假设192.168.1.100是一台网站服务器，在网页中输入 <a target="_blank" rel="noopener" href="http://linumu100/">http://linumu100</a> 或 <a target="_blank" rel="noopener" href="http://test100/">http://test100</a> 就会打开192.168.1.100的网页。</p>
+<p> 通常情况下这个文件首先记录了本机的ip和主机名：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 localhost.localdomain localhost</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="3">
+<li>配置文件格式说明</li>
+</ol>
+<p> 一般/etc/hosts 的内容一般有如下类似内容：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 localhost.localdomain localhost</span><br><span class="line">192.168.1.100 linmu100.com linmu100</span><br><span class="line">192.168.1.120 ftpserver ftp120</span><br></pre></td></tr></tbody></table></figure>
+<p>一般情况下hosts文件的每行为一个主机，每行由三部份组成，每个部份由空格隔开。其中#号开头的行做说明，不被系统解释。</p>
+<blockquote>
+<p>第一部份：网络IP地址；<br>第二部份：主机名或域名；<br>第三部份：主机名别名；</p>
+</blockquote>
+<p> 当然每行也可以是两部份，即主机IP地址和主机名；比如 192.168.1.100 linmu100。</p>
+<p> 这里可以稍微解释一下主机名(hostname)和域名(Domain）的区别：<br>主机名通常在局域网内使用，通过hosts文件，主机名就被解析到对应ip；<br>域名通常在internet上使用，但如果本机不想使用internet上的域名解析，这时就可以更改hosts文件，加入自己的域名解析。</p>
+<ol start="4">
+<li><p>/hosts文件可以帮助解决哪些问题</p>
+</li>
+<li><p>远程登录linux主机过慢问题</p>
+<p>有时客户端想远程登录一台linux主机，但每次登录输入密码后都会等很长一段时间才会进入，这是因为linux主机在返回信息时需要解析ip，</p>
+<p>如果在linux主机的hosts文件事先加入客户端的ip地址，这时再从客户端远程登录linux就会变很快。</p>
+<p>注：这里所说的远程登录不仅仅是ssh，还可能是mysql远程登录，或是文件共享的查询等。</p>
+</li>
+<li><p>双机互连</p>
+<p>当两台主机只是双机互连时，这时两台主机都需要设置自己的ip，同时在对方的hosts文件里加入自己的ip和主机名。</p>
+</li>
+<li><p>主机名修改工具 hostname;</p>
+</li>
+</ol>
+<p> 其实主机名的修改也有专用工具，就是<code>hostname</code></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostname – show or set the system’s host name</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li><p>显示主机名：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># hostname</span><br><span class="line">linmu100</span><br></pre></td></tr></tbody></table></figure>
+<p>此主机的主机名是linmu100，不加参数是用来显示当前主机的主机名；</p>
+</li>
+<li><p>临时设置主机名：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># hostname test100</span><br><span class="line"># hostname 注：显示主机名</span><br><span class="line">test100</span><br></pre></td></tr></tbody></table></figure>
+<p>通过hostname 工具来设置主机名只是临时的，下次重启系统时，此主机名将不会存在；</p>
+</li>
+<li><p>显示主机IP：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># hostname -i</span><br><span class="line">192.168.1.100/</span><br><span class="line">/*—–linux 网络配置—-www.linmu100.com —-*/</span><br><span class="line">/</span><br><span class="line">/*—–Unix系统,多线程,操作系统—-*/</span><br><span class="line">/</span><br><span class="line">/*—–linux配置,UNIX,开源软件,linux技术,makefile—-*/</span><br><span class="line">/</span><br><span class="line">/*———————-@xiaolin——————–*/</span><br><span class="line">/</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/02/16/GD-Graphics-Library/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/02/16/GD-Graphics-Library/" class="post-title-link" itemprop="url">安装GD库 GD库安装全过程详解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-02-16 00:00:00" itemprop="dateCreated datePublished" datetime="2008-02-16T00:00:00+08:00">2008-02-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>所需的源码包及下载:(也可以下载最新的安装包)</p>
+<p>gd-2.0.35.tar.gz<br><a target="_blank" rel="noopener" href="http://www.libgd.org/releases/">http://www.libgd.org/releases/</a></p>
+<p>jpegsrc.v6b.tar.gz<br><a target="_blank" rel="noopener" href="http://www.ijg.org/files/">http://www.ijg.org/files/</a></p>
+<p>libpng-1.2.24.tar.tar<br><a target="_blank" rel="noopener" href="http://sourceforge.net/projects/libpng/">http://sourceforge.net/projects/libpng/</a></p>
+<p>zlib-1.2.3.tar.gz<br><a target="_blank" rel="noopener" href="http://sourceforge.net/projects/libpng/">http://sourceforge.net/projects/libpng/</a></p>
+<p>freetype-2.3.5.tar.gz<br><a target="_blank" rel="noopener" href="http://sourceforge.net/projects/freetype/">http://sourceforge.net/projects/freetype/</a></p>
+<p>安装步骤：</p>
+<p>先安装zlib,freetype,libpng,jpeg,再装GD</p>
+<ol>
+<li><p>装zlib</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf zlib-1.2.3.tar.gz</span><br><span class="line">cd zlib-1.2.3</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>安装libpng</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf libpng-1.2.24.tar.tar</span><br><span class="line">cd libpng-1.2.24</span><br><span class="line">cd scripts/</span><br><span class="line">mv makefile.linux ../makefile</span><br><span class="line">cd ..</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></tbody></table></figure>
+<p>注意，这里的makefile不是用./configure生成，而是直接从scripts/里拷一个</p>
+</li>
+<li><p>安装freetype</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf freetype-2.3.5.tar.gz</span><br><span class="line">cd freetype-2.3.5</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>安装Jpeg</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf jpegsrc.v6b.tar.gz</span><br><span class="line">cd jpeg-6b/</span><br><span class="line">./configure –enable-shared</span><br><span class="line">make</span><br><span class="line">make test</span><br><span class="line">make install</span><br></pre></td></tr></tbody></table></figure>
+<p>注意，这里configure一定要带–enable-shared参数，不然，不会生成共享库</p>
+</li>
+<li><p>安装GD</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf gd-2.0.35.tar.gz</span><br><span class="line">cd gd-2.0.35</span><br><span class="line">./configure -with-png -with-freetype -with-jpeg</span><br><span class="line">make install</span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/02/15/WordPress-Wp-PageNavi/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -838,241 +1052,6 @@
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/02/03/robots-list/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/02/03/robots-list/" class="post-title-link" itemprop="url">搜索引擎爬虫程序一览表</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-02-03 00:00:00" itemprop="dateCreated datePublished" datetime="2008-02-03T00:00:00+08:00">2008-02-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/analytics/" itemprop="url" rel="index"><span itemprop="name">Analytics</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="高强度爬虫程序"><a href="#高强度爬虫程序" class="headerlink" title="高强度爬虫程序"></a><e1>高强度爬虫程序</e1></h2><h3 id="百度爬虫"><a href="#百度爬虫" class="headerlink" title="百度爬虫"></a>百度爬虫</h3><p><strong>Baiduspider+(+<a target="_blank" rel="noopener" href="http://www.baidu.com/search/spider.htm">http://www.baidu.com/search/spider.htm</a>)</strong>  </p>
-<blockquote>
-<p>高强度爬虫，有时会从多个IP地址启动多个爬虫程序！<br>由于算法问题，百度爬虫对相同页面会多次发出请求（尤其是首页），令人烦恼。<br>推广效果好。</p>
-</blockquote>
-<h3 id="雅虎爬虫，分别是雅虎中国和美国总部的爬虫"><a href="#雅虎爬虫，分别是雅虎中国和美国总部的爬虫" class="headerlink" title="雅虎爬虫，分别是雅虎中国和美国总部的爬虫"></a>雅虎爬虫，分别是雅虎中国和美国总部的爬虫</h3><p><strong>Mozilla/5.0 (compatible; Yahoo! Slurp China; <a target="_blank" rel="noopener" href="http://misc.yahoo.com.cn/help.html">http://misc.yahoo.com.cn/help.html</a>)<br>Mozilla/5.0 (compatible; Yahoo! Slurp; <a target="_blank" rel="noopener" href="http://help.yahoo.com/help/us/ysearch/slurp">http://help.yahoo.com/help/us/ysearch/slurp</a>)</strong></p>
-<blockquote>
-<p>高强度爬虫，有时会从多个IP地址启动多个爬虫程序！<br>比较规范的爬虫，看参考其网址，设定爬虫访问间隔。（但需要考虑同时出现多个yahoo爬虫）<br>推广效果尚可。</p>
-</blockquote>
-<h3 id="新浪爱问爬虫"><a href="#新浪爱问爬虫" class="headerlink" title="新浪爱问爬虫"></a>新浪爱问爬虫</h3><p><strong>iaskspider/2.0(+<a target="_blank" rel="noopener" href="http://iask.com/help/help_index.html">http://iask.com/help/help_index.html</a>)<br>Mozilla/5.0 (compatible; iaskspider/1.0; MSIE 6.0)</strong></p>
-<blockquote>
-<p>算法差，大量扫描无实际意义的页面，对动态链接网站负担很大<br>推广效果差。  </p>
-</blockquote>
-<h3 id="搜狗爬虫"><a href="#搜狗爬虫" class="headerlink" title="搜狗爬虫"></a>搜狗爬虫</h3><p><strong>Sogou web spider/3.0(+<a target="_blank" rel="noopener" href="http://www.sogou.com/docs/help/webmasters.htm#07">http://www.sogou.com/docs/help/webmasters.htm#07</a>)<br>Sogou Push Spider/3.0(+<a target="_blank" rel="noopener" href="http://www.sogou.com/docs/help/webmasters.htm#07">http://www.sogou.com/docs/help/webmasters.htm#07</a>)</strong><br><em>【早期用法：“sogou spider”】</em></p>
-<blockquote>
-<p>算法差，大量扫描无实际意义的页面，对动态链接网站负担很大<br>推广效果差。</p>
-</blockquote>
-<h2 id="中等强度爬虫程序"><a href="#中等强度爬虫程序" class="headerlink" title="中等强度爬虫程序"></a><e2>中等强度爬虫程序</e2></h2><h3 id="Google爬虫"><a href="#Google爬虫" class="headerlink" title="Google爬虫"></a>Google爬虫</h3><p><strong>Mozilla/5.0 (compatible; Googlebot/2.1; +<a target="_blank" rel="noopener" href="http://www.google.com/bot.html">http://www.google.com/bot.html</a>)</strong></p>
-<blockquote>
-<p>算法优秀，多为访问有实际内容的页面<br>推广效果好。</p>
-</blockquote>
-<h3 id="Google-AdSense广告内容匹配爬虫"><a href="#Google-AdSense广告内容匹配爬虫" class="headerlink" title="Google AdSense广告内容匹配爬虫"></a>Google AdSense广告内容匹配爬虫</h3><p><strong>Mediapartners-Google/2.1</strong></p>
-<blockquote>
-<p>对网页收录有一定辅助作用。</p>
-</blockquote>
-<h3 id="网易爬虫"><a href="#网易爬虫" class="headerlink" title="网易爬虫"></a>网易爬虫</h3><p><strong>Mozilla/5.0 (compatible; YodaoBot/1.0; <a target="_blank" rel="noopener" href="http://www.yodao.com/help/webmaster/spider/">http://www.yodao.com/help/webmaster/spider/</a> )</strong><br><em>【早期采用“ OutfoxBot/0.5 (for internet experiments; http://”; <a href="mailto:outfoxbot@gmail.com">outfoxbot@gmail.com</a>)】</em></p>
-<blockquote>
-<p>其搜索算法需要改进<br>推广效果差。</p>
-</blockquote>
-<h3 id="Alexa排名爬虫"><a href="#Alexa排名爬虫" class="headerlink" title="Alexa排名爬虫"></a>Alexa排名爬虫</h3><p><strong>ia_archiver</strong></p>
-<blockquote>
-<p>用于检测网站是否做了alexa排名的作弊。</p>
-</blockquote>
-<h3 id="Twiceler"><a href="#Twiceler" class="headerlink" title="Twiceler"></a>Twiceler</h3><p><strong>Mozilla/5.0 (Twiceler-0.9 <a target="_blank" rel="noopener" href="http://www.cuill.com/twiceler/robot.html">http://www.cuill.com/twiceler/robot.html</a>)</strong></p>
-<blockquote>
-<p>美国斯坦福大学的一个学生研究项目。</p>
-</blockquote>
-<h2 id="其他搜索引擎的爬虫"><a href="#其他搜索引擎的爬虫" class="headerlink" title="其他搜索引擎的爬虫"></a><e3>其他搜索引擎的爬虫</e3></h2><p><strong>msnbot/1.0 (+<a target="_blank" rel="noopener" href="http://search.msn.com/msnbot.htm">http://search.msn.com/msnbot.htm</a>)</strong></p>
-<blockquote>
-<p>MSN爬虫<br>特点未知</p>
-</blockquote>
-<p><strong>msnbot-media/1.0 (+<a target="_blank" rel="noopener" href="http://search.msn.com/msnbot.htm">http://search.msn.com/msnbot.htm</a>)</strong></p>
-<blockquote>
-<p>（欢迎补充资料）<br>特点未知</p>
-</blockquote>
-<p><strong>Mozilla/4.0(compatible; MSIE 5.0; Windows 98; DigExt)</strong></p>
-<blockquote>
-<p>DigExt并非一个独立的爬虫程序，而是IE5的“允许脱机阅读”模式标记。</p>
-</blockquote>
-<p><strong>Mozilla/3.0 (compatible; Indy Library)</strong></p>
-<blockquote>
-<p>Indy Library本来是个开源程序库，但后来被spam bots冒用。<br>抓取强度：各服务器上不一定<br>推广效果：无</p>
-</blockquote>
-<p><strong>P.Arthur 1.1</strong></p>
-<blockquote>
-<p>据称为北大天网的搜索引擎爬虫程序</p>
-</blockquote>
-<p><strong>Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; QihooBot 1.0)</strong></p>
-<blockquote>
-<p>名字上看来是Qihoo的<br>特点未知</p>
-</blockquote>
-<p><strong>Gigabot</strong><br><strong>Gigabot/2.0 (<a target="_blank" rel="noopener" href="http://www.gigablast.com/spider.html">http://www.gigablast.com/spider.html</a>)</strong></p>
-<blockquote>
-<p>Gigabot搜索引擎爬虫。已被google收购？（欢迎补充资料）</p>
-</blockquote>
-<p><strong>eApolloBot/1.0 (eApollo search engine robot; <a target="_blank" rel="noopener" href="http://www.eapollo.com“/">http://www.eapollo.com“</a>; eapollo at global-opto dot com)</strong></p>
-<p><strong>lanshanbot/1.0</strong></p>
-<blockquote>
-<p>据说是中搜爬虫。（欢迎补充资料）</p>
-</blockquote>
-<p>iearthworm/1.0, <a href="mailto:iearthworm@yahoo.com.cn">iearthworm@yahoo.com.cn</a></p>
-<blockquote>
-<p>专抓图片的爬虫，据说来源IP是3721或阿里巴巴。</p>
-</blockquote>
-<p><strong>TMCrawler</strong></p>
-<p><strong>Mozilla/5.0 (compatible; heritrix/1.10.2 +<a target="_blank" rel="noopener" href="http://i.stanford.edu/">http://i.stanford.edu/</a>)</strong></p>
-<blockquote>
-<p>开源的网络爬虫，一个数字图书馆项目。</p>
-</blockquote>
-<p><strong>WebNews http.pl</strong></p>
-<h2 id="RSS扫描器"><a href="#RSS扫描器" class="headerlink" title="RSS扫描器"></a><e4>RSS扫描器</e4></h2><h3 id="foxmail6"><a href="#foxmail6" class="headerlink" title="foxmail6"></a>foxmail6</h3><p><strong>rss.asp Mozilla/6.0 (MSIE 6.0; Windows NT 5.1;Foxmail/MILOWU)</strong></p>
-<blockquote>
-<p>这是用foxmail6.0订阅了你的rss</p>
-</blockquote>
-<h3 id="google的rss搜索扫描器"><a href="#google的rss搜索扫描器" class="headerlink" title="google的rss搜索扫描器"></a>google的rss搜索扫描器</h3><p><strong>rss.asp Feedfetcher-Google; (+<a target="_blank" rel="noopener" href="http://www.google.com/feedfetcher.html">http://www.google.com/feedfetcher.html</a>)</strong></p>
-<blockquote>
-<p>google的rss搜索扫描器</p>
-</blockquote>
-<h3 id="feedsky"><a href="#feedsky" class="headerlink" title="feedsky"></a>feedsky</h3><p><strong>rss.asp feedsky_spider <a target="_blank" rel="noopener" href="http://www.feedsky.com/">http://www.feedsky.com</a></strong></p>
-<blockquote>
-<p>一款rss扫描器，有兴趣者进入此网站添加您的rss</p>
-</blockquote>
-<p>Powered by <a target="_blank" rel="noopener" href="http://scribefire.com/">ScribeFire</a>.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/02/02/MSN-use-firefox-open-url/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/02/02/MSN-use-firefox-open-url/" class="post-title-link" itemprop="url">如何在 MSN 中使用 Firefox 打开链接</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-02-02 00:00:00" itemprop="dateCreated datePublished" datetime="2008-02-02T00:00:00+08:00">2008-02-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>出于种种原因，微软在 MSN 中也捆绑了自己的浏览器 IE，也就是说无论在 Windows 中是否将 Firefox 指定为默认浏览器，在 MSN 中永远只会调用 IE 打开链接，比如 hotmail 邮箱，MSN space 等等。</p>
-<p>在这里要给大家介绍的是简单的安装第三方 MSN 插件的方法来解决这个难题，不需要手动更改注册表和 dll 文件，推荐 Windows 下的用户使用：</p>
-<ol>
-<li>先在 Windows 中的 “设定程序访问和默认值” 中将 FF 设为默认。</li>
-<li>使用 MSN Messenger 7.0 以下，包括 7.0 的用户，请先下载 <a target="_blank" rel="noopener" href="http://www.msgpluslive.net/download/">Messenger Plus! Live</a> 安装。使用 Windows Live Messenger 8 以上版本的同学可以跳过这一步，直接看下面。</li>
-<li>安装 <a target="_blank" rel="noopener" href="http://www.stuffplug.com/?act=download">stuffplug3</a> 插件。</li>
-<li>安装好之后登录自己的 MSN，在工具栏面板上的一大串小图标中选中 stuffplug3 的白色图标，在下拉菜单中选中 “options“。就像下面这样：<br><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="http://photo.liudongkai.com/blog/msn_firefox_01.jpg"></li>
-<li>在出来的窗口中点击 “General”，然后将 “Open all URLs in default browser” 前面打勾。就像下面这样：<br><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="http://photo.liudongkai.com/blog/msn_firefox_02.jpg"></li>
-<li>这时大家试着从 MSN 中点击邮箱或者 Space 的链接，应该已经可以从 FF 中打开了。</li>
-</ol>
-<p>Powered by <a target="_blank" rel="noopener" href="http://scribefire.com/">ScribeFire</a>.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1142,7 +1121,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">298</span>
+          <span class="site-state-item-count">300</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1153,7 +1132,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">215</span>
+        <span class="site-state-item-count">216</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

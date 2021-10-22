@@ -163,6 +163,289 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2021/10/22/use_youtubedr_download_youtube_videos/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/22/use_youtubedr_download_youtube_videos/" class="post-title-link" itemprop="url">用 youtubedr 下載 YouTube 影片</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-10-22 00:00:00" itemprop="dateCreated datePublished" datetime="2021-10-22T00:00:00+08:00">2021-10-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/mac-os/" itemprop="url" rel="index"><span itemprop="name">Mac OS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="安装youtubedr"><a href="#安装youtubedr" class="headerlink" title="安装youtubedr"></a>安装youtubedr</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install youtubedr</span><br><span class="line">brew install ffmpeg</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="查看需要下载的视频信息"><a href="#查看需要下载的视频信息" class="headerlink" title="查看需要下载的视频信息"></a>查看需要下载的视频信息</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">[liudongkai@MBPR DIR]$ youtubedr info 'https://www.youtube.com/watch?v=aaIUjeg9MpY'</span><br><span class="line"></span><br><span class="line">Title:       第五季 | 預告 Trailer【畫江湖之不良人 第5季 The Degenerate-Drawing Jianghu S5】</span><br><span class="line">Author:      畫江湖動畫 Drawing Jianghu</span><br><span class="line">Duration:    1m3s</span><br><span class="line"></span><br><span class="line">+------+-----+---------+---------+----------+-----------+---------+--------------------------------------------+</span><br><span class="line">| ITAG | FPS |  VIDEO  |  AUDIO  |  AUDIO   | SIZE [MB] | BITRATE |                  MIMETYPE                  |</span><br><span class="line">|      |     | QUALITY | QUALITY | CHANNELS |           |         |                                            |</span><br><span class="line">+------+-----+---------+---------+----------+-----------+---------+--------------------------------------------+</span><br><span class="line">|  271 |  25 | 1080p   |         |        0 |      17.2 | 2298678 | video/webm; codecs="vp9"                   |</span><br><span class="line">|  400 |  25 | 1080p   |         |        0 |      15.5 | 2075227 | video/mp4; codecs="av01.0.08M.08"          |</span><br><span class="line">|  137 |  25 | 1080p   |         |        0 |      11.5 | 1540933 | video/mp4; codecs="avc1.640028"            |</span><br><span class="line">|  248 |  25 | 1080p   |         |        0 |       9.3 | 1246099 | video/webm; codecs="vp9"                   |</span><br><span class="line">|  399 |  25 | 1080p   |         |        0 |       7.3 |  983101 | video/mp4; codecs="av01.0.08M.08"          |</span><br><span class="line">|  247 |  25 | 720p    |         |        0 |       5.3 |  710126 | video/webm; codecs="vp9"                   |</span><br><span class="line">|  136 |  25 | 720p    |         |        0 |       4.6 |  613055 | video/mp4; codecs="avc1.4d401f"            |</span><br><span class="line">|  398 |  25 | 720p    |         |        0 |       4.2 |  562648 | video/mp4; codecs="av01.0.05M.08"          |</span><br><span class="line">|   22 |  25 | 720p    | medium  |        2 |       5.6 |  742192 | video/mp4; codecs="avc1.64001F, mp4a.40.2" |</span><br><span class="line">|  135 |  25 | 480p    |         |        0 |       2.7 |  356167 | video/mp4; codecs="avc1.4d401e"            |</span><br><span class="line">|  244 |  25 | 480p    |         |        0 |       2.9 |  382376 | video/webm; codecs="vp9"                   |</span><br><span class="line">|   18 |  25 | 360p    | low     |        2 |       3.6 |  487537 | video/mp4; codecs="avc1.42001E, mp4a.40.2" |</span><br><span class="line">|  397 |  25 | 480p    |         |        0 |       2.2 |  298541 | video/mp4; codecs="av01.0.04M.08"          |</span><br><span class="line">|  134 |  25 | 360p    |         |        0 |       1.5 |  198119 | video/mp4; codecs="avc1.4d4015"            |</span><br><span class="line">|  243 |  25 | 360p    |         |        0 |       1.6 |  216536 | video/webm; codecs="vp9"                   |</span><br><span class="line">|  396 |  25 | 360p    |         |        0 |       1.2 |  165822 | video/mp4; codecs="av01.0.01M.08"          |</span><br><span class="line">|  133 |  25 | 240p    |         |        0 |       0.7 |  100255 | video/mp4; codecs="avc1.4d400d"            |</span><br><span class="line">|  242 |  25 | 240p    |         |        0 |       0.8 |  103754 | video/webm; codecs="vp9"                   |</span><br><span class="line">|  251 |   0 |         | medium  |        2 |       0.9 |  117014 | audio/webm; codecs="opus"                  |</span><br><span class="line">|  140 |   0 |         | medium  |        2 |       1.0 |  129567 | audio/mp4; codecs="mp4a.40.2"              |</span><br><span class="line">|  395 |  25 | 240p    |         |        0 |       0.6 |   86192 | video/mp4; codecs="av01.0.00M.08"          |</span><br><span class="line">|  160 |  25 | 144p    |         |        0 |       0.4 |   47400 | video/mp4; codecs="avc1.4d400b"            |</span><br><span class="line">|  250 |   0 |         | low     |        2 |       0.4 |   58873 | audio/webm; codecs="opus"                  |</span><br><span class="line">|  278 |  25 | 144p    |         |        0 |       0.4 |   55883 | video/webm; codecs="vp9"                   |</span><br><span class="line">|  394 |  25 | 144p    |         |        0 |       0.4 |   48707 | video/mp4; codecs="av01.0.00M.08"          |</span><br><span class="line">|  249 |   0 |         | low     |        2 |       0.3 |   44740 | audio/webm; codecs="opus"                  |</span><br><span class="line">+------+-----+---------+---------+----------+-----------+---------+--------------------------------------------+</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>第三列的Video Quality，就是你想要下载的视频质量，也就是清晰度</li>
+<li>最后一列的MIMETYPE告诉你视频的文件类型，一般就选mp4</li>
+</ul>
+<h2 id="下载视频"><a href="#下载视频" class="headerlink" title="下载视频"></a>下载视频</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtubedr download -q 271 'https://www.youtube.com/watch?v=aaIUjeg9MpY'</span><br></pre></td></tr></tbody></table></figure>
+<p>这只是下载了视频。。还没有下载音频！！<br>第五列 AUDIO CHANNELS 找那些为2的行，<br>第四行 AUDIO QUALITY 尽量选medium的，<br>第三行 VIDEO QUALITY 为空的，<br>最后一列 MIMETYPE 为audio/mp4，<br>我们定位到质量最好的音频ITAG为 140。</p>
+<h2 id="下载音频"><a href="#下载音频" class="headerlink" title="下载音频"></a>下载音频</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtubedr download -q 140 'https://www.youtube.com/watch?v=aaIUjeg9MpY'</span><br></pre></td></tr></tbody></table></figure>
+<p>现在下载了一个视频和一个音频。。。还差合并这一步，我们得合并下就大功告成了！！</p>
+<h2 id="合并视频与音频"><a href="#合并视频与音频" class="headerlink" title="合并视频与音频"></a>合并视频与音频</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 合并下载的音频与视频</span><br><span class="line">ffmpeg -i '源视频文件.mp4' -i '源音频文件.m4a' -vcodec copy -acodec copy 输出文件.mp4</span><br><span class="line"></span><br><span class="line"># 例：ffmpeg -i 'Peru 8K HDR 60FPS (FUHD).mp4' -i 'Peru 8K HDR 60FPS (FUHD).m4a' -vcodec copy -acodec copy output.mp4</span><br></pre></td></tr></tbody></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2021/10/21/download_youtube_videos_with_youtube-dl_install_by_homebrew/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/21/download_youtube_videos_with_youtube-dl_install_by_homebrew/" class="post-title-link" itemprop="url">用 Homebrew 安裝 youtube-dl 下載 YouTube 影片</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-10-21 00:00:00" itemprop="dateCreated datePublished" datetime="2021-10-21T00:00:00+08:00">2021-10-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/mac-os/" itemprop="url" rel="index"><span itemprop="name">Mac OS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Youtube-dl 这套强大的网络影片下载器，目前很多朋友可能会使用一些线上下载YouTube的网站，除了网页上满满的广告之外，还可能会常常遇到画质、音质不佳、下载速度慢，或是根本无法正常下载，毕竟 YouTube 也是随时在改版，虽然 Google 对于下载 YouTube 这件事算睁一只眼闭一只眼，但时不时还是会顺手防堵下载的漏洞。<br>而 youtube-dl 则是在 GitHub 上公开的开源软体，且他更新的频率相当惊人，几乎每隔几天就会更新，而更新内容大多都是针对各个影音网站的下载支持或功能修正。虽然 youtube-dl 没有 GUI，而是通过终端命令行操作，但非常轻量，且效率极佳。</p>
+<h1 id="安装-youtube-dl"><a href="#安装-youtube-dl" class="headerlink" title="安装 youtube-dl"></a>安装 youtube-dl</h1><p>请先安装 Homebrew，若你已经装好 Homebrew，则可以透过指令来安装 youtube-dl，打开终端并输入：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install youtube-dl</span><br></pre></td></tr></tbody></table></figure>
+
+<h1 id="安装-ffmpeg"><a href="#安装-ffmpeg" class="headerlink" title="安装 ffmpeg"></a>安装 ffmpeg</h1><p>我们下载 YouTube 影片时可能会用到转档、嵌入字幕等功能，这些功能必须安装 ffmpeg 来达成。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install ffmpeg</span><br></pre></td></tr></tbody></table></figure>
+
+<h1 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h1><p>如上面所说，<code>youtube-dl</code> 没有GUI，而是通过终端操作，因此在应用程序里是找不到它的，必须使用终端来操作。</p>
+<h2 id="下载影片"><a href="#下载影片" class="headerlink" title="下载影片"></a>下载影片</h2><p>在 macOS 中，终端预设目录是下载文件夹，但我们一般下载影片通常不会存在预设目录里，因此我们可以先指定下载目录。</p>
+<p>选择好下载目录后，在终端输入 <code>youtube-dl</code>，后跟 YouTube 影片网址即可下载，以下载 YouTube 影片 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=aaIUjeg9MpY">第五季 | 預告 Trailer【畫江湖之不良人 第5季 The Degenerate-Drawing Jianghu S5】</a> 为例：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[liudongkai@MBPR DIR]$ youtube-dl 'https://www.youtube.com/watch?v=aaIUjeg9MpY'</span><br><span class="line"></span><br><span class="line">[youtube] aaIUjeg9MpY: Downloading webpage</span><br><span class="line">[download] Destination: 第五季 _ 預告 Trailer【畫江湖之不良人 第5季 The Degenerate-Drawing Jianghu S5】-aaIUjeg9MpY.mp4</span><br><span class="line">[download]   3.9% of 5.54MiB at 64.92KiB/s ETA 01:23</span><br></pre></td></tr></tbody></table></figure>
+<p>按下回车之后 <code>youtube-dl</code> 便开始下载，在没有设定任何下载选项的状况下，可以看到这支影片以预设的 WebM 格式下载到下载项目资料夹中。在 YouTube 下载影片，来源的影片文件可能是各种格式、分段或是影音分开，这时通常都是靠 ffmpeg 将其转换为单一的影片文件。</p>
+<h2 id="影片转档"><a href="#影片转档" class="headerlink" title="影片转档"></a>影片转档</h2><p>刚刚下载的影片是 WebM 格式储存（有时可能是 mov 或 mkv 等等）不过其实 WebM 通常用于网页播放，我们一般在电脑、手机播放或剪辑，其实还是以 mp4 最通用。因此，我们可以在 youtube-dl 下载影片时，在指令后方加入 -f mp4 即可指定下载成 mp4 文件格式：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl 'https://www.youtube.com/watch?v=aaIUjeg9MpY' -f mp4</span><br></pre></td></tr></tbody></table></figure>
+<p>所以 -f 后面的文件格式也可以换成 3gp、aac、flv、m4a、mp3、mp4、ogg、wav、webm 等等。</p>
+<p>下载完成的文件，以 YouTube 来说，下载的文件名称就是 <u>影片名称-影片网址的编号.文件格式</u>，如上文案例文件名为：<code>第五季 _ 預告 Trailer【畫江湖之不良人 第5季 The Degenerate-Drawing Jianghu S5】-aaIUjeg9MpY.mp4</code>。</p>
+<h2 id="指定最高质量下载"><a href="#指定最高质量下载" class="headerlink" title="指定最高质量下载"></a>指定最高质量下载</h2><p>YouTube 通常会提供不同分辨率、不同码率的影片文件，我们可以通过指定编码序号进行下载。首先使用 <code>-F</code> 参数查看相关编码序号与质量（注意F为大写）</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">[liudongkai@MBPR DIR]$ youtube-dl -F 'https://www.youtube.com/watch?v=aaIUjeg9MpY' </span><br><span class="line">[youtube] aaIUjeg9MpY: Downloading webpage</span><br><span class="line">[info] Available formats for aaIUjeg9MpY:</span><br><span class="line">format code  extension  resolution note</span><br><span class="line">249          webm       audio only tiny   44k , webm_dash container, opus @ 44k (48000Hz), 342.00KiB</span><br><span class="line">250          webm       audio only tiny   58k , webm_dash container, opus @ 58k (48000Hz), 450.04KiB</span><br><span class="line">251          webm       audio only tiny  117k , webm_dash container, opus @117k (48000Hz), 894.48KiB</span><br><span class="line">140          m4a        audio only tiny  129k , m4a_dash container, mp4a.40.2@129k (44100Hz), 990.85KiB</span><br><span class="line">160          mp4        256x106    144p   47k , mp4_dash container, avc1.4d400b@  47k, 25fps, video only, 362.21KiB</span><br><span class="line">394          mp4        256x106    144p   48k , mp4_dash container, av01.0.00M.08@  48k, 25fps, video only, 372.20KiB</span><br><span class="line">278          webm       256x106    144p   55k , webm_dash container, vp9@  55k, 25fps, video only, 427.04KiB</span><br><span class="line">395          mp4        426x178    240p   86k , mp4_dash container, av01.0.00M.08@  86k, 25fps, video only, 658.65KiB</span><br><span class="line">133          mp4        426x178    240p  100k , mp4_dash container, avc1.4d400d@ 100k, 25fps, video only, 766.11KiB</span><br><span class="line">242          webm       426x178    240p  103k , webm_dash container, vp9@ 103k, 25fps, video only, 792.85KiB</span><br><span class="line">396          mp4        640x266    360p  165k , mp4_dash container, av01.0.01M.08@ 165k, 25fps, video only, 1.24MiB</span><br><span class="line">134          mp4        640x266    360p  198k , mp4_dash container, avc1.4d4015@ 198k, 25fps, video only, 1.48MiB</span><br><span class="line">243          webm       640x266    360p  216k , webm_dash container, vp9@ 216k, 25fps, video only, 1.62MiB</span><br><span class="line">397          mp4        854x356    480p  298k , mp4_dash container, av01.0.04M.08@ 298k, 25fps, video only, 2.23MiB</span><br><span class="line">135          mp4        854x356    480p  356k , mp4_dash container, avc1.4d401e@ 356k, 25fps, video only, 2.66MiB</span><br><span class="line">244          webm       854x356    480p  382k , webm_dash container, vp9@ 382k, 25fps, video only, 2.85MiB</span><br><span class="line">398          mp4        1280x532   720p  562k , mp4_dash container, av01.0.05M.08@ 562k, 25fps, video only, 4.20MiB</span><br><span class="line">136          mp4        1280x532   720p  613k , mp4_dash container, avc1.4d401f@ 613k, 25fps, video only, 4.57MiB</span><br><span class="line">247          webm       1280x532   720p  710k , webm_dash container, vp9@ 710k, 25fps, video only, 5.30MiB</span><br><span class="line">399          mp4        1920x798   1080p  983k , mp4_dash container, av01.0.08M.08@ 983k, 25fps, video only, 7.34MiB</span><br><span class="line">248          webm       1920x798   1080p 1246k , webm_dash container, vp9@1246k, 25fps, video only, 9.30MiB</span><br><span class="line">137          mp4        1920x798   1080p 1540k , mp4_dash container, avc1.640028@1540k, 25fps, video only, 11.50MiB</span><br><span class="line">400          mp4        2048x852   1080p 2075k , mp4_dash container, av01.0.08M.08@2075k, 25fps, video only, 15.49MiB</span><br><span class="line">271          webm       2048x852   1080p 2298k , webm_dash container, vp9@2298k, 25fps, video only, 17.15MiB</span><br><span class="line">18           mp4        640x266    360p  487k , avc1.42001E, 25fps, mp4a.40.2 (44100Hz), 3.64MiB</span><br><span class="line">22           mp4        1280x532   720p  742k , avc1.64001F, 25fps, mp4a.40.2 (44100Hz) (best)</span><br></pre></td></tr></tbody></table></figure>
+<p>查看输出列表，找到画质音质最好的序号，案例中1920x798分辨率下视频最好的是271，音频最好的是140，得到这两个序号后，可以通过 <code>youtube-dl -f 视频序号+音频序号</code> 进行合并下载，这样下载后，视频和音频会自动合并。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[liudongkai@MBPR DIR]$ youtube-dl -f 271+140 'https://www.youtube.com/watch?v=aaIUjeg9MpY'</span><br><span class="line">[youtube] aaIUjeg9MpY: Downloading webpage</span><br><span class="line">WARNING: You have requested multiple formats but ffmpeg or avconv are not installed. The formats won't be merged.</span><br><span class="line">WARNING: Requested formats are incompatible for merge and will be merged into mkv.</span><br><span class="line">[download] Destination: 第五季 _ 預告 Trailer【畫江湖之不良人 第5季 The Degenerate-Drawing Jianghu S5】-aaIUjeg9MpY.f271.webm</span><br><span class="line">[download]   5.8% of 17.15MiB at 942.21KiB/s ETA 00:17</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>注意：-f 后跟的两个序号需要必须先视频后音频</strong></p>
+<h2 id="嵌入字幕"><a href="#嵌入字幕" class="headerlink" title="嵌入字幕"></a>嵌入字幕</h2><p>有时 YouTube 影片会有不同语言的 CC 字幕可选择，我们可以透过 <code>youtube-dl</code> 将字幕嵌入到影片中。</p>
+<p>首先我们先列出可以下载的字幕，以上文案例为例，在 <code>youtube-dl</code> 下载指令后方加入 –list-subs</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl 'https://www.youtube.com/watch?v=aaIUjeg9MpY' --list-subs</span><br></pre></td></tr></tbody></table></figure>
+<p>youtube-dl 分析 YouTube 网页后，在最下方 Available subtitles 列出可用的字幕包含：</p>
+<ul>
+<li>zh-CN</li>
+<li>en</li>
+<li>zh</li>
+<li>zh-TW</li>
+</ul>
+<p>也就是简体中文、英文、中文、中文(台湾)这几种选择。</p>
+<p>有关嵌入字幕的 youtube-dl 指令：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">--write-sub #下载字幕</span><br><span class="line">--embed-sub #嵌入字幕</span><br><span class="line">—-sub-lang zh-CN #指定语言（以简体中文为例）</span><br><span class="line">--all-subs #下载所有字幕（如果要将所有可用的字幕嵌入）</span><br></pre></td></tr></tbody></table></figure>
+<p>因此如果我们要下载嵌入简体中文字幕的 mp4 影片，指令为：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl 'https://www.youtube.com/watch?v=aaIUjeg9MpY' --write-sub --embed-sub --sub-lang zh-CN -f mp4</span><br></pre></td></tr></tbody></table></figure>
+<p>支援嵌入字幕的影片格式包含：mp4、mkv 以及 webm；与格式工厂、HandBreak 那种将字幕直接写入在影片画面上的方式不同，使用 youtube-dl 嵌入的字幕是可以选择开启或关闭，以及选择不同语言的。此外，语系的代号大小写有别，必须一模一样，例如简体中文 zh-CN 的 CN 一定要是大写，非常重要！</p>
+<p>下载完成后，以 QuickTime Player 打开，可以看到出现中文字幕的选项；若是以其他播放软体如 INNA 开启，也是可以选择字幕的，不过每个软件显示情况可能有所不同。</p>
+<h1 id="高级应用"><a href="#高级应用" class="headerlink" title="高级应用"></a>高级应用</h1><h2 id="指定格式以最优质量下载视频"><a href="#指定格式以最优质量下载视频" class="headerlink" title="指定格式以最优质量下载视频"></a>指定格式以最优质量下载视频</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 指定视频为mp4格式、音频为m4a格式以最优质量下载youtube视频，其它网站暂未测试，官方说Windows下换单引号为双引号</span><br><span class="line">youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' 'https://www.youtube.com/watch?v=aaIUjeg9MpY'</span><br><span class="line"></span><br><span class="line"># 或者直接使用默认设置，一般会下载两个webm文件，分别为视频和音频，</span><br><span class="line"># 再自动合并成附带音轨的webm格式视频，测试发现也是最高分辨率，有4K就下4K版本</span><br><span class="line">youtube-dl 'https://www.youtube.com/watch?v=aaIUjeg9MpY'</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="以最优质量下载音频"><a href="#以最优质量下载音频" class="headerlink" title="以最优质量下载音频"></a>以最优质量下载音频</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 默认下载音频为opus格式</span><br><span class="line">youtube-dl -x 'https://www.youtube.com/watch?v=aaIUjeg9MpY'</span><br><span class="line"></span><br><span class="line"># 下载mp3格式的音频</span><br><span class="line">youtube-dl -x --audio-format mp3 'https://www.youtube.com/watch?v=aaIUjeg9MpY'</span><br><span class="line"></span><br><span class="line"># 最优质量下载音频</span><br><span class="line">youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 'https://www.youtube.com/watch?v=aaIUjeg9MpY'</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="下载播放列表中的视频"><a href="#下载播放列表中的视频" class="headerlink" title="下载播放列表中的视频"></a>下载播放列表中的视频</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 使用默认，与下载单个视频格式一样</span><br><span class="line">youtbue-dl 'https://www.youtube.com/watch?v=rbxjUvJjFhU&amp;list=PLTQ0CcMHNrjudMnoc2wCxWk0el8AIhWhd'</span><br><span class="line"></span><br><span class="line"># 可以使用选项--playlist-start, --playlist-end或者指定某个视频 --playlist-items</span><br><span class="line"># --playlist-items 可设置多个值.如："--playlist-items 1,2,5 下载1、2、5项</span><br><span class="line"></span><br><span class="line"># 下载列表第二个及以后的所有视频</span><br><span class="line">youtube-dl --playstart-start 2 'https://www.youtube.com/watch?v=rbxjUvJjFhU&amp;list=PLTQ0CcMHNrjudMnoc2wCxWk0el8AIhWhd'</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="限定分辨率下载播放列表中的视频"><a href="#限定分辨率下载播放列表中的视频" class="headerlink" title="限定分辨率下载播放列表中的视频"></a>限定分辨率下载播放列表中的视频</h3><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 以最高480P下载列表第3个及以后的所有视频</span><br><span class="line">youtube-dl --playlist-start 3 -f 'bestvideo[height&lt;=480]+bestaudio/best[height&lt;=480]' 'https://www.youtube.com/watch?v=rbxjUvJjFhU&amp;list=PLTQ0CcMHNrjudMnoc2wCxWk0el8AIhWhd'</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="下载播放列表中视频的音轨"><a href="#下载播放列表中视频的音轨" class="headerlink" title="下载播放列表中视频的音轨"></a>下载播放列表中视频的音轨</h3><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 使用--playlist-start、--playlist-end、--playlist-items来限定</span><br><span class="line"></span><br><span class="line"># 最优质量下载播放列表中3-6这四个视频的音频文件，并转换成mp3格式</span><br><span class="line">youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --playlist-start 3 --playlist-end 6 'https://www.youtube.com/watch?v=rbxjUvJjFhU&amp;list=PLTQ0CcMHNrjudMnoc2wCxWk0el8AIhWhd'</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="调用aria2加速下载"><a href="#调用aria2加速下载" class="headerlink" title="调用aria2加速下载"></a>调用aria2加速下载</h2><p>​解决使用youtube-dl默认下载时常常断开连接的问题。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl --external-downloader aria2c --external-downloader-args "-x 16 -k 1M" 'https://www.youtube.com/watch?v=aaIUjeg9MpY'</span><br></pre></td></tr></tbody></table></figure>
+<p>参数说明：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">--external-downloader aria2c # 调用外部下载工具</span><br><span class="line">--external-downloader-args # 外部下载工具指定参数</span><br><span class="line">-x 16 # 启用aria2 16个线程，最多就支持16线程</span><br><span class="line">-K 1M # 指定块的大小</span><br></pre></td></tr></tbody></table></figure>
+<p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://askubuntu.com/questions/634584/how-to-download-youtube-videos-as-a-best-quality-audio-mp3-using-youtube-dl">How to download youtube videos as a best quality audio mp3 using youtube-dl [duplicate]</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.sysgeek.cn/youtube-dl-examples/">Youtube 专业下载工具，Youtube-dl 详细使用教程与初学上手示例</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u014389734/article/details/86751840">Youtube-dl调用外部Aria2多线程加速下载</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2021/09/26/timeout_command_on_mac/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/26/timeout_command_on_mac/" class="post-title-link" itemprop="url">Timeout command on Mac OS X?</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-09-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-26T00:00:00+08:00">2021-09-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/mac-os/" itemprop="url" rel="index"><span itemprop="name">Mac OS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>You can use</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install coreutils</span><br></pre></td></tr></tbody></table></figure>
+
+<p>And then whenever you need timeout, use</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gtimeout</span><br></pre></td></tr></tbody></table></figure>
+
+<p>..instead. To explain why here’s a snippet from the Homebrew Caveats section:</p>
+<blockquote>
+<p>Caveats</p>
+<p>All commands have been installed with the prefix ‘g’.</p>
+<p>If you really need to use these commands with their normal names, you can add a “gnubin” directory to your PATH from your bashrc like:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Additionally, you can access their man pages with normal names if you add the “gnuman” directory to your MANPATH from your bashrc as well:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"</span><br></pre></td></tr></tbody></table></figure></blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2021/09/26/pd17/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -250,87 +533,6 @@
 <blockquote>
 <p>第四种情况：如果出现类似以上的英文报错，说明你的虚拟机系统已经在 后台运行，可以手动运行PD，右键Docker栏的PD图标， 选择控制中心，查看虚拟机系统的运行状态，可以右键电源图标，选择关闭或者停止，然后重新运行我们的工具即可。 另外，如果你的虚拟机设置成融合模式，已经后台运行， 重复运行小工具也可能会有这个报错，建议关闭融合模式。</p>
 </blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2021/09/26/timeout_command_on_mac/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/26/timeout_command_on_mac/" class="post-title-link" itemprop="url">Timeout command on Mac OS X?</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-09-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-26T00:00:00+08:00">2021-09-26</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/mac-os/" itemprop="url" rel="index"><span itemprop="name">Mac OS</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>You can use</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install coreutils</span><br></pre></td></tr></tbody></table></figure>
-
-<p>And then whenever you need timeout, use</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gtimeout</span><br></pre></td></tr></tbody></table></figure>
-
-<p>..instead. To explain why here’s a snippet from the Homebrew Caveats section:</p>
-<blockquote>
-<p>Caveats</p>
-<p>All commands have been installed with the prefix ‘g’.</p>
-<p>If you really need to use these commands with their normal names, you can add a “gnubin” directory to your PATH from your bashrc like:</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"</span><br></pre></td></tr></tbody></table></figure>
-
-<p>Additionally, you can access their man pages with normal names if you add the “gnuman” directory to your MANPATH from your bashrc as well:</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"</span><br></pre></td></tr></tbody></table></figure></blockquote>
 
       
     </div>
@@ -663,7 +865,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/04/21/brew_link_python_error_permission_denied/" class="post-title-link" itemprop="url">解决mac下brew link python出错</a>
+            <a href="/2019/04/21/brew_link_python_error_permission_denied/" class="post-title-link" itemprop="url">使2用hcitool lescan时出现错误：Set scan parameters failed: Operation not permitted</a>
         </h2>
 
         <div class="post-meta">
@@ -739,7 +941,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/04/21/brew_link_python_error_permission_denied/" class="post-title-link" itemprop="url">使2用hcitool lescan时出现错误：Set scan parameters failed: Operation not permitted</a>
+            <a href="/2019/04/21/brew_link_python_error_permission_denied/" class="post-title-link" itemprop="url">解决mac下brew link python出错</a>
         </h2>
 
         <div class="post-meta">
@@ -929,195 +1131,6 @@
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2018/07/05/http_cache_control_not_only_max_age/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/07/05/http_cache_control_not_only_max_age/" class="post-title-link" itemprop="url">HTTP缓存的应用，不仅仅是max-age</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-07-05 00:00:00" itemprop="dateCreated datePublished" datetime="2018-07-05T00:00:00+08:00">2018-07-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/w3c/" itemprop="url" rel="index"><span itemprop="name">W3C</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>相信不管是做前端开发还是后端开发的同学，或多或少在开发过程中接触过缓存的概念。最简单的例子就是前端对于静态资源–即css、js、图片等文件资源进行缓存。但是大部分同学知道的可能就是设置<code>Cache-Control: max-age=xxx</code>来设置资源的过期时间，然而缓存的运用在互联网中可谓是无处不在，一个好的缓存方案可以大大提升服务的性能，而一个不好的缓存方案可能会导致网站的可用性降低。所以今天我们就来聊聊HTTP协议中的缓存。</p>
-</blockquote>
-<p>首先HTTP协议中主要涉及缓存的Header就是<code>Cache-Control</code>和<code>Expires</code>，目前阶段来说<code>Expires</code>已经渐渐被淘汰了，所以我们主要讲讲<code>Cache-Control</code>。</p>
-<p><code>Cache-Control</code>并不是只有指定<code>max-age</code>过期时间这么一种使用方式，事实上这只是<code>Cache-Control</code>最基础的用法，我们来看看<code>Cache-Control</code>有哪些可以设置的值</p>
-<ol>
-<li>private、public和no-cache用来指定客户端和代理缓存的可缓存性</li>
-<li>max-age和s-maxage用来指定客户端和代理缓存的缓存时间</li>
-<li>must-revalidate和proxy-revalidate用来指定缓存过期后是否必须验证才能使用</li>
-<li>no-store用来表明任何地方都不应该缓存内容</li>
-<li>其他一些不常用的设置</li>
-</ol>
-<p>首先大家必须要弄清楚的一点是，<strong>缓存不仅仅只有浏览器可以缓存，互联网中存在着各式各样的代理缓存</strong>。HTTP仅仅是一个应用层的协议，在数据传输的过程中逃不开各种中继的设备，而本身HTTP是明文传输的，所以每个中继设备都可以解析HTTP数据包中的内容，所以如果某个中继设备想，他就可以成为一个代理缓存（想想曾经的某些运行商做的事）。当然HTTP的代理缓存更多还是服务假设者自己做的，但是本质上是一个意思。<br><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="/images/20180705001.png"></p>
-<p>那么相对于大家都知道的客户端缓存，代理缓存有什么好处呢？最明显的优势就是：客户端缓存是一对一的，但是代理缓存是一对多的。</p>
-<p>从这张图中我们可以看到，对于同一个源服务器可以存在不同的代理（有些CDN就近获取资源就有用到缓存的知识）。如果这些代理都开启来缓存功能，那么用户一在第一次访问数据的时候，代理通过源服务器获取资源返回给用户，并同时缓存来这个请求，这时候用户二再次来请求的时候，就不需要经过源服务器，直接从代理缓存读取就可以来。</p>
-<p>所以对于耗时操作而且数据修改不频繁的数据，开启代理缓存对于性能的提升是非常明显的，哪怕你每次缓存的时间只有5秒，对于并发量很高请求带来的性能提升也是不可估量的。</p>
-<p>当然这个操作源服务器通过自己设置缓存也可以实现，但是代理缓存的好处是，如果你的代理离用户足够近，那么减少的延时也是非常明显的。比如如果你的服务器在美国纽约，如果你不在国内设置一个代理缓存，那么所有数据都要跨国半个地球再绕回来，而有代理缓存的情况就不一样来。</p>
-<p>那么说回来，怎么控制代理缓存的使用？还是靠HTTP协议，在HTTP协议的发展历史中，已经有非常多的实践让协议进行修改和发展，所以目前的缓存方案可以说已经比较完善了。一般来说，代理缓存服务器都会对最新的HTTP协议的标准进行实现，并且适当兼容老得标准，一般不会出现一些魔改实现。所以只要你对HTTP协议的缓存方案充分了解，那么你就可以很好得使用代理服务器的缓存了。</p>
-<p>最主要的你需要知道：</p>
-<ol>
-<li>如何控制代理服务是否缓存或者缓存多少时间</li>
-<li>代理缓存时候可以提供过期缓存的内容</li>
-<li>如何进行缓存验证</li>
-</ol>
-<p>知道这些之后，配合一个好用的代理缓存，相信能对你的服务带来很大的性能提升。</p>
-<p>最后，HTTP协议是所有WEB相关开发的同学都必须要牢牢掌握的基础，仅仅知道POST、GET、Content-Type并不算理解HTTP协议，HTTP协议中还有非常多好玩又好用的内容等着大家去发掘。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2018/07/04/Sublime3_no_packages/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/07/04/Sublime3_no_packages/" class="post-title-link" itemprop="url">Sublime Text 3 -- There are no packages available for installation</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-07-04 00:00:00" itemprop="dateCreated datePublished" datetime="2018-07-04T00:00:00+08:00">2018-07-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/mac-os/" itemprop="url" rel="index"><span itemprop="name">Mac OS</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="错误现象"><a href="#错误现象" class="headerlink" title="错误现象"></a>错误现象</h2><p>Sublime Text 3 在安装Package Control的时候会出现类似如下错误：</p>
-<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="/images/20180704001.png" alt="Sublime Text 3 Package Control ERROR"></p>
-<p>开启debug时，console里会出现如下提示：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Package Control: Found previously exported CA bundle at /Users/.../Library/Application Support/Sublime Text 3/Packages/User/oscrypto-ca-bundle.crt (272085 bytes)</span><br><span class="line"></span><br><span class="line">Package Control: Urllib HTTPS Debug General</span><br><span class="line">  Upgrading connection to SSL using CA certs file at /Users/.../Library/Application Support/Sublime Text 3/Packages/User/Package Control.merged-ca-bundle</span><br><span class="line">  Using hostname "packagecontrol.io" for TLS SNI extension</span><br><span class="line">Package Control: Error downloading channel. HTTP exception InvalidCertificateException (Host 127.0.0.1:9090 returned an invalid certificate ([SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:548))) downloading https://packagecontrol.io/channel_v3.json.</span><br></pre></td></tr></tbody></table></figure>
-
-<p>特别是用了代理的时候。</p>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>很多Google中找到的办法都不能解决，可以尝试以下的粗暴办法:</p>
-<ol>
-<li>清空 /Users/…/Library/Application Support/Sublime Text 3/Packages/User/oscrypto-ca-bundle.crt</li>
-<li>将console中提示有SSL问题的域名根证书加入到oscrypto-ca-bundle.crt即可</li>
-</ol>
-<p>以packagecontrol.io为例，<br><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="/images/20180704002.png" alt="packagecontrol.io证书信息"></p>
-<ul>
-<li><p>可以通过GeoTrust官网根证书清单（<a target="_blank" rel="noopener" href="https://www.geotrust.com/resources/root-certificates/%EF%BC%89%E6%89%BE%E5%88%B0GeoTrust">https://www.geotrust.com/resources/root-certificates/）找到GeoTrust</a> Global CA的公钥(<a target="_blank" rel="noopener" href="https://www.geotrust.com/resources/root_certificates/certificates/GeoTrust_Global_CA.pem">https://www.geotrust.com/resources/root_certificates/certificates/GeoTrust_Global_CA.pem</a>)</p>
-</li>
-<li><p>也可以通过<a target="_blank" rel="noopener" href="https://ssl-tools.net/webservers%E5%B7%A5%E5%85%B7%E6%89%BE%E5%88%B0%E6%95%B4%E4%B8%AA%E8%AF%81%E4%B9%A6%E9%93%BE%E5%8F%8A%E5%85%AC%E9%92%A5">https://ssl-tools.net/webservers工具找到整个证书链及公钥</a></p>
-</li>
-</ul>
-<h2 id="channel-v3-json里涉及的相关公钥"><a href="#channel-v3-json里涉及的相关公钥" class="headerlink" title="channel_v3.json里涉及的相关公钥"></a>channel_v3.json里涉及的相关公钥</h2><h3 id="GeoTrust-Global-CA"><a href="#GeoTrust-Global-CA" class="headerlink" title="GeoTrust Global CA"></a>GeoTrust Global CA</h3><p>相关域名<br>packagecontrol.io<br>sublimerge.com</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN CERTIFICATE-----</span><br><span class="line">MIIDVDCCAjygAwIBAgIDAjRWMA0GCSqGSIb3DQEBBQUAMEIxCzAJBgNVBAYTAlVT</span><br><span class="line">MRYwFAYDVQQKEw1HZW9UcnVzdCBJbmMuMRswGQYDVQQDExJHZW9UcnVzdCBHbG9i</span><br><span class="line">YWwgQ0EwHhcNMDIwNTIxMDQwMDAwWhcNMjIwNTIxMDQwMDAwWjBCMQswCQYDVQQG</span><br><span class="line">EwJVUzEWMBQGA1UEChMNR2VvVHJ1c3QgSW5jLjEbMBkGA1UEAxMSR2VvVHJ1c3Qg</span><br><span class="line">R2xvYmFsIENBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2swYYzD9</span><br><span class="line">9BcjGlZ+W988bDjkcbd4kdS8odhM+KhDtgPpTSEHCIjaWC9mOSm9BXiLnTjoBbdq</span><br><span class="line">fnGk5sRgprDvgOSJKA+eJdbtg/OtppHHmMlCGDUUna2YRpIuT8rxh0PBFpVXLVDv</span><br><span class="line">iS2Aelet8u5fa9IAjbkU+BQVNdnARqN7csiRv8lVK83Qlz6cJmTM386DGXHKTubU</span><br><span class="line">1XupGc1V3sjs0l44U+VcT4wt/lAjNvxm5suOpDkZALeVAjmRCw7+OC7RHQWa9k0+</span><br><span class="line">bw8HHa8sHo9gOeL6NlMTOdReJivbPagUvTLrGAMoUgRx5aszPeE4uwc2hGKceeoW</span><br><span class="line">MPRfwCvocWvk+QIDAQABo1MwUTAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBTA</span><br><span class="line">ephojYn7qwVkDBF9qn1luMrMTjAfBgNVHSMEGDAWgBTAephojYn7qwVkDBF9qn1l</span><br><span class="line">uMrMTjANBgkqhkiG9w0BAQUFAAOCAQEANeMpauUvXVSOKVCUn5kaFOSPeCpilKIn</span><br><span class="line">Z57QzxpeR+nBsqTP3UEaBU6bS+5Kb1VSsyShNwrrZHYqLizz/Tt1kL/6cdjHPTfS</span><br><span class="line">tQWVYrmm3ok9Nns4d0iXrKYgjy6myQzCsplFAMfOEVEiIuCl6rYVSAlk6l5PdPcF</span><br><span class="line">PseKUgzbFbS9bZvlxrFUaKnjaZC2mqUPuLk/IH2uSrW4nOQdtqvmlKXBx4Ot2/Un</span><br><span class="line">hw4EbNX/3aBd7YdStysVAq45pmp06drE57xNNB6pXE0zX5IJL4hmXXeXxx12E6nV</span><br><span class="line">5fEWCRE11azbJHFwLJhWC9kXtNHjUStedejV0NxPNO3CBWaAocvmMw==</span><br><span class="line">-----END CERTIFICATE-----</span><br></pre></td></tr></tbody></table></figure>
-<p>via： <a target="_blank" rel="noopener" href="https://www.geotrust.com/resources/root_certificates/certificates/GeoTrust_Global_CA.pem">https://www.geotrust.com/resources/root_certificates/certificates/GeoTrust_Global_CA.pem</a></p>
-<h3 id="DigiCert-High-Assurance-EV-Root-CA"><a href="#DigiCert-High-Assurance-EV-Root-CA" class="headerlink" title="DigiCert High Assurance EV Root CA"></a>DigiCert High Assurance EV Root CA</h3><p>相关域名<br>codeload.github.com<br>bitbucket.org<br>github.com<br>s3.amazonaws.com</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN CERTIFICATE-----</span><br><span class="line">MIIDxTCCAq2gAwIBAgIQAqxcJmoLQJuPC3nyrkYldzANBgkqhkiG9w0BAQUFADBs</span><br><span class="line">MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3</span><br><span class="line">d3cuZGlnaWNlcnQuY29tMSswKQYDVQQDEyJEaWdpQ2VydCBIaWdoIEFzc3VyYW5j</span><br><span class="line">ZSBFViBSb290IENBMB4XDTA2MTExMDAwMDAwMFoXDTMxMTExMDAwMDAwMFowbDEL</span><br><span class="line">MAkGA1UEBhMCVVMxFTATBgNVBAoTDERpZ2lDZXJ0IEluYzEZMBcGA1UECxMQd3d3</span><br><span class="line">LmRpZ2ljZXJ0LmNvbTErMCkGA1UEAxMiRGlnaUNlcnQgSGlnaCBBc3N1cmFuY2Ug</span><br><span class="line">RVYgUm9vdCBDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMbM5XPm</span><br><span class="line">+9S75S0tMqbf5YE/yc0lSbZxKsPVlDRnogocsF9ppkCxxLeyj9CYpKlBWTrT3JTW</span><br><span class="line">PNt0OKRKzE0lgvdKpVMSOO7zSW1xkX5jtqumX8OkhPhPYlG++MXs2ziS4wblCJEM</span><br><span class="line">xChBVfvLWokVfnHoNb9Ncgk9vjo4UFt3MRuNs8ckRZqnrG0AFFoEt7oT61EKmEFB</span><br><span class="line">Ik5lYYeBQVCmeVyJ3hlKV9Uu5l0cUyx+mM0aBhakaHPQNAQTXKFx01p8VdteZOE3</span><br><span class="line">hzBWBOURtCmAEvF5OYiiAhF8J2a3iLd48soKqDirCmTCv2ZdlYTBoSUeh10aUAsg</span><br><span class="line">EsxBu24LUTi4S8sCAwEAAaNjMGEwDgYDVR0PAQH/BAQDAgGGMA8GA1UdEwEB/wQF</span><br><span class="line">MAMBAf8wHQYDVR0OBBYEFLE+w2kD+L9HAdSYJhoIAu9jZCvDMB8GA1UdIwQYMBaA</span><br><span class="line">FLE+w2kD+L9HAdSYJhoIAu9jZCvDMA0GCSqGSIb3DQEBBQUAA4IBAQAcGgaX3Nec</span><br><span class="line">nzyIZgYIVyHbIUf4KmeqvxgydkAQV8GK83rZEWWONfqe/EW1ntlMMUu4kehDLI6z</span><br><span class="line">eM7b41N5cdblIZQB2lWHmiRk9opmzN6cN82oNLFpmyPInngiK3BD41VHMWEZ71jF</span><br><span class="line">hS9OMPagMRYjyOfiZRYzy78aG6A9+MpeizGLYAiJLQwGXFK3xPkKmNEVX58Svnw2</span><br><span class="line">Yzi9RKR/5CYrCsSXaQ3pjOLAEFe4yHYSkVXySGnYvCoCWw9E1CAx2/S6cCZdkGCe</span><br><span class="line">vEsXCS+0yx5DaMkHJ8HSXPfqIbloEpw8nL+e/IBcm2PN7EeqJSdnoDfzAIJ9VNep</span><br><span class="line">+OkuE6N36B9K</span><br><span class="line">-----END CERTIFICATE-----</span><br></pre></td></tr></tbody></table></figure>
-<p>via: <a target="_blank" rel="noopener" href="https://ev-root.chain-demos.digicert.com/info/index.html">https://ev-root.chain-demos.digicert.com/info/index.html</a></p>
-<h3 id="DST-Root-CA-X3"><a href="#DST-Root-CA-X3" class="headerlink" title="DST Root CA X3"></a>DST Root CA X3</h3><p>相关域名:<br>packages.monokai.pro<br>downloads.sourceforge.net<br>sublime.wbond.net</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN CERTIFICATE-----</span><br><span class="line">MIIDSjCCAjKgAwIBAgIQRK+wgNajJ7qJMDmGLvhAazANBgkqhkiG9w0BAQUFADA/</span><br><span class="line">MSQwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAMT</span><br><span class="line">DkRTVCBSb290IENBIFgzMB4XDTAwMDkzMDIxMTIxOVoXDTIxMDkzMDE0MDExNVow</span><br><span class="line">PzEkMCIGA1UEChMbRGlnaXRhbCBTaWduYXR1cmUgVHJ1c3QgQ28uMRcwFQYDVQQD</span><br><span class="line">Ew5EU1QgUm9vdCBDQSBYMzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB</span><br><span class="line">AN+v6ZdQCINXtMxiZfaQguzH0yxrMMpb7NnDfcdAwRgUi+DoM3ZJKuM/IUmTrE4O</span><br><span class="line">rz5Iy2Xu/NMhD2XSKtkyj4zl93ewEnu1lcCJo6m67XMuegwGMoOifooUMM0RoOEq</span><br><span class="line">OLl5CjH9UL2AZd+3UWODyOKIYepLYYHsUmu5ouJLGiifSKOeDNoJjj4XLh7dIN9b</span><br><span class="line">xiqKqy69cK3FCxolkHRyxXtqqzTWMIn/5WgTe1QLyNau7Fqckh49ZLOMxt+/yUFw</span><br><span class="line">7BZy1SbsOFU5Q9D8/RhcQPGX69Wam40dutolucbY38EVAjqr2m7xPi71XAicPNaD</span><br><span class="line">aeQQmxkqtilX4+U9m5/wAl0CAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAOBgNV</span><br><span class="line">HQ8BAf8EBAMCAQYwHQYDVR0OBBYEFMSnsaR7LHH62+FLkHX/xBVghYkQMA0GCSqG</span><br><span class="line">SIb3DQEBBQUAA4IBAQCjGiybFwBcqR7uKGY3Or+Dxz9LwwmglSBd49lZRNI+DT69</span><br><span class="line">ikugdB/OEIKcdBodfpga3csTS7MgROSR6cz8faXbauX+5v3gTt23ADq1cEmv8uXr</span><br><span class="line">AvHRAosZy5Q6XkjEGB5YGV8eAlrwDPGxrancWYaLbumR9YbK+rlmM6pZW87ipxZz</span><br><span class="line">R8srzJmwN0jP41ZL9c8PDHIyh8bwRLtTcm1D9SZImlJnt1ir/md2cXjbDaJWFBM5</span><br><span class="line">JDGFoqgCWjBH4d1QB7wCCZAA62RjYJsWvIjJEubSfZGL+T0yjWW06XyxV3bqxbYo</span><br><span class="line">Ob8VZRzI9neWagqNdwvYkQsEjgfbKbYK7p2CNTUQ</span><br><span class="line">-----END CERTIFICATE-----</span><br></pre></td></tr></tbody></table></figure>
-<p>via: <a target="_blank" rel="noopener" href="https://letsencrypt.org/certificates/">https://letsencrypt.org/certificates/</a></p>
-<h3 id="Certum-Trusted-Network-CA"><a href="#Certum-Trusted-Network-CA" class="headerlink" title="Certum Trusted Network CA"></a>Certum Trusted Network CA</h3><p>相关域名：<br>serwer1784570.home.pl</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN CERTIFICATE-----</span><br><span class="line">MIIDDDCCAfSgAwIBAgIDAQAgMA0GCSqGSIb3DQEBBQUAMD4xCzAJBgNVBAYTAlBM</span><br><span class="line">MRswGQYDVQQKExJVbml6ZXRvIFNwLiB6IG8uby4xEjAQBgNVBAMTCUNlcnR1bSBD</span><br><span class="line">QTAeFw0wMjA2MTExMDQ2MzlaFw0yNzA2MTExMDQ2MzlaMD4xCzAJBgNVBAYTAlBM</span><br><span class="line">MRswGQYDVQQKExJVbml6ZXRvIFNwLiB6IG8uby4xEjAQBgNVBAMTCUNlcnR1bSBD</span><br><span class="line">QTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAM6xwS7TT3zNJc4YPk/E</span><br><span class="line">jG+AanPIW1H4m9LcuwBcsaD8dQPugfCI7iNS6eYVM42sLQnFdvkrOYCJ5JdLkKWo</span><br><span class="line">ePhzQ3ukYbDYWMzhbGZ+nPMJXlVjhNWo7/OxLjBos8Q82KxujZlakE403Daaj4GI</span><br><span class="line">ULdtlkIJ89eVgw1BS7Bqa/j8D35in2fE7SZfECYPCE/wpFcozo+47UX2bu4lXapu</span><br><span class="line">Ob7kky/ZR6By6/qmW6/KUz/iDsaWVhFu9+lmqSbYf5VT7QqFiLpPKaVCjF62/IUg</span><br><span class="line">AKpoC6EahQGcxEZjgoi2IrHu/qpGWX7PNSzVttpd90gzFFS269lvzs2I1qsb2pY7</span><br><span class="line">HVkCAwEAAaMTMBEwDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQUFAAOCAQEA</span><br><span class="line">uI3O7+cUus/usESSbLQ5PqKEbq24IXfS1HeCh+YgQYHu4vgRt2PRFze+GXYkHAQa</span><br><span class="line">TOs9qmdvLdTN/mUxcMUbpgIKumB7bVjCmkn+YzILa+M6wKyrO7Do0wlRjBCDxjTg</span><br><span class="line">xSvgGrZgFCdsMneMvLJymM/NzD+5yCRCFNZX/OYmQ6kd5YCQzgNUKD73P9P4Te1q</span><br><span class="line">CjqTE5s7FCMTY5w/0YcneeVMUeMBrYVdGjux1XMQpNPyvG5k9VpWkKjHDkx0Dy5x</span><br><span class="line">O/fIR/RpbxXyEV6DHpx8Uq79AtoSqFlnGNu8cN2bsWntgM6JQEhqDjXKKWYVIZQs</span><br><span class="line">6GAqm4VKQPNriiTsBhYscw==</span><br><span class="line">-----END CERTIFICATE-----</span><br></pre></td></tr></tbody></table></figure>
-
-<p>via: <a target="_blank" rel="noopener" href="https://www.certum.eu/en/cert_expertise_root_certificates/#CTNCA">https://www.certum.eu/en/cert_expertise_root_certificates/#CTNCA</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1187,7 +1200,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">298</span>
+          <span class="site-state-item-count">300</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1198,7 +1211,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">215</span>
+        <span class="site-state-item-count">216</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

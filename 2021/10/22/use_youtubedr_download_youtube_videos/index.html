@@ -1,0 +1,432 @@
+<!DOCTYPE html><html lang="zh-Hans"><head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.liudongkai.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"PFZ0Y857EY","apiKey":"da65f2d4ea1c6d4dccfa6d7f197d2aaf","indexName":"blog","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="安装youtubedr12brew install youtubedrbrew install ffmpeg  查看需要下载的视频信息12345678910111213141516171819202122232425262728293031323334353637[liudongkai@MBPR DIR]$ youtubedr info &amp;#x27;https://www.youtube.com/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用 youtubedr 下載 YouTube 影片">
+<meta property="og:url" content="http://www.liudongkai.com/2021/10/22/use_youtubedr_download_youtube_videos/index.html">
+<meta property="og:site_name" content="Dong's Note">
+<meta property="og:description" content="安装youtubedr12brew install youtubedrbrew install ffmpeg  查看需要下载的视频信息12345678910111213141516171819202122232425262728293031323334353637[liudongkai@MBPR DIR]$ youtubedr info &amp;#x27;https://www.youtube.com/">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-10-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-10-21T16:00:00.000Z">
+<meta property="article:author" content="東木">
+<meta property="article:tag" content="Mac OS">
+<meta property="article:tag" content="YouTube">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://www.liudongkai.com/2021/10/22/use_youtubedr_download_youtube_videos/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>用 youtubedr 下載 YouTube 影片 | Dong's Note</title>
+  
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-42337789-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c7096e12ca3876b01c9b962bd40adf7e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Dong's Note</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2021/10/22/use_youtubedr_download_youtube_videos/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          用 youtubedr 下載 YouTube 影片
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-10-22 00:00:00" itemprop="dateCreated datePublished" datetime="2021-10-22T00:00:00+08:00">2021-10-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/mac-os/" itemprop="url" rel="index"><span itemprop="name">Mac OS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="安装youtubedr"><a href="#安装youtubedr" class="headerlink" title="安装youtubedr"></a>安装youtubedr</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install youtubedr</span><br><span class="line">brew install ffmpeg</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="查看需要下载的视频信息"><a href="#查看需要下载的视频信息" class="headerlink" title="查看需要下载的视频信息"></a>查看需要下载的视频信息</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">[liudongkai@MBPR DIR]$ youtubedr info 'https://www.youtube.com/watch?v=aaIUjeg9MpY'</span><br><span class="line"></span><br><span class="line">Title:       第五季 | 預告 Trailer【畫江湖之不良人 第5季 The Degenerate-Drawing Jianghu S5】</span><br><span class="line">Author:      畫江湖動畫 Drawing Jianghu</span><br><span class="line">Duration:    1m3s</span><br><span class="line"></span><br><span class="line">+------+-----+---------+---------+----------+-----------+---------+--------------------------------------------+</span><br><span class="line">| ITAG | FPS |  VIDEO  |  AUDIO  |  AUDIO   | SIZE [MB] | BITRATE |                  MIMETYPE                  |</span><br><span class="line">|      |     | QUALITY | QUALITY | CHANNELS |           |         |                                            |</span><br><span class="line">+------+-----+---------+---------+----------+-----------+---------+--------------------------------------------+</span><br><span class="line">|  271 |  25 | 1080p   |         |        0 |      17.2 | 2298678 | video/webm; codecs="vp9"                   |</span><br><span class="line">|  400 |  25 | 1080p   |         |        0 |      15.5 | 2075227 | video/mp4; codecs="av01.0.08M.08"          |</span><br><span class="line">|  137 |  25 | 1080p   |         |        0 |      11.5 | 1540933 | video/mp4; codecs="avc1.640028"            |</span><br><span class="line">|  248 |  25 | 1080p   |         |        0 |       9.3 | 1246099 | video/webm; codecs="vp9"                   |</span><br><span class="line">|  399 |  25 | 1080p   |         |        0 |       7.3 |  983101 | video/mp4; codecs="av01.0.08M.08"          |</span><br><span class="line">|  247 |  25 | 720p    |         |        0 |       5.3 |  710126 | video/webm; codecs="vp9"                   |</span><br><span class="line">|  136 |  25 | 720p    |         |        0 |       4.6 |  613055 | video/mp4; codecs="avc1.4d401f"            |</span><br><span class="line">|  398 |  25 | 720p    |         |        0 |       4.2 |  562648 | video/mp4; codecs="av01.0.05M.08"          |</span><br><span class="line">|   22 |  25 | 720p    | medium  |        2 |       5.6 |  742192 | video/mp4; codecs="avc1.64001F, mp4a.40.2" |</span><br><span class="line">|  135 |  25 | 480p    |         |        0 |       2.7 |  356167 | video/mp4; codecs="avc1.4d401e"            |</span><br><span class="line">|  244 |  25 | 480p    |         |        0 |       2.9 |  382376 | video/webm; codecs="vp9"                   |</span><br><span class="line">|   18 |  25 | 360p    | low     |        2 |       3.6 |  487537 | video/mp4; codecs="avc1.42001E, mp4a.40.2" |</span><br><span class="line">|  397 |  25 | 480p    |         |        0 |       2.2 |  298541 | video/mp4; codecs="av01.0.04M.08"          |</span><br><span class="line">|  134 |  25 | 360p    |         |        0 |       1.5 |  198119 | video/mp4; codecs="avc1.4d4015"            |</span><br><span class="line">|  243 |  25 | 360p    |         |        0 |       1.6 |  216536 | video/webm; codecs="vp9"                   |</span><br><span class="line">|  396 |  25 | 360p    |         |        0 |       1.2 |  165822 | video/mp4; codecs="av01.0.01M.08"          |</span><br><span class="line">|  133 |  25 | 240p    |         |        0 |       0.7 |  100255 | video/mp4; codecs="avc1.4d400d"            |</span><br><span class="line">|  242 |  25 | 240p    |         |        0 |       0.8 |  103754 | video/webm; codecs="vp9"                   |</span><br><span class="line">|  251 |   0 |         | medium  |        2 |       0.9 |  117014 | audio/webm; codecs="opus"                  |</span><br><span class="line">|  140 |   0 |         | medium  |        2 |       1.0 |  129567 | audio/mp4; codecs="mp4a.40.2"              |</span><br><span class="line">|  395 |  25 | 240p    |         |        0 |       0.6 |   86192 | video/mp4; codecs="av01.0.00M.08"          |</span><br><span class="line">|  160 |  25 | 144p    |         |        0 |       0.4 |   47400 | video/mp4; codecs="avc1.4d400b"            |</span><br><span class="line">|  250 |   0 |         | low     |        2 |       0.4 |   58873 | audio/webm; codecs="opus"                  |</span><br><span class="line">|  278 |  25 | 144p    |         |        0 |       0.4 |   55883 | video/webm; codecs="vp9"                   |</span><br><span class="line">|  394 |  25 | 144p    |         |        0 |       0.4 |   48707 | video/mp4; codecs="av01.0.00M.08"          |</span><br><span class="line">|  249 |   0 |         | low     |        2 |       0.3 |   44740 | audio/webm; codecs="opus"                  |</span><br><span class="line">+------+-----+---------+---------+----------+-----------+---------+--------------------------------------------+</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>第三列的Video Quality，就是你想要下载的视频质量，也就是清晰度</li>
+<li>最后一列的MIMETYPE告诉你视频的文件类型，一般就选mp4</li>
+</ul>
+<h2 id="下载视频"><a href="#下载视频" class="headerlink" title="下载视频"></a>下载视频</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtubedr download -q 271 'https://www.youtube.com/watch?v=aaIUjeg9MpY'</span><br></pre></td></tr></tbody></table></figure>
+<p>这只是下载了视频。。还没有下载音频！！<br>第五列 AUDIO CHANNELS 找那些为2的行，<br>第四行 AUDIO QUALITY 尽量选medium的，<br>第三行 VIDEO QUALITY 为空的，<br>最后一列 MIMETYPE 为audio/mp4，<br>我们定位到质量最好的音频ITAG为 140。</p>
+<h2 id="下载音频"><a href="#下载音频" class="headerlink" title="下载音频"></a>下载音频</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtubedr download -q 140 'https://www.youtube.com/watch?v=aaIUjeg9MpY'</span><br></pre></td></tr></tbody></table></figure>
+<p>现在下载了一个视频和一个音频。。。还差合并这一步，我们得合并下就大功告成了！！</p>
+<h2 id="合并视频与音频"><a href="#合并视频与音频" class="headerlink" title="合并视频与音频"></a>合并视频与音频</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 合并下载的音频与视频</span><br><span class="line">ffmpeg -i '源视频文件.mp4' -i '源音频文件.m4a' -vcodec copy -acodec copy 输出文件.mp4</span><br><span class="line"></span><br><span class="line"># 例：ffmpeg -i 'Peru 8K HDR 60FPS (FUHD).mp4' -i 'Peru 8K HDR 60FPS (FUHD).m4a' -vcodec copy -acodec copy output.mp4</span><br></pre></td></tr></tbody></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/mac-os/" rel="tag"># Mac OS</a>
+              <a href="/tags/youtube/" rel="tag"># YouTube</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/10/21/download_youtube_videos_with_youtube-dl_install_by_homebrew/" rel="prev" title="用 Homebrew 安裝 youtube-dl 下載 YouTube 影片">
+      <i class="fa fa-chevron-left"></i> 用 Homebrew 安裝 youtube-dl 下載 YouTube 影片
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85youtubedr"><span class="nav-number">1.</span> <span class="nav-text">安装youtubedr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E9%9C%80%E8%A6%81%E4%B8%8B%E8%BD%BD%E7%9A%84%E8%A7%86%E9%A2%91%E4%BF%A1%E6%81%AF"><span class="nav-number">2.</span> <span class="nav-text">查看需要下载的视频信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E8%A7%86%E9%A2%91"><span class="nav-number">3.</span> <span class="nav-text">下载视频</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E9%9F%B3%E9%A2%91"><span class="nav-number">4.</span> <span class="nav-text">下载音频</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%88%E5%B9%B6%E8%A7%86%E9%A2%91%E4%B8%8E%E9%9F%B3%E9%A2%91"><span class="nav-number">5.</span> <span class="nav-text">合并视频与音频</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">東木</p>
+  <div class="site-description" itemprop="description">The palest ink is better than the best memory.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">300</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">216</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  © 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> &amp; <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+<script type="text/javascript" src="/bundle.js"></script><script type="text/javascript">
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 3,
+                processImages: null,
+            };
+        ;
+window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});;
+!function(n){n.imageLazyLoadSetting.processImages=o;var e=n.imageLazyLoadSetting.isSPA,i=n.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},t.src!==i&&(n.src=i)}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body></html>

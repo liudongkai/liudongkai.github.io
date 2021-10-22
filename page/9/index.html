@@ -163,6 +163,165 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2013/04/17/xml-sql-symbol-convert/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/04/17/xml-sql-symbol-convert/" class="post-title-link" itemprop="url">通过xml处理sql语句时对小于号与大于号的处理转换</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2013-04-17 00:00:00" itemprop="dateCreated datePublished" datetime="2013-04-17T00:00:00+08:00">2013-04-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>当我们需要通过xml格式处理sql语句时，经常会用到&lt; ，&lt;=，&gt;，&gt;=等符号，但是很容易引起xml格式的错误，这样会导致后台将xml字符串转换为xml文档时报错，从而导致程序错误。</p>
+<p>这样的问题在iBatiS中或者自定义的xml处理sql的程序中经常需要我们来处理。其实很简单，我们只需作如下替换即可避免上述的错误：</p>
+<p>原符号 | &lt; | &lt;= | &gt; | &gt;= | &amp; | ‘ | “<br>—|—<br>替换符号 | <code>&amp;lt;</code> | <code>&amp;lt;=</code> | <code>&amp;gt;</code> | <code>&amp;gt;=</code> | <code>&amp;amp;</code> | <code>&amp;apos;</code> | <code>&amp;quot;</code></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2013/04/17/xml-sql-symbol-convert/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2013/04/09/tcp-sysctl-close-wait/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/04/09/tcp-sysctl-close-wait/" class="post-title-link" itemprop="url">CLOSE_WAIT状态 生产过程分析 linux系统sysctl.conf配置优化 [ZT]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2013-04-09 00:00:00" itemprop="dateCreated datePublished" datetime="2013-04-09T00:00:00+08:00">2013-04-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>CLOSE_WAIT状态</p>
+<p>首先我们知道，如果我们的服务器程序APACHE,nginx,resin处于CLOSE_WAIT状态的话，说明套接字是被动关闭的！</p>
+<p>因为如果是CLIENT端主动断掉当前连接的话，那么双方关闭这个TCP连接共需要四个packet：</p>
+<p>Client —&gt; FIN —&gt; ServerClient &lt;— ACK &lt;— Server</p>
+<p>这时候Client端处于FIN_WAIT_2状态；而Server 程序处于CLOSE_WAIT状态。</p>
+<p>Client &lt;— FIN &lt;— Server</p>
+<p>这时Server 发送FIN给Client，Server 就置为LAST_ACK状态。</p>
+<p>Client —&gt; ACK —&gt; Server</p>
+<p>Client回应了ACK，那么Server 的套接字才会真正置为CLOSED状态。</p>
+<p>Server 程序处于CLOSE_WAIT状态，而不是LAST_ACK状态，说明还没有发FIN给Client，那么可能是在关闭连接之前还有许多数据要发送或者其他事要做，导致没有发这个FIN packet。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2013/04/09/tcp-sysctl-close-wait/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2013/03/16/VBoxGuestAdditions-iso/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -756,155 +915,6 @@
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2012/11/08/prevent-shell-running-at-the-same-time/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2012/11/08/prevent-shell-running-at-the-same-time/" class="post-title-link" itemprop="url">如何避免shell脚本被同时运行多次[zt]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2012-11-08 00:00:00" itemprop="dateCreated datePublished" datetime="2012-11-08T00:00:00+08:00">2012-11-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>比如说有一个周期性(cron)备份mysql的脚本，或者rsync脚本，<br>如果出现意外，运行时间过长，<br>很有可能下一个备份周期已经开始了，当前周期的脚本却还没有运行完，<br>显然我们都不愿意看到这样的情况发生。</p>
-<p>其实只要对脚本自身做一些改动，就可以避免它被重复运行。</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">LOCK_NAME="/tmp/my.lock"</span><br><span class="line">if [[ -e $LOCK_NAME ]] ; then</span><br><span class="line">        echo "re-entry, exiting"</span><br><span class="line">        exit 1</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">### Placing lock file</span><br><span class="line">touch $LOCK_NAME</span><br><span class="line">echo -n "Started..."</span><br><span class="line"> </span><br><span class="line">### 开始正常流程</span><br><span class="line">### 正常流程结束</span><br><span class="line"> </span><br><span class="line">### Removing lock</span><br><span class="line">rm -f $LOCK_NAME</span><br><span class="line"> </span><br><span class="line">echo "Done."</span><br></pre></td></tr></tbody></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2012/11/08/prevent-shell-running-at-the-same-time/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2012/09/25/mysql-innodb-doublewrite/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2012/09/25/mysql-innodb-doublewrite/" class="post-title-link" itemprop="url">mysql innodb doublewrite</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2012-09-25 00:00:00" itemprop="dateCreated datePublished" datetime="2012-09-25T00:00:00+08:00">2012-09-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Double write写给innodb带来的是可靠性，主要用来解决部分写失败(partial page write)。</p>
-<p>doublewrite有两部分组成，一部分是内存中的doublewrite buffer，大小为2M，另外一部分就是物理磁盘上的共享表空间中连续的128个页，即两个区，大小同样为2M。</p>
-<p>当缓冲池的胀业刷新时，并不直接写硬盘，而是通过memcpy函数将脏页先拷贝到内存中的doublewrite buffer，之后通过doublewrite buffer再分两次写，每次写入1M到共享表空间的物理磁盘上，然后马上调用fsync函数，同步磁盘。以下命令可以查看doublewrite的使用 情况。</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show global status like 'innodb_dblwr%';</span><br><span class="line"> +----------------------------+----------+</span><br><span class="line"> | Variable_name              | Value    |</span><br><span class="line"> +----------------------------+----------+</span><br><span class="line"> | Innodb_dblwr_pages_written | 60511554 |</span><br><span class="line"> | Innodb_dblwr_writes        | 828734   |</span><br><span class="line"> +----------------------------+----------+</span><br></pre></td></tr></tbody></table></figure>
-
-<p>这台DB doublewrite一共写了60511554个页，但实际写入次数为828734，60511554/828734=73。说明这台DB的压力一般。 slave上可以通过设置skip_innodb_doublewrite参数关闭两次写功能来提高性能，但是master上一定要开启此功能，保证数据安全。</p>
-<p>skip_innodb_doublewrite，是一个自读变量，需在配置文件中设置，并重启生效。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -974,7 +984,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">298</span>
+          <span class="site-state-item-count">300</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -985,7 +995,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">215</span>
+        <span class="site-state-item-count">216</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
