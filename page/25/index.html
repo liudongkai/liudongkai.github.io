@@ -2,7 +2,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 6.0.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -312,86 +312,6 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/04/EditPlus-regex/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/03/04/EditPlus-regex/" class="post-title-link" itemprop="url">EditPlus正则表达式替换字符串详解</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-03-04 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-04T00:00:00+08:00">2008-03-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>网上搜集了些实例</p>
-<p>正则表达式是一个查询的字符串，它包含一般的字符和一些特殊的字符，特殊字符可以扩展查找字符串的能力，正则表达式在查找和替换字符串的作用不可忽视，它能很好提高工作效率。</p>
-<p>EditPlus的查找，替换，文件中查找支持以下的正则表达式：</p>
-<blockquote>
-<p>Expression Description</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">\t Tab character.  </span><br><span class="line">\n New line.  </span><br><span class="line">. Matches any character.  </span><br><span class="line">| Either expression on its left and right side matches the target string.  </span><br><span class="line">For example, "a|b" matches "a" and "b".  </span><br><span class="line">[] Any of the enclosed characters may match the target character.  </span><br><span class="line">  For example, "[ab]" matches "a" and "b". "[0-9]" matches any digit.  </span><br><span class="line">[^] None of the enclosed characters may match the target character.  </span><br><span class="line">  For example, "[^ab]" matches all character EXCEPT "a" and "b".  </span><br><span class="line">"[^0-9]" matches any non-digit character.  </span><br><span class="line">* Character to the left of asterisk in the expression should match 0 or more times.  </span><br><span class="line">For example "be*" matches "b", "be" and "bee".    </span><br><span class="line">+ Character to the left of plus sign in the expression should match 1 or more times.  </span><br><span class="line">For example "be+" matches "be" and "bee" but not "b".  </span><br><span class="line">? Character to the left of question mark in the expression should match 0 or 1 time.  </span><br><span class="line">For example "be?" matches "b" and "be" but not "bee".  </span><br><span class="line">^ Expression to the right of ^ matches only when it is at the beginning of line.  </span><br><span class="line">For example "^A" matches an "A" that is only at the beginning of line.  </span><br><span class="line">$ Expression to the left of $ matches only when it is at the end of line.  </span><br><span class="line">For example "e$" matches an "e" that is only at the end of line.  </span><br><span class="line">() Affects evaluation order of expression and also used for tagged expression.  </span><br><span class="line">\ scape character. If you want to use character "\" itself, you should use "\\".</span><br></pre></td></tr></tbody></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2008/03/04/EditPlus-regex/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/04/EditPlus-regex-example/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -466,6 +386,86 @@
 <p>注: 本次操作导入数据 7988 行</p>
 <p>shawl.qiu<br>15:39 2006-5-16</p>
 
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/04/EditPlus-regex/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/03/04/EditPlus-regex/" class="post-title-link" itemprop="url">EditPlus正则表达式替换字符串详解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-03-04 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-04T00:00:00+08:00">2008-03-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>网上搜集了些实例</p>
+<p>正则表达式是一个查询的字符串，它包含一般的字符和一些特殊的字符，特殊字符可以扩展查找字符串的能力，正则表达式在查找和替换字符串的作用不可忽视，它能很好提高工作效率。</p>
+<p>EditPlus的查找，替换，文件中查找支持以下的正则表达式：</p>
+<blockquote>
+<p>Expression Description</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">\t Tab character.  </span><br><span class="line">\n New line.  </span><br><span class="line">. Matches any character.  </span><br><span class="line">| Either expression on its left and right side matches the target string.  </span><br><span class="line">For example, "a|b" matches "a" and "b".  </span><br><span class="line">[] Any of the enclosed characters may match the target character.  </span><br><span class="line">  For example, "[ab]" matches "a" and "b". "[0-9]" matches any digit.  </span><br><span class="line">[^] None of the enclosed characters may match the target character.  </span><br><span class="line">  For example, "[^ab]" matches all character EXCEPT "a" and "b".  </span><br><span class="line">"[^0-9]" matches any non-digit character.  </span><br><span class="line">* Character to the left of asterisk in the expression should match 0 or more times.  </span><br><span class="line">For example "be*" matches "b", "be" and "bee".    </span><br><span class="line">+ Character to the left of plus sign in the expression should match 1 or more times.  </span><br><span class="line">For example "be+" matches "be" and "bee" but not "b".  </span><br><span class="line">? Character to the left of question mark in the expression should match 0 or 1 time.  </span><br><span class="line">For example "be?" matches "b" and "be" but not "bee".  </span><br><span class="line">^ Expression to the right of ^ matches only when it is at the beginning of line.  </span><br><span class="line">For example "^A" matches an "A" that is only at the beginning of line.  </span><br><span class="line">$ Expression to the left of $ matches only when it is at the end of line.  </span><br><span class="line">For example "e$" matches an "e" that is only at the end of line.  </span><br><span class="line">() Affects evaluation order of expression and also used for tagged expression.  </span><br><span class="line">\ scape character. If you want to use character "\" itself, you should use "\\".</span><br></pre></td></tr></tbody></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2008/03/04/EditPlus-regex/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1080,7 +1080,7 @@
 <div class="copyright">
   
   © 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

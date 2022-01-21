@@ -2,7 +2,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 6.0.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -1062,7 +1062,7 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/27/ssh-remote-host-identification-has-changed/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/27/zlib-installation/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1076,7 +1076,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2008/03/27/ssh-remote-host-identification-has-changed/" class="post-title-link" itemprop="url">WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!</a>
+            <a href="/2008/03/27/zlib-installation/" class="post-title-link" itemprop="url">zlib安装</a>
         </h2>
 
         <div class="post-meta">
@@ -1109,13 +1109,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>使用SSH登录另外一台机器，</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh 192.168.1.105</span><br></pre></td></tr></tbody></table></figure>
-<p>得到如下输出</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">@ WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED! @</span><br><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!</span><br><span class="line">Someone could be eavesdropping on you right now (man-in-the-middle attack)!</span><br><span class="line">It is also possible that the RSA host key has just been changed.</span><br><span class="line">The fingerprint for the RSA key sent by the remote host is</span><br><span class="line">a5:1c:99:1f:fa:d7:1e:76:8b:0a:67:eb:4f:90:24:7a.</span><br><span class="line">Please contact your system administrator.</span><br><span class="line">Add correct host key in /root/.ssh/known_hosts to get rid of this message.</span><br><span class="line">Offending key in /root/.ssh/known_hosts:1</span><br><span class="line">RSA host key for 192.168.1.105 has changed and you have requested strict checking.</span><br><span class="line">Host key verification failed.</span><br></pre></td></tr></tbody></table></figure>
+          <p>在编译软件./configure 时得到错误反馈</p>
+<blockquote>
+<p>checking zlib.h usability… no<br>checking zlib.h presence… no<br>checking for zlib.h… no</p>
+</blockquote>
+<p><strong>zlib软件包所包含的库经常被一些软件的压缩或解压缩函数用到，所以如果编译软件时需要Zlib则说明这个软件正好含有压缩或解压缩函数，我们需要安装zlib软件包。</strong></p>
+<p>先到zlib官方网站：<a target="_blank" rel="noopener" href="http://www.zlib.net/">http://www.zlib.net</a> 上下载源码来安装zlib软件包。</p>
+<p>目前最新版本zlib是zlib1.2.3，安装开始；</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.zlib.net/zlib-1.2.3.tar.gz</span><br><span class="line">tar -xvzf zlib-1.2.3.tar.gz</span><br><span class="line">cd zlib-1.2.3</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></tbody></table></figure>
 
-<p>搜索得到如下解决：</p>
-<p>因为在本地机器上曾经用SSH登录过这台远程计算机，因而留下了known_hosts的记录，在远程计算机重新安装系统后不能够通过鉴权。删除<code>~/.ssh/known_hosts</code>中对应的项目，问题获得解决。</p>
+<p>这就完成了zlib1.2.3的安装，由于安装zlib1.2.3需要编译，所以最基本的编译器是要安装好的。</p>
 
       
     </div>
@@ -1240,7 +1243,7 @@
 <div class="copyright">
   
   © 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
