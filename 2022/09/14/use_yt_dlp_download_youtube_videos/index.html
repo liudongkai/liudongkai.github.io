@@ -1,0 +1,437 @@
+<!DOCTYPE html><html lang="zh-Hans"><head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.liudongkai.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"PFZ0Y857EY","apiKey":"da65f2d4ea1c6d4dccfa6d7f197d2aaf","indexName":"blog","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="安装yt-dlp12brew install yt-dlpbrew install ffmpeg  查看需要下载的视频信息123yt-dlp -F [视频链接]-F #查看视频格式构成--proxy [系统代理] #填写你的系统代理设置，如果使用全局模式可不使用此语句。  效果 123456789101112131415161718192021222324252627282930313233343">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 yt-dlp 下载 YouTube 视频">
+<meta property="og:url" content="http://www.liudongkai.com/2022/09/14/use_yt_dlp_download_youtube_videos/index.html">
+<meta property="og:site_name" content="Dong's Note">
+<meta property="og:description" content="安装yt-dlp12brew install yt-dlpbrew install ffmpeg  查看需要下载的视频信息123yt-dlp -F [视频链接]-F #查看视频格式构成--proxy [系统代理] #填写你的系统代理设置，如果使用全局模式可不使用此语句。  效果 123456789101112131415161718192021222324252627282930313233343">
+<meta property="og:locale">
+<meta property="article:published_time" content="2022-09-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-13T16:00:00.000Z">
+<meta property="article:author" content="東木">
+<meta property="article:tag" content="Mac OS">
+<meta property="article:tag" content="YouTube">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://www.liudongkai.com/2022/09/14/use_yt_dlp_download_youtube_videos/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>使用 yt-dlp 下载 YouTube 视频 | Dong's Note</title>
+  
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-42337789-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c7096e12ca3876b01c9b962bd40adf7e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Dong's Note</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2022/09/14/use_yt_dlp_download_youtube_videos/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用 yt-dlp 下载 YouTube 视频
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-09-14 00:00:00" itemprop="dateCreated datePublished" datetime="2022-09-14T00:00:00+08:00">2022-09-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/mac-os/" itemprop="url" rel="index"><span itemprop="name">Mac OS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="安装yt-dlp"><a href="#安装yt-dlp" class="headerlink" title="安装yt-dlp"></a>安装yt-dlp</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install yt-dlp</span><br><span class="line">brew install ffmpeg</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="查看需要下载的视频信息"><a href="#查看需要下载的视频信息" class="headerlink" title="查看需要下载的视频信息"></a>查看需要下载的视频信息</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yt-dlp -F [视频链接]</span><br><span class="line">-F #查看视频格式构成</span><br><span class="line">--proxy [系统代理] #填写你的系统代理设置，如果使用全局模式可不使用此语句。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>效果</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">[liudongkai@MBPR DIR]$ yt-dlp -F 'https://www.youtube.com/watch?v=BfKhREVFLkQ'</span><br><span class="line">[youtube] BfKhREVFLkQ: Downloading webpage</span><br><span class="line">[youtube] BfKhREVFLkQ: Downloading android player API JSON</span><br><span class="line">[info] Available formats for BfKhREVFLkQ:</span><br><span class="line">ID  EXT   RESOLUTION FPS CH │   FILESIZE   TBR PROTO │ VCODEC          VBR ACODEC      ABR ASR MORE INFO</span><br><span class="line">────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span><br><span class="line">sb2 mhtml 48x27        0    │                  mhtml │ images                                  storyboard</span><br><span class="line">sb1 mhtml 80x45        0    │                  mhtml │ images                                  storyboard</span><br><span class="line">sb0 mhtml 160x90       0    │                  mhtml │ images                                  storyboard</span><br><span class="line">139 m4a   audio only      2 │   14.75MiB   49k https │ audio only          mp4a.40.5   49k 22k low, m4a_dash</span><br><span class="line">249 webm  audio only      2 │   14.75MiB   49k https │ audio only          opus        49k 48k low, webm_dash</span><br><span class="line">250 webm  audio only      2 │   19.28MiB   64k https │ audio only          opus        64k 48k low, webm_dash</span><br><span class="line">140 m4a   audio only      2 │   39.16MiB  129k https │ audio only          mp4a.40.2  129k 44k medium, m4a_dash</span><br><span class="line">251 webm  audio only      2 │   37.87MiB  125k https │ audio only          opus       125k 48k medium, webm_dash</span><br><span class="line">17  3gp   176x144      6  1 │   24.10MiB   80k https │ mp4v.20.3       80k mp4a.40.2    0k 22k 144p</span><br><span class="line">394 mp4   256x144     25    │   21.49MiB   71k https │ av01.0.00M.08   71k video only          144p, mp4_dash</span><br><span class="line">160 mp4   256x144     25    │   28.80MiB   95k https │ avc1.4d400c     95k video only          144p, mp4_dash</span><br><span class="line">278 webm  256x144     25    │   27.91MiB   92k https │ vp9             92k video only          144p, webm_dash</span><br><span class="line">395 mp4   426x240     25    │   42.74MiB  141k https │ av01.0.00M.08  141k video only          240p, mp4_dash</span><br><span class="line">133 mp4   426x240     25    │   64.43MiB  213k https │ avc1.4d4015    213k video only          240p, mp4_dash</span><br><span class="line">242 webm  426x240     25    │   53.42MiB  177k https │ vp9            177k video only          240p, webm_dash</span><br><span class="line">396 mp4   640x360     25    │   77.45MiB  256k https │ av01.0.01M.08  256k video only          360p, mp4_dash</span><br><span class="line">134 mp4   640x360     25    │  133.02MiB  440k https │ avc1.4d401e    440k video only          360p, mp4_dash</span><br><span class="line">18  mp4   640x360     25  2 │  176.85MiB  585k https │ avc1.42001E    585k mp4a.40.2    0k 44k 360p</span><br><span class="line">243 webm  640x360     25    │   94.81MiB  313k https │ vp9            313k video only          360p, webm_dash</span><br><span class="line">397 mp4   854x480     25    │  135.38MiB  448k https │ av01.0.04M.08  448k video only          480p, mp4_dash</span><br><span class="line">135 mp4   854x480     25    │  252.89MiB  836k https │ avc1.4d401e    836k video only          480p, mp4_dash</span><br><span class="line">244 webm  854x480     25    │  163.98MiB  542k https │ vp9            542k video only          480p, webm_dash</span><br><span class="line">22  mp4   1280x720    25  2 │ ~562.06MiB 1815k https │ avc1.64001F   1815k mp4a.40.2    0k 44k 720p</span><br><span class="line">398 mp4   1280x720    25    │  273.87MiB  906k https │ av01.0.05M.08  906k video only          720p, mp4_dash</span><br><span class="line">136 mp4   1280x720    25    │  510.01MiB 1686k https │ avc1.4d401f   1686k video only          720p, mp4_dash</span><br><span class="line">247 webm  1280x720    25    │  308.25MiB 1019k https │ vp9           1019k video only          720p, webm_dash</span><br><span class="line">399 mp4   1920x1080   25    │  478.48MiB 1582k https │ av01.0.08M.08 1582k video only          1080p, mp4_dash</span><br><span class="line">137 mp4   1920x1080   25    │  961.41MiB 3179k https │ avc1.640028   3179k video only          1080p, mp4_dash</span><br><span class="line">248 webm  1920x1080   25    │  517.76MiB 1712k https │ vp9           1712k video only          1080p, webm_dash</span><br></pre></td></tr></tbody></table></figure>
+
+<p>从结果中可知最佳画质视频ID为mp4格式的137和webm格式的248（纯视频无音轨），最佳音轨ID为m4a格式的140和webm格式的251（纯音轨无视频）。如果你认为720p已经满足需求，则只下载ID22也可（已经包含视频和音轨）。</p>
+<p>以webm为例，将最高质量的webm视频和webm音轨进行合并。</p>
+<h2 id="下载音视频并合并"><a href="#下载音视频并合并" class="headerlink" title="下载音视频并合并"></a>下载音视频并合并</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yt-dlp -f [下载ID] [代理配置] [视频链接] [合并语句] [外部下载器选择] [下载器参数]</span><br><span class="line">-f [id] #选择下载内容，注意和 -F 区分。以webm为例，可使用248+251，如果你只下载720p则填写22就好，后面的合并语句可不填写。</span><br><span class="line">--proxy #代理配置 见前文</span><br><span class="line">--merge-output-format [合并输出格式] #合并时可使用的容器格式，以“/”分隔，例如“mp4/mkv”。如果不需要合并，则忽略。（目前支持：avi、flv、mkv、mov、mp4、webm）</span><br><span class="line">--downloader [指定外部下载器] #外部下载器名称或路径，目前支持原生、aria2c、avconv、axel、curl、ffmpeg、httpie、wget。</span><br><span class="line">--downloader-args [下载器名称]:"[下载器配置]"</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>效果</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[liudongkai@MBPR DIR]$ yt-dlp -f 248+251 'https://www.youtube.com/watch?v=BfKhREVFLkQ' --merge-output-format webm</span><br><span class="line">[youtube] BfKhREVFLkQ: Downloading webpage</span><br><span class="line">[youtube] BfKhREVFLkQ: Downloading android player API JSON</span><br><span class="line">[info] BfKhREVFLkQ: Downloading 1 format(s): 248+251</span><br><span class="line">[download] Destination: ENG SUB《陈情令 The Untamed》EP01——主演：肖战、王一博、孟子义 [BfKhREVFLkQ].f248.webm</span><br><span class="line">[download] 100% of 517.76MiB in 01:45 at 4.91MiB/s</span><br><span class="line">[download] Destination: ENG SUB《陈情令 The Untamed》EP01——主演：肖战、王一博、孟子义 [BfKhREVFLkQ].f251.webm</span><br><span class="line">[download] 100% of 37.87MiB in 00:08 at 4.71MiB/s</span><br><span class="line">[Merger] Merging formats into "ENG SUB《陈情令 The Untamed》EP01——主演：肖战、王一博、孟子义 [BfKhREVFLkQ].webm"</span><br><span class="line">Deleting original file ENG SUB《陈情令 The Untamed》EP01——主演：肖战、王一博、孟子义 [BfKhREVFLkQ].f248.webm (pass -k to keep)</span><br><span class="line">Deleting original file ENG SUB《陈情令 The Untamed》EP01——主演：肖战、王一博、孟子义 [BfKhREVFLkQ].f251.webm (pass -k to keep)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>下载完成后ffmpeg合并视频和音轨，输出至你的cmd的当前路径。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/mac-os/" rel="tag"># Mac OS</a>
+              <a href="/tags/youtube/" rel="tag"># YouTube</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/10/22/use_youtubedr_download_youtube_videos/" rel="prev" title="用 youtubedr 下載 YouTube 影片">
+      <i class="fa fa-chevron-left"></i> 用 youtubedr 下載 YouTube 影片
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85yt-dlp"><span class="nav-number">1.</span> <span class="nav-text">安装yt-dlp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E9%9C%80%E8%A6%81%E4%B8%8B%E8%BD%BD%E7%9A%84%E8%A7%86%E9%A2%91%E4%BF%A1%E6%81%AF"><span class="nav-number">2.</span> <span class="nav-text">查看需要下载的视频信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E9%9F%B3%E8%A7%86%E9%A2%91%E5%B9%B6%E5%90%88%E5%B9%B6"><span class="nav-number">3.</span> <span class="nav-text">下载音视频并合并</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">東木</p>
+  <div class="site-description" itemprop="description">The palest ink is better than the best memory.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">301</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">216</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">浙ICP备17024634号-4 </a>
+  </div>
+
+<div class="copyright">
+  
+  © 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> &amp; <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+<script type="text/javascript" src="/bundle.js"></script><script type="text/javascript">
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 3,
+                processImages: null,
+            };
+        ;
+window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});;
+!function(n){n.imageLazyLoadSetting.processImages=o;var e=n.imageLazyLoadSetting.isSPA,i=n.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},t.src!==i&&(n.src=i)}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body></html>

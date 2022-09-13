@@ -163,6 +163,102 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/02/05/router-mtu/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/02/05/router-mtu/" class="post-title-link" itemprop="url">路由器mtu设置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-02-05 00:00:00" itemprop="dateCreated datePublished" datetime="2008-02-05T00:00:00+08:00">2008-02-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>这是宽带路由器的一个小小弊端。通过对网速的实测证明，在ADSL接入电脑之间安装宽带路由器后，在多台电脑同时在线的情况下，由于路由器在地址解析、路由分发等方面的耽误，实际到达电脑的速度比单机直接连入ADSL线路要稍慢一些。当然我们也可以采用以下办法将这种损耗降至最低，即更改路由器的MTU值。</p>
+<p>MTU是Maximum Transmission Unit的缩写，意思是网络上传送的最大数据包，单位是字节。不同的接入方式，MTU值是不一样的，如果值太大就会产生很多数据包碎片，增加丢包率，降低网络速度。我们平常使用的宽带PPPoE连接方式，其MTU值最大为1492，解决的办法就是对其逐步调低，直到网络最正常为止。</p>
+<p>那么又如何判定某个MTU值是最适合的呢？ 进入DOS环境(开始-＞所有程序-＞附件-＞命令提示符)，输入以下命令行：<code>ping -f -l 1492 192.168.1.1</code>。<br>注：其中“192.168.1.1”是网关IP地址(路由器的IP)，1492为数据包的长度，参数“-l”是小写的L。如果出现信息：<code>Packet needs to be fragmented but DF set</code>，那就表示MTU值太大了！而如果出现：</p>
+<blockquote>
+<p>Reply from 192.168.1.1: bytes=1492 time&lt;10ms TTL=128</p>
+</blockquote>
+<p>则表示此MTU值是可行的，不过还是建议多试几个找到最佳值。</p>
+<p>我从1492试到1472终于找到了最佳的值:1472(这个是我的路由器的最佳的值,可以做参考)! 大家还有什么好的方法可以研究研究!</p>
+<p><strong>其他：</strong></p>
+<p>MTU设置</p>
+<p>MTU，即Maximum Transmission Unit(最大传输单元)，此值设定TCP/IP协议传输数据报时的最大传输单元。设置合适的MTU值可以解决“部分网站打不开”、“上网速度慢”等问题，并且可以适当提升上网速度。</p>
+<p>设置多大的MTU值取决于你的上网方式，不同的上网方式支持不同的MTU，下面列出了一些上网方式的MTU值：</p>
+<blockquote>
+<p>EtherNet(一般上网方式，默认值):1500<br>PPPoE/ADSL:1492<br>Dial Up/Modem:576</p>
+</blockquote>
+<p>问题一：知道了我的上网方式，如何设置MTU值？</p>
+<ol>
+<li>在 『开始』&gt;『运行』中，键入regedit，点确定；</li>
+<li>选择『HKEY_Local_Machine』&gt;『SYSTEM』&gt;『CurrentControlSet』&gt;『Services』&gt;『Tcpip』&gt;『Parameters』&gt;『interface』；</li>
+<li>在 interface 底下可能有很多的选项，你一个一个的去看，会有一个选项与你的网卡的 IP相同，那个就是你要挑选的选项啦！然后同样的在该选项上选择『编辑』&gt;『新建』&gt;『DWORD值』之后，建立一个名为『MTU』的DWORD，然后双击修改，选择十进制，填入合适 MTU 值，确定！大功告成！</li>
+</ol>
+<p>问题二：我不知道自己的上网方式，如何确定MTU值呢？</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping -f -l 1500 127.0.0.1</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">C:\WINDOWS&gt;ping -f -l 1500 127.0.0.1</span><br><span class="line">Pinging 127.0.0.1 with 1500 bytes of data:</span><br><span class="line">Packet needs to be fragmented but DF set.</span><br><span class="line">Packet needs to be fragmented but DF set.</span><br><span class="line">Packet needs to be fragmented but DF set.</span><br><span class="line">Packet needs to be fragmented but DF set.</span><br><span class="line">Ping statistics for 127.0.0.1:</span><br><span class="line">Packets: Sent = 4, Received = 0, Lost = 4 (100% loss), Approximate round trip times in milli-seconds:</span><br><span class="line">Minimum = 0ms, Maximum = 0ms, Average = 0ms</span><br></pre></td></tr></tbody></table></figure>
+<p>上面的式子中，-l 是 L 的小写（不是 1 喔），1500 是我们要测的 MTU 值，结果出现了 Packet needs to be fragmented but DF set. 这个东西，那表示MTU值太大了，你需要更小的 MTU 值才行！好啦！那假设我们使用 1464 来测试时：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">C:\WINDOWS&gt;ping -f -l 1464 127.0.0.1</span><br><span class="line">Pinging 127.0.0.1 with 1464 bytes of data:</span><br><span class="line">Reply from 127.0.0.1: bytes=1464 time=10ms TTL=128</span><br><span class="line">Reply from 127.0.0.1: bytes=1464 time&lt;10ms TTL=128</span><br><span class="line">Reply from 127.0.0.1: bytes=1464 time&lt;10ms TTL=128</span><br><span class="line">Reply from 127.0.0.1: bytes=1464 time&lt;10ms TTL=128</span><br><span class="line">Ping statistics for 127.0.0.1:</span><br><span class="line">Packets: Sent = 4, Received = 4, Lost = 0 (0% loss), Approximate round trip times in milli-seconds:</span><br><span class="line">Minimum = 0ms, Maximum = 10ms, Average = 2ms</span><br></pre></td></tr></tbody></table></figure>
+<p>结果出现了回应了！这表示这一个 MTU 值是可行的！不过，强烈建议找出可行的最大 MTU 值！这样一来，在设定的时候，才可以达到最佳的网速！</p>
+<p>找出 MTU 值：利用上面这个方法找到的数值还不是 MTU 喔！由于一些封包上面的问题，上面这个值再加上 28 才是我们所需要的 MTU 值！所以，在上面的例子中，我们所需要的 MTU 值是 1464+28=1492！</p>
+<p>一般来讲，设计好本机的MTU值，可以解决部分网站打不开的情况，但是如果你的共享主机或路由器的MTU设置有问题，有时问题仍然存或，或者出现网速过慢的情况。合理的设置路由器与本机的MTU值，就可以完全解决上述问题，使上网速度达到最大化。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/02/03/robots-list/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -965,95 +1061,10 @@
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/01/19/rsync-backup/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/01/19/rsync-backup/" class="post-title-link" itemprop="url">用rsync对网站进行镜像备份</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-01-19 00:00:00" itemprop="dateCreated datePublished" datetime="2008-01-19T00:00:00+08:00">2008-01-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>用rsync对网站进行镜像备份</p>
-<p>by inburst <code>&lt;inburst@263.net&gt;</code><br><a target="_blank" rel="noopener" href="http://xfocus.org/">http://xfocus.org</a></p>
-<p>对系统管理员来说，平时的工作重心应该集中在维护系统正常运转，能够正常提供服务上，这里往往牵涉到一个数据备份的问题，在我所了解的情况中，有80%的系统管理员不是太关心自己服务器的安全性，但往往对备分镜像的技术相当感兴趣，但由于商业产品的软硬件价格都相当高昂，因此往往会选择自由软件。这里准备介绍的rsync就是这样的软件，它可以满足绝大多数要求不是特别高的备份需求。</p>
-<h2 id="一、特性简介"><a href="#一、特性简介" class="headerlink" title="一、特性简介"></a><e1>一、特性简介</e1></h2><p>rsync是类unix系统下的数据镜像备份工具，从软件的命名上就可以看出来了——remote sync。它的特性如下：</p>
-<ol>
-<li>可以镜像保存整个目录树和文件系统。</li>
-<li>可以很容易做到保持原来文件的权限、时间、软硬链接等等。</li>
-<li>无须特殊权限即可安装。</li>
-<li>优化的流程，文件传输效率高。</li>
-<li>可以使用rcp、ssh等方式来传输文件，当然也可以通过直接的socket连接。</li>
-<li>支持匿名传输。</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2008/01/19/rsync-backup/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/26/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">…</span><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><span class="space">…</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/28/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/26/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">…</span><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><span class="space">…</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/28/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1119,7 +1130,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">300</span>
+          <span class="site-state-item-count">301</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -163,6 +163,107 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2012/04/05/linux-find-by-time/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2012/04/05/linux-find-by-time/" class="post-title-link" itemprop="url">find 按时间查找</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2012-04-05 00:00:00" itemprop="dateCreated datePublished" datetime="2012-04-05T00:00:00+08:00">2012-04-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <table>
+<thead>
+<tr>
+<th>command</th>
+<th>comment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>find / -amin -10</td>
+<td># 查找在系统中最后10分钟访问的文件</td>
+</tr>
+<tr>
+<td>find / -atime -2</td>
+<td># 查找在系统中最后48小时访问的文件</td>
+</tr>
+<tr>
+<td>find / -mmin -5</td>
+<td># 查找在系统中最后5分钟里修改过的文件</td>
+</tr>
+<tr>
+<td>find / -mtime -1</td>
+<td># 查找在系统中最后24小时里修改过的文件</td>
+</tr>
+<tr>
+<td>find / -cmin -5</td>
+<td># 查找在系统中最后5分钟里被改变状态的文件</td>
+</tr>
+<tr>
+<td>find / -ctime -1</td>
+<td># 查找在系统中最后24小时里被改变状态的文件</td>
+</tr>
+</tbody></table>
+<p>访问过用amin，修改过用mmin，文件状态改变过用cmin<br>精确到分钟的用amin,mmin,cmin，精确到天的用atime,mtime,ctime<br>在5分钟之内的用-5，在5分钟以上的用＋5</p>
+<p>10表示 =10<br>-10表示 &lt;=10<br>+10表示 &gt;10</p>
+<p>&gt;=10 可以用大于或等于 <code>\( -cmin +10 -o -cmin 10 \)</code><br>&lt; 可以用 不大于等于表示 <code>\! \ ( -cmin +10 -o -cmin 10 \)</code></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2012/03/16/mysql-timestamp-operation/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -888,87 +989,10 @@
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2011/11/18/mysqlbinlog-format-row/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2011/11/18/mysqlbinlog-format-row/" class="post-title-link" itemprop="url">用 mysqlbinlog 查看row格式的事件 zt</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2011-11-18 00:00:00" itemprop="dateCreated datePublished" datetime="2011-11-18T00:00:00+08:00">2011-11-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>MySQL 5.1开始，binlog支持row-based的格式，默认情况下只能看到一些经过base-64编码的信息，如:</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">DELIMITER /*!*/;</span><br><span class="line"># at 7493962</span><br><span class="line">#090827 5:25:03 server id 1 end_log_pos 0 Start: binlog v 4, server v 5.1.26-rc-community-log created 090827 5:25:03</span><br><span class="line">BINLOG '</span><br><span class="line">L6iVSg8BAAAAZgAAAAAAAAAAAAQANS4xLjI2LXJjLWNvbW11bml0eS1sb2cAAAAAAAAAAAAAAAAA</span><br><span class="line">AAAAAAAAAAAAAAAAAAAAAAAAEzgNAAgAEgAEBAQEEgAAUwAEGggAAAAICAgC</span><br><span class="line">'/*!*/;</span><br><span class="line"># at 7493962</span><br><span class="line"># at 7494009</span><br><span class="line">#090827 13:20:40 server id 1 end_log_pos 7494009 Table_map: `test`.`test1` mapped to number 96991</span><br><span class="line">#090827 13:20:40 server id 1 end_log_pos 7494045 Write_rows: table id 96991 flags: STMT_END_F</span><br><span class="line"></span><br><span class="line">BINLOG '</span><br><span class="line">qBeWShMBAAAALwAAAHlZcgAAAN96AQAAAAAABHRlc3QABXRlc3QxAAIDDwI8AAM=</span><br><span class="line">qBeWShcBAAAAJAAAAJ1ZcgAQAN96AQAAAAEAAv/8AwAAAAEz</span><br><span class="line">'/*!*/;</span><br><span class="line"># at 7494045</span><br><span class="line">#090827 13:20:40 server id 1 end_log_pos 7494072 Xid = 2525562</span><br><span class="line">COMMIT/*!*/;</span><br><span class="line">DELIMITER ;</span><br><span class="line"># End of log file</span><br></pre></td></tr></tbody></table></figure>
-
-<p>这里只能看到<code>test</code>.<code>test1</code>表做了改动，但具体改了什么，就不知道了，那么怎样才能看到到底改了什么呢？从MySQL 5.1.28开始，mysqlbinlog多了个参数–verbose(或-v)，将改动生成带注释的语句，如果使用两次这个参数(如-v -v)，会生成字段的类型、长度、是否为null等属性信息。如下：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2011/11/18/mysqlbinlog-format-row/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">…</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">…</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">…</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">…</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1034,7 +1058,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">300</span>
+          <span class="site-state-item-count">301</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

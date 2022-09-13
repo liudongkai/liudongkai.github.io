@@ -163,6 +163,85 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2007/12/27/awstats-merge-logs/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2007/12/27/awstats-merge-logs/" class="post-title-link" itemprop="url">Awstats 多個 log 的顯示方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2007-12-27 00:00:00" itemprop="dateCreated datePublished" datetime="2007-12-27T00:00:00+08:00">2007-12-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/analytics/" itemprop="url" rel="index"><span itemprop="name">Analytics</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一般大型網站的 Web Servre log 太大，通常會以 logrotate 將 log 分割成為數個檔案。</p>
+<p>以 Apache 為例就是像:<br>access_log.1、access_log.2、access_log.3 … 以此類推</p>
+<p>另外如果使用 Load balance ，也是會產生個 log 檔，但 awstats 預設的 LogFile 是只有一個，在多個 log file 的狀態下，變成無法更新至最新的狀態，這時就要使用 awstats 內建的工具logresolvemerge.pl 來合併 log ，其實用法也很簡單，只要更改網站的設定檔就好了，以本站為例就是編輯 /etc/awstats/awstats.neo.conf</p>
+<p>找到 LogFile 的地方，原來預設單個 log 的設定如下:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LogFile="/var/log/httpd/access_log"</span><br></pre></td></tr></tbody></table></figure>
+<p>再來就是輸入您 logresolvemerge.pl 的路徑跟 log 的路徑及萬用字元即可。</p>
+<p>logresolvemerge.pl 是放在 awstats 安裝路徑的 tools 裡面，因為我的 awstats 是裝在/usr/local/awstats 裡面，所以完整路徑就是 /usr/local/awstats/tools/logresolvemerge.pl 。</p>
+<p>另外我是要合併 access_log.1、access_log.2、access_log.3 的 LogFile 更改範例如下:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LogFile="/usr/local/awstats/tools/logresolvemerge.pl /var/log/httpd/access_log* |"</span><br></pre></td></tr></tbody></table></figure>
+<p>編輯存檔後，再來執行更新記錄程式即可，如:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#/usr/local/awstats/wwwroot/cgi-bin/awstats.pl -config=xxx -update</span><br></pre></td></tr></tbody></table></figure>
+<p>再來進去您的網址就可以看到合併後輸出的結果了，如:</p>
+<p><a target="_blank" rel="noopener" href="http://www.yoursite.com/awstats/awstats.pl?config=xxx">http://www.yoursite.com/awstats/awstats.pl?config=xxx</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2007/12/26/Jay-On-the-run/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -845,78 +924,10 @@
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2007/12/20/firefox-import-favorites-from-ie/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2007/12/20/firefox-import-favorites-from-ie/" class="post-title-link" itemprop="url">将IE收藏夹和Firefox书签相互转移</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2007-12-20 00:00:00" itemprop="dateCreated datePublished" datetime="2007-12-20T00:00:00+08:00">2007-12-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>①从IE中向FF导入书签：在Firefox的文件菜单中选择“导入……”的命令，然后选中Internet Explorer，在之后显示的页面上选择你想转移的信息。这样就能把IE上的“收藏夹”、所保存的密码、设置的选项以及浏览纪录等统统转移到 Firefox中。</p>
-<p>②从FF中向IE导入书签：在FF里：书签 -&gt; 管理书签文件 -&gt; 导出书签，导出为：bookmark.htm 在IE里：文件 -&gt; 导入和导出 -&gt; 下一步 -&gt; 导入收藏夹，下一步 -&gt; 从文件或地址中导入 -&gt; 浏览 -&gt; bookmark.htm -&gt; 下一步 -&gt; 下一步<br>或者安装 <a target="_blank" rel="noopener" href="http://addons.mozine.cn/extensions/moreinfo.php?id=62">Favorites_Converter_(export).xpi</a> 扩展，这个扩展可将 Firefox 的书签导出为 IE 的收藏夹。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/28/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">…</span><a class="page-number" href="/page/28/">28</a><span class="page-number current">29</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/30/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/28/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">…</span><a class="page-number" href="/page/28/">28</a><span class="page-number current">29</span><a class="page-number" href="/page/30/">30</a><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/30/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -982,7 +993,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">300</span>
+          <span class="site-state-item-count">301</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
