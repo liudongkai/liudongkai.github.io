@@ -499,6 +499,83 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2011/11/14/linux-ssh-while-exit/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2011/11/14/linux-ssh-while-exit/" class="post-title-link" itemprop="url">while循环中碰到ssh的话,如何避免退出 zt</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2011-11-14 00:00:00" itemprop="dateCreated datePublished" datetime="2011-11-14T00:00:00+08:00">2011-11-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>先看一个例子:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line">. /root/.bash_profile</span><br><span class="line"></span><br><span class="line">cat /home/yejr/alldb|while read LINE</span><br><span class="line">do</span><br><span class="line">   #取得IP和组号</span><br><span class="line">   IP=`echo $LINE | awk '{print $1}'`</span><br><span class="line">   NU=`echo $LINE | awk '{print $2}' | awk -F '-' '{print $1}'`</span><br><span class="line"></span><br><span class="line">   cnt=`ssh root@$IP "mysql -e 'select count(*) from yejr.tbl1'|tail -n 1"`</span><br><span class="line"></span><br><span class="line">   echo "$IP $NU $cnt"</span><br><span class="line">done</span><br></pre></td></tr></tbody></table></figure>
+
+<p>看起来没有问题吧,实际上,执行的时候只循环了一次,就退出while循环了,为什么呢?</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2011/11/14/linux-ssh-while-exit/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2011/11/14/mysql-datatype-introduction/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -628,83 +705,6 @@
 <p>Chrome的同步功能可能是最让大家兴奋的功能，依托于Google强大的云端技术支持，你可以在各个电脑安装的Chrome浏览器之间同步网页应用、扩展、主题、自动填充、设置、密码、书签等等数据。但有时候你可能发现同步很慢，或是出错，此时你可以在地址栏输入 chrome://sync-internals/ 来查看同步细节（如上图）。</p>
 <p>如果Summary是READY，就是同步正常。如果是OFFLINE_UNUSABLE你就得找找问题了，可能是没登录，也可能是网络出了问题。话说每次Chrome自动升级之后，都要重新登录帐号来进行同步这一点太不方便了，有时候同步不成功就是因为Chrome自己默默又升级了，你需要重新登录帐号。</p>
 
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2011/11/14/linux-ssh-while-exit/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2011/11/14/linux-ssh-while-exit/" class="post-title-link" itemprop="url">while循环中碰到ssh的话,如何避免退出 zt</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2011-11-14 00:00:00" itemprop="dateCreated datePublished" datetime="2011-11-14T00:00:00+08:00">2011-11-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>先看一个例子:</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line">. /root/.bash_profile</span><br><span class="line"></span><br><span class="line">cat /home/yejr/alldb|while read LINE</span><br><span class="line">do</span><br><span class="line">   #取得IP和组号</span><br><span class="line">   IP=`echo $LINE | awk '{print $1}'`</span><br><span class="line">   NU=`echo $LINE | awk '{print $2}' | awk -F '-' '{print $1}'`</span><br><span class="line"></span><br><span class="line">   cnt=`ssh root@$IP "mysql -e 'select count(*) from yejr.tbl1'|tail -n 1"`</span><br><span class="line"></span><br><span class="line">   echo "$IP $NU $cnt"</span><br><span class="line">done</span><br></pre></td></tr></tbody></table></figure>
-
-<p>看起来没有问题吧,实际上,执行的时候只循环了一次,就退出while循环了,为什么呢?</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2011/11/14/linux-ssh-while-exit/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 

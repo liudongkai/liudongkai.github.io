@@ -847,7 +847,7 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/04/10/python-get-path/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/04/10/ImportError-No-module-named-mime-text/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -861,7 +861,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2014/04/10/python-get-path/" class="post-title-link" itemprop="url">Python语言获取脚本文件所在路径</a>
+            <a href="/2014/04/10/ImportError-No-module-named-mime-text/" class="post-title-link" itemprop="url">ImportError: No module named mime.text</a>
         </h2>
 
         <div class="post-meta">
@@ -894,24 +894,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>转自<a target="_blank" rel="noopener" href="http://www.elias.cn/Python/GetPythonPath?from=Develop.GetPythonPath">http://www.elias.cn/Python/GetPythonPath?from=Develop.GetPythonPath</a></p>
-<p>##1. 以前的方法  </p>
-<p>  如果是要获得程序运行的当前目录所在位置，那么可以使用os模块的<code>os.getcwd()</code>函数。 </p>
-<p>  如果是要获得当前执行的脚本的所在目录位置，那么需要使用sys模块的<code>sys.path[0]</code>变量或者<code>sys.argv[0]</code>来获得。实际上sys.path是Python会去寻找模块的搜索路径列表，sys.path[0]和sys.argv[0]是一回事因为Python会自动把sys.argv[0]加入sys.path。</p>
-<p>  具体来说，如果你在C:\test目录下执行python getpath\getpath.py，那么os.getcwd()会输出”C:\test”，sys.path[0]会输出”C:\test\getpath”。</p>
-<p>  更特别地，如果你用py2exe模块把Python脚本编译为可执行文件，那么sys.path[0]的输出还会变化：  </p>
-<ol>
-<li>如果把依赖库用默认的方式打包为zip文件，那么sys.path[0]会输出”C:\test\getpath\libarary.zip”；</li>
-<li>如果在setup.py里面指定zipfile=None参数，依赖库就会被打包到exe文件里面，那么sys.path[0]会输出”C:\test\getpath\getpath.exe”。</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2014/04/10/python-get-path/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <p>一个python脚本执行报错，老版本python中MIMEText 写法不对</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost:~]# /usr/bin/python check_linux_resource.py</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File "/usr/local/mysqlmtop/global_functions.py", line 11, in ?</span><br><span class="line">    from email.mime.text import MIMEText</span><br><span class="line">ImportError: No module named mime.text</span><br><span class="line"> </span><br><span class="line">[root@localhost:~]# /usr/bin/python -V</span><br><span class="line">Python 2.4.3</span><br></pre></td></tr></tbody></table></figure>
+
+
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from email.mime.text import MIMEText</span><br><span class="line">from email.header import Header</span><br></pre></td></tr></tbody></table></figure>
+<p>将以上写法修改为下面这样就ok</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from email.MIMEText import MIMEText</span><br><span class="line">from email.Header import Header</span><br></pre></td></tr></tbody></table></figure>
       
     </div>
 

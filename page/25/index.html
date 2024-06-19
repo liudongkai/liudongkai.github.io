@@ -331,6 +331,97 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/15/IBM-install-drivers-1/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/03/15/IBM-install-drivers-1/" class="post-title-link" itemprop="url">IBM T61/R61/X61 WinXP驱动安装(一)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-15T00:00:00+08:00">2008-03-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>==== 20140221更新 ====<br>重新整理，终于找到原帖：<a target="_blank" rel="noopener" href="http://www.tpuser.idv.tw/articles/santarosa-test-wxp.html">http://www.tpuser.idv.tw/articles/santarosa-test-wxp.html</a></p>
+<hr>
+<p>ThinkPad T61/R61/X61系列硬件架构相当接近，原厂维修手册都可共享，此篇安装流程理论上可以适用在 ThinkPad T61/R61/X61系列上面，记得再根据个别机种的硬件安装对应驱动程序。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=TPAD-MATRIX">ThinkPad 全系列机型驱动程序 矩阵列表</a></li>
+</ul>
+<p>由 于微软的许多组件都需在线下载，无法直接下载完整版本，因此才会视需要，将网络卡的驱动程序安装程序放在前面。此外 ThinkPad 的相关驱动程序也有安装顺序上的考虑，以下的安装流程其实已经把各环节都尽量考虑进去，如网友没有把握，不妨按照以下的顺序安装，感谢。</p>
+<h3 id="准备动作：设定-SATA-硬盘"><a href="#准备动作：设定-SATA-硬盘" class="headerlink" title="准备动作：设定 SATA 硬盘"></a>准备动作：设定 SATA 硬盘</h3><p>自从 T60/R60/X60 开始改用 SATA 界面硬盘，手动安装 WinXP 便遇到一个问题：「要选择 Compatibility 还是 AHCI 模式？」，这问题的主因源自于设定为 AHCI 模式时，必须在安装时按下「 F6 」，然后预先加载芯片组驱动程序。但现在拥有 USB 界面软驱的使用者实在太少了。</p>
+<p>在没有 USB 软驱的状况下，有的使用者便设定成 「 Compatibility 模式」，却发现硬盘效能不彰，接着去 BIOS 调回 AHCI 模式之后，就会发生蓝底白字的系统当机惨剧。因此很多人想到要重装 WinXP 就头大。</p>
+<p>但根据 Lenovo 原厂提供的资料，以及亲身体验，其实手动安装 WinXP 并不困难！不需要准备 USB 软驱﹔不用忍受「 Compatibility 模式」效能不彰问题，更不会发生蓝底白字惨剧，关键只在于「安装流程的顺序！」</p>
+<p>请跟着本文的流程依序安装，相信大家都能顺利重返 WinXP 环境！</p>
+<ol>
+<li>按下电源开关，开机时请按「 F1 」键，之后会进入 BIOS 画面。</li>
+<li>进入 BIOS 之后，进入「 Config 」页面</li>
+<li>再进入「 Serial ATA(SATA) 」页面</li>
+<li>将原先的「 AHCI 」改成「 Compatibility 」</li>
+</ol>
+<p>换言之，手动安装 WinXP 时，先采用「 Compatibility 模式」，规避掉需要透过 USB 软驱安装驱动程序的困扰，然后在后面的「步骤三」请网友务必按照说明安装 Intel Matrix Storage Manager Driver ，同时将硬盘更改为 AHCI 模式。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2008/03/15/IBM-install-drivers-1/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/15/IBM-install-drivers-2/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -403,97 +494,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2008/03/15/IBM-install-drivers-2/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/15/IBM-install-drivers-1/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/03/15/IBM-install-drivers-1/" class="post-title-link" itemprop="url">IBM T61/R61/X61 WinXP驱动安装(一)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-15T00:00:00+08:00">2008-03-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>==== 20140221更新 ====<br>重新整理，终于找到原帖：<a target="_blank" rel="noopener" href="http://www.tpuser.idv.tw/articles/santarosa-test-wxp.html">http://www.tpuser.idv.tw/articles/santarosa-test-wxp.html</a></p>
-<hr>
-<p>ThinkPad T61/R61/X61系列硬件架构相当接近，原厂维修手册都可共享，此篇安装流程理论上可以适用在 ThinkPad T61/R61/X61系列上面，记得再根据个别机种的硬件安装对应驱动程序。</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=TPAD-MATRIX">ThinkPad 全系列机型驱动程序 矩阵列表</a></li>
-</ul>
-<p>由 于微软的许多组件都需在线下载，无法直接下载完整版本，因此才会视需要，将网络卡的驱动程序安装程序放在前面。此外 ThinkPad 的相关驱动程序也有安装顺序上的考虑，以下的安装流程其实已经把各环节都尽量考虑进去，如网友没有把握，不妨按照以下的顺序安装，感谢。</p>
-<h3 id="准备动作：设定-SATA-硬盘"><a href="#准备动作：设定-SATA-硬盘" class="headerlink" title="准备动作：设定 SATA 硬盘"></a>准备动作：设定 SATA 硬盘</h3><p>自从 T60/R60/X60 开始改用 SATA 界面硬盘，手动安装 WinXP 便遇到一个问题：「要选择 Compatibility 还是 AHCI 模式？」，这问题的主因源自于设定为 AHCI 模式时，必须在安装时按下「 F6 」，然后预先加载芯片组驱动程序。但现在拥有 USB 界面软驱的使用者实在太少了。</p>
-<p>在没有 USB 软驱的状况下，有的使用者便设定成 「 Compatibility 模式」，却发现硬盘效能不彰，接着去 BIOS 调回 AHCI 模式之后，就会发生蓝底白字的系统当机惨剧。因此很多人想到要重装 WinXP 就头大。</p>
-<p>但根据 Lenovo 原厂提供的资料，以及亲身体验，其实手动安装 WinXP 并不困难！不需要准备 USB 软驱﹔不用忍受「 Compatibility 模式」效能不彰问题，更不会发生蓝底白字惨剧，关键只在于「安装流程的顺序！」</p>
-<p>请跟着本文的流程依序安装，相信大家都能顺利重返 WinXP 环境！</p>
-<ol>
-<li>按下电源开关，开机时请按「 F1 」键，之后会进入 BIOS 画面。</li>
-<li>进入 BIOS 之后，进入「 Config 」页面</li>
-<li>再进入「 Serial ATA(SATA) 」页面</li>
-<li>将原先的「 AHCI 」改成「 Compatibility 」</li>
-</ol>
-<p>换言之，手动安装 WinXP 时，先采用「 Compatibility 模式」，规避掉需要透过 USB 软驱安装驱动程序的困扰，然后在后面的「步骤三」请网友务必按照说明安装 Intel Matrix Storage Manager Driver ，同时将硬盘更改为 AHCI 模式。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2008/03/15/IBM-install-drivers-1/#more" rel="contents">
                 Read more »
               </a>
             </div>
@@ -913,7 +913,7 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/03/small-shell/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/03/read-the-specified-line/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -927,7 +927,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2008/03/03/small-shell/" class="post-title-link" itemprop="url">非常小的shell: 指定行号,插入文本(转)</a>
+            <a href="/2008/03/03/read-the-specified-line/" class="post-title-link" itemprop="url">如何提取指定行的内容？</a>
         </h2>
 
         <div class="post-meta">
@@ -960,10 +960,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>使用这个shell可以直接在某个文件的某一行插入指定的文本,很方便. 可以把这个<br>shell加入PATH中.以下的蓝色部分为代码, 文件名为insert</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more insert</span><br><span class="line">#!/bin/bash</span><br><span class="line"># 从文件的某一行之后插入新行</span><br><span class="line"># FILE 为文件名，LINENUM为行号，TEXT为要插入的文本</span><br><span class="line"># Copyleft: cheyo@JMU</span><br><span class="line"></span><br><span class="line">showUsage()</span><br><span class="line">{</span><br><span class="line">echo "[Usage]: insert FILE LINENUM TEXT"</span><br><span class="line">echo "# 从文件的某一行之后插入新行"</span><br><span class="line">echo "# FILE 为文件名，LINENUM为行号，TEXT为要插入的文本"</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">if [ $# -lt 3 ] #少于3个参数,错误!</span><br><span class="line">then showUsage</span><br><span class="line">exit 1</span><br><span class="line">else</span><br><span class="line">sed "${2}a</span><br><span class="line">${3}" $1 &gt; tmpfile;mv tmpfile $1</span><br><span class="line">fi</span><br></pre></td></tr></tbody></table></figure>
+          <p><strong>比如有一5行的文件，需要读取第3行的内容，文件名为test.txt</strong></p>
+<h2 id="SHELL："><a href="#SHELL：" class="headerlink" title="SHELL："></a>SHELL：</h2><ol>
+<li><pre><code>
+</code></pre>
+</li>
+</ol>
+<p>awk ‘NR == 3{ print; exit; }’ test.txt</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. ```</span><br><span class="line">sed -n '3{ p; q; }' test.txt</span><br></pre></td></tr></tbody></table></figure>
 
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$ ./insert a 3 "Test"</span><br><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">Test</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$</span><br></pre></td></tr></tbody></table></figure>
+<ol start="3">
+<li><pre><code>
+</code></pre>
+</li>
+</ol>
+<p>head -3 test.txt |tail -1</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## CMD:</span><br><span class="line"></span><br><span class="line">1.  for循环读取 </span><br></pre></td></tr></tbody></table></figure>
+<p>for /f “tokens=1,2* delims=:” %%i in (‘findstr /n .* test.txt’) do if %%i==3 echo %%j</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. 使用"小函数"读取特定行：`Call ReadLine2.bat &lt;文件名&gt; &lt;读取行号&gt;`</span><br><span class="line"></span><br><span class="line"> 例如:"`Call ReadLine2 test.txt 11 5 7 9`"，可以读取test.txt文件的第5、7、9和11行，后面的行号不分先后大小顺序。但是效率不是很高，读取小文件还是可以的。</span><br><span class="line"></span><br><span class="line"> &gt;`Call ReadLine2 test.txt 3`</span><br></pre></td></tr></tbody></table></figure>
+<p>@echo off&amp;SetLocal ENABLEDELAYEDEXPANSION<br>:::::::::::ReadLine2.Bat::::::::::::::::::<br>if “%1”==”” (goto –help) else (set file=%1)<br>if not exist %file% goto :eof<br>if “%2”==”” (<br>for /f “tokens=1* delims=:” %%a in (‘findstr /n .* “%file%”‘) do echo/%%b<br>goto :eof<br>) else (<br>set args=%*<br>for %%a in (!args!) do (<br>if not “%%a”==”%1” (for /f “tokens=1* delims=:” %%b in (‘findstr /n .* “%file%”‘) do (<br>if “%%b”==”%%a” echo/%%c)<br>)<br>)<br>)<br>goto :eof</p>
+<p>:–help<br>echo/======================================<br>echo/本程序段需要带参数才能正常运行<br>echo/&amp;echo/Usage:&amp;echo/Call ReadLine2 ^&lt;文件名^&gt; ^&lt;读取行号^&gt;<br>echo/&amp;echo/例如：Call ReadLine2 aa.txt 5 7 11 ，将读取aa.txt文件的第5，7，11行<br>echo/&amp;echo/如果^&lt;读取行号^&gt;没有指定，将读取整个文件的内容<br>echo/======================================<br>goto :eof</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. 使用"小函数"读取特定行：`Call ReadLine.bat &lt;文件名&gt; &lt;跳过的行数&gt; &lt;读取行数&gt;`</span><br><span class="line"></span><br><span class="line"> 例如："`Call ReadLine test.txt 5 7`"，那么将跳过test.txt文件的前5行，显示下面的7行字符，也包含空行。也可以不指定第三个参数。</span><br><span class="line"></span><br><span class="line"> &gt;`Call ReadLine test.txt 2 1`</span><br></pre></td></tr></tbody></table></figure>
+<p>@echo off&amp;SetLocal ENABLEDELAYEDEXPANSION<br>if “%1”==”” (goto –help) else (set file=%~s1)<br>if “%2”==”” (set first=”delims=: tokens=1*”) else (set first=”skip=%2 delims=: tokens=1*”)<br>if “%3”==”” (<br>for /f %first% %%a in (‘findstr /n .* %file%’) do echo/%%b<br>goto :EOF<br>)<br>set last=%3<br>set loop=0<br>for /f %first% %%a in (‘findstr/n .* %file%’) do (<br>if not defined lxmxn (echo/%%b&amp;set /a loop+=1) else (goto :EOF)<br>if “!loop!”==”%last%” set lxmxn=Nothing<br>)<br>GOTO :EOF:–help<br>echo/======================================<br>echo/本程序段需要带参数才能正常运行<br>echo/&amp;echo/Usage:&amp;echo/Call ReadLine ^&lt;文件名^&gt; ^&lt;跳过行数^&gt; ^&lt;读取行数^&gt;<br>echo/&amp;echo/例如：call ReadLine aa.txt 5 7 ，将跳过aa.txt文件的前5行，读取下面的7行字符<br>echo/&amp;echo/如果^&lt;跳过行数^&gt;没有指定，就从文件第一行读取<br>echo/&amp;echo/指定^&lt;读取行数^&gt;时必须指定^&lt;跳过行^&gt;<br>echo/======================================<br>goto :eof<br>```</p>
+
       
     </div>
 

@@ -245,6 +245,82 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/05/13/Shell-switch-background-jobs/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/05/13/Shell-switch-background-jobs/" class="post-title-link" itemprop="url">Linux Shell下的后台运行及其前台的转换</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-05-13 00:00:00" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">2008-05-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>当用bash启动一个程序,你可以用在程序后加&amp;,实现程序在后台运行；</p>
+<p>例如: <code>emacs &amp;</code></p>
+<p>但如果你忘了输入&amp;;但你又不想把程序停止后重新启动；</p>
+<p>你可以这么做:</p>
+<p>按Ctrl + Z暂停前台工作,比如前面提到的Emacs；</p>
+<p>然后用jobs命令查看当前bash一共启动了多少程序,你可以看到你的emacs在其中，它的状态是Stoped的; 并且它的jobID也可以看,比如是2</p>
+<p>然后用命令<code>bg 2</code></p>
+<p>这样你就可以达到和<code>emacs &amp;</code>一样的效果了。</p>
+<p>当你有些工作比如updatedb, find等需要一定时间,这些工作可以考虑让它在后台运行,而你可以用bash做其它工作。</p>
+<p>如果需要把任务回到前台，只需要<code>fg 2</code>。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/05/13/shell-retain-two-decimal/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -307,82 +383,6 @@
 <p>表达式替换<br>$[ ] 和 $(())<br>两种格式功能一样，所有的 shell 的求值都是用整数完成<br>$[ ] 可以接受不同基数的数字</p>
 <p><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0Ij48Y2lyY2xlIGN4PSI0IiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgaWQ9InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAiIGF0dHJpYnV0ZU5hbWU9InIiIGJlZ2luPSIwO3N2Z1NwaW5uZXJzM0RvdHNTY2FsZTEuZW5kLTAuMjVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNnMiIGR1cj0iMC43NXMiIHZhbHVlcz0iMzsuMjszIi8+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMjAiIGN5PSIxMiIgcj0iMyIgZmlsbD0iY3VycmVudENvbG9yIj48YW5pbWF0ZSBpZD0ic3ZnU3Bpbm5lcnMzRG90c1NjYWxlMSIgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNDVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjwvc3ZnPg==" data-original="http://photo.liudongkai.com/blog/190e8b44eb722e49510ffea8[1].jpg"></p>
 <p>赋值运算符<br>=、+=、-=、*=、/=、%=、&amp;=、^=、|=、&lt; &lt;=、&gt;&gt;=</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/05/13/Shell-switch-background-jobs/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/05/13/Shell-switch-background-jobs/" class="post-title-link" itemprop="url">Linux Shell下的后台运行及其前台的转换</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-05-13 00:00:00" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">2008-05-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>当用bash启动一个程序,你可以用在程序后加&amp;,实现程序在后台运行；</p>
-<p>例如: <code>emacs &amp;</code></p>
-<p>但如果你忘了输入&amp;;但你又不想把程序停止后重新启动；</p>
-<p>你可以这么做:</p>
-<p>按Ctrl + Z暂停前台工作,比如前面提到的Emacs；</p>
-<p>然后用jobs命令查看当前bash一共启动了多少程序,你可以看到你的emacs在其中，它的状态是Stoped的; 并且它的jobID也可以看,比如是2</p>
-<p>然后用命令<code>bg 2</code></p>
-<p>这样你就可以达到和<code>emacs &amp;</code>一样的效果了。</p>
-<p>当你有些工作比如updatedb, find等需要一定时间,这些工作可以考虑让它在后台运行,而你可以用bash做其它工作。</p>
-<p>如果需要把任务回到前台，只需要<code>fg 2</code>。</p>
 
       
     </div>
@@ -928,6 +928,80 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/04/03/firefox-smooth-scroll/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/04/03/firefox-smooth-scroll/" class="post-title-link" itemprop="url">Firefox 页面滚动设置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-04-03 00:00:00" itemprop="dateCreated datePublished" datetime="2008-04-03T00:00:00+08:00">2008-04-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>打开firefox，在地址栏输入 <code>about:config</code></p>
+<ol>
+<li><p>开启页面平滑滚动<br>general.smoothScroll<br>布尔值<br>当值为Ture时，打开页面平滑滚动</p>
+</li>
+<li><p>增加鼠标页面卷动行数<br>mousewheel.withnokey.sysnumlines<br>布尔值<br>先设置值为False时，禁用页面滚动行数为操作系统设置值</p>
+</li>
+</ol>
+<p> mousewheel.withnokey.numlines 设定了滚动的行数，推荐设置为７。<br>整数型<br>设置适当的整数值为滚动行数，推荐值7，</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/04/03/Keyconfig-for-Firefox3/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -985,80 +1059,6 @@
 <li>this.os.addObserver(this,”stupid-dummy”,false); added to function keyconfigService()</li>
 <li>document.createElement(“key”) changed to gDocument.createElement(“key”) in the keyconfig.jar!contents/keyconfig.js file</li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/04/03/firefox-smooth-scroll/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/04/03/firefox-smooth-scroll/" class="post-title-link" itemprop="url">Firefox 页面滚动设置</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-04-03 00:00:00" itemprop="dateCreated datePublished" datetime="2008-04-03T00:00:00+08:00">2008-04-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>打开firefox，在地址栏输入 <code>about:config</code></p>
-<ol>
-<li><p>开启页面平滑滚动<br>general.smoothScroll<br>布尔值<br>当值为Ture时，打开页面平滑滚动</p>
-</li>
-<li><p>增加鼠标页面卷动行数<br>mousewheel.withnokey.sysnumlines<br>布尔值<br>先设置值为False时，禁用页面滚动行数为操作系统设置值</p>
-</li>
-</ol>
-<p> mousewheel.withnokey.numlines 设定了滚动的行数，推荐设置为７。<br>整数型<br>设置适当的整数值为滚动行数，推荐值7，</p>
 
       
     </div>

@@ -163,81 +163,6 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2012/12/25/xargs-unmatched-single-quote/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2012/12/25/xargs-unmatched-single-quote/" class="post-title-link" itemprop="url">find和xargs配合使用出现“xargs: unmatched single quote”错误[zt]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2012-12-25 00:00:00" itemprop="dateCreated datePublished" datetime="2012-12-25T00:00:00+08:00">2012-12-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h2><p>在脚本中有一句find和xargs配合使用的命令如下</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if [ ${BACKUP_EXCLUDE} -eq 0 ]; then</span><br><span class="line">&nbsp;&nbsp;find $xdir -xdev -exec dirname "{}" \; |uniq &gt;&gt; ${HIS_DIR}/directories.curr</span><br><span class="line">else</span><br><span class="line">&nbsp;&nbsp;find $xdir -xdev|grep -v -E "$BACKUP_EXCLUDE"|xargs -i dirname "{}"|uniq &gt;&gt; ${HIS_DIR}/directories.curr</span><br><span class="line">fi</span><br></pre></td></tr></tbody></table></figure>
-
-<p>老是会出现“xargs: unmatched single quote”错误，检查发现是因为某些文件名有空格或其他特殊字符导致。想问一下是否有解？曾尝试过在find中使用参数”-print0″配合xargs -0，但是没法分行。高手帮忙！谢谢先！</p>
-<p>抱歉， 我的说明不是很详细导致把各位的思路弄乱了。<br>首先，出现问题的语句是代码里第二个find语句<br>其次，该语句作用是找出所有的文件并通过管道过滤排出部分结果，然后产生找出文件的目录名，最后合并同类项输出</p>
-<p>我曾尝试过在在find指令中加入-print0，但是无法通过grep；如果写成find … -print0 -exec grep -v -E … ”{}” ; |xargs -0 -i dirname “{}”|uniq，会出现奇怪的结果！</p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>对grep后的输出转换成NULL字符结尾的字符流，结合xargs -0</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if [ ${BACKUP_EXCLUDE} -eq 0 ]; then</span><br><span class="line">&nbsp;&nbsp;find $xdir -xdev -print0 |xargs -0 -i dirname "{}" |uniq &gt;&gt; ${HIS_DIR}/directories.curr</span><br><span class="line">else</span><br><span class="line">&nbsp;&nbsp;find $xdir -xdev|grep -v -E "$BACKUP_EXCLUDE"|tr '\n' '\0'|xargs -0 -i dirname "{}"|uniq &gt;&gt; ${HIS_DIR}/directories.curr</span><br><span class="line">fi</span><br></pre></td></tr></tbody></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2012/12/25/CentOS-Flashcache-installation/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -301,6 +226,81 @@
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2012/12/25/xargs-unmatched-single-quote/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2012/12/25/xargs-unmatched-single-quote/" class="post-title-link" itemprop="url">find和xargs配合使用出现“xargs: unmatched single quote”错误[zt]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2012-12-25 00:00:00" itemprop="dateCreated datePublished" datetime="2012-12-25T00:00:00+08:00">2012-12-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h2><p>在脚本中有一句find和xargs配合使用的命令如下</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if [ ${BACKUP_EXCLUDE} -eq 0 ]; then</span><br><span class="line">&nbsp;&nbsp;find $xdir -xdev -exec dirname "{}" \; |uniq &gt;&gt; ${HIS_DIR}/directories.curr</span><br><span class="line">else</span><br><span class="line">&nbsp;&nbsp;find $xdir -xdev|grep -v -E "$BACKUP_EXCLUDE"|xargs -i dirname "{}"|uniq &gt;&gt; ${HIS_DIR}/directories.curr</span><br><span class="line">fi</span><br></pre></td></tr></tbody></table></figure>
+
+<p>老是会出现“xargs: unmatched single quote”错误，检查发现是因为某些文件名有空格或其他特殊字符导致。想问一下是否有解？曾尝试过在find中使用参数”-print0″配合xargs -0，但是没法分行。高手帮忙！谢谢先！</p>
+<p>抱歉， 我的说明不是很详细导致把各位的思路弄乱了。<br>首先，出现问题的语句是代码里第二个find语句<br>其次，该语句作用是找出所有的文件并通过管道过滤排出部分结果，然后产生找出文件的目录名，最后合并同类项输出</p>
+<p>我曾尝试过在在find指令中加入-print0，但是无法通过grep；如果写成find … -print0 -exec grep -v -E … ”{}” ; |xargs -0 -i dirname “{}”|uniq，会出现奇怪的结果！</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>对grep后的输出转换成NULL字符结尾的字符流，结合xargs -0</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if [ ${BACKUP_EXCLUDE} -eq 0 ]; then</span><br><span class="line">&nbsp;&nbsp;find $xdir -xdev -print0 |xargs -0 -i dirname "{}" |uniq &gt;&gt; ${HIS_DIR}/directories.curr</span><br><span class="line">else</span><br><span class="line">&nbsp;&nbsp;find $xdir -xdev|grep -v -E "$BACKUP_EXCLUDE"|tr '\n' '\0'|xargs -0 -i dirname "{}"|uniq &gt;&gt; ${HIS_DIR}/directories.curr</span><br><span class="line">fi</span><br></pre></td></tr></tbody></table></figure>
+
+
       
     </div>
 

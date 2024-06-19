@@ -163,7 +163,7 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/03/read-the-specified-line/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/03/small-shell/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +177,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2008/03/03/read-the-specified-line/" class="post-title-link" itemprop="url">如何提取指定行的内容？</a>
+            <a href="/2008/03/03/small-shell/" class="post-title-link" itemprop="url">非常小的shell: 指定行号,插入文本(转)</a>
         </h2>
 
         <div class="post-meta">
@@ -210,29 +210,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>比如有一5行的文件，需要读取第3行的内容，文件名为test.txt</strong></p>
-<h2 id="SHELL："><a href="#SHELL：" class="headerlink" title="SHELL："></a>SHELL：</h2><ol>
-<li><pre><code>
-</code></pre>
-</li>
-</ol>
-<p>awk ‘NR == 3{ print; exit; }’ test.txt</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. ```</span><br><span class="line">sed -n '3{ p; q; }' test.txt</span><br></pre></td></tr></tbody></table></figure>
+          <p>使用这个shell可以直接在某个文件的某一行插入指定的文本,很方便. 可以把这个<br>shell加入PATH中.以下的蓝色部分为代码, 文件名为insert</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more insert</span><br><span class="line">#!/bin/bash</span><br><span class="line"># 从文件的某一行之后插入新行</span><br><span class="line"># FILE 为文件名，LINENUM为行号，TEXT为要插入的文本</span><br><span class="line"># Copyleft: cheyo@JMU</span><br><span class="line"></span><br><span class="line">showUsage()</span><br><span class="line">{</span><br><span class="line">echo "[Usage]: insert FILE LINENUM TEXT"</span><br><span class="line">echo "# 从文件的某一行之后插入新行"</span><br><span class="line">echo "# FILE 为文件名，LINENUM为行号，TEXT为要插入的文本"</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">if [ $# -lt 3 ] #少于3个参数,错误!</span><br><span class="line">then showUsage</span><br><span class="line">exit 1</span><br><span class="line">else</span><br><span class="line">sed "${2}a</span><br><span class="line">${3}" $1 &gt; tmpfile;mv tmpfile $1</span><br><span class="line">fi</span><br></pre></td></tr></tbody></table></figure>
 
-<ol start="3">
-<li><pre><code>
-</code></pre>
-</li>
-</ol>
-<p>head -3 test.txt |tail -1</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## CMD:</span><br><span class="line"></span><br><span class="line">1.  for循环读取 </span><br></pre></td></tr></tbody></table></figure>
-<p>for /f “tokens=1,2* delims=:” %%i in (‘findstr /n .* test.txt’) do if %%i==3 echo %%j</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. 使用"小函数"读取特定行：`Call ReadLine2.bat &lt;文件名&gt; &lt;读取行号&gt;`</span><br><span class="line"></span><br><span class="line"> 例如:"`Call ReadLine2 test.txt 11 5 7 9`"，可以读取test.txt文件的第5、7、9和11行，后面的行号不分先后大小顺序。但是效率不是很高，读取小文件还是可以的。</span><br><span class="line"></span><br><span class="line"> &gt;`Call ReadLine2 test.txt 3`</span><br></pre></td></tr></tbody></table></figure>
-<p>@echo off&amp;SetLocal ENABLEDELAYEDEXPANSION<br>:::::::::::ReadLine2.Bat::::::::::::::::::<br>if “%1”==”” (goto –help) else (set file=%1)<br>if not exist %file% goto :eof<br>if “%2”==”” (<br>for /f “tokens=1* delims=:” %%a in (‘findstr /n .* “%file%”‘) do echo/%%b<br>goto :eof<br>) else (<br>set args=%*<br>for %%a in (!args!) do (<br>if not “%%a”==”%1” (for /f “tokens=1* delims=:” %%b in (‘findstr /n .* “%file%”‘) do (<br>if “%%b”==”%%a” echo/%%c)<br>)<br>)<br>)<br>goto :eof</p>
-<p>:–help<br>echo/======================================<br>echo/本程序段需要带参数才能正常运行<br>echo/&amp;echo/Usage:&amp;echo/Call ReadLine2 ^&lt;文件名^&gt; ^&lt;读取行号^&gt;<br>echo/&amp;echo/例如：Call ReadLine2 aa.txt 5 7 11 ，将读取aa.txt文件的第5，7，11行<br>echo/&amp;echo/如果^&lt;读取行号^&gt;没有指定，将读取整个文件的内容<br>echo/======================================<br>goto :eof</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. 使用"小函数"读取特定行：`Call ReadLine.bat &lt;文件名&gt; &lt;跳过的行数&gt; &lt;读取行数&gt;`</span><br><span class="line"></span><br><span class="line"> 例如："`Call ReadLine test.txt 5 7`"，那么将跳过test.txt文件的前5行，显示下面的7行字符，也包含空行。也可以不指定第三个参数。</span><br><span class="line"></span><br><span class="line"> &gt;`Call ReadLine test.txt 2 1`</span><br></pre></td></tr></tbody></table></figure>
-<p>@echo off&amp;SetLocal ENABLEDELAYEDEXPANSION<br>if “%1”==”” (goto –help) else (set file=%~s1)<br>if “%2”==”” (set first=”delims=: tokens=1*”) else (set first=”skip=%2 delims=: tokens=1*”)<br>if “%3”==”” (<br>for /f %first% %%a in (‘findstr /n .* %file%’) do echo/%%b<br>goto :EOF<br>)<br>set last=%3<br>set loop=0<br>for /f %first% %%a in (‘findstr/n .* %file%’) do (<br>if not defined lxmxn (echo/%%b&amp;set /a loop+=1) else (goto :EOF)<br>if “!loop!”==”%last%” set lxmxn=Nothing<br>)<br>GOTO :EOF:–help<br>echo/======================================<br>echo/本程序段需要带参数才能正常运行<br>echo/&amp;echo/Usage:&amp;echo/Call ReadLine ^&lt;文件名^&gt; ^&lt;跳过行数^&gt; ^&lt;读取行数^&gt;<br>echo/&amp;echo/例如：call ReadLine aa.txt 5 7 ，将跳过aa.txt文件的前5行，读取下面的7行字符<br>echo/&amp;echo/如果^&lt;跳过行数^&gt;没有指定，就从文件第一行读取<br>echo/&amp;echo/指定^&lt;读取行数^&gt;时必须指定^&lt;跳过行^&gt;<br>echo/======================================<br>goto :eof<br>```</p>
-
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$ ./insert a 3 "Test"</span><br><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">Test</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$</span><br></pre></td></tr></tbody></table></figure>
       
     </div>
 
