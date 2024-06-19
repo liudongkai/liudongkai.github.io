@@ -2,16 +2,16 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.0.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -94,7 +94,7 @@
   </style>
 </noscript>
 
-</head>
+<script>function loadCss(l){var d=document,h=d.head,s=d.createElement('link');s.rel='stylesheet';s.href=l;!function e(f){if (d.body)return f();setTimeout(function(){e(f)})}(function(){h.appendChild(s);});}loadCss('/style.css');</script></head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -241,7 +241,7 @@
 <p> 解决：</p>
 <ul>
 <li>在替换对话框，查找内容里输入”abc.*”</li>
-<li>同时勾选”正则表达式”复选框，然后点击”全部替换”按钮<br>其中，符号的含义如下：<br>“.” ＝匹配任意字符<br>“*” ＝匹配0次或更多  </li>
+<li>同时勾选”正则表达式”复选框，然后点击”全部替换”按钮<br>其中，符号的含义如下：<br>“.” ＝匹配任意字符<br>“*” ＝匹配0次或更多</li>
 </ul>
 <p> 注意：其实就是正则表达式替换，这里只是把一些曾经提出的问题加以整理，单纯从正则表达式本身来说，就可以引申出成千上万种特例。</p>
 <ol start="2">
@@ -261,13 +261,13 @@
 <ol start="4">
 <li><p>正则表达式应用——替换带有半角括号的多行<br>几百个网页中都有下面一段代码： <code>\n</code><br>在替换对话框启用”正则表达式”选项，这时就可以完成替换了</p>
 </li>
-<li><p>正则表达式应用——删除空行<br>启动EditPlus，打开待处理的文本类型文件。  </p>
+<li><p>正则表达式应用——删除空行<br>启动EditPlus，打开待处理的文本类型文件。</p>
 </li>
 </ol>
 <ul>
 <li>选择”查找”菜单的”替换”命令，弹出文本替换对话框。选中”正则表达式”复选框，表明我们要在查找、替换中使用正则表达式。然后，选中”替换范围”中的”当前文件”，表明对当前文件操作。</li>
 <li>单击”查找内容”组合框右侧的按钮，出现下拉菜单。</li>
-<li>下面的操作添加正则表达式，该表达式代表待查找的空行。（技巧提示：空行仅包括空格符、制表符、回车符，且必须以这三个符号之一作为一行的开头，并且以回车符结尾，查找空行的关键是构造代表空行的正则表达式）。<br>直接在”查找”中输入正则表达式”<code>^[\t]*\n</code>“，注意\t前有空格符。<br>（1）选择”从行首开始匹配”，”查找内容”组合框中出现字符”^”，表示待查找字符串必须出现在文本中一行的行首。<br>（2）选择”字符在范围中”，那么在”^”后会增加一对括号”[]”，当前插入点在括号中。括号在正则表达式中表示，文本中的字符匹配括号中任意一个字符即符合查找条件。<br>（3）按一下空格键，添加空格符。空格符是空行的一个组成成分。<br>（4）选择”制表符”，添加代表制表符的”\t”。<br>（5）移动光标，将当前插入点移到”]”之后，然后选择”匹配 0 次或更多”，该操作会添加星号字符”*”。星号表示，其前面的括号”[]”内的空格符或制表符，在一行中出现0个或多个。<br>（6）选择”换行符”，插入”\n”，表示回车符。  </li>
+<li>下面的操作添加正则表达式，该表达式代表待查找的空行。（技巧提示：空行仅包括空格符、制表符、回车符，且必须以这三个符号之一作为一行的开头，并且以回车符结尾，查找空行的关键是构造代表空行的正则表达式）。<br> 直接在”查找”中输入正则表达式”<code>^[\t]*\n</code>“，注意\t前有空格符。<br>（1）选择”从行首开始匹配”，”查找内容”组合框中出现字符”^”，表示待查找字符串必须出现在文本中一行的行首。<br>（2）选择”字符在范围中”，那么在”^”后会增加一对括号”[]”，当前插入点在括号中。括号在正则表达式中表示，文本中的字符匹配括号中任意一个字符即符合查找条件。<br>（3）按一下空格键，添加空格符。空格符是空行的一个组成成分。<br>（4）选择”制表符”，添加代表制表符的”\t”。<br>（5）移动光标，将当前插入点移到”]”之后，然后选择”匹配 0 次或更多”，该操作会添加星号字符”*”。星号表示，其前面的括号”[]”内的空格符或制表符，在一行中出现0个或多个。<br>（6）选择”换行符”，插入”\n”，表示回车符。  </li>
 <li>“替换为”组合框保持空，表示删除查找到的内容。单击”替换”按钮逐个行删除空行，或单击”全部替换”按钮删除全部空行（注意：EditPlus有时存在”全部替换”不能一次性完全删除空行的问题，可能是程序BUG，需要多按几次按钮）。</li>
 </ul>
 <ol>
@@ -309,7 +309,7 @@
 <p> 解释一下：<code>([^!|"|;]*)</code> 的意思是 不等于 ! 和 “ 和 ; 中的任何一个，意思就是这3个字符之外的所有字符将被选中（替换区域）；<br> \1 即被选中的替换区域所在的新位置（复制到这个新位置）。</p>
 <ol start="3">
 <li>经常手工清理一行一行地删除文本文件里面的空白行，其实可以交给Editplus更好的完成，在Editplus里面用替换功能，在替换对话框选中”正则表达式”复选框：<br>查找原文件：<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[\t]*\n</span><br></pre></td></tr></tbody></table></figure>
-替换部分为空就可以删除空白行了，执行一下看看：）</li>
+ 替换部分为空就可以删除空白行了，执行一下看看：）</li>
 </ol>
 
     </div>
@@ -330,12 +330,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2008/03/03/read-the-specified-line/" rel="prev" title="如何提取指定行的内容？">
-      <i class="fa fa-chevron-left"></i> 如何提取指定行的内容？
+    <a href="/2008/03/04/EditPlus-regex-example/" rel="prev" title="Editplus 正则替换实例 By Stabx">
+      <i class="fa fa-chevron-left"></i> Editplus 正则替换实例 By Stabx
     </a></div>
       <div class="post-nav-item">
-    <a href="/2008/03/04/EditPlus-regex-example/" rel="next" title="Editplus 正则替换实例 By Stabx">
-      Editplus 正则替换实例 By Stabx <i class="fa fa-chevron-right"></i>
+    <a href="/2008/03/05/transformers-cg/" rel="next" title="《变形金刚》高清人物CG组图">
+      《变形金刚》高清人物CG组图 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -509,8 +509,15 @@
   
 
 
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        
 
-<script type="text/javascript" src="/bundle.js"></script><script type="text/javascript">
+<script src="/bundle.js"></script><script>
             window.imageLazyLoadSetting = {
                 isSPA: false,
                 preloadRatio: 3,
@@ -518,4 +525,4 @@
             };
         ;
 window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});;
-!function(n){n.imageLazyLoadSetting.processImages=o;var e=n.imageLazyLoadSetting.isSPA,i=n.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},t.src!==i&&(n.src=i)}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body></html>
+!function(r){r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,d=o();function o(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=o());for(var e,i=0;i<d.length;i++)0<=(e=(e=d[i]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,a,n,o=d[i];e=function(){d=d.filter(function(t){return o!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(o)},(t=o).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,n=t.getAttribute("data-original"),a.onload=function(){t.src=n,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=n},t.src!==n&&(a.src=n)))}()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)}(this);</script></body></html>

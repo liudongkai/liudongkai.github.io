@@ -2,16 +2,16 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.0.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -94,7 +94,7 @@
   </style>
 </noscript>
 
-</head>
+<script>function loadCss(l){var d=document,h=d.head,s=d.createElement('link');s.rel='stylesheet';s.href=l;!function e(f){if (d.body)return f();setTimeout(function(){e(f)})}(function(){h.appendChild(s);});}loadCss('/style.css');</script></head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -225,19 +225,25 @@
 <li><p>Put the package at your home (~) directory</p>
 </li>
 <li><p>Extract the tarball : </p>
-<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">adee@thinkpad:~$ tar -xzvf shc-3.8.9.tgz</span><br><span class="line">shc-3.8.9/CHANGES</span><br><span class="line">shc-3.8.9/Copying</span><br><span class="line">shc-3.8.9/match</span><br><span class="line">shc-3.8.9/pru.sh</span><br><span class="line">shc-3.8.9/shc-3.8.9.c</span><br><span class="line">shc-3.8.9/shc.1</span><br><span class="line">shc-3.8.9/shc.README</span><br><span class="line">shc-3.8.9/shc.html</span><br><span class="line">shc-3.8.9/test.bash</span><br><span class="line">shc-3.8.9/test.csh</span><br><span class="line">shc-3.8.9/test.ksh</span><br><span class="line">shc-3.8.9/makefile</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">adee@thinkpad:~$ tar -xzvf shc-3.8.9.tgz</span><br><span class="line">shc-3.8.9/CHANGES</span><br><span class="line">shc-3.8.9/Copying</span><br><span class="line">shc-3.8.9/match</span><br><span class="line">shc-3.8.9/pru.sh</span><br><span class="line">shc-3.8.9/shc-3.8.9.c</span><br><span class="line">shc-3.8.9/shc.1</span><br><span class="line">shc-3.8.9/shc.README</span><br><span class="line">shc-3.8.9/shc.html</span><br><span class="line">shc-3.8.9/test.bash</span><br><span class="line">shc-3.8.9/test.csh</span><br><span class="line">shc-3.8.9/test.ksh</span><br><span class="line">shc-3.8.9/makefile</span><br></pre></td></tr></tbody></table></figure>
+</li>
 <li><p>Step inside into the shc folder and do the <strong>‘make’</strong> command :</p>
-<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adee@thinkpad:~$ <span class="built_in">cd</span> shc-3.8.9/</span><br><span class="line">adee@thinkpad:~/shc-3.8.9$ make</span><br><span class="line">make: *** No rule to make target `shc.c<span class="string">', needed by `shc'</span>.  Stop.</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adee@thinkpad:~$ <span class="built_in">cd</span> shc-3.8.9/</span><br><span class="line">adee@thinkpad:~/shc-3.8.9$ make</span><br><span class="line">make: *** No rule to make target `shc.c<span class="string">', needed by `shc'</span>.  Stop.</span><br></pre></td></tr></tbody></table></figure>
+</li>
 <li><p>As you see above, there’s an error about missing file named <strong>‘shc.c’</strong> Actually the <strong>‘shc.c’</strong> is already there, we just have to rename  / duplicate it into the right name :</p>
-<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">adee@thinkpad:~/shc-3.8.9$ cp shc-3.8.9.c shc.c</span><br><span class="line">adee@thinkpad:~/shc-3.8.9$ make</span><br><span class="line">cc -Wall  shc.c -o shc</span><br><span class="line">*** �Do you want to probe shc with a <span class="built_in">test</span> script?</span><br><span class="line">*** Please try... make <span class="built_in">test</span></span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">adee@thinkpad:~/shc-3.8.9$ <span class="built_in">cp</span> shc-3.8.9.c shc.c</span><br><span class="line">adee@thinkpad:~/shc-3.8.9$ make</span><br><span class="line">cc -Wall  shc.c -o shc</span><br><span class="line">*** �Do you want to probe shc with a <span class="built_in">test</span> script?</span><br><span class="line">*** Please try... make <span class="built_in">test</span></span><br></pre></td></tr></tbody></table></figure>
+</li>
 <li><p>Ok, then we shall continue to <strong>‘make install’</strong> command (need sudo):</p>
-<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">adee@thinkpad:~/shc-3.8.9$ sudo make install</span><br><span class="line">*** Installing shc and shc.1 on /usr/<span class="built_in">local</span></span><br><span class="line">*** �Do you want to <span class="built_in">continue</span>? y</span><br><span class="line">install -c -s shc /usr/<span class="built_in">local</span>/bin/</span><br><span class="line">install -c -m 644 shc.1 /usr/<span class="built_in">local</span>/man/man1/</span><br><span class="line">install: target `/usr/<span class="built_in">local</span>/man/man1/<span class="string">' is not a directory: No such file or directory</span></span><br><span class="line"><span class="string">make: *** [install] Error </span></span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">adee@thinkpad:~/shc-3.8.9$ sudo make install</span><br><span class="line">*** Installing shc and shc.1 on /usr/local</span><br><span class="line">*** �Do you want to <span class="built_in">continue</span>? y</span><br><span class="line">install -c -s shc /usr/local/bin/</span><br><span class="line">install -c -m 644 shc.1 /usr/local/man/man1/</span><br><span class="line">install: target `/usr/local/man/man1/<span class="string">' is not a directory: No such file or directory</span></span><br><span class="line"><span class="string">make: *** [install] Error </span></span><br></pre></td></tr></tbody></table></figure>
+</li>
 <li><p>Something sucks occurs again. It’s looks like there’s no such directory named <strong>‘/usr/local/man/man1/‘</strong>. So what should we do? Simple, just create that folder and repeat again the make install command. It should works now!</p>
-<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">adee@thinkpad:~/shc-3.8.9$ sudo mkdir /usr/<span class="built_in">local</span>/man/man1</span><br><span class="line">adee@thinkpad:~/shc-3.8.9$ sudo make install</span><br><span class="line">*** Installing shc and shc.1 on /usr/<span class="built_in">local</span></span><br><span class="line">*** �Do you want to <span class="built_in">continue</span>? y</span><br><span class="line">install -c -s shc /usr/<span class="built_in">local</span>/bin/</span><br><span class="line">install -c -m 644 shc.1 /usr/<span class="built_in">local</span>/man/man1/</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">adee@thinkpad:~/shc-3.8.9$ sudo <span class="built_in">mkdir</span> /usr/local/man/man1</span><br><span class="line">adee@thinkpad:~/shc-3.8.9$ sudo make install</span><br><span class="line">*** Installing shc and shc.1 on /usr/local</span><br><span class="line">*** �Do you want to <span class="built_in">continue</span>? y</span><br><span class="line">install -c -s shc /usr/local/bin/</span><br><span class="line">install -c -m 644 shc.1 /usr/local/man/man1/</span><br></pre></td></tr></tbody></table></figure>
+</li>
 <li><p>Next, we have to move the <strong>shc</strong> binary file into <strong>/bin</strong> and give it the excecutable bit :</p>
-<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adee@thinkpad:~/shc-3.8.9$ sudo cp shc /bin/shc</span><br><span class="line">adee@thinkpad:~/shc-3.8.9$ sudo chmod +x /bin/shc</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adee@thinkpad:~/shc-3.8.9$ sudo <span class="built_in">cp</span> shc /bin/shc</span><br><span class="line">adee@thinkpad:~/shc-3.8.9$ sudo <span class="built_in">chmod</span> +x /bin/shc</span><br></pre></td></tr></tbody></table></figure>
+</li>
 <li><p>OK Done! SHC is installed into your system. To test it, try type <strong>‘shc’</strong> at the terminal, and it should looks like this :</p>
-<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adee@thinkpad:~/shc-3.8.9$ shc </span><br><span class="line">shc Usage: shc [-e date] [-m addr] [-i iopt] [-x cmnd] [-l lopt] [-rvDTCAh] -f script</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adee@thinkpad:~/shc-3.8.9$ shc </span><br><span class="line">shc Usage: shc [-e <span class="built_in">date</span>] [-m addr] [-i iopt] [-x cmnd] [-l lopt] [-rvDTCAh] -f script</span><br></pre></td></tr></tbody></table></figure></li>
 </ol>
 <p>OK on the next few days, i will write an article about the usage of SHC. So stay tuned :-)</p>
 <p>Posted by <a target="_blank" rel="noopener" href="http://www.blogger.com/profile/14849521992252834832">Adi Riswan</a></p>
@@ -439,8 +445,15 @@
   
 
 
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        
 
-<script type="text/javascript" src="/bundle.js"></script><script type="text/javascript">
+<script src="/bundle.js"></script><script>
             window.imageLazyLoadSetting = {
                 isSPA: false,
                 preloadRatio: 3,
@@ -448,4 +461,4 @@
             };
         ;
 window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});;
-!function(n){n.imageLazyLoadSetting.processImages=o;var e=n.imageLazyLoadSetting.isSPA,i=n.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},t.src!==i&&(n.src=i)}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body></html>
+!function(r){r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,d=o();function o(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=o());for(var e,i=0;i<d.length;i++)0<=(e=(e=d[i]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,a,n,o=d[i];e=function(){d=d.filter(function(t){return o!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(o)},(t=o).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,n=t.getAttribute("data-original"),a.onload=function(){t.src=n,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=n},t.src!==n&&(a.src=n)))}()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)}(this);</script></body></html>

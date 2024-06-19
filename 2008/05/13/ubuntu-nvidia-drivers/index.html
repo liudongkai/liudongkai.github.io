@@ -2,16 +2,16 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.0.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -94,7 +94,7 @@
   </style>
 </noscript>
 
-</head>
+<script>function loadCss(l){var d=document,h=d.head,s=d.createElement('link');s.rel='stylesheet';s.href=l;!function e(f){if (d.body)return f();setTimeout(function(){e(f)})}(function(){h.appendChild(s);});}loadCss('/style.css');</script></head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -217,22 +217,25 @@
         <p>编译安装驱动的好处是可以用到最新的驱动。可惜网上教程无数，没有一个能简洁的介 绍如何编译安装Nvidia显卡驱动的。即便有一些教程能指导你如何安装，重启后又立刻出现问题，这时候该怎么办？以下是我研究总结的精华方法，嘿嘿 ^_^。注意：理论上本文适用于任何版本的Ubuntu和Nvidia驱动，不过未经严格测试，希望小白鼠们能够发扬雷锋精神，勇敢测试，在本文之后回复 测试结果！</p>
 <ol>
 <li><p>要先装好编译必备的软件，配制好源之后在终端输入：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install build-essential</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install build-essential</span><br></pre></td></tr></tbody></table></figure>
+</li>
 <li><p>根据硬件软件平台<a target="_blank" rel="noopener" href="http://www.nvidia.com/object/unix.html">在这里</a>下载相应驱动，这里Rainking下载的是最新的<code>NVIDIA-Linux-x86-169.07-pkg1.run，Rainking</code>将此文件保存在了主目录下</p>
 </li>
 <li><p>按下ctrl+alt+F1，在文本状态下重新登陆</p>
 </li>
 <li><p>关闭x，在终端输入：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/gdm stop</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/gdm stop</span><br></pre></td></tr></tbody></table></figure>
+</li>
 <li><p>在终端输入：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sh ./NVIDIA-Linux-x86-169.07-pkg1.run #（文件名和路径可能会不同）</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sh ./NVIDIA-Linux-x86-169.07-pkg1.run #（文件名和路径可能会不同）</span><br></pre></td></tr></tbody></table></figure>
+</li>
 <li><p>进入安装向导以后选项分别是：选择Accept，选择No，选择OK，选择Yes，选择OK，选择OK，选择OK</p>
 </li>
 <li><p>在终端输入：</p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/gdm start</span><br></pre></td></tr></tbody></table></figure>
 <p>重新开启x，你会发现显卡驱动已经安装成功了，一般情况下不需要再调分辨率和再配置x server，因为Nvidia已经自动配置好了。</p>
 </li>
-<li><p> 在终端输入：</p>
+<li><p>在终端输入：</p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /etc/default/linux-restricted-modules-common</span><br></pre></td></tr></tbody></table></figure>
 <p>将其中的<code>DISABLED_MODULES=""</code>改为<code>DISABLED_MODULES="nv nvidia_new"</code>。如果不这么修改，重新启动以后，驱动就会失败。</p>
 </li>
@@ -262,8 +265,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2008/05/13/shell-retain-two-decimal/" rel="prev" title="Shell运算，计算值保留两位小数">
-      <i class="fa fa-chevron-left"></i> Shell运算，计算值保留两位小数
+    <a href="/2008/05/10/excel-offset-notes/" rel="prev" title="Excel中OFFSET( )函数的使用">
+      <i class="fa fa-chevron-left"></i> Excel中OFFSET( )函数的使用
     </a></div>
       <div class="post-nav-item">
     <a href="/2008/05/13/Shell-switch-background-jobs/" rel="next" title="Linux Shell下的后台运行及其前台的转换">
@@ -441,8 +444,15 @@
   
 
 
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        
 
-<script type="text/javascript" src="/bundle.js"></script><script type="text/javascript">
+<script src="/bundle.js"></script><script>
             window.imageLazyLoadSetting = {
                 isSPA: false,
                 preloadRatio: 3,
@@ -450,4 +460,4 @@
             };
         ;
 window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});;
-!function(n){n.imageLazyLoadSetting.processImages=o;var e=n.imageLazyLoadSetting.isSPA,i=n.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},t.src!==i&&(n.src=i)}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body></html>
+!function(r){r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,d=o();function o(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=o());for(var e,i=0;i<d.length;i++)0<=(e=(e=d[i]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,a,n,o=d[i];e=function(){d=d.filter(function(t){return o!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(o)},(t=o).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,n=t.getAttribute("data-original"),a.onload=function(){t.src=n,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=n},t.src!==n&&(a.src=n)))}()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)}(this);</script></body></html>

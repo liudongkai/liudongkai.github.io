@@ -2,16 +2,16 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.0.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -93,7 +93,7 @@
   </style>
 </noscript>
 
-</head>
+<script>function loadCss(l){var d=document,h=d.head,s=d.createElement('link');s.rel='stylesheet';s.href=l;!function e(f){if (d.body)return f();setTimeout(function(){e(f)})}(function(){h.appendChild(s);});}loadCss('/style.css');</script></head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -235,7 +235,8 @@
 <p> server: FreeBSD 4.3  ip: 192.168.168.52<br>client: Solaris 8    ip: 192.168.168.137<br>rsync 版本 2.4.6(可以从<a target="_blank" rel="noopener" href="http://rsync.samba.org/rsync/%E8%8E%B7%E5%BE%97%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC">http://rsync.samba.org/rsync/获得最新版本</a>)</p>
 <ol start="2">
 <li><p>配置server端的/etc/rsyncd.conf文件</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">bash-2.03# cat /etc/rsyncd.conf</span><br><span class="line"></span><br><span class="line">uid = nobody</span><br><span class="line">gid = nobody</span><br><span class="line">use chroot = no         # 不使用chroot</span><br><span class="line">max connections = 4         # 最大连接数为4</span><br><span class="line">pid file = /var/run/rsyncd.pid</span><br><span class="line">lock file = /var/run/rsync.lock</span><br><span class="line">log file = /var/log/rsyncd.log    # 日志记录文件</span><br><span class="line"></span><br><span class="line">[inburst]            # 这里是认证的模块名，在client端需要指定</span><br><span class="line">path = /home/inburst/python/    # 需要做镜像的目录</span><br><span class="line">comment = BACKUP CLIENT IS SOLARIS 8 E250</span><br><span class="line">ignore errors            # 可以忽略一些无关的IO错误</span><br><span class="line">read only = yes            # 只读</span><br><span class="line">list = no            # 不允许列文件</span><br><span class="line">auth users = inburst        # 认证的用户名，如果没有这行，则表明是匿名</span><br><span class="line">secrets file = /etc/inburst.pas    # 认证文件名</span><br><span class="line"></span><br><span class="line">[web]</span><br><span class="line">path = /usr/local/apache/htdocs/</span><br><span class="line">comment = inburst.org web server</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">bash-2.03# cat /etc/rsyncd.conf</span><br><span class="line"></span><br><span class="line">uid = nobody</span><br><span class="line">gid = nobody</span><br><span class="line">use chroot = no         # 不使用chroot</span><br><span class="line">max connections = 4         # 最大连接数为4</span><br><span class="line">pid file = /var/run/rsyncd.pid</span><br><span class="line">lock file = /var/run/rsync.lock</span><br><span class="line">log file = /var/log/rsyncd.log    # 日志记录文件</span><br><span class="line"></span><br><span class="line">[inburst]            # 这里是认证的模块名，在client端需要指定</span><br><span class="line">path = /home/inburst/python/    # 需要做镜像的目录</span><br><span class="line">comment = BACKUP CLIENT IS SOLARIS 8 E250</span><br><span class="line">ignore errors            # 可以忽略一些无关的IO错误</span><br><span class="line">read only = yes            # 只读</span><br><span class="line">list = no            # 不允许列文件</span><br><span class="line">auth users = inburst        # 认证的用户名，如果没有这行，则表明是匿名</span><br><span class="line">secrets file = /etc/inburst.pas    # 认证文件名</span><br><span class="line"></span><br><span class="line">[web]</span><br><span class="line">path = /usr/local/apache/htdocs/</span><br><span class="line">comment = inburst.org web server</span><br></pre></td></tr></tbody></table></figure>
+</li>
 <li><p>在server端生成一个密码文件/etc/inburst.pas</p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash-2.03# cat /etc/inburst.pas</span><br><span class="line">inburst:hack</span><br></pre></td></tr></tbody></table></figure>
 <p>出于安全目的，文件的属性必需是只有属主可读。</p>
@@ -330,8 +331,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2008/01/19/rsync-parameters-details/" rel="prev" title="rsync参数详解">
-      <i class="fa fa-chevron-left"></i> rsync参数详解
+    <a href="/2008/01/16/Patapon-personage-introduction/" rel="prev" title="啪嗒砰各种烧饼的配方以及属性加成">
+      <i class="fa fa-chevron-left"></i> 啪嗒砰各种烧饼的配方以及属性加成
     </a></div>
       <div class="post-nav-item">
     <a href="/2008/01/19/linux-install-rz-sz/" rel="next" title="Linux系统手动安装rz sz 软件包">
@@ -510,8 +511,15 @@
   
 
 
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        
 
-<script type="text/javascript" src="/bundle.js"></script><script type="text/javascript">
+<script src="/bundle.js"></script><script>
             window.imageLazyLoadSetting = {
                 isSPA: false,
                 preloadRatio: 3,
@@ -519,4 +527,4 @@
             };
         ;
 window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});;
-!function(n){n.imageLazyLoadSetting.processImages=o;var e=n.imageLazyLoadSetting.isSPA,i=n.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},t.src!==i&&(n.src=i)}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body></html>
+!function(r){r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,d=o();function o(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=o());for(var e,i=0;i<d.length;i++)0<=(e=(e=d[i]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,a,n,o=d[i];e=function(){d=d.filter(function(t){return o!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(o)},(t=o).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,n=t.getAttribute("data-original"),a.onload=function(){t.src=n,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=n},t.src!==n&&(a.src=n)))}()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)}(this);</script></body></html>

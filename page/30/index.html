@@ -2,16 +2,16 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.0.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -90,7 +90,7 @@
   </style>
 </noscript>
 
-</head>
+<script>function loadCss(l){var d=document,h=d.head,s=d.createElement('link');s.rel='stylesheet';s.href=l;!function e(f){if (d.body)return f();setTimeout(function(){e(f)})}(function(){h.appendChild(s);});}loadCss('/style.css');</script></head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -163,6 +163,76 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2007/12/22/firefox-source-font/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2007/12/22/firefox-source-font/" class="post-title-link" itemprop="url">firefox 自带源代码查看器字体修改方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2007-12-22 00:00:00" itemprop="dateCreated datePublished" datetime="2007-12-22T00:00:00+08:00">2007-12-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>打开firefox文件夹根目录下的res目录，记事本打开“ viewsource.css ”文件，将里面的：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#viewsource {</span><br><span class="line">font-family: -moz-fixed;</span><br><span class="line">font-weight: normal;</span><br><span class="line">color: black;</span><br><span class="line">white-space: pre;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>替换成</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#viewsource {</span><br><span class="line">font-family: Verdana, Arial, Helvetica, sans-serif;</span><br><span class="line">font-weight: normal;</span><br><span class="line">color: black;</span><br><span class="line">white-space: pre;</span><br><span class="line">font-size: 12px;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2007/12/22/firefox-speed-ogame/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -221,7 +291,7 @@
 </ul>
 <p>需要注意一下的是第二个值。这个不一定要输入我提供的，这个应该是你所玩游戏的服务器地址。比如说你玩台湾的服务器，这个值就会不一样。如何得到适合自己的值呢？在你游戏里随意查看一个链接的属性，复制其链接地址总前面的那一段就可以了。如果你玩多个服务器的游戏，可以在那个值中输入多个地址，中间用空格分隔即可。还有就是添加的新值你可能在列表中看不到，但没有关系，这是正常的。如果不确认自己是否添加成功，可以打开 <code>X:\Documents and Settings\用户名\Application Data\Mozilla\Firefox\Profiles\xxxxxxxx.default\prefs.js</code>（X表示你的系统盘符，用户名表示你使用的 Windows 登录用户名，xxxxxxxx是个随机字符）这个文件来找找是不是有如下内容：</p>
 <blockquote>
-<p>user_pref(“capability.policy.localfilelinks.checkloaduri.enabled”, “allAccess”);<br>user_pref(“capability.policy.localfilelinks.sites”, “<a target="_blank" rel="noopener" href="http://222.73.247.132&quot;/">http://222.73.247.132"</a>);<br>user_pref(“capability.policy.policynames”, “localfilelinks”);</p>
+<p>user_pref(“capability.policy.localfilelinks.checkloaduri.enabled”, “allAccess”);<br>user_pref(“capability.policy.localfilelinks.sites”, “<a target="_blank" rel="noopener" href="http://222.73.247.132/">http://222.73.247.132</a>“);<br>user_pref(“capability.policy.policynames”, “localfilelinks”);</p>
 </blockquote>
 <p>里面的条目都是按字母顺序排列的，很容易找到。</p>
 <p>这个设置完毕后，预示着你马上要成功了。关掉 Firefox 后再打开，这时登录游戏，到游戏选项中的外观路径里输入如下内容：’file://g:/ogame/evolution/‘</p>
@@ -235,76 +305,6 @@
 <p>如果你使用的是 IE，可以把 <code>http://*.googlesyndication.com/pagead/show_ads.js</code> 这个地址添加入 IE 的不信任地址列表。</p>
 <p>如果你使用的是 Firefox，可以去下载安装一个 Adblock Plus 来用，同样将上述地址添加进过滤地址中，这样你的浏览器中就不会再显示 Google Adsense 的广告了。相当推荐使用 Adblock Plus，你还可以用它来过滤各种其它广告，只要将你不想要的广告添加进过滤地址，你就不会再看到它了。可以过滤很多种广告呢。想要恢复的话，把过滤地址中的对应条目删除就可以了。</p>
 
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2007/12/22/firefox-source-font/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2007/12/22/firefox-source-font/" class="post-title-link" itemprop="url">firefox 自带源代码查看器字体修改方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2007-12-22 00:00:00" itemprop="dateCreated datePublished" datetime="2007-12-22T00:00:00+08:00">2007-12-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>打开firefox文件夹根目录下的res目录，记事本打开“ viewsource.css ”文件，将里面的：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#viewsource {</span><br><span class="line">font-family: -moz-fixed;</span><br><span class="line">font-weight: normal;</span><br><span class="line">color: black;</span><br><span class="line">white-space: pre;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<p>替换成</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#viewsource {</span><br><span class="line">font-family: Verdana, Arial, Helvetica, sans-serif;</span><br><span class="line">font-weight: normal;</span><br><span class="line">color: black;</span><br><span class="line">white-space: pre;</span><br><span class="line">font-size: 12px;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
       
     </div>
 
@@ -458,6 +458,73 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2007/12/19/firefox-short-url/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2007/12/19/firefox-short-url/" class="post-title-link" itemprop="url">实现Firefox网址缩写的功能</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2007-12-19 00:00:00" itemprop="dateCreated datePublished" datetime="2007-12-19T00:00:00+08:00">2007-12-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>首先请点击“Bookmarks（书签）－Manage Bookmarks（书签管理器）”，启动书签管理器，然后在想使用缩写的网址上点击鼠标右键，并选择属性，这时能看到该网址的信息窗口，在窗口的第三栏 是keyword（关键字）栏，在这儿输入希望的关键字，以后就可以通过在地址栏输入关键字来打开这个网页了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2007/12/19/bash/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -568,73 +635,6 @@
 <p>一些帮助文本</p>
 <p>很明显，任何时刻在命令行键入man bash，都可以获得关于bash命令的详细帮助。</p>
 <p>原文地址 <a target="_blank" rel="noopener" href="http://www.builder.com.cn/2007/0703/415647.shtml">http://www.builder.com.cn/2007/0703/415647.shtml</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2007/12/19/firefox-short-url/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2007/12/19/firefox-short-url/" class="post-title-link" itemprop="url">实现Firefox网址缩写的功能</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2007-12-19 00:00:00" itemprop="dateCreated datePublished" datetime="2007-12-19T00:00:00+08:00">2007-12-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>首先请点击“Bookmarks（书签）－Manage Bookmarks（书签管理器）”，启动书签管理器，然后在想使用缩写的网址上点击鼠标右键，并选择属性，这时能看到该网址的信息窗口，在窗口的第三栏 是keyword（关键字）栏，在这儿输入希望的关键字，以后就可以通过在地址栏输入关键字来打开这个网页了。</p>
 
       
     </div>
@@ -1157,8 +1157,15 @@
   
 
 
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        
 
-<script type="text/javascript" src="/bundle.js"></script><script type="text/javascript">
+<script src="/bundle.js"></script><script>
             window.imageLazyLoadSetting = {
                 isSPA: false,
                 preloadRatio: 3,
@@ -1166,4 +1173,4 @@
             };
         ;
 window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});;
-!function(n){n.imageLazyLoadSetting.processImages=o;var e=n.imageLazyLoadSetting.isSPA,i=n.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},t.src!==i&&(n.src=i)}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body></html>
+!function(r){r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,d=o();function o(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=o());for(var e,i=0;i<d.length;i++)0<=(e=(e=d[i]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,a,n,o=d[i];e=function(){d=d.filter(function(t){return o!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(o)},(t=o).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,n=t.getAttribute("data-original"),a.onload=function(){t.src=n,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=n},t.src!==n&&(a.src=n)))}()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)}(this);</script></body></html>

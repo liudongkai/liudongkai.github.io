@@ -2,28 +2,28 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.0.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.liudongkai.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"PFZ0Y857EY","apiKey":"da65f2d4ea1c6d4dccfa6d7f197d2aaf","indexName":"blog","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="[概述][分区表和未分区表试验过程][分区命令详解] [概述]自5.1开始对分区(Partition)有支持，6.0应比较稳定 = 水平分区（根据列属性按行分）=举个简单例子：一个包含十年发票记录的表可以被分区为十个不同的分区，每个分区包含的是其中一年的记录。 === 水平分区的几种模式：===  Range（范围） – 这种模式允许DBA将数据划分不同范围。例如DBA可以将一个表通过年份划分成三">
+  <meta name="description" content="[概述][分区表和未分区表试验过程][分区命令详解] [概述]自5.1开始对分区(Partition)有支持，6.0应比较稳定 = 水平分区（根据列属性按行分）=举个简单例子：一个包含十年发票记录的表可以被分区为十个不同的分区，每个分区包含的是其中一年的记录。 === 水平分区的几种模式：===  Range（范围）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL分区（Partition）功能试验">
 <meta property="og:url" content="http://www.liudongkai.com/2010/03/02/mysql-partition/index.html">
 <meta property="og:site_name" content="Dong's Note">
-<meta property="og:description" content="[概述][分区表和未分区表试验过程][分区命令详解] [概述]自5.1开始对分区(Partition)有支持，6.0应比较稳定 = 水平分区（根据列属性按行分）=举个简单例子：一个包含十年发票记录的表可以被分区为十个不同的分区，每个分区包含的是其中一年的记录。 === 水平分区的几种模式：===  Range（范围） – 这种模式允许DBA将数据划分不同范围。例如DBA可以将一个表通过年份划分成三">
+<meta property="og:description" content="[概述][分区表和未分区表试验过程][分区命令详解] [概述]自5.1开始对分区(Partition)有支持，6.0应比较稳定 = 水平分区（根据列属性按行分）=举个简单例子：一个包含十年发票记录的表可以被分区为十个不同的分区，每个分区包含的是其中一年的记录。 === 水平分区的几种模式：===  Range（范围）">
 <meta property="og:locale">
 <meta property="article:published_time" content="2010-03-01T16:00:00.000Z">
 <meta property="article:modified_time" content="2010-03-01T16:00:00.000Z">
@@ -94,7 +94,7 @@
   </style>
 </noscript>
 
-</head>
+<script>function loadCss(l){var d=document,h=d.head,s=d.createElement('link');s.rel='stylesheet';s.href=l;!function e(f){if (d.body)return f();setTimeout(function(){e(f)})}(function(){h.appendChild(s);});}loadCss('/style.css');</script></head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -239,9 +239,11 @@
 <p>注意最后一行，考虑到可能的最大值</p>
 </li>
 <li><p>创建未分区表</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table no_part_tab (c1 int(11) default NULL,c2 varchar(30) default NULL,c3 date default NULL) engine=myisam;</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table no_part_tab (c1 int(11) default NULL,c2 varchar(30) default NULL,c3 date default NULL) engine=myisam;</span><br></pre></td></tr></tbody></table></figure>
+</li>
 <li><p>通过存储过程灌入800万条测试数据</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; set sql_mode=”; /* 如果创建存储过程失败，则先需设置此变量, bug? */</span><br><span class="line">mysql&gt; delimiter // /* 设定语句终结符为 //，因存储过程语句用;结束 */</span><br><span class="line">mysql&gt; CREATE PROCEDURE load_part_tab()</span><br><span class="line">begin</span><br><span class="line">declare v int default 0;</span><br><span class="line">while v &lt; 8000000</span><br><span class="line">do</span><br><span class="line">insert into part_tab</span><br><span class="line">values (v,'testing partitions',adddate('1995-01-01',(rand(v)*36520) mod 3652));</span><br><span class="line">set v = v + 1;</span><br><span class="line">end while;</span><br><span class="line">end</span><br><span class="line">//</span><br><span class="line">mysql&gt; delimiter ;</span><br><span class="line">mysql&gt; call load_part_tab();</span><br><span class="line">Query OK, 1 row affected (8 min 17.75 sec)</span><br><span class="line">mysql&gt; insert into no_part_tab select * from part_tab;</span><br><span class="line">Query OK, 8000000 rows affected (51.59 sec)</span><br><span class="line">Records: 8000000 Duplicates: 0 Warnings: 0</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; set sql_mode=”; /* 如果创建存储过程失败，则先需设置此变量, bug? */</span><br><span class="line">mysql&gt; delimiter // /* 设定语句终结符为 //，因存储过程语句用;结束 */</span><br><span class="line">mysql&gt; CREATE PROCEDURE load_part_tab()</span><br><span class="line">begin</span><br><span class="line">declare v int default 0;</span><br><span class="line">while v &lt; 8000000</span><br><span class="line">do</span><br><span class="line">insert into part_tab</span><br><span class="line">values (v,'testing partitions',adddate('1995-01-01',(rand(v)*36520) mod 3652));</span><br><span class="line">set v = v + 1;</span><br><span class="line">end while;</span><br><span class="line">end</span><br><span class="line">//</span><br><span class="line">mysql&gt; delimiter ;</span><br><span class="line">mysql&gt; call load_part_tab();</span><br><span class="line">Query OK, 1 row affected (8 min 17.75 sec)</span><br><span class="line">mysql&gt; insert into no_part_tab select * from part_tab;</span><br><span class="line">Query OK, 8000000 rows affected (51.59 sec)</span><br><span class="line">Records: 8000000 Duplicates: 0 Warnings: 0</span><br></pre></td></tr></tbody></table></figure>
+</li>
 <li><p>测试SQL性能</p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select count(*) from part_tab where c3 &gt; date ’1995-01-01′ and c3 &lt; date '1995-12-31';</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">| 795181   |</span><br><span class="line">+----------+</span><br><span class="line">1 row in set (0.55 sec)</span><br><span class="line">mysql&gt; select count(*) from no_part_tab where c3 &gt; date ’1995-01-01′ and c3 &lt; date '1995-12-31';</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">| 795181   |</span><br><span class="line">+----------+</span><br><span class="line">1 row in set (4.69 sec)</span><br></pre></td></tr></tbody></table></figure>
 <p>结果表明分区表比未分区表的执行时间少90%。</p>
@@ -262,7 +264,8 @@
 <li><p>再次测试SQL性能</p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select count(*) from no_part_tab where c3 &gt; date ’1995-01-01′ and c3 &lt; date '1995-12-31';</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">| 795181   |</span><br><span class="line">+----------+</span><br><span class="line">1 row in set (2.42 sec) /* 为原来4.69 sec 的51%*/</span><br></pre></td></tr></tbody></table></figure>
 <p>重启mysql ( net stop mysql, net start mysql)后，查询时间降为0.89 sec,几乎与分区表相同。</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select count(*) from part_tab where c3 &gt; date ’1995-01-01′ and c3 &lt; date '1995-12-31';</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">| 795181   |</span><br><span class="line">+----------+</span><br><span class="line">1 row in set (0.86 sec)</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select count(*) from part_tab where c3 &gt; date ’1995-01-01′ and c3 &lt; date '1995-12-31';</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">| 795181   |</span><br><span class="line">+----------+</span><br><span class="line">1 row in set (0.86 sec)</span><br></pre></td></tr></tbody></table></figure>
+</li>
 <li><p>更进一步的试验</p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">** 增加日期范围</span><br><span class="line">mysql&gt; select count(*) from no_part_tab where c3 &gt; date ’1995-01-01′ and c3 &lt; date '1997-12-31';</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">| 2396524  |</span><br><span class="line">+----------+</span><br><span class="line">1 row in set (5.42 sec)</span><br><span class="line"></span><br><span class="line"> mysql&gt; select count(*) from part_tab where c3 &gt; date ’1995-01-01′ and c3 &lt; date '1997-12-31';</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">| 2396524  |</span><br><span class="line">+----------+</span><br><span class="line">1 row in set (2.63 sec)</span><br><span class="line"></span><br><span class="line"> ** 增加未索引字段查询</span><br><span class="line">mysql&gt; select count(*) from part_tab where c3 &gt; date ’1995-01-01′ and c3 &lt; date</span><br><span class="line">'1996-12-31' and c2='hello';</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">| 0        |</span><br><span class="line">+----------+</span><br><span class="line">1 row in set (0.75 sec)</span><br><span class="line"></span><br><span class="line"> mysql&gt; select count(*) from no_part_tab where c3 &gt; date ’1995-01-01′ and c3 &lt; da</span><br><span class="line">te '1996-12-31' and c2='hello';</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">| 0        |</span><br><span class="line">+----------+</span><br><span class="line">1 row in set (11.52 sec)</span><br></pre></td></tr></tbody></table></figure></li>
 </ul>
@@ -318,33 +321,33 @@
 </li>
 <li><p>重建分区</p>
 <ul>
-<li><p>RANGE 分区重建</p>
+<li>RANGE 分区重建</li>
+</ul>
+</li>
+</ul>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE users REORGANIZE PARTITION p0,p1 INTO (PARTITION p0 VALUES LESS THAN (6000000));</span><br></pre></td></tr></tbody></table></figure>
 <p>将原来的 p0,p1 分区合并起来，放到新的 p0 分区中。</p>
-</li>
-<li><p>LIST 分区重建</p>
+<pre><code>* LIST 分区重建
+</code></pre>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE users REORGANIZE PARTITION p0,p1 INTO (PARTITION p0 VALUES IN(0,1,4,5,8,9,12,13));</span><br></pre></td></tr></tbody></table></figure>
 <p>将原来的 p0,p1 分区合并起来，放到新的 p0 分区中。</p>
-</li>
-<li><p>HASH/KEY 分区重建</p>
+<pre><code>* HASH/KEY 分区重建
+</code></pre>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE users REORGANIZE PARTITION COALESCE PARTITION 2;</span><br></pre></td></tr></tbody></table></figure>
 <p>用 REORGANIZE 方式重建分区的数量变成2，在这里数量只能减少不能增加。想要增加可以用 ADD PARTITION 方法。</p>
-</li>
-</ul>
-</li>
+<ul>
 <li><p>新增分区</p>
 <ul>
-<li><p>新增 RANGE 分区</p>
+<li>新增 RANGE 分区</li>
+</ul>
+</li>
+</ul>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE category ADD PARTITION (PARTITION p4 VALUES IN (16,17,18,19)</span><br><span class="line">DATA DIRECTORY = '/data8/data'</span><br><span class="line">INDEX DIRECTORY = '/data9/idx');</span><br></pre></td></tr></tbody></table></figure>
 <p>新增一个RANGE分区。</p>
-</li>
-<li><p>新增 HASH/KEY 分区</p>
+<pre><code>* 新增 HASH/KEY 分区
+</code></pre>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE users ADD PARTITION PARTITIONS 8;</span><br></pre></td></tr></tbody></table></figure>
 <p>将分区总数扩展到8个。</p>
-</li>
-</ul>
-</li>
-</ul>
 <h2 id="给已有的表加上分区"><a href="#给已有的表加上分区" class="headerlink" title="[ 给已有的表加上分区 ]"></a>[ 给已有的表加上分区 ]</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">alter table results partition by RANGE (month(ttime))</span><br><span class="line">(PARTITION p0 VALUES LESS THAN (1),</span><br><span class="line">PARTITION p1 VALUES LESS THAN (2) , PARTITION p2 VALUES LESS THAN (3) ,</span><br><span class="line">PARTITION p3 VALUES LESS THAN (4) , PARTITION p4 VALUES LESS THAN (5) ,</span><br><span class="line">PARTITION p5 VALUES LESS THAN (6) , PARTITION p6 VALUES LESS THAN (7) ,</span><br><span class="line">PARTITION p7 VALUES LESS THAN (8) , PARTITION p8 VALUES LESS THAN (9) ,</span><br><span class="line">PARTITION p9 VALUES LESS THAN (10) , PARTITION p10 VALUES LESS THAN (11),</span><br><span class="line">PARTITION p11 VALUES LESS THAN (12),</span><br><span class="line">PARTITION P12 VALUES LESS THAN (13) );</span><br></pre></td></tr></tbody></table></figure>
 <p>默认分区限制分区字段必须是主键（PRIMARY KEY)的一部分，为了去除此<br>限制：</p>
 <p>[方法1] 使用ID</p>
@@ -555,8 +558,15 @@
   
 
 
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        
 
-<script type="text/javascript" src="/bundle.js"></script><script type="text/javascript">
+<script src="/bundle.js"></script><script>
             window.imageLazyLoadSetting = {
                 isSPA: false,
                 preloadRatio: 3,
@@ -564,4 +574,4 @@
             };
         ;
 window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});;
-!function(n){n.imageLazyLoadSetting.processImages=o;var e=n.imageLazyLoadSetting.isSPA,i=n.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},t.src!==i&&(n.src=i)}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body></html>
+!function(r){r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,d=o();function o(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=o());for(var e,i=0;i<d.length;i++)0<=(e=(e=d[i]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,a,n,o=d[i];e=function(){d=d.filter(function(t){return o!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(o)},(t=o).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,n=t.getAttribute("data-original"),a.onload=function(){t.src=n,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=n},t.src!==n&&(a.src=n)))}()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)}(this);</script></body></html>

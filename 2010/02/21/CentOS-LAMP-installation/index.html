@@ -2,16 +2,16 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.0.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -94,7 +94,7 @@
   </style>
 </noscript>
 
-</head>
+<script>function loadCss(l){var d=document,h=d.head,s=d.createElement('link');s.rel='stylesheet';s.href=l;!function e(f){if (d.body)return f();setTimeout(function(){e(f)})}(function(){h.appendChild(s);});}loadCss('/style.css');</script></head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -266,8 +266,8 @@ http://centos.ustc.edu.cn/
 <li><p><code>config.sample.inc.php</code>更名为<code>config.inc.php</code>;</p>
 </li>
 <li><p>打开config.inc.php文件，进行以下修改;</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// $cfg['Servers'][$i]['controluser'] = 'pma';</span><br><span class="line">// $cfg['Servers'][$i]['controlpass'] = 'pmapass';</span><br><span class="line">// $cfg['Servers'][$i]['pmadb'] = 'phpmyadmin';</span><br><span class="line">// $cfg['Servers'][$i]['bookmarktable'] = 'pma_bookmark';</span><br><span class="line">// $cfg['Servers'][$i]['relation'] = 'pma_relation';</span><br><span class="line">// $cfg['Servers'][$i]['table_info'] = 'pma_table_info';</span><br><span class="line">// $cfg['Servers'][$i]['table_coords'] = 'pma_table_coords';</span><br><span class="line">// $cfg['Servers'][$i]['pdf_pages'] = 'pma_pdf_pages';</span><br><span class="line">// $cfg['Servers'][$i]['column_info'] = 'pma_column_info';</span><br><span class="line">// $cfg['Servers'][$i]['history'] = 'pma_history';</span><br><span class="line">// $cfg['Servers'][$i]['designer_coords'] = 'pma_designer_coords';</span><br></pre></td></tr></tbody></table></figure>
-<p>去掉每行前面的 <strong>//</strong></p>
+ <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// $cfg['Servers'][$i]['controluser'] = 'pma';</span><br><span class="line">// $cfg['Servers'][$i]['controlpass'] = 'pmapass';</span><br><span class="line">// $cfg['Servers'][$i]['pmadb'] = 'phpmyadmin';</span><br><span class="line">// $cfg['Servers'][$i]['bookmarktable'] = 'pma_bookmark';</span><br><span class="line">// $cfg['Servers'][$i]['relation'] = 'pma_relation';</span><br><span class="line">// $cfg['Servers'][$i]['table_info'] = 'pma_table_info';</span><br><span class="line">// $cfg['Servers'][$i]['table_coords'] = 'pma_table_coords';</span><br><span class="line">// $cfg['Servers'][$i]['pdf_pages'] = 'pma_pdf_pages';</span><br><span class="line">// $cfg['Servers'][$i]['column_info'] = 'pma_column_info';</span><br><span class="line">// $cfg['Servers'][$i]['history'] = 'pma_history';</span><br><span class="line">// $cfg['Servers'][$i]['designer_coords'] = 'pma_designer_coords';</span><br></pre></td></tr></tbody></table></figure>
+<p> 去掉每行前面的 <strong>//</strong></p>
 </li>
 <li><p>$cfg[‘blowfish_secret’] = ‘’; |修改为| $cfg[‘blowfish_secret’] = ‘http’;</p>
 </li>
@@ -278,20 +278,20 @@ http://centos.ustc.edu.cn/
 </ol>
 </li>
 <li><p>安装php的扩展</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install php-gd php-xml php-mbstring php-ldap php-pear php-xmlrpc</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install php-gd php-xml php-mbstring php-ldap php-pear php-xmlrpc</span><br></pre></td></tr></tbody></table></figure>
+</li>
 <li><p>安装apache扩展</p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install httpd-manual mod_ssl mod_perl mod_auth_mysql</span><br></pre></td></tr></tbody></table></figure>
 <p>注：以上步骤是结合fengyihot’Blog,再根据本人实际改进的：）</p>
 </li>
 <li><p>所需工具下载</p>
 <ol>
-<li><p>FlashFXP<br>通过FlashFxp里的Sftp连接，直接连接到服务器上管理所有文件夹。</p>
+<li><p>FlashFXP<br> 通过FlashFxp里的Sftp连接，直接连接到服务器上管理所有文件夹。</p>
 </li>
-<li><p>putty<br>PuTTY 是一套免费的 SSH / Telnet 程序，它可以连接上支持 SSH Telnet 联机的站台，并且可自动取得对方的系统指纹码 (Fingerprint)。建立联机以后，所有的通讯内容都是以加密的方式传输，因此你再也不用害怕使用 Telnet 在 Internet 或公司的内部网络传输资料时被他人获知内容了！</p>
-</li>
-<li><p>SecureCRT<br>SecureCRT是一款支持SSH（SSH1和SSH2）的终端仿真程序，同时支持Telnet和rlogin协议。SecureCRT是一款用于连接运行包括Windows、UNIX和VMS的远程系统的理想工具。通过使用内含的VCP命令行程序可以进行加密文件的传输。</p>
+<li><p>putty<br> PuTTY 是一套免费的 SSH / Telnet 程序，它可以连接上支持 SSH Telnet 联机的站台，并且可自动取得对方的系统指纹码 (Fingerprint)。建立联机以后，所有的通讯内容都是以加密的方式传输，因此你再也不用害怕使用 Telnet 在 Internet 或公司的内部网络传输资料时被他人获知内容了！</p>
 </li>
 </ol>
+<p> 3.SecureCRT<br> SecureCRT是一款支持SSH（SSH1和SSH2）的终端仿真程序，同时支持Telnet和rlogin协议。SecureCRT是一款用于连接运行包括Windows、UNIX和VMS的远程系统的理想工具。通过使用内含的VCP命令行程序可以进行加密文件的传输。</p>
 </li>
 </ol>
 
@@ -492,8 +492,15 @@ http://centos.ustc.edu.cn/
   
 
 
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        
 
-<script type="text/javascript" src="/bundle.js"></script><script type="text/javascript">
+<script src="/bundle.js"></script><script>
             window.imageLazyLoadSetting = {
                 isSPA: false,
                 preloadRatio: 3,
@@ -501,4 +508,4 @@ http://centos.ustc.edu.cn/
             };
         ;
 window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});;
-!function(n){n.imageLazyLoadSetting.processImages=o;var e=n.imageLazyLoadSetting.isSPA,i=n.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},t.src!==i&&(n.src=i)}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body></html>
+!function(r){r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,d=o();function o(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=o());for(var e,i=0;i<d.length;i++)0<=(e=(e=d[i]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,a,n,o=d[i];e=function(){d=d.filter(function(t){return o!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(o)},(t=o).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,n=t.getAttribute("data-original"),a.onload=function(){t.src=n,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=n},t.src!==n&&(a.src=n)))}()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)}(this);</script></body></html>

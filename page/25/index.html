@@ -2,16 +2,16 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.0.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -90,7 +90,7 @@
   </style>
 </noscript>
 
-</head>
+<script>function loadCss(l){var d=document,h=d.head,s=d.createElement('link');s.rel='stylesheet';s.href=l;!function e(f){if (d.body)return f();setTimeout(function(){e(f)})}(function(){h.appendChild(s);});}loadCss('/style.css');</script></head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -250,97 +250,6 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/15/IBM-install-drivers-1/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/03/15/IBM-install-drivers-1/" class="post-title-link" itemprop="url">IBM T61/R61/X61 WinXP驱动安装(一)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-15T00:00:00+08:00">2008-03-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>==== 20140221更新 ====<br>重新整理，终于找到原帖：<a target="_blank" rel="noopener" href="http://www.tpuser.idv.tw/articles/santarosa-test-wxp.html">http://www.tpuser.idv.tw/articles/santarosa-test-wxp.html</a></p>
-<hr>
-<p>ThinkPad T61/R61/X61系列硬件架构相当接近，原厂维修手册都可共享，此篇安装流程理论上可以适用在 ThinkPad T61/R61/X61系列上面，记得再根据个别机种的硬件安装对应驱动程序。</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=TPAD-MATRIX">ThinkPad 全系列机型驱动程序 矩阵列表</a></li>
-</ul>
-<p>由 于微软的许多组件都需在线下载，无法直接下载完整版本，因此才会视需要，将网络卡的驱动程序安装程序放在前面。此外 ThinkPad 的相关驱动程序也有安装顺序上的考虑，以下的安装流程其实已经把各环节都尽量考虑进去，如网友没有把握，不妨按照以下的顺序安装，感谢。</p>
-<h3 id="准备动作：设定-SATA-硬盘"><a href="#准备动作：设定-SATA-硬盘" class="headerlink" title="准备动作：设定 SATA 硬盘"></a>准备动作：设定 SATA 硬盘</h3><p>自从 T60/R60/X60 开始改用 SATA 界面硬盘，手动安装 WinXP 便遇到一个问题：「要选择 Compatibility 还是 AHCI 模式？」，这问题的主因源自于设定为 AHCI 模式时，必须在安装时按下「 F6 」，然后预先加载芯片组驱动程序。但现在拥有 USB 界面软驱的使用者实在太少了。</p>
-<p>在没有 USB 软驱的状况下，有的使用者便设定成 「 Compatibility 模式」，却发现硬盘效能不彰，接着去 BIOS 调回 AHCI 模式之后，就会发生蓝底白字的系统当机惨剧。因此很多人想到要重装 WinXP 就头大。</p>
-<p>但根据 Lenovo 原厂提供的资料，以及亲身体验，其实手动安装 WinXP 并不困难！不需要准备 USB 软驱﹔不用忍受「 Compatibility 模式」效能不彰问题，更不会发生蓝底白字惨剧，关键只在于「安装流程的顺序！」</p>
-<p>请跟着本文的流程依序安装，相信大家都能顺利重返 WinXP 环境！</p>
-<ol>
-<li>按下电源开关，开机时请按「 F1 」键，之后会进入 BIOS 画面。</li>
-<li>进入 BIOS 之后，进入「 Config 」页面</li>
-<li>再进入「 Serial ATA(SATA) 」页面</li>
-<li>将原先的「 AHCI 」改成「 Compatibility 」</li>
-</ol>
-<p>换言之，手动安装 WinXP 时，先采用「 Compatibility 模式」，规避掉需要透过 USB 软驱安装驱动程序的困扰，然后在后面的「步骤三」请网友务必按照说明安装 Intel Matrix Storage Manager Driver ，同时将硬盘更改为 AHCI 模式。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2008/03/15/IBM-install-drivers-1/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/15/apache-rewrite/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -404,80 +313,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/15/wp-plugin-tiger-administration/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/03/15/wp-plugin-tiger-administration/" class="post-title-link" itemprop="url">WP插件–WP Tiger Administration</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-15T00:00:00+08:00">2008-03-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>WP Tiger Administration是一款WP后台美化插件，整体感觉比较庄重严肃……具体看下面的截图:</p>
-<p>一套超强的CSS系统,只有170K左右,就能把你的后台打造成你喜欢的样式…实在令人不得不PF…</p>
-<p>下载:<a href="/files/wp-admin-tiger-v30.zip">Download the plugin</a></p>
-<p>下载下来后,解压,当然,一般都是解压到当前文件夹,这样的话,就出现两个文件,一个主文件,一个是介绍文档,PDF格式…如果你轻易看懂英文的话,那就不用往下看了,那个介绍也挺简单的.只是要注意一些问题而已…你应该把整个文件传到/wp-content/plugins/目录下…即:</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/wp-content/plugins/wp-admin-tiger/</span><br><span class="line">/wp-admin-tiger/wp-admin-tiger_files/</span><br><span class="line">/wp-admin-tiger/wp-admin-tiger.php</span><br></pre></td></tr></tbody></table></figure>
-<p>需要注意的就是这点了…</p>
-<p>当然,最后一步,激活插件,然后你什么都不用做,就可以拥有一个全新的后台了.</p>
-<p>更多的可以查看：<a target="_blank" rel="noopener" href="http://orderedlist.com/wordpress-plugins/wp-tiger-administration/">插件作者页面</a></p>
-
       
     </div>
 
@@ -591,6 +426,171 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/15/IBM-install-drivers-1/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/03/15/IBM-install-drivers-1/" class="post-title-link" itemprop="url">IBM T61/R61/X61 WinXP驱动安装(一)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-15T00:00:00+08:00">2008-03-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>==== 20140221更新 ====<br>重新整理，终于找到原帖：<a target="_blank" rel="noopener" href="http://www.tpuser.idv.tw/articles/santarosa-test-wxp.html">http://www.tpuser.idv.tw/articles/santarosa-test-wxp.html</a></p>
+<hr>
+<p>ThinkPad T61/R61/X61系列硬件架构相当接近，原厂维修手册都可共享，此篇安装流程理论上可以适用在 ThinkPad T61/R61/X61系列上面，记得再根据个别机种的硬件安装对应驱动程序。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=TPAD-MATRIX">ThinkPad 全系列机型驱动程序 矩阵列表</a></li>
+</ul>
+<p>由 于微软的许多组件都需在线下载，无法直接下载完整版本，因此才会视需要，将网络卡的驱动程序安装程序放在前面。此外 ThinkPad 的相关驱动程序也有安装顺序上的考虑，以下的安装流程其实已经把各环节都尽量考虑进去，如网友没有把握，不妨按照以下的顺序安装，感谢。</p>
+<h3 id="准备动作：设定-SATA-硬盘"><a href="#准备动作：设定-SATA-硬盘" class="headerlink" title="准备动作：设定 SATA 硬盘"></a>准备动作：设定 SATA 硬盘</h3><p>自从 T60/R60/X60 开始改用 SATA 界面硬盘，手动安装 WinXP 便遇到一个问题：「要选择 Compatibility 还是 AHCI 模式？」，这问题的主因源自于设定为 AHCI 模式时，必须在安装时按下「 F6 」，然后预先加载芯片组驱动程序。但现在拥有 USB 界面软驱的使用者实在太少了。</p>
+<p>在没有 USB 软驱的状况下，有的使用者便设定成 「 Compatibility 模式」，却发现硬盘效能不彰，接着去 BIOS 调回 AHCI 模式之后，就会发生蓝底白字的系统当机惨剧。因此很多人想到要重装 WinXP 就头大。</p>
+<p>但根据 Lenovo 原厂提供的资料，以及亲身体验，其实手动安装 WinXP 并不困难！不需要准备 USB 软驱﹔不用忍受「 Compatibility 模式」效能不彰问题，更不会发生蓝底白字惨剧，关键只在于「安装流程的顺序！」</p>
+<p>请跟着本文的流程依序安装，相信大家都能顺利重返 WinXP 环境！</p>
+<ol>
+<li>按下电源开关，开机时请按「 F1 」键，之后会进入 BIOS 画面。</li>
+<li>进入 BIOS 之后，进入「 Config 」页面</li>
+<li>再进入「 Serial ATA(SATA) 」页面</li>
+<li>将原先的「 AHCI 」改成「 Compatibility 」</li>
+</ol>
+<p>换言之，手动安装 WinXP 时，先采用「 Compatibility 模式」，规避掉需要透过 USB 软驱安装驱动程序的困扰，然后在后面的「步骤三」请网友务必按照说明安装 Intel Matrix Storage Manager Driver ，同时将硬盘更改为 AHCI 模式。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2008/03/15/IBM-install-drivers-1/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/15/wp-plugin-tiger-administration/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/03/15/wp-plugin-tiger-administration/" class="post-title-link" itemprop="url">WP插件–WP Tiger Administration</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-15T00:00:00+08:00">2008-03-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>WP Tiger Administration是一款WP后台美化插件，整体感觉比较庄重严肃……具体看下面的截图:</p>
+<p>一套超强的CSS系统,只有170K左右,就能把你的后台打造成你喜欢的样式…实在令人不得不PF…</p>
+<p>下载:<a href="/files/wp-admin-tiger-v30.zip">Download the plugin</a></p>
+<p>下载下来后,解压,当然,一般都是解压到当前文件夹,这样的话,就出现两个文件,一个主文件,一个是介绍文档,PDF格式…如果你轻易看懂英文的话,那就不用往下看了,那个介绍也挺简单的.只是要注意一些问题而已…你应该把整个文件传到/wp-content/plugins/目录下…即:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/wp-content/plugins/wp-admin-tiger/</span><br><span class="line">/wp-admin-tiger/wp-admin-tiger_files/</span><br><span class="line">/wp-admin-tiger/wp-admin-tiger.php</span><br></pre></td></tr></tbody></table></figure>
+<p>需要注意的就是这点了…</p>
+<p>当然,最后一步,激活插件,然后你什么都不用做,就可以拥有一个全新的后台了.</p>
+<p>更多的可以查看：<a target="_blank" rel="noopener" href="http://orderedlist.com/wordpress-plugins/wp-tiger-administration/">插件作者页面</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/05/transformers-cg/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -644,101 +644,9 @@
 <p>爵士<br>爵士（Jazz）——汽车人前二号人物：喜欢放音乐的酷眩跑车。</p>
 <p>眩晕<br>眩晕（Blackout）——霸天虎：电影中加入的后期霸天虎人物。</p>
 <p>大黄蜂<br>大黄蜂（Bumblebee）——汽车人：这个就不用说了，小巧玲瓏，人类的好朋友。</p>
-<p><a target="_blank" rel="noopener" href="http://photo.liudongkai.com/blog/Frenzy.jpg"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="http://photo.liudongkai.com/blog/Frenzy.s.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="http://photo.liudongkai.com/blog/Frenzy.jpg"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0Ij48Y2lyY2xlIGN4PSI0IiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgaWQ9InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAiIGF0dHJpYnV0ZU5hbWU9InIiIGJlZ2luPSIwO3N2Z1NwaW5uZXJzM0RvdHNTY2FsZTEuZW5kLTAuMjVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNnMiIGR1cj0iMC43NXMiIHZhbHVlcz0iMzsuMjszIi8+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMjAiIGN5PSIxMiIgcj0iMyIgZmlsbD0iY3VycmVudENvbG9yIj48YW5pbWF0ZSBpZD0ic3ZnU3Bpbm5lcnMzRG90c1NjYWxlMSIgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNDVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjwvc3ZnPg==" data-original="http://photo.liudongkai.com/blog/Frenzy.s.jpg"></a></p>
 <p>迷乱（Frenzy）——霸天虎：原形实為声波的卡式磁带金刚之一，与轰隆隆形状类似，但戏份较少。</p>
 <p>铁皮<br>铁皮（Ironhide）——汽车人：真正的硬汉。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/04/EditPlus-regex-example/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/03/04/EditPlus-regex-example/" class="post-title-link" itemprop="url">Editplus 正则替换实例 By Stabx</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-03-04 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-04T00:00:00+08:00">2008-03-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>abandon[2’b9nd2n]v.抛弃，放弃<br>abandonment[2’b9nd2nm2nt]n.放弃<br>abbreviation[2bri:vi’ei62n]n.缩写<br>abeyance[2’bei2ns]n.缓办，中止<br>abide[2’baid]v.遵守<br>ability[2’biliti]n.能力<br>able[’eibl]adj.有能力的，能干的<br>abnormal[9b’n0:m2l]adj.反常的，变态的<br>aboard[2’b0:d]adv.船(车)上</p>
-</blockquote>
-<ol>
-<li><p>查找: <code>(^[a-zA-Z0-0\-]+)(\[*.*\]+)(.*) </code><br>替换: <code>@@@@@"\1″,"\2″,"\3″, </code><br>效果:   </p>
-<blockquote>
-<p>@@@@@”abandon”,”[2’’b9nd2n]”,”v.抛弃，放弃”,<br>@@@@@”abandonment”,”[2’’b9nd2nm2nt]”,”n.放弃”,<br>@@@@@”abbreviation”,”[2bri:vi’’ei62n]”,”n.缩写”,<br>@@@@@”abeyance”,”[2’’bei2ns]”,”n.缓办，中止”,<br>@@@@@”abide”,”[2’’baid]”,”v.遵守”,<br>@@@@@”ability”,”[2’’biliti]”,”n.能力”,<br>@@@@@”able”,”[‘’eibl]”,”adj.有能力的，能干的”,<br>@@@@@”abnormal”,”[9b’’n0:m2l]”,”adj.反常的，变态的”,<br>@@@@@”aboard”,”[2’’b0:d]”,”adv.船(车)上”, </p>
-</blockquote>
-</li>
-<li><p>查找: <code>\n</code><br>替换:<br>注: 要次替换内容为空<br>效果:   </p>
-<blockquote>
-<p>@@@@@”abandon”,”[2’’b9nd2n]”,”v.抛弃，放弃 “,@@@@@”abandonment”,”[2’’b9nd2nm2nt]”,”n.放弃 “,@@@@@”abbreviation”,”[2bri:vi’’ei62n]”,”n.缩写 “,@@@@@”abeyance”,”[2’’bei2ns]”,”n.缓办，中止”,@@@@@”abide”,”[2’’baid]”,”v.遵守 “,@@@@@”ability”,”[2’’biliti]”,”n.能力”,@@@@@”able”,”[‘’eibl]”,”adj.有能力的，能 干的 “,@@@@@”abnormal”,”[9b’’n0:m2l]”,”adj.反常的，变态的 “,@@@@@”aboard”,”[2’’b0:d]”,”adv.船(车)上”,@@@@@”abolish”,”[2’’b0li6]”,”v.废 除，取消”,@@@@@”abolition”,”[9b2’’li62n]”,”n.废除，取消” </p>
-</blockquote>
-</li>
-<li><p>查找: <code>@@@@@</code><br>替换: <code>\n</code><br>效果:   </p>
-<blockquote>
-<p>“abandon”,”[2’’b9nd2n]”,”v.抛弃，放弃”,<br>“abandonment”,”[2’’b9nd2nm2nt]”,”n.放弃”,<br>“abbreviation”,”[2bri:vi’’ei62n]”,”n.缩写”,<br>“abeyance”,”[2’’bei2ns]”,”n.缓办，中止”,<br>“abide”,”[2’’baid]”,”v.遵守”,<br>“ability”,”[2’’biliti]”,”n.能力”,<br>“able”,”[‘’eibl]”,”adj.有能力的，能干的”,<br>“abnormal”,”[9b’’n0:m2l]”,”adj.反常的，变态的”,<br>“aboard”,”[2’’b0:d]”,”adv.船(车)上”,<br>“abolish”,”[2’’b0li6]”,”v.废除，取消”, </p>
-</blockquote>
-</li>
-<li><p>任务完成  </p>
-</li>
-<li><p>作用说明<br>本次操作主要是为了将数据导入 MS Access</p>
-</li>
-</ol>
-<p>注: 本次操作导入数据 7988 行</p>
-<p>shawl.qiu<br>15:39 2006-5-16</p>
 
       
     </div>
@@ -838,7 +746,7 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/03/read-the-specified-line/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/04/EditPlus-regex-example/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -852,7 +760,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2008/03/03/read-the-specified-line/" class="post-title-link" itemprop="url">如何提取指定行的内容？</a>
+            <a href="/2008/03/04/EditPlus-regex-example/" class="post-title-link" itemprop="url">Editplus 正则替换实例 By Stabx</a>
         </h2>
 
         <div class="post-meta">
@@ -862,7 +770,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2008-03-03 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-03T00:00:00+08:00">2008-03-03</time>
+              <time title="Created: 2008-03-04 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-04T00:00:00+08:00">2008-03-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -870,7 +778,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
                 </span>
             </span>
 
@@ -885,20 +793,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>比如有一5行的文件，需要读取第3行的内容，文件名为test.txt</strong></p>
-<h2 id="SHELL："><a href="#SHELL：" class="headerlink" title="SHELL："></a>SHELL：</h2><ol>
-<li><p>```<br>awk ‘NR == 3{ print; exit; }’ test.txt</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. ```</span><br><span class="line">sed -n '3{ p; q; }' test.txt</span><br></pre></td></tr></tbody></table></figure></li>
-<li><p>```<br>head -3 test.txt |tail -1</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## CMD:</span><br><span class="line"></span><br><span class="line">1.  for循环读取 </span><br></pre></td></tr></tbody></table></figure>
-<p>for /f “tokens=1,2* delims=:” %%i in (‘findstr /n .* test.txt’) do if %%i==3 echo %%j</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. 使用"小函数"读取特定行：`Call ReadLine2.bat &lt;文件名&gt; &lt;读取行号&gt;`</span><br><span class="line"></span><br><span class="line"> 例如:"`Call ReadLine2 test.txt 11 5 7 9`"，可以读取test.txt文件的第5、7、9和11行，后面的行号不分先后大小顺序。但是效率不是很高，读取小文件还是可以的。</span><br><span class="line"></span><br><span class="line"> &gt;`Call ReadLine2 test.txt 3`</span><br></pre></td></tr></tbody></table></figure>
-<p>@echo off&amp;SetLocal ENABLEDELAYEDEXPANSION<br>:::::::::::ReadLine2.Bat::::::::::::::::::<br>if “%1”==”” (goto –help) else (set file=%1)<br>if not exist %file% goto :eof<br>if “%2”==”” (<br>for /f “tokens=1* delims=:” %%a in (‘findstr /n .* “%file%”‘) do echo/%%b<br>goto :eof<br>) else (<br>set args=%*<br>for %%a in (!args!) do (<br>if not “%%a”==”%1” (for /f “tokens=1* delims=:” %%b in (‘findstr /n .* “%file%”‘) do (<br>if “%%b”==”%%a” echo/%%c)<br>)<br>)<br>)<br>goto :eof</p>
+          <blockquote>
+<p>abandon[2’b9nd2n]v.抛弃，放弃<br>abandonment[2’b9nd2nm2nt]n.放弃<br>abbreviation[2bri:vi’ei62n]n.缩写<br>abeyance[2’bei2ns]n.缓办，中止<br>abide[2’baid]v.遵守<br>ability[2’biliti]n.能力<br>able[’eibl]adj.有能力的，能干的<br>abnormal[9b’n0:m2l]adj.反常的，变态的<br>aboard[2’b0:d]adv.船(车)上</p>
+</blockquote>
+<p>1.<br>查找: <code>(^[a-zA-Z0-0\-]+)(\[*.*\]+)(.*) </code><br>替换: <code>@@@@@"\1″,"\2″,"\3″, </code><br>效果:   </p>
+<blockquote>
+<p>@@@@@”abandon”,”[2’’b9nd2n]”,”v.抛弃，放弃”,<br>@@@@@”abandonment”,”[2’’b9nd2nm2nt]”,”n.放弃”,<br>@@@@@”abbreviation”,”[2bri:vi’’ei62n]”,”n.缩写”,<br>@@@@@”abeyance”,”[2’’bei2ns]”,”n.缓办，中止”,<br>@@@@@”abide”,”[2’’baid]”,”v.遵守”,<br>@@@@@”ability”,”[2’’biliti]”,”n.能力”,<br>@@@@@”able”,”[‘’eibl]”,”adj.有能力的，能干的”,<br>@@@@@”abnormal”,”[9b’’n0:m2l]”,”adj.反常的，变态的”,<br>@@@@@”aboard”,”[2’’b0:d]”,”adv.船(车)上”, </p>
+</blockquote>
+<p>2.<br>查找: <code>\n</code><br>替换:<br>注: 要次替换内容为空<br>效果:   </p>
+<blockquote>
+<p>@@@@@”abandon”,”[2’’b9nd2n]”,”v.抛弃，放弃 “,@@@@@”abandonment”,”[2’’b9nd2nm2nt]”,”n.放弃 “,@@@@@”abbreviation”,”[2bri:vi’’ei62n]”,”n.缩写 “,@@@@@”abeyance”,”[2’’bei2ns]”,”n.缓办，中止”,@@@@@”abide”,”[2’’baid]”,”v.遵守 “,@@@@@”ability”,”[2’’biliti]”,”n.能力”,@@@@@”able”,”[‘’eibl]”,”adj.有能力的，能 干的 “,@@@@@”abnormal”,”[9b’’n0:m2l]”,”adj.反常的，变态的 “,@@@@@”aboard”,”[2’’b0:d]”,”adv.船(车)上”,@@@@@”abolish”,”[2’’b0li6]”,”v.废 除，取消”,@@@@@”abolition”,”[9b2’’li62n]”,”n.废除，取消” </p>
+</blockquote>
+<p>3.<br>查找: <code>@@@@@</code><br>替换: <code>\n</code><br>效果:   </p>
+<blockquote>
+<p>“abandon”,”[2’’b9nd2n]”,”v.抛弃，放弃”,<br>“abandonment”,”[2’’b9nd2nm2nt]”,”n.放弃”,<br>“abbreviation”,”[2bri:vi’’ei62n]”,”n.缩写”,<br>“abeyance”,”[2’’bei2ns]”,”n.缓办，中止”,<br>“abide”,”[2’’baid]”,”v.遵守”,<br>“ability”,”[2’’biliti]”,”n.能力”,<br>“able”,”[‘’eibl]”,”adj.有能力的，能干的”,<br>“abnormal”,”[9b’’n0:m2l]”,”adj.反常的，变态的”,<br>“aboard”,”[2’’b0:d]”,”adv.船(车)上”,<br>“abolish”,”[2’’b0li6]”,”v.废除，取消”, </p>
+</blockquote>
+<ol start="4">
+<li><p>任务完成  </p>
+</li>
+<li><p>作用说明<br>本次操作主要是为了将数据导入 MS Access</p>
 </li>
 </ol>
-<p>:–help<br>echo/======================================<br>echo/本程序段需要带参数才能正常运行<br>echo/&amp;echo/Usage:&amp;echo/Call ReadLine2 ^&lt;文件名^&gt; ^&lt;读取行号^&gt;<br>echo/&amp;echo/例如：Call ReadLine2 aa.txt 5 7 11 ，将读取aa.txt文件的第5，7，11行<br>echo/&amp;echo/如果^&lt;读取行号^&gt;没有指定，将读取整个文件的内容<br>echo/======================================<br>goto :eof</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. 使用"小函数"读取特定行：`Call ReadLine.bat &lt;文件名&gt; &lt;跳过的行数&gt; &lt;读取行数&gt;`</span><br><span class="line"></span><br><span class="line"> 例如："`Call ReadLine test.txt 5 7`"，那么将跳过test.txt文件的前5行，显示下面的7行字符，也包含空行。也可以不指定第三个参数。</span><br><span class="line"></span><br><span class="line"> &gt;`Call ReadLine test.txt 2 1`</span><br></pre></td></tr></tbody></table></figure>
-<p>@echo off&amp;SetLocal ENABLEDELAYEDEXPANSION<br>if “%1”==”” (goto –help) else (set file=%~s1)<br>if “%2”==”” (set first=”delims=: tokens=1*”) else (set first=”skip=%2 delims=: tokens=1*”)<br>if “%3”==”” (<br>for /f %first% %%a in (‘findstr /n .* %file%’) do echo/%%b<br>goto :EOF<br>)<br>set last=%3<br>set loop=0<br>for /f %first% %%a in (‘findstr/n .* %file%’) do (<br>if not defined lxmxn (echo/%%b&amp;set /a loop+=1) else (goto :EOF)<br>if “!loop!”==”%last%” set lxmxn=Nothing<br>)<br>GOTO :EOF:–help<br>echo/======================================<br>echo/本程序段需要带参数才能正常运行<br>echo/&amp;echo/Usage:&amp;echo/Call ReadLine ^&lt;文件名^&gt; ^&lt;跳过行数^&gt; ^&lt;读取行数^&gt;<br>echo/&amp;echo/例如：call ReadLine aa.txt 5 7 ，将跳过aa.txt文件的前5行，读取下面的7行字符<br>echo/&amp;echo/如果^&lt;跳过行数^&gt;没有指定，就从文件第一行读取<br>echo/&amp;echo/指定^&lt;读取行数^&gt;时必须指定^&lt;跳过行^&gt;<br>echo/======================================<br>goto :eof<br>```</p>
+<p>注: 本次操作导入数据 7988 行</p>
+<p>shawl.qiu<br>15:39 2006-5-16</p>
 
       
     </div>
@@ -978,6 +895,75 @@
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/03/small-shell/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/03/03/small-shell/" class="post-title-link" itemprop="url">非常小的shell: 指定行号,插入文本(转)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-03-03 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-03T00:00:00+08:00">2008-03-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>使用这个shell可以直接在某个文件的某一行插入指定的文本,很方便. 可以把这个<br>shell加入PATH中.以下的蓝色部分为代码, 文件名为insert</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more insert</span><br><span class="line">#!/bin/bash</span><br><span class="line"># 从文件的某一行之后插入新行</span><br><span class="line"># FILE 为文件名，LINENUM为行号，TEXT为要插入的文本</span><br><span class="line"># Copyleft: cheyo@JMU</span><br><span class="line"></span><br><span class="line">showUsage()</span><br><span class="line">{</span><br><span class="line">echo "[Usage]: insert FILE LINENUM TEXT"</span><br><span class="line">echo "# 从文件的某一行之后插入新行"</span><br><span class="line">echo "# FILE 为文件名，LINENUM为行号，TEXT为要插入的文本"</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">if [ $# -lt 3 ] #少于3个参数,错误!</span><br><span class="line">then showUsage</span><br><span class="line">exit 1</span><br><span class="line">else</span><br><span class="line">sed "${2}a</span><br><span class="line">${3}" $1 &gt; tmpfile;mv tmpfile $1</span><br><span class="line">fi</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$ ./insert a 3 "Test"</span><br><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">Test</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$</span><br></pre></td></tr></tbody></table></figure>
       
     </div>
 
@@ -1162,8 +1148,15 @@
   
 
 
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        
 
-<script type="text/javascript" src="/bundle.js"></script><script type="text/javascript">
+<script src="/bundle.js"></script><script>
             window.imageLazyLoadSetting = {
                 isSPA: false,
                 preloadRatio: 3,
@@ -1171,4 +1164,4 @@
             };
         ;
 window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});;
-!function(n){n.imageLazyLoadSetting.processImages=o;var e=n.imageLazyLoadSetting.isSPA,i=n.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},t.src!==i&&(n.src=i)}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body></html>
+!function(r){r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,d=o();function o(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=o());for(var e,i=0;i<d.length;i++)0<=(e=(e=d[i]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,a,n,o=d[i];e=function(){d=d.filter(function(t){return o!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(o)},(t=o).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,n=t.getAttribute("data-original"),a.onload=function(){t.src=n,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=n},t.src!==n&&(a.src=n)))}()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)}(this);</script></body></html>

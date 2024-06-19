@@ -2,16 +2,16 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.0.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -94,7 +94,7 @@
   </style>
 </noscript>
 
-</head>
+<script>function loadCss(l){var d=document,h=d.head,s=d.createElement('link');s.rel='stylesheet';s.href=l;!function e(f){if (d.body)return f();setTimeout(function(){e(f)})}(function(){h.appendChild(s);});}loadCss('/style.css');</script></head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -234,7 +234,7 @@
 <p> <a target="_blank" rel="noopener" href="http://www.maxmind.com/download/geoip/database/GeoIP.dat.gz">http://www.maxmind.com/download/geoip/database/GeoIP.dat.gz</a></p>
 <p> Again this is a .gz file and must be decompressed. Once decompressed, move “GeoIP.dat” to “/cgi-bin/GeoIP/”.</p>
 <ol start="5">
-<li>OK.. now to configure. </li>
+<li>OK.. now to configure.</li>
 </ol>
 <p> First if you have turned on DNSLookup… turn it<br>off. In Awstats.conf —&gt; DNSLookup=0 (this may also be a good time<br>to change your logfile if you desire current stats over stats from<br>yesterday. Remove the “.0″ after “access”.</p>
 <p> LogFile=”/logs/access.0/1/xxxxxx_access_log” -&gt;<br>LogFile=”/logs/access/1/xxxxxx_access_log”)</p>
@@ -251,7 +251,7 @@
 </ol>
 <p> located in “/cgi-bin/GeoIP/lib/Geo/IP”. On lines 79 and 83 you’ll fine<br>directory listings for “GeoIP.dat”. Change these to<br>“/www/u/username/cgi-bin/GeoIP/GeoIP.dat”. Save and close.</p>
 <ol start="9">
-<li>Everything should be set now. </li>
+<li>Everything should be set now.</li>
 </ol>
 <p> If it’s working, you’ll see a new column<br>added to “Hosts” in Awstats named “GeoIP Country”. This will list<br>countries for all IP addresses, even ones collected before<br>modification. The “Countries” area will show flags only for IP<br>addresses collected after the modification. If you have trouble, set<br>your crontab to execute awstats every minute. This is accomplished be<br>setting time to * * * * *. Then check your cronlog located in your logs<br>folder to view errors.</p>
 <p>Erik Reedstrom<br>IT Department<br><a target="_blank" rel="noopener" href="http://www.brokehouse.com/">www.BrokeHouse.com</a></p>
@@ -274,12 +274,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2008/02/07/awstats-use-maxmind-geoip/" rel="prev" title="安装 MaxMind GeoIP、GeoIP City Lite 为 awstats 配置 IP 位置国家城市统计信息">
-      <i class="fa fa-chevron-left"></i> 安装 MaxMind GeoIP、GeoIP City Lite 为 awstats 配置 IP 位置国家城市统计信息
+    <a href="/2008/02/06/awstats-use-geoip/" rel="prev" title="AWStats上的IP(城市信息解析包安装 GeoIP City Lite)">
+      <i class="fa fa-chevron-left"></i> AWStats上的IP(城市信息解析包安装 GeoIP City Lite)
     </a></div>
       <div class="post-nav-item">
-    <a href="/2008/02/08/How-big-is-this-page/" rel="next" title="世界上最大网页有多大呢?">
-      世界上最大网页有多大呢? <i class="fa fa-chevron-right"></i>
+    <a href="/2008/02/07/awstats-use-maxmind-geoip/" rel="next" title="安装 MaxMind GeoIP、GeoIP City Lite 为 awstats 配置 IP 位置国家城市统计信息">
+      安装 MaxMind GeoIP、GeoIP City Lite 为 awstats 配置 IP 位置国家城市统计信息 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -453,8 +453,15 @@
   
 
 
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        
 
-<script type="text/javascript" src="/bundle.js"></script><script type="text/javascript">
+<script src="/bundle.js"></script><script>
             window.imageLazyLoadSetting = {
                 isSPA: false,
                 preloadRatio: 3,
@@ -462,4 +469,4 @@
             };
         ;
 window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});;
-!function(n){n.imageLazyLoadSetting.processImages=o;var e=n.imageLazyLoadSetting.isSPA,i=n.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},t.src!==i&&(n.src=i)}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body></html>
+!function(r){r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,d=o();function o(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=o());for(var e,i=0;i<d.length;i++)0<=(e=(e=d[i]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,a,n,o=d[i];e=function(){d=d.filter(function(t){return o!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(o)},(t=o).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,n=t.getAttribute("data-original"),a.onload=function(){t.src=n,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=n},t.src!==n&&(a.src=n)))}()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)}(this);</script></body></html>

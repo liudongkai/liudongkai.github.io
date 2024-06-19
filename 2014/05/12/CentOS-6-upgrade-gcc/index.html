@@ -2,28 +2,28 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.0.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.liudongkai.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"PFZ0Y857EY","apiKey":"da65f2d4ea1c6d4dccfa6d7f197d2aaf","indexName":"blog","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="CentOS自带gcc是v4.4.6，在编译TokuDB时要求gcc >= 4.7  下载源码包(v4.8的编译方法也是一样的步骤) 1wget http://ftp.gnu.org/gnu/gcc/gcc-4.9.0/gcc-4.9.0.tar.bz2 解压 1tar -jxvf gcc-4.9.0.tar.bz2">
+  <meta name="description" content="CentOS自带gcc是v4.4.6，在编译TokuDB时要求gcc >= 4.7  下载源码包(v4.8的编译方法也是一样的步骤) 1wget http://ftp.gnu.org/gnu/gcc/gcc-4.9.0/gcc-4.9.0.tar.bz2  解压 1tar -jxvf gcc-4.9.0.tar.bz2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS 6 升级 gcc">
 <meta property="og:url" content="http://www.liudongkai.com/2014/05/12/CentOS-6-upgrade-gcc/index.html">
 <meta property="og:site_name" content="Dong's Note">
-<meta property="og:description" content="CentOS自带gcc是v4.4.6，在编译TokuDB时要求gcc >= 4.7  下载源码包(v4.8的编译方法也是一样的步骤) 1wget http://ftp.gnu.org/gnu/gcc/gcc-4.9.0/gcc-4.9.0.tar.bz2 解压 1tar -jxvf gcc-4.9.0.tar.bz2">
+<meta property="og:description" content="CentOS自带gcc是v4.4.6，在编译TokuDB时要求gcc >= 4.7  下载源码包(v4.8的编译方法也是一样的步骤) 1wget http://ftp.gnu.org/gnu/gcc/gcc-4.9.0/gcc-4.9.0.tar.bz2  解压 1tar -jxvf gcc-4.9.0.tar.bz2">
 <meta property="og:locale">
 <meta property="article:published_time" content="2014-05-11T16:00:00.000Z">
 <meta property="article:modified_time" content="2014-05-11T16:00:00.000Z">
@@ -94,7 +94,7 @@
   </style>
 </noscript>
 
-</head>
+<script>function loadCss(l){var d=document,h=d.head,s=d.createElement('link');s.rel='stylesheet';s.href=l;!function e(f){if (d.body)return f();setTimeout(function(){e(f)})}(function(){h.appendChild(s);});}loadCss('/style.css');</script></head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -217,7 +217,8 @@
         <p>CentOS自带gcc是v4.4.6，在编译TokuDB时要求gcc &gt;= 4.7</p>
 <ol>
 <li><p>下载源码包(v4.8的编译方法也是一样的步骤)</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://ftp.gnu.org/gnu/gcc/gcc-4.9.0/gcc-4.9.0.tar.bz2</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://ftp.gnu.org/gnu/gcc/gcc-4.9.0/gcc-4.9.0.tar.bz2</span><br></pre></td></tr></tbody></table></figure>
+</li>
 <li><p>解压</p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -jxvf gcc-4.9.0.tar.bz2</span><br></pre></td></tr></tbody></table></figure></li>
 </ol>
@@ -225,17 +226,23 @@
 
 <ol start="3">
 <li><p>下载编译所需的依赖项</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd gcc-4.9.0</span><br><span class="line">./contrib/download_prerequisites</span><br><span class="line">cd ..</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd gcc-4.9.0</span><br><span class="line">./contrib/download_prerequisites</span><br><span class="line">cd ..</span><br></pre></td></tr></tbody></table></figure>
+</li>
 <li><p>建立编译输出目录</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir gcc-build-4.9.0</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir gcc-build-4.9.0</span><br></pre></td></tr></tbody></table></figure>
+</li>
 <li><p>进入此目录，执行以下命令，生成makefile文件</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd gcc-build-4.9.0 </span><br><span class="line">../gcc-4.9.0/configure --enable-checking=release --enable-languages=c,c++ --disable-multilib</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd gcc-build-4.9.0 </span><br><span class="line">../gcc-4.9.0/configure --enable-checking=release --enable-languages=c,c++ --disable-multilib</span><br></pre></td></tr></tbody></table></figure>
+</li>
 <li><p>执行命令进行编译</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -j4</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -j4</span><br></pre></td></tr></tbody></table></figure>
+</li>
 <li><p>安装</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></tbody></table></figure>
+</li>
 <li><p>检查gcc版本</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost home]# gcc -v</span><br><span class="line">使用内建 specs。</span><br><span class="line">COLLECT_GCC=gcc</span><br><span class="line">COLLECT_LTO_WRAPPER=/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/4.9.0/lto-wrapper</span><br><span class="line">目标：x86_64-unknown-linux-gnu</span><br><span class="line">配置为：../gcc-4.9.0/configure --enable-checking=release --enable-languages=c,c++ --disable-multilib</span><br><span class="line">线程模型：posix</span><br><span class="line">gcc 版本 4.9.0 (GCC) </span><br><span class="line">[root@localhost home]# </span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost home]# gcc -v</span><br><span class="line">使用内建 specs。</span><br><span class="line">COLLECT_GCC=gcc</span><br><span class="line">COLLECT_LTO_WRAPPER=/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/4.9.0/lto-wrapper</span><br><span class="line">目标：x86_64-unknown-linux-gnu</span><br><span class="line">配置为：../gcc-4.9.0/configure --enable-checking=release --enable-languages=c,c++ --disable-multilib</span><br><span class="line">线程模型：posix</span><br><span class="line">gcc 版本 4.9.0 (GCC) </span><br><span class="line">[root@localhost home]# </span><br></pre></td></tr></tbody></table></figure>
+</li>
 <li><p>如果发现版本没有变化，远程连入的建议重连再试；新session下还是没有变化可以先进行版本切换，再尝试重连</p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-alternatives --install /usr/bin/gcc gcc /usr/local/bin/x86_64-unknown-linux-gnu-gcc 40</span><br></pre></td></tr></tbody></table></figure>
 <p>添加新GCC到可选项，倒数第三个是名字，倒数第二个参数为新GCC路径，最后一个参数40为优先级，设大一些之后就自动使用新版了。<br>由于编译时没有指定路径，我们可以尝试在默认路径/usr/local/bin下查找新命令的名称</p>
@@ -261,12 +268,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2014/04/10/python-get-path/" rel="prev" title="Python语言获取脚本文件所在路径">
-      <i class="fa fa-chevron-left"></i> Python语言获取脚本文件所在路径
+    <a href="/2014/05/12/GLIBCXX-not-found/" rel="prev" title="/usr/lib/libstdc++.so.6: version `GLIBCXX_3.4.15' not found错误的解决">
+      <i class="fa fa-chevron-left"></i> /usr/lib/libstdc++.so.6: version `GLIBCXX_3.4.15' not found错误的解决
     </a></div>
       <div class="post-nav-item">
-    <a href="/2014/05/12/GLIBCXX-not-found/" rel="next" title="/usr/lib/libstdc++.so.6: version `GLIBCXX_3.4.15' not found错误的解决">
-      /usr/lib/libstdc++.so.6: version `GLIBCXX_3.4.15' not found错误的解决 <i class="fa fa-chevron-right"></i>
+    <a href="/2014/05/21/mac-os-install-gevent/" rel="next" title="Mac OS X 安装 gevent">
+      Mac OS X 安装 gevent <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -440,8 +447,15 @@
   
 
 
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        
 
-<script type="text/javascript" src="/bundle.js"></script><script type="text/javascript">
+<script src="/bundle.js"></script><script>
             window.imageLazyLoadSetting = {
                 isSPA: false,
                 preloadRatio: 3,
@@ -449,4 +463,4 @@
             };
         ;
 window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});;
-!function(n){n.imageLazyLoadSetting.processImages=o;var e=n.imageLazyLoadSetting.isSPA,i=n.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},t.src!==i&&(n.src=i)}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body></html>
+!function(r){r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,d=o();function o(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=o());for(var e,i=0;i<d.length;i++)0<=(e=(e=d[i]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,a,n,o=d[i];e=function(){d=d.filter(function(t){return o!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(o)},(t=o).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,n=t.getAttribute("data-original"),a.onload=function(){t.src=n,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=n},t.src!==n&&(a.src=n)))}()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)}(this);</script></body></html>

@@ -2,16 +2,16 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.0.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -93,7 +93,7 @@
   </style>
 </noscript>
 
-</head>
+<script>function loadCss(l){var d=document,h=d.head,s=d.createElement('link');s.rel='stylesheet';s.href=l;!function e(f){if (d.body)return f();setTimeout(function(){e(f)})}(function(){h.appendChild(s);});}loadCss('/style.css');</script></head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -243,7 +243,7 @@
 <ol>
 <li>LogFile=”e:\databack\awstats\website\iis_logfiles\ex%YY-24%MM-24%DD-24.log”<br>这个配置的意思是用24小时前的年份,月份，日期拼出的日志文件名；</li>
 <li>SiteDomain=”localhost”<br>这里可以写上你的域名，我也不多说，看英文就明白什么意思—-站点域名(这里的域名是二级的比如<a target="_blank" rel="noopener" href="http://www.website.com/">www.website.com</a>)</li>
-<li>LogFormat=2    缺省值是1：Apache日志，2是IIS日志</li>
+<li>LogFormat=2	缺省值是1：Apache日志，2是IIS日志</li>
 <li>HostAliases=”localhost”<br>这里设置主机域，这里设置的是主域如（website.com）</li>
 <li>DefaultFile=”index.html”<br>主页面，一般都写这个，可以不需要做改动，当然想该也没有关系，</li>
 <li>DirData=”E:\databack\awstats\website”<br>用于存放被perl整理以后的日志库，是一个.txt文件，</li>
@@ -258,17 +258,10 @@
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\tools\Perl\bin&gt;perl e:/databack/awstats/tools/awstats_buildstaticpages.pl -config=website -lang=cn -output -awstatsprog=e:/databack/awstats/website/cgi-bin/awstats.pl -dir=e:/databack/awstats/website -staticlinksext=html</span><br></pre></td></tr></tbody></table></figure>
 <p>这里做下说明，每次使用perl编译的时候都要进入D:\tools\Perl\bin&gt;下面来，否则perl将无法进行，位于awstats/tools 下的awstats_buildstaticpages.pl工具是用来编译所有站点页面的，如果不使用这个文件就无法自动的生成所有文件，那么它只会生成一个单独的主页面，</p>
 <ul>
-<li>-awstatsprog=e:/databack/awstats/website/cgi-bin/awstats.pl</li>
+<li>-awstatsprog=e:/databack/awstats/website/cgi-bin/awstats.pl<br> -awstatsprog是用来指明awstats.pl所在的位置，</li>
+<li>-dir=e:/databack/awstats/website<br> -dir是用来指明站点要存放的位置，</li>
+<li>-staticlinksext=html<br> -staticlinksext 指明要生成的文件后缀名是什么，注意千万不要有“.”。</li>
 </ul>
-<p> -awstatsprog是用来指明awstats.pl所在的位置，</p>
-<ul>
-<li>-dir=e:/databack/awstats/website</li>
-</ul>
-<p> -dir是用来指明站点要存放的位置，</p>
-<ul>
-<li>-staticlinksext=html</li>
-</ul>
-<p> -staticlinksext 指明要生成的文件后缀名是什么，注意千万不要有“.”。</p>
 <p>您也可以不生成静态页面，直接用perl来访问，那么我可以这么访问到我的地址：<a target="_blank" rel="noopener" href="http://loacalhost/cgi-bin/awstats.pl?config=website">http://loacalhost/cgi-bin/awstats.pl?config=website</a> 这里前面装perl时，会在iis里面写入web服务扩展（windown2003），去把关于perl的全部选择允许，windows2000的朋友可以去网络上查查关于perl的安装过程，我这里也不多说。</p>
 <ul>
 <li>具体的说明如下<br>awstats_buildstaticpages.pl:<br>awstats_buildstaticpages allows you to launch AWStats with -staticlinks option to build all possible pages allowed by AWStats -output option.<br>(使用AWStats 的 -output 方法,你用awstats_buildstaticpages工具可以生成站点的所有使用到的页面,页面的扩展名是用-staticlinks定义好的)</li>
@@ -499,8 +492,15 @@
   
 
 
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        
 
-<script type="text/javascript" src="/bundle.js"></script><script type="text/javascript">
+<script src="/bundle.js"></script><script>
             window.imageLazyLoadSetting = {
                 isSPA: false,
                 preloadRatio: 3,
@@ -508,4 +508,4 @@
             };
         ;
 window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});;
-!function(n){n.imageLazyLoadSetting.processImages=o;var e=n.imageLazyLoadSetting.isSPA,i=n.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},t.src!==i&&(n.src=i)}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body></html>
+!function(r){r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,d=o();function o(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=o());for(var e,i=0;i<d.length;i++)0<=(e=(e=d[i]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,a,n,o=d[i];e=function(){d=d.filter(function(t){return o!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(o)},(t=o).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,n=t.getAttribute("data-original"),a.onload=function(){t.src=n,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=n},t.src!==n&&(a.src=n)))}()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)}(this);</script></body></html>
