@@ -163,6 +163,253 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/10/30/custom-firefox-CSS/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/10/30/custom-firefox-CSS/" class="post-title-link" itemprop="url">定义火狐的userChrome.css</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-10-30 00:00:00" itemprop="dateCreated datePublished" datetime="2008-10-30T00:00:00+08:00">2008-10-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>将地址栏收藏按钮移除：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#star-button { display: none !important; }</span><br></pre></td></tr></tbody></table></figure>
+
+<p>将地址栏RSS按钮移除：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#feed-button {display:none;}</span><br></pre></td></tr></tbody></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/10/07/fixed-thinkpad-t60-pxe-e05/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/10/07/fixed-thinkpad-t60-pxe-e05/" class="post-title-link" itemprop="url">解决T60的网卡的pxe-e05的错误</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-10-07 00:00:00" itemprop="dateCreated datePublished" datetime="2008-10-07T00:00:00+08:00">2008-10-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>问题现象（抄别人的）：<br><a target="_blank" rel="noopener" href="http://www.nbbbs.com.cn/bbs/thread-7973-1-1.html">http://www.nbbbs.com.cn/bbs/thread-7973-1-1.html</a></p>
+<p>开机之后显示：</p>
+<blockquote>
+<p>Intializing Intel(r) boot agent GE V1.2.31<br>PXE-E05: The LAN adapter’s configuation is corrupted or has not been initialized. The Boot Agent cannot continue.</p>
+</blockquote>
+<p>等几秒后显示</p>
+<blockquote>
+<p>ERROR<br>Expansion ROM not initialized – PCI on Motherboard<br>Bus:00, Device:00, Function:00<br>Press &lt; ESC &gt; to continue</p>
+</blockquote>
+<p>按了&lt; ESC &gt; 键以后能够正常开机, 感觉上什么都是正常的.</p>
+<ul>
+<li><p>解决方法1：<br>开机按F1进BIOS<br><code>config-Network-Internal Network Option ROM (Enter)</code>-设置下面那个<code>Current setting</code>为<code>Disabied</code>就可以了.</p>
+</li>
+<li><p>解决方法2（继续抄）：<br>无果后在网上进行大范围的搜索，经过一番搜索，终于找到了解决办法，在老外的一个 Blog 上说，可以下载 Intel® Boot Agent PROBOOT.exe ，在纯 Dos 下执行 “IBAUtil.exe -DEFCFG” 把 EEPROM 重新刷新为出厂设置即可解决此问题。<br>老外也提供一个 ISO 文件提供下载，地址为：</p>
+</li>
+</ul>
+<ul>
+<li>CDProBOOT-0.2.iso – FreeDOS boot cd-rom, customized with PROBoot Intel tools and a DOS menu selector.</li>
+<li>md5sum: c12babeec8e1a0e9072e95575f32a69a</li>
+</ul>
+<p> 但是 Intel 提供的 bootcd 在仅有 NTFS 时有 Dos 路径 bug ，如果上面的 ISO 有问题，还可以下载国内网友修改后的版本，地址为：</p>
+<ul>
+<li>CDProBOOT.iso – FreeDOS boot cd-rom, customized with PROBoot Intel tools and a DOS menu selector.</li>
+<li>md5sum: 63624e964a31802772d3a8fadecb1f3f</li>
+</ul>
+<p> 网友提供了一个0.3的版本：<a target="_blank" rel="noopener" href="http://snipurl.com/cdproboot3">http://snipurl.com/cdproboot3</a></p>
+<p> 下载后将该 ISO 镜像刻录为光盘（比较浪费啊，iso 才3.1M大小），光盘启动后选择 2 ，回车，还没等你反应过来，一切就已经恢复正常了。重新开机后把 BIOS 恢复为 Default ，启动不再出错， Ubuntu 也重归正常。</p>
+<ul>
+<li><p>方法3：<br>有线网卡不能使用的问题（Mac地址不对）：<br>下载一个软件修正它。Mac地址在机器的后面条上：<br><a target="_blank" rel="noopener" href="http://www.wirelessdefence.org/Contents/MAC%20Address%20Changer.htm">http://www.wirelessdefence.org/Contents/MAC%20Address%20Changer.htm</a></p>
+</li>
+<li><p>方法4：<br>BIOS的问题，或许可以通过刷BIOS解决（经我证明不行）</p>
+</li>
+<li><p><strong>最终</strong>：<br>pxe-05的问题没能解决，用方法1忽略它了。<br>用方法3,能用有线了。<br>估计得换主板。<br>凑合着用吧，又不是买的行货，就不去想保修的方法了。</p>
+</li>
+</ul>
+<p>参考资料：  </p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.oceanboo.cn/read.php?210">http://www.oceanboo.cn/read.php?210</a>  </li>
+<li><a target="_blank" rel="noopener" href="http://www.thinkpad.cn/forum/viewthread.php?tid=420871">http://www.thinkpad.cn/forum/viewthread.php?tid=420871</a>  </li>
+<li><a target="_blank" rel="noopener" href="http://www.matinfo.ch/blog/archive/2007/01/26/intel-nic-pxe-e05-error.html#post_content_extended">http://www.matinfo.ch/blog/archive/2007/01/26/intel-nic-pxe-e05-error.html#post_content_extended</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/09/04/mysqldump-import/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/09/04/mysqldump-import/" class="post-title-link" itemprop="url">mysqldump导入办法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-09-04 00:00:00" itemprop="dateCreated datePublished" datetime="2008-09-04T00:00:00+08:00">2008-09-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>mysqldump导入解决办法很简单，导出的时候指定字符集就行了。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u root -p -c –default-character-set=utf-8 wapad site &gt; dd.sql</span><br></pre></td></tr></tbody></table></figure>
+
+<p>用户 数据库 表名</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p –default-character-set=utf8 wapad &lt; dd.sql</span><br><span class="line">mysqldump -u root -p -c –default-character-set=latin1 wap_resdb downlog_bak &gt; downlog_bak.sql</span><br><span class="line">mysqldump -u root -p -c –default-character-set=latin1 wap_resdb downlog_month &gt; downlog_month.sql</span><br><span class="line">mysqldump -u root -p -c –default-character-set=latin1 wap_resdb haoduan &gt; haoduan.sql</span><br></pre></td></tr></tbody></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/09/03/canon-family-tree/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -724,251 +971,6 @@
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/08/03/showip-for-QQWry/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/08/03/showip-for-QQWry/" class="post-title-link" itemprop="url">读取纯真IP数据库 showip [zt]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-08-03 00:00:00" itemprop="dateCreated datePublished" datetime="2008-08-03T00:00:00+08:00">2008-08-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>关于 纯真IP数据库格式，详细见下面帖子：</p>
-<p><a href="/2008/08/03/QQWry_format/">纯真IP数据库格式详解 zt</a></p>
-<p>程序说明：能够根据输入的IP，在 纯真IP数据库 中，搜索并且读取对应的 物理地址，还可以导出所有的IP段地址信息</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2008/08/03/showip-for-QQWry/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/07/31/network-neighborhood/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/07/31/network-neighborhood/" class="post-title-link" itemprop="url">网上邻居可见，无法访问，您可能没有权限使用网络资源</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-07-31 00:00:00" itemprop="dateCreated datePublished" datetime="2008-07-31T00:00:00+08:00">2008-07-31</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>XP网络不能访问的解决方案</p>
-<ol>
-<li><p>就是像2000一样“开启guset用户”</p>
-</li>
-<li><p>允许Guest用户访问本机 :开始–运行–输入gpedit.msc，依次选择“计算机配置→Windows设置→安全设置→本地策略→用户权利指派”，删除“拒绝从网络访问这台计算机”策略中的“GUEST”账号。</p>
-</li>
-<li><p>更改网络访问模式:开始–运行–输入gpedit.msc，依次选择“计算机配置→Windows设置→安全设置→本地策略→安全选项”，双击“ 网络访问:本地账号的共享和安全模式”策略，将“仅来宾—本地用户以来宾身份验证”改为“经典:本地用户以自己的身份验证”。</p>
-</li>
-<li><p>解除空口令限制:在系统“安全选项”中停用“账户:使用空白密码的本地账户只允许进行控制台登录”策略。</p>
-</li>
-<li><p>网络邻居看不到计算机:打开“控制面板→性能和维护→管理工具→服务”，启动里面的“Computer Browser”服务。</p>
-</li>
-<li><p>增加共享文件权限选项:依次打开“我的电脑→工具→文件夹属性→查看→高级设置”，将“简单文件共享(推荐)”前面的选择取消，若还有“Mickey Mouse”项也将其取消。</p>
-</li>
-<li><p>网络邻居不响应或者反应慢:关掉WinXP的计划任务服务(Task Scheduler) 到“控制面板/管理工具/服务”中打开“Task Scheduler”的属性对话框，停止该服务，再将启动类型设为“手动”。</p>
-</li>
-<li><p>到“工具/文件夹选项”中，关闭自动搜索的网络文件夹和打印机。</p>
-</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2008/07/31/network-neighborhood/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/07/18/shell-encode-url/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/07/18/shell-encode-url/" class="post-title-link" itemprop="url">在Linux Shell下将汉字转换为Url编码</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-07-18 00:00:00" itemprop="dateCreated datePublished" datetime="2008-07-18T00:00:00+08:00">2008-07-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在linux 的shell环境下有一个od命令可以将文件按不同的进制的ascii码输出，该功能可以完成在linux shell下将汉字转换为url编码的任务。</p>
-<p>url编码是十六进制的形如<code>%E6%9C%8D%E5%8A%A1%E5</code>的字符串，test是包含“数据库网络,”这几个字符的文件，以下命令输出：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#od -t x /test</span><br><span class="line">0000000 ddbefdca f8cde2bf 0a2ce7c2</span><br><span class="line">0000014</span><br></pre></td></tr></tbody></table></figure>
-
-<p>该字符串对应的url编码为 <code>%CA%FD%BE%DD%BF%E2%CD%F8%C2%E7%2C</code>。</p>
-<p>可以看出编码的对应关系以下是转换的脚本：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line">#make url code</span><br><span class="line">od -t x /test |awk '{</span><br><span class="line">w=split($0,linedata," ");</span><br><span class="line">for (j=2;j&lt;w+1;j++)</span><br><span class="line">{</span><br><span class="line">for (i=7;i&gt;0;i=i-2)</span><br><span class="line">{</span><br><span class="line">if (substr(linedata[j],i,2) != "00") {printf "%" ;printf toupper(substr(linedata[j],i,2));}</span><br><span class="line">}</span><br><span class="line">}</span><br><span class="line">}' &gt;/testurl</span><br></pre></td></tr></tbody></table></figure>
-
-<p>testurl文件的内容就是转换结果。</p>
-<p>还原编码：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#数据库网络</span><br><span class="line">echo '%CA%FD%BE%DD%BF%E2%CD%F8%C2%E7%2C'|</span><br><span class="line">awk 'BEGIN {</span><br><span class="line">for (i=0;i&lt;=16;i++) hex[sprintf("%X",i)]=i;}</span><br><span class="line">{ for (i=1;i&lt;=length($0);i++)</span><br><span class="line">  { c=substr($0,i,1)</span><br><span class="line">    if (c=="+") printf (" ");</span><br><span class="line">    else if (c=="%") {</span><br><span class="line">     printf ("%c",hex[substr($0,++i,1)]*16+hex[substr($0,++i,1)])</span><br><span class="line">                     </span><br><span class="line">                      }</span><br><span class="line">    else  printf (c);</span><br><span class="line"></span><br><span class="line">   }</span><br><span class="line">} '</span><br></pre></td></tr></tbody></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1038,18 +1040,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">301</span>
+          <span class="site-state-item-count">304</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">216</span>
+        <span class="site-state-item-count">224</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1078,7 +1080,7 @@
 <div class="copyright">
   
   © 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

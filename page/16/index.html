@@ -163,6 +163,167 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2010/02/12/expat-error/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2010/02/12/expat-error/" class="post-title-link" itemprop="url">error – expat.h: No such file or directory</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2010-02-12 00:00:00" itemprop="dateCreated datePublished" datetime="2010-02-12T00:00:00+08:00">2010-02-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>While trying to get a perl utility working, I had to install a bunch of prerequisite perl modules on my CentOS 5 VPS. One requirement was XML::Parser. However when I tried to install it like so:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost]perl -MCPAN -e shell</span><br><span class="line">cpan&gt; install XML::Parser</span><br></pre></td></tr></tbody></table></figure>
+
+<p>I received errors with the below being the most relevent bit…</p>
+<blockquote>
+<p>cp Expat.pm ../blib/lib/XML/Parser/Expat.pm<br>/usr/bin/perl /usr/lib/perl5/5.8.8/ExtUtils/xsubpp -noprototypes -typemap /usr/lib/perl5/5.8.8/ExtUtils/typemap -typemap typemap Expat.xs &gt; Expat.xsc &amp;&amp; mv Expat.xsc Expat.c<br>gcc -c -D_REENTRANT -D_GNU_SOURCE -fno-strict-aliasing -pipe -Wdeclaration-after-statement -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -I/usr/include/gdbm -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector –param=ssp-buffer-size=4 -m32 -march=i386 -mtune=generic -fasynchronous-unwind-tables -DVERSION=\”2.36\” -DXS_VERSION=\”2.36\” -fPIC “-I/usr/lib/perl5/5.8.8/i386-linux-thread-multi/CORE” Expat.c<br>Expat.xs:12:19: error: expat.h: No such file or directory<br>Expat.xs:60: error: expected specifier-qualifier-list before ‘XML_Parser’</p>
+</blockquote>
+<p>To make a long story short, the following was the quick fix…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install expat-devel</span><br></pre></td></tr></tbody></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2010/02/09/VirtualBox-Network-Windows/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2010/02/09/VirtualBox-Network-Windows/" class="post-title-link" itemprop="url">windows 下安装 VirtualBox 网络配置[zt]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2010-02-09 00:00:00" itemprop="dateCreated datePublished" datetime="2010-02-09T00:00:00+08:00">2010-02-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>最近想研究下linux</p>
+<p>基本思路是在现有的windows系统下，装个虚拟机，虚拟机上装 linux。</p>
+<p>虚拟机选择了 Sun xVM VirtualBox ，理由是界面友好，操作方便。下载地址 <a target="_blank" rel="noopener" href="http://www.sun.com/">www.sun.com</a></p>
+<p>虚拟机安装很向导化，不多阐述。</p>
+<p>比较有意思的是关于 VirtualBox 的网络配置，网上搜索了一下，基本没有简单易懂的相关教程。</p>
+<p>于是我花时间自己研究了下，其实实现很简单。</p>
+<p>VirtualBox 有4种网络配置方式：</p>
+<ul>
+<li>NAT</li>
+<li>Bridged Adapter</li>
+<li>Internal</li>
+<li>Host-only Adapter</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2010/02/09/VirtualBox-Network-Windows/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2010/02/08/usbkey-for-windows-7/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -220,6 +381,72 @@
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2010/02/08/find-real-url-for-skydrive-by-javascript/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2010/02/08/find-real-url-for-skydrive-by-javascript/" class="post-title-link" itemprop="url">一段脚本代码找出Skydrive的真实外链地址</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2010-02-08 00:00:00" itemprop="dateCreated datePublished" datetime="2010-02-08T00:00:00+08:00">2010-02-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javascript:var%20n=document.title.replace('%20-%20Windows%20Live','');var%20id=((location.hash=='')?window.selfPageData.currentItemHash:location.hash).replace('#resId/','');var%20u='http://storage.live.com/items/'+id+'?filename='+encodeURI(n);var%20p='http://'+document.location.host+'/redir.aspx?page=self&amp;resId='+id;var%20e='&lt;input%20onmouseover=%22this.select();%22%20onclick=%22this.select();%22%20value=%22';var%20f='%22%20style=%22width:580px%22%20type=%22text%22%20/&gt;&lt;br&gt;';var%20d='by%20(&lt;a%20href=%22http://rpsh.net/%22&gt;Rpsh&lt;/a&gt;)';var%20c='\u5916\u94FE\u5730\u5740:'+d+e+u+f+'\u5206\u4EAB\u5730\u5740:'+e+p+f;var%20a=document.getElementById('content');var%20g=(a.getElementsByTagName('p')[0]);var%20b=g?g:document.createElement('P');b.innerHTML=c;a.insertBefore(b,a.firstChild);void(0)</span><br></pre></td></tr></tbody></table></figure>
       
     </div>
 
@@ -675,291 +902,6 @@
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/12/29/perl-install-module/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2009/12/29/perl-install-module/" class="post-title-link" itemprop="url">perl–模块安装方法和常用模块</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2009-12-29 00:00:00" itemprop="dateCreated datePublished" datetime="2009-12-29T00:00:00+08:00">2009-12-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>CPAN（Comprehensive　Perl　Archive　Network）是internet上Perl模块最大的集散地，包含了现今公布的几乎所有的perl模块。网址： <a target="_blank" rel="noopener" href="http://www.cpan.org/">http://www.cpan.org/</a>　</p>
-<p>而 <a target="_blank" rel="noopener" href="http://search.cpan.org/">http://search.cpan.org/</a> ，可以查找任何一个模块并提供下载</p>
-<h2 id="Linux-Unix—perl模块的安装方法"><a href="#Linux-Unix—perl模块的安装方法" class="headerlink" title="Linux/Unix—perl模块的安装方法"></a>Linux/Unix—perl模块的安装方法</h2><p>Linux/Unix下安装Perl模块有两种方法：手工安装和自动安装。第一种方法是从CPAN上下载您需要的模块，手工编译、安装。第二种方法是联上internet，使用一个叫做CPAN的模块自动完成下载、编译、安装的全过程。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2009/12/29/perl-install-module/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/12/29/perl-get-html/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2009/12/29/perl-get-html/" class="post-title-link" itemprop="url">使用perl脚本抓取网页总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2009-12-29 00:00:00" itemprop="dateCreated datePublished" datetime="2009-12-29T00:00:00+08:00">2009-12-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>使用perl实现网页抓取，对网络蜘蛛的初步尝试。</p>
-<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>windows xp，IIS，perl 5.88，CMD</p>
-<h2 id="使用到的模块"><a href="#使用到的模块" class="headerlink" title="使用到的模块"></a>使用到的模块</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">use LWP::Simple; #用来得到网页</span><br><span class="line">use HTML::HeadParser; #对部分进行解析，得到标题、编码、关键词等</span><br><span class="line">use HTML::FormatText::WithLinks; #将html变成文本可读样式</span><br><span class="line">use Encode qw/encode decode/; #解决不同网页的编码问题</span><br></pre></td></tr></tbody></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2009/12/29/perl-get-html/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/12/28/perl-list-dir/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2009/12/28/perl-list-dir/" class="post-title-link" itemprop="url">perl中使用递归遍历目录[zt]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2009-12-28 00:00:00" itemprop="dateCreated datePublished" datetime="2009-12-28T00:00:00+08:00">2009-12-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>perl自带的函数远不及php多，但功能确实很强大，实现起来也只有几行代码。</p>
-<p>perl中的目录操作函数有：</p>
-<h2 id="1-mkdir-函数"><a href="#1-mkdir-函数" class="headerlink" title="1. mkdir 函数"></a>1. mkdir 函数</h2><p>调用语法：mkdir (dirname, permisions)<br>dirname：将要创建的目录名，可以为字符串或表达式。<br>permisions：八进制数，指定目录的访问权限。其值和意义如下：</p>
-<table>
-<thead>
-<tr>
-<th>权限值</th>
-<th>权限</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>4000</td>
-<td>运行时设置用户 ID</td>
-</tr>
-<tr>
-<td>2000</td>
-<td>运行时设置组 ID</td>
-</tr>
-<tr>
-<td>1000</td>
-<td>粘贴位</td>
-</tr>
-<tr>
-<td>0400</td>
-<td>拥有者读权限</td>
-</tr>
-<tr>
-<td>0200</td>
-<td>拥有者写权限</td>
-</tr>
-<tr>
-<td>0100</td>
-<td>拥有者执行权限</td>
-</tr>
-<tr>
-<td>0040</td>
-<td>组读权限</td>
-</tr>
-<tr>
-<td>0020</td>
-<td>组写权限</td>
-</tr>
-<tr>
-<td>0010</td>
-<td>组执行权限</td>
-</tr>
-<tr>
-<td>0004</td>
-<td>所有人读权限</td>
-</tr>
-<tr>
-<td>0002</td>
-<td>所有人写权限</td>
-</tr>
-<tr>
-<td>0001</td>
-<td>所有人执行权限</td>
-</tr>
-</tbody></table>
-<h2 id="2-chdir-函数"><a href="#2-chdir-函数" class="headerlink" title="2. chdir 函数"></a>2. chdir 函数</h2><p>调用语法：chdir (dirname)</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2009/12/28/perl-list-dir/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1029,18 +971,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">301</span>
+          <span class="site-state-item-count">304</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">216</span>
+        <span class="site-state-item-count">224</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1069,7 +1011,7 @@
 <div class="copyright">
   
   © 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

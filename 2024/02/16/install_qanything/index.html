@@ -1,0 +1,447 @@
+<!DOCTYPE html><html lang="zh-Hans"><head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.liudongkai.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"PFZ0Y857EY","apiKey":"da65f2d4ea1c6d4dccfa6d7f197d2aaf","indexName":"blog","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="仅记录QAnything安装过程  run.sh1$ bash ./run.sh -c local -i 0 -b default    异常处理in connect    sock.connect(self.unix_socket)   PermissionError: [Errno 13] Permission denied处理 将当前用户加入docker组，重启docker后刷新用户组 1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QAnything安装记录">
+<meta property="og:url" content="http://www.liudongkai.com/2024/02/16/install_qanything/index.html">
+<meta property="og:site_name" content="Dong's Note">
+<meta property="og:description" content="仅记录QAnything安装过程  run.sh1$ bash ./run.sh -c local -i 0 -b default    异常处理in connect    sock.connect(self.unix_socket)   PermissionError: [Errno 13] Permission denied处理 将当前用户加入docker组，重启docker后刷新用户组 1">
+<meta property="og:locale">
+<meta property="article:published_time" content="2024-02-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-02-15T16:00:00.000Z">
+<meta property="article:author" content="東木">
+<meta property="article:tag" content="Github">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="QAnything">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://www.liudongkai.com/2024/02/16/install_qanything/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>QAnything安装记录 | Dong's Note</title>
+  
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-42337789-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-42337789-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c7096e12ca3876b01c9b962bd40adf7e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Dong's Note</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2024/02/16/install_qanything/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          QAnything安装记录
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2024-02-16 00:00:00" itemprop="dateCreated datePublished" datetime="2024-02-16T00:00:00+08:00">2024-02-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/ai/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>仅记录QAnything安装过程</p>
+</blockquote>
+<h2 id="run-sh"><a href="#run-sh" class="headerlink" title="run.sh"></a>run.sh</h2><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> bash ./run.sh -c <span class="built_in">local</span> -i 0 -b default</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><h3 id="in-connect-sock-connect-self-unix-socket-PermissionError-Errno-13-Permission-denied"><a href="#in-connect-sock-connect-self-unix-socket-PermissionError-Errno-13-Permission-denied" class="headerlink" title="in connect    sock.connect(self.unix_socket)   PermissionError: [Errno 13] Permission denied"></a>in connect    sock.connect(self.unix_socket)   PermissionError: [Errno 13] Permission denied</h3><h4 id="处理"><a href="#处理" class="headerlink" title="处理"></a>处理</h4><blockquote>
+<p>将当前用户加入docker组，重启docker后刷新用户组</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo usermod -aG docker <span class="variable">$USER</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo systemctl restart docker</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> newgrp docker</span></span><br></pre></td></tr></tbody></table></figure>
+</blockquote>
+<h4 id="异常现象"><a href="#异常现象" class="headerlink" title="异常现象"></a>异常现象</h4><blockquote>
+<p>输出：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">来自 https://github.com/netease-youdao/QAnything</span><br><span class="line"> * branch            master     -&gt; FETCH_HEAD</span><br><span class="line">当前master分支已是最新，无需更新。</span><br><span class="line">model_size=7B</span><br><span class="line">GPUID1=0, GPUID2=0, device_id=0</span><br><span class="line">GPU1 Model: NVIDIA GeForce RTX 3090</span><br><span class="line">Compute Capability: 8.6</span><br><span class="line">OCR_USE_GPU=True because 8.6 &gt;= 7.5</span><br><span class="line">====================================================</span><br><span class="line">******************** 重要提示 ********************</span><br><span class="line">====================================================</span><br><span class="line"></span><br><span class="line">您当前的显存为 24576 MiB 推荐部署7B模型</span><br><span class="line">llm_api is set to [local]</span><br><span class="line">device_id is set to [0]</span><br><span class="line">runtime_backend is set to [default]</span><br><span class="line">model_name is set to []</span><br><span class="line">conv_template is set to []</span><br><span class="line">tensor_parallel is set to [1]</span><br><span class="line">gpu_memory_utilization is set to [0.81]</span><br><span class="line">models 文件夹已存在，无需下载。</span><br><span class="line">检查模型版本成功，当前版本为 v2.1.0。</span><br><span class="line">Model directories check passed. (0/8)</span><br><span class="line">模型路径和模型版本检查通过. (0/8)</span><br><span class="line">Do you want to use the previous host: ? (yes/no) 是否使用上次的host: ？(yes/no) 回车默认选yes，请输入:no</span><br><span class="line">Are you running the code on a remote server or on your local machine? (remote/local) 您是在远程服务器上还是本地机器上启动代码？(remote/local) local</span><br><span class="line">Running under native Linux</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 700, in urlopen</span><br><span class="line">    httplib_response = self._make_request(</span><br><span class="line">  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 395, in _make_request</span><br><span class="line">    conn.request(method, url, **httplib_request_kw)</span><br><span class="line">  File "/usr/lib/python3.10/http/client.py", line 1283, in request</span><br><span class="line">    self._send_request(method, url, body, headers, encode_chunked)</span><br><span class="line">  File "/usr/lib/python3.10/http/client.py", line 1329, in _send_request</span><br><span class="line">    self.endheaders(body, encode_chunked=encode_chunked)</span><br><span class="line">  File "/usr/lib/python3.10/http/client.py", line 1278, in endheaders</span><br><span class="line">    self._send_output(message_body, encode_chunked=encode_chunked)</span><br><span class="line">  File "/usr/lib/python3.10/http/client.py", line 1038, in _send_output</span><br><span class="line">    self.send(msg)</span><br><span class="line">  File "/usr/lib/python3.10/http/client.py", line 976, in send</span><br><span class="line">    self.connect()</span><br><span class="line">  File "/usr/lib/python3/dist-packages/docker/transport/unixconn.py", line 30, in connect</span><br><span class="line">    sock.connect(self.unix_socket)</span><br><span class="line">PermissionError: [Errno 13] Permission denied</span><br><span class="line"></span><br><span class="line">During handling of the above exception, another exception occurred:</span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 439, in send</span><br><span class="line">    resp = conn.urlopen(</span><br><span class="line">  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 756, in urlopen</span><br><span class="line">    retries = retries.increment(</span><br><span class="line">  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 532, in increment</span><br><span class="line">    raise six.reraise(type(error), error, _stacktrace)</span><br><span class="line">  File "/usr/lib/python3/dist-packages/six.py", line 718, in reraise</span><br><span class="line">    raise value.with_traceback(tb)</span><br><span class="line">  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 700, in urlopen</span><br><span class="line">    httplib_response = self._make_request(</span><br><span class="line">  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 395, in _make_request</span><br><span class="line">    conn.request(method, url, **httplib_request_kw)</span><br><span class="line">  File "/usr/lib/python3.10/http/client.py", line 1283, in request</span><br><span class="line">    self._send_request(method, url, body, headers, encode_chunked)</span><br><span class="line">  File "/usr/lib/python3.10/http/client.py", line 1329, in _send_request</span><br><span class="line">    self.endheaders(body, encode_chunked=encode_chunked)</span><br><span class="line">  File "/usr/lib/python3.10/http/client.py", line 1278, in endheaders</span><br><span class="line">    self._send_output(message_body, encode_chunked=encode_chunked)</span><br><span class="line">  File "/usr/lib/python3.10/http/client.py", line 1038, in _send_output</span><br><span class="line">    self.send(msg)</span><br><span class="line">  File "/usr/lib/python3.10/http/client.py", line 976, in send</span><br><span class="line">    self.connect()</span><br><span class="line">  File "/usr/lib/python3/dist-packages/docker/transport/unixconn.py", line 30, in connect</span><br><span class="line">    sock.connect(self.unix_socket)</span><br><span class="line">urllib3.exceptions.ProtocolError: ('Connection aborted.', PermissionError(13, 'Permission denied'))</span><br><span class="line"></span><br><span class="line">During handling of the above exception, another exception occurred:</span><br><span class="line">......</span><br></pre></td></tr></tbody></table></figure>
+</blockquote>
+<h3 id="could-not-select-device-driver-“nvidia”-with-capabilities-gpu"><a href="#could-not-select-device-driver-“nvidia”-with-capabilities-gpu" class="headerlink" title="could not select device driver “nvidia” with capabilities: [[gpu]]"></a>could not select device driver “nvidia” with capabilities: [[gpu]]</h3><h4 id="处理-1"><a href="#处理-1" class="headerlink" title="处理"></a>处理</h4><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 添加nvidia源</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> distribution=$(. /etc/os-release;<span class="built_in">echo</span> $ID<span class="variable">$VERSION_ID</span>)</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> curl -s -L https://nvidia.github.io/nvidia-docker/<span class="variable">$distribution</span>/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装nvidia-container-toolkit</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get update</span> </span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get install -y nvidia-container-toolkit</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重启docker</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo systemctl restart docker</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h4 id="异常现象-1"><a href="#异常现象-1" class="headerlink" title="异常现象"></a>异常现象</h4><blockquote>
+<p>输出：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">自 https://github.com/netease-youdao/QAnything</span><br><span class="line"> * branch            master     -&gt; FETCH_HEAD</span><br><span class="line">当前master分支已是最新，无需更新。</span><br><span class="line">model_size=7B</span><br><span class="line">GPUID1=0, GPUID2=0, device_id=0</span><br><span class="line">GPU1 Model: NVIDIA GeForce RTX 3090</span><br><span class="line">Compute Capability: 8.6</span><br><span class="line">OCR_USE_GPU=True because 8.6 &gt;= 7.5</span><br><span class="line">====================================================</span><br><span class="line">******************** 重要提示 ********************</span><br><span class="line">====================================================</span><br><span class="line"></span><br><span class="line">您当前的显存为 24576 MiB 推荐部署7B模型</span><br><span class="line">llm_api is set to [local]</span><br><span class="line">device_id is set to [0]</span><br><span class="line">runtime_backend is set to [default]</span><br><span class="line">model_name is set to []</span><br><span class="line">conv_template is set to []</span><br><span class="line">tensor_parallel is set to [1]</span><br><span class="line">gpu_memory_utilization is set to [0.81]</span><br><span class="line">models 文件夹已存在，无需下载。</span><br><span class="line">检查模型版本成功，当前版本为 v2.1.0。</span><br><span class="line">Model directories check passed. (0/8)</span><br><span class="line">模型路径和模型版本检查通过. (0/8)</span><br><span class="line">Do you want to use the previous host: localhost? (yes/no) 是否使用上次的host: localhost？(yes/no) 回车默认选yes，请输入:</span><br><span class="line">Running under native Linux</span><br><span class="line">Removing network qanything_milvus_mysql_local</span><br><span class="line">Network qanything_milvus_mysql_local not found.</span><br><span class="line">Creating network "qanything_milvus_mysql_local" with the default driver</span><br><span class="line">Pulling standalone (milvusdb/milvus:v2.3.4)...</span><br><span class="line">v2.3.4: Pulling from milvusdb/milvus</span><br><span class="line">000000000000: Pull complete</span><br><span class="line">......</span><br><span class="line">Digest: sha256:efd6ef720b6ad0de62d006319996ba18504842ffaa543e3b072aeb5963305907</span><br><span class="line">Status: Downloaded newer image for milvusdb/milvus:v2.3.4</span><br><span class="line">Pulling mysql (mysql:)...</span><br><span class="line">latest: Pulling from library/mysql</span><br><span class="line">000000000000: Pull complete</span><br><span class="line">......</span><br><span class="line">Digest: sha256:e9027fe4d91c0153429607251656806cc784e914937271037f7738bd5b8e7709</span><br><span class="line">Status: Downloaded newer image for mysql:latest</span><br><span class="line">Pulling qanything_local (freeren/qanything:v1.1.1)...</span><br><span class="line">v1.1.1: Pulling from freeren/qanything</span><br><span class="line">000000000000: Pull complete</span><br><span class="line">......</span><br><span class="line">Digest: sha256:20a1ca0612b2187c308f900474aa1a1609d04e3c80c7d3c19926fddff6d143da</span><br><span class="line">Status: Downloaded newer image for freeren/qanything:v1.1.1</span><br><span class="line">Creating milvus-minio-local    ... done</span><br><span class="line">Creating milvus-etcd-local     ... done</span><br><span class="line">Creating mysql-container-local ... done</span><br><span class="line">Creating milvus-standalone-local ... done</span><br><span class="line">Creating qanything-container-local ... error</span><br><span class="line"></span><br><span class="line">ERROR: for qanything-container-local  Cannot start service qanything_local: could not select device driver "nvidia" with capabilities: [[gpu]]</span><br><span class="line"></span><br><span class="line">ERROR: for qanything_local  Cannot start service qanything_local: could not select device driver "nvidia" with capabilities: [[gpu]]</span><br><span class="line">ERROR: Encountered errors while bringing up the project.</span><br><span class="line">Attaching to qanything-container-local</span><br><span class="line">qanything-container-local exited with code 128</span><br></pre></td></tr></tbody></table></figure>
+</blockquote>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/github/" rel="tag"># Github</a>
+              <a href="/tags/ai/" rel="tag"># AI</a>
+              <a href="/tags/qanything/" rel="tag"># QAnything</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/12/28/stable_diffusion_models/" rel="prev" title="stable diffusion models">
+      <i class="fa fa-chevron-left"></i> stable diffusion models
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#run-sh"><span class="nav-number">1.</span> <span class="nav-text">run.sh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">异常处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#in-connect-sock-connect-self-unix-socket-PermissionError-Errno-13-Permission-denied"><span class="nav-number">2.1.</span> <span class="nav-text">in connect    sock.connect(self.unix_socket)   PermissionError: [Errno 13] Permission denied</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%84%E7%90%86"><span class="nav-number">2.1.1.</span> <span class="nav-text">处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E7%8E%B0%E8%B1%A1"><span class="nav-number">2.1.2.</span> <span class="nav-text">异常现象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#could-not-select-device-driver-%E2%80%9Cnvidia%E2%80%9D-with-capabilities-gpu"><span class="nav-number">2.2.</span> <span class="nav-text">could not select device driver “nvidia” with capabilities: [[gpu]]</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%84%E7%90%86-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E7%8E%B0%E8%B1%A1-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">异常现象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.3.</span> <span class="nav-text"></span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">東木</p>
+  <div class="site-description" itemprop="description">The palest ink is better than the best memory.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">304</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">224</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">浙ICP备17024634号-4 </a>
+  </div>
+
+<div class="copyright">
+  
+  © 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">東木</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> &amp; <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+<script type="text/javascript" src="/bundle.js"></script><script type="text/javascript">
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 3,
+                processImages: null,
+            };
+        ;
+window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});;
+!function(n){n.imageLazyLoadSetting.processImages=o;var e=n.imageLazyLoadSetting.isSPA,i=n.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},t.src!==i&&(n.src=i)}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body></html>

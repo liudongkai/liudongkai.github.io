@@ -163,6 +163,227 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/11/10/mac-os-x-screencapture/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2014/11/10/mac-os-x-screencapture/" class="post-title-link" itemprop="url">mac os x 定时截图</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2014-11-10 00:00:00" itemprop="dateCreated datePublished" datetime="2014-11-10T00:00:00+08:00">2014-11-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/mac-os/" itemprop="url" rel="index"><span itemprop="name">Mac OS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>打开”终端”（应用程序 – 实用工具），输入以下命令：</p>
+<pre><code>screencapture -t png -&lt;span class="hljs-constant"&gt;T &lt;/span&gt;&lt;span class="hljs-number"&gt;10&lt;/span&gt; ~&lt;span class="hljs-regexp"&gt;/Desktop/screenshot&lt;/span&gt;01.png
+</code></pre>
+<p>当你按下”Enter”键后，系统将在10秒后自动截图，你在桌面上将看到图片文件（~/Desktop/screenshot01.png 是文件路径），如果你想修改截图时间，你只需修改命令中的数字”10”就可以了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/11/08/qnap-ts-212p-fireware-recovery/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2014/11/08/qnap-ts-212p-fireware-recovery/" class="post-title-link" itemprop="url">QNAP TS-212P 重刷固件后起死回生</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2014-11-08 00:00:00" itemprop="dateCreated datePublished" datetime="2014-11-08T00:00:00+08:00">2014-11-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>趁着1111活动，从企鹅入手TS-212P带3T日立企业盘，某东做的配送，0点后下的单，下午就到货了。到手后第一件事情就是把固件升级了，cloud升级的，down了一宿，第二天起来看到提示重启设备，反正正好要挪个位置，那就先正常关机，换了位置后，正常启动。</p>
+<p>接下来的问题就来了，启动后，Status灯一直红绿灯闪烁，然后重启；第二声确认蜂鸣声再也没有听到过，QFinder与NAS也从此失去了联系。</p>
+<p>发现网络上碰到这问题不少，我一个同事入的同款，也碰到过此类现象。</p>
+<p>最后按照QNAP wiki(<a target="_blank" rel="noopener" href="http://wiki.qnap.com/wiki/Firmware_Recovery#Firmware_Recovery_Guide_for_ARM_based_NAS">http://wiki.qnap.com/wiki/Firmware_Recovery#Firmware_Recovery_Guide_for_ARM_based_NAS</a>) 里的方法，重新刷回4.0.5，然后下载固件到本地，ssh到设备里升级的</p>
+<blockquote>
+<p>为什么要ssh上去升？因为web不牢靠，QFinder也尝试过直接4.0.5–&gt;4.1.1，最后会提示失败，失败的原因也不提示，不过最后在SSH升级过程中得到解答，是boot镜像没找到 =。=</p>
+</blockquote>
+<p>升级命令</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 固件img放在public下:</span><br><span class="line">[/] # ln -sf /mnt/HDA_ROOT/update/ /mnt/update</span><br><span class="line">[/] # /etc/init.d/update.sh /share/Public/4.1.1.img</span><br><span class="line">[/] # reboot</span><br></pre></td></tr></tbody></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/11/04/VirtualBox-compact-vdi/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2014/11/04/VirtualBox-compact-vdi/" class="post-title-link" itemprop="url">压缩 VirtualBox 下安装 Linux 的 .vdi 虚拟硬盘文件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2014-11-04 00:00:00" itemprop="dateCreated datePublished" datetime="2014-11-04T00:00:00+08:00">2014-11-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/vm/" itemprop="url" rel="index"><span itemprop="name">VM</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><p>在虚拟机里把没用的磁盘空间置零 (这一步耗时比较长, 且没提示. 另外如果有权限问题记得前面加 sudo)</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/zero of=/zero.tmp</span><br><span class="line">rm -f /zep.tmp</span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>关闭虚拟机</p>
+</li>
+<li><p>执行压缩命令 (宿主机是 Win 或 Linux 都自行找 VboxManager 的路径)</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">VboxManage modifyhd /PATH_TO_VDI/name.vdi --compact</span><br></pre></td></tr></tbody></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/10/29/ios8-cydia-sources/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -699,293 +920,6 @@
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/09/20/megacli/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2014/09/20/megacli/" class="post-title-link" itemprop="url">常用PC服务器阵列卡、硬盘健康监控[ZT]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2014-09-20 00:00:00" itemprop="dateCreated datePublished" datetime="2014-09-20T00:00:00+08:00">2014-09-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>通常，我们使用的DELL/HP/IBM三家的机架式PC级服务器阵列卡是从LSI的卡OEM出来的，DELL和IBM两家的阵列卡原生程度较高，没有做太多封装，可以用原厂提供的阵列卡管理工具进行监控；而HP的阵列卡一般都做过封装了，因此需要使用自身特有的管理工具来监控。</p>
-<p>本文以几种常用的阵列卡为例，展示其阵列卡及硬盘监控的方法。<br><strong>DELL SAS 6/iR卡</strong>，全称LSI Logic SAS1068E，只支持RAID 0, RAID 1, RAID 1+0, 不支持RAID 5等高级RAID特性，不支持阵列卡电池。<br><strong>DELL PERC PERC H700卡</strong>，全称LSI Logic MegaRAID SAS 2108，支持各种RAID级别及高级特性，可选配阵列卡电池。<br><strong>DELL PERC H310 Mini卡</strong> ，全称LSI Logic / Symbios Logic MegaRAID SAS 2008，支持常见RAID级别，不支持高级RAID特性，不支持阵列卡电池。<br><strong>IBM ServeRAID M5014 SAS/SATA Controller卡</strong>，全称LSI Logic / Symbios Logic MegaRAID SAS 2108，支持各种RAID级别及高级特性，可选配阵列卡电池。<br><strong>IBM ServeRAID-MR10i SAS/SATA Controller卡</strong>，全称LSI Logic / Symbios Logic MegaRAID SAS 1078，支持常见RAID级别，不支持高级RAID特性，可选配阵列卡电池，这个卡其实和DELL的PERC 6/i卡是一样的，都是基于LSI MegaRAID SAS 1078基础上OEM出来的。</p>
-<p>上面是几种常见的阵列卡型号，更多的可以自行查看官方的技术手册。</p>
-<p>下面我们要继续的是，这些阵列卡以及硬盘如何监控，阵列卡的管理也请查看官方技术手册，不在本文讨论范畴，或者查看作者的一个分享PPT：PC服务器阵列卡管理简易手册。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2014/09/20/megacli/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/09/07/iOS-URL-Scheme/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2014/09/07/iOS-URL-Scheme/" class="post-title-link" itemprop="url">常用iOS URL Scheme附录</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2014-09-07 00:00:00" itemprop="dateCreated datePublished" datetime="2014-09-07T00:00:00+08:00">2014-09-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>ios默认：</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>URL Scheme</th>
-<th>Bundle identifier</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Safari：</td>
-<td>http://</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>maps：</td>
-<td><a target="_blank" rel="noopener" href="http://maps.google.com/">http://maps.google.com</a></td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>Phone：</td>
-<td>tel:</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>SMS：</td>
-<td>sms:</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>Mail：</td>
-<td>mailto:</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>iBooks：</td>
-<td>ibooks://</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>App Store：</td>
-<td><a target="_blank" rel="noopener" href="http://itunes.apple.com/">http://itunes.apple.com</a></td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>iTunes：</td>
-<td>http:<a target="_blank" rel="noopener" href="http://phobos.apple.com/">http://phobos.apple.com</a></td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>Music / iPod：</td>
-<td>music:</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>Videos：</td>
-<td>videos:</td>
-<td>&nbsp;</td>
-</tr>
-</tbody></table>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2014/09/07/iOS-URL-Scheme/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/08/17/compile-bash-shell-with-shc/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2014/08/17/compile-bash-shell-with-shc/" class="post-title-link" itemprop="url">用shc加密或者编译shell脚本</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2014-08-17 00:00:00" itemprop="dateCreated datePublished" datetime="2014-08-17T00:00:00+08:00">2014-08-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>这是针对上一篇<a href="/2014/08/16/How_to_Encrypt_Your_Bash_Shell_Script_on_Linux_Using_SHC/">How to Encrypt Your Bash Shell Script on Linux Using SHC [ZT]</a>的延伸资料整理。</p>
-<h2 id="1-动态链接"><a href="#1-动态链接" class="headerlink" title="1. 动态链接"></a>1. 动态链接</h2><p>文中介绍的两种编译方式，无论是<code>shc -r -f random.sh</code>还是<code>shc -v -r -T -f random.sh</code>生成的二进制文件都是<strong>动态链接</strong>形式的，所以，在其他平台上不能运行。</p>
-<h2 id="2-静态链接"><a href="#2-静态链接" class="headerlink" title="2. 静态链接"></a>2. 静态链接</h2><p>不过，我们可以通过下面的方式生成一个<strong>静态链接</strong>的二进制可执行文件。</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># CFLAGS=-static shc -r -f random.sh</span><br></pre></td></tr></tbody></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2014/08/17/compile-bash-shell-with-shc/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1055,18 +989,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">301</span>
+          <span class="site-state-item-count">304</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">216</span>
+        <span class="site-state-item-count">224</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1095,7 +1029,7 @@
 <div class="copyright">
   
   © 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -163,6 +163,434 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2016/03/28/mysql_recursive_query/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/03/28/mysql_recursive_query/" class="post-title-link" itemprop="url">一句SQL实现MYSQL的递归查询[zt]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-03-28 00:00:00" itemprop="dateCreated datePublished" datetime="2016-03-28T00:00:00+08:00">2016-03-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>众所周知，目前的mysql版本中并不支持直接的递归查询，但是通过递归到迭代转化的思路，还是可以在一句SQL内实现树的递归查询的。这个得益于Mysql允许在SQL语句内使用@变量。以下是示例代码。</p>
+<p>创建表格</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `treenodes` (</span><br><span class="line">    `id` <span class="type">int</span> , <span class="comment">-- 节点ID</span></span><br><span class="line">    `nodename` <span class="type">varchar</span> (<span class="number">60</span>), <span class="comment">-- 节点名称</span></span><br><span class="line">    `pid` <span class="type">int</span>  <span class="comment">-- 节点父ID</span></span><br><span class="line">); </span><br></pre></td></tr></tbody></table></figure>
+
+<p>插入测试数据</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `treenodes` (`id`, `nodename`, `pid`) <span class="keyword">VALUES</span></span><br><span class="line">(<span class="string">'1'</span>,<span class="string">'A'</span>,<span class="string">'0'</span>),(<span class="string">'2'</span>,<span class="string">'B'</span>,<span class="string">'1'</span>),(<span class="string">'3'</span>,<span class="string">'C'</span>,<span class="string">'1'</span>),</span><br><span class="line">(<span class="string">'4'</span>,<span class="string">'D'</span>,<span class="string">'2'</span>),(<span class="string">'5'</span>,<span class="string">'E'</span>,<span class="string">'2'</span>),(<span class="string">'6'</span>,<span class="string">'F'</span>,<span class="string">'3'</span>),</span><br><span class="line">(<span class="string">'7'</span>,<span class="string">'G'</span>,<span class="string">'6'</span>),(<span class="string">'8'</span>,<span class="string">'H'</span>,<span class="string">'0'</span>),(<span class="string">'9'</span>,<span class="string">'I'</span>,<span class="string">'8'</span>),</span><br><span class="line">(<span class="string">'10'</span>,<span class="string">'J'</span>,<span class="string">'8'</span>),(<span class="string">'11'</span>,<span class="string">'K'</span>,<span class="string">'8'</span>),(<span class="string">'12'</span>,<span class="string">'L'</span>,<span class="string">'9'</span>),</span><br><span class="line">(<span class="string">'13'</span>,<span class="string">'M'</span>,<span class="string">'9'</span>),(<span class="string">'14'</span>,<span class="string">'N'</span>,<span class="string">'12'</span>),(<span class="string">'15'</span>,<span class="string">'O'</span>,<span class="string">'12'</span>),</span><br><span class="line">(<span class="string">'16'</span>,<span class="string">'P'</span>,<span class="string">'15'</span>),(<span class="string">'17'</span>,<span class="string">'Q'</span>,<span class="string">'15'</span>),(<span class="string">'18'</span>,<span class="string">'R'</span>,<span class="string">'3'</span>),</span><br><span class="line">(<span class="string">'19'</span>,<span class="string">'S'</span>,<span class="string">'2'</span>),(<span class="string">'20'</span>,<span class="string">'T'</span>,<span class="string">'6'</span>),(<span class="string">'21'</span>,<span class="string">'U'</span>,<span class="string">'8'</span>);</span><br></pre></td></tr></tbody></table></figure>
+
+<p>查询语句</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">SELECT</span> id <span class="keyword">AS</span> ID,pid <span class="keyword">AS</span> 父ID ,levels <span class="keyword">AS</span> 父到子之间级数, paths <span class="keyword">AS</span> 父到子路径 <span class="keyword">FROM</span> (</span><br><span class="line">     <span class="keyword">SELECT</span> id,pid,</span><br><span class="line">     <span class="variable">@le</span>:<span class="operator">=</span> IF (pid <span class="operator">=</span> <span class="number">0</span> ,<span class="number">0</span>,  </span><br><span class="line">         IF( LOCATE( CONCAT(<span class="string">'|'</span>,pid,<span class="string">':'</span>),<span class="variable">@pathlevel</span>)   <span class="operator">&gt;</span> <span class="number">0</span>  ,      </span><br><span class="line">                  SUBSTRING_INDEX( SUBSTRING_INDEX(<span class="variable">@pathlevel</span>,CONCAT(<span class="string">'|'</span>,pid,<span class="string">':'</span>),<span class="number">-1</span>),<span class="string">'|'</span>,<span class="number">1</span>) <span class="operator">+</span><span class="number">1</span></span><br><span class="line">        ,<span class="variable">@le</span><span class="operator">+</span><span class="number">1</span>) ) levels</span><br><span class="line">     , <span class="variable">@pathlevel</span>:<span class="operator">=</span> CONCAT(<span class="variable">@pathlevel</span>,<span class="string">'|'</span>,id,<span class="string">':'</span>, <span class="variable">@le</span> ,<span class="string">'|'</span>) pathlevel</span><br><span class="line">      , <span class="variable">@pathnodes</span>:<span class="operator">=</span> IF( pid <span class="operator">=</span><span class="number">0</span>,<span class="string">',0'</span>, </span><br><span class="line">           CONCAT_WS(<span class="string">','</span>,</span><br><span class="line">           IF( LOCATE( CONCAT(<span class="string">'|'</span>,pid,<span class="string">':'</span>),<span class="variable">@pathall</span>) <span class="operator">&gt;</span> <span class="number">0</span>  , </span><br><span class="line">               SUBSTRING_INDEX( SUBSTRING_INDEX(<span class="variable">@pathall</span>,CONCAT(<span class="string">'|'</span>,pid,<span class="string">':'</span>),<span class="number">-1</span>),<span class="string">'|'</span>,<span class="number">1</span>)</span><br><span class="line">              ,<span class="variable">@pathnodes</span> ) ,pid  ) )paths</span><br><span class="line">    ,<span class="variable">@pathall</span>:<span class="operator">=</span>CONCAT(<span class="variable">@pathall</span>,<span class="string">'|'</span>,id,<span class="string">':'</span>, <span class="variable">@pathnodes</span> ,<span class="string">'|'</span>) pathall </span><br><span class="line">        <span class="keyword">FROM</span>  treenodes, </span><br><span class="line">    (<span class="keyword">SELECT</span> <span class="variable">@le</span>:<span class="operator">=</span><span class="number">0</span>,<span class="variable">@pathlevel</span>:<span class="operator">=</span><span class="string">''</span>, <span class="variable">@pathall</span>:<span class="operator">=</span><span class="string">''</span>,<span class="variable">@pathnodes</span>:<span class="operator">=</span><span class="string">''</span>) vv</span><br><span class="line">    <span class="keyword">ORDER</span> <span class="keyword">BY</span>  pid,id</span><br><span class="line">    ) src</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> id;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>最后的结果如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">    ID   父ID  父到子之间级数  父到子路径</span><br><span class="line">------  ------  ------------  ---------------</span><br><span class="line">     1       0        0           ,0             </span><br><span class="line">     2       1        1           ,0,1           </span><br><span class="line">     3       1        1           ,0,1           </span><br><span class="line">     4       2        2           ,0,1,2         </span><br><span class="line">     5       2        2           ,0,1,2         </span><br><span class="line">     6       3        2           ,0,1,3         </span><br><span class="line">     7       6        3           ,0,1,3,6       </span><br><span class="line">     8       0        0           ,0             </span><br><span class="line">     9       8        1           ,0,8           </span><br><span class="line">    10       8        1           ,0,8           </span><br><span class="line">    11       8        1           ,0,8           </span><br><span class="line">    12       9        2           ,0,8,9         </span><br><span class="line">    13       9        2           ,0,8,9         </span><br><span class="line">    14      12        3           ,0,8,9,12      </span><br><span class="line">    15      12        3           ,0,8,9,12      </span><br><span class="line">    16      15        4           ,0,8,9,12,15   </span><br><span class="line">    17      15        4           ,0,8,9,12,15   </span><br><span class="line">    18       3        2           ,0,1,3         </span><br><span class="line">    19       2        2           ,0,1,2         </span><br><span class="line">    20       6        3           ,0,1,3,6       </span><br><span class="line">    21       8        1           ,0,8     </span><br></pre></td></tr></tbody></table></figure>
+
+
+<p>via. <a target="_blank" rel="noopener" href="http://www.cnblogs.com/dukou/p/4691543.html">http://www.cnblogs.com/dukou/p/4691543.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2016/03/27/mysql_varchar_how_many_chinese_can_be_saved/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/03/27/mysql_varchar_how_many_chinese_can_be_saved/" class="post-title-link" itemprop="url">MySQL 数据库 varchar 到底可以存多少个汉字，多少个英文呢?我们来搞搞清楚[zt]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-03-27 00:00:00" itemprop="dateCreated datePublished" datetime="2016-03-27T00:00:00+08:00">2016-03-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="关于UTF-8"><a href="#关于UTF-8" class="headerlink" title="关于UTF-8"></a>关于UTF-8</h2><p>UTF-8 Unicode Transformation Format-8bit。是用以解决国际上字符的一种多字节编码。</p>
+<p>它对英文使用8位（即一个字节) ，中文使用24位（三个字节）来编码。<br>UTF-8包含全世界所有国家需要用到的字符，是国际编码，通用性强。</p>
+<p>UTF-8编码的文字可以在各国支持UTF8字符集额的浏览器上显示。 如果是UTF8编码，则在外国人的英文IE也能显示中文，他们无需下载IE的中文语言支持包。</p>
+<h2 id="关于GBK"><a href="#关于GBK" class="headerlink" title="关于GBK"></a>关于GBK</h2><p>GBK 是国家标准GB2312基础上扩容后兼容GB2312的标准。<br>GBK的文字编码是用双字节来表示的，即不论中、英文字符均使用双字节来表示，为了区分中文，将其最高位都设定成1。<br>GBK包含全部中文字符，是国家编码，通用性比UTF8差，不过UTF8占用的数据库比GBK大。</p>
+<h2 id="关于utf8mb4"><a href="#关于utf8mb4" class="headerlink" title="关于utf8mb4"></a>关于utf8mb4</h2><p>MySql 5.5 之前，UTF8 编码只支持<strong>1-3</strong>个字节，只支持BMP这部分的unicode编码区，BMP是从哪到哪？ [戳这里] (<a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Mapping_of_Unicode_characters)%E5%9F%BA%E6%9C%AC%E5%B0%B1%E6%98%AF">http://en.wikipedia.org/wiki/Mapping_of_Unicode_characters)基本就是</a> 0000 ~ FFFF 这一区。</p>
+<p>从MySQL 5.5 开始，可支持4个字节UTF编码utf8mb4，一个字符最多能有<strong>4</strong>字节，所以能支持更多的字符集。</p>
+<blockquote>
+<p>utf8mb4 is a superset of utf8</p>
+</blockquote>
+<p>tf8mb4兼容utf8，且比utf8能表示更多的字符。<br>至于什么时候用，看你做的什么项目了。。。 在做移动应用时，会遇到IOS用户在文本的区域输入emoji表情，如果不做一定处理，就会导致插入数据库异常。</p>
+<h2 id="汉字长度与编码有关"><a href="#汉字长度与编码有关" class="headerlink" title="汉字长度与编码有关"></a>汉字长度与编码有关</h2><p>MySql 5.0 以上的版本：</p>
+<ol>
+<li>一个汉字占多少长度与编码有关：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">编码</th>
+<th align="right">一个汉字</th>
+<th align="right">一个英文</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">UTF-8</td>
+<td align="right">3字节</td>
+<td align="right">1字节</td>
+</tr>
+<tr>
+<td align="center">GBK</td>
+<td align="right">2字节</td>
+<td align="right">1字节</td>
+</tr>
+</tbody></table>
+<ol>
+<li><p>varchar(n) 表示n个字符，无论汉字和英文，MySql都能存入 n 个字符，仅实际字节长度有所区别。</p>
+</li>
+<li><p>MySQL检查长度，可用SQL语言</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> LENGTH(fieldname) <span class="keyword">FROM</span> tablename</span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<h2 id="实际测试"><a href="#实际测试" class="headerlink" title="实际测试"></a>实际测试</h2><h3 id="首先使用utf8"><a href="#首先使用utf8" class="headerlink" title="首先使用utf8"></a>首先使用utf8</h3><p>创建 str_test 表。</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `str_test` (</span><br><span class="line">   `name_chn` <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">   `name_en`  <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB AUTO_INCREMENT<span class="operator">=</span><span class="number">1</span> <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8</span><br></pre></td></tr></tbody></table></figure>
+
+<p>然后插入值</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">insert</span> <span class="keyword">into</span>  str_test <span class="keyword">values</span> (<span class="string">'我爱Ruby'</span>, <span class="string">'I Love Ruby!'</span>);</span><br><span class="line">Query OK, <span class="number">1</span> <span class="type">row</span> affected (<span class="number">0.02</span> sec)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>打开irb</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;</span> <span class="string">"我爱Ruby"</span>.size</span><br><span class="line">=&gt; <span class="number">6</span></span><br><span class="line"><span class="meta">&gt;&gt;</span> <span class="string">"I Love Ruby!"</span>.size</span><br><span class="line">=&gt; <span class="number">12</span></span><br><span class="line">&gt;&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>从MySQL中查询出来的结果，对比</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> str_test;</span><br><span class="line"><span class="operator">+</span><span class="comment">------------+--------------+</span></span><br><span class="line"><span class="operator">|</span> name_chn   <span class="operator">|</span> name_en      <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------+--------------+</span></span><br><span class="line"><span class="operator">|</span> 我爱Ruby   <span class="operator">|</span> I Love Ruby<span class="operator">!</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------+--------------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.02</span> sec)</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>UTF-8 中文是三个字节，英文是一个字节。</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> length(name_chn) <span class="keyword">from</span> str_test;</span><br><span class="line"><span class="operator">+</span><span class="comment">------------------+</span></span><br><span class="line"><span class="operator">|</span> length(name_chn) <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------------+</span></span><br><span class="line"><span class="operator">|</span>               <span class="number">10</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.01</span> sec)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>3[一个汉字三字节] * 2 + 1[一个英文一字节] * 4 = 10</code></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> length(name_en) <span class="keyword">from</span> str_test;</span><br><span class="line"><span class="operator">+</span><span class="comment">-----------------+</span></span><br><span class="line"><span class="operator">|</span> length(name_en) <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----------------+</span></span><br><span class="line"><span class="operator">|</span>              <span class="number">12</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----------------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>1[一个英文一字节] * 10 + 1[空格一字节] * 2 = 12</code></p>
+<h3 id="使用-GBK-做测试"><a href="#使用-GBK-做测试" class="headerlink" title="使用 GBK 做测试"></a>使用 GBK 做测试</h3><p>创建表</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `str_test` (</span><br><span class="line">    `name_chn` <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    `name_en`  <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB AUTO_INCREMENT<span class="operator">=</span><span class="number">62974</span> <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>gbk</span><br></pre></td></tr></tbody></table></figure>
+
+<p>插入数据，并且测试</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">insert</span> <span class="keyword">into</span>  str_test <span class="keyword">values</span> (<span class="string">'我爱Ruby'</span>, <span class="string">'I Love Ruby!'</span>);</span><br><span class="line">Query OK, <span class="number">1</span> <span class="type">row</span> affected (<span class="number">0.00</span> sec)</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> str_test;</span><br><span class="line"><span class="operator">+</span><span class="comment">------------+--------------+</span></span><br><span class="line"><span class="operator">|</span> name_chn   <span class="operator">|</span> name_en      <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------+--------------+</span></span><br><span class="line"><span class="operator">|</span> 我爱Ruby   <span class="operator">|</span> I Love Ruby<span class="operator">!</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------+--------------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.01</span> sec)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>GBK 中文是两个字节，英文是一个字节。</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> length(name_chn) <span class="keyword">from</span> str_test;</span><br><span class="line"><span class="operator">+</span><span class="comment">------------------+</span></span><br><span class="line"><span class="operator">|</span> length(name_chn) <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------------+</span></span><br><span class="line"><span class="operator">|</span>                <span class="number">8</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>2[中文两个字节] * 2 + 1[英文一个字节] * 4 = 8</code></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> length(name_en) <span class="keyword">from</span> str_test;</span><br><span class="line"><span class="operator">+</span><span class="comment">-----------------+</span></span><br><span class="line"><span class="operator">|</span> length(name_en) <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----------------+</span></span><br><span class="line"><span class="operator">|</span>              <span class="number">12</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----------------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>1[英文一个字节] * 10 + 1[空格一个字节] * 2 = 12</code></p>
+<h2 id="关于varchar-最多能存多少值"><a href="#关于varchar-最多能存多少值" class="headerlink" title="关于varchar 最多能存多少值"></a>关于varchar 最多能存多少值</h2><p>mysql的记录行长度是有限制的，不是无限长的，这个长度是64K，即65535个字节，对所有的表都是一样的。<br>MySQL对于变长类型的字段会有1-2个字节来保存字符长度。<br>当字符数小于等于255时，MySQL只用1个字节来记录，因为2的8次方减1只能存到255。<br>当字符数多余255时，就得用2个字节来存长度了。<br>在utf-8状态下的varchar，最大只能到 (65535 - 2) / 3 = 21844 余 1。<br>在gbk状态下的varchar, 最大只能到 (65535 - 2) / 2 = 32766 余 1</p>
+<p>使用 utf-8 创建</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `str_test` (</span><br><span class="line">  <span class="operator">-</span><span class="operator">&gt;</span>      `id`  tinyint(<span class="number">1</span>)  <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  <span class="operator">-</span><span class="operator">&gt;</span>      `name_chn` <span class="type">varchar</span>(<span class="number">21845</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line">  <span class="operator">-</span><span class="operator">&gt;</span>  ) ENGINE<span class="operator">=</span>InnoDB AUTO_INCREMENT<span class="operator">=</span><span class="number">1</span> <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8;</span><br><span class="line">ERROR <span class="number">1118</span> (<span class="number">42000</span>): <span class="type">Row</span> size too large. The maximum <span class="type">row</span> size <span class="keyword">for</span> the used <span class="keyword">table</span> type, <span class="keyword">not</span> counting BLOBs, <span class="keyword">is</span> <span class="number">65535.</span> This includes storage overhead, <span class="keyword">check</span> the manual. You have <span class="keyword">to</span> change <span class="keyword">some</span> columns <span class="keyword">to</span> TEXT <span class="keyword">or</span> BLOBs</span><br></pre></td></tr></tbody></table></figure>
+<p>使用gbk创建</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span>     <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `str_test` (</span><br><span class="line"><span class="operator">-</span><span class="operator">&gt;</span>         `id`  tinyint(<span class="number">1</span>)  <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line"><span class="operator">-</span><span class="operator">&gt;</span>         `name_chn` <span class="type">varchar</span>(<span class="number">21844</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line"><span class="operator">-</span><span class="operator">&gt;</span>     ) ENGINE<span class="operator">=</span>InnoDB AUTO_INCREMENT<span class="operator">=</span><span class="number">1</span> <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.06</span> sec)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>当存储长度为 32768 失败~</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `str_test` (</span><br><span class="line"><span class="operator">-</span><span class="operator">&gt;</span>         `id`  tinyint(<span class="number">1</span>)  <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line"><span class="operator">-</span><span class="operator">&gt;</span>         `name_chn` <span class="type">varchar</span>(<span class="number">32768</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line"><span class="operator">-</span><span class="operator">&gt;</span>     ) ENGINE<span class="operator">=</span>InnoDB AUTO_INCREMENT<span class="operator">=</span><span class="number">1</span> <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>gbk;</span><br><span class="line">ERROR <span class="number">1074</span> (<span class="number">42000</span>): <span class="keyword">Column</span> length too big <span class="keyword">for</span> <span class="keyword">column</span> <span class="string">'name_chn'</span> (max <span class="operator">=</span> <span class="number">32767</span>); use <span class="type">BLOB</span> <span class="keyword">or</span> TEXT instead</span><br></pre></td></tr></tbody></table></figure>
+
+<p>当存储长度为 32767 失败~</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `str_test`(</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>  `id`  tinyint(<span class="number">1</span>)  <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>  `name_chn` <span class="type">varchar</span>(<span class="number">32767</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> ) ENGINE<span class="operator">=</span>InnoDB AUTO_INCREMENT<span class="operator">=</span><span class="number">1</span> <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>gbk;</span><br><span class="line">ERROR <span class="number">1118</span> (<span class="number">42000</span>): <span class="type">Row</span> size too large. The maximum <span class="type">row</span> size <span class="keyword">for</span> the used <span class="keyword">table</span> type, <span class="keyword">not</span> counting BLOBs, <span class="keyword">is</span> <span class="number">65535.</span> This includes storage overhead, <span class="keyword">check</span> the manual. You have <span class="keyword">to</span> change <span class="keyword">some</span> columns <span class="keyword">to</span> TEXT <span class="keyword">or</span> BLOBs</span><br></pre></td></tr></tbody></table></figure>
+
+<p>当存储长度为 32766 成功~</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `str_test` (</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>  `id`  tinyint(<span class="number">1</span>)  <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>  `name_chn` <span class="type">varchar</span>(<span class="number">32766</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> ) ENGINE<span class="operator">=</span>InnoDB AUTO_INCREMENT<span class="operator">=</span><span class="number">1</span> <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>gbk;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.03</span> sec)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>smallint 用两个字节存储，所以</p>
+<p><code>2[smallint] + 32766 * 2[varchar GBK存储长度] + 2[2个字节来存长度] &gt; 65535</code></p>
+<p>所以失败~</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `str_test` (</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>   `id`  <span class="type">smallint</span>(<span class="number">1</span>)  <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>   `name_chn` <span class="type">varchar</span>(<span class="number">32766</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> ) ENGINE<span class="operator">=</span>InnoDB AUTO_INCREMENT<span class="operator">=</span><span class="number">1</span> <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>gbk;</span><br><span class="line">ERROR <span class="number">1118</span> (<span class="number">42000</span>): <span class="type">Row</span> size too large. The maximum <span class="type">row</span> size <span class="keyword">for</span> the used <span class="keyword">table</span> type, <span class="keyword">not</span> counting BLOBs, <span class="keyword">is</span> <span class="number">65535.</span> This includes storage overhead, <span class="keyword">check</span> the manual. You have <span class="keyword">to</span> change <span class="keyword">some</span> columns <span class="keyword">to</span> TEXT <span class="keyword">or</span> BLOBs</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="数值类型所占的字节"><a href="#数值类型所占的字节" class="headerlink" title="数值类型所占的字节"></a>数值类型所占的字节</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>所占字节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int</td>
+<td>4 字节</td>
+</tr>
+<tr>
+<td>smallint</td>
+<td>2 字节</td>
+</tr>
+<tr>
+<td>tinyint</td>
+<td>1 字节</td>
+</tr>
+<tr>
+<td>decimal</td>
+<td>变长</td>
+</tr>
+</tbody></table>
+<p>官方关于decimal 的描述如下:</p>
+<blockquote>
+<p>Values for DECIMAL (and NUMERIC) columns are represented using a binary format that packs nine decimal (base 10) digits into four bytes.<br>Storage for the integer and fractional parts of each value are determined separately.<br>Each multiple of nine digits requires four bytes, and the “leftover” digits require some fraction of four bytes.<br>The storage required for excess digits is given by the following table.</p>
+</blockquote>
+<p>翻译为中文</p>
+<blockquote>
+<p>使用二进制格式将9个十进制(基于10)数压缩为4个字节来表示DECIMAL列值。<br>每个值的整数和分数部分的存储分别确定。<br>每个9位数的倍数需要4个字节，并且“剩余的”位需要4个字节的一部分。<br>下表给出了超出位数的存储需求：</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>&gt; Leftover Digits</th>
+<th>Number Of Bytes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr>
+<td>5</td>
+<td>3</td>
+</tr>
+<tr>
+<td>6</td>
+<td>3</td>
+</tr>
+<tr>
+<td>7</td>
+<td>4</td>
+</tr>
+<tr>
+<td>8</td>
+<td>4</td>
+</tr>
+</tbody></table>
+<p>那：decimal(10,2)占几个字节？</p>
+<ol>
+<li>首先 10 指的是整数与小数部分的总长度， 2指的是小数部分的长度。那么整数部分就只有 10 - 2 = 8 位</li>
+<li>因为整数与小数的存储市各自独立确定的，所以他们各自所占用空间的综合就是所占的总空间了。</li>
+<li>对表可知，整数部分8位占了4个字节，小数部分2位占了1个字节，所以decimal(10,2)总共占了 4 + 1 = 5 个字节。</li>
+<li>decimal(6,2) 整数部分(6 - 2 = 4) 位占2字节，小数部分2位占1字节，总共占3字节。</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>varchar 字段是将实际内容单独存储在聚簇索引之外，内容开头用1到2个字节表示实际长度（长度超过255时需要2个字节），因此最大长度不能超过65535。</p>
+<p>在utf-8状态下，汉字最多可以存 21844个字符串, 英文也为 21844个字符串。</p>
+<p>在gbk状态下，汉字最多可以存 32766个字符串，英文也为 32766个字符串。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="http://my.oschina.net/wingyiu/blog/153357">mysql utf8mb4与emoji表情</a><br><a target="_blank" rel="noopener" href="http://csumissu.iteye.com/blog/1090053">关于GBK、GB2312、UTF8</a><br><a target="_blank" rel="noopener" href="https://importnew.com/topics/24693">阿里云 Rails 项目调整 RDS MySQL 编码为 utf8mb4 的详细步骤</a><br><a target="_blank" rel="noopener" href="http://www.111cn.net/database/mysql/54999.htm">MySQL下varchar类型最大长度是多少</a></p>
+<p>via. <a target="_blank" rel="noopener" href="https://ruby-china.org/topics/24920">https://ruby-china.org/topics/24920</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2016/03/27/sql_server_error_1813/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/03/27/sql_server_error_1813/" class="post-title-link" itemprop="url">SQL Server附加数据库时报1813错误的解决方案[zt]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-03-27 00:00:00" itemprop="dateCreated datePublished" datetime="2016-03-27T00:00:00+08:00">2016-03-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/mssql/" itemprop="url" rel="index"><span itemprop="name">MSSQL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>无法打开新数据库 ‘Dong’。CREATE DATABASE 中止。<br>文件激活失败。物理文件名称’E:\SqlServer\MSSQL\Data\Dong_log.LDF’可能不正确。</p>
+</blockquote>
+<blockquote>
+<p>无法重新生成日志，原因是数据库关闭时存在打开的事务/用户，该数据库没有检查点或者该数据库是只读的。如果事务日志文件被手动删除或者由于硬件或环境问题而丢失，则可能出现此错误。 (Microsoft SQL Server，错误: 1813)</p>
+</blockquote>
+<h3 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h3><ol>
+<li><p>新建一个同名数据库。</p>
+</li>
+<li><p>停止数据库服务，覆盖新建的数据库主文件（小技巧：最好放在同一个磁盘里面，把新建的数据库主文件删掉或移开，再把要恢复的数据库主文件剪切过去，这样就可以节省时间。）</p>
+</li>
+<li><p>启动数据库服务，数据库变为置疑或可疑状态。然后在查询分析器中运行：</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> database 无日志文件的数据库名称 <span class="keyword">set</span> emergency</span><br></pre></td></tr></tbody></table></figure>
+<p>设置为紧急状态。</p>
+</li>
+<li><p>再运行：</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> database 无日志文件的数据库名称 <span class="keyword">set</span> single_user</span><br></pre></td></tr></tbody></table></figure>
+<p>或者：</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sp_dboption <span class="string">'无日志文件的数据库名称'</span>, <span class="string">'single user'</span>, <span class="string">'true'</span></span><br></pre></td></tr></tbody></table></figure>
+<p>设置为单用户模式。</p>
+</li>
+<li><p>检查并重建日志文件，运行：</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbcc checkdb(<span class="string">'无日志文件的数据库名称'</span>,REPAIR_ALLOW_DATA_LOSS)</span><br></pre></td></tr></tbody></table></figure>
+<p>这个时间比较长。耐心等待！如果有错误提示，再运行：</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbcc checkdb(<span class="string">'无日志文件的数据库名称'</span>,REPAIR_REBUILD)</span><br></pre></td></tr></tbody></table></figure>
+<p>进行修复。如果没有错误，可以跳过。</p>
+</li>
+<li><p>恢复成多用户模式</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> database 无日志文件的数据库名称 <span class="keyword">set</span> multi_user</span><br></pre></td></tr></tbody></table></figure>
+<p>或者：</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sp_dboption <span class="string">'无日志文件的数据库名称'</span>, <span class="string">'single user'</span>, <span class="string">'false'</span></span><br></pre></td></tr></tbody></table></figure>
+<p>刷新数据库，你就可以看到已经修复好的数据库了。</p>
+</li>
+</ol>
+<p>via. <a target="_blank" rel="noopener" href="http://www.cnblogs.com/lyl6796910/p/3628066.html">http://www.cnblogs.com/lyl6796910/p/3628066.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2016/02/27/Baidu_yunpan_aria2/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -747,227 +1175,6 @@
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/11/10/mac-os-x-screencapture/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2014/11/10/mac-os-x-screencapture/" class="post-title-link" itemprop="url">mac os x 定时截图</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2014-11-10 00:00:00" itemprop="dateCreated datePublished" datetime="2014-11-10T00:00:00+08:00">2014-11-10</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/mac-os/" itemprop="url" rel="index"><span itemprop="name">Mac OS</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>打开”终端”（应用程序 – 实用工具），输入以下命令：</p>
-<pre><code>screencapture -t png -&lt;span class="hljs-constant"&gt;T &lt;/span&gt;&lt;span class="hljs-number"&gt;10&lt;/span&gt; ~&lt;span class="hljs-regexp"&gt;/Desktop/screenshot&lt;/span&gt;01.png
-</code></pre>
-<p>当你按下”Enter”键后，系统将在10秒后自动截图，你在桌面上将看到图片文件（~/Desktop/screenshot01.png 是文件路径），如果你想修改截图时间，你只需修改命令中的数字”10”就可以了。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/11/08/qnap-ts-212p-fireware-recovery/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2014/11/08/qnap-ts-212p-fireware-recovery/" class="post-title-link" itemprop="url">QNAP TS-212P 重刷固件后起死回生</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2014-11-08 00:00:00" itemprop="dateCreated datePublished" datetime="2014-11-08T00:00:00+08:00">2014-11-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>趁着1111活动，从企鹅入手TS-212P带3T日立企业盘，某东做的配送，0点后下的单，下午就到货了。到手后第一件事情就是把固件升级了，cloud升级的，down了一宿，第二天起来看到提示重启设备，反正正好要挪个位置，那就先正常关机，换了位置后，正常启动。</p>
-<p>接下来的问题就来了，启动后，Status灯一直红绿灯闪烁，然后重启；第二声确认蜂鸣声再也没有听到过，QFinder与NAS也从此失去了联系。</p>
-<p>发现网络上碰到这问题不少，我一个同事入的同款，也碰到过此类现象。</p>
-<p>最后按照QNAP wiki(<a target="_blank" rel="noopener" href="http://wiki.qnap.com/wiki/Firmware_Recovery#Firmware_Recovery_Guide_for_ARM_based_NAS">http://wiki.qnap.com/wiki/Firmware_Recovery#Firmware_Recovery_Guide_for_ARM_based_NAS</a>) 里的方法，重新刷回4.0.5，然后下载固件到本地，ssh到设备里升级的</p>
-<blockquote>
-<p>为什么要ssh上去升？因为web不牢靠，QFinder也尝试过直接4.0.5–&gt;4.1.1，最后会提示失败，失败的原因也不提示，不过最后在SSH升级过程中得到解答，是boot镜像没找到 =。=</p>
-</blockquote>
-<p>升级命令</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 固件img放在public下:</span><br><span class="line">[/] # ln -sf /mnt/HDA_ROOT/update/ /mnt/update</span><br><span class="line">[/] # /etc/init.d/update.sh /share/Public/4.1.1.img</span><br><span class="line">[/] # reboot</span><br></pre></td></tr></tbody></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/11/04/VirtualBox-compact-vdi/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2014/11/04/VirtualBox-compact-vdi/" class="post-title-link" itemprop="url">压缩 VirtualBox 下安装 Linux 的 .vdi 虚拟硬盘文件</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2014-11-04 00:00:00" itemprop="dateCreated datePublished" datetime="2014-11-04T00:00:00+08:00">2014-11-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/vm/" itemprop="url" rel="index"><span itemprop="name">VM</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li><p>在虚拟机里把没用的磁盘空间置零 (这一步耗时比较长, 且没提示. 另外如果有权限问题记得前面加 sudo)</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/zero of=/zero.tmp</span><br><span class="line">rm -f /zep.tmp</span><br></pre></td></tr></tbody></table></figure></li>
-<li><p>关闭虚拟机</p>
-</li>
-<li><p>执行压缩命令 (宿主机是 Win 或 Linux 都自行找 VboxManager 的路径)</p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">VboxManage modifyhd /PATH_TO_VDI/name.vdi --compact</span><br></pre></td></tr></tbody></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1037,18 +1244,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">301</span>
+          <span class="site-state-item-count">304</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">216</span>
+        <span class="site-state-item-count">224</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1077,7 +1284,7 @@
 <div class="copyright">
   
   © 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -163,6 +163,164 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/05/13/Geomview-Nvidia-drivers/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/05/13/Geomview-Nvidia-drivers/" class="post-title-link" itemprop="url">Geomview~编译错误及~NVIDIA~驱动~bug！</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-05-13 00:00:00" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">2008-05-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>昨晚看<del>MAXIMA，提到了画二维图最好用</del>GnuPlot，而画三维图的时候最好用<del>Geomview，于是下载其源码，接着编译安装，但在</del>make~的时候出现下面的错误：</p>
+<blockquote>
+<p>/usr/X11R6/include/GL/glext.h:6952: error: redefinition of typedef ‘PFNGLGETUNIFORMUIVEXTPROC’  /usr/X11R6/include/GL/glext.h:6941: error: previous declaration of ‘PFNGLGETUNIFORMUIVEXTPROC’ was here </p>
+</blockquote>
+<p>到网上搜了下，是<del>NVIDIA</del>显卡驱动的一个<del>bug，于是想下载最新版本，到</del>NVIDIA<del>网站下载了最新的</del>1.0-9755<del>版本，直接运行</del>.run~文件，先是提示我的显卡跟这个驱动不匹配，不过是个警告，没太注意，继续，接着后来提示：</p>
+<blockquote>
+<p>ERROR: Unable to load the kernel module ‘nvidia.ko’.  This is most likely        because the kernel module was built using the wrong kernel source files.        Please make sure you have installed the kernel source files for your        kernel; on Red Hat Linux systems, for example, be sure you have the        ‘kernel-source’ rpm installed.  If you know the correct kernel source        files are installed, you may specify the kernel source path with the&lt; br /&gt;        ‘–kernel-source-path’ commandline option. </p>
+</blockquote>
+<p>搜索了一下，用下面的命令就好了：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#./NVIDIA-xxx.run -k $(uname -r)</span><br></pre></td></tr></tbody></table></figure>
+<p>安装后，重启<del>X，但找不到设备，查看</del>/var/log/Xorg.0.log，原来的确是开始的警告，这个驱动根本与我的显卡不匹配，我的显卡是：</p>
+<blockquote>
+<p>nVidia Corporation NV11 [GeForce2 MX/MX 400]</p>
+</blockquote>
+<p>提示说只能用<del>96xx，系列的驱动，然后找个系列的驱动安装，一切顺利！然而再重新编译</del>Geomview<del>的时候仍然是那个错误，最后只好手动的修改了那个文件**</del>/usr/X11R6/include/GL/glext.h**，把里面的<del>6941</del>和<del>6952</del>两行注释掉了，然后再编译安装，一切顺利。</p>
+<p>据说<del>NVIDIA</del>的这个<del>bug</del>在最新的<del>97xx</del>系列中已经修正，可是我的显卡却只能用<del>96xx</del>系列的，可能我的显卡太老了吧 :(。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/05/13/Shell-switch-background-jobs/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/05/13/Shell-switch-background-jobs/" class="post-title-link" itemprop="url">Linux Shell下的后台运行及其前台的转换</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-05-13 00:00:00" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">2008-05-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>当用bash启动一个程序,你可以用在程序后加&amp;,实现程序在后台运行；</p>
+<p>例如: <code>emacs &amp;</code></p>
+<p>但如果你忘了输入&amp;;但你又不想把程序停止后重新启动；</p>
+<p>你可以这么做:</p>
+<p>按Ctrl + Z暂停前台工作,比如前面提到的Emacs；</p>
+<p>然后用jobs命令查看当前bash一共启动了多少程序,你可以看到你的emacs在其中，它的状态是Stoped的; 并且它的jobID也可以看,比如是2</p>
+<p>然后用命令<code>bg 2</code></p>
+<p>这样你就可以达到和<code>emacs &amp;</code>一样的效果了。</p>
+<p>当你有些工作比如updatedb, find等需要一定时间,这些工作可以考虑让它在后台运行,而你可以用bash做其它工作。</p>
+<p>如果需要把任务回到前台，只需要<code>fg 2</code>。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/05/13/ubuntu-nvidia-drivers/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -240,6 +398,87 @@
 <p> 去掉logo（最新版本的驱动没有logo）<br>在Driver “nvidia” 后面加上 Option “NoLogo”</p>
 <p> 重新配置x server：</p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install pkg-config xserver-xorg-dev3</span><br><span class="line">sudo dpkg-reconfigure xserver-xorg</span><br></pre></td></tr></tbody></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/05/13/shell-retain-two-decimal/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/05/13/shell-retain-two-decimal/" class="post-title-link" itemprop="url">Shell运算，计算值保留两位小数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-05-13 00:00:00" itemprop="dateCreated datePublished" datetime="2008-05-13T00:00:00+08:00">2008-05-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>SHELL下是没有小数处理的，能进行运算的只能是-2^30到2^30-1范围的整数，否则溢出。<br>具体可以用的运算方式有：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@root ~]$ i=$[9 / 2]; echo i=$i;  </span><br><span class="line">i=4</span><br><span class="line"></span><br><span class="line">[root@root ~]$ i=$((9 / 2)); echo i=$i;  </span><br><span class="line">i=4</span><br><span class="line"></span><br><span class="line">[root@root ~]$ i=`expr 9 / 2` ; echo i=$i;</span><br><span class="line">i=4</span><br></pre></td></tr></tbody></table></figure>
+
+<p>很多最小安装的系统不会有expr，可以使用内置命令：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@root ~]$ i=let i=9/2 ; echo i=$i;  </span><br><span class="line">i=4</span><br></pre></td></tr></tbody></table></figure>
+
+<p>如果需要保留小数，比如两位小数，可以使用awk实现，awk真是强大：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@root ~]$ i=`awk  BEGIN'{printf  "%.2fn", 9/2 }'` ; echo i=$i;</span><br><span class="line">i=4.50</span><br><span class="line">[root@root ~]$ i=`awk  BEGIN'{  x=9 ; y=4 ; printf  "%.2fn", x/y }'` ; echo i=$i;</span><br><span class="line">i=4.50</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>运算符类型</strong></p>
+<p>按位运算符<br>~, &lt; &lt;, &gt;&gt;, &amp;, |, ^<br>$[]表示形式告诉 shell 对方括号中的表达式求值</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="http://photo.liudongkai.com/blog/f0e0eb11af6d42c3a7ef3fa0[1].jpg"></p>
+<p>表达式替换<br>$[ ] 和 $(())<br>两种格式功能一样，所有的 shell 的求值都是用整数完成<br>$[ ] 可以接受不同基数的数字</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="http://photo.liudongkai.com/blog/190e8b44eb722e49510ffea8[1].jpg"></p>
+<p>赋值运算符<br>=、+=、-=、*=、/=、%=、&amp;=、^=、|=、&lt; &lt;=、&gt;&gt;=</p>
+
       
     </div>
 
@@ -686,80 +925,6 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/04/03/firefox-smooth-scroll/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/04/03/firefox-smooth-scroll/" class="post-title-link" itemprop="url">Firefox 页面滚动设置</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-04-03 00:00:00" itemprop="dateCreated datePublished" datetime="2008-04-03T00:00:00+08:00">2008-04-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>打开firefox，在地址栏输入 <code>about:config</code></p>
-<ol>
-<li><p>开启页面平滑滚动<br>general.smoothScroll<br>布尔值<br>当值为Ture时，打开页面平滑滚动</p>
-</li>
-<li><p>增加鼠标页面卷动行数<br>mousewheel.withnokey.sysnumlines<br>布尔值<br>先设置值为False时，禁用页面滚动行数为操作系统设置值</p>
-</li>
-</ol>
-<p> mousewheel.withnokey.numlines 设定了滚动的行数，推荐设置为７。<br>整数型<br>设置适当的整数值为滚动行数，推荐值7，</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/04/03/Keyconfig-for-Firefox3/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -836,6 +1001,80 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/04/03/firefox-smooth-scroll/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/04/03/firefox-smooth-scroll/" class="post-title-link" itemprop="url">Firefox 页面滚动设置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-04-03 00:00:00" itemprop="dateCreated datePublished" datetime="2008-04-03T00:00:00+08:00">2008-04-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>打开firefox，在地址栏输入 <code>about:config</code></p>
+<ol>
+<li><p>开启页面平滑滚动<br>general.smoothScroll<br>布尔值<br>当值为Ture时，打开页面平滑滚动</p>
+</li>
+<li><p>增加鼠标页面卷动行数<br>mousewheel.withnokey.sysnumlines<br>布尔值<br>先设置值为False时，禁用页面滚动行数为操作系统设置值</p>
+</li>
+</ol>
+<p> mousewheel.withnokey.numlines 设定了滚动的行数，推荐设置为７。<br>整数型<br>设置适当的整数值为滚动行数，推荐值7，</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/04/01/my-computer-ordering/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -885,259 +1124,6 @@
       
           <p>是否希望把桌面上“我的电脑”捧回到第一个位置呢？</p>
 <p>打开“注册表编辑器”，找到 <code>[HKEY_CLASSES_ROOTCLSID{450D8FBA- AD25-11D0-98A8-0800361B1103]</code> ，在右侧窗格找到名为 <code>SortOrderIndex</code> 的DWORD键值，设置这个键值，就可以轻 松控制“我的电脑”与“我的文档”的上下关系。在十六进制下更改为<strong>48</strong>，则是“我的电脑”图标位于“我的文档”之下，原先的<strong>54</strong>值则反之。另外，此操作也 影响到地址栏下拉列表、打开窗口的“查找范围”下拉列表的排列。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/30/linux-date/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/03/30/linux-date/" class="post-title-link" itemprop="url">SHELL下date命令的用法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-03-30 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-30T00:00:00+08:00">2008-03-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>date命令如何获得上星期的日期?</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date -d "-1 week" "+%Y%m%d %A"</span><br></pre></td></tr></tbody></table></figure>
-
-<p>举一反三:date命令获得前天，昨天，明天，后天，上个月，下个月的日期</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">date -d "-2 day" "+%Y%m%d %A" 或 date –date="2 days ago" "+%Y%m%d %A"</span><br><span class="line"></span><br><span class="line">date -d "-1 day" "+%Y%m%d %A" 或 date –date="1 day ago" "+%Y%m%d %A"</span><br><span class="line"></span><br><span class="line">date -d "1 day" "+%Y%m%d %A"</span><br><span class="line"></span><br><span class="line">date -d "2 day" "+%Y%m%d %A"</span><br><span class="line"></span><br><span class="line">date -d "-1 month" "+%Y%m%d %A"</span><br><span class="line"></span><br><span class="line">date -d "1 month" "+%Y%m%d %A"</span><br></pre></td></tr></tbody></table></figure>
-
-<p>还有其他用法:</p>
-<p><code>date +%s</code> 可以得到UNIX的时间戳;</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cat utc.sh</span><br><span class="line">#!/bin/sh</span><br><span class="line">date -d '1970-01-01 UTC '$1' seconds' +"%Y-%m-%d %T"</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ utc 1176736543</span><br><span class="line">2007-04-16 23:15:43</span><br></pre></td></tr></tbody></table></figure>
-
-<p>可以把UNIX时间戳转换成当前系统时间</p>
-<p><strong>另外要注意下日期字串中的相对项问题：<br>比如今天是08年3月30日，<code>date -d "last month" +%Y%m%d</code> 得到的结果会显示为20080301，因为一个月前，即2月30日是无效的。</strong></p>
-<p>Relative items 向前或向后调整指定日期(如不指出日期为当前日期)。相对项的效果是累积的。这里有一些例子: examples:</p>
-<blockquote>
-<p>1 year<br>1 year ago<br>3 years<br>2 days</p>
-</blockquote>
-<p>时间的单位可以用字串 ‘year’ 或 ‘month’ 替换，表示移动整年或整月。有一些模糊的单位，像 years 和 months 时间段并不一致。精确的单位有 ‘fortnight’ 表示 14 天，’week’ 是 7 天，’day’ 是 24 小时，’hour’ 是 60 分钟， ‘minute’ 或 ‘min’ 是 60 秒，’second’ 或 ‘sec’ 是一秒。单位后面可以有后缀 ‘s’，但被忽略。</p>
-<p>时间单位前面可以跟乘数，它是一个符号数。没有符号的数字认为是正数。没有给出乘数隐含为 1。相对时间后面的 ‘ago’ 字串等于乘数值为-1。</p>
-<p>字串 ‘tomorrow’ 值为将来的一天(等于 ‘day’)，字串 ‘yesterday’ 值为过去的一天(等于 ‘day ago’)。</p>
-<p>字串 ‘now’ 或 ‘today’ 相对项等同于用零值替代，如果没有被前面项目修改，这些字串代表当前时间。它们也可以用来强调其他项，如 ‘12:00 today’。字串 ‘this’ 也代表零值，但常用于 ‘this thursday’ 这样的日期字串里面。</p>
-<p>当相对项让日期跨越时钟调整边界时，典型的例子是夏时制，日期和时间的结果也要相应地调节。</p>
-<p>模糊的单位会另相对项出现问题。例如，’2003-07-31 -1 month’ 可以等于 2003-07-01，这是因为 2003-06-31 是一个无效的日期。为了更可靠地确定上一个月，你可以询问当前月十五号的上一个月，例如:</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ date -R</span><br><span class="line">Thu, 31 Jul 2003 13:02:39 -0700</span><br><span class="line">$ date –date='-1 month' +'Last month was %B?'</span><br><span class="line">Last month was July?</span><br><span class="line">$ date –date="$(date +%Y-%m-15) -1 month" +'Last month was %B!'</span><br><span class="line">Last month was June!</span><br></pre></td></tr></tbody></table></figure>
-
-<p>还有，要小心处理夏令时闰年日期和时间的改变。一些情形下它们增加或减少 24 小时，所以开始日历计算前，最好先将 TZ 环境变量设成 ‘UTC0’。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/29/Thunderbird-mail-import-export/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/03/29/Thunderbird-mail-import-export/" class="post-title-link" itemprop="url">Thunderbird 邮件导入导出的方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-03-29 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-29T00:00:00+08:00">2008-03-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Thunderbird 邮件的导入导出是困惑已久的问题，尝试用这样的方法操作：</p>
-<ol>
-<li>安装 <a target="_blank" rel="noopener" href="http://www.supportware.net/mozilla/AutoSave.xpi">Thunderbird AutoSave</a> 扩展。</li>
-<li>重启 Thunderbird 后，选中你要导出的邮件，可以用“Ctrl + 左键”多选，也可以“Ctrl + A” 全选，然后点右键或从“文件”菜单中选择 Export Selected Msgs—&gt;Individually ，导出到你指定的文件夹，格式为 .eml 文件。</li>
-<li>选中这些 .eml 文件，拖入到 OE 中。</li>
-</ol>
-<p>对于将邮件从 OE 导入到 Thunderbird，可以用“工具—&gt;导入”<br>对于将邮件从 foxmail 导入到 Thunderbird ，在安装 <a target="_blank" rel="noopener" href="http://www.supportware.net/mozilla/#ext13">Thunderbird AutoSave</a> 扩展后，可以先在 foxmail 中将邮件保存为 .eml 文件，然后打开 Thunderbird，选择“文件—&gt;Import Messages“，选中要导入的邮件，打开即可。</p>
-<p>Tb AutoSave Extension 扩展中文版下载: <a target="_blank" rel="noopener" href="http://addons.mozine.cn/firefox/465/">http://addons.mozine.cn/firefox/465/</a></p>
-<p>另外一个办法是安装 ImportExportTools 扩展，该扩展能够将 eml/mbox 格式的邮件文件导入 Thunderbird，也可以将 Thunderbird 中的邮件导出为 eml/mbox/html 或者纯文本格式。支持批量操作：<br><a target="_blank" rel="noopener" href="http://addons.mozine.cn/thunderbird/98">http://addons.mozine.cn/thunderbird/98</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/29/firefox-thunderbird-portable/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/03/29/firefox-thunderbird-portable/" class="post-title-link" itemprop="url">关于Firefox与Thunderbird便携版、绿色版制作完全攻略</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-03-29 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-29T00:00:00+08:00">2008-03-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>经常看到大家在论坛中讨论如何制作或使用绿色或便携的Firefox和Thunderbird问题，我也是非常喜欢使用绿色软件，同时，我也很高兴在这里与大家分享一些我的心得与体会：<br>制作绿色、移动的Mozilla软件</p>
-<p>以下是Firefox、Thunderbird为例，其他的NVU等等类似软件，可以参考。</p>
-<ol>
-<li>绿色安装版制作：<br>目的：让Firefox或Thunderbird作为本机的缺省浏览器或邮件客户端。<br>对策：这种目的免不了要修改注册表，因此，如果配置文件不想放到系统缺省个人文件夹中的话，有两种办法：</li>
-<li>将系统个人文件夹指向改到新的盘符路径下（因影响较大，现不推荐，因此不详说）</li>
-<li>获得安装时对注册表的修改，将Firefox或Thunderbird的启动路径中都增加上 <code>-profile X:…YYY</code> 的配置路径指向</li>
-</ol>
-<p> 评估：这种方法耗时费力，还要准备专门的恢复脚本，比较麻烦，因此不推荐一般用户使用。<br> 备注：我曾经有段时用过此方法，主要是研究软件对注册表与系统的写入信息，所以，本方法纯属个人研究玩玩。</p>
-<ol start="2">
-<li><p>便携版Portable使用：<br>目的：实现不在注册表和系统中保留任何信息，便于移动使用。<br>对策：从Portable主站下载各软件的Portable版，解包直接运行，非常方便。<br>评估：各种Portable版均需要有一个加载软件在之前运行，因此一定会影响到程序加载的速度和性能，而且在程序未结束前，加载器不会结束，一般加载器会占用5MB左右的内存（对不太熟悉系统配置或设置的用户推荐此方法）。<br>备注：在第1种方法使用一阵子后，我就用的是这种办法，而且使用了相当长的时间，相对来说，如果不想费时费力而且资源充足的话，推荐用此方法。</p>
-</li>
-<li><p>配置文件替换修改法：<br>目的：不要修改注册表，也不需要加载器，只需要干干净净地启动程序。<br>对策：修改 <code>%userprofile%MozillaFirfox或%userprofile%Thunderbird</code> 配置目录下的profile.ini文件，将其缺省启动指向定制的目录，或者更简单的办法是备份这个文件，在重装系统时恢复到上述目录即可。<br>评估：可以考虑做一个很小的恢复脚本，自动将备份的profile.ini恢复到程序的配置目录即可，用不到加载器或修改注册表，因此，对于较了解的系统配置或有兴趣系统设置的用户来说，此方法有一定的可用性。<br>备注：此方法我只使用过很短的时间，原因是我找到下一个方法。</p>
-</li>
-<li><p>PStart启动或快捷启动方式：<br>目的：对系统不用也不考虑作任何的修改，完全干干净净地启动程序。<br>对策：采用PStart绿色加载程序建立程序菜单或创建程序快捷方式，只在程序启动项中加上参数： <code>-profile X:…XXX</code> 指向用户目录即可，调用程序只需要通过此快捷方式或PStart程序加载运行即可。<br>评估：考虑到快捷方式会在目录移动后需要重新创建的问题，个人倾向于推荐用PStart加载方式，由于此小软件可用相对路径来调用程序和配置参数，因此，我的参数更简单：-profile .XXX。因为，我的目录分配如下：</p>
-<blockquote>
-<p>D:\Portable\Firefox\Profile<br>PStart在D:\Portable<br>Firefox在D:\Portable\Firefox<br>配置文件在D:\Portable\Profile  </p>
-</blockquote>
-</li>
-</ol>
-<p> 所以，大家看是否非常简单，这样，Portable目录可以随意移动或变更都没有关系了，重装系统（只动C盘）更不会影响了，只有随时启动PStart就行。<br>备注：这就是我目前使用的方法，感觉还不错，希望大家也多将自己的心得体会多分享一下，这也是对这些好软件的一种支持啊！</p>
 
       
     </div>
@@ -1222,18 +1208,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">301</span>
+          <span class="site-state-item-count">304</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">216</span>
+        <span class="site-state-item-count">224</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1262,7 +1248,7 @@
 <div class="copyright">
   
   © 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

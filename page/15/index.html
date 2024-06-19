@@ -163,6 +163,250 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2010/04/22/perl-merge-array-method/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2010/04/22/perl-merge-array-method/" class="post-title-link" itemprop="url">perl 求合并一个数组的方法[zt]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2010-04-22 00:00:00" itemprop="dateCreated datePublished" datetime="2010-04-22T00:00:00+08:00">2010-04-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>@a=(<br>[‘a’,’2’,’4’],<br>[‘b’,’3’,’2’],<br>[‘c’,’4’,’4’],<br>[‘d’,’t’,’3’],<br>[‘a’,’4’,’5’],<br>[‘c’,’3’,’5’]<br>);</p>
+</blockquote>
+<p>判断第一个字段 如果出现相同的 就吧后面的两个字段加一起<br>想要的结果是这样的</p>
+<blockquote>
+<p>a，24， 45<br>b ，3， 2<br>c ，43， 45<br>d ，t， 3</p>
+</blockquote>
+<p>[ 本帖最后由 luesfeng 于 2009-10-3 13:54 编辑 ]</p>
+<p>CODE:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">my %h = ();</span><br><span class="line">for(@a){</span><br><span class="line">push @{$h{$_-&gt;[0]}},$_-&gt;[1].$_-&gt;[2];</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">for(sort keys %h){</span><br><span class="line">print “$_ @{$h{$_}}\n”;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2010/04/22/perl-merge-array-method/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2010/04/22/perl-merge-files/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2010/04/22/perl-merge-files/" class="post-title-link" itemprop="url">Perl 根据相同字段并合并两个文本</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2010-04-22 00:00:00" itemprop="dateCreated datePublished" datetime="2010-04-22T00:00:00+08:00">2010-04-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>有两个文本:</p>
+<p>a.txt的内容:</p>
+<blockquote>
+<p>0001|abc|1000.00<br>0002|ddd|1200.20<br>0003|dde|100.01<br>0005|ggg|200<br>……<br>……</p>
+</blockquote>
+<p>b.txt的内容:</p>
+<blockquote>
+<p>1234|2600|1|AAAAA|abc|88888888|<br>1234|2600|2|BBBBB|ddd|8888888|<br>1234|2600|3|CCCCC|dde|8888|<br>1234|2600|4|DDDDD|eee|88888888888|<br>1234|2600|5|AAAAA|ggg|888888|<br>……<br>……</p>
+</blockquote>
+<p>我想把a.txt的第一个字段删去前面的0后与b.txt的第3个字段比较,如果相等,就把b.txt中的第4个字段放在a.txt的前面.</p>
+<p>生成结果如下:</p>
+<blockquote>
+<p>AAAAA|0001|abc|1000.00<br>BBBBB|0002|ddd|1200.20<br>CCCCC|0003|dde|100.01<br>AAAAA|0005|ggg|200<br>……</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/perl</span><br><span class="line"></span><br><span class="line">$filea="a.txt";</span><br><span class="line">$fileb="b.txt";</span><br><span class="line"></span><br><span class="line">open(FB,"&lt;$fileb") || die "Can't read $fileb\n$!\n";</span><br><span class="line">while() {</span><br><span class="line">@line=split(/\|/);</span><br><span class="line">$datab{$line[2]}=$line[3];</span><br><span class="line">}</span><br><span class="line">close FB;</span><br><span class="line">open (FA,"&lt;$filea") || die "Can't read $filea\n$!\n";</span><br><span class="line">while()</span><br><span class="line">{</span><br><span class="line">@line = split(/\|/);</span><br><span class="line">$dataa{$line[0]} = $_;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">foreach $key (sort {$b cmp $a} keys %dataa)</span><br><span class="line">{</span><br><span class="line">print $datab{int $key}.'|'.$dataa{$key} if exists $datab{int $key};</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2010/03/21/perl-comment-ref-class/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2010/03/21/perl-comment-ref-class/" class="post-title-link" itemprop="url">关于Perl的几点：多行注释，REF函数，类的初始化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2010-03-21 00:00:00" itemprop="dateCreated datePublished" datetime="2010-03-21T00:00:00+08:00">2010-03-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>多行注释：<br>perl没有多行注释，可以用下面代替：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">=pod</span><br><span class="line">代码行;</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">代码行;</span><br><span class="line">=cut</span><br></pre></td></tr></tbody></table></figure>
+
+<p>关于ref函数：<br>ref EXPR<br>ref Returns a non-empty string if EXPR is a reference, the empty<br>string otherwise. If EXPR is not specified, $_ will be used. The<br>value returned depends on the type of thing the reference is a<br>reference to. Builtin types include:</p>
+<blockquote>
+<p>SCALAR<br>ARRAY<br>HASH<br>CODE<br>REF<br>GLOB<br>LVALUE</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2010/03/21/perl-comment-ref-class/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2010/03/07/thinkpad-t61-squeak/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -702,233 +946,6 @@
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2010/02/12/expat-error/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2010/02/12/expat-error/" class="post-title-link" itemprop="url">error – expat.h: No such file or directory</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2010-02-12 00:00:00" itemprop="dateCreated datePublished" datetime="2010-02-12T00:00:00+08:00">2010-02-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>While trying to get a perl utility working, I had to install a bunch of prerequisite perl modules on my CentOS 5 VPS. One requirement was XML::Parser. However when I tried to install it like so:</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost]perl -MCPAN -e shell</span><br><span class="line">cpan&gt; install XML::Parser</span><br></pre></td></tr></tbody></table></figure>
-
-<p>I received errors with the below being the most relevent bit…</p>
-<blockquote>
-<p>cp Expat.pm ../blib/lib/XML/Parser/Expat.pm<br>/usr/bin/perl /usr/lib/perl5/5.8.8/ExtUtils/xsubpp -noprototypes -typemap /usr/lib/perl5/5.8.8/ExtUtils/typemap -typemap typemap Expat.xs &gt; Expat.xsc &amp;&amp; mv Expat.xsc Expat.c<br>gcc -c -D_REENTRANT -D_GNU_SOURCE -fno-strict-aliasing -pipe -Wdeclaration-after-statement -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -I/usr/include/gdbm -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector –param=ssp-buffer-size=4 -m32 -march=i386 -mtune=generic -fasynchronous-unwind-tables -DVERSION=\”2.36\” -DXS_VERSION=\”2.36\” -fPIC “-I/usr/lib/perl5/5.8.8/i386-linux-thread-multi/CORE” Expat.c<br>Expat.xs:12:19: error: expat.h: No such file or directory<br>Expat.xs:60: error: expected specifier-qualifier-list before ‘XML_Parser’</p>
-</blockquote>
-<p>To make a long story short, the following was the quick fix…</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install expat-devel</span><br></pre></td></tr></tbody></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2010/02/09/VirtualBox-Network-Windows/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2010/02/09/VirtualBox-Network-Windows/" class="post-title-link" itemprop="url">windows 下安装 VirtualBox 网络配置[zt]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2010-02-09 00:00:00" itemprop="dateCreated datePublished" datetime="2010-02-09T00:00:00+08:00">2010-02-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最近想研究下linux</p>
-<p>基本思路是在现有的windows系统下，装个虚拟机，虚拟机上装 linux。</p>
-<p>虚拟机选择了 Sun xVM VirtualBox ，理由是界面友好，操作方便。下载地址 <a target="_blank" rel="noopener" href="http://www.sun.com/">www.sun.com</a></p>
-<p>虚拟机安装很向导化，不多阐述。</p>
-<p>比较有意思的是关于 VirtualBox 的网络配置，网上搜索了一下，基本没有简单易懂的相关教程。</p>
-<p>于是我花时间自己研究了下，其实实现很简单。</p>
-<p>VirtualBox 有4种网络配置方式：</p>
-<ul>
-<li>NAT</li>
-<li>Bridged Adapter</li>
-<li>Internal</li>
-<li>Host-only Adapter</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2010/02/09/VirtualBox-Network-Windows/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2010/02/08/find-real-url-for-skydrive-by-javascript/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2010/02/08/find-real-url-for-skydrive-by-javascript/" class="post-title-link" itemprop="url">一段脚本代码找出Skydrive的真实外链地址</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2010-02-08 00:00:00" itemprop="dateCreated datePublished" datetime="2010-02-08T00:00:00+08:00">2010-02-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javascript:var%20n=document.title.replace('%20-%20Windows%20Live','');var%20id=((location.hash=='')?window.selfPageData.currentItemHash:location.hash).replace('#resId/','');var%20u='http://storage.live.com/items/'+id+'?filename='+encodeURI(n);var%20p='http://'+document.location.host+'/redir.aspx?page=self&amp;resId='+id;var%20e='&lt;input%20onmouseover=%22this.select();%22%20onclick=%22this.select();%22%20value=%22';var%20f='%22%20style=%22width:580px%22%20type=%22text%22%20/&gt;&lt;br&gt;';var%20d='by%20(&lt;a%20href=%22http://rpsh.net/%22&gt;Rpsh&lt;/a&gt;)';var%20c='\u5916\u94FE\u5730\u5740:'+d+e+u+f+'\u5206\u4EAB\u5730\u5740:'+e+p+f;var%20a=document.getElementById('content');var%20g=(a.getElementsByTagName('p')[0]);var%20b=g?g:document.createElement('P');b.innerHTML=c;a.insertBefore(b,a.firstChild);void(0)</span><br></pre></td></tr></tbody></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -998,18 +1015,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">301</span>
+          <span class="site-state-item-count">304</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">216</span>
+        <span class="site-state-item-count">224</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1038,7 +1055,7 @@
 <div class="copyright">
   
   © 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

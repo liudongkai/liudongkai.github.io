@@ -269,7 +269,7 @@
 <p>注：<br>rewritecond 条件重写规则，当满足后面定义的条件后才会应用下面的重写规则，rewritecond有各种变量，请查阅相关文档。</p>
 <ol start="3">
 <li>防火墙上的重写规则代理内部网段上服务器的请求。<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NameVirtualhost 1.2.3.4</span><br><span class="line"></span><br><span class="line"> servername www.domain.com</span><br><span class="line">rewriteengine on</span><br><span class="line">proxyrequest on</span><br><span class="line">rewriterule ^/(.*)$ http://192.168.1.3/$1 [P,L]</span><br></pre></td></tr></tbody></table></figure>
-注：当外部浏览器请求<a target="_blank" rel="noopener" href="http://www.domain.com时被解析到ip地址1.2.3.4/">www.domain.com时被解析到IP地址1.2.3.4</a> ,Apache 交出<br>mod_rewrite处理转换成</li>
+注：当外部浏览器请求<a href="http://www.domain.com时被解析到IP地址1.2.3.4">www.domain.com时被解析到IP地址1.2.3.4</a> ,Apache 交出<br>mod_rewrite处理转换成</li>
 </ol>
 <p> <a target="_blank" rel="noopener" href="http://192.168.1.3/$1">http://192.168.1.3/$1</a> 后再交由代理模块mod_proxy得到内容后传送回用户的浏览器。</p>
 <ol start="4">
@@ -300,12 +300,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2008/03/15/IBM-install-drivers-1/" rel="prev" title="IBM T61/R61/X61 WinXP驱动安装(一)">
-      <i class="fa fa-chevron-left"></i> IBM T61/R61/X61 WinXP驱动安装(一)
+    <a href="/2008/03/15/wp-plugin-tiger-administration/" rel="prev" title="WP插件–WP Tiger Administration">
+      <i class="fa fa-chevron-left"></i> WP插件–WP Tiger Administration
     </a></div>
       <div class="post-nav-item">
-    <a href="/2008/03/20/linux-rsync/" rel="next" title="Linux下的远程备份（镜像）工具rsync">
-      Linux下的远程备份（镜像）工具rsync <i class="fa fa-chevron-right"></i>
+    <a href="/2008/03/15/IBM-install-drivers-1/" rel="next" title="IBM T61/R61/X61 WinXP驱动安装(一)">
+      IBM T61/R61/X61 WinXP驱动安装(一) <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -379,18 +379,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">301</span>
+          <span class="site-state-item-count">304</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">216</span>
+        <span class="site-state-item-count">224</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -419,7 +419,7 @@
 <div class="copyright">
   
   © 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

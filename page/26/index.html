@@ -163,6 +163,266 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/03/small-shell/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/03/03/small-shell/" class="post-title-link" itemprop="url">非常小的shell: 指定行号,插入文本(转)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-03-03 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-03T00:00:00+08:00">2008-03-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>使用这个shell可以直接在某个文件的某一行插入指定的文本,很方便. 可以把这个<br>shell加入PATH中.以下的蓝色部分为代码, 文件名为insert</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more insert</span><br><span class="line">#!/bin/bash</span><br><span class="line"># 从文件的某一行之后插入新行</span><br><span class="line"># FILE 为文件名，LINENUM为行号，TEXT为要插入的文本</span><br><span class="line"># Copyleft: cheyo@JMU</span><br><span class="line"></span><br><span class="line">showUsage()</span><br><span class="line">{</span><br><span class="line">echo "[Usage]: insert FILE LINENUM TEXT"</span><br><span class="line">echo "# 从文件的某一行之后插入新行"</span><br><span class="line">echo "# FILE 为文件名，LINENUM为行号，TEXT为要插入的文本"</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">if [ $# -lt 3 ] #少于3个参数,错误!</span><br><span class="line">then showUsage</span><br><span class="line">exit 1</span><br><span class="line">else</span><br><span class="line">sed "${2}a</span><br><span class="line">${3}" $1 &gt; tmpfile;mv tmpfile $1</span><br><span class="line">fi</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$ ./insert a 3 "Test"</span><br><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">Test</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$</span><br></pre></td></tr></tbody></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/02/23/photoshop-designer-top-10/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/02/23/photoshop-designer-top-10/" class="post-title-link" itemprop="url">10位顶尖photoshop设计大师</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-02-23 00:00:00" itemprop="dateCreated datePublished" datetime="2008-02-23T00:00:00+08:00">2008-02-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>Adhemas Batista (Brazil)</li>
+</ol>
+<p> Adhemas Batista，巴西人，居住在圣保罗,25岁，美术指导，平面与插画设计师。自由职业者。1996至1998年，经人介绍进入互联网行业，当时在一家小 工作室工作。1998至1999年，致力于 Tesla Tecnologia 研究。1999至2000年，从事艺术主管，为巴西和TVA的GM做方案。在巴西做的第一个项目是网上销售汽车，从事于 AgenciaClick。2000至2002年，创作了自己的网上工作室，与巴西的私营银行和其它小客户合作。2002至2003年，回到 MSN 做 AgenciaClick，当然还有其它一些客户，如 Coca-cola， Fiat 和 TAM。2003年至今，在 AlmapBBDO 工作。</p>
+<p> <a target="_blank" rel="noopener" href="http://www.adhemas.com/">http://www.adhemas.com/</a></p>
+<ol start="2">
+<li>Bert Monroy (USA)</li>
+</ol>
+<p> Bert Monroy在纽约市出生和长大，并在当地多家代理机构及其自己的公司中从事广告艺术总监和执行总监工作20余年。 当1984年Macintosh 128汁算机出现时，Bert开始了其自己新的数码职业生涯。他把计算机作为新的艺术媒体，他是大家公认的数码艺术先锋人物之一。Bert的作品出现在各 种主要杂志上，也被大量的图书昕采用，其中包括Making Art on a Macintosh、 ThePhotoshop WOW Book(所有版本)、The IllustratorWOW Book(所有版本)、 The Art of Digital Painting以及在日本出版的Photoshop A to Z。</p>
+<p> <a target="_blank" rel="noopener" href="http://www.bertmonroy.com/">http://www.bertmonroy.com/</a></p>
+<ol start="3">
+<li>Derel Lea (Canada)</li>
+</ol>
+<p> 1996年，在作了多年艺术指导、平面设计师和职业修图编辑之后，Derel Lea开始把精力放到了插画上。从开始创作第一幅插画时就知道这正是他想要的感觉，创作并且沉迷其中，时间仿佛终止，世界仿佛消失。最初的插画作品是摄 影、传统插画和数码艺术的一种结合。它们产生的原因完全是因为Derel Lea对之前所接触的所有艺术感到厌倦和受挫。传统插画家大都总是创作同一种风格的作品，然而 Derel Lea 不喜欢总是简单重复做同样的事情。虽然可能所有的作品从根本上还是潜藏着同一种风格，但至少是在不停的尝试新事物并且让它看起来更有趣。</p>
+<p> <a target="_blank" rel="noopener" href="http://www.dereklea.com/">http://www.dereklea.com/</a></p>
+<ol start="4">
+<li>Eduardo Recife (Brazil)</li>
+</ol>
+<p> Eduardo Recife,是一位来自巴西的设计师,他的作品呈现出一种怀旧的后现代美，散发着浓郁的南美本土气息,同时他创作的一些字体也有很不错的视觉效果.我从 很小的时候就开始画画。在学校的时候我有一个记事本，里面都是我的画而没有一页笔记。我以前经常用一只黑色的钢笔给朋友刺青，还经常在无聊的时候在各种东 西的表面上画画。我相信这是我能做到的最棒的事情。对我而言，这也是当找不到合适的文字表达时最好的交流方式。绘画是一种疗法、一种爱好、一份工作，它使 我快乐。</p>
+<p> <a target="_blank" rel="noopener" href="http://www.eduardorecife.com/">http://www.eduardorecife.com/</a></p>
+<ol start="5">
+<li>Ian Keltie (U.K)</li>
+</ol>
+<p> Ian Keltie是英国的商业艺术家。Ians的数码风格吸收了多种元素的影响，包括位于泰恩河上游的家乡纽卡斯尔镇的风土建筑、所有他认为酷的东西：杂志、 磨损的牛仔裤、老鞋子，70年代的摄影以及澳大利亚画家Egon Schiele的作品。Ians总是对新的项目充满兴趣，对不断增加的世界各地客户的名单也是非常高兴。</p>
+<p> <a target="_blank" rel="noopener" href="http://www.iankeltie.com/">http://www.iankeltie.com/</a></p>
+<ol start="6">
+<li>Joan Charmant</li>
+</ol>
+<p> <a target="_blank" rel="noopener" href="http://www.joancharmant.com/">http://www.joancharmant.com/</a></p>
+<ol start="7">
+<li>Joshua M. Smith</li>
+</ol>
+<p> <a target="_blank" rel="noopener" href="http://www.hydro74.com/">http://www.hydro74.com/</a></p>
+<ol start="8">
+<li>Justin M. Maller (Australia)</li>
+</ol>
+<p> 来自澳大利亚墨尔本的平面艺术家，毕业于奥尔本大学，创意艺术学士。depthcore创意指导。</p>
+<p> <a target="_blank" rel="noopener" href="http://www.superlover.com.au/">http://www.superlover.com.au/</a></p>
+<ol start="9">
+<li>Nik Ainley (U.K)</li>
+</ol>
+<p> Nik Ainley是来自英国的一名视觉设计师，主要工作为个人和企业提供新锐的视觉设计和插画。作品曾多次被 Computer Arts杂志登载，并获得Computer Arts 杂志的“2006十佳创意设计师”荣誉。他的作品风格多变，但是都极具视觉冲击力。</p>
+<p> <a target="_blank" rel="noopener" href="http://www.shinybinary.com/">http://www.shinybinary.com/</a></p>
+<ol start="10">
+<li>Scott Hansen (USA)</li>
+</ol>
+<p> ISO50工作室负责人，来自加利福尼亚。为多个行业的设计过各种项目，从唱片封面、海报、杂志封面到滑雪板。你可以在世界各地的产品及出版物上看到他的作品。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/02/23/centos-install-gb/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/02/23/centos-install-gb/" class="post-title-link" itemprop="url">为CentOS安装GD库</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-02-23 00:00:00" itemprop="dateCreated datePublished" datetime="2008-02-23T00:00:00+08:00">2008-02-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>默认CentOS服务器装好后运行的网站并不支持GD库，网上有很多教程非常复杂的讲述了一些安装GD库的方法。</p>
+<p>其实完全不必如此复查。</p>
+<p>由于CentOS 将支持GD库的PHP作为另外一个版本的PHP来发布.我们如果需要网站支持GD库,只需要直接安装带GD库的php版本即可.</p>
+<p>下面是最简便的安装GD库的方法：</p>
+<p>具体操作只有2个命令如下:</p>
+<p>运行在线安装带GD库的PHP的命令:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install php-gd</span><br></pre></td></tr></tbody></table></figure>
+
+<p>系统就会自己人网站下载GD库,然后就会自动执行安装</p>
+<p>重新启动apachce服务以使安装后的GD库生效</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service httpd restart</span><br></pre></td></tr></tbody></table></figure>
+<p>安装完成.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/02/21/firefox-save-mht/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -751,284 +1011,6 @@
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/02/07/awstats-use-maxmind-geoip/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/02/07/awstats-use-maxmind-geoip/" class="post-title-link" itemprop="url">安装 MaxMind GeoIP、GeoIP City Lite 为 awstats 配置 IP 位置国家城市统计信息</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-02-07 00:00:00" itemprop="dateCreated datePublished" datetime="2008-02-07T00:00:00+08:00">2008-02-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/analytics/" itemprop="url" rel="index"><span itemprop="name">Analytics</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>安装 MaxMind GeoIP、GeoIP City Lite 为 awstats 配置 IP 位置国家城市统计信息</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="http://www.maxmind.com/download/geoip/api/c/">http://www.maxmind.com/download/geoip/api/c/</a><br><a target="_blank" rel="noopener" href="http://www.maxmind.com/download/geoip/api/c/GeoIP-1.4.4.tar.gz">http://www.maxmind.com/download/geoip/api/c/GeoIP-1.4.4.tar.gz</a></p>
-</blockquote>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="http://www.maxmind.com/download/geoip/api/perl/">http://www.maxmind.com/download/geoip/api/perl/</a><br><a target="_blank" rel="noopener" href="http://www.maxmind.com/download/geoip/api/perl/Geo-IP-1.31.tar.gz">http://www.maxmind.com/download/geoip/api/perl/Geo-IP-1.31.tar.gz</a></p>
-</blockquote>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="http://www.maxmind.com/app/geolitecity">http://www.maxmind.com/app/geolitecity</a><br><a target="_blank" rel="noopener" href="http://www.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz">http://www.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz</a></p>
-</blockquote>
-<p>安装配置全程脚本：</p>
-<p><strong>下载</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.maxmind.com/download/geoip/api/c/GeoIP-1.4.4.tar.gz</span><br><span class="line">wget http://www.maxmind.com/download/geoip/api/perl/Geo-IP-1.31.tar.gz</span><br><span class="line">wget http://www.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz</span><br></pre></td></tr></tbody></table></figure>
-
-<p><strong>安装</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">tar zxf GeoIP-1.4.4.tar.gz</span><br><span class="line">cd GeoIP-1.4.4</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">cd ..</span><br><span class="line"></span><br><span class="line">tar zxf Geo-IP-1.31.tar.gz</span><br><span class="line">cd Geo-IP-1.31</span><br><span class="line">perl Makefile.PL</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">cd ..</span><br><span class="line"></span><br><span class="line">gunzip GeoLiteCity.dat.gz</span><br><span class="line">cp -a GeoLiteCity.dat /usr/local/share/GeoIP/</span><br></pre></td></tr></tbody></table></figure>
-
-<p><strong>更新动态库路径</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo /usr/local/lib &gt; /etc/ld.so.conf.d/geoip-i386.conf</span><br><span class="line">ldconfig -v</span><br></pre></td></tr></tbody></table></figure>
-
-<p><strong>修改 awstats 配置</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LoadPlugin="geoip GEOIP_STANDARD /usr/local/share/GeoIP/GeoIP.dat"</span><br><span class="line">LoadPlugin="geoip_city_maxmind GEOIP_STANDARD /usr/local/share/GeoIP/GeoLiteCity.dat"</span><br></pre></td></tr></tbody></table></figure>
-<p>下次 update 数据和 build pages 就可以看到<br>国家或地区 (前 10) 和 主机 (前 10) 中的IP地理位置信息</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">awstats/tools/awstats_updateall.pl now</span><br><span class="line">awstats/tools/awstats_buildstaticpages.pl -config=configdomainname -month=$M -lang=cn</span><br></pre></td></tr></tbody></table></figure>
-
-<p>GeoIP Country 链接到 #countries<br>GeoIP City 链接到 awstats.$configdomainname.plugin_geoip_city_maxmind.html</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/02/07/awstats-install-geoip-by-perl/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/02/07/awstats-install-geoip-by-perl/" class="post-title-link" itemprop="url">awstats 纯perl的方式 安装geoip插件</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-02-07 00:00:00" itemprop="dateCreated datePublished" datetime="2008-02-07T00:00:00+08:00">2008-02-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/analytics/" itemprop="url" rel="index"><span itemprop="name">Analytics</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>There is a rumor that GeoIP is not supported by Powweb. This is<br>completely false. It must first be configured prior to use. Now stay<br>with me so I don’t lose you…</p>
-<ol>
-<li>Install your own copy of</li>
-</ol>
-<p> awstats in the cgi-bin directory. Once this is working properly, you<br>may move on to the next step. There is a tutorial for this on the<br>Powweb site under “Site Statistics” I believe.</p>
-<ol start="2">
-<li>Download GeoIP::PurePerl module from Maxmind.com</li>
-</ol>
-<p> <a target="_blank" rel="noopener" href="http://www.maxmind.com/download/geoip/api/pureperl/">http://www.maxmind.com/download/geoip/api/pureperl/</a></p>
-<p> 1.17 is the latest version as of Sept 1, 2005. This is a tar.gz file so make sure you have WinRAR or another compatible decompressor.</p>
-<ol start="3">
-<li>Once</li>
-</ol>
-<p> decompressed, create a directory in your cgi-bin called GeoIP (You can<br>name it anything you like, but for this tutorial it shall be GeoIP).<br>Move the contents from the decompressed folder to “/cgi-bin/GeoIP/”.<br>The decompressed folder should be called “Geo-IP-PurePerl-1.xx”. Now<br>before we configure we need to get the latest database.</p>
-<ol start="4">
-<li>Download GeoIP.dat from this address</li>
-</ol>
-<p> <a target="_blank" rel="noopener" href="http://www.maxmind.com/download/geoip/database/GeoIP.dat.gz">http://www.maxmind.com/download/geoip/database/GeoIP.dat.gz</a></p>
-<p> Again this is a .gz file and must be decompressed. Once decompressed, move “GeoIP.dat” to “/cgi-bin/GeoIP/”.</p>
-<ol start="5">
-<li>OK.. now to configure. </li>
-</ol>
-<p> First if you have turned on DNSLookup… turn it<br>off. In Awstats.conf —&gt; DNSLookup=0 (this may also be a good time<br>to change your logfile if you desire current stats over stats from<br>yesterday. Remove the “.0″ after “access”.</p>
-<p> LogFile=”/logs/access.0/1/xxxxxx_access_log” -&gt;<br>LogFile=”/logs/access/1/xxxxxx_access_log”)</p>
-<ol start="6">
-<li>Next enable the</li>
-</ol>
-<p> GeoIP plugin by removing the # from before the command and add the path<br>to the GeoIP.dat file. In Awstats.conf —&gt; LoadPlugin=”geoip<br>GEOIP_STANDARD /www/u/username/cgi-bin/GeoIP/GeoIP.dat” When that’s<br>complete, save awstats.conf</p>
-<ol start="7">
-<li>Now open up the geoip.pm file</li>
-</ol>
-<p> (located in awstats/plugins…. thanx Aza) so we may edit it. At the<br>very top you’ll see two directory entries. They’ll say “Geo/IP.pm” and<br>Geo/IP/PurePerl.pm”. WE need to modify these to reflect the<br>installation path. Change them to<br>“/www/u/username/cgi-bin/GeoIP/lib/Geo/IP.pm” and<br>“/www/u/username/cgi-bin/GeoIP/lib/Geo/IP/PurePerl.pm” respectively.<br>Save and close.</p>
-<ol start="8">
-<li>Last but not least, open up “PurePerl.pm”</li>
-</ol>
-<p> located in “/cgi-bin/GeoIP/lib/Geo/IP”. On lines 79 and 83 you’ll fine<br>directory listings for “GeoIP.dat”. Change these to<br>“/www/u/username/cgi-bin/GeoIP/GeoIP.dat”. Save and close.</p>
-<ol start="9">
-<li>Everything should be set now. </li>
-</ol>
-<p> If it’s working, you’ll see a new column<br>added to “Hosts” in Awstats named “GeoIP Country”. This will list<br>countries for all IP addresses, even ones collected before<br>modification. The “Countries” area will show flags only for IP<br>addresses collected after the modification. If you have trouble, set<br>your crontab to execute awstats every minute. This is accomplished be<br>setting time to * * * * *. Then check your cronlog located in your logs<br>folder to view errors.</p>
-<p>Erik Reedstrom<br>IT Department<br><a target="_blank" rel="noopener" href="http://www.brokehouse.com/">www.BrokeHouse.com</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/02/06/awstats-use-geoip/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/02/06/awstats-use-geoip/" class="post-title-link" itemprop="url">AWStats上的IP(城市信息解析包安装 GeoIP City Lite)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-02-06 00:00:00" itemprop="dateCreated datePublished" datetime="2008-02-06T00:00:00+08:00">2008-02-06</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/analytics/" itemprop="url" rel="index"><span itemprop="name">Analytics</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h3><p>MaxMind的GeoIP非常流行的地理信息Web应用包。原先提供的免费版只提供了一个IP=&gt;国家的，但是对于网站的统计来说：精确到城市级</p>
-<p>别的才有比较好的分析价值。最近MaxMind提供了一个IP=&gt;城市的简化版本。可以用于AWStats的分析统计。</p>
-<p>但是对于中国城市还不是很全，不过还能出来beijing henan这样的东东，大体还能看，呵呵…</p>
-<h3 id="二、安装"><a href="#二、安装" class="headerlink" title="二、安装"></a>二、安装</h3><ol>
-<li><p>安装GeoIP的C API和Perl API<br><a target="_blank" rel="noopener" href="http://www.maxmind.com/download/geoip/api/c/">http://www.maxmind.com/download/geoip/api/c/</a><br><a target="_blank" rel="noopener" href="http://www.maxmind.com/download/geoip/api/perl/">http://www.maxmind.com/download/geoip/api/perl/</a>  </p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.maxmind.com/download/geoip/api/c/GeoIP-1.3.14.tar.gz</span><br><span class="line">tar zxf GeoIP-1.3.14.tar.gz</span><br><span class="line">cd GeoIP-1.3.14</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.maxmind.com/download/geoip/api/perl/Geo-IP-1.27.tar.gz</span><br><span class="line">tar zxf Geo-IP-1.27.tar.gz</span><br><span class="line">cd Geo-IP-1.27</span><br><span class="line">perl Makefile.PL</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></tbody></table></figure></li>
-<li><p>下载MaxMind’s GeoLiteCity database<br><a target="_blank" rel="noopener" href="http://www.maxmind.com/app/geolitecity">http://www.maxmind.com/app/geolitecity</a><br><a target="_blank" rel="noopener" href="http://www.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz">http://www.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz</a><br><code>gzip -d GeoLiteCity.dat.gz</code><br>大约25M</p>
-</li>
-<li><p>配置awstates<br>复制GeoLiteCity.dat到/usr/local/share/GeoIP/下<br>然后修改awstats.panzhiqi.conf中的  </p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadPlugin="geoip_city_maxmind GEOIP_STANDARD /usr/local/share/GeoIP/GeoLiteCity.dat"</span><br></pre></td></tr></tbody></table></figure></li>
-</ol>
-<p>等待crontab中的update下次执行的时候就可以看到城市信息了，性能很好。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1098,18 +1080,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">301</span>
+          <span class="site-state-item-count">304</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">216</span>
+        <span class="site-state-item-count">224</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1138,7 +1120,7 @@
 <div class="copyright">
   
   © 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

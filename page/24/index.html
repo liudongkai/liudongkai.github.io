@@ -163,7 +163,7 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/27/zlib-installation/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/30/linux-date/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +177,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2008/03/27/zlib-installation/" class="post-title-link" itemprop="url">zlib安装</a>
+            <a href="/2008/03/30/linux-date/" class="post-title-link" itemprop="url">SHELL下date命令的用法</a>
         </h2>
 
         <div class="post-meta">
@@ -187,7 +187,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2008-03-27 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-27T00:00:00+08:00">2008-03-27</time>
+              <time title="Created: 2008-03-30 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-30T00:00:00+08:00">2008-03-30</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -210,16 +210,193 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在编译软件./configure 时得到错误反馈</p>
-<blockquote>
-<p>checking zlib.h usability… no<br>checking zlib.h presence… no<br>checking for zlib.h… no</p>
-</blockquote>
-<p><strong>zlib软件包所包含的库经常被一些软件的压缩或解压缩函数用到，所以如果编译软件时需要Zlib则说明这个软件正好含有压缩或解压缩函数，我们需要安装zlib软件包。</strong></p>
-<p>先到zlib官方网站：<a target="_blank" rel="noopener" href="http://www.zlib.net/">http://www.zlib.net</a> 上下载源码来安装zlib软件包。</p>
-<p>目前最新版本zlib是zlib1.2.3，安装开始；</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.zlib.net/zlib-1.2.3.tar.gz</span><br><span class="line">tar -xvzf zlib-1.2.3.tar.gz</span><br><span class="line">cd zlib-1.2.3</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></tbody></table></figure>
+          <p>date命令如何获得上星期的日期?</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date -d "-1 week" "+%Y%m%d %A"</span><br></pre></td></tr></tbody></table></figure>
 
-<p>这就完成了zlib1.2.3的安装，由于安装zlib1.2.3需要编译，所以最基本的编译器是要安装好的。</p>
+<p>举一反三:date命令获得前天，昨天，明天，后天，上个月，下个月的日期</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">date -d "-2 day" "+%Y%m%d %A" 或 date –date="2 days ago" "+%Y%m%d %A"</span><br><span class="line"></span><br><span class="line">date -d "-1 day" "+%Y%m%d %A" 或 date –date="1 day ago" "+%Y%m%d %A"</span><br><span class="line"></span><br><span class="line">date -d "1 day" "+%Y%m%d %A"</span><br><span class="line"></span><br><span class="line">date -d "2 day" "+%Y%m%d %A"</span><br><span class="line"></span><br><span class="line">date -d "-1 month" "+%Y%m%d %A"</span><br><span class="line"></span><br><span class="line">date -d "1 month" "+%Y%m%d %A"</span><br></pre></td></tr></tbody></table></figure>
+
+<p>还有其他用法:</p>
+<p><code>date +%s</code> 可以得到UNIX的时间戳;</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cat utc.sh</span><br><span class="line">#!/bin/sh</span><br><span class="line">date -d '1970-01-01 UTC '$1' seconds' +"%Y-%m-%d %T"</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ utc 1176736543</span><br><span class="line">2007-04-16 23:15:43</span><br></pre></td></tr></tbody></table></figure>
+
+<p>可以把UNIX时间戳转换成当前系统时间</p>
+<p><strong>另外要注意下日期字串中的相对项问题：<br>比如今天是08年3月30日，<code>date -d "last month" +%Y%m%d</code> 得到的结果会显示为20080301，因为一个月前，即2月30日是无效的。</strong></p>
+<p>Relative items 向前或向后调整指定日期(如不指出日期为当前日期)。相对项的效果是累积的。这里有一些例子: examples:</p>
+<blockquote>
+<p>1 year<br>1 year ago<br>3 years<br>2 days</p>
+</blockquote>
+<p>时间的单位可以用字串 ‘year’ 或 ‘month’ 替换，表示移动整年或整月。有一些模糊的单位，像 years 和 months 时间段并不一致。精确的单位有 ‘fortnight’ 表示 14 天，’week’ 是 7 天，’day’ 是 24 小时，’hour’ 是 60 分钟， ‘minute’ 或 ‘min’ 是 60 秒，’second’ 或 ‘sec’ 是一秒。单位后面可以有后缀 ‘s’，但被忽略。</p>
+<p>时间单位前面可以跟乘数，它是一个符号数。没有符号的数字认为是正数。没有给出乘数隐含为 1。相对时间后面的 ‘ago’ 字串等于乘数值为-1。</p>
+<p>字串 ‘tomorrow’ 值为将来的一天(等于 ‘day’)，字串 ‘yesterday’ 值为过去的一天(等于 ‘day ago’)。</p>
+<p>字串 ‘now’ 或 ‘today’ 相对项等同于用零值替代，如果没有被前面项目修改，这些字串代表当前时间。它们也可以用来强调其他项，如 ‘12:00 today’。字串 ‘this’ 也代表零值，但常用于 ‘this thursday’ 这样的日期字串里面。</p>
+<p>当相对项让日期跨越时钟调整边界时，典型的例子是夏时制，日期和时间的结果也要相应地调节。</p>
+<p>模糊的单位会另相对项出现问题。例如，’2003-07-31 -1 month’ 可以等于 2003-07-01，这是因为 2003-06-31 是一个无效的日期。为了更可靠地确定上一个月，你可以询问当前月十五号的上一个月，例如:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ date -R</span><br><span class="line">Thu, 31 Jul 2003 13:02:39 -0700</span><br><span class="line">$ date –date='-1 month' +'Last month was %B?'</span><br><span class="line">Last month was July?</span><br><span class="line">$ date –date="$(date +%Y-%m-15) -1 month" +'Last month was %B!'</span><br><span class="line">Last month was June!</span><br></pre></td></tr></tbody></table></figure>
+
+<p>还有，要小心处理夏令时闰年日期和时间的改变。一些情形下它们增加或减少 24 小时，所以开始日历计算前，最好先将 TZ 环境变量设成 ‘UTC0’。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/29/Thunderbird-mail-import-export/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/03/29/Thunderbird-mail-import-export/" class="post-title-link" itemprop="url">Thunderbird 邮件导入导出的方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-03-29 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-29T00:00:00+08:00">2008-03-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Thunderbird 邮件的导入导出是困惑已久的问题，尝试用这样的方法操作：</p>
+<ol>
+<li>安装 <a target="_blank" rel="noopener" href="http://www.supportware.net/mozilla/AutoSave.xpi">Thunderbird AutoSave</a> 扩展。</li>
+<li>重启 Thunderbird 后，选中你要导出的邮件，可以用“Ctrl + 左键”多选，也可以“Ctrl + A” 全选，然后点右键或从“文件”菜单中选择 Export Selected Msgs—&gt;Individually ，导出到你指定的文件夹，格式为 .eml 文件。</li>
+<li>选中这些 .eml 文件，拖入到 OE 中。</li>
+</ol>
+<p>对于将邮件从 OE 导入到 Thunderbird，可以用“工具—&gt;导入”<br>对于将邮件从 foxmail 导入到 Thunderbird ，在安装 <a target="_blank" rel="noopener" href="http://www.supportware.net/mozilla/#ext13">Thunderbird AutoSave</a> 扩展后，可以先在 foxmail 中将邮件保存为 .eml 文件，然后打开 Thunderbird，选择“文件—&gt;Import Messages“，选中要导入的邮件，打开即可。</p>
+<p>Tb AutoSave Extension 扩展中文版下载: <a target="_blank" rel="noopener" href="http://addons.mozine.cn/firefox/465/">http://addons.mozine.cn/firefox/465/</a></p>
+<p>另外一个办法是安装 ImportExportTools 扩展，该扩展能够将 eml/mbox 格式的邮件文件导入 Thunderbird，也可以将 Thunderbird 中的邮件导出为 eml/mbox/html 或者纯文本格式。支持批量操作：<br><a target="_blank" rel="noopener" href="http://addons.mozine.cn/thunderbird/98">http://addons.mozine.cn/thunderbird/98</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/29/firefox-thunderbird-portable/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/03/29/firefox-thunderbird-portable/" class="post-title-link" itemprop="url">关于Firefox与Thunderbird便携版、绿色版制作完全攻略</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-03-29 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-29T00:00:00+08:00">2008-03-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>经常看到大家在论坛中讨论如何制作或使用绿色或便携的Firefox和Thunderbird问题，我也是非常喜欢使用绿色软件，同时，我也很高兴在这里与大家分享一些我的心得与体会：<br>制作绿色、移动的Mozilla软件</p>
+<p>以下是Firefox、Thunderbird为例，其他的NVU等等类似软件，可以参考。</p>
+<ol>
+<li>绿色安装版制作：<br>目的：让Firefox或Thunderbird作为本机的缺省浏览器或邮件客户端。<br>对策：这种目的免不了要修改注册表，因此，如果配置文件不想放到系统缺省个人文件夹中的话，有两种办法：</li>
+<li>将系统个人文件夹指向改到新的盘符路径下（因影响较大，现不推荐，因此不详说）</li>
+<li>获得安装时对注册表的修改，将Firefox或Thunderbird的启动路径中都增加上 <code>-profile X:…YYY</code> 的配置路径指向</li>
+</ol>
+<p> 评估：这种方法耗时费力，还要准备专门的恢复脚本，比较麻烦，因此不推荐一般用户使用。<br> 备注：我曾经有段时用过此方法，主要是研究软件对注册表与系统的写入信息，所以，本方法纯属个人研究玩玩。</p>
+<ol start="2">
+<li><p>便携版Portable使用：<br>目的：实现不在注册表和系统中保留任何信息，便于移动使用。<br>对策：从Portable主站下载各软件的Portable版，解包直接运行，非常方便。<br>评估：各种Portable版均需要有一个加载软件在之前运行，因此一定会影响到程序加载的速度和性能，而且在程序未结束前，加载器不会结束，一般加载器会占用5MB左右的内存（对不太熟悉系统配置或设置的用户推荐此方法）。<br>备注：在第1种方法使用一阵子后，我就用的是这种办法，而且使用了相当长的时间，相对来说，如果不想费时费力而且资源充足的话，推荐用此方法。</p>
+</li>
+<li><p>配置文件替换修改法：<br>目的：不要修改注册表，也不需要加载器，只需要干干净净地启动程序。<br>对策：修改 <code>%userprofile%MozillaFirfox或%userprofile%Thunderbird</code> 配置目录下的profile.ini文件，将其缺省启动指向定制的目录，或者更简单的办法是备份这个文件，在重装系统时恢复到上述目录即可。<br>评估：可以考虑做一个很小的恢复脚本，自动将备份的profile.ini恢复到程序的配置目录即可，用不到加载器或修改注册表，因此，对于较了解的系统配置或有兴趣系统设置的用户来说，此方法有一定的可用性。<br>备注：此方法我只使用过很短的时间，原因是我找到下一个方法。</p>
+</li>
+<li><p>PStart启动或快捷启动方式：<br>目的：对系统不用也不考虑作任何的修改，完全干干净净地启动程序。<br>对策：采用PStart绿色加载程序建立程序菜单或创建程序快捷方式，只在程序启动项中加上参数： <code>-profile X:…XXX</code> 指向用户目录即可，调用程序只需要通过此快捷方式或PStart程序加载运行即可。<br>评估：考虑到快捷方式会在目录移动后需要重新创建的问题，个人倾向于推荐用PStart加载方式，由于此小软件可用相对路径来调用程序和配置参数，因此，我的参数更简单：-profile .XXX。因为，我的目录分配如下：</p>
+<blockquote>
+<p>D:\Portable\Firefox\Profile<br>PStart在D:\Portable<br>Firefox在D:\Portable\Firefox<br>配置文件在D:\Portable\Profile  </p>
+</blockquote>
+</li>
+</ol>
+<p> 所以，大家看是否非常简单，这样，Portable目录可以随意移动或变更都没有关系了，重装系统（只动C盘）更不会影响了，只有随时启动PStart就行。<br>备注：这就是我目前使用的方法，感觉还不错，希望大家也多将自己的心得体会多分享一下，这也是对这些好软件的一种支持啊！</p>
 
       
     </div>
@@ -293,6 +470,82 @@
 
 <p>搜索得到如下解决：</p>
 <p>因为在本地机器上曾经用SSH登录过这台远程计算机，因而留下了known_hosts的记录，在远程计算机重新安装系统后不能够通过鉴权。删除<code>~/.ssh/known_hosts</code>中对应的项目，问题获得解决。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/27/zlib-installation/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/03/27/zlib-installation/" class="post-title-link" itemprop="url">zlib安装</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-03-27 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-27T00:00:00+08:00">2008-03-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在编译软件./configure 时得到错误反馈</p>
+<blockquote>
+<p>checking zlib.h usability… no<br>checking zlib.h presence… no<br>checking for zlib.h… no</p>
+</blockquote>
+<p><strong>zlib软件包所包含的库经常被一些软件的压缩或解压缩函数用到，所以如果编译软件时需要Zlib则说明这个软件正好含有压缩或解压缩函数，我们需要安装zlib软件包。</strong></p>
+<p>先到zlib官方网站：<a target="_blank" rel="noopener" href="http://www.zlib.net/">http://www.zlib.net</a> 上下载源码来安装zlib软件包。</p>
+<p>目前最新版本zlib是zlib1.2.3，安装开始；</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.zlib.net/zlib-1.2.3.tar.gz</span><br><span class="line">tar -xvzf zlib-1.2.3.tar.gz</span><br><span class="line">cd zlib-1.2.3</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这就完成了zlib1.2.3的安装，由于安装zlib1.2.3需要编译，所以最基本的编译器是要安装好的。</p>
 
       
     </div>
@@ -673,265 +926,6 @@
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/20/linux-rsync/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/03/20/linux-rsync/" class="post-title-link" itemprop="url">Linux下的远程备份（镜像）工具rsync</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-03-20 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-20T00:00:00+08:00">2008-03-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a><e1>简介</e1></h2><p>传统上，在Unix系统下使用的备份工具主要有tar、dump（rdump）、restore（rrestore）、dd、cpio、rcp等工具。这些工具中大多数适合于本地备份（native backup），倘若要执行远程备份（remote backup）的话，往往显得力不从心。在Linux系统下提供了一个工具——rsync，据其文档说明，它是rcp工具的一个替代品，但是更快捷、更灵活。rsync采用的remote-update协议允许rsync通过网络链路传输两组文件的增量，而是不是文件本身，据此rsync可以提高传输效率。</p>
-<p>rsync所具有的功能特色主要有：</p>
-<ul>
-<li>支持对连接、设备、用户、组、权限的拷贝；</li>
-<li>支持类似GNU tar工具的exclude和exclude-from选项；</li>
-<li>类似CVS的exclude模式：忽略相同的文件；</li>
-<li>可以使用多种远程shell工具，比如rsh或者ssh；</li>
-<li>不需要root权限即可运行；</li>
-<li>将文件传输流水线化以减少延迟开销；</li>
-<li>rsync服务器允许以匿名或者认证方式登录（特别适合于做镜像）。</li>
-</ul>
-<p>和大多数网络工具一样，rsync也是以服务器/客户端的方式工作的。但较为特别的一点是：rsync服务器和客户端都使用同一个程序——rsync（如果按常见的做法，则应该是服务器程序为rsyncd，客户端程序为rsync）。启动服务器的时候需要指明–daemon选项，以表明启动的是服务器。而在启动客户端程序的时候则不应开启–daemon选项。</p>
-<p>在下文中，假设需要备份的主机为192.168.0.100，其上运行rsync服务器，将该主机称之为rsync-server；存放备份数据的主机为192.168.0.200，其上运行rsync客户端程序，将该主机称之为rsync-client。</p>
-<h2 id="服务器端的配置"><a href="#服务器端的配置" class="headerlink" title="服务器端的配置"></a><e2>服务器端的配置</e2></h2><p>rsync的配置文件为/etc/rsyncd.conf，这个配置文件控制着rsync服务器的认证、访问、logging、可用模块等信息。关于这个配置文件的详细说明请参见rsyncd.conf(5)。在本文中，仅对将要使用到的几个配置选项进行说明。需要提醒的是，默认情况下Fedora Core系统的/etc目录下没有rsyncd.conf这个文件，自行创建该文件即可。rsync服务器默认运行在TCP端口873上。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2008/03/20/linux-rsync/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/15/apache-rewrite/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/03/15/apache-rewrite/" class="post-title-link" itemprop="url">Apache 重写规则的常见应用 (rewrite)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-15T00:00:00+08:00">2008-03-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="一-目的"><a href="#一-目的" class="headerlink" title="一: 目的"></a>一: 目的</h3><p>本文旨在提供如何用Apache重写规则来解决一些常见的URL重写方法的问题，通过常见的实例给用户一些使用重写规则的基本方法和线索。</p>
-<h3 id="二-为什么需要用重写规则？"><a href="#二-为什么需要用重写规则？" class="headerlink" title="二:为什么需要用重写规则？"></a>二:为什么需要用重写规则？</h3><p>一个网站，如果是长期需要放在internet上提供服务，必定会有不断地更新和维护，如临时转移到其它服务器进行维护，重新组织目录结构，变换URL甚至改变到新的域名等等，而为了让客户不会因此受到任何影响，最好的方法就是使用Apache Rewrite Rule(重写规则)。</p>
-<h3 id="三-重写规则的作用范围"><a href="#三-重写规则的作用范围" class="headerlink" title="三: 重写规则的作用范围"></a>三: 重写规则的作用范围</h3><ol>
-<li>可以使用在Apache主配置文件httpd.conf中</li>
-<li>可以使用在httpd.conf里定义的虚拟主机配置中</li>
-<li>可以使用在基本目录的跨越配置文件.htaccess中</li>
-</ol>
-<h3 id="四-重写规则的应用条件"><a href="#四-重写规则的应用条件" class="headerlink" title="四:重写规则的应用条件"></a>四:重写规则的应用条件</h3><p>只有当用户的WEB请求最终被导向到某台WEB服务器的Apache后台，则这台WEB服务器接受进来的请求，根据配置文件该请求是主配置还是虚拟主机，再根据用户在浏览器中请求的URI来配对重写规则并且根据实际的请求路径配对.htaccess中的重写规则。最后把请求的内容传回给用户，该响应可能有两种：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2008/03/15/apache-rewrite/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/15/IBM-install-drivers-1/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/03/15/IBM-install-drivers-1/" class="post-title-link" itemprop="url">IBM T61/R61/X61 WinXP驱动安装(一)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-15T00:00:00+08:00">2008-03-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>==== 20140221更新 ====<br>重新整理，终于找到原帖：<a target="_blank" rel="noopener" href="http://www.tpuser.idv.tw/articles/santarosa-test-wxp.html">http://www.tpuser.idv.tw/articles/santarosa-test-wxp.html</a></p>
-<hr>
-<p>ThinkPad T61/R61/X61系列硬件架构相当接近，原厂维修手册都可共享，此篇安装流程理论上可以适用在 ThinkPad T61/R61/X61系列上面，记得再根据个别机种的硬件安装对应驱动程序。</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=TPAD-MATRIX">ThinkPad 全系列机型驱动程序 矩阵列表</a></li>
-</ul>
-<p>由 于微软的许多组件都需在线下载，无法直接下载完整版本，因此才会视需要，将网络卡的驱动程序安装程序放在前面。此外 ThinkPad 的相关驱动程序也有安装顺序上的考虑，以下的安装流程其实已经把各环节都尽量考虑进去，如网友没有把握，不妨按照以下的顺序安装，感谢。</p>
-<h3 id="准备动作：设定-SATA-硬盘"><a href="#准备动作：设定-SATA-硬盘" class="headerlink" title="准备动作：设定 SATA 硬盘"></a>准备动作：设定 SATA 硬盘</h3><p>自从 T60/R60/X60 开始改用 SATA 界面硬盘，手动安装 WinXP 便遇到一个问题：「要选择 Compatibility 还是 AHCI 模式？」，这问题的主因源自于设定为 AHCI 模式时，必须在安装时按下「 F6 」，然后预先加载芯片组驱动程序。但现在拥有 USB 界面软驱的使用者实在太少了。</p>
-<p>在没有 USB 软驱的状况下，有的使用者便设定成 「 Compatibility 模式」，却发现硬盘效能不彰，接着去 BIOS 调回 AHCI 模式之后，就会发生蓝底白字的系统当机惨剧。因此很多人想到要重装 WinXP 就头大。</p>
-<p>但根据 Lenovo 原厂提供的资料，以及亲身体验，其实手动安装 WinXP 并不困难！不需要准备 USB 软驱﹔不用忍受「 Compatibility 模式」效能不彰问题，更不会发生蓝底白字惨剧，关键只在于「安装流程的顺序！」</p>
-<p>请跟着本文的流程依序安装，相信大家都能顺利重返 WinXP 环境！</p>
-<ol>
-<li>按下电源开关，开机时请按「 F1 」键，之后会进入 BIOS 画面。</li>
-<li>进入 BIOS 之后，进入「 Config 」页面</li>
-<li>再进入「 Serial ATA(SATA) 」页面</li>
-<li>将原先的「 AHCI 」改成「 Compatibility 」</li>
-</ol>
-<p>换言之，手动安装 WinXP 时，先采用「 Compatibility 模式」，规避掉需要透过 USB 软驱安装驱动程序的困扰，然后在后面的「步骤三」请网友务必按照说明安装 Intel Matrix Storage Manager Driver ，同时将硬盘更改为 AHCI 模式。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2008/03/15/IBM-install-drivers-1/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1001,18 +995,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">301</span>
+          <span class="site-state-item-count">304</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">216</span>
+        <span class="site-state-item-count">224</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1041,7 +1035,7 @@
 <div class="copyright">
   
   © 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

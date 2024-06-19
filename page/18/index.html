@@ -163,6 +163,235 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/09/14/windows-hardlink/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2009/09/14/windows-hardlink/" class="post-title-link" itemprop="url">Windows 7 研究——Windows 文件夹的秘密：Windows 目录到底占用了多少真实的硬盘空间[ZT]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2009-09-14 00:00:00" itemprop="dateCreated datePublished" datetime="2009-09-14T00:00:00+08:00">2009-09-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>张康宗（Smallfrogs）<br><a target="_blank" rel="noopener" href="http://www.kztechs.com/">http://www.kztechs.com</a></p>
+<p>原本这个话题是准备在8个月前写的，但是由于种种原因，一直推迟到现在。今晚（或者说今天凌晨），抽空把程序弄完了，因为只有程序写完以后，这个话题才有实际的价值。</p>
+<p>这个话题就是：<strong>Windows 目录到底占用了多少真实的硬盘空间？</strong></p>
+<p>看到这个问题，我想99%的人都会说：用资源管理器右键点击Windows目录，看看属性不就知道了吗？何必故弄玄虚呢！</p>
+<p>但是，我 Smallfrogs 会有那么傻的把一个大家都知道的问题重新翻出来吗？既然提出了这个话题，就有我的道理！请各位耐住性子往下看，看看我们的Microsoft同学又玩了什么样的花活，呵呵。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2009/09/14/windows-hardlink/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/08/19/awk-fillzero/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2009/08/19/awk-fillzero/" class="post-title-link" itemprop="url">如何实现字符串不足N位自动补零</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2009-08-19 00:00:00" itemprop="dateCreated datePublished" datetime="2009-08-19T00:00:00+08:00">2009-08-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>文本中有如下一列：</p>
+<blockquote>
+<p>1<br>2<br>3<br>4<br>……<br>100</p>
+</blockquote>
+<p>我想把它输出为：</p>
+<blockquote>
+<p>0001<br>0002<br>0003<br>0004<br>……<br>0100</p>
+</blockquote>
+<p>就是不足4位的前面补0</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk '{printf("%04d\n",$0);}' filename</span><br></pre></td></tr></tbody></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/08/14/iptables-open-the-specified-port/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2009/08/14/iptables-open-the-specified-port/" class="post-title-link" itemprop="url">使用iptables开放指定端口</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2009-08-14 00:00:00" itemprop="dateCreated datePublished" datetime="2009-08-14T00:00:00+08:00">2009-08-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>例如: 开放80port<br><code>vi /etc/sysconfig/iptables</code><br>加入此行：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p --dport 80 -j ACCEPT</span><br></pre></td></tr></tbody></table></figure>
+
+<p>指定IP访问指定端口</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-A RH-Firewall-1-INPUT -s 192.168.1.1 -p tcp -m state --state NEW -m tcp --dport 9201 -j ACCEPT</span><br></pre></td></tr></tbody></table></figure>
+
+<p>示例：<br>1 限制连往本机的telnet单个IP并发连接为2个，超过的连接被拒绝：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -p tcp --dport 23 -m iplimit --iplimit-above 2 -j REJECT</span><br></pre></td></tr></tbody></table></figure>
+
+<p>2 限制连往本机的web服务，1个C段的IP的并发连接不超过100个，超过的被拒绝：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -p tcp --dport 80 -m iplimit --iplimit-above 100 --iplimit-mask 24 -j REJECT</span><br></pre></td></tr></tbody></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/07/18/urchin-installation/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -772,245 +1001,6 @@
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/04/19/mysql-delete-binlog/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2009/04/19/mysql-delete-binlog/" class="post-title-link" itemprop="url">删除MYSQl BIN-LOG 日志[zt]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2009-04-19 00:00:00" itemprop="dateCreated datePublished" datetime="2009-04-19T00:00:00+08:00">2009-04-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>想要恢愎数据库以前的资料,执行:show binlog events;屏幕就开始闪,闪的人眼花,心里烦(那有这么多没有用的破LOG^0^),还是删除一些去吧!</p>
-<ol>
-<li><p>列出当前的binlog文件</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show binary logs;</span><br><span class="line">+------------------+-----------+</span><br><span class="line">| Log_name         | File_size |</span><br><span class="line">+------------------+-----------+</span><br><span class="line">| mysql-bin.000001 | 150462942 |</span><br><span class="line">| mysql-bin.000002 |       125 |</span><br><span class="line">| mysql-bin.000003 |       106 |</span><br><span class="line">+------------------+-----------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></tbody></table></figure></li>
-<li><p>删除bin-log(删除mysql-bin.000003之前的而没有包含mysql-bin.000003)</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; purge binary logs to 'mysql-bin.000003';</span><br><span class="line">Query OK, 0 rows affected (0.16 sec)</span><br></pre></td></tr></tbody></table></figure></li>
-<li><p>查询结果(现在只有一条记录了.)</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show binlog events\G</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">Log_name: mysql-bin.000003</span><br><span class="line">Pos: 4</span><br><span class="line">Event_type: Format_desc</span><br><span class="line">Server_id: 1</span><br><span class="line">End_log_pos: 106</span><br><span class="line">Info: Server ver: 5.1.26-rc-log, Binlog ver: 4</span><br><span class="line">1 row in set (0.01 sec)</span><br></pre></td></tr></tbody></table></figure>
-<p>(mysql-bin.000001和mysql-bin.000002已被删除)</p>
-</li>
-</ol>
- <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show binary logs;</span><br><span class="line">+------------------+-----------+</span><br><span class="line">| Log_name         | File_size |</span><br><span class="line">+------------------+-----------+</span><br><span class="line">| mysql-bin.000003 |       106 |</span><br><span class="line">+------------------+-----------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></tbody></table></figure>
-
-<p> (删除的其它格式运用!)</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PURGE {MASTER | BINARY} LOGS TO 'log_name'</span><br><span class="line">PURGE {MASTER | BINARY} LOGS BEFORE 'date'</span><br></pre></td></tr></tbody></table></figure>
-
-<p> 用于删除列于在指定的日志或日期之前的日志索引中的所有二进制日志。这些日志也会从记录在日志索引文件中的清单中被删除，这样被给定的日志成为第一个。<br> 例如：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PURGE MASTER LOGS TO 'mysql-bin.010';</span><br><span class="line">PURGE MASTER LOGS BEFORE '2008-06-22 13:00:00';</span><br></pre></td></tr></tbody></table></figure>
-
-<p> 清除3天前的 binlog</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PURGE MASTER LOGS BEFORE DATE_SUB( NOW( ), INTERVAL 3 DAY);</span><br></pre></td></tr></tbody></table></figure>
-
-<p> BEFORE变量的date自变量可以为’YYYY-MM-DD hh:mm:ss’格式。MASTER和BINARY是同义词。<br> 如果您有一个活性的从属服务器，该服务器当前正在读取您正在试图删除的日志之一，则本语句不会起作用，而是会失败，并伴随一个错误。不过，如果从属服务器是休止的，并且您碰巧清理了其想要读取的日志之一，则从属服务器启动后不能复制。当从属服务器正在复制时，本语句可以安全运行。您不需要停止它们。</p>
-<p> 要清理日志，需按照以下步骤：</p>
-<ol>
-<li>在每个从属服务器上，使用<code>SHOW SLAVE STATUS</code>来检查它正在读取哪个日志。</li>
-<li>使用<code>SHOW MASTER LOGS</code>获得主服务器上的一系列日志。</li>
-<li>在所有的从属服务器中判定最早的日志。这个是目标日志。如果所有的从属服务器是更新的，这是清单上的最后一个日志。</li>
-<li>制作您将要删除的所有日志的备份。（这个步骤是自选的，但是建议采用。）</li>
-<li>清理所有的日志，但是不包括目标日志我。</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/04/04/SQL-server-replace-regular/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2009/04/04/SQL-server-replace-regular/" class="post-title-link" itemprop="url">一个用于SQL Server 正则替换的函数</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2009-04-04 00:00:00" itemprop="dateCreated datePublished" datetime="2009-04-04T00:00:00+08:00">2009-04-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">create function dbo.regexReplace</span><br><span class="line">(</span><br><span class="line">@source varchar(5000), –原字符串</span><br><span class="line">@regexp varchar(1000), –正則表換式</span><br><span class="line">@replace varchar(1000), –替換值</span><br><span class="line">@globalReplace bit = 0, –是否是全局替換</span><br><span class="line">@ignoreCase bit = 0 –是否忽略大小寫</span><br><span class="line">)</span><br><span class="line">returnS varchar(1000) AS</span><br><span class="line">begin</span><br><span class="line">declare @hr integer</span><br><span class="line">declare @objRegExp integer</span><br><span class="line">declare @result varchar(5000)</span><br><span class="line"></span><br><span class="line">exec @hr = sp_OACreate 'VBScript.RegExp', @objRegExp OUTPUT</span><br><span class="line">IF @hr &lt;&gt; 0 begin</span><br><span class="line">exec @hr = sp_OADestroy @objRegExp</span><br><span class="line">return null</span><br><span class="line">end</span><br><span class="line">exec @hr = sp_OASetProperty @objRegExp, 'Pattern', @regexp</span><br><span class="line">IF @hr &lt;&gt; 0 begin</span><br><span class="line">exec @hr = sp_OADestroy @objRegExp</span><br><span class="line">return null</span><br><span class="line">end</span><br><span class="line">exec @hr = sp_OASetProperty @objRegExp, 'Global', @globalReplace</span><br><span class="line">IF @hr &lt;&gt; 0 begin</span><br><span class="line">exec @hr = sp_OADestroy @objRegExp</span><br><span class="line">return null</span><br><span class="line">end</span><br><span class="line">exec @hr = sp_OASetProperty @objRegExp, 'IgnoreCase', @ignoreCase</span><br><span class="line">IF @hr &lt;&gt; 0 begin</span><br><span class="line">exec @hr = sp_OADestroy @objRegExp</span><br><span class="line">return null</span><br><span class="line">end</span><br><span class="line">exec @hr = sp_OAMethod @objRegExp, 'Replace', @result OUTPUT, @source, @replace</span><br><span class="line">IF @hr &lt;&gt; 0 begin</span><br><span class="line">exec @hr = sp_OADestroy @objRegExp</span><br><span class="line">return null</span><br><span class="line">end</span><br><span class="line">exec @hr = sp_OADestroy @objRegExp</span><br><span class="line">IF @hr &lt;&gt; 0 begin</span><br><span class="line">return null</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">return @result</span><br><span class="line">end</span><br><span class="line">GO</span><br></pre></td></tr></tbody></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/12/14/iconv-gbk-utf8/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/12/14/iconv-gbk-utf8/" class="post-title-link" itemprop="url">Linux系统下处理从GB2312到UTF-8的转换</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-12-14 00:00:00" itemprop="dateCreated datePublished" datetime="2008-12-14T00:00:00+08:00">2008-12-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>UTF-8 这种编码已经是大势所趋，但是还有不少中文的文档保留着老式的 GB2312编码，而且只要你要和 Windows 打交道，就免不了要处理 GB2312 的问题，比如处理从 Windows 下拷过来的程序源代码、文本文件、字母文件之类。</p>
-<p>编码转换的方法估计大多数同学都知道了，不过还是有必要再强调一下，我就是老忘。</p>
-<p>Linux 下的 iconv 命令可以来处理字符编码的转换，基本命令格式如下：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iconv -f 原始编码 -t 目标编码 文件名 &gt; 新文件名</span><br></pre></td></tr></tbody></table></figure>
-
-<p>-f 代表 from，-t 代表 to。</p>
-<p>假设我要把 text.txt 从 GB2312 编码转换成 UTF-8，并且保存为 text-utf-8.txt 的话，那么命令如下：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iconv -f GB2312 -t utf-8 text.txt &gt; text-utf-8.txt</span><br></pre></td></tr></tbody></table></figure>
-
-<p>不过有的时候，转换会报错，很可能的原因是原文件中有些字符超过了 GB2312 的范围，那么，这个时候，我们可以把 GB2312 改成它的超集 GB18030，一般就解决问题了：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iconv -f gb18030 -t utf-8 text.txt &gt; text-utf-8.txt</span><br></pre></td></tr></tbody></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1080,18 +1070,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">301</span>
+          <span class="site-state-item-count">304</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">216</span>
+        <span class="site-state-item-count">224</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1120,7 +1110,7 @@
 <div class="copyright">
   
   © 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

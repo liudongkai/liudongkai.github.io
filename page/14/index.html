@@ -163,6 +163,150 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2010/08/12/php-odd-or-even/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2010/08/12/php-odd-or-even/" class="post-title-link" itemprop="url">PHP判断奇偶数的函数[zt]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2010-08-12 00:00:00" itemprop="dateCreated datePublished" datetime="2010-08-12T00:00:00+08:00">2010-08-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>因为PHP没有形成的判断奇偶函数，所以以前一直使用 %2 来判断一个数字变量是奇数还是偶数，如果把该变量 mod2 得到结果是1那么就是奇数，得到结果是 0 那么就是偶数。最近看了PHP手册，发现除了使用算术运算符判断，还可以使用位运算符来判断。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">//判断奇数，是返回TRUE，否返回FALSE</span><br><span class="line">function is_odd($num){</span><br><span class="line">return (is_numeric($num)&amp;($num&amp;1));</span><br><span class="line">}</span><br><span class="line">//判断偶数，是返回TRUE，否返回FALSE</span><br><span class="line">function is_even($num){</span><br><span class="line">return (is_numeric($num)&amp;(!($num&amp;1)));</span><br><span class="line">}</span><br><span class="line">?&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>当然，如果已经知道变量值是数字而非字符或字符串，则可以省略 is_numeric 函数的判断，直接使用 $num&amp;1 来判断就行了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2010/08/11/regex-compare/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2010/08/11/regex-compare/" class="post-title-link" itemprop="url">正则迷雾,各种工具之正则表达式语法比较[zt]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2010-08-11 00:00:00" itemprop="dateCreated datePublished" datetime="2010-08-11T00:00:00+08:00">2010-08-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在各种常用的工具中，<br>正则表达式如此的相似却又不同。<br>下表列出了一些常用的正则表达式，以及其不同之处。<br>项目总多，遗漏必有不少，请各位看官不吝指出。<br>以perl的正则为基准，不同的用法以粉红色标出。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2010/08/11/regex-compare/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2010/08/06/Linux-VPN/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -217,6 +361,88 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2010/08/06/Linux-VPN/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2010/08/06/CentOS-VPN/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2010/08/06/CentOS-VPN/" class="post-title-link" itemprop="url">CentOS VPN</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2010-08-06 00:00:00" itemprop="dateCreated datePublished" datetime="2010-08-06T00:00:00+08:00">2010-08-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>网络实验环境：<br>双网卡AS5.0 VPN服务器:eth0=192.168.10.1 eth1=192.168.20.1，eth0内网卡,虚拟网络vmnet2，eth1外网卡，虚拟网络桥接。<br>内网服务器IP地址：192.168.10.1<br>外网PC机，做VPN客户端，IP地址：192.168.20.2</p>
+<p>一、软件包</p>
+<ol>
+<li>dkms-2.0.17.5-1.noarch.rpm</li>
+<li>kernel_ppp_mppe-1.0.2-3dkms.noarch.rpm<br>MPPE（Microsoft Point to Point Encryption，微软点对点加密）</li>
+<li>ppp-2.4.4-9.0.rhel5.i386.rpm（AS5.0光盘默认就有）<br>PPP（Point-to-Point Protocol，点到点协议）</li>
+<li>pptpd-1.3.4-1.rhel5.1.i386.rpm</li>
+</ol>
+<p>软件包下载地址</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2010/08/06/CentOS-VPN/#more" rel="contents">
                 Read more »
               </a>
             </div>
@@ -598,87 +824,6 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2010/04/22/perl-merge-files/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2010/04/22/perl-merge-files/" class="post-title-link" itemprop="url">Perl 根据相同字段并合并两个文本</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2010-04-22 00:00:00" itemprop="dateCreated datePublished" datetime="2010-04-22T00:00:00+08:00">2010-04-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>有两个文本:</p>
-<p>a.txt的内容:</p>
-<blockquote>
-<p>0001|abc|1000.00<br>0002|ddd|1200.20<br>0003|dde|100.01<br>0005|ggg|200<br>……<br>……</p>
-</blockquote>
-<p>b.txt的内容:</p>
-<blockquote>
-<p>1234|2600|1|AAAAA|abc|88888888|<br>1234|2600|2|BBBBB|ddd|8888888|<br>1234|2600|3|CCCCC|dde|8888|<br>1234|2600|4|DDDDD|eee|88888888888|<br>1234|2600|5|AAAAA|ggg|888888|<br>……<br>……</p>
-</blockquote>
-<p>我想把a.txt的第一个字段删去前面的0后与b.txt的第3个字段比较,如果相等,就把b.txt中的第4个字段放在a.txt的前面.</p>
-<p>生成结果如下:</p>
-<blockquote>
-<p>AAAAA|0001|abc|1000.00<br>BBBBB|0002|ddd|1200.20<br>CCCCC|0003|dde|100.01<br>AAAAA|0005|ggg|200<br>……</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/perl</span><br><span class="line"></span><br><span class="line">$filea="a.txt";</span><br><span class="line">$fileb="b.txt";</span><br><span class="line"></span><br><span class="line">open(FB,"&lt;$fileb") || die "Can't read $fileb\n$!\n";</span><br><span class="line">while() {</span><br><span class="line">@line=split(/\|/);</span><br><span class="line">$datab{$line[2]}=$line[3];</span><br><span class="line">}</span><br><span class="line">close FB;</span><br><span class="line">open (FA,"&lt;$filea") || die "Can't read $filea\n$!\n";</span><br><span class="line">while()</span><br><span class="line">{</span><br><span class="line">@line = split(/\|/);</span><br><span class="line">$dataa{$line[0]} = $_;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">foreach $key (sort {$b cmp $a} keys %dataa)</span><br><span class="line">{</span><br><span class="line">print $datab{int $key}.'|'.$dataa{$key} if exists $datab{int $key};</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2010/04/22/awk-merge-columns/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -740,169 +885,6 @@
 <p>a b c d e</p>
 </blockquote>
 
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2010/04/22/perl-merge-array-method/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2010/04/22/perl-merge-array-method/" class="post-title-link" itemprop="url">perl 求合并一个数组的方法[zt]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2010-04-22 00:00:00" itemprop="dateCreated datePublished" datetime="2010-04-22T00:00:00+08:00">2010-04-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>@a=(<br>[‘a’,’2’,’4’],<br>[‘b’,’3’,’2’],<br>[‘c’,’4’,’4’],<br>[‘d’,’t’,’3’],<br>[‘a’,’4’,’5’],<br>[‘c’,’3’,’5’]<br>);</p>
-</blockquote>
-<p>判断第一个字段 如果出现相同的 就吧后面的两个字段加一起<br>想要的结果是这样的</p>
-<blockquote>
-<p>a，24， 45<br>b ，3， 2<br>c ，43， 45<br>d ，t， 3</p>
-</blockquote>
-<p>[ 本帖最后由 luesfeng 于 2009-10-3 13:54 编辑 ]</p>
-<p>CODE:</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">my %h = ();</span><br><span class="line">for(@a){</span><br><span class="line">push @{$h{$_-&gt;[0]}},$_-&gt;[1].$_-&gt;[2];</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">for(sort keys %h){</span><br><span class="line">print “$_ @{$h{$_}}\n”;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2010/04/22/perl-merge-array-method/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2010/03/21/perl-comment-ref-class/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2010/03/21/perl-comment-ref-class/" class="post-title-link" itemprop="url">关于Perl的几点：多行注释，REF函数，类的初始化</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2010-03-21 00:00:00" itemprop="dateCreated datePublished" datetime="2010-03-21T00:00:00+08:00">2010-03-21</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>多行注释：<br>perl没有多行注释，可以用下面代替：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">=pod</span><br><span class="line">代码行;</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">代码行;</span><br><span class="line">=cut</span><br></pre></td></tr></tbody></table></figure>
-
-<p>关于ref函数：<br>ref EXPR<br>ref Returns a non-empty string if EXPR is a reference, the empty<br>string otherwise. If EXPR is not specified, $_ will be used. The<br>value returned depends on the type of thing the reference is a<br>reference to. Builtin types include:</p>
-<blockquote>
-<p>SCALAR<br>ARRAY<br>HASH<br>CODE<br>REF<br>GLOB<br>LVALUE</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2010/03/21/perl-comment-ref-class/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
@@ -986,18 +968,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">301</span>
+          <span class="site-state-item-count">304</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">216</span>
+        <span class="site-state-item-count">224</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1026,7 +1008,7 @@
 <div class="copyright">
   
   © 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

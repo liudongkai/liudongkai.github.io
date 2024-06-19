@@ -163,6 +163,291 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/12/29/perl-get-html/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2009/12/29/perl-get-html/" class="post-title-link" itemprop="url">使用perl脚本抓取网页总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2009-12-29 00:00:00" itemprop="dateCreated datePublished" datetime="2009-12-29T00:00:00+08:00">2009-12-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>使用perl实现网页抓取，对网络蜘蛛的初步尝试。</p>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>windows xp，IIS，perl 5.88，CMD</p>
+<h2 id="使用到的模块"><a href="#使用到的模块" class="headerlink" title="使用到的模块"></a>使用到的模块</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">use LWP::Simple; #用来得到网页</span><br><span class="line">use HTML::HeadParser; #对部分进行解析，得到标题、编码、关键词等</span><br><span class="line">use HTML::FormatText::WithLinks; #将html变成文本可读样式</span><br><span class="line">use Encode qw/encode decode/; #解决不同网页的编码问题</span><br></pre></td></tr></tbody></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2009/12/29/perl-get-html/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/12/29/perl-install-module/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2009/12/29/perl-install-module/" class="post-title-link" itemprop="url">perl–模块安装方法和常用模块</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2009-12-29 00:00:00" itemprop="dateCreated datePublished" datetime="2009-12-29T00:00:00+08:00">2009-12-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>CPAN（Comprehensive　Perl　Archive　Network）是internet上Perl模块最大的集散地，包含了现今公布的几乎所有的perl模块。网址： <a target="_blank" rel="noopener" href="http://www.cpan.org/">http://www.cpan.org/</a>　</p>
+<p>而 <a target="_blank" rel="noopener" href="http://search.cpan.org/">http://search.cpan.org/</a> ，可以查找任何一个模块并提供下载</p>
+<h2 id="Linux-Unix—perl模块的安装方法"><a href="#Linux-Unix—perl模块的安装方法" class="headerlink" title="Linux/Unix—perl模块的安装方法"></a>Linux/Unix—perl模块的安装方法</h2><p>Linux/Unix下安装Perl模块有两种方法：手工安装和自动安装。第一种方法是从CPAN上下载您需要的模块，手工编译、安装。第二种方法是联上internet，使用一个叫做CPAN的模块自动完成下载、编译、安装的全过程。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2009/12/29/perl-install-module/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/12/28/perl-list-dir/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2009/12/28/perl-list-dir/" class="post-title-link" itemprop="url">perl中使用递归遍历目录[zt]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2009-12-28 00:00:00" itemprop="dateCreated datePublished" datetime="2009-12-28T00:00:00+08:00">2009-12-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>perl自带的函数远不及php多，但功能确实很强大，实现起来也只有几行代码。</p>
+<p>perl中的目录操作函数有：</p>
+<h2 id="1-mkdir-函数"><a href="#1-mkdir-函数" class="headerlink" title="1. mkdir 函数"></a>1. mkdir 函数</h2><p>调用语法：mkdir (dirname, permisions)<br>dirname：将要创建的目录名，可以为字符串或表达式。<br>permisions：八进制数，指定目录的访问权限。其值和意义如下：</p>
+<table>
+<thead>
+<tr>
+<th>权限值</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>4000</td>
+<td>运行时设置用户 ID</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>运行时设置组 ID</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>粘贴位</td>
+</tr>
+<tr>
+<td>0400</td>
+<td>拥有者读权限</td>
+</tr>
+<tr>
+<td>0200</td>
+<td>拥有者写权限</td>
+</tr>
+<tr>
+<td>0100</td>
+<td>拥有者执行权限</td>
+</tr>
+<tr>
+<td>0040</td>
+<td>组读权限</td>
+</tr>
+<tr>
+<td>0020</td>
+<td>组写权限</td>
+</tr>
+<tr>
+<td>0010</td>
+<td>组执行权限</td>
+</tr>
+<tr>
+<td>0004</td>
+<td>所有人读权限</td>
+</tr>
+<tr>
+<td>0002</td>
+<td>所有人写权限</td>
+</tr>
+<tr>
+<td>0001</td>
+<td>所有人执行权限</td>
+</tr>
+</tbody></table>
+<h2 id="2-chdir-函数"><a href="#2-chdir-函数" class="headerlink" title="2. chdir 函数"></a>2. chdir 函数</h2><p>调用语法：chdir (dirname)</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2009/12/28/perl-list-dir/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/12/18/G-Alarm-crack/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -330,6 +615,86 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/11/24/mysql-load-data-infile/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2009/11/24/mysql-load-data-infile/" class="post-title-link" itemprop="url">mysql load data infile[zt]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2009-11-24 00:00:00" itemprop="dateCreated datePublished" datetime="2009-11-24T00:00:00+08:00">2009-11-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="如何提高mysql-load-data-infile的速度"><a href="#如何提高mysql-load-data-infile的速度" class="headerlink" title="如何提高mysql load data infile的速度"></a>如何提高mysql load data infile的速度</h3><p>测试数据2.5G，共有数据9427567条。用的mysql的large服务器的配置。<br>load一次需要大概10分钟左右。<br>建的表用的是MYISAM，调整了几个session的参数值</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SET SESSION BULK_INSERT_BUFFER_SIZE=256217728;</span><br><span class="line">SET SESSION MYISAM_SORT_BUFFER_SIZE=256217728;</span><br></pre></td></tr></tbody></table></figure>
+<p>运行结果如下:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Query OK, 9427567 rows affected, 1558 warnings (3 min 55.21 sec)</span><br><span class="line">Records: 9427567 Deleted: 0 Skipped: 0 Warnings: 0</span><br></pre></td></tr></tbody></table></figure>
+
+<p>google到的,还可以:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set global KEY_BUFFER_SIZE=256217728;</span><br><span class="line">alter table tablename disable keys;</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="如何load数据里面带反斜杠-backslash-”-39-的数据"><a href="#如何load数据里面带反斜杠-backslash-”-39-的数据" class="headerlink" title="如何load数据里面带反斜杠(backslash)”' 的数据"></a>如何load数据里面带反斜杠(backslash)”' 的数据</h3><p>由于如果你没有指定FIELDS子句，则默认值为假设您写下如下语句时的值：<br><code>FIELDS TERMINATED BY '\t' ENCLOSED BY " ESCAPED BY '\\'</code><br>所以，如果你的数据里面有反斜杠(backslash)”\”的时候，数据会出现被截断的问题。出现这种问题，只要写上如下的fields子句即可<br><code>FIELDS TERMINATED BY '\t' ENCLOSED BY " ESCAPED BY "</code></p>
+<h3 id="如何load不同编码的数据"><a href="#如何load不同编码的数据" class="headerlink" title="如何load不同编码的数据"></a>如何load不同编码的数据</h3><p>原来用的4.X的mysql，我是select INTO OUTFILE ，只后用iconv,或者其他软件来做。可以<a target="_blank" rel="noopener" href="http://www.micronsky.com/2009/11/discuz-mysql-database-charset-convert-latin1-utf8/">参考这里</a>，但是由于这次数据大，用ultraedit等软件打开都要半天。好在新版的mysql可以增加一个新的参数<br><code>CHARACTER SET gbk</code><br>我的文本数据是GBK的编码，数据表是utf8的，用这种方法测试成功。</p>
+<h3 id="如何load的时候只insert特定的列"><a href="#如何load的时候只insert特定的列" class="headerlink" title="如何load的时候只insert特定的列"></a>如何load的时候只insert特定的列</h3><p>比如表里面有比元数据多的列。可以在load的时候指定要插入的字段名字。</p>
+<p>示例的代码如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">LOAD DATA INFILE '~/data.txt'</span><br><span class="line">INTO TABLE fb0505</span><br><span class="line">CHARACTER SET  gbk</span><br><span class="line">FIELDS TERMINATED BY '\t' ENCLOSED BY " ESCAPED BY "</span><br><span class="line">LINES TERMINATED BY '\n' STARTING BY "</span><br><span class="line">(seller_id,fb_type,fb_date,item_url);</span><br></pre></td></tr></tbody></table></figure>
+<p>其中表fb0505里面还有一列是id。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/11/24/discuz-mysql-iconv-character-set/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -400,86 +765,6 @@
 <p>上面还有一个问题是TERMINATED,ENCLOSED的选取，如果选的不对，会load失败。</p>
 <p>附1：共迁移了如下表<br>cdb_attachments<br>cdb_forums<br>cdb_memberfields<br>cdb_members<br>cdb_onlinetime<br>cdb_posts<br>cdb_threads</p>
 <p>附2：google到的链接<br><a target="_blank" rel="noopener" href="http://gentoo-wiki.com/TIP_Convert_latin1_to_UTF-8_in_MySQL">http://gentoo-wiki.com/TIP_Convert_latin1_to_UTF-8_in_MySQL</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/11/24/mysql-load-data-infile/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2009/11/24/mysql-load-data-infile/" class="post-title-link" itemprop="url">mysql load data infile[zt]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2009-11-24 00:00:00" itemprop="dateCreated datePublished" datetime="2009-11-24T00:00:00+08:00">2009-11-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="如何提高mysql-load-data-infile的速度"><a href="#如何提高mysql-load-data-infile的速度" class="headerlink" title="如何提高mysql load data infile的速度"></a>如何提高mysql load data infile的速度</h3><p>测试数据2.5G，共有数据9427567条。用的mysql的large服务器的配置。<br>load一次需要大概10分钟左右。<br>建的表用的是MYISAM，调整了几个session的参数值</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SET SESSION BULK_INSERT_BUFFER_SIZE=256217728;</span><br><span class="line">SET SESSION MYISAM_SORT_BUFFER_SIZE=256217728;</span><br></pre></td></tr></tbody></table></figure>
-<p>运行结果如下:</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Query OK, 9427567 rows affected, 1558 warnings (3 min 55.21 sec)</span><br><span class="line">Records: 9427567 Deleted: 0 Skipped: 0 Warnings: 0</span><br></pre></td></tr></tbody></table></figure>
-
-<p>google到的,还可以:</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set global KEY_BUFFER_SIZE=256217728;</span><br><span class="line">alter table tablename disable keys;</span><br></pre></td></tr></tbody></table></figure>
-
-<h3 id="如何load数据里面带反斜杠-backslash-”-39-的数据"><a href="#如何load数据里面带反斜杠-backslash-”-39-的数据" class="headerlink" title="如何load数据里面带反斜杠(backslash)”' 的数据"></a>如何load数据里面带反斜杠(backslash)”' 的数据</h3><p>由于如果你没有指定FIELDS子句，则默认值为假设您写下如下语句时的值：<br><code>FIELDS TERMINATED BY '\t' ENCLOSED BY " ESCAPED BY '\\'</code><br>所以，如果你的数据里面有反斜杠(backslash)”\”的时候，数据会出现被截断的问题。出现这种问题，只要写上如下的fields子句即可<br><code>FIELDS TERMINATED BY '\t' ENCLOSED BY " ESCAPED BY "</code></p>
-<h3 id="如何load不同编码的数据"><a href="#如何load不同编码的数据" class="headerlink" title="如何load不同编码的数据"></a>如何load不同编码的数据</h3><p>原来用的4.X的mysql，我是select INTO OUTFILE ，只后用iconv,或者其他软件来做。可以<a target="_blank" rel="noopener" href="http://www.micronsky.com/2009/11/discuz-mysql-database-charset-convert-latin1-utf8/">参考这里</a>，但是由于这次数据大，用ultraedit等软件打开都要半天。好在新版的mysql可以增加一个新的参数<br><code>CHARACTER SET gbk</code><br>我的文本数据是GBK的编码，数据表是utf8的，用这种方法测试成功。</p>
-<h3 id="如何load的时候只insert特定的列"><a href="#如何load的时候只insert特定的列" class="headerlink" title="如何load的时候只insert特定的列"></a>如何load的时候只insert特定的列</h3><p>比如表里面有比元数据多的列。可以在load的时候指定要插入的字段名字。</p>
-<p>示例的代码如下：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">LOAD DATA INFILE '~/data.txt'</span><br><span class="line">INTO TABLE fb0505</span><br><span class="line">CHARACTER SET  gbk</span><br><span class="line">FIELDS TERMINATED BY '\t' ENCLOSED BY " ESCAPED BY "</span><br><span class="line">LINES TERMINATED BY '\n' STARTING BY "</span><br><span class="line">(seller_id,fb_type,fb_date,item_url);</span><br></pre></td></tr></tbody></table></figure>
-<p>其中表fb0505里面还有一列是id。</p>
 
       
     </div>
@@ -717,235 +1002,6 @@
   
   
 
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/09/14/windows-hardlink/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2009/09/14/windows-hardlink/" class="post-title-link" itemprop="url">Windows 7 研究——Windows 文件夹的秘密：Windows 目录到底占用了多少真实的硬盘空间[ZT]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2009-09-14 00:00:00" itemprop="dateCreated datePublished" datetime="2009-09-14T00:00:00+08:00">2009-09-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>张康宗（Smallfrogs）<br><a target="_blank" rel="noopener" href="http://www.kztechs.com/">http://www.kztechs.com</a></p>
-<p>原本这个话题是准备在8个月前写的，但是由于种种原因，一直推迟到现在。今晚（或者说今天凌晨），抽空把程序弄完了，因为只有程序写完以后，这个话题才有实际的价值。</p>
-<p>这个话题就是：<strong>Windows 目录到底占用了多少真实的硬盘空间？</strong></p>
-<p>看到这个问题，我想99%的人都会说：用资源管理器右键点击Windows目录，看看属性不就知道了吗？何必故弄玄虚呢！</p>
-<p>但是，我 Smallfrogs 会有那么傻的把一个大家都知道的问题重新翻出来吗？既然提出了这个话题，就有我的道理！请各位耐住性子往下看，看看我们的Microsoft同学又玩了什么样的花活，呵呵。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2009/09/14/windows-hardlink/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/08/19/awk-fillzero/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2009/08/19/awk-fillzero/" class="post-title-link" itemprop="url">如何实现字符串不足N位自动补零</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2009-08-19 00:00:00" itemprop="dateCreated datePublished" datetime="2009-08-19T00:00:00+08:00">2009-08-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>文本中有如下一列：</p>
-<blockquote>
-<p>1<br>2<br>3<br>4<br>……<br>100</p>
-</blockquote>
-<p>我想把它输出为：</p>
-<blockquote>
-<p>0001<br>0002<br>0003<br>0004<br>……<br>0100</p>
-</blockquote>
-<p>就是不足4位的前面补0</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk '{printf("%04d\n",$0);}' filename</span><br></pre></td></tr></tbody></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/08/14/iptables-open-the-specified-port/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2009/08/14/iptables-open-the-specified-port/" class="post-title-link" itemprop="url">使用iptables开放指定端口</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2009-08-14 00:00:00" itemprop="dateCreated datePublished" datetime="2009-08-14T00:00:00+08:00">2009-08-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>例如: 开放80port<br><code>vi /etc/sysconfig/iptables</code><br>加入此行：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p --dport 80 -j ACCEPT</span><br></pre></td></tr></tbody></table></figure>
-
-<p>指定IP访问指定端口</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-A RH-Firewall-1-INPUT -s 192.168.1.1 -p tcp -m state --state NEW -m tcp --dport 9201 -j ACCEPT</span><br></pre></td></tr></tbody></table></figure>
-
-<p>示例：<br>1 限制连往本机的telnet单个IP并发连接为2个，超过的连接被拒绝：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -p tcp --dport 23 -m iplimit --iplimit-above 2 -j REJECT</span><br></pre></td></tr></tbody></table></figure>
-
-<p>2 限制连往本机的web服务，1个C段的IP的并发连接不超过100个，超过的被拒绝：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -p tcp --dport 80 -m iplimit --iplimit-above 100 --iplimit-mask 24 -j REJECT</span><br></pre></td></tr></tbody></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1015,18 +1071,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">301</span>
+          <span class="site-state-item-count">304</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">216</span>
+        <span class="site-state-item-count">224</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1055,7 +1111,7 @@
 <div class="copyright">
   
   © 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

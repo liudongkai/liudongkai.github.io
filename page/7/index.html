@@ -163,6 +163,234 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/04/10/ImportError-No-module-named-mime-text/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2014/04/10/ImportError-No-module-named-mime-text/" class="post-title-link" itemprop="url">ImportError: No module named mime.text</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2014-04-10 00:00:00" itemprop="dateCreated datePublished" datetime="2014-04-10T00:00:00+08:00">2014-04-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一个python脚本执行报错，老版本python中MIMEText 写法不对</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost:~]# /usr/bin/python check_linux_resource.py</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File "/usr/local/mysqlmtop/global_functions.py", line 11, in ?</span><br><span class="line">    from email.mime.text import MIMEText</span><br><span class="line">ImportError: No module named mime.text</span><br><span class="line"> </span><br><span class="line">[root@localhost:~]# /usr/bin/python -V</span><br><span class="line">Python 2.4.3</span><br></pre></td></tr></tbody></table></figure>
+
+
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from email.mime.text import MIMEText</span><br><span class="line">from email.header import Header</span><br></pre></td></tr></tbody></table></figure>
+<p>将以上写法修改为下面这样就ok</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from email.MIMEText import MIMEText</span><br><span class="line">from email.Header import Header</span><br></pre></td></tr></tbody></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/03/16/php-hash-to-decimal/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2014/03/16/php-hash-to-decimal/" class="post-title-link" itemprop="url">PHP如何把字符串hash成10进制数字</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2014-03-16 00:00:00" itemprop="dateCreated datePublished" datetime="2014-03-16T00:00:00+08:00">2014-03-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一般情况而言需要做字符串到十进制数字的转换可以用 <a target="_blank" rel="noopener" href="http://php.net/crc32">crc32()</a> 函数 …</p>
+<p>这个函数的优点是快 … 在我的知识范围内这应该是 php 内置最快的哈希函数 …</p>
+<p>缺点是操作系统依赖 … 不同操作系统的 <code>crc32()</code> 函数会产生不一样的值 …</p>
+<p>至于把 <code>md5()</code> 的结果转化成十进制 … 用 <a target="_blank" rel="noopener" href="http://php.net/hexdec">hexdec()</a> 显然是不靠谱的 … 因为hexdec最大只能转0x7fffffff，再大就变成float了。</p>
+<p>这里我们用到另外一个更加灵活的进制转换函数 <a target="_blank" rel="noopener" href="http://php.net/base_convert">base_convert()</a> …</p>
+<p>这个函数的好处是返回 string … 也就不存在溢出的问题了 …</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2014/03/16/php-hash-to-decimal/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/03/13/php-chinese-character-get-first-pinyin/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2014/03/13/php-chinese-character-get-first-pinyin/" class="post-title-link" itemprop="url">PHP获取汉字拼音首字母函数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2014-03-13 00:00:00" itemprop="dateCreated datePublished" datetime="2014-03-13T00:00:00+08:00">2014-03-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>先来看看怎样取得单个汉字的拼音首字母，请看下面这个函数，它支持GBK和UTF8编码：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">function getfirstchar($s0){   </span><br><span class="line">	$fchar = ord($s0{0});</span><br><span class="line">	if($fchar &gt;= ord("A") and $fchar &lt;= ord("z") )return strtoupper($s0{0});</span><br><span class="line">	$s1 = iconv("UTF-8","gb2312", $s0);</span><br><span class="line">	$s2 = iconv("gb2312","UTF-8", $s1);</span><br><span class="line">	if($s2 == $s0){$s = $s1;}else{$s = $s0;}</span><br><span class="line">	$asc = ord($s{0}) * 256 + ord($s{1}) - 65536;</span><br><span class="line">	if($asc &gt;= -20319 and $asc &lt;= -20284) return "A";</span><br><span class="line">	if($asc &gt;= -20283 and $asc &lt;= -19776) return "B";</span><br><span class="line">	if($asc &gt;= -19775 and $asc &lt;= -19219) return "C";</span><br><span class="line">	if($asc &gt;= -19218 and $asc &lt;= -18711) return "D";</span><br><span class="line">	if($asc &gt;= -18710 and $asc &lt;= -18527) return "E";</span><br><span class="line">	if($asc &gt;= -18526 and $asc &lt;= -18240) return "F";</span><br><span class="line">	if($asc &gt;= -18239 and $asc &lt;= -17923) return "G";</span><br><span class="line">	if($asc &gt;= -17922 and $asc &lt;= -17418) return "H";</span><br><span class="line">	if($asc &gt;= -17417 and $asc &lt;= -16475) return "J";</span><br><span class="line">	if($asc &gt;= -16474 and $asc &lt;= -16213) return "K";</span><br><span class="line">	if($asc &gt;= -16212 and $asc &lt;= -15641) return "L";</span><br><span class="line">	if($asc &gt;= -15640 and $asc &lt;= -15166) return "M";</span><br><span class="line">	if($asc &gt;= -15165 and $asc &lt;= -14923) return "N";</span><br><span class="line">	if($asc &gt;= -14922 and $asc &lt;= -14915) return "O";</span><br><span class="line">	if($asc &gt;= -14914 and $asc &lt;= -14631) return "P";</span><br><span class="line">	if($asc &gt;= -14630 and $asc &lt;= -14150) return "Q";</span><br><span class="line">	if($asc &gt;= -14149 and $asc &lt;= -14091) return "R";</span><br><span class="line">	if($asc &gt;= -14090 and $asc &lt;= -13319) return "S";</span><br><span class="line">	if($asc &gt;= -13318 and $asc &lt;= -12839) return "T";</span><br><span class="line">	if($asc &gt;= -12838 and $asc &lt;= -12557) return "W";</span><br><span class="line">	if($asc &gt;= -12556 and $asc &lt;= -11848) return "X";</span><br><span class="line">	if($asc &gt;= -11847 and $asc &lt;= -11056) return "Y";</span><br><span class="line">	if($asc &gt;= -11055 and $asc &lt;= -10247) return "Z";</span><br><span class="line">	return null;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>以上函数返回单个汉字的拼音首字母。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2014/03/13/php-chinese-character-get-first-pinyin/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/03/12/php-chinese-character-to-pinyin/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -553,95 +781,6 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/01/16/Active-Directory-Filter-Attributes/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2014/01/16/Active-Directory-Filter-Attributes/" class="post-title-link" itemprop="url">C# AD(Active Directory)域信息同步，组织单位、用户等信息查询[zt]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2014-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2014-01-16T00:00:00+08:00">2014-01-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/zhongweiv/archive/2013/01/05/ad_sync.html">http://www.cnblogs.com/zhongweiv/archive/2013/01/05/ad_sync.html</a></p>
-<ul>
-<li><a href="#filter">DirectorySearcher.Filter属性扩充说明</a></li>
-<li><a href="#sample">用户属性扩充说明(含图文属性对照)</a><ul>
-<li><a href="#comm">常规</a></li>
-<li><a href="#addr">地址</a></li>
-<li><a href="#ac">帐户</a></li>
-<li><a href="#mob">电话</a></li>
-<li><a href="#org">组织</a></li>
-</ul>
-</li>
-</ul>
-<p><a id="filter" name="filter">&nbsp;</a></p>
-<h2 id="DirectorySearcher-Filter属性扩充说明"><a href="#DirectorySearcher-Filter属性扩充说明" class="headerlink" title="DirectorySearcher.Filter属性扩充说明"></a>DirectorySearcher.Filter属性扩充说明</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DirectorySearcher mySearcher = new DirectorySearcher(entryOU, "(objectclass=organizationalUnit)"); //查询组织单位</span><br></pre></td></tr></tbody></table></figure>
-
-<p>第二个参数是一个filter，也可以根据需求输入其它筛选条件，下面列出几个常用的</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2014/01/16/Active-Directory-Filter-Attributes/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/01/16/Ignoring-disabled-users-in-LDAP-Active-Directory/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -721,7 +860,7 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/01/13/User-Attributes-Inside-Active-Directory/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/01/16/Active-Directory-Filter-Attributes/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -735,7 +874,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2014/01/13/User-Attributes-Inside-Active-Directory/" class="post-title-link" itemprop="url">User Attributes - Inside Active Directory</a>
+            <a href="/2014/01/16/Active-Directory-Filter-Attributes/" class="post-title-link" itemprop="url">C# AD(Active Directory)域信息同步，组织单位、用户等信息查询[zt]</a>
         </h2>
 
         <div class="post-meta">
@@ -745,7 +884,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2014-01-13 00:00:00" itemprop="dateCreated datePublished" datetime="2014-01-13T00:00:00+08:00">2014-01-13</time>
+              <time title="Created: 2014-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2014-01-16T00:00:00+08:00">2014-01-16</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -768,206 +907,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Related to the book Inside Active Directory, ISBN 0-201-61621-1<br>Copyright (C) 2002 by Sakari Kouti<br>Version: December 21, 2001</p>
-<p><a target="_blank" rel="noopener" href="http://www.kouti.com/tables/userattributes.htm">http://www.kouti.com/tables/userattributes.htm</a></p>
+          <p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/zhongweiv/archive/2013/01/05/ad_sync.html">http://www.cnblogs.com/zhongweiv/archive/2013/01/05/ad_sync.html</a></p>
+<ul>
+<li><a href="#filter">DirectorySearcher.Filter属性扩充说明</a></li>
+<li><a href="#sample">用户属性扩充说明(含图文属性对照)</a><ul>
+<li><a href="#comm">常规</a></li>
+<li><a href="#addr">地址</a></li>
+<li><a href="#ac">帐户</a></li>
+<li><a href="#mob">电话</a></li>
+<li><a href="#org">组织</a></li>
+</ul>
+</li>
+</ul>
+<p><a id="filter" name="filter">&nbsp;</a></p>
+<h2 id="DirectorySearcher-Filter属性扩充说明"><a href="#DirectorySearcher-Filter属性扩充说明" class="headerlink" title="DirectorySearcher.Filter属性扩充说明"></a>DirectorySearcher.Filter属性扩充说明</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DirectorySearcher mySearcher = new DirectorySearcher(entryOU, "(objectclass=organizationalUnit)"); //查询组织单位</span><br></pre></td></tr></tbody></table></figure>
+
+<p>第二个参数是一个filter，也可以根据需求输入其它筛选条件，下面列出几个常用的</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2014/01/13/User-Attributes-Inside-Active-Directory/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/01/10/SAMBA-Failed-to-set-servicePrincipalNames/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2014/01/10/SAMBA-Failed-to-set-servicePrincipalNames/" class="post-title-link" itemprop="url">AD Domain join fails with "Failed to set servicePrincipalNames" (SAMBA)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2014-01-10 00:00:00" itemprop="dateCreated datePublished" datetime="2014-01-10T00:00:00+08:00">2014-01-10</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="">http://www.novell.com/support/kb/doc.php?id=3842088</a></p>
-<p>This document (3842088) is provided subject to the <a target="_blank" rel="noopener" href="http://www.novell.com/support/kb/doc.php?id=3842088#disclaimer">disclaimer</a> at the end of this document.</p>
-<h3 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h3><p>Novell SUSE Linux Enterprise Server 10<br>Novell SUSE Linux Enterprise Desktop 10<br>Novell SUSE Linux Enterprise Server 9</p>
-<h3 id="Situation"><a href="#Situation" class="headerlink" title="Situation"></a>Situation</h3><p>You are trying to join an AD Domain with Samba using the proper command. But it fails similar to this:</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2014/01/10/SAMBA-Failed-to-set-servicePrincipalNames/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2014/01/10/centos-apache-seafile-windowsad-installation/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2014/01/10/centos-apache-seafile-windowsad-installation/" class="post-title-link" itemprop="url">CentOS+Apache+seafile+WindowsAD 安装记录</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2014-01-10 00:00:00" itemprop="dateCreated datePublished" datetime="2014-01-10T00:00:00+08:00">2014-01-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2014-01-13 00:00:00" itemprop="dateModified" datetime="2014-01-13T00:00:00+08:00">2014-01-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/seafile/" itemprop="url" rel="index"><span itemprop="name">seafile</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>20140113 更新：<br>[1]. <a href="#filter">忽略域中被禁止的用户。</a></p>
-<h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><p>CentOS 5.10 x64<br>Apache 2.2.4 自编译<br>seafile 2.0.4 with MySQL<br>Windows AD  </p>
-<p>seafile安装目录 /home/seafile/</p>
-<h3 id="相关账号"><a href="#相关账号" class="headerlink" title="相关账号"></a>相关账号</h3><p>mysql两套账号密码：</p>
-<table>
-<thead>
-<tr>
-<th>账号</th>
-<th>密码</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>root</td>
-<td>root</td>
-<td>super权限，用于数据库安装。</td>
-</tr>
-<tr>
-<td>seafile</td>
-<td>seafile</td>
-<td>仅对seafile的3个库有DML权限。</td>
-</tr>
-</tbody></table>
-<p>Windows AD账号：</p>
-<table>
-<thead>
-<tr>
-<th>账号</th>
-<th>密码</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>cloud</td>
-<td>cloud</td>
-<td>具体设定见 # 域设置</td>
-</tr>
-</tbody></table>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2014/01/10/centos-apache-seafile-windowsad-installation/#more" rel="contents">
+              <a class="btn" href="/2014/01/16/Active-Directory-Filter-Attributes/#more" rel="contents">
                 Read more »
               </a>
             </div>
@@ -1056,18 +1014,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">301</span>
+          <span class="site-state-item-count">304</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">216</span>
+        <span class="site-state-item-count">224</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1096,7 +1054,7 @@
 <div class="copyright">
   
   © 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

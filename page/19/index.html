@@ -163,6 +163,245 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/04/19/mysql-delete-binlog/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2009/04/19/mysql-delete-binlog/" class="post-title-link" itemprop="url">删除MYSQl BIN-LOG 日志[zt]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2009-04-19 00:00:00" itemprop="dateCreated datePublished" datetime="2009-04-19T00:00:00+08:00">2009-04-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>想要恢愎数据库以前的资料,执行:show binlog events;屏幕就开始闪,闪的人眼花,心里烦(那有这么多没有用的破LOG^0^),还是删除一些去吧!</p>
+<ol>
+<li><p>列出当前的binlog文件</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show binary logs;</span><br><span class="line">+------------------+-----------+</span><br><span class="line">| Log_name         | File_size |</span><br><span class="line">+------------------+-----------+</span><br><span class="line">| mysql-bin.000001 | 150462942 |</span><br><span class="line">| mysql-bin.000002 |       125 |</span><br><span class="line">| mysql-bin.000003 |       106 |</span><br><span class="line">+------------------+-----------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>删除bin-log(删除mysql-bin.000003之前的而没有包含mysql-bin.000003)</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; purge binary logs to 'mysql-bin.000003';</span><br><span class="line">Query OK, 0 rows affected (0.16 sec)</span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>查询结果(现在只有一条记录了.)</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show binlog events\G</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">Log_name: mysql-bin.000003</span><br><span class="line">Pos: 4</span><br><span class="line">Event_type: Format_desc</span><br><span class="line">Server_id: 1</span><br><span class="line">End_log_pos: 106</span><br><span class="line">Info: Server ver: 5.1.26-rc-log, Binlog ver: 4</span><br><span class="line">1 row in set (0.01 sec)</span><br></pre></td></tr></tbody></table></figure>
+<p>(mysql-bin.000001和mysql-bin.000002已被删除)</p>
+</li>
+</ol>
+ <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show binary logs;</span><br><span class="line">+------------------+-----------+</span><br><span class="line">| Log_name         | File_size |</span><br><span class="line">+------------------+-----------+</span><br><span class="line">| mysql-bin.000003 |       106 |</span><br><span class="line">+------------------+-----------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></tbody></table></figure>
+
+<p> (删除的其它格式运用!)</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PURGE {MASTER | BINARY} LOGS TO 'log_name'</span><br><span class="line">PURGE {MASTER | BINARY} LOGS BEFORE 'date'</span><br></pre></td></tr></tbody></table></figure>
+
+<p> 用于删除列于在指定的日志或日期之前的日志索引中的所有二进制日志。这些日志也会从记录在日志索引文件中的清单中被删除，这样被给定的日志成为第一个。<br> 例如：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PURGE MASTER LOGS TO 'mysql-bin.010';</span><br><span class="line">PURGE MASTER LOGS BEFORE '2008-06-22 13:00:00';</span><br></pre></td></tr></tbody></table></figure>
+
+<p> 清除3天前的 binlog</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PURGE MASTER LOGS BEFORE DATE_SUB( NOW( ), INTERVAL 3 DAY);</span><br></pre></td></tr></tbody></table></figure>
+
+<p> BEFORE变量的date自变量可以为’YYYY-MM-DD hh:mm:ss’格式。MASTER和BINARY是同义词。<br> 如果您有一个活性的从属服务器，该服务器当前正在读取您正在试图删除的日志之一，则本语句不会起作用，而是会失败，并伴随一个错误。不过，如果从属服务器是休止的，并且您碰巧清理了其想要读取的日志之一，则从属服务器启动后不能复制。当从属服务器正在复制时，本语句可以安全运行。您不需要停止它们。</p>
+<p> 要清理日志，需按照以下步骤：</p>
+<ol>
+<li>在每个从属服务器上，使用<code>SHOW SLAVE STATUS</code>来检查它正在读取哪个日志。</li>
+<li>使用<code>SHOW MASTER LOGS</code>获得主服务器上的一系列日志。</li>
+<li>在所有的从属服务器中判定最早的日志。这个是目标日志。如果所有的从属服务器是更新的，这是清单上的最后一个日志。</li>
+<li>制作您将要删除的所有日志的备份。（这个步骤是自选的，但是建议采用。）</li>
+<li>清理所有的日志，但是不包括目标日志我。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2009/04/04/SQL-server-replace-regular/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2009/04/04/SQL-server-replace-regular/" class="post-title-link" itemprop="url">一个用于SQL Server 正则替换的函数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2009-04-04 00:00:00" itemprop="dateCreated datePublished" datetime="2009-04-04T00:00:00+08:00">2009-04-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">create function dbo.regexReplace</span><br><span class="line">(</span><br><span class="line">@source varchar(5000), –原字符串</span><br><span class="line">@regexp varchar(1000), –正則表換式</span><br><span class="line">@replace varchar(1000), –替換值</span><br><span class="line">@globalReplace bit = 0, –是否是全局替換</span><br><span class="line">@ignoreCase bit = 0 –是否忽略大小寫</span><br><span class="line">)</span><br><span class="line">returnS varchar(1000) AS</span><br><span class="line">begin</span><br><span class="line">declare @hr integer</span><br><span class="line">declare @objRegExp integer</span><br><span class="line">declare @result varchar(5000)</span><br><span class="line"></span><br><span class="line">exec @hr = sp_OACreate 'VBScript.RegExp', @objRegExp OUTPUT</span><br><span class="line">IF @hr &lt;&gt; 0 begin</span><br><span class="line">exec @hr = sp_OADestroy @objRegExp</span><br><span class="line">return null</span><br><span class="line">end</span><br><span class="line">exec @hr = sp_OASetProperty @objRegExp, 'Pattern', @regexp</span><br><span class="line">IF @hr &lt;&gt; 0 begin</span><br><span class="line">exec @hr = sp_OADestroy @objRegExp</span><br><span class="line">return null</span><br><span class="line">end</span><br><span class="line">exec @hr = sp_OASetProperty @objRegExp, 'Global', @globalReplace</span><br><span class="line">IF @hr &lt;&gt; 0 begin</span><br><span class="line">exec @hr = sp_OADestroy @objRegExp</span><br><span class="line">return null</span><br><span class="line">end</span><br><span class="line">exec @hr = sp_OASetProperty @objRegExp, 'IgnoreCase', @ignoreCase</span><br><span class="line">IF @hr &lt;&gt; 0 begin</span><br><span class="line">exec @hr = sp_OADestroy @objRegExp</span><br><span class="line">return null</span><br><span class="line">end</span><br><span class="line">exec @hr = sp_OAMethod @objRegExp, 'Replace', @result OUTPUT, @source, @replace</span><br><span class="line">IF @hr &lt;&gt; 0 begin</span><br><span class="line">exec @hr = sp_OADestroy @objRegExp</span><br><span class="line">return null</span><br><span class="line">end</span><br><span class="line">exec @hr = sp_OADestroy @objRegExp</span><br><span class="line">IF @hr &lt;&gt; 0 begin</span><br><span class="line">return null</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">return @result</span><br><span class="line">end</span><br><span class="line">GO</span><br></pre></td></tr></tbody></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/12/14/iconv-gbk-utf8/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/12/14/iconv-gbk-utf8/" class="post-title-link" itemprop="url">Linux系统下处理从GB2312到UTF-8的转换</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-12-14 00:00:00" itemprop="dateCreated datePublished" datetime="2008-12-14T00:00:00+08:00">2008-12-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>UTF-8 这种编码已经是大势所趋，但是还有不少中文的文档保留着老式的 GB2312编码，而且只要你要和 Windows 打交道，就免不了要处理 GB2312 的问题，比如处理从 Windows 下拷过来的程序源代码、文本文件、字母文件之类。</p>
+<p>编码转换的方法估计大多数同学都知道了，不过还是有必要再强调一下，我就是老忘。</p>
+<p>Linux 下的 iconv 命令可以来处理字符编码的转换，基本命令格式如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iconv -f 原始编码 -t 目标编码 文件名 &gt; 新文件名</span><br></pre></td></tr></tbody></table></figure>
+
+<p>-f 代表 from，-t 代表 to。</p>
+<p>假设我要把 text.txt 从 GB2312 编码转换成 UTF-8，并且保存为 text-utf-8.txt 的话，那么命令如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iconv -f GB2312 -t utf-8 text.txt &gt; text-utf-8.txt</span><br></pre></td></tr></tbody></table></figure>
+
+<p>不过有的时候，转换会报错，很可能的原因是原文件中有些字符超过了 GB2312 的范围，那么，这个时候，我们可以把 GB2312 改成它的超集 GB18030，一般就解决问题了：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iconv -f gb18030 -t utf-8 text.txt &gt; text-utf-8.txt</span><br></pre></td></tr></tbody></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/12/14/perl-encode-url/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -489,6 +728,78 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/11/22/FileZilla-Server-Aliases/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/11/22/FileZilla-Server-Aliases/" class="post-title-link" itemprop="url">FileZilla Server虚拟路径设定</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-11-22 00:00:00" itemprop="dateCreated datePublished" datetime="2008-11-22T00:00:00+08:00">2008-11-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>不用还不知道，原来设定filezilla的虚拟路径还有语法。关键处解决了，设定就简单多了。</p>
+<p>方法如下:<br>按下filezilla server的「edit」下拉选单选择「user」，进入user窗口之后，找到「shared folders」。设定好主要的目录（home dir)后，就可以设定其它次要的目录。</p>
+<p>设定其它目录的方法如下，首先点选「Add」键，依次把其余的目录设置。但要注意的是，如果仅仅把别的目录添加进 去，那么从远程登入连接后，会发现除了主目录和它的子目录之外，另外设置的目录是看不见。<br>为了解决这个问题，必需要透过filezilla server内建的「虚拟路径」（Aliases)的设置。</p>
+<p>虚拟路径，就是在客户端看到的目录结构。由于一个用户只能有一个主目录，别的目录如果不映像成虚拟目录的话，客户端将看不到它。所以只有把除了主目录之 外的其它目录，虚拟成主目录的子目录，这样在客户端才能看到。</p>
+<p>所 以为了要让其它目录能够顺利在的客户端显示，当放置新的目录之后，都要对其作「虚拟路径」的设定，设定的方式假设主目录为C:FTP，新设置的目录为 E:UPLOAD。在新设置的目录按下鼠标右键，在下拉选单中选择「Edit aliases」就可以编辑「虚拟路径」。</p>
+<p>编辑的规则：要把E:\UPLOAD目录作为客户端uploae的目录，在「Edit aliases」输入「C:\FTP\upload」按下「ok」确定就可以了。上述的例子中，编写的规则在于路径的前面必须是主目录的路径。如此一来当使用者登入到ftp server时，才能顺利的显示出upload数据夹。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/11/22/shell-process-control/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -591,78 +902,6 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/11/22/FileZilla-Server-Aliases/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/11/22/FileZilla-Server-Aliases/" class="post-title-link" itemprop="url">FileZilla Server虚拟路径设定</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-11-22 00:00:00" itemprop="dateCreated datePublished" datetime="2008-11-22T00:00:00+08:00">2008-11-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>不用还不知道，原来设定filezilla的虚拟路径还有语法。关键处解决了，设定就简单多了。</p>
-<p>方法如下:<br>按下filezilla server的「edit」下拉选单选择「user」，进入user窗口之后，找到「shared folders」。设定好主要的目录（home dir)后，就可以设定其它次要的目录。</p>
-<p>设定其它目录的方法如下，首先点选「Add」键，依次把其余的目录设置。但要注意的是，如果仅仅把别的目录添加进 去，那么从远程登入连接后，会发现除了主目录和它的子目录之外，另外设置的目录是看不见。<br>为了解决这个问题，必需要透过filezilla server内建的「虚拟路径」（Aliases)的设置。</p>
-<p>虚拟路径，就是在客户端看到的目录结构。由于一个用户只能有一个主目录，别的目录如果不映像成虚拟目录的话，客户端将看不到它。所以只有把除了主目录之 外的其它目录，虚拟成主目录的子目录，这样在客户端才能看到。</p>
-<p>所 以为了要让其它目录能够顺利在的客户端显示，当放置新的目录之后，都要对其作「虚拟路径」的设定，设定的方式假设主目录为C:FTP，新设置的目录为 E:UPLOAD。在新设置的目录按下鼠标右键，在下拉选单中选择「Edit aliases」就可以编辑「虚拟路径」。</p>
-<p>编辑的规则：要把E:\UPLOAD目录作为客户端uploae的目录，在「Edit aliases」输入「C:\FTP\upload」按下「ok」确定就可以了。上述的例子中，编写的规则在于路径的前面必须是主目录的路径。如此一来当使用者登入到ftp server时，才能顺利的显示出upload数据夹。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/11/04/Windows7-font-Gabriola/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -714,253 +953,6 @@
 <p>Windows 7 测试版中添加了好几种新字体, 其中大部分是为了解决某一种语言的显示问题而制作, 不过这一款 Gabriola 则是额外献给大家的礼物. Gabriola 由 <a target="_blank" rel="noopener" href="http://www.tiro.com/">Tiro Typeworks</a> 的 John Hudson 所设计, 属于 TT-OT 字体, 其中包含了相当多的花体字母, 花饰, 连字, 以及配套的扩展拉丁字母, 体积达到了 3MB 之巨… 微软在 PDC 大会上还特地<a target="_blank" rel="noopener" href="http://www.istartedsomething.com/20081030/improvements-to-fonts-in-windows-7/">介绍到它</a>. 刚装了 Windows 7, 找出来分享给大家.</p>
 <p><a href="/files/Font_Gabriola.7z">点击下载</a></p>
 
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/10/30/custom-firefox-CSS/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/10/30/custom-firefox-CSS/" class="post-title-link" itemprop="url">定义火狐的userChrome.css</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-10-30 00:00:00" itemprop="dateCreated datePublished" datetime="2008-10-30T00:00:00+08:00">2008-10-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>将地址栏收藏按钮移除：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#star-button { display: none !important; }</span><br></pre></td></tr></tbody></table></figure>
-
-<p>将地址栏RSS按钮移除：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#feed-button {display:none;}</span><br></pre></td></tr></tbody></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/10/07/fixed-thinkpad-t60-pxe-e05/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/10/07/fixed-thinkpad-t60-pxe-e05/" class="post-title-link" itemprop="url">解决T60的网卡的pxe-e05的错误</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-10-07 00:00:00" itemprop="dateCreated datePublished" datetime="2008-10-07T00:00:00+08:00">2008-10-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>问题现象（抄别人的）：<br><a target="_blank" rel="noopener" href="http://www.nbbbs.com.cn/bbs/thread-7973-1-1.html">http://www.nbbbs.com.cn/bbs/thread-7973-1-1.html</a></p>
-<p>开机之后显示：</p>
-<blockquote>
-<p>Intializing Intel(r) boot agent GE V1.2.31<br>PXE-E05: The LAN adapter’s configuation is corrupted or has not been initialized. The Boot Agent cannot continue.</p>
-</blockquote>
-<p>等几秒后显示</p>
-<blockquote>
-<p>ERROR<br>Expansion ROM not initialized – PCI on Motherboard<br>Bus:00, Device:00, Function:00<br>Press &lt; ESC &gt; to continue</p>
-</blockquote>
-<p>按了&lt; ESC &gt; 键以后能够正常开机, 感觉上什么都是正常的.</p>
-<ul>
-<li><p>解决方法1：<br>开机按F1进BIOS<br><code>config-Network-Internal Network Option ROM (Enter)</code>-设置下面那个<code>Current setting</code>为<code>Disabied</code>就可以了.</p>
-</li>
-<li><p>解决方法2（继续抄）：<br>无果后在网上进行大范围的搜索，经过一番搜索，终于找到了解决办法，在老外的一个 Blog 上说，可以下载 Intel® Boot Agent PROBOOT.exe ，在纯 Dos 下执行 “IBAUtil.exe -DEFCFG” 把 EEPROM 重新刷新为出厂设置即可解决此问题。<br>老外也提供一个 ISO 文件提供下载，地址为：</p>
-</li>
-</ul>
-<ul>
-<li>CDProBOOT-0.2.iso – FreeDOS boot cd-rom, customized with PROBoot Intel tools and a DOS menu selector.</li>
-<li>md5sum: c12babeec8e1a0e9072e95575f32a69a</li>
-</ul>
-<p> 但是 Intel 提供的 bootcd 在仅有 NTFS 时有 Dos 路径 bug ，如果上面的 ISO 有问题，还可以下载国内网友修改后的版本，地址为：</p>
-<ul>
-<li>CDProBOOT.iso – FreeDOS boot cd-rom, customized with PROBoot Intel tools and a DOS menu selector.</li>
-<li>md5sum: 63624e964a31802772d3a8fadecb1f3f</li>
-</ul>
-<p> 网友提供了一个0.3的版本：<a target="_blank" rel="noopener" href="http://snipurl.com/cdproboot3">http://snipurl.com/cdproboot3</a></p>
-<p> 下载后将该 ISO 镜像刻录为光盘（比较浪费啊，iso 才3.1M大小），光盘启动后选择 2 ，回车，还没等你反应过来，一切就已经恢复正常了。重新开机后把 BIOS 恢复为 Default ，启动不再出错， Ubuntu 也重归正常。</p>
-<ul>
-<li><p>方法3：<br>有线网卡不能使用的问题（Mac地址不对）：<br>下载一个软件修正它。Mac地址在机器的后面条上：<br><a target="_blank" rel="noopener" href="http://www.wirelessdefence.org/Contents/MAC%20Address%20Changer.htm">http://www.wirelessdefence.org/Contents/MAC%20Address%20Changer.htm</a></p>
-</li>
-<li><p>方法4：<br>BIOS的问题，或许可以通过刷BIOS解决（经我证明不行）</p>
-</li>
-<li><p><strong>最终</strong>：<br>pxe-05的问题没能解决，用方法1忽略它了。<br>用方法3,能用有线了。<br>估计得换主板。<br>凑合着用吧，又不是买的行货，就不去想保修的方法了。</p>
-</li>
-</ul>
-<p>参考资料：  </p>
-<ul>
-<li><a target="_blank" rel="noopener" href="http://www.oceanboo.cn/read.php?210">http://www.oceanboo.cn/read.php?210</a>  </li>
-<li><a target="_blank" rel="noopener" href="http://www.thinkpad.cn/forum/viewthread.php?tid=420871">http://www.thinkpad.cn/forum/viewthread.php?tid=420871</a>  </li>
-<li><a target="_blank" rel="noopener" href="http://www.matinfo.ch/blog/archive/2007/01/26/intel-nic-pxe-e05-error.html#post_content_extended">http://www.matinfo.ch/blog/archive/2007/01/26/intel-nic-pxe-e05-error.html#post_content_extended</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/09/04/mysqldump-import/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/09/04/mysqldump-import/" class="post-title-link" itemprop="url">mysqldump导入办法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-09-04 00:00:00" itemprop="dateCreated datePublished" datetime="2008-09-04T00:00:00+08:00">2008-09-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>mysqldump导入解决办法很简单，导出的时候指定字符集就行了。</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u root -p -c –default-character-set=utf-8 wapad site &gt; dd.sql</span><br></pre></td></tr></tbody></table></figure>
-
-<p>用户 数据库 表名</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p –default-character-set=utf8 wapad &lt; dd.sql</span><br><span class="line">mysqldump -u root -p -c –default-character-set=latin1 wap_resdb downlog_bak &gt; downlog_bak.sql</span><br><span class="line">mysqldump -u root -p -c –default-character-set=latin1 wap_resdb downlog_month &gt; downlog_month.sql</span><br><span class="line">mysqldump -u root -p -c –default-character-set=latin1 wap_resdb haoduan &gt; haoduan.sql</span><br></pre></td></tr></tbody></table></figure>
       
     </div>
 
@@ -1044,18 +1036,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">301</span>
+          <span class="site-state-item-count">304</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">216</span>
+        <span class="site-state-item-count">224</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1084,7 +1076,7 @@
 <div class="copyright">
   
   © 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

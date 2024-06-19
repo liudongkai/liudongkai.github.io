@@ -163,7 +163,7 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/15/IBM-install-drivers-2/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/20/linux-rsync/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +177,94 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2008/03/15/IBM-install-drivers-2/" class="post-title-link" itemprop="url">IBM T61/R61/X61 WinXP驱动安装(二)</a>
+            <a href="/2008/03/20/linux-rsync/" class="post-title-link" itemprop="url">Linux下的远程备份（镜像）工具rsync</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-03-20 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-20T00:00:00+08:00">2008-03-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a><e1>简介</e1></h2><p>传统上，在Unix系统下使用的备份工具主要有tar、dump（rdump）、restore（rrestore）、dd、cpio、rcp等工具。这些工具中大多数适合于本地备份（native backup），倘若要执行远程备份（remote backup）的话，往往显得力不从心。在Linux系统下提供了一个工具——rsync，据其文档说明，它是rcp工具的一个替代品，但是更快捷、更灵活。rsync采用的remote-update协议允许rsync通过网络链路传输两组文件的增量，而是不是文件本身，据此rsync可以提高传输效率。</p>
+<p>rsync所具有的功能特色主要有：</p>
+<ul>
+<li>支持对连接、设备、用户、组、权限的拷贝；</li>
+<li>支持类似GNU tar工具的exclude和exclude-from选项；</li>
+<li>类似CVS的exclude模式：忽略相同的文件；</li>
+<li>可以使用多种远程shell工具，比如rsh或者ssh；</li>
+<li>不需要root权限即可运行；</li>
+<li>将文件传输流水线化以减少延迟开销；</li>
+<li>rsync服务器允许以匿名或者认证方式登录（特别适合于做镜像）。</li>
+</ul>
+<p>和大多数网络工具一样，rsync也是以服务器/客户端的方式工作的。但较为特别的一点是：rsync服务器和客户端都使用同一个程序——rsync（如果按常见的做法，则应该是服务器程序为rsyncd，客户端程序为rsync）。启动服务器的时候需要指明–daemon选项，以表明启动的是服务器。而在启动客户端程序的时候则不应开启–daemon选项。</p>
+<p>在下文中，假设需要备份的主机为192.168.0.100，其上运行rsync服务器，将该主机称之为rsync-server；存放备份数据的主机为192.168.0.200，其上运行rsync客户端程序，将该主机称之为rsync-client。</p>
+<h2 id="服务器端的配置"><a href="#服务器端的配置" class="headerlink" title="服务器端的配置"></a><e2>服务器端的配置</e2></h2><p>rsync的配置文件为/etc/rsyncd.conf，这个配置文件控制着rsync服务器的认证、访问、logging、可用模块等信息。关于这个配置文件的详细说明请参见rsyncd.conf(5)。在本文中，仅对将要使用到的几个配置选项进行说明。需要提醒的是，默认情况下Fedora Core系统的/etc目录下没有rsyncd.conf这个文件，自行创建该文件即可。rsync服务器默认运行在TCP端口873上。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2008/03/20/linux-rsync/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/15/IBM-install-drivers-1/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/03/15/IBM-install-drivers-1/" class="post-title-link" itemprop="url">IBM T61/R61/X61 WinXP驱动安装(一)</a>
         </h2>
 
         <div class="post-meta">
@@ -210,31 +297,108 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="十五-、安装-UltraNav-driver-for-Windows-2000-XP"><a href="#十五-、安装-UltraNav-driver-for-Windows-2000-XP" class="headerlink" title="十五 、安装 UltraNav driver for Windows 2000, XP"></a>十五 、安装 UltraNav driver for Windows 2000, XP</h3><p>注 1 ： 如果网友的 ThinkPad 是 X61/X61s ，请至 <a target="_blank" rel="noopener" href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-4kmuyl">此连结</a> 下载 TrackPoint Only 驱动程序。</p>
+          <p>==== 20140221更新 ====<br>重新整理，终于找到原帖：<a target="_blank" rel="noopener" href="http://www.tpuser.idv.tw/articles/santarosa-test-wxp.html">http://www.tpuser.idv.tw/articles/santarosa-test-wxp.html</a></p>
+<hr>
+<p>ThinkPad T61/R61/X61系列硬件架构相当接近，原厂维修手册都可共享，此篇安装流程理论上可以适用在 ThinkPad T61/R61/X61系列上面，记得再根据个别机种的硬件安装对应驱动程序。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=TPAD-MATRIX">ThinkPad 全系列机型驱动程序 矩阵列表</a></li>
+</ul>
+<p>由 于微软的许多组件都需在线下载，无法直接下载完整版本，因此才会视需要，将网络卡的驱动程序安装程序放在前面。此外 ThinkPad 的相关驱动程序也有安装顺序上的考虑，以下的安装流程其实已经把各环节都尽量考虑进去，如网友没有把握，不妨按照以下的顺序安装，感谢。</p>
+<h3 id="准备动作：设定-SATA-硬盘"><a href="#准备动作：设定-SATA-硬盘" class="headerlink" title="准备动作：设定 SATA 硬盘"></a>准备动作：设定 SATA 硬盘</h3><p>自从 T60/R60/X60 开始改用 SATA 界面硬盘，手动安装 WinXP 便遇到一个问题：「要选择 Compatibility 还是 AHCI 模式？」，这问题的主因源自于设定为 AHCI 模式时，必须在安装时按下「 F6 」，然后预先加载芯片组驱动程序。但现在拥有 USB 界面软驱的使用者实在太少了。</p>
+<p>在没有 USB 软驱的状况下，有的使用者便设定成 「 Compatibility 模式」，却发现硬盘效能不彰，接着去 BIOS 调回 AHCI 模式之后，就会发生蓝底白字的系统当机惨剧。因此很多人想到要重装 WinXP 就头大。</p>
+<p>但根据 Lenovo 原厂提供的资料，以及亲身体验，其实手动安装 WinXP 并不困难！不需要准备 USB 软驱﹔不用忍受「 Compatibility 模式」效能不彰问题，更不会发生蓝底白字惨剧，关键只在于「安装流程的顺序！」</p>
+<p>请跟着本文的流程依序安装，相信大家都能顺利重返 WinXP 环境！</p>
 <ol>
-<li><p>可以从 <a target="_blank" rel="noopener" href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-42487">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-42487</a> 下载。</p>
-</li>
-<li><p>所安装的版本是 7.5.17 .20 版， 2006/05/27 发布。档名为 77gu08ww.exe</p>
-</li>
+<li>按下电源开关，开机时请按「 F1 」键，之后会进入 BIOS 画面。</li>
+<li>进入 BIOS 之后，进入「 Config 」页面</li>
+<li>再进入「 Serial ATA(SATA) 」页面</li>
+<li>将原先的「 AHCI 」改成「 Compatibility 」</li>
 </ol>
-<ul>
-<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
-<li>License Agreement 画面，选「 I accept the terms in the license agreement 」按「 Next 」 </li>
-<li>档案预设解压缩路径为「 C:\DRIVERS\WIN\UNAV 」，如不想变更请直接按「 Next 」 </li>
-<li>解压缩完成后按「 Finish 」</li>
-</ul>
-<ol start="3">
-<li>到「 C:\DRIVERS\WIN\UNAV 」里，双击「 Setup.exe 」</li>
-</ol>
-<ul>
-<li>首先出现「选取安装语言」，选「英语」，按「确定」 </li>
-<li>按「 Next 」 </li>
-<li>按「 Next 」 </li>
-<li>安装完毕后选「 Yes, I want to restart my computer now 」，按「 Finish 」</li>
-</ul>
+<p>换言之，手动安装 WinXP 时，先采用「 Compatibility 模式」，规避掉需要透过 USB 软驱安装驱动程序的困扰，然后在后面的「步骤三」请网友务必按照说明安装 Intel Matrix Storage Manager Driver ，同时将硬盘更改为 AHCI 模式。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2008/03/15/IBM-install-drivers-2/#more" rel="contents">
+              <a class="btn" href="/2008/03/15/IBM-install-drivers-1/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/15/apache-rewrite/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/03/15/apache-rewrite/" class="post-title-link" itemprop="url">Apache 重写规则的常见应用 (rewrite)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-15T00:00:00+08:00">2008-03-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="一-目的"><a href="#一-目的" class="headerlink" title="一: 目的"></a>一: 目的</h3><p>本文旨在提供如何用Apache重写规则来解决一些常见的URL重写方法的问题，通过常见的实例给用户一些使用重写规则的基本方法和线索。</p>
+<h3 id="二-为什么需要用重写规则？"><a href="#二-为什么需要用重写规则？" class="headerlink" title="二:为什么需要用重写规则？"></a>二:为什么需要用重写规则？</h3><p>一个网站，如果是长期需要放在internet上提供服务，必定会有不断地更新和维护，如临时转移到其它服务器进行维护，重新组织目录结构，变换URL甚至改变到新的域名等等，而为了让客户不会因此受到任何影响，最好的方法就是使用Apache Rewrite Rule(重写规则)。</p>
+<h3 id="三-重写规则的作用范围"><a href="#三-重写规则的作用范围" class="headerlink" title="三: 重写规则的作用范围"></a>三: 重写规则的作用范围</h3><ol>
+<li>可以使用在Apache主配置文件httpd.conf中</li>
+<li>可以使用在httpd.conf里定义的虚拟主机配置中</li>
+<li>可以使用在基本目录的跨越配置文件.htaccess中</li>
+</ol>
+<h3 id="四-重写规则的应用条件"><a href="#四-重写规则的应用条件" class="headerlink" title="四:重写规则的应用条件"></a>四:重写规则的应用条件</h3><p>只有当用户的WEB请求最终被导向到某台WEB服务器的Apache后台，则这台WEB服务器接受进来的请求，根据配置文件该请求是主配置还是虚拟主机，再根据用户在浏览器中请求的URI来配对重写规则并且根据实际的请求路径配对.htaccess中的重写规则。最后把请求的内容传回给用户，该响应可能有两种：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2008/03/15/apache-rewrite/#more" rel="contents">
                 Read more »
               </a>
             </div>
@@ -314,6 +478,101 @@
 <p>当然,最后一步,激活插件,然后你什么都不用做,就可以拥有一个全新的后台了.</p>
 <p>更多的可以查看：<a target="_blank" rel="noopener" href="http://orderedlist.com/wordpress-plugins/wp-tiger-administration/">插件作者页面</a></p>
 
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/15/IBM-install-drivers-2/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2008/03/15/IBM-install-drivers-2/" class="post-title-link" itemprop="url">IBM T61/R61/X61 WinXP驱动安装(二)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2008-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-15T00:00:00+08:00">2008-03-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="十五-、安装-UltraNav-driver-for-Windows-2000-XP"><a href="#十五-、安装-UltraNav-driver-for-Windows-2000-XP" class="headerlink" title="十五 、安装 UltraNav driver for Windows 2000, XP"></a>十五 、安装 UltraNav driver for Windows 2000, XP</h3><p>注 1 ： 如果网友的 ThinkPad 是 X61/X61s ，请至 <a target="_blank" rel="noopener" href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-4kmuyl">此连结</a> 下载 TrackPoint Only 驱动程序。</p>
+<ol>
+<li><p>可以从 <a target="_blank" rel="noopener" href="http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-42487">http://www-307.ibm.com/pc/support/site.wss/document.do?lndocid=MIGR-42487</a> 下载。</p>
+</li>
+<li><p>所安装的版本是 7.5.17 .20 版， 2006/05/27 发布。档名为 77gu08ww.exe</p>
+</li>
+</ol>
+<ul>
+<li>下载此文件于硬盘后，双击执行后，按「 Next 」 </li>
+<li>License Agreement 画面，选「 I accept the terms in the license agreement 」按「 Next 」 </li>
+<li>档案预设解压缩路径为「 C:\DRIVERS\WIN\UNAV 」，如不想变更请直接按「 Next 」 </li>
+<li>解压缩完成后按「 Finish 」</li>
+</ul>
+<ol start="3">
+<li>到「 C:\DRIVERS\WIN\UNAV 」里，双击「 Setup.exe 」</li>
+</ol>
+<ul>
+<li>首先出现「选取安装语言」，选「英语」，按「确定」 </li>
+<li>按「 Next 」 </li>
+<li>按「 Next 」 </li>
+<li>安装完毕后选「 Yes, I want to restart my computer now 」，按「 Finish 」</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2008/03/15/IBM-install-drivers-2/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -579,84 +838,6 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/03/linux-c-shell/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/03/03/linux-c-shell/" class="post-title-link" itemprop="url">Linux下C编程系列–Shell(续)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-03-03 00:00:00" itemprop="dateCreated datePublished" datetime="2008-03-03T00:00:00+08:00">2008-03-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>shell的输入与输出主要包括：</p>
-<blockquote>
-<p>echo命令<br>read命令<br>cat命令<br>管道<br>tee命令<br>标准输入、输出和标准错误<br>重定向</p>
-</blockquote>
-<h3 id="echo-e-n-string"><a href="#echo-e-n-string" class="headerlink" title="echo [-e] [-n] string"></a>echo [-e] [-n] string</h3><p>string : 字符串，可以含 shell 变量、转义符等， 一般用双引号括起来<br>-e : 让 echo 解释 string 中的转义符<br>-n : 禁止 echo 输出后输出 NEWLINE（换行）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2008/03/03/linux-c-shell/#more" rel="contents">
-                Read more »
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/03/read-the-specified-line/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -737,7 +918,7 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/03/small-shell/">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/03/03/linux-c-shell/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -751,7 +932,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2008/03/03/small-shell/" class="post-title-link" itemprop="url">非常小的shell: 指定行号,插入文本(转)</a>
+            <a href="/2008/03/03/linux-c-shell/" class="post-title-link" itemprop="url">Linux下C编程系列–Shell(续)</a>
         </h2>
 
         <div class="post-meta">
@@ -784,201 +965,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>使用这个shell可以直接在某个文件的某一行插入指定的文本,很方便. 可以把这个<br>shell加入PATH中.以下的蓝色部分为代码, 文件名为insert</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more insert</span><br><span class="line">#!/bin/bash</span><br><span class="line"># 从文件的某一行之后插入新行</span><br><span class="line"># FILE 为文件名，LINENUM为行号，TEXT为要插入的文本</span><br><span class="line"># Copyleft: cheyo@JMU</span><br><span class="line"></span><br><span class="line">showUsage()</span><br><span class="line">{</span><br><span class="line">echo "[Usage]: insert FILE LINENUM TEXT"</span><br><span class="line">echo "# 从文件的某一行之后插入新行"</span><br><span class="line">echo "# FILE 为文件名，LINENUM为行号，TEXT为要插入的文本"</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">if [ $# -lt 3 ] #少于3个参数,错误!</span><br><span class="line">then showUsage</span><br><span class="line">exit 1</span><br><span class="line">else</span><br><span class="line">sed "${2}a</span><br><span class="line">${3}" $1 &gt; tmpfile;mv tmpfile $1</span><br><span class="line">fi</span><br></pre></td></tr></tbody></table></figure>
-
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$ ./insert a 3 "Test"</span><br><span class="line">[Dong@MICRONSKY test]$ more a</span><br><span class="line">line1</span><br><span class="line">line2</span><br><span class="line">line3</span><br><span class="line">Test</span><br><span class="line">line4</span><br><span class="line">[Dong@MICRONSKY test]$</span><br></pre></td></tr></tbody></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/02/23/photoshop-designer-top-10/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/02/23/photoshop-designer-top-10/" class="post-title-link" itemprop="url">10位顶尖photoshop设计大师</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-02-23 00:00:00" itemprop="dateCreated datePublished" datetime="2008-02-23T00:00:00+08:00">2008-02-23</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>Adhemas Batista (Brazil)</li>
-</ol>
-<p> Adhemas Batista，巴西人，居住在圣保罗,25岁，美术指导，平面与插画设计师。自由职业者。1996至1998年，经人介绍进入互联网行业，当时在一家小 工作室工作。1998至1999年，致力于 Tesla Tecnologia 研究。1999至2000年，从事艺术主管，为巴西和TVA的GM做方案。在巴西做的第一个项目是网上销售汽车，从事于 AgenciaClick。2000至2002年，创作了自己的网上工作室，与巴西的私营银行和其它小客户合作。2002至2003年，回到 MSN 做 AgenciaClick，当然还有其它一些客户，如 Coca-cola， Fiat 和 TAM。2003年至今，在 AlmapBBDO 工作。</p>
-<p> <a target="_blank" rel="noopener" href="http://www.adhemas.com/">http://www.adhemas.com/</a></p>
-<ol start="2">
-<li>Bert Monroy (USA)</li>
-</ol>
-<p> Bert Monroy在纽约市出生和长大，并在当地多家代理机构及其自己的公司中从事广告艺术总监和执行总监工作20余年。 当1984年Macintosh 128汁算机出现时，Bert开始了其自己新的数码职业生涯。他把计算机作为新的艺术媒体，他是大家公认的数码艺术先锋人物之一。Bert的作品出现在各 种主要杂志上，也被大量的图书昕采用，其中包括Making Art on a Macintosh、 ThePhotoshop WOW Book(所有版本)、The IllustratorWOW Book(所有版本)、 The Art of Digital Painting以及在日本出版的Photoshop A to Z。</p>
-<p> <a target="_blank" rel="noopener" href="http://www.bertmonroy.com/">http://www.bertmonroy.com/</a></p>
-<ol start="3">
-<li>Derel Lea (Canada)</li>
-</ol>
-<p> 1996年，在作了多年艺术指导、平面设计师和职业修图编辑之后，Derel Lea开始把精力放到了插画上。从开始创作第一幅插画时就知道这正是他想要的感觉，创作并且沉迷其中，时间仿佛终止，世界仿佛消失。最初的插画作品是摄 影、传统插画和数码艺术的一种结合。它们产生的原因完全是因为Derel Lea对之前所接触的所有艺术感到厌倦和受挫。传统插画家大都总是创作同一种风格的作品，然而 Derel Lea 不喜欢总是简单重复做同样的事情。虽然可能所有的作品从根本上还是潜藏着同一种风格，但至少是在不停的尝试新事物并且让它看起来更有趣。</p>
-<p> <a target="_blank" rel="noopener" href="http://www.dereklea.com/">http://www.dereklea.com/</a></p>
-<ol start="4">
-<li>Eduardo Recife (Brazil)</li>
-</ol>
-<p> Eduardo Recife,是一位来自巴西的设计师,他的作品呈现出一种怀旧的后现代美，散发着浓郁的南美本土气息,同时他创作的一些字体也有很不错的视觉效果.我从 很小的时候就开始画画。在学校的时候我有一个记事本，里面都是我的画而没有一页笔记。我以前经常用一只黑色的钢笔给朋友刺青，还经常在无聊的时候在各种东 西的表面上画画。我相信这是我能做到的最棒的事情。对我而言，这也是当找不到合适的文字表达时最好的交流方式。绘画是一种疗法、一种爱好、一份工作，它使 我快乐。</p>
-<p> <a target="_blank" rel="noopener" href="http://www.eduardorecife.com/">http://www.eduardorecife.com/</a></p>
-<ol start="5">
-<li>Ian Keltie (U.K)</li>
-</ol>
-<p> Ian Keltie是英国的商业艺术家。Ians的数码风格吸收了多种元素的影响，包括位于泰恩河上游的家乡纽卡斯尔镇的风土建筑、所有他认为酷的东西：杂志、 磨损的牛仔裤、老鞋子，70年代的摄影以及澳大利亚画家Egon Schiele的作品。Ians总是对新的项目充满兴趣，对不断增加的世界各地客户的名单也是非常高兴。</p>
-<p> <a target="_blank" rel="noopener" href="http://www.iankeltie.com/">http://www.iankeltie.com/</a></p>
-<ol start="6">
-<li>Joan Charmant</li>
-</ol>
-<p> <a target="_blank" rel="noopener" href="http://www.joancharmant.com/">http://www.joancharmant.com/</a></p>
-<ol start="7">
-<li>Joshua M. Smith</li>
-</ol>
-<p> <a target="_blank" rel="noopener" href="http://www.hydro74.com/">http://www.hydro74.com/</a></p>
-<ol start="8">
-<li>Justin M. Maller (Australia)</li>
-</ol>
-<p> 来自澳大利亚墨尔本的平面艺术家，毕业于奥尔本大学，创意艺术学士。depthcore创意指导。</p>
-<p> <a target="_blank" rel="noopener" href="http://www.superlover.com.au/">http://www.superlover.com.au/</a></p>
-<ol start="9">
-<li>Nik Ainley (U.K)</li>
-</ol>
-<p> Nik Ainley是来自英国的一名视觉设计师，主要工作为个人和企业提供新锐的视觉设计和插画。作品曾多次被 Computer Arts杂志登载，并获得Computer Arts 杂志的“2006十佳创意设计师”荣誉。他的作品风格多变，但是都极具视觉冲击力。</p>
-<p> <a target="_blank" rel="noopener" href="http://www.shinybinary.com/">http://www.shinybinary.com/</a></p>
-<ol start="10">
-<li>Scott Hansen (USA)</li>
-</ol>
-<p> ISO50工作室负责人，来自加利福尼亚。为多个行业的设计过各种项目，从唱片封面、海报、杂志封面到滑雪板。你可以在世界各地的产品及出版物上看到他的作品。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2008/02/23/centos-install-gb/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="東木">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dong's Note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2008/02/23/centos-install-gb/" class="post-title-link" itemprop="url">为CentOS安装GD库</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2008-02-23 00:00:00" itemprop="dateCreated datePublished" datetime="2008-02-23T00:00:00+08:00">2008-02-23</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>默认CentOS服务器装好后运行的网站并不支持GD库，网上有很多教程非常复杂的讲述了一些安装GD库的方法。</p>
-<p>其实完全不必如此复查。</p>
-<p>由于CentOS 将支持GD库的PHP作为另外一个版本的PHP来发布.我们如果需要网站支持GD库,只需要直接安装带GD库的php版本即可.</p>
-<p>下面是最简便的安装GD库的方法：</p>
-<p>具体操作只有2个命令如下:</p>
-<p>运行在线安装带GD库的PHP的命令:</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install php-gd</span><br></pre></td></tr></tbody></table></figure>
-
-<p>系统就会自己人网站下载GD库,然后就会自动执行安装</p>
-<p>重新启动apachce服务以使安装后的GD库生效</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service httpd restart</span><br></pre></td></tr></tbody></table></figure>
-<p>安装完成.</p>
-
+          <p>shell的输入与输出主要包括：</p>
+<blockquote>
+<p>echo命令<br>read命令<br>cat命令<br>管道<br>tee命令<br>标准输入、输出和标准错误<br>重定向</p>
+</blockquote>
+<h3 id="echo-e-n-string"><a href="#echo-e-n-string" class="headerlink" title="echo [-e] [-n] string"></a>echo [-e] [-n] string</h3><p>string : 字符串，可以含 shell 变量、转义符等， 一般用双引号括起来<br>-e : 让 echo 解释 string 中的转义符<br>-n : 禁止 echo 输出后输出 NEWLINE（换行）</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2008/03/03/linux-c-shell/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1062,18 +1061,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">301</span>
+          <span class="site-state-item-count">304</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">216</span>
+        <span class="site-state-item-count">224</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1102,7 +1101,7 @@
 <div class="copyright">
   
   © 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

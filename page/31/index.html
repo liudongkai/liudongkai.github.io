@@ -163,6 +163,256 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2007/12/15/awstatus-analysis-old-logs/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2007/12/15/awstatus-analysis-old-logs/" class="post-title-link" itemprop="url">AWstats 如何统计旧日志</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2007-12-15 00:00:00" itemprop="dateCreated datePublished" datetime="2007-12-15T00:00:00+08:00">2007-12-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/analytics/" itemprop="url" rel="index"><span itemprop="name">Analytics</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>awstats 文档中提供了一个方法 ，需要清空过去所有的统计数据，并依次重新更新所有的历史日志；另外还包含了一个tips，不必清空所有过去的统计数据，就可以把过去遗漏的某天数据加入统计，但依然要求清空一整个月的统计数据。</p>
+<p>这些历史统计数据保存在config 文件中DirData 参数所定义的目录中，并且是按月保存的。</p>
+<p>awstats.micronsky.com.conf ：</p>
+<blockquote>
+<p>DirData=”./xyz”</p>
+</blockquote>
+<p>目录包含文件：</p>
+<blockquote>
+<p>awstats012007.micronsky.com.txt<br>awstats022007.micronsky.com.txt<br>awstats032007.micronsky.com.txt<br>awstats042007.micronsky.com.txt</p>
+</blockquote>
+<p>如果4月的统计数据，仅仅漏了25日，导致了当月的数据缺乏完整性。</p>
+<p>想要补上25日的统计数据，只有清楚4月份的统计数据文件：awstats042007.micronsky.com.txt，并从4月1日开始依次更新所有统计数据。对于上G的日志，这个工程势必是要花费很多时间和精力的。</p>
+<p>经查看awstats 历史统计数据文件，找到解决方法，算是另外一个tips 。</p>
+<p>以下代码片段来自4月份统计数据文件：awstats042007.micronsky.com.txt 。LastTime 参数保存了统计的http 日志条目最晚的时间（区别于运行update 的时间），我们可以通过把其他几个时间参数修改为此时间，并且重置一些条目参数来达到目的。</p>
+<blockquote>
+<p>LastLine 20070416000000 4386 898321 47205111575<br>FirstTime 20070401002121<br>LastTime 20070412035620<br>LastUpdate 20070416000004 2542 0 0 0 2542</p>
+</blockquote>
+<p>下面是修改后的条目：（修改前请先备份旧文件！）</p>
+<blockquote>
+<p>LastLine 20070412035620 0 0 0<br>FirstTime 20070401002121<br>LastTime 20070412035620<br>LastUpdate 20070412035620 0 0 0 0 0</p>
+</blockquote>
+<p>接着修改config 文件，注释掉原来的日志路径，指向到旧的日志压缩文件。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#LogFile="/home/username/logs/micronsky.com/http/access.log"</span><br><span class="line">LogFile="gzip -d &lt;/home/username/logs/aiview.com/http/access.log.2007-04-12.gz |"</span><br></pre></td></tr></tbody></table></figure>
+<p>然后运行命令更新统计数据。（注意：如果设置有crontab，操作前最好先disable 任务，免得引起不期望的结果）</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./awstats.pl -config=19.com -update</span><br></pre></td></tr></tbody></table></figure>
+<p>这时刷新统计页面，已经可以看到13日的统计数据，依次在config 文件中把日志更换为13、15日的文件，并逐次运行更新，即可把所缺日志依次补回。</p>
+<p>这种方法虽然不要求具有当天至月初的所有访问日志文件，但要求具有所补日期至当天或者至当月末的所有日志文件。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2007/12/14/optimize-awstats/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2007/12/14/optimize-awstats/" class="post-title-link" itemprop="url">优化AWSTATS性能的7个建议</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2007-12-14 00:00:00" itemprop="dateCreated datePublished" datetime="2007-12-14T00:00:00+08:00">2007-12-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/analytics/" itemprop="url" rel="index"><span itemprop="name">Analytics</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>对于一个访问量巨大的网站来说，使用awstats来分析其日志是一件很痛苦的事情，这往往需要耗费很多时间才能得到一个结果，偶尔还会让机器内存耗尽。在awstats的文档中，找到几个关于性能优化的建议，如下：</p>
+<ul>
+<li>关掉DNSLookup(DNSLookup不能设置为1). 虽然这样你会丢失一些关于访问者的国家信息，但是我觉得这无关紧要，大部分网站的访问者集中在国内。这样能给awstats性能带来小小提升。</li>
+<li>小心使用这三个参数： URLWithQuery, URLReferrerWithQuery ,URLWithAnchor (如果你不知道它们有什么作用最好设置为0)</li>
+<li>使用最新版本的perl (例如Perl 5.8比5.6要快上5%) 。另外比较重要的一点，用标准版本的perl代替ActiveState版本的perl，因为ActiveState 5.006有内存泄漏方面的问题，它在解析日志的时候会越来越慢最终一行日志也跑不动。</li>
+<li>回卷日志。尽可能的把日志分成更小的一份，这样awstats能处理的快一些，可以适当提高awstats解析频率.</li>
+<li>确认HostAliases参数是完整的</li>
+<li>使用最新版本的AWStats (例如AWStats 6.0比5.9快15%).</li>
+<li>某些geeks,你可以考虑采用不同的参数来重新编译perl，例如使用”use64bitint=define usemymalloc=y”编译perl,这样perl的速度能提升10%.</li>
+</ul>
+<p>原文见<a target="_blank" rel="noopener" href="http://awstats.sourceforge.net/docs/awstats_benchmark.html#ADVICES">awstats benchmark</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2007/12/13/aWstats-IIS-installtion/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="東木">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dong's Note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2007/12/13/aWstats-IIS-installtion/" class="post-title-link" itemprop="url">AWstats 在 IIS 下最详细的安装说明文档</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2007-12-13 00:00:00" itemprop="dateCreated datePublished" datetime="2007-12-13T00:00:00+08:00">2007-12-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/analytics/" itemprop="url" rel="index"><span itemprop="name">Analytics</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Awstats的用途好处我就不多多说了，在<a target="_blank" rel="noopener" href="http://www.baidu.com/s?wd=Awstats">baidu</a>和<a target="_blank" rel="noopener" href="http://www.google.com/search?hl=zh-CN&amp;q=awstats&amp;lr=">google</a>里面搜一下一箩筐，但大部分都是说在linux下的安装，有介绍在windows下的安装说明，但是都是非常的潦草的介绍下，本人就花了n多的时间在这些文档中搜索，</p>
+<p>现在按照我的说明步骤安装，基本上是不会有任何错误，本人在windows2003上和windows2000上安装测试都没有问题。</p>
+<p>参考文件</p>
+<p><a target="_blank" rel="noopener" href="http://www.chedong.com/tech/awstats.html">http://www.chedong.com/tech/awstats.html</a><br><a target="_blank" rel="noopener" href="http://awstats.sourceforge.net/docs/awstats_setup.html">http://awstats.sourceforge.net/docs/awstats_setup.html</a><br><a target="_blank" rel="noopener" href="http://awstats.sourceforge.net/docs/awstats_tools.html#awstats_buildstaticpages">http://awstats.sourceforge.net/docs/awstats_tools.html#awstats_buildstaticpages</a><br><a target="_blank" rel="noopener" href="http://awstats.sourceforge.net/docs/awstats_config.html#HTMLHeadSection">http://awstats.sourceforge.net/docs/awstats_config.html#HTMLHeadSection</a></p>
+<h2 id="一、首先将IIS安装好-然后安装-ActivePerl-，"><a href="#一、首先将IIS安装好-然后安装-ActivePerl-，" class="headerlink" title="一、首先将IIS安装好,然后安装 ActivePerl ，"></a><e1>一、首先将IIS安装好,然后安装 <a target="_blank" rel="noopener" href="http://www.activestate.com/Products/ActivePerl/?mp=1">ActivePerl</a> ，</e1></h2><p>直接安装,这个比较简单,但是本人这里还是要提醒一下各位朋友，我做网管经验总结的，呵呵 ，记得不要吧<a target="_blank" rel="noopener" href="http://www.activestate.com/Products/ActivePerl/?mp=1">ActivePerl</a>安装在系统盘上，同时最好把路径也改改，比如我是这么安装的d:\tools\perl，其实这是从安全策略角度考虑的.废话不多说,继续我们的专题：我们现在到d:\tools\perl 目录去看一看，下面有一个很重要的目录叫做bin的，宝贝都放在这里了。嗯，最好用这种方法过去。首先单击开 始菜单，在选择运行,输入cmd然后回车。这时我们可以看到一个控制台窗口。从这个窗口输入d:回车，然后输入<code>cd tools/perl</code>回车，dir回车，然后再cd bin这时我们可以看到一个叫做Perl.exe的文件。嗯这就没有问题了。然后我们编一个小程序试一试。</p>
+<p>用一个文本编辑器输入以下内容：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print "hello perl world, this is my first!\n";</span><br></pre></td></tr></tbody></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2007/12/13/aWstats-IIS-installtion/#more" rel="contents">
+                Read more »
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://www.liudongkai.com/2007/06/14/windows-shutdown/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -308,18 +558,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">301</span>
+          <span class="site-state-item-count">304</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">216</span>
+        <span class="site-state-item-count">224</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -348,7 +598,7 @@
 <div class="copyright">
   
   © 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
